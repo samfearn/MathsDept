@@ -11,8 +11,8 @@ footer_text: >
 pagehost: # the site host
 pagehosturl:  # site host URL
 
-url:  # the base hostname & protocol for your site
-baseurl: # the subpath of your site, e.g. /blog/
+url: # the base hostname & protocol for your site
+baseurl: /~sxwc62 # the subpath of your site, e.g. /blog/
 last_updated: # leave blank if you don't want to display last updated
 
 # -----------------------------------------------------------------------------
@@ -79,7 +79,7 @@ highlighter: pygments
 include: ['_pages']
 
 # Excludes
-exclude: ['_posts','_projects','_bibliography','_pages/teaching.md','_pages/publications.md','_pages/projects.md']
+exclude: ['_posts','_bibliography','_pages/teaching.md','_pages/publications.md']
 
 # Plug-ins
 plugins:

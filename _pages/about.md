@@ -14,7 +14,6 @@ profile:
 news: true
 social: true
 ---
-
 I'm currently a Teaching Fellow in the Department of Mathematical Sciences at Durham University and a member of the Centre for Particle Theory. Before this teaching post, I studied for my Ph.D. at Durham University under the supervision of [Anne Taormina] and completed this in 2018 with a thesis entitled 'Supersymmetric Sigma Models And Their Indices'.
 
 Working with [Anne Taormina] and [Xin Tang], I am interested in string and conformal field theory, 2d superconformal algebras and their representations as well as Moonshine and related topics.
