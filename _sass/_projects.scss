@@ -1,10 +1,9 @@
 .project {
     box-sizing: border-box;
-    float: left;
     height: 250px;
     padding: 10px;
     vertical-align: middle;
-    width: 33.33%;
+	text-align: center;
 
     .thumbnail {
         overflow: hidden;
@@ -17,6 +16,7 @@
                 left: -25%;
                 top: -5%;
             width: 500px;
+			object-fit: scale-down;
         }
 
         a {
@@ -32,12 +32,11 @@
                 left: 0;
                 bottom: 0;
                 right: 0;
-                background: rgba(0,0,0,0.4);
-                color: $grey-color-light;
+                background: rgba($black,0.4);
                 padding: 40px;
-                text-align: center;
 
                 h1 {
+					color: $grey-color-light;
                     font-size: 1.5rem;
                     margin: 0;
                 }
@@ -46,12 +45,9 @@
                     color: $grey-color-light;
                 }
             }
-
-            &:hover {
-                span {
-                    display: block;
-                }
-            }
         }
+    }
+    &:hover {
+		background-color: rgba($grey-color-dark,0.1);
     }
 }
