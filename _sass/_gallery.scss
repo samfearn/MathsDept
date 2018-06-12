@@ -10,10 +10,14 @@ figcaption {
     background: $theme-color;
 }
 .img_row {
-    height: $img-height;
+    min-height: $img-height;
     width: 100%;
     overflow: hidden;
     box-sizing:border-box;
+	.col{
+		min-height: $img-height;
+		@extend %mobile-smaller-img-spacing
+	}
 }
 .col {
     width: 100%;
@@ -24,9 +28,11 @@ figcaption {
 }
 .one {
     width:33.33%;
+	@extend %mobile-full-width;
 }
 .two {
     width: 66.66%;
+	@extend %mobile-full-width;
 }
 .three {
     width: 100%;
@@ -37,4 +43,14 @@ figcaption {
     text-align: center;
     vertical-align: middle;
     font-size: $caption-font-size;
+}
+%mobile-full-width{
+	@include media-query($on-palm) {
+		width: 100%;
+	}
+}
+%mobile-smaller-img-spacing{
+	@include media-query($on-palm) {
+		min-height: $img-height/2;
+	}
 }
