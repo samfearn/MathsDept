@@ -1,9 +1,13 @@
 .project {
     box-sizing: border-box;
-    height: 250px;
+    //height: 250px;
     padding: 10px;
     vertical-align: middle;
 	text-align: center;
+	@extend .clearfix;
+	@media (hover: none) {
+		background-color: rgba($grey-color-dark,0.1);
+	}
 
     .thumbnail {
         overflow: hidden;
