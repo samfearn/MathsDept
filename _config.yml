@@ -31,8 +31,8 @@ google_analytics: UA-120811067-1 # put your google-analytics code
 # -----------------------------------------------------------------------------
 # Blog
 # -----------------------------------------------------------------------------
-blog_name: al-folio
-blog_description: a simple whitespace theme for academics
+blog_name: blog
+blog_description: posts on mathematics and computing
 
 # Pagination
 paginate: 4

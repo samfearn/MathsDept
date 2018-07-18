@@ -30,10 +30,16 @@
 
         <!-- Pages -->
         {% for page in site.pages %}
-          {% if page.title and page.url != "/" %}
+          {% if page.title and page.title != "playground" and page.url != "/" %}
             <a class="page-link" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">{{ page.title }}</a>
           {% endif %}
         {% endfor %}
+		
+		{% for post in site.posts %}
+			{% if post.title == "playground" %}
+			<a class="page-link" href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">{{ post.title }}</a>
+			{% endif %}
+		{% endfor %}
 
         <!-- CV link -->
         <!-- <a class="page-link" href="{{ '/assets/pdf/CV.pdf' | prepend: site.baseurl | prepend: site.url }}">vitae</a> -->
