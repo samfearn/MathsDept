@@ -79,7 +79,13 @@ Moreover,
 
 This gives the following output:
 
-If $$\phi(x) = \frac{1}{2\pi}e^{- x^2/2}$$, then $$\Phi(x) := \int_{-\infty}^x \phi(t) dt$$. Moreover,
+If $$\phi(x) = \frac{1}{2\pi}e^{- x^2/2}$$, then
+
+$$
+\Phi(x) := \int_{-\infty}^x \phi(t) dt.
+$$
+
+Moreover,
 
 $$
 	\int_{-\infty}^\infty \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} dt = 1.
