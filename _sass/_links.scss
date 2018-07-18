@@ -12,7 +12,7 @@ article a, .news a {
     color: $link-color;
     font-weight: 100;
 
-    &:hover {
+    &:hover:not(.anchorjs-link) {
         text-decoration: underline;
 		color: $link-hover-color;
     }
@@ -24,6 +24,16 @@ article a, .news a {
     &:hover { color: $link-color; }
 }
 
+.anchorjs-link {
+  transition: all .25s linear;
+}
+.anchorjs-link:hover {
+  color: $link-hover-color;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  transition: color .25s linear;
+}
 
 // a {
 //   color: $link-color;
@@ -66,15 +76,15 @@ article a, .news a {
 //   background-image: none;
 // }
 //
-// .anchorjs-link {
-//     text-shadow: none;
-//     background-image: none;
-// }
-// .anchorjs-link:hover,
-// .anchorjs-link:focus,
-// .anchorjs-link:active{
-//     border: 0;
-//     color: $link-hover-color;
-//     text-shadow: none;
-//     background-image: none;
-// }
+//.anchorjs-link {
+// text-shadow: none;
+// background-image: none;
+//}
+//.anchorjs-link:hover,
+//.anchorjs-link:focus,
+//.anchorjs-link:active{
+// border: 0;
+// color: $link-hover-color;
+// text-shadow: none;
+// background-image: none;
+//}

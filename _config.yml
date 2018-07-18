@@ -49,7 +49,7 @@ disqus_shortname: samfearn # put your disqus shortname
 
 # Optional features
 show_social_icons:  true
-enable_anchorjs:    false
+enable_anchorjs:    true
 enable_katex:       false
 enable_mathjax:		true
 
