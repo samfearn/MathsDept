@@ -48,7 +48,7 @@
 
 {% if page.numbas.enabled %}
 <!-- Load the common Numbas script -->
-<script charset="UTF-8" type="text/javascript" src="{{ '/assets/js/numbascommon.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+<script charset="UTF-8" src="{{ '/assets/js/numbascommon.js' | prepend: site.baseurl | prepend: site.url }}"></script>
 <script>
   Numbas.queueScript('go',['start-exam'],function() {
       Numbas.init();
