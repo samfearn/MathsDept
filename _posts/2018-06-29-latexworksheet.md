@@ -36,6 +36,7 @@ Let's now look at the most basic example of a $$\LaTeX{}$$ file:
 Some text here
 \end{document}
 ~~~
+{:.anchored id="Latex1"}
 
 All $$\LaTeX{}$$ documents have to begin with a line that sets a document class (this isn't quite true, see [my previous post][prev]). The document class tells $$\LaTeX{}$$ what kind of document we're trying to produce, and sets a particular layout style for the document. Here are some available [document classes] that are available by default in $$\LaTeX{}$$. Everything between the `\begin{document}` and `\end{document}` lines constitutes the 'body' of the document. This is where we place all the content of our document.
 
@@ -57,6 +58,7 @@ Some introductory text goes here
 The main content goes here
 \end{document}
 ~~~
+{:.anchored id="Latex2"}
 
 Here we recognise the same basic structure as in the first example, starting with a `\documentclass{}` and containing the body of the document between the `\begin{document}` and `\end{document}` lines. The first main change is that we have a section before the body, which is known as the 'preamble'. We've used the preamble in this example to set some variables which are then used in the `\maketitle` line to produce a title page for the document. We also can use the preamble section of a $$\LaTeX{}$$ document to load additional 'packages', which extend the functionality of $$\LaTeX{}$$, or to define our own custom commands -- packages are explained in more detail in the worksheet. This short example also shows how we can use `\section{}`s to break our document into smaller sections with titles. Finally, the lines which start with a `#` are 'comments', these lines are ignored by $$\LaTeX{}$$ and allow us to leave ourselves notes in the source file.
 
