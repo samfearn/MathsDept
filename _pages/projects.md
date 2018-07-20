@@ -17,7 +17,7 @@ description: Undergraduate projects available.
         <div class="thumbnail blankbox"></div>
         {% endif %}    
         <span>
-            <h1>{{ project.title }}</h1>
+            <h1 class="no-anchor">{{ project.title }}</h1>
             <br/>
             <p>{{ project.description }}</p>
         </span>
@@ -37,7 +37,7 @@ description: Undergraduate projects available.
 		</div>
 		<div class="col right two">
 			<span>
-            <h3>{{ project.title }}</h3>
+            <h3 class="no-anchor">{{ project.title }}</h3>
             <br/>
             <p>{{ project.description }}</p>
 			</span>
