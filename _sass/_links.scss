@@ -33,6 +33,11 @@ article a, .news a {
 *:hover > .anchorjs-link {
   margin-left: -1.125em !important;
 }
+:target{
+  margin-top: -($nav-height+10px); 
+  padding-top: $nav-height+10px; 
+  display: block;
+}
 
 // a {
 //   color: $link-color;
