@@ -12,17 +12,17 @@ categories:
 
 [![Jekyll](https://jekyllrb.com/img/logo-2x.png){:.col.one.right style="margin: 10px"}][Jekyll]
 
-This website was built as a static site using [Jekyll]. The purpose of the current short (hopefully) series of posts is to explain what that means, why I chose to build the site this way, and to explain how the site was created so that others can build a similar site. In this first post, I want to explain what is meant by a 'static' site and the types of files involved in creating a Jekyll based site. Those who don't need or want to read about the background to the website can find all the source files for this website in the relevant repository on my [github page].
+This website was built as a static site using [Jekyll]. The purpose of the current (hopefully short) series of posts is to explain what that means, why I chose to build the site this way, and to explain how the site was created so that others can build a similar site. In this first post, I want to explain what is meant by a 'static' site and the types of files involved in creating a Jekyll based site. Those who don't need or want to read about the background to the website can find all the source files for this website in the relevant repository on my [github page].
 
 ## The (main) types of files in a website ##
 
-There are four main types of files involved in a simple website that we'll consider here. Many books have been written on each of these and so the point of this post won't be to explain these in any details, but will hopefully give you an idea of the building blocks of a website and how they fit together in a Jekyll website. In the same way as a $\LaTeX{}$ file, all of the files I'll discuss here can be read and edited as plain text files in any text editor, though there exist many specialised developers tools for working with the different file types, just as there is for $\LaTeX{}$. I'll make comparisons to $\LaTeX{}$ at various points in this post, as I assume that most people reading this have some experience with $\LaTeX{}$ already. If you don't have any experience with $\LaTeX{}$ simply ignore these analogies - or feel free to learn a little about $\LaTeX{}$ [here][LatexPost].
+There are four main types of files involved in a simple website that we'll consider here. Many books have been written on each of these and so the point of this post won't be to explain these in any details, but will hopefully give you an idea of the building blocks of a website and how they fit together in a Jekyll website. In the same way as a $\LaTeX{}$ file, all of the files I'll discuss here can be read and edited as plain text files in any text editor, though there exist many specialised developers tools for working with the different file types, just as there are for $\LaTeX{}$ files. If you'd like to learn more about $\LaTeX{}$, I wrote a brief introduction in my [previous post][LatexPost].
 
 ### The Content ###
 
 #### HTML ####
 
-HTML (or HyperText Markup Language) files, stored as `.html` files, contain the main content for [**most**](#server-side-scripts) websites. HTML is similar to $\LaTeX{}$, in that we focus on writing the content of the document and label the structure and the presentation of the content is handled [separately](#CSS) and interpreted by the web browser. A simple example of an HTML document (with the same *structure* as one of our $\LaTeX{}$ [examples][LatexExamples]) might look like:
+HTML (or HyperText Markup Language) files, stored as `.html` files, contain the main content for [**most**](#server-side-scripts) websites. HTML is similar to $\LaTeX{}$, in that we focus on writing the content of the document and label the structure, and the presentation of the content is handled [separately](#CSS) and interpreted by the web browser. A simple example of an HTML document (with the same *structure* as one of our $\LaTeX{}$ [examples][LatexExamples]) might look like:
 
 ~~~html
 <!DOCTYPE html>
@@ -43,15 +43,15 @@ HTML (or HyperText Markup Language) files, stored as `.html` files, contain the 
 ~~~
 {: .anchored id="html1"}
 
-The structure of the HTML document is defined through the use of 'tags'. For example, the paragraph tag `<p>` tells the browser that the text between the opening `<p>` and closing `</p>` tags is a paragraph. This example also uses heading tags of various levels which denote the main title `<h1>`, subtitles `<h2>` and `<h3>` tags which in this example we're using to denote the author and date. Note that similarly to the $\LaTeX{}$ [example][LatexExamples], we have some extra tags which are used to tell the browser which part consists of the main body of the document (most web pages would also have a document head, enclosed by opening `<head>` and closing `</head>` tags, which is used to contain various types of metadata).
+The structure of the HTML document is defined through the use of 'tags'. For example, the paragraph tag `<p>` tells the browser that the text between the opening `<p>` and closing `</p>` tags is a paragraph. This example also uses heading tags of various levels which denote the main title `<h1>`, subtitles `<h2>`, and `<h3>` tags which in this example we're using to denote the author and date. Note that similarly to the $\LaTeX{}$ [example][LatexExamples], we have some extra tags which are used to tell the browser which part consists of the main body of the document -- most web pages would also have a document head, enclosed by opening `<head>` and closing `</head>` tags, which is used to contain various types of metadata.
 	
-The are many tags which can be used in a HTML document and we shan't try to explain all of them here. Some tags which are worth mentioning however are:
+The are many tags which can be used in a HTML document and we shan't try to explain all of them here. Some tags which are worth mentioning however are: 
 
-*  The anchor tag `<a>`. This can be used to add links to other web pages. For instance, we can make the word 'hello' a link to Google by using `<a href="http://www.google.co.uk">hello</a>`.
+*  The anchor tag `<a>`. This can be used to add links to other web pages. For instance, we can make the word 'hello' a link to Google by using `<a href = "http://www.google.co.uk" > hello </a>`.
 *  The `<img src="link_to_image">` tag which is used to add images to pages.
-*  (Unordered) Lists can be added by using `<ul> </ul>` to denote the list and then `<li> </li>` to add elements to the list. Numbered (Ordered) lists can be created by replacing the `<ul>` tags with `<ol>` tags.
+*  (Unordered) Lists can be added by using `<ul> </ul>` to denote the list, and then `<li> </li>` to add elements to the list. Numbered (Ordered) lists can be created by replacing the `<ul>` tags with `<ol>` tags.
 
-A good introduction to HTML is available at [W3 Schools][W3HTML] and [Mozilla][MozillaHTML] (the creators of the Firefox web browser) also have a good beginners guide.
+A good introduction to HTML is available at [W3 Schools][W3HTML], and [Mozilla][MozillaHTML] (the creators of the Firefox web browser) also have a good beginners guide.
 
 #### Markdown ####
 
@@ -75,7 +75,7 @@ Some introductory text goes here
 The main content goes here
 ~~~
 
-Here, the `#` symbol is used to denote a heading, with the number of `#`s at the start of the line indicating the level of heading and lines separated by blank lines are interpreted as paragraphs. Markdown files can be processed to turn them into their HTML equivalent and these output HTML files are the ones that would be put onto a web server. Jekyll uses markdown as the main filetype for producing the content of a website and processes these into HTML files during the Jekyll build phase (see a later post for details).
+Here, the `#` symbol is used to denote a heading, with the number of `#`s at the start of the line indicating the level of heading. Lines separated by blank lines are interpreted as paragraphs. Markdown files can be processed to turn them into their HTML equivalent, and these output HTML files are the ones that would be put onto a web server. Jekyll uses markdown as the main filetype for producing the content of a website and processes these into HTML files during the Jekyll build phase (see a later post for details).
 
 More information on markdown can be found on [DaringFireball][DFMarkdown] or on [GitHub][GHMarkdown], which allows the use of markdown to provide formatting for comments, gists etc.
 
@@ -109,7 +109,7 @@ A good tutorial on CSS is available from [W3 Schools][W3CSS] and [CSS-Tricks] al
 
 [![SASS](https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg){:.col.one.right style="margin: 10px"}][SASS]
 
-Just as markdown was processed to produce HTML files, [SASS] is a CSS pre-processor. Our SASS files are stored as `.scss` files (in fact there are two types of SASS, one of which uses `.sass` files, but we won't discuss the distinction here) and are then processed to produce standard `.css` files which can be uploaded to a web server and interpreted by the browser. SASS lets us use variables and functions in our style files, making it much easier to write powerful stylesheets. SASS files also allow us to include other SASS files using the `@include` command. This lets us break our stylesheet into different parts which focus on different parts of our styling -- we might have one file for all the styling of our links, and one which contains all our basic media queries for instance -- and then include all the different parts into one 'main' `.scss` file, which is in turn processed into a single main `.css` file. Jekyll uses `.scss` as the main file type for its style files, though unlike in the case of markdown and HTML, all valid `.css` files are also valid `.scss` files, and so we don't need to know much about SASS in order to use Jekyll.
+Just as markdown was processed to produce HTML files, [SASS] is a CSS pre-processor. Our SASS files are stored as `.scss` files (in fact there are two types of SASS, one of which uses `.sass` files, but we won't discuss the distinction here) and are then processed to produce standard `.css` files which can be uploaded to a web server and interpreted by the browser. SASS lets us use variables and functions in our style files, making it much easier to write powerful stylesheets. SASS files also allow us to 'include' other SASS files using the `@include` command. This acts like copying and pasting the 'included' file into the main file in which we write the `@include` command. This lets us break our stylesheet into different parts which focus on different parts of our styling -- we might have one file for all the styling of our links, and one which contains all our basic media queries for instance -- and then include all the different parts into one 'main' `.scss` file, which is in turn processed into a single main `.css` file. Jekyll uses `.scss` as the main file type for its style files, though unlike in the case of markdown and HTML, all valid `.css` files are also valid `.scss` files, and so we don't need to know much about SASS in order to use Jekyll.
 
 ### Client-side Scripting ###
 
@@ -118,7 +118,7 @@ Just as markdown was processed to produce HTML files, [SASS] is a CSS pre-proces
 The third main type of file which is used in web development is JavaScript. JavaScript is a programming language, where the program is executed on the client side -- that is, in the web browser. JavaScript can be embedded into a web page by using the `<script>` tag. In order to keep the markup content of our webpage separate from the style and functionality, we can write our JavaScript program into a `.js` file and then use the script tag to link to the JavaScript file `<script src="link_to_javascript"></script>`. Note that simple programs are often simply included in the HTML document, by putting the content of the program directly inside the `<script>` tags. JavaScript can be used to manipulate the content, layout and styling of a web page based on the users actions. Given the depth of JavaScript it seems impossible to give a single example of any worth, but ignoring that here is a simple one-line example program:
 
 ~~~js
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
+document.getElementById("demo").innerHTML = "Hello World!";
 ~~~
 
 This interacts with the HTML content of the page, setting the content of an HTML tag with an ID of 'demo' to 'Hello World!'. Let's consider this as part of an HTML file:
@@ -151,7 +151,7 @@ Just as SASS complies to CSS, CoffeeScript compiles to JavaScript. Jekyll suppor
 
 ### Server-side Scripts ###
 
-The fourth and final main type of file used in building a standard website is a server-side programming language file. Popular choices of server-side languages include PHP, Perl, JavaScript (on the server with Node.js), Python and Ruby. Because these programs are run on the web server, rather than in the clients browser as with JavaScript, they are able to achieve things that client-side scripts cannot. For instance, server-side scripts can be used to communicate with a database of users and customise the interface to a website based on the user accessing the site. 
+The fourth and final main type of file used in building a standard website is a server-side programming language file. Popular choices of server-side languages include PHP, Perl, JavaScript (on the server with Node.js), Python and Ruby. Because these programs are run on the web server, rather than in the clients browser as with JavaScript, they are able to achieve things that client-side scripts cannot. For instance, server-side scripts can be used to communicate with a database of users and customise the interface to a website based on the user accessing the site. These server side scrips can dynamically produce the HTML that is received by the users browser, and in this case it is possible to have a website that doesn't have any `.html` pages at all, with all the HTML being the output of script files.
 
 Having discussed the main building blocks of a website, I can finally explain what I meant when I said that this site is a 'static' website build with Jekyll. This simply means that it contains no server-side scripting -- each user of the site is served the same content by the web server.
 

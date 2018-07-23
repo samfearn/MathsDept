@@ -5,7 +5,7 @@ date: 2018-06-19 18:56:21+0100
 description: Using the handoutsWithNotes package to create talk notes. Plus a cute document class trick.
 categories:
   - LaTeX
-comments: false
+comments: true
 ---
 When I give a talk, I usually write the slides using the [Beamer] class in $$\LaTeX{}$$. For the purposes of this post, I'm going to assume the basics of using Beamer are known -- maybe I'll write a post about using Beamer at a later date, but as well as the official user guide linked above, the documentation available at the excellent [ShareLaTeX] is also a good starting point.
 
