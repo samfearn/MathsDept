@@ -198,6 +198,7 @@ Numbas.addExtension = function(name,deps,callback) {
 Numbas.checkAllScriptsLoaded = function() {
     for(var file in scriptreqs) {
         var req = scriptreqs[file];
+		console.log(file);
         if(req.executed) {
             continue;
         }

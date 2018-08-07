@@ -13,6 +13,12 @@
 </script>
 {% endif %}
 
+{% if site.enable_fancybox %}
+<!-- Load fancybox -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+{% endif %}
+
 {% if site.enable_mathjax %}
 <!-- mathjax stuff -->
 <script type="text/x-mathjax-config">
@@ -36,15 +42,15 @@
   });
   MathJax.Hub.processSectionDelay = 0;
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 {% endif %}
 
-  {% if site.enable_katex %}
-  <!-- Load KaTeX -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ site.katex_version }}/katex.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ site.katex_version }}/katex.min.js"></script>
-  <script src="{{ '/assets/js/katex.js' | prepend: site.baseurl | prepend: site.url }}"></script>
-  {% endif %}
+{% if site.enable_katex %}
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ site.katex_version }}/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/{{ site.katex_version }}/katex.min.js"></script>
+<script src="{{ '/assets/js/katex.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+{% endif %}
 
 {% if page.numbas.enabled %}
 <!-- Load the common Numbas script -->
