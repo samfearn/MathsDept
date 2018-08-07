@@ -10,7 +10,7 @@ categories:
 ---
 ## Jekyll ##
 
-[![Jekyll](https://jekyllrb.com/img/logo-2x.png){:.col.one.right style="margin: 10px"}][Jekyll]
+[![Jekyll](https://jekyllrb.com/img/logo-2x.png){:.postimage.one.right}][Jekyll]
 
 This website was built as a static site using [Jekyll]. The purpose of the current (hopefully short) series of posts is to explain what that means, why I chose to build the site this way, and to explain how the site was created so that others can build a similar site. In this first post, I want to explain what is meant by a 'static' site and the types of files involved in creating a Jekyll based site. Those who don't need or want to read about the background to the website can find all the source files for this website in the relevant repository on my [github page].
 
@@ -55,7 +55,7 @@ A good introduction to HTML is available at [W3 Schools][W3HTML], and [Mozilla][
 
 #### Markdown ####
 
-[![Markdown]({{ '/assets/img/Markdown208x128.png' | prepend: site.baseurl | prepend: site.url }}){:.col.one.right style="margin: 10px"}][DFMarkdown]
+[![Markdown]({{ '/assets/img/Markdown208x128.png' | prepend: site.baseurl | prepend: site.url }}){:.postimage.one.right}][DFMarkdown]
 
 Markdown is also a filetype used to denote document structure. Originally created by [John Gruber of DaringFireball] fame, markdown files are designed to be simple to read and understand in their plain text form. They remove the need for many of the tags found in a standard HTML document. Note that there is no single Markdown standard and so the exact syntax can vary depending on the implementation being used. If we take the same example document as before, this would be written in markdown as:
 
@@ -107,7 +107,7 @@ A good tutorial on CSS is available from [W3 Schools][W3CSS] and [CSS-Tricks] al
 
 #### SASS ####
 
-[![SASS](https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg){:.col.one.right style="margin: 10px"}][SASS]
+[![SASS](https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg){:.postimage.one.right}][SASS]
 
 Just as markdown was processed to produce HTML files, [SASS] is a CSS pre-processor. Our SASS files are stored as `.scss` files (in fact there are two types of SASS, one of which uses `.sass` files, but we won't discuss the distinction here) and are then processed to produce standard `.css` files which can be uploaded to a web server and interpreted by the browser. SASS lets us use variables and functions in our style files, making it much easier to write powerful stylesheets. SASS files also allow us to 'include' other SASS files using the `@include` command. This acts like copying and pasting the 'included' file into the main file in which we write the `@include` command. This lets us break our stylesheet into different parts which focus on different parts of our styling -- we might have one file for all the styling of our links, and one which contains all our basic media queries for instance -- and then include all the different parts into one 'main' `.scss` file, which is in turn processed into a single main `.css` file. Jekyll uses `.scss` as the main file type for its style files, though unlike in the case of markdown and HTML, all valid `.css` files are also valid `.scss` files, and so we don't need to know much about SASS in order to use Jekyll.
 
