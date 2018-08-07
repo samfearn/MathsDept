@@ -14,6 +14,7 @@ pagehosturl:  # site host URL
 url: # the base hostname & protocol for your site
 baseurl: /~sxwc62 # the subpath of your site, e.g. /blog/
 last_updated: # leave blank if you don't want to display last updated
+image_dir: /assets/img/
 
 # -----------------------------------------------------------------------------
 # Social integration
@@ -52,6 +53,7 @@ show_social_icons:  true
 enable_anchorjs:    true
 enable_katex:       false
 enable_mathjax:		true
+enable_fancybox:	true
 
 # -----------------------------------------------------------------------------
 # Collections
