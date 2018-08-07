@@ -30,12 +30,20 @@ figcaption {
     width:33.33%;
 	@extend %mobile-full-width;
 }
+.half {
+    width:50%;
+	@extend %mobile-full-width;
+}
 .two {
     width: 66.66%;
 	@extend %mobile-full-width;
 }
 .three {
     width: 100%;
+}
+.postimage{
+	padding: $img-spacing;
+	margin:0 15px;
 }
 .caption {
     height: 100%;
