@@ -26,6 +26,10 @@ figcaption {
     box-sizing:border-box;
 	padding: $img-spacing;
 }
+.postimage{
+	padding: $img-spacing;
+	margin:0 15px;
+}
 .one {
     width:33.33%;
 	@extend %mobile-full-width;
@@ -40,10 +44,8 @@ figcaption {
 }
 .three {
     width: 100%;
-}
-.postimage{
-	padding: $img-spacing;
-	margin:0 15px;
+	padding: 0;
+	margin: 0;
 }
 .caption {
     height: 100%;
