@@ -7,4 +7,5 @@ group :jekyll_plugins do
     gem 'jemoji'
     gem 'unicode_utils'
 	gem 'hawkins'
+	gem 'jekyll-coffeescript'
 end

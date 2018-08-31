@@ -90,6 +90,7 @@ plugins:
     - jekyll-paginate
     - jekyll/scholar
     - jemoji
+    - jekyll-coffeescript
 
 # Jekyll-Scholar
 scholar:
