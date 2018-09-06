@@ -8,8 +8,8 @@ profile:
   align: right
   image: profile_pic_square.jpg
   address: >
-    <p>Office: CM337</p>
-    <p>Tel: +44 (0)191 33 <b>43116</b></p>
+    <p>Office: CM336</p>
+    <p>Tel: +44 (0)191 33 <b>43087</b></p>
 
 news: true
 social: true
