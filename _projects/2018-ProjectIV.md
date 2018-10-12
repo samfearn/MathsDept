@@ -34,6 +34,14 @@ Resources
 * P. Di Francesco et al., [Conformal Field Theory]
 * J. H. Conway &amp; N. J. A. Sloane [Sphere Packings, Lattices and Groups]
 
+Additional Week 1 Reading:
+
+* Mark Ronan, [Lie Theory, in the Princeton Companion to Mathematics][LieTheory]
+* Terry Gannon, [Moonshine Beyond The Monster, Chapter 0][MoonshineBeyondMonster]
+* Brandon Rayhaun, [A nice blog post on Moonshine by a Stanford University Ph.D. student][BrandonBlog]
+
+***
+
 
 [linear codes]:https://en.wikipedia.org/wiki/Linear_code
 [modular forms]:http://mathworld.wolfram.com/ModularForm.html
@@ -44,3 +52,6 @@ Resources
 [A Course In Arithmetic - Part II]:http://library.dur.ac.uk/search/?searchtype=Y&searcharg=j+p+serre+arithmetic&searchscope=1&submit.x=0&submit.y=0&submit=Search
 [Conformal Field Theory]:http://library.dur.ac.uk/search~S1/?searchtype=Y&searcharg=di+francesco+conformal&searchscope=1&sortdropdown=-&SORT=DZ&extended=1&SUBMIT=Search&searchlimits=&searchorigarg=Ydi+francesco
 [Sphere Packings, Lattices and Groups]:http://library.dur.ac.uk/search~S1?/Yconway+sphere+packings&searchscope=1&SORT=D/Yconway+sphere+packings&searchscope=1&SORT=D&SUBKEY=conway+sphere+packings/1%2C2%2C2%2CE/frameset&FF=Yconway+sphere+packings&searchscope=1&SORT=D&2%2C2%2C
+[LieTheory]:http://library.dur.ac.uk/search~S1?/Yprinceton+companion+mathematics&searchscope=1&SORT=D/Yprinceton+companion+mathematics&searchscope=1&SORT=D&SUBKEY=princeton+companion+mathematics/1%2C4%2C4%2CE/frameset&FF=Yprinceton+companion+mathematics&searchscope=1&SORT=D&3%2C3%2C
+[MoonshineBeyondMonster]:http://library.dur.ac.uk/search~S1?/YMoonshine+beyond+the+monster+gannon&SORT=D/YMoonshine+beyond+the+monster+gannon&SORT=D&SUBKEY=Moonshine+beyond+the+monster+gannon/1%2C2%2C2%2CE/frameset&FF=YMoonshine+beyond+the+monster+gannon&SORT=D&2%2C2%2C
+[BrandonBlog]:http://www.brandonrayhaun.com/2015/07/19/moonshine-theory-i-symmetry-numbers-and-the-monster/
