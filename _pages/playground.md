@@ -3,6 +3,7 @@ layout: page
 permalink: /playground/
 title: playground
 description: Test ground for new stuff.
+navinclude: false
 numbas: 
   enabled: false
   <!-- custom_script: homogeneousode.js -->

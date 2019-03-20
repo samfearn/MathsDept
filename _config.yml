@@ -92,6 +92,10 @@ plugins:
     - jemoji
     - jekyll-coffeescript
 
+# Custom Emoji Source
+emoji:
+  src: "https://github.githubassets.com/images/icons/"
+
 # Jekyll-Scholar
 scholar:
 
