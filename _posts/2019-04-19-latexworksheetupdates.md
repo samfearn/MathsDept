@@ -9,8 +9,7 @@ comments: true
 ---
 This post is really just an update to [a previous post on $$\LaTeX{}$$ for beginners][latexbeginners], so I won't repeat the things that are in that post. I recently gave the session that the original worksheets had been designed for for a second time, and decided to add a few new things to the worksheets (and fix a couple of typos). The main change to the worksheet is the addition of a new, more advanced, section on including graphics in $$\LaTeX{}$$. The new worksheet is available at the following link.
 
-<a href="/~sxwc62/assets/postfiles/20190420/LaTeXWorksheet.pdf"><span class="fas fa-download">&nbsp; $$\LaTeX{}$$ Worksheet</span></a>
-{: .center}
+{% dlink {"title":"$\\LaTeX{}$ Worksheet", "link":"assets/postfiles/20190420/LaTeXWorksheet.pdf"} %}
 
 ### Other Files ###
 
@@ -21,7 +20,7 @@ If you'd like to check your source code for the worksheet against mine then you 
 
 The image of the Durham University logo that is used in the worksheet is available below. If you want to build the source tex file from above, then make sure this image is saved in the same location as the tex source -- the image should be called "DU-logo.pdf".
 
-<a href="/~sxwc62/assets/img/DU-logo.pdf"><span class="fas fa-download">&nbsp; $$\LaTeX{}$$ Worksheet Source File</span></a>
+<a href="/~sxwc62/assets/img/DU-logo.pdf"><span class="fas fa-download">&nbsp; Durham University Logo</span></a>
 {: .center}
 
 This post is based on a presentation I gave about $$\LaTeX{}$$. The slides for the presentation are available here:

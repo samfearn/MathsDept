@@ -7,6 +7,10 @@ categories:
   - LaTeX
 comments: true
 ---
+Edit: The worksheets linked in this post have been updated. You can find the new worksheets [here][updatedworksheets].
+
+***
+
 Given that my [first post][firstpost] concerned tips for using $$\LaTeX{}$$ and the beamer package to create presentations, I thought I'd use this post to share a resource I recently created to help teach $$\LaTeX{}$$. The worksheet is simultaneously an information sheet -- with information about various environments and commands -- as well as an exercise sheet. The exercise is to recreate the sheet yourself as closely as possible using $$\LaTeX{}$$. The worksheet is available from the following link:
 
 <a href="/~sxwc62/assets/postfiles/20180626/LaTeXWorksheet.pdf"><span class="fas fa-download">&nbsp; $$\LaTeX{}$$ Worksheet</span></a>
@@ -151,6 +155,7 @@ This worksheet formed the main exercise for a two hour beginner session on $$\La
 
 This work by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.maths.dur.ac.uk/~sxwc62/" property="cc:attributionName" rel="cc:attributionURL">Sam Fearn</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
+[updatedworksheets]:{{ '/blog/2019/latexworksheetupdates/' | prepend: site.baseurl | prepend: site.url }}
 [firstpost]:{{ '/blog/2018/latexhandouts/' | prepend: site.baseurl | prepend: site.url }}
 [email]:mailto:s.m.fearn@durham.ac.uk
 [MiKTeX]:http://miktex.org/
