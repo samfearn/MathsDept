@@ -6,10 +6,33 @@
 
 {% if site.enable_anchorjs %}
 <!-- Load Anchor JS -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/{{ site.anchorjs_version }}/anchor.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/{{ site.anchorjs_version }}/anchor.min.js"></script>
 <script>
-  anchors.options = {visible: 'hover', placement: 'left'};
-  anchors.add('article h2:not(.no-anchor), article h3:not(.no-anchor), article h4:not(.no-anchor), article h5:not(.no-anchor), article h6:not(.no-anchor), .anchored');
+	document.addEventListener("DOMContentLoaded", function(event) {
+    	  anchors.options = {visible: 'hover', placement: 'left'};
+    	  anchors.add('h2,h3,article h2:not(.no-anchor), article h3:not(.no-anchor), article h4:not(.no-anchor), article h5:not(.no-anchor), article h6:not(.no-anchor), .anchored');
+	});
+  </script>
+{% endif %}
+
+{% if site.enable_bigfoot %}
+<!-- Load Bigfoot -->
+<script src="{{ '/assets/js/bigfoot.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+<script type="text/javascript">
+    $.bigfoot({
+        activateCallback: function($popover, $button) {
+                if (MathJax && !$button.data('mathjax-processed')) {
+                        var content_wrapper = $popover.find('.bigfoot-footnote__content')[0];
+                        MathJax.Hub.Queue(['Typeset', MathJax.Hub, content_wrapper]);
+                        MathJax.Hub.Queue(function () {
+                                $button.attr('data-bigfoot-footnote', content_wrapper.innerHTML);
+                                $button.data('mathjax-processed', true);
+                        });
+                }
+        },
+		activateOnHover: true,
+		deleteOnUnhover: true
+    });
 </script>
 {% endif %}
 

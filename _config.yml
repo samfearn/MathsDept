@@ -54,6 +54,7 @@ enable_anchorjs:    true
 enable_katex:       false
 enable_mathjax:		true
 enable_fancybox:	true
+enable_bigfoot:     true
 
 # -----------------------------------------------------------------------------
 # Collections
