@@ -3,6 +3,9 @@ layout: page
 title: Lie Algebras, Lattices and Moonshine
 description: Investigating the connections between Lie algebras, lattices, modular forms, and string theory.
 img: /assets/img/E8Petrie.png
+current: false
+module: Project IV
+academicYear: 2018/19
 ---
 Description
 -----------

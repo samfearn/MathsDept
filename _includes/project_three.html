@@ -1,0 +1,19 @@
+<div class="project three">
+    <a href="{{ include.url | prepend: site.baseurl | prepend: site.url }}">
+		<div class="col left one">
+	        {% if include.img %}
+	        <img class="thumbnail" src="{{ include.img | prepend: site.baseurl | prepend: site.url }}"/>
+	        {% else %}
+	        <div class="thumbnail blankbox"></div>
+	        {% endif %}
+		</div>
+		<div class="col right two">
+			<span>
+            <h3 class="no-anchor">{{ include.title }}</h3>
+			<h5 class="no-anchor">{{ include.module }} &mdash; {{ include.academicYear }}</h5>
+			<br>
+            <p>{{ include.description }}</p>
+			</span>
+		</div>
+    </a>
+</div>

@@ -2,48 +2,40 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Undergraduate projects available.
+description: Undergraduate projects
 ---
+{% assign currentProjects = site.projects | where: 'current', 'true' %}
+{% assign previousProjects = site.projects | where: 'current', 'false' %}
 
-{% for project in site.projects %}
+## current projects ##
+
+{% for project in currentProjects %}
 
 {% if project.redirect %}
-<div class="project">
-    <div class="thumbnail">
-        <a href="{{ project.redirect }}" target="_blank">
-        {% if project.img %}
-        <img class="thumbnail" src="{{ project.img | prepend: site.baseurl | prepend: site.url }}"/>
-        {% else %}
-        <div class="thumbnail blankbox"></div>
-        {% endif %}    
-        <span>
-            <h1 class="no-anchor">{{ project.title }}</h1>
-            <br/>
-            <p>{{ project.description }}</p>
-        </span>
-        </a>
-    </div>
-</div>
+
+{% include project_redirect.html redirect=project.redirect img=project.img title=project.title description=project.description module=project.module academicYear=project.academicYear %}
+
 {% else %}
 
-<div class="project three">
-    <a href="{{ project.url | prepend: site.baseurl | prepend: site.url }}">
-		<div class="col left one">
-	        {% if project.img %}
-	        <img class="thumbnail" src="{{ project.img | prepend: site.baseurl | prepend: site.url }}"/>
-	        {% else %}
-	        <div class="thumbnail blankbox"></div>
-	        {% endif %}
-		</div>
-		<div class="col right two">
-			<span>
-            <h3 class="no-anchor">{{ project.title }}</h3>
-            <br/>
-            <p>{{ project.description }}</p>
-			</span>
-		</div>
-    </a>
-</div>
+{% include project_three.html url=project.url img=project.img title=project.title description=project.description module=project.module academicYear=project.academicYear %}
+{% else %}
+
+{% endif %}
+
+{% endfor %}
+
+## previous projects ##
+
+{% for project in previousProjects %}
+
+{% if project.redirect %}
+
+{% include project_redirect.html redirect=project.redirect img=project.img title=project.title description=project.description module=project.module academicYear=project.academicYear %}
+
+{% else %}
+
+{% include project_three.html url=project.url img=project.img title=project.title description=project.description module=project.module academicYear=project.academicYear %}
+{% else %}
 
 {% endif %}
 
