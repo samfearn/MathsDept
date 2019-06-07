@@ -2,7 +2,7 @@
 layout: page
 title: Games and Codes
 module: Project III
-description: Description
+description: We consider some mathematical games and the error-correcting codes which describe their winning strategies.
 img: /assets/img/DUMaths-coloured-logo.png
 current: true
 academicYear: 2019/20
