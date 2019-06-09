@@ -9,7 +9,7 @@ academicYear: 2019/20
 ---
 Description
 -----------
-Impartial games are two player games, whose allowable moves depend only on the current state of the game, and not on the player whose turn it is. Although the games you are most familiar with probably do not fall into this class of games, there are many [interesting games][sprouts] which do. For games where only a finite number of moves are possible, we can then ask which player should win from a any given position, assuming both players know the ideal strategies -- moreover, what exactly are the strategies we should follow to win? For certain games, these strategies can be described in terms of linear error correcting codes.
+Impartial games are two player games, whose allowable moves depend only on the current state of the game, and not on the player whose turn it is. Although the games you are most familiar with probably do not fall into this class of games, there are many [interesting games][sprouts] which do. For games where only a finite number of moves are possible, we can then ask which player should win from any given position, assuming both players know the ideal strategies. Moreover, what exactly are the strategies we should follow to win? For certain games, these strategies can be described in terms of linear error correcting codes.
 
 In general, an [error correcting code] describes a way in which messages can be encoded before being transmitted. The resulting message is resilient to changes which may occur during transmission, such that the received communication can be correctly decoded, even when it contains some errors. Many different such codes exist, and the best code to use for any given task depends on the specific requirements of the situation.
 
