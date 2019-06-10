@@ -11,7 +11,6 @@
 
     .thumbnail {
         overflow: hidden;
-        height: 200px;
         width: 100%;
 
         img {
@@ -22,6 +21,10 @@
             width: 500px;
 			object-fit: scale-down;
         }
+		
+		&.blankbox{
+			padding-top:100%;
+		}
 
         a {
             float: left;
