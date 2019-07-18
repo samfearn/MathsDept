@@ -12,10 +12,12 @@ Originally, **al-folio** was based on the [\*folio theme](https://github.com/bog
 Since then, it got a full re-write of the styles and many additional cool features.
 The emphasis is on whitespace, transparency, and academic usage: [theme demo](https://alshedivat.github.io/al-folio/).
 
+This repo now holds a fork of al-folio, used to build [my website](https://www.maths.dur.ac.uk/~sxwc62/).
+
 ## Getting started
 
 For more about how to use Jekyll, check out [this tutorial](https://www.taniarascia.com/make-a-static-website-with-jekyll/).
-Why Jekyll? Read this [blog post](https://karpathy.github.io/2014/07/01/switching-to-jekyll/)!
+Why Jekyll? Read this [blog post](https://karpathy.github.io/2014/07/01/switching-to-jekyll/), or my two blog posts about building a website with Jekyll, found [here](https://www.maths.dur.ac.uk/~sxwc62/blog/2018/buildingthesite1/) and [here](https://www.maths.dur.ac.uk/~sxwc62/blog/2018/buildingthesite2/).
 
 ### Installation
 
