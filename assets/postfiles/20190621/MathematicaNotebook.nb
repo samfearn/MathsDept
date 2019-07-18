@@ -1,0 +1,771 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     29925,        763]
+NotebookOptionsPosition[     25248,        698]
+NotebookOutlinePosition[     25586,        713]
+CellTagsIndexPosition[     25543,        710]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Mathematica Workshop", "Title",
+ CellChangeTimes->{{3.770093604146377*^9, 
+  3.7700936141057587`*^9}},ExpressionUUID->"d97ff873-1bc8-4bd0-a164-\
+4b3599ddf09b"],
+
+Cell[CellGroupData[{
+
+Cell["Basic Mathematica", "Section",
+ CellChangeTimes->{{3.770093635970686*^9, 3.770093638666745*^9}, {
+  3.77009367594775*^9, 
+  3.770093678811615*^9}},ExpressionUUID->"f905debd-6ab2-4d45-841c-\
+1cbc035fed57"],
+
+Cell["\<\
+To start with, let\[CloseCurlyQuote]s try using some of the functions that we\
+\[CloseCurlyQuote]ve already seen. Try changing the parameters to check what \
+happens.\
+\>", "Text",
+ CellChangeTimes->{{3.770094063733444*^9, 3.770094069915896*^9}, {
+  3.770094113036612*^9, 
+  3.770094158116416*^9}},ExpressionUUID->"ec3e5d1e-a19d-408e-aa0d-\
+3bdd3ef41f67"],
+
+Cell[BoxData[
+ RowBox[{"Binomial", "[", 
+  RowBox[{"15", ",", "4"}], "]"}]], "Input",
+ CellChangeTimes->{{3.770094174253778*^9, 3.770094174267292*^9}, {
+  3.770094255214322*^9, 
+  3.770094277677943*^9}},ExpressionUUID->"81ef129a-84fc-4093-b603-\
+12d8ba73a61e"],
+
+Cell["\<\
+What happens if you try to only give one argument to the function? Do you \
+notice any styling to indicate that the function needs two arguments? \
+\>", "Text",
+ CellChangeTimes->{{3.770094243990654*^9, 
+  3.770094331326535*^9}},ExpressionUUID->"3de436b1-dd36-4301-afd5-\
+a00b96da7d85"],
+
+Cell[TextData[{
+ "Try using the Simplify command to simplify (x-3)(x+3)(x^2+9)+80. Type in \
+the command after this  Note that powers are typed using the \
+\[OpenCurlyQuote]^\[CloseCurlyQuote] symbol. If you want the power to be \
+displayed as a superscript, you can type ",
+ StyleBox["Ctrl-^",
+  FontWeight->"Bold"],
+ ". This will allow you to type a superscript power, you should then press \
+the right arrow key to get back to the normal level."
+}], "Text",
+ CellChangeTimes->{{3.770094364190854*^9, 3.770094377885951*^9}, 
+   3.7700944099957247`*^9, {3.770094625820732*^9, 
+   3.770094756217287*^9}},ExpressionUUID->"5b1bc05b-8165-47d9-89e1-\
+190773953368"],
+
+Cell[TextData[{
+ "Simplify",
+ Cell[BoxData[
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"x", "+", "1"}]], "+", 
+   FractionBox["1", 
+    RowBox[{"x", "-", "1"}]]}]], "Input",
+  CellChangeTimes->{{3.770095001357579*^9, 3.7700950085790358`*^9}},
+  ExpressionUUID->"dec1ca97-c92e-40fc-9928-600601547a7e"],
+ " below this text cell.  You can type in a fraction by pressing ",
+ StyleBox["Ctrl-/",
+  FontWeight->"Bold"],
+ ". You can also open the \[OpenCurlyQuote]Basic Math Assistant\
+\[CloseCurlyQuote] from the \[OpenCurlyQuote]Palettes\[CloseCurlyQuote] menu \
+to help you enter commands in a nicely displayed form."
+}], "Text",
+ CellChangeTimes->{{3.770095018162163*^9, 3.770095031019018*^9}, {
+  3.770095061370604*^9, 
+  3.770095212155632*^9}},ExpressionUUID->"6f8e837c-b2bf-4c36-a7e7-\
+0b08a5301bb6"],
+
+Cell[TextData[{
+ "Try to simplify ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"(", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["x", "2"], " ", "+", " ", 
+       RowBox[{"2", "x"}], " ", "+", " ", "1"}]], ")"}], "-", " ", "1"}], 
+   TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "66d919bf-ad25-4493-8b99-80fe0b1dea0a"],
+ ". Did it give what you expected? By default, Mathematica doesn\
+\[CloseCurlyQuote]t assume that the variables we give it are real. We can \
+give another argument to Simplify to tell it what assumptions to make. Try \
+adding x > 0, or Element[x, Reals] as a second argument to Simplify."
+}], "Text",
+ CellChangeTimes->{{3.7700952392033787`*^9, 3.7700953036359367`*^9}, {
+  3.770095334338607*^9, 3.7700953593081636`*^9}, {3.770095390323142*^9, 
+  3.77009545131279*^9}, {3.770096265260426*^9, 
+  3.77009638977991*^9}},ExpressionUUID->"a3214fff-18b4-4e79-b910-\
+22f9d90ea0a1"],
+
+Cell[TextData[{
+ "What is the tenth coefficient of ",
+ Cell[BoxData[
+  SuperscriptBox[
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"2", "x"}], "-", "\[Pi]"}], ")"}], "16"]], "Input",
+  CellChangeTimes->{{3.7700964485324497`*^9, 3.7700964513710957`*^9}, {
+   3.770096482827031*^9, 3.770096521179615*^9}},ExpressionUUID->
+  "0b9ad7d1-f175-49b1-aa3e-e6635fe93fc0"],
+ "? To type \[Pi], or other Greek letters, press ",
+ StyleBox["Escape",
+  FontWeight->"Bold"],
+ ", then type ",
+ StyleBox["pi",
+  FontWeight->"Bold"],
+ " then press ",
+ StyleBox["Escape ",
+  FontWeight->"Bold"],
+ "again."
+}], "Text",
+ CellChangeTimes->{{3.7700964203239326`*^9, 3.770096423475634*^9}, {
+  3.77009647570002*^9, 3.7700964805798817`*^9}, {3.77009653181961*^9, 
+  3.770096584083056*^9}, {3.770096625028133*^9, 
+  3.770096629027091*^9}},ExpressionUUID->"3ee970dc-bd0c-4de9-b768-\
+5589c2e17ceb"],
+
+Cell["\<\
+Try entering a list by using curly braces. A function we often need when \
+using lists is Length. Try getting the Length of the list you entered.\
+\>", "Text",
+ CellChangeTimes->{{3.770096684723997*^9, 3.77009668821947*^9}, {
+  3.770096744875702*^9, 
+  3.7700967885874853`*^9}},ExpressionUUID->"ece31367-4cdd-424e-a875-\
+16be3b3e2e1b"],
+
+Cell["\<\
+We can use this to count the number of Divisors of a number. Use Length to \
+count the number of Divisors of 1236712378. How about the number of Divisors \
+of 1987?\
+\>", "Text",
+ CellChangeTimes->{{3.770096840132176*^9, 3.770096925283897*^9}, {
+  3.770096973907844*^9, 
+  3.770096980619686*^9}},ExpressionUUID->"46b9a899-35e8-498f-b409-\
+003db892f826"],
+
+Cell[TextData[{
+ "What is the definite integral of ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"Sec", "[", "y", "]"}], "2"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "34b76fe2-d024-4155-b08c-3d7f0372fa37"],
+ " for y between -\[Pi]/4 and \[Pi]/3?"
+}], "Text",
+ CellChangeTimes->{{3.77009755081432*^9, 3.7700975599254637`*^9}, {
+  3.770098012118153*^9, 
+  3.7700980507722683`*^9}},ExpressionUUID->"c7c7611d-3aee-4200-9c3b-\
+7eede2a12cb8"],
+
+Cell[TextData[{
+ "What is the indefinite integral of ",
+ Cell[BoxData[
+  FractionBox[
+   SuperscriptBox["x", "5"], 
+   SqrtBox[
+    RowBox[{
+     SuperscriptBox["x", "3"], "+", "1"}]]]], "Input",
+  CellChangeTimes->{{3.770097926792704*^9, 3.7700979414463673`*^9}, {
+   3.770098066566766*^9, 3.770098095782392*^9}, {3.7700981700048227`*^9, 
+   3.770098280405418*^9}},ExpressionUUID->
+  "06bb20e6-0737-462e-9e6d-2bef5e083312"],
+ "with respect to x?"
+}], "Text",
+ CellChangeTimes->{{3.770098309078301*^9, 
+  3.770098335173102*^9}},ExpressionUUID->"698fddf4-267a-4e8a-ae68-\
+2c79390d91ce"],
+
+Cell[TextData[{
+ "Let\[CloseCurlyQuote]s check that the derivative of the integral of a \
+function is the function we started with. Compute the derivative with respect \
+to x, of the indefinite integral with respect to x, of ",
+ Cell[BoxData[
+  FractionBox["5", 
+   RowBox[{
+    SuperscriptBox["x", "3"], "+", "8"}]]], "Input",
+  CellChangeTimes->{{3.770098371086957*^9, 3.7700985595676193`*^9}},
+  ExpressionUUID->"5dad72e7-8428-4422-895d-205cdfc72317"],
+ ". You might want to simplify your answer. You can chain these functions \
+together in one cell, or use the % function to do each step separately -- try \
+doing both."
+}], "Text",
+ CellChangeTimes->{{3.7700985750141973`*^9, 
+  3.770098719558531*^9}},ExpressionUUID->"1675c360-fdd8-4ec6-b16e-\
+7ea510b2f477"],
+
+Cell["\<\
+Search the documentation for the % function. How do you refer to the output \
+of the last but one computed cell?\
+\>", "Text",
+ CellChangeTimes->{{3.770098751590177*^9, 
+  3.770098799189492*^9}},ExpressionUUID->"51125fc1-3873-4c80-9467-\
+421ad1a9df35"],
+
+Cell["\<\
+Look up the documentation for the Table function. Use this to create a list \
+which contains the eigenvalues for each of the three Pauli matrices \
+separately.\
+\>", "Text",
+ CellChangeTimes->{{3.770099063549725*^9, 3.77009912854355*^9}, {
+  3.770099235025277*^9, 3.770099255517419*^9}, {3.770099562817994*^9, 
+  3.770099569393936*^9}},ExpressionUUID->"ae91ffac-55c7-45df-9e5e-\
+0bead9f21a16"],
+
+Cell[TextData[{
+ "Let matrix1 = ",
+ Cell[BoxData[
+  TagBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"1", "0", "0"},
+      {
+       RowBox[{"-", "2"}], "2", "0"},
+      {
+       RowBox[{"-", 
+        FractionBox["14", "3"]}], 
+       RowBox[{"-", 
+        FractionBox["5", "3"]}], "3"}
+     },
+     GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}], "\[NoBreak]", ")"}],
+   Function[BoxForm`e$, 
+    MatrixForm[BoxForm`e$]]]], "Output",
+  CellChangeTimes->{{3.7700993289083014`*^9, 3.7700993399292793`*^9}, {
+   3.770099443344208*^9, 3.770099462198112*^9}, {3.770099533961679*^9, 
+   3.770099559073574*^9}},ExpressionUUID->
+  "7e99aa4c-c7d9-4f06-b572-b6afe7a34d8f"],
+ "\nand matrix2 = ",
+ Cell[BoxData[
+  TagBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {
+       RowBox[{"-", "1"}], "0", "0"},
+      {
+       RowBox[{"-", "3"}], "2", "0"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "3"}], "5"}
+     },
+     GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}], "\[NoBreak]", ")"}],
+   Function[BoxForm`e$, 
+    MatrixForm[BoxForm`e$]]]], "Output",
+  CellChangeTimes->{{3.7700993289083014`*^9, 3.7700993399292793`*^9}, {
+   3.770099443344208*^9, 3.770099462198112*^9}, {3.770099533961679*^9, 
+   3.770099559073574*^9}, {3.770099617589381*^9, 3.7700996489032793`*^9}},
+  ExpressionUUID->"bdddb2c6-7a67-46f6-a76b-ce566613bad1"],
+ "\ncreate a single list which contains all the eigenvalues of both matrices \
+without duplicates. "
+}], "Text",
+ CellChangeTimes->{{3.770099576777388*^9, 3.77009959692943*^9}, {
+  3.7700996558807583`*^9, 
+  3.770099697281836*^9}},ExpressionUUID->"c731a098-9446-4bf2-a843-\
+b1ebf87c45da"],
+
+Cell["\<\
+Find two non-diagonal 4 by 4 matrices which have exactly 2 shared integer \
+eigenvalues.\
+\>", "Text",
+ CellChangeTimes->{{3.770099848170435*^9, 
+  3.770099920621035*^9}},ExpressionUUID->"8c3d6c07-cd18-4db3-8ca8-\
+37e0ba340dd6"],
+
+Cell[TextData[{
+ "Plot ",
+ Cell[BoxData[
+  RowBox[{"Log", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Cos", 
+      RowBox[{"(", "x", ")"}]}], "+", "x", "-", 
+     FractionBox["1", "2"]}], ")"}]}]], "Input",
+  CellChangeTimes->{{3.7701000237714987`*^9, 3.770100024701887*^9}, {
+   3.7701001100107403`*^9, 3.770100180323741*^9}, {3.770100249131776*^9, 
+   3.770100280854697*^9}, {3.770100447262023*^9, 3.7701004957878523`*^9}},
+  ExpressionUUID->"c007521f-215a-4b45-a9c2-eaed05a28e81"],
+ "between 0 and 10. Remember that  Mathematica doesn\[CloseCurlyQuote]t use \
+parentheses for its functions."
+}], "Text",
+ CellChangeTimes->{{3.77010043397134*^9, 3.7701004348146677`*^9}, {
+  3.770100506578506*^9, 
+  3.7701005538915787`*^9}},ExpressionUUID->"185ece5c-8fcd-49ea-9f63-\
+505478b1a66e"],
+
+Cell[TextData[{
+ "Plot ",
+ Cell[BoxData[
+  FractionBox["1", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"2", "x"}], "+", "3"}], ")"}]]], "Input",
+  CellChangeTimes->{{3.7701000237714987`*^9, 3.770100024701887*^9}, {
+   3.7701001100107403`*^9, 3.770100180323741*^9}, {3.770100249131776*^9, 
+   3.770100280854697*^9}},ExpressionUUID->
+  "57c3d70a-b936-4f8c-a69f-8bc73dee511c"],
+ "between -5 and 5 in red. Look at the documentation for plot, in particular \
+the \[OpenCurlyQuote]Highlighting Discrete Function \
+Features\[CloseCurlyQuote] section, under the \[OpenCurlyQuote]Applications\
+\[CloseCurlyQuote] heading. Add a dashed line to your plot to show highlight \
+the jump discontinuity."
+}], "Text",
+ CellChangeTimes->{{3.770100021074109*^9, 3.7701000215463943`*^9}, 
+   3.770100097960972*^9, {3.770100286761944*^9, 3.770100307539415*^9}, {
+   3.7701003395073967`*^9, 3.770100388163274*^9}, {3.7701006462841253`*^9, 
+   3.770100655603351*^9}, {3.770100708700541*^9, 
+   3.770100734994503*^9}},ExpressionUUID->"406fe605-ee80-413a-9bfd-\
+627c7cfe5f80"],
+
+Cell["Create a line plot of the first 100 primes. ", "Text",
+ CellChangeTimes->{{3.770100749812763*^9, 
+  3.770100769426483*^9}},ExpressionUUID->"e1681301-4355-47be-9254-\
+f35400b0f98a"],
+
+Cell[TextData[{
+ "Create a plot of ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{"Tan", "[", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", "x"], "+", "y"}], "]"}], "."}]], 
+  "Input",
+  CellChangeTimes->{{3.7701009004287252`*^9, 3.770100940388982*^9}, {
+   3.7701009982045937`*^9, 3.770101115372065*^9}},ExpressionUUID->
+  "bd769f73-95c9-4f0f-8e1b-a1609a5a0c53"],
+ "Look at the documentation for ColorFunction and then colour your plot by \
+height. Can you think of any other interesting colour functions you could add?"
+}], "Text",
+ CellChangeTimes->{{3.770100896821653*^9, 3.770100898732052*^9}, {
+  3.7701011305081472`*^9, 
+  3.770101214677024*^9}},ExpressionUUID->"2537a99d-caf4-476f-87fd-\
+ff88557fa8f3"],
+
+Cell[TextData[{
+ "Plot ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{"2", 
+    SuperscriptBox["x", "4"]}], "+", 
+   SuperscriptBox["x", "3"], "-", 
+   RowBox[{"13", " ", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{"6", "x"}]}]], "Output",
+  GeneratedCell->False,
+  CellAutoOverwrite->False,
+  CellChangeTimes->{{3.770101863843726*^9, 3.770101884342722*^9}},
+  ExpressionUUID->"7b84dbfd-774a-4f24-8e6d-0ac1f1d4e0aa"],
+ " for x between -5 and 5. Use the Solve function to find the smallest root \
+of this polynomial."
+}], "Text",
+ CellChangeTimes->{{3.770101922042542*^9, 
+  3.77010203772787*^9}},ExpressionUUID->"0abef2b0-edb7-4d22-afef-\
+252b98609485"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["More Mathematica", "Section",
+ CellChangeTimes->{{3.7700936924034233`*^9, 
+  3.7700936953614893`*^9}},ExpressionUUID->"ffe3f170-f388-4dc4-bafa-\
+9a02cd6d41b0"],
+
+Cell["\<\
+This document has a title and two sections. Add some subsections to the work \
+you have done in the first section to separate the questions into a few \
+topics (you can choose how to split them). Change the colour of the question \
+text to a shade of gray so that it is more distinguished from the Mathematica \
+code you\[CloseCurlyQuote]ve written. Add some new text cells in another \
+colour with some comments explaining how some of your code works.\
+\>", "Text",
+ CellChangeTimes->{{3.770102134686673*^9, 
+  3.770102245960935*^9}},ExpressionUUID->"e40af3c3-104c-47ff-b45c-\
+8c60b7346186"],
+
+Cell["\<\
+Continue adding subsections and changing the colour of text and adding \
+explaining comments as you work through this section. It will make your \
+document much easier to look back through later.\
+\>", "Text",
+ CellChangeTimes->{{3.770102263136985*^9, 
+  3.7701022973207273`*^9}},ExpressionUUID->"e69d17f8-f4ee-4d25-99fa-\
+4b06e946e006"],
+
+Cell["The first function I defined in the talk was ", "Text",
+ CellChangeTimes->{{3.770102356464843*^9, 
+  3.770102364615388*^9}},ExpressionUUID->"1cbf98c4-0ad1-45f4-b892-\
+a462326729a6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"myFunc", "[", 
+   RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"x", "^", "2"}], "+", 
+   RowBox[{"x", "*", "y"}], "-", "3"}]}]], "Input",
+ CellChangeTimes->{{3.770102366964925*^9, 3.7701023669746323`*^9}},
+ CellLabel->
+  "In[281]:=",ExpressionUUID->"4a198954-d354-4497-bafa-08192b831056"],
+
+Cell["\<\
+run the cell above which contains the definition, and then try using this new \
+function in a new cell below this text.\
+\>", "Text",
+ CellChangeTimes->{{3.770102372959897*^9, 
+  3.770102400760315*^9}},ExpressionUUID->"56ba8f63-dddc-406c-8c09-\
+817628b1e54f"],
+
+Cell["\<\
+Try changing the definition of myFunc. Can you make it into a 3 argument \
+function? What happens if you then try to call it with 2 arguments?\
+\>", "Text",
+ CellChangeTimes->{{3.7701024060404263`*^9, 
+  3.77010244510496*^9}},ExpressionUUID->"8d9a871e-275b-4d1c-a796-\
+4b5fd4673760"],
+
+Cell["The next functions I defined in the talk were", "Text",
+ CellChangeTimes->{{3.770102461623641*^9, 
+  3.770102478337202*^9}},ExpressionUUID->"03e2731b-7857-4665-9d84-\
+38cf485e65e4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"padToLength24", "[", "vec_", "]"}], ":=", 
+  RowBox[{"Join", "[", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{"0", ",", 
+      RowBox[{"24", "-", 
+       RowBox[{"Length", "[", "vec", "]"}]}]}], "]"}], ",", "vec"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.770102484976842*^9, 
+  3.770102484989635*^9}},ExpressionUUID->"f4f1ad5b-abbe-4151-adae-\
+bd12e0057255"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"toBinaryCodeword", "[", "n_", "]"}], ":=", 
+  RowBox[{"padToLength24", "[", 
+   RowBox[{"IntegerDigits", "[", 
+    RowBox[{"n", ",", "2"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.770102491200479*^9, 
+  3.770102495775352*^9}},ExpressionUUID->"f3271659-f0c7-40ca-8537-\
+4eaefea6e0f3"],
+
+Cell["\<\
+try using these functions to see how they work. Can you define a new function \
+that converts an integer into its base 3 representation, padded to 12 digits \
+long. You might want to define two new functions to do this.\
+\>", "Text",
+ CellChangeTimes->{{3.77010250240128*^9, 
+  3.770102566608363*^9}},ExpressionUUID->"f6fa95be-e51e-4979-857c-\
+d11e099c4967"],
+
+Cell["\<\
+Can you change your padding function to use Join as an infix function rather \
+than as a prefix function?\
+\>", "Text",
+ CellChangeTimes->{{3.770102630521277*^9, 
+  3.7701026514727917`*^9}},ExpressionUUID->"5cd2f168-d457-46c1-bdbe-\
+8093237a6cc9"],
+
+Cell["\<\
+In the first section you created some 4x4 matrices. Use the function \
+MatrixForm as a postfix function to display these matrices nicely. You could \
+also try repeating the simplifications we did in the first section using \
+Simplify as a postfix function. \
+\>", "Text",
+ CellChangeTimes->{{3.770102588662293*^9, 3.770102616536776*^9}, {
+  3.7701026552561827`*^9, 
+  3.77010271646631*^9}},ExpressionUUID->"b3e14de2-9c98-45cb-809f-\
+0c9080dce9c3"],
+
+Cell[TextData[{
+ "When you do your final year project, you will probably write the final \
+report in ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"L", 
+     StyleBox[
+      AdjustmentBox["A",
+       BoxBaselineShift->-0.4,
+       BoxMargins->{{-0.5, -0.3}, {0, 0}}],
+      FontSize->Smaller], "T", 
+     AdjustmentBox["E",
+      BoxBaselineShift->0.5,
+      BoxMargins->{{-0.3, 0}, {0, 0}}], "X"}],
+    SingleLetterItalics->False], TraditionalForm]],ExpressionUUID->
+  "1ada1745-2e4c-4748-a7de-d77ce244a83c"],
+ ". You might want to be aware of the function TeXForm, which can be used as \
+a postfix function. Try calling myFunc[p,3] and use TeXForm to get the ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"L", 
+     StyleBox[
+      AdjustmentBox["A",
+       BoxBaselineShift->-0.4,
+       BoxMargins->{{-0.5, -0.3}, {0, 0}}],
+      FontSize->Smaller], "T", 
+     AdjustmentBox["E",
+      BoxBaselineShift->0.5,
+      BoxMargins->{{-0.3, 0}, {0, 0}}], "X"}],
+    SingleLetterItalics->False], TraditionalForm]],ExpressionUUID->
+  "e8e681f8-963b-4013-a83f-68ce3631a051"],
+ " form of the answer."
+}], "Text",
+ CellChangeTimes->{{3.770102766306549*^9, 3.7701028204417953`*^9}, {
+  3.770102873673435*^9, 
+  3.770102948723557*^9}},ExpressionUUID->"fd6226e3-f1f3-4782-95b4-\
+2297ff938a3b"],
+
+Cell["\<\
+Define a function call comm which takes 2 matrices A and B and returns their \
+commutator A.B - B.A displayed in matrix form.\
+\>", "Text",
+ CellChangeTimes->{{3.7701039669521217`*^9, 3.770103987261114*^9}, {
+  3.770104037837661*^9, 
+  3.7701040588695087`*^9}},ExpressionUUID->"1e6634b6-00b7-42bf-aaaf-\
+9c3945301d69"],
+
+Cell[TextData[{
+ "Define your own function which computes ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{"Cos", "[", 
+    RowBox[{
+     SuperscriptBox["x", 
+      RowBox[{"1", "/", "2"}]], "+", 
+     FractionBox["x", "16"]}], "]"}], "."}]], "Input",
+  CellChangeTimes->{{3.77009509565209*^9, 3.77009510086644*^9}, {
+   3.770101639718116*^9, 3.7701016941338863`*^9}},ExpressionUUID->
+  "385d3496-2adc-46ae-9b2a-68918c1ef18f"],
+ "Plot your function for  0 \[LessEqual] x \[LessEqual] 100. Using what you \
+learnt about exclusions in the first section, highlight the maxima of the \
+function in this interval in red."
+}], "Text",
+ CellChangeTimes->{{3.770102974915249*^9, 3.77010298058484*^9}, {
+  3.770103017227199*^9, 
+  3.7701031661715927`*^9}},ExpressionUUID->"acd492f2-32b8-43a0-aaa9-\
+806ea8a691f4"],
+
+Cell["\<\
+What is the FullForm of your function comm applied to two matrices?\
+\>", "Text",
+ CellChangeTimes->{{3.770104648862858*^9, 3.7701046510150957`*^9}, {
+  3.7701056253057203`*^9, 
+  3.770105658297456*^9}},ExpressionUUID->"c345e1fd-d662-4f5a-ab02-\
+67fe6fad92cd"],
+
+Cell["\<\
+Use Apply to find the maximum from a list of 10 random primes between 2 and \
+1000 created using Table.\
+\>", "Text",
+ CellChangeTimes->{{3.770105943689485*^9, 3.770105967111795*^9}, 
+   3.770106013424774*^9, {3.77010623062547*^9, 
+   3.770106265633953*^9}},ExpressionUUID->"3c5a6665-97ef-4e8d-9aff-\
+75d3603f17da"],
+
+Cell["\<\
+Define a quadratic polynomial function called quad which takes a single \
+argument x. Use Map to compute a list of the values of your function applied \
+to all the divisors of 24.\
+\>", "Text",
+ CellChangeTimes->{{3.77010640693793*^9, 3.7701064619542637`*^9}, {
+  3.7701065542512074`*^9, 
+  3.770106578545257*^9}},ExpressionUUID->"2f2dfdd5-5faf-46a6-9762-\
+fbe4c84a985f"],
+
+Cell[TextData[{
+ "Let S1, S2 and S3 be the three Pauli matrices. Form the linear combinations \
+",
+ Cell[BoxData[
+  RowBox[{"Tp", " ", "=", " ", 
+   FractionBox[
+    RowBox[{"(", 
+     RowBox[{"S1", " ", "+", " ", 
+      RowBox[{"\[ImaginaryI]", " ", "S2"}]}], ")"}], "2"]}]], "Input",
+  CellChangeTimes->{{3.7701068471643467`*^9, 3.7701069204558477`*^9}},
+  ExpressionUUID->"5e437e52-51ea-4cf0-abd8-a6ca26277ae7"],
+ ", ",
+ Cell[BoxData[
+  RowBox[{"Tm", " ", "=", " ", 
+   FractionBox[
+    RowBox[{"(", 
+     RowBox[{"S1", " ", "-", " ", 
+      RowBox[{"\[ImaginaryI]", " ", "S2"}]}], ")"}], "2"]}]], "Input",
+  CellChangeTimes->{{3.7701068471643467`*^9, 3.7701069204558477`*^9}},
+  ExpressionUUID->"ae1298b3-d376-43c5-b355-a9b4ea032d04"],
+ ", ",
+ Cell[BoxData[
+  RowBox[{"T3", " ", "=", " ", 
+   FractionBox["S3", "2"]}]], "Input",
+  CellChangeTimes->{{3.7701068471643467`*^9, 3.7701069481954117`*^9}},
+  ExpressionUUID->"a743a03e-bff7-4165-b448-d76e94adf4f7"],
+ ". Using your comm function from above, define a new function which takes \
+the commutator of a matrix with T3 (where T3 is the second argument to comm). \
+Use Map to compute the commutator of each of Tp,Tm and T3 with T3 in turn. \
+This can be made even nicer using  \[OpenCurlyQuote]pure functions\
+\[CloseCurlyQuote], but I\[CloseCurlyQuote]ll leave this for you to \
+investigate in your own time."
+}], "Text",
+ CellChangeTimes->{{3.770106798627303*^9, 3.770106844409943*^9}, {
+  3.770106882882813*^9, 3.770106895279008*^9}, {3.77010692710546*^9, 
+  3.770107048315649*^9}, {3.770107103149185*^9, 
+  3.770107194092906*^9}},ExpressionUUID->"eb74dde1-3dd4-4535-a4df-\
+127658da23cc"],
+
+Cell["\<\
+Use a pattern to make your function comm[A,B] only defined when A and B are \
+matrices. \
+\>", "Text",
+ CellChangeTimes->{{3.770108487634499*^9, 3.770108494362507*^9}, {
+  3.770108561873879*^9, 3.770108574634795*^9}, {3.7701096539257593`*^9, 
+  3.770109663878256*^9}, {3.77010971475101*^9, 
+  3.7701097415665092`*^9}},ExpressionUUID->"c62417ce-3cd8-4b58-a815-\
+a6c0e0b2b49e"],
+
+Cell["\<\
+Use the overloading idea to define comm[list,B], taking the commutator of \
+each entry from the list with B in turn. Use this to repeat the question from \
+above, computing the commutator of each of Tp,Tm and T3 with T3 in turn.\
+\>", "Text",
+ CellChangeTimes->{{3.770109745675342*^9, 
+  3.770109811079382*^9}},ExpressionUUID->"8dabf771-5923-4f03-ba87-\
+276b07725b17"],
+
+Cell[TextData[{
+ "Make a dynamic plot of ",
+ Cell[BoxData[
+  RowBox[{"a", "*", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"x", "-", "b"}], ")"}], "2"]}]], "Input",
+  CellChangeTimes->{{3.7701033535723352`*^9, 3.770103432587479*^9}, {
+   3.770103538846491*^9, 3.770103599581182*^9}},ExpressionUUID->
+  "2e81c955-69fb-4d6a-b3e1-0ee8c96db579"],
+ " for x between -5 and 5, where a and b can be controlled dynamically. Let \
+them have default values of 1."
+}], "Text",
+ CellChangeTimes->{{3.77010351396375*^9, 3.77010351869998*^9}, {
+  3.77010365904513*^9, 
+  3.770103702053554*^9}},ExpressionUUID->"92f31cff-47bf-4404-97fd-\
+ce83d6402e8c"],
+
+Cell["\<\
+Make a dynamic plot of the cyclic graph on n vertices for n between 3 and 10. \
+Add a checkbox to make it a directed graph.\
+\>", "Text",
+ CellChangeTimes->{{3.770103459564575*^9, 
+  3.770103503163497*^9}},ExpressionUUID->"293b80f7-dec5-44bc-b6db-\
+6fee48d08867"]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{475, Automatic}, {Automatic, 50}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 165, 3, 98, "Title",ExpressionUUID->"d97ff873-1bc8-4bd0-a164-4b3599ddf09b"],
+Cell[CellGroupData[{
+Cell[770, 29, 210, 4, 67, "Section",ExpressionUUID->"f905debd-6ab2-4d45-841c-1cbc035fed57"],
+Cell[983, 35, 365, 8, 58, "Text",ExpressionUUID->"ec3e5d1e-a19d-408e-aa0d-3bdd3ef41f67"],
+Cell[1351, 45, 260, 6, 30, "Input",ExpressionUUID->"81ef129a-84fc-4093-b603-12d8ba73a61e"],
+Cell[1614, 53, 296, 6, 58, "Text",ExpressionUUID->"3de436b1-dd36-4301-afd5-a00b96da7d85"],
+Cell[1913, 61, 661, 13, 104, "Text",ExpressionUUID->"5b1bc05b-8165-47d9-89e1-190773953368"],
+Cell[2577, 76, 800, 20, 62, "Text",ExpressionUUID->"6f8e837c-b2bf-4c36-a7e7-0b08a5301bb6"],
+Cell[3380, 98, 934, 22, 96, "Text",ExpressionUUID->"a3214fff-18b4-4e79-b910-22f9d90ea0a1"],
+Cell[4317, 122, 867, 25, 58, "Text",ExpressionUUID->"3ee970dc-bd0c-4de9-b768-5589c2e17ceb"],
+Cell[5187, 149, 345, 7, 58, "Text",ExpressionUUID->"ece31367-4cdd-424e-a875-16be3b3e2e1b"],
+Cell[5535, 158, 363, 8, 58, "Text",ExpressionUUID->"46b9a899-35e8-498f-b409-003db892f826"],
+Cell[5901, 168, 481, 13, 35, "Text",ExpressionUUID->"c7c7611d-3aee-4200-9c3b-7eede2a12cb8"],
+Cell[6385, 183, 585, 16, 50, "Text",ExpressionUUID->"698fddf4-267a-4e8a-ae68-2c79390d91ce"],
+Cell[6973, 201, 764, 16, 110, "Text",ExpressionUUID->"1675c360-fdd8-4ec6-b16e-7ea510b2f477"],
+Cell[7740, 219, 262, 6, 58, "Text",ExpressionUUID->"51125fc1-3873-4c80-9467-421ad1a9df35"],
+Cell[8005, 227, 403, 8, 58, "Text",ExpressionUUID->"ae91ffac-55c7-45df-9e5e-0bead9f21a16"],
+Cell[8411, 237, 2132, 60, 145, "Text",ExpressionUUID->"c731a098-9446-4bf2-a843-b1ebf87c45da"],
+Cell[10546, 299, 238, 6, 35, "Text",ExpressionUUID->"8c3d6c07-cd18-4db3-8ca8-37e0ba340dd6"],
+Cell[10787, 307, 785, 19, 62, "Text",ExpressionUUID->"185ece5c-8fcd-49ea-9f63-505478b1a66e"],
+Cell[11575, 328, 1052, 22, 87, "Text",ExpressionUUID->"406fe605-ee80-413a-9bfd-627c7cfe5f80"],
+Cell[12630, 352, 186, 3, 35, "Text",ExpressionUUID->"e1681301-4355-47be-9254-f35400b0f98a"],
+Cell[12819, 357, 710, 17, 60, "Text",ExpressionUUID->"2537a99d-caf4-476f-87fd-ff88557fa8f3"],
+Cell[13532, 376, 652, 19, 58, "Text",ExpressionUUID->"0abef2b0-edb7-4d22-afef-252b98609485"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14221, 400, 165, 3, 67, "Section",ExpressionUUID->"ffe3f170-f388-4dc4-bafa-9a02cd6d41b0"],
+Cell[14389, 405, 602, 10, 104, "Text",ExpressionUUID->"e40af3c3-104c-47ff-b45c-8c60b7346186"],
+Cell[14994, 417, 347, 7, 58, "Text",ExpressionUUID->"e69d17f8-f4ee-4d25-99fa-4b06e946e006"],
+Cell[15344, 426, 187, 3, 35, "Text",ExpressionUUID->"1cbf98c4-0ad1-45f4-b892-a462326729a6"],
+Cell[15534, 431, 341, 9, 30, "Input",ExpressionUUID->"4a198954-d354-4497-bafa-08192b831056"],
+Cell[15878, 442, 269, 6, 58, "Text",ExpressionUUID->"56ba8f63-dddc-406c-8c09-817628b1e54f"],
+Cell[16150, 450, 293, 6, 58, "Text",ExpressionUUID->"8d9a871e-275b-4d1c-a796-4b5fd4673760"],
+Cell[16446, 458, 187, 3, 35, "Text",ExpressionUUID->"03e2731b-7857-4665-9d84-38cf485e65e4"],
+Cell[16636, 463, 408, 12, 30, "Input",ExpressionUUID->"f4f1ad5b-abbe-4151-adae-bd12e0057255"],
+Cell[17047, 477, 326, 8, 30, "Input",ExpressionUUID->"f3271659-f0c7-40ca-8537-4eaefea6e0f3"],
+Cell[17376, 487, 368, 7, 58, "Text",ExpressionUUID->"f6fa95be-e51e-4979-857c-d11e099c4967"],
+Cell[17747, 496, 257, 6, 35, "Text",ExpressionUUID->"5cd2f168-d457-46c1-bdbe-8093237a6cc9"],
+Cell[18007, 504, 457, 9, 81, "Text",ExpressionUUID->"b3e14de2-9c98-45cb-809f-0c9080dce9c3"],
+Cell[18467, 515, 1299, 38, 81, "Text",ExpressionUUID->"fd6226e3-f1f3-4782-95b4-2297ff938a3b"],
+Cell[19769, 555, 328, 7, 58, "Text",ExpressionUUID->"1e6634b6-00b7-42bf-aaaf-9c3945301d69"],
+Cell[20100, 564, 795, 19, 62, "Text",ExpressionUUID->"acd492f2-32b8-43a0-aaa9-806ea8a691f4"],
+Cell[20898, 585, 270, 6, 35, "Text",ExpressionUUID->"c345e1fd-d662-4f5a-ab02-67fe6fad92cd"],
+Cell[21171, 593, 325, 7, 35, "Text",ExpressionUUID->"3c5a6665-97ef-4e8d-9aff-75d3603f17da"],
+Cell[21499, 602, 381, 8, 58, "Text",ExpressionUUID->"2f2dfdd5-5faf-46a6-9762-fbe4c84a985f"],
+Cell[21883, 612, 1646, 37, 135, "Text",ExpressionUUID->"eb74dde1-3dd4-4535-a4df-127658da23cc"],
+Cell[23532, 651, 385, 8, 35, "Text",ExpressionUUID->"c62417ce-3cd8-4b58-a815-a6c0e0b2b49e"],
+Cell[23920, 661, 378, 7, 81, "Text",ExpressionUUID->"8dabf771-5923-4f03-ba87-276b07725b17"],
+Cell[24301, 670, 643, 16, 58, "Text",ExpressionUUID->"92f31cff-47bf-4404-97fd-ce83d6402e8c"],
+Cell[24947, 688, 273, 6, 58, "Text",ExpressionUUID->"293b80f7-dec5-44bc-b6db-6fee48d08867"]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
