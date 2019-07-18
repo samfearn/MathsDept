@@ -12,7 +12,7 @@ Originally, **al-folio** was based on the [\*folio theme](https://github.com/bog
 Since then, it got a full re-write of the styles and many additional cool features.
 The emphasis is on whitespace, transparency, and academic usage: [theme demo](https://alshedivat.github.io/al-folio/).
 
-This repo now holds a fork of al-folio, used to build [my website](https://www.maths.dur.ac.uk/~sxwc62/).
+This repo now holds a fork of [the original al-folio repo](https://github.com/alshedivat/al-folio), used to build [my website](https://www.maths.dur.ac.uk/~sxwc62/).
 
 ## Getting started
 
