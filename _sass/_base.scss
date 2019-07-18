@@ -5,6 +5,10 @@ html, body {
   min-height: 100%;
   -webkit-text-size-adjust: 100%;
 }
+html{
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+}
 
 img {
   max-width: none;
