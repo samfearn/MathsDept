@@ -5,7 +5,7 @@ permalink: /projects/
 description: Undergraduate projects
 ---
 {% assign currentProjects = site.projects | where: 'current', 'true' %}
-{% assign previousProjects = site.projects | where: 'current', 'false' %}
+{% assign previousProjects = site.projects | where: 'current', 'false' | sort: "academicYear" | reverse  %}
 
 ## current projects ##
 
@@ -28,6 +28,8 @@ description: Undergraduate projects
 
 {% for project in previousProjects %}
 
+{% unless project.hidden %}
+
 {% if project.redirect %}
 
 {% include project_redirect.html redirect=project.redirect img=project.img title=project.title description=project.description module=project.module academicYear=project.academicYear %}
@@ -38,5 +40,7 @@ description: Undergraduate projects
 {% else %}
 
 {% endif %}
+
+{% endunless %}
 
 {% endfor %}

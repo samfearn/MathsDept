@@ -4,7 +4,7 @@ title: Playing Moonshine
 module: Project IV
 description: Games, Codes, Lattices and Moonshine. 
 img: /assets/img/golay_egan.gif
-current: true
+current: false
 academicYear: 2019/20
 ---
 Description

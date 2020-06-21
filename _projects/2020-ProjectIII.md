@@ -1,26 +1,25 @@
 ---
 layout: page
-title: Lie Algebras, Lattices and Moonshine
-description: Investigating the connections between Lie algebras, lattices, modular forms, and string theory.
+title: Lie Algebras and Unimodular Lattices
+description: We will see how semisimple Lie algebras can be classified according to their root systems, and how these root systems may be used to construct certain interesting lattices.
 img: /assets/img/E8Petrie.png
-current: false
-hidden: true
-module: Project IV
-academicYear: 2018/19
+current: true
+module: Project III
+academicYear: 2020/21
 ---
 Description
 -----------
 Lie algebras describe the infinitesimal symmetries associated with classical symmetry groups such as $SO(N)$ and $SU(N)$. Though this connection to the associated groups, known as Lie groups, has very interesting geometric meaning, the Lie algebras themselves have a very rich mathematical structure which can be studied independently. Given an algebraic structure such as a group or a Lie algebra, one can try to study the algebraic object using linear algebra, by considering vector spaces on which the algebraic object acts through linear transformations. Such a vector space, along with a description of how the algebraic objects acts on the space, is known as a representation of the algebraic object. In a physical context, representations of Lie algebras appear naturally, as the quantum states of the physical system must form representations of the underlying symmetry algebra of the system.
 
-In this project, we will start by introducing the theory of Lie algebras and their representations. We will see how Lie algebras may be classified by their root systems and the associated Dynkin diagrams. We will see how the root systems of these Lie algebras can be used to construct interesting lattices with connections to many different areas of mathematics and physics. Depending on your interests, as part of this project you will be able to explore how Lie algebras connect to [linear codes], [modular forms], [moonshine] (connections between modular forms and the representation theory of simple groups - also see [here][cheng interview] for a nice article), [string theory] and conformal field theory.
+The semisimple Lie algebras we consider may be classified by their root systems and associated Dynkin diagrams. These root systems may in turn be used to describe lattices -- discrete sets of points in $$\mathbb{R}^n$$. A particularly interesting class of such lattices are the type II lattices, otherwise known as even unimodular lattices, which arise only in dimensions divisible by 8. We will see that in dimension $$d$$ for $$d \le 24$$ these type II lattices have been fully classified, focussing in particular on the $$d=8$$ and $$d=16$$ cases. 
 
 <div class="img_row">
-	<a title="A Kummer K3 surface, by Claudio Rocchini" href="https://commons.wikimedia.org/wiki/File:Kummer_surface.png"><img class="col one left" alt="A Kummer K3 surface" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kummer_surface.png/512px-Kummer_surface.png"></a>
-	<a title="The E8 root system, by Jgmoxness" href="https://commons.wikimedia.org/wiki/File:E8Petrie.svg"><img class="col one left" alt="This picture shows a projection of the E8 root system into the Coxeter plane" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/E8Petrie.svg/512px-E8Petrie.svg.png"></a>
-    <a title="The Klein j-invariant, by Jan Homann" href="https://commons.wikimedia.org/wiki/File:KleinInvariantJ.jpg"><img class="col one left" alt="A plot of the Klein j-invariant in the complex plane, where the colour shows the value of the j function at that point." src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/KleinInvariantJ.jpg/512px-KleinInvariantJ.jpg"></a>
+	 <a title="Finite Dynkin diagrams." href="https://commons.wikimedia.org/wiki/File:Finite_Dynkin_diagrams.svg"><img class="col one left" alt="The Dynkin diagrams of the finite semisimple Lie algebras. Image by Tomruen." src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Finite_Dynkin_diagrams.svg"></a>
+	<a title="The A2 root system, showing the Weyl symmetry." href="https://commons.wikimedia.org/wiki/File:A2_Weyl_group_(revised).png"><img class="col one left" alt="The six roots of the A2 root system, demonstrating the S3 Weyl symmetry. Image by Mathphysman." src="https://upload.wikimedia.org/wikipedia/commons/a/a0/A2_Weyl_group_%28revised%29.png"></a>
+	<a title="The E8 root system." href="https://commons.wikimedia.org/wiki/File:E8Petrie.svg"><img class="col one left" alt="This picture shows a projection of the E8 root system into the Coxeter plane. Image by Jgmoxness." src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/E8Petrie.svg/512px-E8Petrie.svg.png"></a>
 </div>
 <div class="col three caption" markdown="span">
-    On the left we have an image of a $$K3$$ surface. The middle image shows the root system of the Lie algebra $$E8$$. On the right we have a plot of the Klein j-function in the complex plane.
+    On the left we have the finite Dynkin diagrams, which classify the root system of the semisimple Lie algebras. The middle image shows the root system for the $$A_2$$ algebra (the six arrows). The Weyl group of this root system is isomorphic to $$D_3$$ and the image of the equilateral triangle has been added to this image to demonstrate this. The image on the right shows a projection of the root system of the Lie algebra $$E_8$$.
 </div>
 
 ***
@@ -34,19 +33,14 @@ Algebra II is a prerequisite for this project. Representation Theory III will be
 Resources
 ----------
 * R. N. Cahn, [Semi-Simple Lie Algebras and Their Representations]
-* J. P. Serre, [A Course In Arithmetic - Part II]
-* P. Di Francesco et al., [Conformal Field Theory]
 * J. H. Conway &amp; N. J. A. Sloane [Sphere Packings, Lattices and Groups]
-
-Additional Week 1 Reading:
-
-* Mark Ronan, [Lie Theory, in the Princeton Companion to Mathematics][LieTheory]
-* Terry Gannon, [Moonshine Beyond The Monster, Chapter 0][MoonshineBeyondMonster]
-* Brandon Rayhaun, [A nice blog post on Moonshine by a Stanford University Ph.D. student][BrandonBlog]
+* W. Ebeling, [Lattices and Codes]
+* H. Georgi, [Lie Algebras in Particle Physics]
 
 ***
 
-
+[Lie Algebras in Particle Physics]:https://library.dur.ac.uk/search/?searchtype=Y&searcharg=lie+algebras+georgi&searchscope=1&submit.x=0&submit.y=0&submit=Search
+[Lattices and Codes]:https://library.dur.ac.uk/search/?searchtype=Y&searcharg=hirzebruch+lattices&searchscope=1&submit.x=0&submit.y=0&submit=Search
 [linear codes]:https://en.wikipedia.org/wiki/Linear_code
 [modular forms]:http://mathworld.wolfram.com/ModularForm.html
 [moonshine]:https://www.quantamagazine.org/mathematicians-chase-moonshine-string-theory-connections-20150312/

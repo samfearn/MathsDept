@@ -80,7 +80,7 @@ markdown: kramdown
 highlighter: rouge
 
 # Includes
-include: ['_pages']
+include: ['_pages','talks']
 
 # Excludes
 exclude: ['_bibliography','_pages/teaching.md','_pages/publications.md']

@@ -11,6 +11,20 @@ numbas:
 ---
 This page currently exists as a jekyll page, but is excluded from the list of pages which get built into the navbar. This page isn't really meant to be being read by anyone at the moment, it's just a space for me to test things for the site.
 
+<iframe src="https://trinket.io/embed/python/e755d551c0?toggleCode=true&runOption=run&start=result" width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<div id="tester" style="width:600px;height:250px;"></div>
+
+<script>
+	TESTER = document.getElementById('tester');
+	Plotly.plot( TESTER, [{
+	x: [1, 2, 3, 4, 5],
+	y: [1, 2, 4, 8, 16] }], {
+	margin: { t: 0 } } );
+</script>
+
 <script src="{{ '/~sxwc62/assets/coffee/mathjaxhelper.js' }}"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
