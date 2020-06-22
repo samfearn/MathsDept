@@ -68,6 +68,9 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+  talks:
+    output: true
+    permalink: /talks/:path/
 
 news_limit: 5
 
@@ -80,7 +83,7 @@ markdown: kramdown
 highlighter: rouge
 
 # Includes
-include: ['_pages','talks']
+include: ['_pages']
 
 # Excludes
 exclude: ['_bibliography','_pages/teaching.md','_pages/publications.md']
