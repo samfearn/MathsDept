@@ -95,6 +95,7 @@ plugins:
     - jekyll/scholar
     - jemoji
     - jekyll-coffeescript
+    # - jekyll-category-pages
 
 # Custom Emoji Source
 emoji:

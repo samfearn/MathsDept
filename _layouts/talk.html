@@ -6,13 +6,13 @@
 
 		<title>{{ page.title }}</title>
 
-		<link rel="stylesheet" href="{{ '/assets/revealjs/css/reset.css' | prepend: site.baseurl | prepend: site.url }}">
-		<link rel="stylesheet" href="{{ '/assets/revealjs/css/reveal.css' | prepend: site.baseurl | prepend: site.url }}">
-		<link rel="stylesheet" href="{{ '/assets/revealjs/css/theme/solarized.css' | prepend: site.baseurl | prepend: site.url }}">
+		<link rel="stylesheet" href="{{ '/assets/revealjs/dist/reset.css' | prepend: site.baseurl | prepend: site.url }}">
+		<link rel="stylesheet" href="{{ '/assets/revealjs/dist/reveal.css' | prepend: site.baseurl | prepend: site.url }}">
+		<link rel="stylesheet" href="{{ '/assets/revealjs/dist/theme/solarized.css' | prepend: site.baseurl | prepend: site.url }}" id="theme">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="{{ '/assets/revealjs/lib/css/monokai.css' | prepend: site.baseurl | prepend: site.url }}">
-
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="{{ '/assets/revealjs/plugin/highlight/monokai.css' | prepend: site.baseurl | prepend: site.url }}" id="highlight-theme">
+		
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -21,31 +21,30 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? '{{ "/assets/revealjs/css/print/pdf.css" | prepend: site.baseurl | prepend: site.url }}' : '{{ "/assets/revealjs/css/print/paper.css" | prepend: site.baseurl | prepend: site.url }}';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 				<!-- Load the actual slide content -->
-				{{ content }}
+				{{content}}
 			</div>
 		</div>
 
-		<script src="{{ '/assets/revealjs/js/reveal.js' | prepend: site.baseurl | prepend: site.url }}"></script>
-		<script id="configuration">
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
+		<script src="{{ '/assets/revealjs/dist/reveal.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+		<script src="{{ '/assets/revealjs/plugin/notes/notes.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+		<script src="{{ '/assets/revealjs/plugin/markdown/markdown.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+		<script src="{{ '/assets/revealjs/plugin/highlight/highlight.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-				center: false,
+				centre: true,
 				transition: 'slide',
-				dependencies: [
-					{ src: '{{ "/assets/revealjs/plugin/markdown/marked.js" | prepend: site.baseurl | prepend: site.url }}' },
-					{ src: '{{ "/assets/revealjs/plugin/markdown/markdown.js" | prepend: site.baseurl | prepend: site.url }}' },
-					{ src: '{{ "/assets/revealjs/plugin/highlight/highlight.js" | prepend: site.baseurl | prepend: site.url }}' },
-					{ src: '{{ "/assets/revealjs/plugin/notes/notes.js" | prepend: site.baseurl | prepend: site.url }}', async: true },
-					{ src: '{{ "/assets/revealjs/plugin/math/math.js" | prepend: site.baseurl | prepend: site.url }}', async: true }
-				]
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 		</script>
 	</body>

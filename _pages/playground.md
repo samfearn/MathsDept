@@ -11,6 +11,8 @@ numbas:
 ---
 This page currently exists as a jekyll page, but is excluded from the list of pages which get built into the navbar. This page isn't really meant to be being read by anyone at the moment, it's just a space for me to test things for the site.
 
+<iframe src="https://www.wolframcloud.com/obj/s.m.fearn/Labelled%20Icosahedron" style="width:700px; height:700px; border: 4px solid #657b83;"></iframe>
+
 <iframe src="https://trinket.io/embed/python/e755d551c0?toggleCode=true&runOption=run&start=result" width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>

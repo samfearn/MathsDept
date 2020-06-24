@@ -7,6 +7,12 @@ layout: default
   <h2>{{ site.blog_description }}</h2>
 </div>
 
+<!-- {% for category in site.categories %}
+<h2>{{category[0]}}</h2>
+{% for post in category[1] %}
+<p><a href="{{post.url | prepend: site.baseurl }}">{{post.title | markdownify | remove: '<p>' | remove: '</p>'}}</a></p>
+{% endfor %}
+{% endfor %} -->
 
 <ul class="post-list">
   {% for post in paginator.posts %}
