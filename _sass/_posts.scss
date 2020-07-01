@@ -67,3 +67,17 @@
 .equation {
 	text-align: center;
 }
+
+.banner {
+	border-radius:30px;
+	margin-bottom:10px;
+	a {
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		flex-wrap:wrap;
+	}
+	h1 {
+		margin:0px;
+	}
+}

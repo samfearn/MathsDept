@@ -3,6 +3,10 @@
 ---
 @charset "utf-8";
 
+// Create SASS variables from liquid variables
+
+$number-categories: {{ site.categories | size }};
+
 @import 'numbas';
 @import 'html5boilerplate';
 

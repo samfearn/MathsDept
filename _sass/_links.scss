@@ -12,7 +12,7 @@ article a, .news a {
     color: $link-color;
     font-weight: 100;
 
-    &:hover:not(.anchorjs-link) {
+    &:hover:not(.anchorjs-link, >.banner) {
         text-decoration: underline;
 		color: $link-hover-color;
     }

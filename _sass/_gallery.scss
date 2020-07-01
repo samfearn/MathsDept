@@ -54,9 +54,18 @@ figcaption {
     vertical-align: middle;
     font-size: $caption-font-size;
 }
+.bannerimg{
+    width:33.33%;
+	@extend %mobile-banner-width;
+}
 %mobile-full-width{
 	@include media-query($on-palm) {
 		width: 100%;
+	}
+}
+%mobile-banner-width{
+	@include media-query($on-palm) {
+		width: calc(100% - 60px);
 	}
 }
 %mobile-smaller-img-spacing{
