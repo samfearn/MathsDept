@@ -5,23 +5,90 @@ layout: default
 <div class="header-bar">
   <h1>{{ site.blog_name }}</h1>
   <h2>{{ site.blog_description }}</h2>
+<!-- This category filter menu is JS based, and so is hidden if JS is disabled -->
+  <div class="categoryFilterMenu">
+	  <button id="categoryFilter" onclick="displayMenu(this)" style="display:none">Category Filter</button>
+	  <div class="categories menuHidden">
+		{% for category in site.categories %}
+		<button onclick="toggleCategory(this,'{{category[0]}}')" class="buttonHidden">{{category[0]}}</button>
+		{% endfor %}
+	  </div>
+  </div>
 </div>
 
-<!-- {% for category in site.categories %}
-<h2>{{category[0]}}</h2>
-{% for post in category[1] %}
-<p><a href="{{post.url | prepend: site.baseurl }}">{{post.title | markdownify | remove: '<p>' | remove: '</p>'}}</a></p>
-{% endfor %}
-{% endfor %} -->
-
 <ul class="post-list">
-  {% for post in paginator.posts %}
-    <li>
+  {% for post in site.posts %}
+  	{% assign postdata = post.id | split: "/" %}
+    <li class="blogpost" id="{{ postdata.last }}" year="{{ postdata[2] }}" categories="{{ post.categories | join: '_' }}">
       <h2><a class="post-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | markdownify | remove: '<p>' | remove: '</p>' }}</a></h2>
       <p class="post-meta">{{ post.date | date: '%B %-d, %Y — %H:%M' }}</p>
       <p>{{ post.description | markdownify | remove: '<p>' | remove: '</p>' }}</p>
     </li>
   {% endfor %}
+  <li class="blogpost center" id="noposts" style="display:none">
+	  <h2>No posts match all selected categories</h2>
+  </li>
 </ul>
 
-{% include pagination.html %}
+<script type="text/javascript">
+	var posts = document.querySelectorAll("li:not(#noposts)");
+	var post;
+	var displayedCategories = [];
+	var nopost = document.querySelector("#noposts");
+	var categoryFilterButton = document.querySelector("#categoryFilter");
+	categoryFilterButton.style.display = "inline-block"
+	var buttonsContainer = document.querySelector(".categories");
+	var categoryButtons = document.querySelectorAll(".categories button");
+	
+	function displayMenu(elt) {
+		elt.classList.toggle("toggled")
+		if (buttonsContainer.classList.contains("menuHidden")) {
+			buttonsContainer.setAttribute("aria-hidden","false");
+			buttonsContainer.style.display = "block";
+			buttonsContainer.classList.remove("menuHidden");
+			buttonsContainer.classList.add("menuVisible");
+			for (var button of categoryButtons) {
+				button.classList.remove("buttonHidden");
+				button.classList.add("buttonVisible");
+			}
+		} else {
+			buttonsContainer.setAttribute("aria-hidden","true");
+			buttonsContainer.classList.add("menuHidden");
+			buttonsContainer.classList.remove("menuVisible");
+			for (var button of categoryButtons) {
+				button.classList.add("buttonHidden");
+				button.classList.remove("buttonVisible");
+			}
+		}
+	}
+	
+	function toggleCategory(elt,categoryToggle) {
+		var noposts = true;
+		var categoryButton = elt;
+		categoryButton.classList.toggle("toggled");
+		if (displayedCategories.includes(categoryToggle)) {
+			displayedCategories = displayedCategories.filter(e => e!=categoryToggle);
+		} else {
+			displayedCategories.push(categoryToggle)
+		}
+		for (post of posts){
+			var categories = post.getAttribute('categories').split('_');
+			var hide = true;
+			var overlapCats = displayedCategories.filter(cat => !categories.includes(cat));
+			if (overlapCats.length > 0) {
+				post.style.display = "none";
+			} else {
+				post.style.display = "block";
+				noposts = false;
+			}
+		}
+		if (noposts) {
+			nopost.style.display = "block";
+		} else {
+			nopost.style.display = "none";
+		}
+	}
+	
+</script>
+
+<!-- {% include pagination.html %} -->
