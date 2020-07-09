@@ -14,9 +14,11 @@ profile:
 news: true
 social: true
 ---
+I've recently accepted a post as Assistant Professor (Teaching) at Durham University, and will be starting this role in September 2020. I currently have a focus on formative assessment in higher mathematics, and in particular on the role computer-aided assessment can play in this. 
+
 I'm currently a Teaching Fellow in the Department of Mathematical Sciences at Durham University and a member of the Centre for Particle Theory. Before this teaching post, I studied for my Ph.D. at Durham University under the supervision of [Anne Taormina] and completed this in 2018 with a thesis entitled 'Supersymmetric Sigma Models And Their Indices'.
 
-Working with [Anne Taormina] and [Xin Tang], I am interested in string and conformal field theory, 2d superconformal algebras and their representations as well as Moonshine and related topics.
+My main mathematical interests are in string and conformal field theory, 2d superconformal algebras and their representations as well as Moonshine and related topics.
 
 Aside from mathematics, I'm interested in computing and technology, gaming and climbing.
 
