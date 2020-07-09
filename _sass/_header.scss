@@ -123,6 +123,7 @@
 		.categories {
 			background-color: $light-gray;
 			border-radius: 0px 0px 15px 15px;
+			padding: 0px 15px;
 		}
 		.menuHidden {
 			max-height: 0em;
@@ -136,7 +137,7 @@
 		.buttonVisible {
 			visibility: visible;
 			opacity: 1;
-			transition: visibility 0s linear 0ms, opacity 1000ms ease 300ms;
+			transition: visibility 0s linear 0ms, opacity 1000ms ease 200ms;
 		}
 		.buttonHidden {
 			visibility: hidden;
