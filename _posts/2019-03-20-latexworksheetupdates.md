@@ -5,6 +5,7 @@ date: 2019-03-20 15:15:43+0000
 description: Updated worksheets suitable for those beginning learning $$\LaTeX{}$$, or those with some experience.
 categories:
   - LaTeX
+  - Teaching
 comments: true
 ---
 This post is really just an update to [a previous post on $$\LaTeX{}$$ for beginners][latexbeginners], so I won't repeat the things that are in that post. I recently gave the session that the original worksheets had been designed for for a second time, and decided to add a few new things to the worksheets (and fix a couple of typos). The main change to the worksheet is the addition of a new, more advanced, section on including graphics in $$\LaTeX{}$$. The new worksheet is available at the following link.

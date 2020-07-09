@@ -5,6 +5,7 @@ date: 2018-06-29 21:03:56+0100
 description: Originally created as a worksheet for first year undergraduates.
 categories:
   - LaTeX
+  - Teaching
 comments: true
 ---
 Edit: The worksheets linked in this post have been updated. You can find the new worksheets [here][updatedworksheets].

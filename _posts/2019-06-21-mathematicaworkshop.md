@@ -5,6 +5,7 @@ date: 2019-06-21 00:01:01+0100
 description: An introductory workshop for Mathematica &mdash; Talk and Notebook
 categories:
   - Mathematica
+  - Teaching
 comments: true
 ---
 
