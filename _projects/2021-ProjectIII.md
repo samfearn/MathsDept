@@ -4,9 +4,8 @@ title: Games and Codes
 module: Project III
 description: We consider some mathematical games and the error-correcting codes which describe their winning strategies.
 img: /assets/img/smarties.jpg
-current: false
-hidden: true
-academicYear: 2019/20
+current: true
+academicYear: 2021/22
 ---
 Description
 -----------

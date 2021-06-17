@@ -3,7 +3,7 @@ layout: page
 title: Niemeier Lattices and Moonshine
 description: Investigating the connections between Lie algebras, lattices, modular forms, and string theory.
 img: /assets/img/ade.png
-current: true
+current: false
 module: Project IV
 academicYear: 2020/21
 ---

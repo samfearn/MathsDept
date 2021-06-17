@@ -3,7 +3,8 @@ layout: page
 title: Lie Algebras and Unimodular Lattices
 description: We will see how semisimple Lie algebras can be classified according to their root systems, and how these root systems may be used to construct certain interesting lattices.
 img: /assets/img/E8Petrie.png
-current: true
+current: false
+hidden: true
 module: Project III
 academicYear: 2020/21
 ---
