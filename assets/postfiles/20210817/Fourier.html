@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn and Anne Taormina" />
+  <title>Towards fully eAccessible documents</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Towards fully eAccessible documents</h1>
+<p class="author">Sam Fearn and Anne Taormina</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introduction-to-fourier-series"><span class="toc-section-number">1</span> Introduction to Fourier series</a></li>
+<li><a href="#preliminaries"><span class="toc-section-number">2</span> Preliminaries</a>
+<ul>
+<li><a href="#simple-harmonic-motion---a-lightning-refresher"><span class="toc-section-number">2.1</span> Simple harmonic motion - a lightning refresher</a></li>
+<li><a href="#orthogonal-functions"><span class="toc-section-number">2.2</span> Orthogonal functions</a></li>
+</ul></li>
+<li><a href="#fourier-series"><span class="toc-section-number">3</span> Fourier Series</a>
+<ul>
+<li><a href="#definition"><span class="toc-section-number">3.1</span> Definition</a></li>
+<li><a href="#determination-of-fourier-coefficients"><span class="toc-section-number">3.2</span> Determination of Fourier coefficients</a></li>
+<li><a href="#convergence-of-a-fourier-series"><span class="toc-section-number">3.3</span> Convergence of a Fourier Series</a></li>
+</ul></li>
+<li><a href="#miscellaneous"><span class="toc-section-number">4</span> Miscellaneous</a></li>
+</ul>
+</nav>
+<section id="introduction-to-fourier-series" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction to Fourier series</h1>
+<p>Fourier analysis is an application of Calculus, which is at the heart of modern mathematics and science. It provides a useful tool when studying problems involving vibrations or oscillations. Some obvious examples are vibrating tuning forks, weights attached to springs, sound waves, water waves and alternating electric currents, but Fourier actually developed this theory while attempting to solve physical problems with extremely important applications in everyday’s life. These problems are posed in terms of partial differential equations (PDEs), and you will encounter some in the second year module <span><em>Analysis in Many Variables</em></span>. Here are a few:</p>
+<ol>
+<li><p>Laplace’s equation: <span class="math inline">\(\nabla ^2u=0\)</span>, where the function <span class="math inline">\(u\)</span> could be (i) the gravitational potential in a region containing no matter, (ii) the electrostatic potential in a charge-free region, (iii) the steady-state (i.e. time-independent) temperature in a region containing no source of heat, (iv) the velocity potential for an incompressible fluid with no vortices and no sources or sinks.</p></li>
+<li><p>Poisson’s equation: <span class="math inline">\(\nabla^2u=f(x,y,z)\)</span>, where <span class="math inline">\(f(x,y,z)\)</span> (source density) is a function describing matter, electric charge, a source of heat or fluid (the left hand side has the same meaning as in Laplace’s equation).</p></li>
+<li><p>The diffusion or heat flow equation: <span class="math inline">\(\nabla^2u=\frac{1}{\alpha^2}\frac{\partial u}{\partial t}\)</span>, where <span class="math inline">\(u\)</span> can be (i) a non steady-state temperature in a region with no heat sources, (ii) the concentration of a diffusing substance. <span class="math inline">\(\alpha^2\)</span> is a constant.</p></li>
+<li><p>The wave equation: <span class="math inline">\(\nabla^2u=\frac{1}{v^2}\frac{\partial^2 u}{\partial t^2}\)</span>, where <span class="math inline">\(u\)</span> could be (i) the displacement from equilibrium of a vibrating string, membrane or medium (gas, liquid, solid), (ii) the current or potential along a transmission line, (iii) a component of the electric or magnetic field in an electromagnetic wave (light, radio wave,...). <span class="math inline">\(v\)</span> is the speed of propagation of the wave.</p></li>
+</ol>
+<p>Wave motion can often be decomposed into a combination of harmonic oscillations, and Fourier analysis consists in decomposing a function <span class="math inline">\(f\)</span> defined on an interval <span class="math inline">\((-p,p)\)</span> into an infinite series of sines and cosines, called the <span><em>Fourier series of</em></span> <span class="math inline">\(f\)</span>. Apart from solving the PDEs mentioned above, Fourier series are also useful in signal processing. For instance, if one receives a signal in the form of a periodic pulse, it is a superposition of a true signal and some noise, which is usually a high frequency signal. It is important to separate the true signal from the noise. This technique is called ‘<span><em>filtering’</em></span>, and will be described briefly later on.</p>
+</section>
+<section id="preliminaries" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Preliminaries</h1>
+<section id="simple-harmonic-motion---a-lightning-refresher" class="level2" data-number="2.1">
+<h2 data-number="2.1"><span class="header-section-number">2.1</span> Simple harmonic motion - a lightning refresher</h2>
+<p>Let <span class="math inline">\(P\)</span> be a particle moving at constant speed around a circle of radius <span class="math inline">\(A\)</span>, and <span class="math inline">\(Q\)</span> be a particle moving up and down the segment <span class="math inline">\(tb\)</span> in such a way that the <span class="math inline">\(y\)</span>-coordinate of <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> are equal at all times.</p>
+<div class="center">
+<figure>
+<img src="./Figs/harmonic.jpg" id="fig:SHM" style="width:7cm" alt="" /><figcaption>Simple harmonic motion.</figcaption>
+</figure>
+</div>
+<p>The points <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> have coordinates</p>
+<p><span class="math display">\[P=(A\cos\,\omega t, A\sin\,\omega t),\quad Q=(A+n,A\sin\,\omega t),\]</span> where <span class="math inline">\(\omega\)</span> is the angular velocity of the particle <span class="math inline">\(P\)</span>, with <span class="math inline">\(\omega t=\theta\)</span>. The positive real number <span class="math inline">\(n\)</span> is not essential for our purpose.</p>
+<p><span><strong><span><em>Simple harmonic motion</em></span></strong></span>: an object that moves in such a way that its displacement from equilibrium can be written as <span class="math inline">\(A\sin \,\omega t\)</span> (or <span class="math inline">\(A\cos\,\omega t\)</span>, or <span class="math inline">\(A\sin (\omega t+\varphi)\)</span>) is said to execute a simple harmonic motion. In our setup, the particle <span class="math inline">\(Q\)</span> executes a simple harmonic motion.</p>
+<p><span><strong><span><em>Amplitude of vibration</em></span></strong></span>: Maximum displacement (of the object executing the simple harmonic motion) from its equilibrium position. In the situation corresponding to Fig. <a href="#fig:SHM" data-reference-type="ref" data-reference="fig:SHM">1</a>, the amplitude is <span class="math inline">\(A\)</span>.</p>
+<p><span><strong><span><em>Period of simple harmonic motion</em></span></strong></span>: time needed to complete one oscillation (for the particle <span class="math inline">\(P\)</span> to revolve once around the circle, i.e. time <span class="math inline">\(T\)</span> such that <span class="math inline">\(\theta\equiv 2\pi=\omega T\)</span>. In mathematical terms, the period of the function <span class="math inline">\(F(t)=A\sin \omega t\)</span> is the smallest positive real number <span class="math inline">\(T\)</span> such that <span class="math inline">\(F(t+T)=F(t)\)</span>. It is indeed <span class="math inline">\(T=\frac{2\pi}{\omega}\)</span> as</p>
+<p><span class="math display">\[A\sin(\omega[t +\frac{2\pi}{\omega}])=A\sin (\omega t +2\pi)=A\sin \omega t.\]</span> <span><strong><span><em>Frequency of simple harmonic motion</em></span></strong></span>: the inverse of the period <span class="math inline">\(T\)</span>, i.e. <span class="math inline">\(f=\frac{1}{T}=\frac{\omega}{2\pi}\)</span>.</p>
+<p>All these concepts are illustrated in Fig. <a href="#fig:sinusoid" data-reference-type="ref" data-reference="fig:sinusoid">2</a>, which graphs the function <span class="math inline">\(A\sin \omega t\)</span> as a function of <span class="math inline">\(t\)</span>. (Note that by choosing the origin of time appropriately, the graph also describes the functions <span class="math inline">\(A\cos\,\omega t\)</span> and <span class="math inline">\(A\sin (\omega t+\varphi)\)</span>).</p>
+<div class="center">
+<figure>
+<img src="Figs/sinusoid.jpg" id="fig:sinusoid" style="width:12.7cm" alt="" /><figcaption>Amplitude and period of <span class="math inline">\(F(t)\)</span>.</figcaption>
+</figure>
+</div>
+</section>
+<section id="orthogonal-functions" class="level2" data-number="2.2">
+<h2 data-number="2.2"><span class="header-section-number">2.2</span> Orthogonal functions</h2>
+<p>Consider two real-valued functions of a real variable, <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>, defined on the interval <span class="math inline">\([a,b]\)</span>. Introduce the inner product of <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> on <span class="math inline">\([a,b]\)</span> as, <span class="math display">\[(f_1,f_2) \equiv \int_a^b f_1(x)\,f_2(x)\,dx.\]</span></p>
+<div class="example">
+<p>Take <span class="math inline">\(f_1(x)=x,\,f_2(x)=x^2,\,[a,b]=[0,1]\)</span>, then <span class="math display">\[(f_1,f_2)=\int_0^1\,x^3 \,dx = \frac{1}{4}[x^4]_0^1=\frac{1}{4}.\]</span></p>
+</div>
+<div class="example">
+<p>Take <span class="math inline">\(f_1(x)=x^2,\,f_2(x)=x^3,\,[a,b]=[-1,1]\)</span>, then <span class="math display">\[(f_1,f_2)=\int_{-1}^1\, x^5 \,dx = \frac{1}{6}[x^6]_{-1}^1=0.\]</span></p>
+</div>
+<p>In the last example, <span class="math inline">\((f_1,f_2)=0\)</span> on <span class="math inline">\([-1,1]\)</span> and one says that <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are orthogonal on <span class="math inline">\([-1,1]\)</span>.</p>
+<p>More generally, the set <span class="math display">\[\begin{equation} \label{ortho}
+\{\,\cos \frac{\pi k}{p}x\,\}_{k \in \mathbb{N}}\,\cup\,\{\,\sin \frac{\pi k}{p}x\,\}_{k \in \mathbb{N}} \end{equation}\]</span> is an orthogonal set on <span class="math inline">\((-p,p)\)</span>, that is, given <span><em>non-zero</em></span> integer numbers <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span>, <span class="math display">\[\begin{align}
+&amp;\int_{-p}^p\cos \frac{m\pi}{p}x\,\cos \frac{n\pi}{p}x\,dx=
+\left \{ \begin{array}{l}
+0\qquad {\rm for}\,\,m,n &gt; 0, m \neq n\\
+p \qquad {\rm for}\,\,m=n,\end{array} \right. \label{coscos}\\ 
+&amp;\int_{-p}^p\sin \frac{m\pi}{p}x\,\sin \frac{n\pi}{p}x\,dx=
+\left \{ \begin{array}{l}
+0\qquad
+{\rm for}\,\,m,n &gt; 0, m \neq n\\
+p \qquad {\rm for}\,\,m=n,\end{array} \right. \label{sinsin}\end{align}\]</span> while <span class="math display">\[\begin{equation} \int_{-p}^p \sin \frac{m\pi}{p}x\,\cos \frac{n\pi}{p}x\,dx=0
+\label{sincos} \end{equation}\]</span> for  <span class="math inline">\(m,n &gt; 0, m \neq n\)</span> as well as for <span class="math inline">\(m=n\)</span>. Moreover, <span class="math display">\[\begin{align}
+&amp;\int_{-p}^p 1 \cdot \cos \frac{m\pi}{p}x\,dx=0\qquad
+{\rm for}\,\,m&gt; 0,  \label{1cos}\\
+&amp;\int_{-p}^p 1 \cdot \sin \frac{m\pi}{p}x\,dx=0\qquad
+{\rm for}\,\,m&gt; 0.\label{1sin}\end{align}\]</span> These results are proven by explicit integration, using the well-known trigonometric identities <span class="math display">\[\begin{aligned}
+\sin(a\pm b)&amp;=\sin a \cos b \pm \sin b \cos a,\\
+\cos(a\pm b)&amp;=\cos a \cos b \mp \sin a \sin b.\end{aligned}\]</span></p>
+<p>For <span class="math inline">\(p=\pi\)</span>, one obtains the following important relations</p>
+<div class="framed">
+<p><span class="math display">\[\begin{aligned}
+&amp;&amp;\frac{1}{2\pi} \int_{-\pi}^{\pi} \sin mx\,\cos nx \,dx =0\qquad {\rm for}
+\,\,m,n \in \mathbb{Z},\\
+&amp;&amp;\frac{1}{2\pi} \int_{-\pi}^{\pi} \sin mx\,\sin nx \,dx=\left \{
+\begin{array}{l}
+0\,\,{\rm if }\,\,m \neq n,\\
+\frac{1}{2}\,\,{\rm if }\,\,m =n\neq 0,\\
+0 \,\,{\rm if }\,\,m =n=0, \end{array} \right.\\
+&amp;&amp;\frac{1}{2\pi} \int_{-\pi}^{\pi} \cos mx\,\cos nx \,dx=\left \{
+\begin{array}{l}
+0\,\,{\rm if }\,\,m \neq n,\\
+\frac{1}{2}\,\,{\rm if }\,\,m =n\neq 0,\\
+1 \,\,{\rm if }\,\,m =n=0. \end{array} \right.\end{aligned}\]</span></p>
+</div>
+</section>
+</section>
+<section id="fourier-series" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Fourier Series</h1>
+<section id="definition" class="level2" data-number="3.1">
+<h2 data-number="3.1"><span class="header-section-number">3.1</span> Definition</h2>
+<p>The aim is to represent functions <span class="math inline">\(f(x)\)</span> of period <span class="math inline">\(2p\)</span> in terms of a sum of the constant function 1 and the trigonometric functions in the set <span class="math inline">\(\eqref{ortho}\)</span>, which are all of period <span class="math inline">\(2p\)</span>. Starting with <span class="math inline">\(f(x)\)</span> defined on <span class="math inline">\((-p,p)\)</span>, the trigonometric series is of the form <span class="math display">\[\begin{equation} \label{Fourierexp}
+\frac{a_0}{2}+\sum_{n=1}^{\infty} [\,a_n\cos \frac{n\pi}{p}x+
+b_n\sin \frac{n\pi}{p}x\,], \end{equation}\]</span> with the coefficients being the constants, <span class="math display">\[\begin{align}
+a_0&amp;=\frac{1}{p}\int_{-p}^p f(x)\,dx\label{a0}\\
+a_n&amp;=\frac{1}{p}\int_{-p}^p f(x)\,\cos \frac{n\pi}{p}x\,dx\label{an}\\
+b_n&amp;=\frac{1}{p}\int_{-p}^p f(x)\,\sin \frac{n\pi}{p}x\,dx.\label{bn}\end{align}\]</span> The above formulas are often called <span><em>Euler formulas</em></span>. Note that the coefficient of the constant function 1 is labelled <span class="math inline">\(a_0/2\)</span> rather than <span class="math inline">\(a_0\)</span>; this is for convenience so that the formula for <span class="math inline">\(a_n\)</span> reduces to <span class="math inline">\(a_0\)</span> for <span class="math inline">\(n=0\)</span>.<br />
+If the coefficients are such that the series <span class="math inline">\(\eqref{Fourierexp}\)</span> converges, then its sum will be a function of period <span class="math inline">\(2p\)</span>.</p>
+<div class="framed">
+<div class="definition">
+<p>Suppose that <span class="math inline">\(f(x)\)</span> is a given function of period <span class="math inline">\(2p\)</span>, which can be represented by a series of the form <span class="math inline">\(\eqref{Fourierexp}\)</span>, and that this series converges and that its sum is <span class="math inline">\(f(x)\)</span>. Then, one writes <span class="math display">\[\begin{equation} \label{Fourierexp2}
+f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty} [\,a_n\cos \frac{n\pi}{p}x+
+b_n\sin \frac{n\pi}{p}x\,], \end{equation}\]</span> and calls <span class="math inline">\(\eqref{Fourierexp2}\)</span> the Fourier series of <span class="math inline">\(f(x)\)</span>.</p>
+</div>
+</div>
+<p>In this case, the constants <span class="math inline">\(a_0, a_n, b_n\)</span> for <span class="math inline">\(n&gt;0\)</span> are called the <span><em>Fourier coefficients</em></span> of <span class="math inline">\(f(x)\)</span>.</p>
+</section>
+<section id="determination-of-fourier-coefficients" class="level2" data-number="3.2">
+<h2 data-number="3.2"><span class="header-section-number">3.2</span> Determination of Fourier coefficients</h2>
+<p>Assume that the function <span class="math inline">\(f(x)\)</span> is integrable on <span class="math inline">\((-p,p)\)</span>, and that it is equal to its Fourier series, as in <span class="math inline">\(\eqref{Fourierexp2}\)</span>. Also assume that the series <span class="math inline">\(\eqref{Fourierexp2}\)</span> multiplied by <span class="math inline">\(\cos \frac{m\pi}{p}x\)</span> or <span class="math inline">\(\sin \frac{m\pi}{p}x\)</span> converges (this is to allow term by term integration of the series). The Fourier coefficients  <span class="math inline">\(a_0,a_n,b_n\)</span> are determined as follows.</p>
+<p><span class="math inline">\(\bullet\)</span> Multiply <span class="math inline">\(\eqref{Fourierexp2}\)</span> by the number 1 and integrate both sides between <span class="math inline">\(-p\)</span> and <span class="math inline">\(p\)</span>: <span class="math display">\[\begin{aligned}
+&amp; \int_{-p}^p  f(x) \cdot  1 \,dx=\\
+ &amp;\int_{-p}^p   \{ \, \frac{a_0}{2} \cdot 1 +
+\sum_{n=1}^{\infty}[\,a_n \cos \frac{n\pi}{p}x+b_n \sin \frac{n\pi}{p}x\,]
+\, \cdot 1 \}\, dx,\end{aligned}\]</span> which, after use of <span class="math inline">\(\eqref{1cos}\)</span> and <span class="math inline">\(\eqref{1sin}\)</span>, yields <span class="math display">\[\int_{-p}^p f(x)\,dx = 2p \frac{a_0}{2}=p\,a_0.\]</span></p>
+<p><span class="math inline">\(\bullet\)</span> Multiply <span class="math inline">\(\eqref{Fourierexp2}\)</span> by <span class="math inline">\(\cos \frac{m\pi}{p}x\)</span> where <span class="math inline">\(m \neq 0\)</span>, and integrate both sides between <span class="math inline">\(-p\)</span> and <span class="math inline">\(p\)</span>: <span class="math display">\[\begin{aligned}
+&amp; \int_{-p}^p  f(x) \cdot  \cos \frac{m\pi}{p}x \,dx=\\
+&amp; \int_{-p}^p \{ \frac{a_0}{2} \cdot \cos \frac{m\pi}{p}x  
+ +\sum_{n=1}^{\infty}[\,a_n \cos \frac{n\pi}{p}x+b_n \sin \frac{n\pi}{p}x\,]
+\, \cdot \cos \frac{m\pi}{p}x \,\} dx  ,\end{aligned}\]</span> which gives, after use of <span class="math inline">\(\eqref{1cos}\)</span>, <span class="math inline">\(\eqref{coscos}\)</span> and <span class="math inline">\(\eqref{sincos}\)</span>, <span class="math display">\[\int_{-p}^p f(x) \cos \frac{m\pi}{p}x\, dx=p\,a_m.\]</span> <span class="math inline">\(\bullet\)</span> Multiply <span class="math inline">\(\eqref{Fourierexp2}\)</span> by <span class="math inline">\(\sin \frac{m\pi}{p}x\)</span> where <span class="math inline">\(m \neq 0\)</span>, and integrate both sides between <span class="math inline">\(-p\)</span> and <span class="math inline">\(p\)</span>: <span class="math display">\[\begin{aligned}
+ &amp;\int_{-p}^p  f(x) \cdot \sin \frac{m\pi}{p}x \,dx=\\
+ &amp;\int_{-p}^p  \{ \, \frac{a_0}{2} \cdot \sin \frac{m\pi}{p}x +
+\sum_{n=1}^{\infty}[\,a_n \cos \frac{n\pi}{p}x+b_n \sin \frac{n\pi}{p}x\,]
+\cdot \sin \frac{m\pi}{p}x \,\} dx ,\end{aligned}\]</span> which gives, after use of <span class="math inline">\(\eqref{1sin}\)</span>, <span class="math inline">\(\eqref{sincos}\)</span> and <span class="math inline">\(\eqref{sinsin}\)</span>, <span class="math display">\[\int_{-p}^p f(x) \sin \frac{m\pi}{p}x\, dx=p\,b_m.\]</span></p>
+<div class="example">
+<p>Expand <span class="math display">\[\begin{equation} \label{example}
+f(x)=\left \{ \begin{array}{l}
+              0 \,\,{\rm for }\,\,-\pi &lt; x &lt; 0,\\
+              \pi-x \,\, {\rm for}\,\, 0 \le x &lt; \pi\end{array} \right. \end{equation}\]</span> in a Fourier series. The graph of <span class="math inline">\(f(x)\)</span> is given in Fig. <a href="#fig:fourier1" data-reference-type="ref" data-reference="fig:fourier1">3</a>.<br />
+</p>
+<div class="center">
+<figure>
+<img src="Figs/saw1.jpg" id="fig:fourier1" style="width:4.9cm" alt="" /><figcaption>Graph of <span class="math inline">\(f\)</span> on <span class="math inline">\((-\pi,\pi)\)</span>.</figcaption>
+</figure>
+</div>
+<p><u>Solution</u>: Here, <span class="math inline">\(p=\pi\)</span> and application of <span class="math inline">\(\eqref{a0}\)</span> yields <span class="math display">\[a_0=\frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\,dx=\frac{1}{\pi}\int_{-\pi}^{0}0\,dx
++\frac{1}{\pi}\int_0^{\pi}(\pi -x)\,dx =\frac{\pi}{2}.\]</span> On the other hand, application of <span class="math inline">\(\eqref{an}\)</span> yields <span class="math display">\[\begin{aligned}
+&amp;a_n=\frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\,\cos nx \,dx=\\
+&amp;\frac{1}{\pi}\int_0^{\pi}(\pi -x)\,\cos nx \,dx=\frac{1}{n\pi} 
+[-\frac{\cos nx}{n}]_0^{\pi} = -\frac{1}{n^2\pi} [ (-1)^n-1],\end{aligned}\]</span> where integration by parts has been used (set <span class="math inline">\(u=x, dv= \cos nx dx\)</span>). Finally, application of <span class="math inline">\(\eqref{bn}\)</span> yields <span class="math display">\[\begin{aligned}
+b_n&amp;=\frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\,\sin nx \,dx=
+\frac{1}{\pi}\int_0^{\pi}(\pi -x)\,\sin nx \,dx\\
+&amp;=\int_0^{\pi} \sin nx\,dx -\frac{1}{\pi} \int_0^{\pi} x\sin nx \,dx 
+\nonumber\\
+&amp;=-[\frac{\cos nx}{n}]_0^{\pi} -\frac{1}{\pi}[-\frac{x}{n}\cos nx ]_0^{\pi}
++\frac{1}{n}\int_0^{\pi} \cos nx \,dx\\
+&amp;=-\frac{1}{n}[(-1)^n-1]+\frac{1}{n\pi} [ (-1)^n\pi -0]=\frac{1}{n},\end{aligned}\]</span> where integration by parts has been used (set <span class="math inline">\(u=x, dv=\sin nx dx\)</span>).</p>
+<p>So the Fourier expansion of <span class="math inline">\(f(x)\)</span> on the interval <span class="math inline">\((-\pi, \pi)\)</span> is given by, <span class="math display">\[\begin{equation} \label{series}
+\frac{\pi}{4} + \sum _{n=1}^{\infty} \{ \frac{1-(-1)^n}{n^2\pi}\cos nx
++ \frac{1}{n} \sin nx \}. \end{equation}\]</span> One can tidy the final expression a bit more, as <span class="math inline">\(1-(-1)^n=0\)</span> when <span class="math inline">\(n\)</span> is even, while <span class="math inline">\(1-(-1)^n=2\)</span> when <span class="math inline">\(n\)</span> is odd. Therefore, only the terms corresponding to <span class="math inline">\(n\)</span> odd will survive in the cosine series of <span class="math inline">\(\eqref{series}\)</span>. Let us thus set <span class="math inline">\(n=2k-1\)</span>, and sum over <span class="math inline">\(k\)</span> rather than <span class="math inline">\(n\)</span>. This yields <span class="math display">\[\begin{equation} \label{series2}
+\frac{\pi}{4} + \sum _{k=1}^{\infty} \{ \frac{2}{(2k-1)^2\pi}\cos (2k-1)x
++ \frac{1}{k} \sin kx \}. \end{equation}\]</span></p>
+</div>
+<div class="example">
+<p>The <span><em>delta function</em></span> <span class="math inline">\(\delta(x)\)</span> is defined to be the ‘function’ which is equal to <span class="math inline">\(0\)</span> everywhere except at <span class="math inline">\(x=0\)</span>, and which satisfies <span class="math display">\[\int_a^b \delta(x)\,f(x)\,dx= f(0)\]</span> when <span class="math inline">\(0 \in [a,b]\)</span>. Note that <span class="math inline">\(\delta(x)\)</span> is not, <span><em>actually</em></span>, a function. It is a <span><em>distribution</em></span>, which is a generalization of the function concept, and it is used extensively in mathematical physics. Let us calculate the Fourier coefficients of <span class="math inline">\(\delta(x)\)</span>, considered defined on <span class="math inline">\((-p,p)\)</span>. Using the formulas <span class="math inline">\(\eqref{a0}\)</span>-<span class="math inline">\(\eqref{bn}\)</span>, we get, <span class="math display">\[\begin{aligned}
+a_0&amp;=&amp;\frac{1}{p}\int_{-p}^p \delta(x)\,dx=\frac{1}{p}\\
+a_n&amp;=&amp;\frac{1}{p}\int_{-p}^p \delta (x)\,\cos\,\frac{n\pi}{p}x\,dx=\frac{1}{p}\cos 0=\frac{1}{p}\\
+b_n&amp;=&amp;\frac{1}{p}\int_{-p}^p\delta(x)\,\sin\,\frac{n\pi}{p}x\,dx=\frac{1}{p}.\sin 0=0.\end{aligned}\]</span></p>
+</div>
+<div class="remark">
+<p>The calculation of Fourier coefficients is quite tedious, and if you need to calculate such quantities in your future career, you may benefit from developing a Maple code to this effect. An example of such code is posted on the course webpages (see Handouts). You are encouraged to experiment with it.</p>
+</div>
+</section>
+<section id="convergence-of-a-fourier-series" class="level2" data-number="3.3">
+<h2 data-number="3.3"><span class="header-section-number">3.3</span> Convergence of a Fourier Series</h2>
+<section id="sequence-of-partial-sums" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1"><span class="header-section-number">3.3.1</span> Sequence of Partial Sums</h3>
+<p>Fourier series do not always converge, and even if they do converge, they do not necessarily converge to the function that generated them. In order to get insight into convergence, let us consider the sequence of partial sums <span class="math inline">\(\{ S_m(x), m\ge 1 \}\)</span> of the Fourier series generated by the function <span class="math inline">\(f(x)\)</span>, where <span class="math display">\[S_m(x)=\frac{a_0}{2}+\sum_{n=1}^m (a_n \cos \frac{n\pi}{p}x+b_n \sin \frac{n\pi}{p}x ).\]</span> If the sequence of partial sums converges to <span class="math inline">\(f(x)\)</span> for some <span class="math inline">\(x \in (-p,p)\)</span>, i.e. if <span class="math display">\[\boxed{f(x)=\lim _{m\rightarrow \infty} S_m(x)}\]</span> then the Fourier series converges to <span class="math inline">\(f(x)\)</span> at that value of <span class="math inline">\(x\)</span> and one writes <span class="math display">\[f(x)=\frac{a_0}{2}+\sum_{n=1}^\infty (a_n \cos \frac{n\pi}{p}x+b_n \sin \frac{n\pi}{p}x ).\]</span></p>
+<p>For instance, the <span class="math inline">\(m^{th}\)</span> partial sum corresponding to the Fourier series <span class="math inline">\(\eqref{series}\)</span> is, <span class="math display">\[S_m(x)= \frac{\pi}{4}+\sum _{n=1}^m \{ \frac{1-(-1)^n}{n^2\pi} \cos nx + 
+\frac{1}{n} \sin nx \}.\]</span> Observe the plots for <span class="math inline">\(S_2(x), S_4(x)\)</span> and <span class="math inline">\(S_{14}(x)\)</span> shown in Fig. <a href="#fig:fourier3" data-reference-type="ref" data-reference="fig:fourier3">6</a>, and compare with the graph in Fig. <a href="#fig:fourier1" data-reference-type="ref" data-reference="fig:fourier1">3</a>. As <span class="math inline">\(m\)</span> increases, it becomes more and more difficult to distinguish <span class="math inline">\(S_m\)</span> from the graph of <span class="math inline">\(f(x)\)</span>, and we can be fairly confident that the Fourier series of <span class="math inline">\(f(x)\)</span> converges to <span class="math inline">\(f(x)\)</span> for all <span class="math inline">\(x \in (-\pi,\pi)\)</span>.</p>
+<table id="fig:fourier3" class="imageTable">
+<caption>Second, fourth and fourteenth partial sums of <span class="math inline">\(f\)</span>.</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="Figs/s2.jpg" title="fig:" id="fig:fourier3" alt="Second, fourth and fourteenth partial sums of f." />  </td>
+<td style="text-align: center;">  <img src="Figs/s4.jpg" title="fig:" id="fig:fourier3" alt="Second, fourth and fourteenth partial sums of f." /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_2(x)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(S_4(x)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><img src="Figs/s14.jpg" title="fig:" id="fig:fourier3" alt="Second, fourth and fourteenth partial sums of f." />  </td>
+<td style="text-align: center;">  </td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{14}(x)\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="convergence-theorem" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2"><span class="header-section-number">3.3.2</span> Convergence theorem</h3>
+<div class="theorem">
+<p>Let <span class="math inline">\(f\)</span> and <span class="math inline">\(f&#39;\)</span> be continuous functions, except at a finite number of points in the interval <span class="math inline">\((-p,p)\)</span> (i.e. let <span class="math inline">\(f\)</span> and <span class="math inline">\(f&#39;\)</span> be piecewise continuous on <span class="math inline">\((-p,p)\)</span>), and let them only have finite (jump) discontinuities at these points. Then,</p>
+<p><span class="math inline">\(\bullet\)</span> At a point of continuity <span class="math inline">\(x\)</span>, the Fourier series of <span class="math inline">\(f\)</span> on <span class="math inline">\((-p,p)\)</span> converges to <span class="math inline">\(f(x)\)</span>.</p>
+<p><span class="math inline">\(\bullet\)</span> At a point of discontinuity <span class="math inline">\(x_0\)</span>, the Fourier series converges to the average <span class="math display">\[\frac{f(x_{0+})+f(x_{0-})}{2},\]</span> where <span class="math display">\[\begin{aligned}
+f(x_{0+})&amp;=&amp; \lim_{h \rightarrow 0}f(x_0+h)\qquad h&gt;0,\\
+f(x_{0-})&amp;=&amp; \lim_{h \rightarrow 0}f(x_0-h)\qquad h&gt;0.\end{aligned}\]</span> In other words, it converges to the midpoint of the jump. Moreover, if <span class="math inline">\(f(-p)\neq f(p)\)</span>, its Fourier series converges to the average of the endpoints at both ends, as illustrated in Fig. <a href="#fig:cgence" data-reference-type="ref" data-reference="fig:cgence">8</a> (for <span class="math inline">\(p\equiv \pi\)</span>).</p>
+</div>
+<div class="proof">
+<p>Left as an exercise.</p>
+</div>
+<table id="fig:cgence" class="imageTable">
+<caption>A piecewise continuous function on <span class="math inline">\([-\pi,\pi]\)</span> (left) generates a Fourier series converging to the function on the right.</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="Figs/cgence1.jpg" title="fig:" id="fig:cgence" alt="A piecewise continuous function on [-\pi,\pi] (left) generates a Fourier series converging to the function on the right." />  </td>
+<td style="text-align: center;">  <img src="Figs/cgence2.jpg" title="fig:" id="fig:cgence" alt="A piecewise continuous function on [-\pi,\pi] (left) generates a Fourier series converging to the function on the right." /></td>
+</tr>
+</tbody>
+</table>
+<p>In summary,</p>
+<div class="framed">
+<p>If the function <span class="math inline">\(\mathsf{f(x)}\)</span> is piecewise smooth on <span class="math inline">\(\mathsf{x\in(-p, p)}\)</span> then the sequence of truncated Fourier series converges as follows: <span class="math display">\[\begin{aligned}
+    &amp;&amp;\mathsf{\lim_{N\to\infty}S_N(x)} \to \mathsf{ \frac{1}{2}\left(\lim_{y\,\downarrow\, x}f(y) + \lim_{y\,\uparrow\, x}f(y)\right)}\\
+    &amp;&amp;= \left\{\begin{array}{l } \mathsf{f(x)} \,\, \textsf{if}\,\, \textsf{f}\, \,\textsf{is continuous
+    at}\,\, \textsf{x},\\
+    \textsf{average of}\,\, \textsf{f(x)}\,\,\textsf{across jump at a}\\
+    \quad \textsf{ discontinuity in}\,\, \textsf{f(x)}
+    \end{array}\right.
+    \end{aligned}\]</span> (<span class="math inline">\(\mathsf{y \downarrow x}\)</span>  <span class="sans-serif">and</span>  <span class="math inline">\(\mathsf{y \uparrow x}\)</span>  <span class="sans-serif">denote the one-sided limits as</span>  <span class="math inline">\(\mathsf{y}\)</span> <span class="sans-serif">approaches</span>  <span class="math inline">\(\mathsf{x}\)</span>  <span class="sans-serif">from above or below respectively.)</span></p>
+</div>
+<div class="remark">
+<p><span style="color: red">The above also illustrates how to produce sans serif fonts for both text and formulas (through textsf and mathsf).</span></p>
+</div>
+</section>
+</section>
+</section>
+<section id="miscellaneous" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Miscellaneous</h1>
+<p>A few more environments that Pandoc processes without problems.</p>
+<p>The three matrices <span class="math inline">\(\mathsf{M_1, M_2, M_3}\)</span> below are rendered reasonably well in html via Pandoc. <span class="math display">\[\mathsf{
+M_1=
+\begin{bmatrix} 
+\textsf{a} &amp; \textsf{b} &amp; \textsf{c }\\
+d&amp; e &amp; f\\
+g &amp; h&amp; i \\
+\end{bmatrix},\quad
+M_2=
+\begin{pmatrix} 
+\mathsf{x^2} &amp; \mathsf{\frac{a}{b}} &amp; \textsf{c/b} \\
+c &amp; d &amp; e\\
+f &amp; g &amp; h \\
+\end{pmatrix}},\quad
+M_3=
+\left[
+\begin{array}{c|c}
+A &amp; B \\
+\hline
+C &amp; D
+\end{array}
+\right].\]</span></p>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
