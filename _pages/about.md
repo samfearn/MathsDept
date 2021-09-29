@@ -22,4 +22,4 @@ My main mathematical interests are in string and conformal field theory, 2d supe
 
 Aside from mathematics, I'm interested in computing and technology, gaming and climbing.
 
-[Anne Taormina]:https://www.dur.ac.uk/mathematical.sciences/people/profile/?id=1632
+[Anne Taormina]:https://www.durham.ac.uk/staff/anne-taormina/
