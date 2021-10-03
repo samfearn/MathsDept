@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2021-22, Michaelmas: Topic 1 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2021-22, Michaelmas: Topic 1 Problems</h1>
+</header>
+<p><span> </span></p>
+<div class="problem">
+<p>For the function <span class="math inline">\(f(x,y)=\cos (x+y)\,\exp (x-y)\)</span> calculate <span class="math inline">\(\partial f/\partial x\)</span>, <span class="math inline">\(\partial f/\partial y\)</span>, <span class="math inline">\(\partial ^2f/ \partial x^2\)</span>, <span class="math inline">\(\partial ^2f/ \partial y^2\)</span>, <span class="math inline">\(\partial ^2f/ \partial x \partial y\)</span>, <span class="math inline">\(\partial ^2f/ \partial y \partial x\)</span>. Use your results to show that <span class="math inline">\({\partial ^2f/ \partial x^2}=-{\partial ^2f/
+\partial y^2}\)</span> and <span class="math inline">\({\partial ^2f/ \partial x \partial y}={\partial ^2f/
+\partial y \partial x}\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(F(t)\)</span> be the value of the function <span class="math inline">\(f(x,y,z)=\cos (xy)\,z\)</span> restricted to the helix <span class="math inline">\(x=\cos (t)\)</span>, <span class="math inline">\(y=\sin (t)\)</span> , <span class="math inline">\(z=t\)</span> which is parametrised by <span class="math inline">\(t\)</span> and <span class="math inline">\(-\infty &lt;t&lt;\infty\)</span>. Calculate <span class="math inline">\(dF/ dt\)</span> as a function of <span class="math inline">\(t\)</span> (i) directly by substituting the equations of the helix into <span class="math inline">\(f(x,y,z)\)</span> to calculate <span class="math inline">\(F(t)\)</span> as a function of <span class="math inline">\(t\)</span> and then differentiating, and (ii) using the chain rule. Note how similar these approaches are.</p>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\({\bf a}= \sin 2t\,{\bf e_1}+ e^t\, {\bf e_2}-(t^3-5t)\, {\bf e_3}\)</span>, find<br />
+    (a) <span class="math inline">\(d{\bf a}/dt\)</span>,  (b) <span class="math inline">\(||d{\bf a}/dt||\)</span>,   (c) <span class="math inline">\(d^2 {\bf a}/dt^2\)</span>,  (d) <span class="math inline">\(||d^2 {\bf a}/dt^2||\)</span>, all at <span class="math inline">\(t=0\)</span>.</p>
+</div>
+<div class="problem">
+<p>Find a unit vector tangent to the space curve <span class="math inline">\(x=t^3, y=t, z=t^2\)</span> at <span class="math inline">\(t=2\)</span>.</p>
+</div>
+<div class="problem">
+<p>Use the chain rule to calculate <span class="math inline">\(df/dt\)</span> when <span class="math inline">\(f({\bf x}\,)=\exp  (-||{\bf x}\,||^2)\)</span> is restricted to the curves:<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\qquad {\bf x}\,={\bf e_1}\log t+{\bf e_2}t \log t +{\bf e_3}t\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad (x,y,z)=( \cosh t , \sinh t, 0)\)</span>.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p><strong>Harder:</strong> Let <span><strong>t</strong></span> denote the unit tangent vector to a space curve <span class="math inline">\({\bf a}={\bf a}(s)\)</span> in <span class="math inline">\(\mathbb{R}^3\)</span>, where <span class="math inline">\({\bf a}(s)\)</span> is assumed differentiable, and where <span class="math inline">\(s\)</span> measures the arclength from some fixed point on the curve. Define the unit vector <span class="math inline">\({\bf n}= \frac{1}{\kappa} \frac{d {\bf t}}{ds}\)</span>, where <span class="math inline">\(\kappa\)</span> is a scalar. Also define <span class="math inline">\({\bf b}= {\bf t} \times {\bf n}\)</span> as the <em>unit binormal vector</em> to the space curve.</p>
+<p>By considering the derivative of the product <span class="math inline">\({\bf t}.{\bf t}\)</span>, show that the the 3 vectors <span class="math inline">\({\bf t},{\bf n},{\bf b}\)</span> form an orthonormal basis of <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+<p>Hence, prove that <span class="math display">\[\frac{d {\bf b}}{ds}=-\tau {\bf n},~~~{\rm and}~~~
+\frac{d {\bf n}}{ds}=\tau {\bf b}- \kappa {\bf t},\]</span> where <span class="math inline">\(\tau\)</span> is some real constant.</p>
+<p>These formulae are of fundamental importance in differential geometry. They involve the curvature <span class="math inline">\(\kappa\)</span> and the torsion <span class="math inline">\(\tau\)</span>. The reciprocals of these are the radius of curvature (<span class="math inline">\(\rho=\frac{1}{\kappa}\)</span>) and the radius of torsion (<span class="math inline">\(\sigma =\frac{1}{\tau}\)</span>).</p>
+</div>
+<div class="bonusproblem">
+<p>If <span class="math inline">\(f(x,y)=F(r,\theta)\)</span> with <span class="math inline">\(x=r\cos\theta\)</span> and <span class="math inline">\(y=r\sin\theta\)</span>, use the chain rule to compute <span class="math inline">\({\partial ^2f/ \partial x^2}+{\partial ^2f/ \partial y^2}\)</span> in terms of partial <span class="math inline">\(r\)</span>- and <span class="math inline">\(\theta\)</span>- derivatives of <span class="math inline">\(F\)</span>, and hence find the general rotationally-symmetric solution to <span class="math inline">\({\partial ^2f/ \partial
+x^2}+{\partial ^2f/ \partial y^2}=0\)</span> in two dimensions which is non-singular away from the origin.<br />
+Suggestion: Begin by writing <span class="math inline">\(\partial r/\partial x\)</span>, <span class="math inline">\(\partial
+r/\partial y\)</span>, <span class="math inline">\(\partial \theta/\partial x\)</span> and <span class="math inline">\(\partial
+\theta/\partial y\)</span> as functions of <span class="math inline">\(r\)</span> and <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probs = document.querySelectorAll(".problem");
+		var prob_no = problemCounter;
+		for (var prob of probs) {
+			prob.setAttribute("data-number",prob_no);
+			prob_no +=1
+		}
+		sols = document.querySelectorAll(".solution");
+		var sol_no = problemCounter;
+		for (var sol of sols) {
+			sol.setAttribute("data-number",sol_no);
+			sol_no +=1
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
