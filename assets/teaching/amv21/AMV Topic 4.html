@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Analysis in Many Variables II – Lecture Notes Michaelmas 2021</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Analysis in Many Variables II – Lecture Notes Michaelmas 2021</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#sec:indexnotation"><span class="toc-section-number">4</span> Index notation</a>
+<ul>
+<li><a href="#einstein-summation-convention"><span class="toc-section-number">4.1</span> Einstein Summation Convention</a></li>
+<li><a href="#subsub:dij"><span class="toc-section-number">4.2</span> The Kronecker delta, <span class="math inline">\(\delta_{ij}\)</span></a></li>
+<li><a href="#subsub:eijk"><span class="toc-section-number">4.3</span> The Levi-Cevita symbol, <span class="math inline">\(\epsilon_{ijk}\)</span></a></li>
+<li><a href="#the-very-useful-epsilon_ijk-formula"><span class="toc-section-number">4.4</span> The very useful <span class="math inline">\(\epsilon_{ijk}\)</span> formula</a></li>
+<li><a href="#applications"><span class="toc-section-number">4.5</span> Applications</a></li>
+</ul></li>
+</ul>
+</nav>
+<p> </p>
+<p><span>Michaelmas AMV Notes<br />
+<br />
+</span></p>
+<section id="sec:indexnotation" class="level1" data-number="1">
+<h1 data-number="4"><span class="header-section-number">4</span> Index notation</h1>
+<section id="einstein-summation-convention" class="level2" data-number="1.1">
+<h2 data-number="4.1"><span class="header-section-number">4.1</span> Einstein Summation Convention</h2>
+<p>Recall that in <span class="math inline">\(n\)</span> dimensions, the indices <span class="math inline">\(i,j\)</span> etc. labelling the components of vectors run from <span class="math inline">\(1\)</span> to <span class="math inline">\(n\)</span>, e.g. we write <span class="math inline">\(\underline{v}= (v_1,v_2,\dots,v_n)\)</span>.</p>
+<p>Einstein spotted that in quantities like <span class="math display">\[\begin{aligned}
+		\underline{u}.\underline{v}&amp;= \sum_{i=1}^n u_i v_i \\
+		\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{u}&amp;= \sum_{i=1}^n \frac{\partial u_i}{\partial x_i}\\
+		\left((\underline{a}.\underline{x})\underline{x}\right)_i &amp;= \sum_{j=1}^n a_j x_j x_i,
+	\end{aligned}\]</span> the index to be summed appears exactly twice in a term or product of terms, while all other indices appear only once (the reason for this is to do with invariance under rotations, or for those of you studying Special Relativity this year, Lorentz transformations). He suggested dropping the summation sign, with the <u>convention</u> that wherever an index is repeated you sum over it.</p>
+<p>So, we write <span class="math display">\[\begin{aligned}
+		\underline{u}.\underline{v}&amp;= \sum_i u_i v_i  \;=\; u_i v_i\\
+		\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{u}&amp;= \sum_i \frac{\partial u_i}{\partial x_i} \;=\; \frac{\partial u_i}{\partial x_i}\\
+		\left((\underline{a}.\underline{x})\underline{x}\right)_i &amp;= a_j x_j x_i.
+	\end{aligned}\]</span></p>
+<p>We call the repeated indices <u>dummy indices</u>, and those that are not repeated are called <u>free</u> indices. The dummy indices can be renamed without changing the expression, i.e. <span class="math display">\[a_j x_j x_i = a_k x_k x_i,\]</span> since clearly <span class="math display">\[\sum_{j=1}^n a_j x_j x_i = \sum_{k=1}^n a_k x_k x_i = (\underline{a}.\underline{x}) x_i.\]</span> However, the free indices must match on both sides of an equation.</p>
+<p>We must also be careful never to repeat an index more than twice in any single term or product of terms in an expression. If we were to write <span class="math inline">\(a_ix_ix_i\)</span>, we can’t tell whether this is supposed to be the component form of <span class="math inline">\((\underline{a}.\underline{x})x_i\)</span>, or of <span class="math inline">\((\underline{x}. \underline{x})a_i\)</span>. So if we want to write <span class="math inline">\((\underline{u}.\underline{v})^2\)</span> in index notation, we should write <span class="math inline">\(u_iv_i u_jv_j\)</span> and <u>not</u> <span class="math inline">\(u_i v_i u_i v_i\)</span>.</p>
+<p>Although writing an expression like this in index notation can sometimes looks messy, we’ll see shortly that it can be incredibly efficient for calculations.</p>
+</section>
+<section id="subsub:dij" class="level2" data-number="1.2">
+<h2 data-number="4.2"><span class="header-section-number">4.2</span> The Kronecker delta, <span class="math inline">\(\delta_{ij}\)</span></h2>
+<p>A very useful object for manipulating expressions in terms of their components, is the <u>Kronecker delta</u>. This is an object with two indices, defined by <span class="math display">\[\delta_{ij}  \;\equiv\; \left\{  \begin{array}{lc}
+						1 \quad &amp; i=j \\
+						0 \quad &amp; i\ne j 
+						\end{array}
+				\right..\]</span></p>
+<p>We can think of the Kronecker delta as the components of the <span class="math inline">\(n\times n\)</span> identity matrix <span class="math inline">\(I\)</span>, and in fact this was how you first met <span class="math inline">\(\delta_{ij}\)</span>. E.g. for <span class="math inline">\(n=3\)</span> <span class="math display">\[I \;=\;  \left(  \begin{array}{ccc}
+			1&amp;0&amp;0 \\
+			0&amp;1&amp;0 \\
+			0&amp;0&amp;1 
+			\end{array}
+			\right) \quad \quad\Rightarrow \quad I_{ij} = \delta_{ij},\]</span> where <span class="math inline">\(I_{ij}\)</span> represents the element of <span class="math inline">\(I\)</span> on the <span class="math inline">\(i\)</span>th row and <span class="math inline">\(j\)</span>th column.</p>
+<p>The Kronecker delta appears naturally when we take partial derivatives, as we have <span class="math display">\[\frac{\partial x_i}{\partial x_j} \;=\; \delta_{ij}\]</span></p>
+<div id="eg:dij" class="example">
+<p> If <span class="math inline">\(\delta_{ij}\)</span> is the 3-dim Kronecker delta, and <span class="math inline">\(\underline{A} = (A_1, A_2, A_3)\)</span>, simplify</p>
+<ol>
+<li><p><span class="math inline">\(A_s \delta_{ts}\)</span></p></li>
+<li><p><span class="math inline">\(\delta_{rs}\delta_{st}\)</span></p></li>
+<li><p><span class="math inline">\(\delta_{rs} \delta_{sr}\)</span></p></li>
+</ol>
+<p><u>Answers:</u></p>
+<ol>
+<li><p><span class="math display">\[\begin{aligned}
+				A_s \delta_{ts}  &amp;= A_1 \delta_{t1} + A_2 \delta_{t2} + A_3 \delta_{t3} \quad (0 \text{ if } t\ne 3 \text{ etc.}) \\
+				&amp;= A_t
+			\end{aligned}\]</span></p></li>
+<li><p><span class="math display">\[\begin{aligned}
+				\delta_{rs}\delta_{st} &amp;= \delta_{r1}\delta_{1t} + \delta_{r2}\delta_{2t} + \delta_{r3}\delta_{3t} \quad (0 \text{ unless } r=3, t=3 \text{ etc.}) \\
+				&amp;= \delta_{rt}
+			\end{aligned}\]</span></p>
+<p>From these two examples, we can now see the formal rule:</p>
+<p>If a <span class="math inline">\(\delta\)</span> has a dummy index, then delete the <span class="math inline">\(\delta\)</span> and replace the dummy index in the rest of the expression by the other index on the deleted <span class="math inline">\(\delta\)</span>. E.g. <span class="math inline">\(A_s \delta_{ts} = A_t\)</span>.</p></li>
+<li><p><span class="math display">\[\begin{aligned}
+				\delta_{rs} \delta_{sr} &amp;= \delta_{rr} \quad \quad(\text{by } (2.)) \\
+				&amp;= \delta_{11} + \delta_{22} + \delta_{33} \;=\; 3
+			\end{aligned}\]</span></p></li>
+</ol>
+</div>
+</section>
+<section id="subsub:eijk" class="level2" data-number="1.3">
+<h2 data-number="4.3"><span class="header-section-number">4.3</span> The Levi-Cevita symbol, <span class="math inline">\(\epsilon_{ijk}\)</span></h2>
+<p>If we are working in 3 dimension, there is a another device which is useful for handling expressions involving the vector cross product, such as <span class="math inline">\(\underline{A}\times (\underline{B}\times \underline{C})\)</span> or <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v})\)</span>.</p>
+<p>Consider <span class="math inline">\(\underline{C} = \underline{A} \times \underline{B}\)</span>. If <span class="math inline">\(\underline{A} = A_1 \underline{e}_1 + A_2 \underline{e}_2 +A_3 \underline{e}_3\)</span>, and <span class="math inline">\(\underline{B} = B_1 \underline{e}_1 + B_2 \underline{e}_2 + B_3 \underline{e}_3\)</span>, then <span class="math display">\[\begin{aligned}
+		\underline{C} \;=\; \underline{A} \times \underline{B} &amp;= \left| 
+					\begin{array}{ccc}
+					\underline{e}_1 &amp; \underline{e}_2 &amp; \underline{e}_3 \\
+					A_1 &amp; A_2 &amp; A_3 \\
+					B_1 &amp; B_2 &amp; B_3 \\
+					\end{array}
+					\right|  \\
+					&amp;= \underline{e}_1 (A_2 B_3 -A_3 B_2) + \underline{e}_2 (A_3B_1-A_1B_3) + \underline{e}_3 (A_1B_2 - A_2 B_1).
+	\end{aligned}\]</span> The components of <span class="math inline">\(C\)</span> are then given by <span class="math display">\[\begin{aligned}
+		C_1 &amp;= A_2B_3 - A_3 B_2 \\
+		C_2 &amp;= A_3B_1 - A_1 B_3 \\
+		C_3 &amp;= A_1B_2 - A_2 B_1.
+	\end{aligned}\]</span></p>
+<p>We can write these equations as a single equation, by introducing <span class="math inline">\(\epsilon_{ijk}\)</span>, a set of numbers labelled by three indices <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span>, each of which is equal to 1, 2 or 3.</p>
+<p>This symbol is know as the <u>Levi-Civita</u> symbol, <span class="math inline">\(\epsilon_{ijk}\)</span> and is <u>defined</u> by: <span class="math display">\[\begin{aligned}
+		I \quad \quad&amp; \epsilon_{ijk} = \; -\epsilon_{jik} \;=\; - \epsilon_{ikj}  \quad \quad\text{(antisymmetric)}   \\
+		II \quad \quad&amp; \epsilon_{123} = \; 1
+	\end{aligned}\]</span></p>
+<p>These definitions imply the following properties:</p>
+<ol>
+<li><p><span class="math inline">\(\epsilon_{ijk} \;=\; - \epsilon_{kji}\)</span> (i.e. also antisymmetric when swapping 1st and 3rd index).</p>
+<p>Proof: <span class="math display">\[\epsilon_{ijk} = - \epsilon_{jik} = + \epsilon_{jki}=-\epsilon_{kji}\]</span></p></li>
+<li><p><span class="math inline">\(\epsilon_{ijk} = 0\)</span> if any two indices have the same value.</p>
+<p>Proof: e.g. <span class="math display">\[\epsilon_{112}=-\epsilon_{112} \; \Rightarrow \; 2 \epsilon_{112} =0 \; \Rightarrow\; \epsilon_{112}=0\]</span></p></li>
+<li><p>The only non-zero <span class="math inline">\(\epsilon_{ijk}\)</span> therefore have <span class="math inline">\(ijk\)</span> all different (by property 2.), so <span class="math inline">\((ijk)\)</span> is some permutation of <span class="math inline">\((123)\)</span>.</p></li>
+<li><p><span class="math inline">\(\epsilon_{ijk} = +1\)</span> if <span class="math inline">\(ijk\)</span> is an <u>even</u> permutation of 123 (“even" = even # swaps)</p>
+<p><span class="math inline">\(\epsilon_{ijk} = -1\)</span> if <span class="math inline">\(ijk\)</span> is an <u>odd</u> permutation of 123 (“odd" = odd # swaps)</p></li>
+<li><p><span class="math inline">\(\epsilon_{ijk} = \epsilon_{kij} = \epsilon_{jki}\)</span> (cyclic permutations).</p>
+<p>So e.g. <span class="math inline">\(1= \epsilon_{123}=\epsilon_{312} = \epsilon_{231}\)</span>, and <span class="math inline">\(-1= \epsilon_{132}=\epsilon_{321} = \epsilon_{213}\)</span></p></li>
+</ol>
+<p>Most importantly, now the vector product <span class="math inline">\(\underline{C} = \underline{A} \times \underline{B}\)</span> can be written as: <span class="math display">\[C_i \;=\; \epsilon_{ijk}A_j B_k.\]</span></p>
+<p><u>Check</u>: <span class="math display">\[\begin{aligned}
+		C_1 &amp;= \epsilon_{1jk}A_j B_k = \sum_{j,k=1}^3 \epsilon_{1jk}A_j B_k   \\
+		&amp; \quad \text{(must have $j,k\ne1$ and $j\ne k$ by property 2.,} \\
+		&amp; \quad \text{so either $j=2,k=3$ or $j=3,k=2$)} \\
+		&amp;= \epsilon_{123}A_2 B_3  +  \epsilon_{132}A_3 B_2 \\
+		&amp; \quad \text{ but $\epsilon_{123} = 1$ by $(II)$ above, and $\epsilon_{132}= -1$ by both $(I)$ and $(II)$}  \\
+		&amp;= A_2B_3 - A_3B_2
+	\end{aligned}\]</span></p>
+<p>I leave it as an exercise for you to check other two components <span class="math inline">\(C_2\)</span> and <span class="math inline">\(C_3\)</span>.</p>
+</section>
+<section id="the-very-useful-epsilon_ijk-formula" class="level2" data-number="1.4">
+<h2 data-number="4.4"><span class="header-section-number">4.4</span> The very useful <span class="math inline">\(\epsilon_{ijk}\)</span> formula</h2>
+<p>If we want to write out the vector triple product <span class="math inline">\(\underline{A} \times (\underline{B} \times \underline{C})\)</span>, for example, we’ll need to be able to put these <span class="math inline">\(\epsilon\)</span>s together. Luckily there is a neat way to do it:</p>
+<p><span class="math display">\[\begin{equation} \label{eq:veryusefulformula}
+	\sum_{k=1}^3 \epsilon_{ijk} \epsilon_{klm} \;=\; \delta_{il} \delta_{jm} - \delta_{im} \delta_{jl}.  \quad \quad(\dagger) \end{equation}\]</span> <u>Best just to remember this formula!</u></p>
+<p><u>Check:</u> Let’s first consider the left-hand side (<span class="math inline">\(LHS\)</span>) or Equation <span class="math inline">\(\eqref{eq:veryusefulformula}\)</span>. <span class="math display">\[LHS \text{ of Equation \eqref{eq:veryusefulformula}} \;=\; \epsilon_{ij1}\epsilon_{1lm}  + \epsilon_{ij2}\epsilon_{2lm} + \epsilon_{ij3}\epsilon_{3lm}  \quad \quad(*)\]</span></p>
+<p>Now <span class="math inline">\(\epsilon_{ij1}\epsilon_{1lm} = 0\)</span> unless <span class="math display">\[\begin{aligned}
+		(i,j) &amp;= (2,3)\text{ or }(3,2) \\
+		\text{and} \quad (l,m) &amp;= (2,3)\text{ or }(3,2)  \\
+		\Rightarrow \quad \epsilon_{ij1}\epsilon_{1lm} &amp;= \left\{ \begin{array}{c} 
+				+1  \quad \text{ if } \quad (l,m) = (i,j)  \\
+				-1  \quad \text{ if } \quad (l,m) = (j,i)  \\
+				\end{array} \right.,
+	\end{aligned}\]</span> in which case the second and third terms in (*) will be zero.</p>
+<p>A similar argument holds for other terms in (*), <span class="math inline">\(\epsilon_{ij2}\epsilon_{2lm}\)</span> and <span class="math inline">\(\epsilon_{ij3}\epsilon_{3lm}\)</span>. Therefore the sum in (*) will be zero, except when <span class="math display">\[\begin{aligned}
+		i \ne j, l\ne m, \quad (i,j) = (l,m)  \quad &amp;\Rightarrow&amp; \quad	 (*) \;=\; +1\\
+		i \ne j, l\ne m, \quad (i,j) = (m,l)  \quad &amp;\Rightarrow&amp; \quad      (*) \;=\; -1.
+	\end{aligned}\]</span></p>
+<p>Let’s now consider the right-hand side (<span class="math inline">\(RHS\)</span>) of Equation <span class="math inline">\(\eqref{eq:veryusefulformula}\)</span>. <span class="math display">\[RHS \text{ of Equation \eqref{eq:veryusefulformula}}  \;=\; \delta_{il} \delta_{jm} - \delta_{im} \delta_{jl}\]</span></p>
+<p>We have <span class="math inline">\(\delta_{il} \delta_{jm} =1\)</span> if <span class="math inline">\(i=l\)</span> and <span class="math inline">\(j=m \Leftrightarrow (i,j) = (l,m)\)</span>, otherwise this term is zero.</p>
+<p>Similarly, <span class="math inline">\(-\delta_{im} \delta_{jl} = -1\)</span> if <span class="math inline">\(i=m\)</span> and <span class="math inline">\(j=l \Leftrightarrow (i,j) = (m,l)\)</span>, otherwise this term is zero.</p>
+<p>The combination of both terms is zero if either <span class="math inline">\(i=j\)</span> or <span class="math inline">\(l=m\)</span>.</p>
+<p>This implies that <span class="math inline">\(LHS\)</span> of Equation <span class="math inline">\(\eqref{eq:veryusefulformula}\)</span> = <span class="math inline">\(RHS\)</span> of Equation <span class="math inline">\(\eqref{eq:veryusefulformula}\)</span>, and hence the formula holds.</p>
+<div id="eg:vectortripleproduct" class="example">
+<p> Show that <span class="math inline">\(\underline{A} \times (\underline{B} \times \underline{C} ) \;=\; \underline{B} (\underline{A}.\underline{C}) - \underline{C}(\underline{A}.\underline{B})\)</span></p>
+<p>To do this using index notation, we should compute the <span class="math inline">\(i\)</span><sup>th</sup> component of <span class="math inline">\(\underline{A} \times (\underline{B} \times \underline{C} )\)</span>. We can write this as <span class="math inline">\(\left[\underline{A} \times (\underline{B} \times \underline{C} )\right]_i\)</span>. Going slowly, this gives <span class="math display">\[\begin{aligned}
+			\left[\underline{A} \times (\underline{B} \times \underline{C} )\right]_i &amp;= \epsilon_{ijk}A_j \left( \underline{B} \times \underline{C} \right)_k \quad \quad\quad \quad j,k: \text{ dummy indices}, \; i: \text{ free index, 1,2,3}   \\
+			 &amp;= \epsilon_{ijk} A_j \epsilon_{klm} B_l C_m \quad \quad\quad \quad l,m: \text{ more dummy indices} \\
+			 &amp;= (\delta_{il}\delta_{jm} - \delta_{im}\delta_{jl})A_jB_lC_m	\quad \quad\quad \quad\text{by useful formula } (\dagger) \\
+			 &amp;= \delta_{il}\delta_{jm} A_jB_lC_m - \delta_{im}\delta_{jl} A_jB_lC_m \\
+			 &amp;= \delta_{il} A_jB_lC_j - \delta_{im} A_jB_jC_m \quad \quad\quad \quad\text{by the rule for } \delta \\
+			 &amp;=  A_jB_iC_j -  A_jB_jC_i \quad \quad\quad \quad\text{by the rule for } \delta \\
+			 &amp;=  B_i(A_jC_j) -  C_i(A_jB_j) \\
+			 &amp;= B_i (\underline{A}.\underline{C}) - C_i(\underline{A}.\underline{B}) \\
+			 &amp;= \left[ \underline{B} (\underline{A}.\underline{C}) - \underline{C}(\underline{A}.\underline{B})\right]_i,
+		\end{aligned}\]</span> i.e. <span class="math inline">\(i\)</span><sup>th</sup> component of <span class="math inline">\(\underline{A} \times (\underline{B} \times \underline{C} ) = i\)</span><sup>th</sup> component of <span class="math inline">\(\underline{B} (\underline{A}.\underline{C}) - \underline{C}(\underline{A}.\underline{B})\)</span>. Since this is true for all <span class="math inline">\(i=1,2,3\)</span> the result follows.</p>
+</div>
+</section>
+<section id="applications" class="level2" data-number="1.5">
+<h2 data-number="4.5"><span class="header-section-number">4.5</span> Applications</h2>
+<p>We’ve already seen in example <a href="#eg:vectortripleproduct" data-reference-type="ref" data-reference="eg:vectortripleproduct">[eg:vectortripleproduct]</a>, that index notation can be used to prove the vector triple product identity, <span class="math inline">\(\underline{A} \times (\underline{B} \times \underline{C} ) \;=\; \underline{B} (\underline{A}.\underline{C}) - \underline{C}(\underline{A}.\underline{B})\)</span>.</p>
+<p>For many vector calculus calculations we need <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span>, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu . \underline{v}\)</span> and <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\underline{v}}\)</span> in index notation</p>
+<ul>
+<li><p>The <span class="math inline">\(i\)</span>th component of <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> is simply <span class="math display">\[(\underline{\nabla\mkern-2mu}\mkern 3mu f)_i \;=\; \frac{\partial f}{\partial x_i}.\]</span> A common notation used to simplify this further is to write <span class="math inline">\(\frac{\partial}{\partial x_i} \equiv  \partial_i\)</span>, so then we can write <span class="math display">\[(\underline{\nabla\mkern-2mu}\mkern 3mu f)_i \;=\; \partial_i f.\]</span></p></li>
+<li><p><span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}\)</span> can be thought of simply as <span class="math inline">\(\underline{A}.\underline{v}\)</span> where <span class="math inline">\(\underline{A}\)</span> has “components" <span class="math inline">\(\frac{\partial}{\partial x_i}\)</span>: <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu . \underline{v}\;=\; \frac{\partial v_i}{\partial x_i},\]</span> and using the notation from above this can also be written as <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu . \underline{v}\;=\;  \partial_i v_i.\]</span></p></li>
+<li><p>Similarly, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v}\)</span> is like <span class="math inline">\(\underline{A} \times \underline{v}\)</span>. So if <span class="math inline">\(\underline{u}= \underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v}\)</span>, then its <span class="math inline">\(i\)</span>th component is: <span class="math display">\[u_i \;=\; (\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v})_i \;=\; \epsilon_{ijk} \frac{\partial}{\partial x_j} v_k \;=\; \epsilon_{ijk} \frac{\partial v_k}{\partial x_j},\]</span> and using the same notation as above this can also be written as <span class="math display">\[u_i \;=\; (\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v})_i \;=\; \epsilon_{ijk} \partial_j v_k.\]</span></p></li>
+</ul>
+<p>Here are some more examples that show how useful index notation can be for proving identities in vector calculus.</p>
+<div id="eg:gradientincomponent" class="example">
+<p> Find the gradient of <span class="math inline">\(f(\underline{x}) = | \underline{x}|^2\)</span> in <span class="math inline">\(\mathbb{R}^n\)</span>. <span class="math display">\[\begin{aligned}
+			f(\underline{x}) &amp;= | \underline{x}|^2    \;=\;  \underline{x}.\underline{x}\;=\; x_i x_i \;=\; x_j x_j \\
+			\Rightarrow\quad \quad(\underline{\nabla\mkern-2mu}\mkern 3mu f)_i &amp;= \frac{\partial}{\partial x_i}(x_j x_j)  \quad \quad\text{important not to reuse the dummy index $j$}\\
+			&amp;= \left(\frac{\partial x_j}{\partial x_i} \right)x_j +  x_j \left(\frac{\partial x_j}{\partial x_i} \right)\quad \quad\text{product rule}\\
+			&amp;= 2 \delta_{ij} x_j \;=\; 2 x_i \;=\; (2\underline{x})_i \\
+			\Rightarrow\quad \quad\underline{\nabla\mkern-2mu}\mkern 3mu f &amp;= 2 \underline{x}
+		\end{aligned}\]</span></p>
+</div>
+<div id="eg:divergenceincomponent" class="example">
+<p> Find the divergence of <span class="math inline">\(\underline{v}(\underline{x}) = \underline{x}\)</span> and <span class="math inline">\(\underline{u}(\underline{x}) = (\underline{a} .\underline{x}) \underline{x}\)</span> in <span class="math inline">\(\mathbb{R}^3\)</span>. <span class="math display">\[\begin{aligned}
+			v_i &amp;= x_i  \\
+			\Rightarrow\quad \quad\underline{\nabla\mkern-2mu}\mkern 3mu . \underline{v}&amp;= \frac{\partial x_i}{\partial x_i} \;=\; \delta_{ii} \;=\; 3 \\
+			\text{While} \quad \quad u_i &amp;= (\underline{a}.\underline{x})x_i \;=\; a_jx_j x_i \\
+			\Rightarrow\quad \quad\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{u}&amp;= \frac{\partial}{\partial x_i} (a_jx_j x_i) \\
+			&amp;= a_j \left(\frac{\partial x_j}{\partial x_i} x_i + x_j \frac{\partial x_i}{\partial x_i}  \right)\\
+			&amp;= a_j (\delta_{ij} x_i + x_j \delta_{ii}) \\
+			&amp;= a_j ( x_j + 3 x_j ) \;=\; 4 a_j x_j  \\
+			&amp;= 4 \: \underline{a} . \underline{x}
+		\end{aligned}\]</span></p>
+</div>
+<div id="eg:curlincomponent" class="example">
+<p> Find the curl of <span class="math inline">\(\underline{v}(\underline{x}) = \underline{x}\)</span> and <span class="math inline">\(\underline{u}(\underline{x}) = (\underline{a} .\underline{x}) \underline{x}\)</span> in <span class="math inline">\(\mathbb{R}^3\)</span>. <span class="math display">\[\begin{aligned}
+			v_i &amp;= x_i  \\
+			\Rightarrow\quad \quad(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v})_i &amp;= \epsilon_{ijk} \frac{\partial}{\partial x_j} x_k \\
+			&amp;= \epsilon_{ijk} \delta_{jk} \\
+			&amp;= \epsilon_{ijj} \\
+			&amp;= \epsilon_{i11} + \epsilon_{i22} +\epsilon_{i33}  \\
+			&amp;= 0  \\
+			\text{While} \quad \quad u_k &amp;= a_jx_j x_k \;=\; a_lx_l x_k \\
+			\Rightarrow\quad \quad(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{u})_i &amp;= \epsilon_{ijk}   \frac{\partial}{\partial x_j}  u_k \\
+			&amp;=  \epsilon_{ijk} \frac{\partial}{\partial x_j} (a_lx_l x_k)  \\
+			&amp;=  a_l \epsilon_{ijk} \left(\frac{\partial x_l}{\partial x_j} x_k + x_l \frac{\partial x_k}{\partial x_j} \right)\\
+			&amp;= a_l \epsilon_{ijk} \left(\delta_{lj} x_k + x_l \delta_{kj} \right)\\
+			&amp;=  a_l \epsilon_{ijk} \delta_{lj} x_k +  a_l \epsilon_{ijk} x_l \delta_{kj}  \\
+			&amp;=  a_j \epsilon_{ijk} x_k + a_l \epsilon_{ijj} x_l  \\
+			&amp;= \epsilon_{ijk} a_j  x_k + 0  \\
+			&amp;= (\underline{a} \times \underline{x})_i \\
+			\Rightarrow\quad \quad\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{u}&amp;= \underline{a} \times \underline{x}
+		\end{aligned}\]</span></p>
+</div>
+<div id="eg:divcurliszerocomponent" class="example">
+<p> Show that <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu . (\underline{\nabla\mkern-2mu}\mkern 3mu \times{\underline{v}}) = 0\)</span>, (if <span class="math inline">\(v_k\)</span> has continuous 2nd partial derivatives). <span class="math display">\[\begin{aligned}
+			\underline{\nabla\mkern-2mu}\mkern 3mu .(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v}) &amp;= \frac{\partial}{\partial x_i} (\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v})_i \\
+			&amp;= \frac{\partial}{\partial x_i} (\epsilon_{ijk} \frac{\partial}{\partial x_j} v_k) \\
+			&amp;=  \epsilon_{ijk} \frac{\partial}{\partial x_i} \frac{\partial}{\partial x_j} v_k
+		\end{aligned}\]</span> Now <span class="math inline">\(\epsilon_{ijk}\)</span> is <u>anti</u>-symmetric when <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> swap, whereas <span class="math inline">\(\frac{\partial}{\partial x_i} \frac{\partial}{\partial x_j} v_k\)</span> is symmetric, so answer is zero(!).</p>
+<p>In more detail: <span class="math display">\[\begin{aligned}
+			\underline{\nabla\mkern-2mu}\mkern 3mu .(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v}) &amp;= \epsilon_{ijk} \frac{\partial}{\partial x_i} \frac{\partial}{\partial x_j} v_k \\
+			 &amp;= \epsilon_{jik} \frac{\partial}{\partial x_j} \frac{\partial}{\partial x_i} v_k \quad \quad\text{swapping labelling of dummy indices $i$ and $j$}  \\
+			 &amp;= -\epsilon_{ijk} \frac{\partial}{\partial x_j} \frac{\partial}{\partial x_i} v_k \quad \quad\text{anti-symmetric $\epsilon_{ijk}$} \\
+			 &amp;= -\epsilon_{ijk} \frac{\partial}{\partial x_i} \frac{\partial}{\partial x_j} v_k \quad \quad\text{symmetric derivatives, due to continuity} \\
+			 &amp;= - \underline{\nabla\mkern-2mu}\mkern 3mu .(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v})  \\
+			 \Rightarrow\quad \quad\underline{\nabla\mkern-2mu}\mkern 3mu .(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v}) &amp;= 0
+		\end{aligned}\]</span> Much more elegant (and quicker!) then writing it all out.</p>
+</div>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+
+	var counterOffset = '03';
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = levelCount+(".0".repeat(numberWithin-levelSpec));
+				levelCount = String(parseInt(levelCount)+parseInt(counterOffset));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Figs/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

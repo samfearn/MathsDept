@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2021-22, Michaelmas: Topic 4 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2021-22, Michaelmas: Topic 4 Problems</h1>
+</header>
+<p><span> </span></p>
+<div id="vecresultsindex" class="problem">
+<p> Let <span class="math inline">\({\bf x}\,\)</span> be the position vector in three dimensions, with <span class="math inline">\(r=|{\bf x}\,|\)</span>, and let <span class="math inline">\(\bf a\)</span> be a constant vector. Using index notation, show that</p>
+<ul>
+<li><p><span class="math inline">\(\quad  {\rm div}\,{\bf x}\,\,=\,3\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,{\bf x}\,\,=0\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm grad}\,r\,=\,{\bf x}\,/r\)</span>,<br />
+</p></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,(r^n {\bf x}\,)\,=\,(n+3)\, r^n\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm grad}\,({\bf a}\cdot {\bf x}\,)\,=\,{\bf a}\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,( {\bf a}\times{\bf x}\,)\,=0\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,({\bf a}\times{\bf x}\,)\,=\,2\,{\bf a}\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,( r^2 {\bf a})\,=\,2\, ({\bf x}\,\times{\bf a})\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad \nabla^2 (1/r)\,=\,0\)</span>  if <span class="math inline">\(r\ne 0\)</span> :  using <span class="math inline">\(\frac{\partial}{\partial x_i}r=x_i/r\)</span> from part (c),</p></li>
+<li><p><span class="math inline">\(\quad \nabla^2 (\log r)\,=\,1/r^2\)</span>  if  <span class="math inline">\(r\ne 0\)</span> :</p></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,[ ({\bf a}\cdot {\bf x}\,) {\bf x}\,]\,=\,4\, {\bf a}\cdot {\bf x}\,\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,[ {\bf x}\,\times( {\bf x}\,\times{\bf a})]\,=\,2\, {\bf a}\cdot
+	{\bf x}\,\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,\left( {{{\bf a}\times{\bf x}\,}/ {r^3}} \right)\,=
+	\, 3\, {{({\bf a}\cdot {\bf x}\,) {\bf x}\,}/{r^5}}\,-\,{{{\bf a}}/{r^3}}\)</span>,</p></li>
+<li><p>Exam question June 2002 (Section A): calculate the curl of <span class="math inline">\(({\bf a}\cdot {\bf x}\,)~ {\bf x}\,\)</span>.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>The vector <span class="math inline">\({\bf a}\)</span> has components <span class="math inline">\((a_r)=(1,1,1)\)</span> and the vector <span class="math inline">\({\bf b}\)</span> has components <span class="math inline">\((b_r)=(2,3,4)\)</span>. In the following expressions state which indices are free and which are dummy, and give the numerical values of the expressions for each value that the free variable takes (e.g. for <span class="math inline">\(a_r-b_r\)</span> the free variable is <span class="math inline">\(r\)</span> and it takes the values <span class="math inline">\(1,\, 2,\, 3\)</span> so <span class="math inline">\(a_1-b_1=-1\)</span>, <span class="math inline">\(a_2-b_2=-2\)</span>, <span class="math inline">\(a_3-b_3=-3\)</span> )<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(a_r+b_r\)</span>,(b) <span class="math inline">\(a_r\, b_r\)</span>, (c) <span class="math inline">\(a_r\,b_s\,a_r\)</span>,(d) <span class="math inline">\(a_r\,b_s\,a_r\,b_s-a_r\,b_r\,a_s\,b_s\)</span>.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(\delta_{rs}\)</span> is the three-dimensional Kronecker delta, evaluate<br />
+</p>
+<ol>
+<li><p><span class="math inline">\(\delta_{rs}\,\delta_{sr}\,\delta_{pq}\,\delta_{pq}\)</span>, (b) <span class="math inline">\(\delta_{rs}\,\delta_{sk}\,\delta_{kl}\,\delta_{lr}\)</span>, (c) <span class="math inline">\(\delta_{rs}\,\delta_{qr}\,\delta_{pq}\,\delta_{sp}\)</span>.</p></li>
+</ol>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(\delta_{rs}\)</span> is the three-dimensional Kronecker delta, simplify<br />
+</p>
+<ol>
+<li><p><span class="math inline">\((\delta_{rp}\,\delta_{sq}-\delta_{rq}\,
+\delta_{sp})\,a_p\,b_q\)</span>, (b) <span class="math inline">\((\delta_{rp}\,\delta_{sq}-\delta_{rq}\,
+\delta_{sp})\,\delta_{pq}\)</span>.</p></li>
+</ol>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(\delta_{rs}\)</span> is the Kronecker delta in <span class="math inline">\(n\)</span> dimensions, calculate<br />
+</p>
+<ol>
+<li><p><span class="math inline">\(\delta_{rr}\)</span>, (b) <span class="math inline">\(\delta_{rs}\,\delta_{rs}\)</span>, (c) <span class="math inline">\(\delta_{rs}\,\delta_{st}\,\delta_{tr}\)</span>.</p></li>
+</ol>
+</div>
+<div class="problem">
+<p>Starting from <span class="math inline">\(\varepsilon_{ijk}\,\varepsilon_{klm}
+=\delta_{il}\,\delta_{jm}-\delta_{im}\,\delta_{jl}\)</span> simplify as much as possible:<br />
+</p>
+<ol>
+<li><p><span class="math inline">\(\varepsilon_{ijk}\varepsilon_{ijp}\)</span> , (b) <span class="math inline">\(\varepsilon_{ijk}\varepsilon_{ijk}\)</span> .</p></li>
+</ol>
+</div>
+<div id="epijj" class="problem">
+<p> Calculate <span class="math inline">\(\varepsilon_{ijj}\)</span> .</p>
+</div>
+<div class="problem">
+<p>Show, using index notation, that<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(~ {\bf a}\times({\bf b}\times{\bf c})\,+\,
+{\bf b}\times({\bf c}\times{\bf a})\,+\,{\bf c}\times
+({\bf a}\times{\bf b})\,
+=\,0\)</span> ,</p></li>
+<li><p><span class="math inline">\(~ ({\bf a}\times{\bf b}) \times({\bf c}\times{\bf d})\,=\,
+\left[{\bf d}\cdot ({\bf a}\times{\bf b})\right] {\bf c}\,-\,
+\left[{\bf c}\cdot ({\bf a}\times{\bf b})\right] {\bf d}\\[2pt]
+~~\quad\qquad\qquad\qquad
+\ \ \  =\,\left[{\bf a}\cdot ({\bf c}\times{\bf d})\right] {\bf b}\,-\,
+\left[ {\bf b}\cdot ({\bf c}\times{\bf d})\right] {\bf a}\)</span> ,</p></li>
+<li><p><span class="math inline">\(~ ({\bf a}\times{\bf b}) \cdot ({\bf c}\times{\bf d})\,=\,
+({\bf a}\cdot {\bf c}) ({\bf b}\cdot {\bf d})\,-\,
+({\bf a}\cdot {\bf d}) ({\bf b}\cdot {\bf c})\)</span> ,</p></li>
+<li><p><span class="math inline">\(\quad {\bf a}\times[ {\bf a}\times( {\bf a}
+ \times{\bf b})]\,=\, a^2\, ( {\bf b}\times{\bf a})\)</span> ,</p></li>
+<li><p><span class="math inline">\(~ ({\bf a}\times{\bf b}) \cdot ({\bf c}\times{\bf d})+
+({\bf b}\times{\bf c}) \cdot ({\bf a}\times{\bf d})+ 
+({\bf c}\times{\bf a}) \cdot ({\bf b}\times{\bf d}) =0\)</span> .</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section A): Evaluate <span class="math inline">\(\varepsilon_{ijk}
+\varepsilon_{ijl}x_k x_l\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question June 2001 (Section A): Evaluate <span class="math inline">\(\varepsilon_{ijk} \partial_i \partial_j (x_l x_l)^{1/2}\)</span> away from the origin.</p>
+</div>
+<div class="problem">
+<p>Exam question June 2003 (Section A): Calculate <span class="math inline">\(\partial_i\,(\varepsilon_{ijk}~ \varepsilon_{jkl}~x_l\,)\)</span>. (Hint: use the connection between <span class="math inline">\(\partial_ix_j=\frac{\partial x_j}{\partial
+x_i}\)</span> and the Kronecker delta.)</p>
+</div>
+<div class="problem">
+<p>The functions <span class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span> are scalars, while <span class="math inline">\({\bf A}\)</span> and <span class="math inline">\({\bf B}\)</span> are vector functions with components <span class="math inline">\(A_i\)</span> and <span class="math inline">\(B_i\)</span> respectively. Verify the following identities using index notation:</p>
+<ul>
+<li><p><span class="math inline">\(\quad {\rm grad}\,\, (fg)\,=\, f\, {\rm grad}\,g\,+\,
+ g\, {\rm grad}\,f\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad  {\rm grad}\, ({\bf A} \cdot {\bf B})\,=\, 
+{\bf A} \times{\rm curl}\, {\bf B} + {\bf B} \times{\rm curl}\, {\bf A}
+\,+\,({\bf B}\cdot \nabla) {\bf A} \,+\, ({\bf A}\cdot \nabla) {\bf B}\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad  {\rm div}\, (f {\bf A})\,=\,f\,{\rm div}\,{\bf A}\,+\,
+({\rm grad} f) \cdot {\bf A}\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad 
+ {\rm curl}\, (f {\bf A})\,=
+\, f\, {\rm curl}\,{\bf A}\,+\, ({\rm grad}\,f) \times{\bf A}\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,({\bf A}\times{\bf B})\,=\,{\bf B}\cdot {\rm curl}\,{\bf A}\,-\,
+ {\bf A}\cdot {\rm curl}\,{\bf B}\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,({\bf A}\times{\bf B})\,=\,({\rm div}\,{\bf B}) {\bf A}\,-\,({\rm div}\,{\bf A}) {\bf B}\,+\,
+({\bf B}\cdot \nabla) {\bf A} \,-\, ({\bf A}\cdot \nabla) {\bf B}\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,{\rm curl}\,{\bf A}\;=\;0\)</span>,</p></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,\,{\rm curl}\,{\bf A}\,=\, {\rm grad}\,{\rm div}\,{\bf A}- \nabla^2 {\bf A}\)</span>.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>What is the divergence of the vector function <span class="math inline">\({\bf{A}}({{\bf x}\,})=
+r\,{{\bf x}\,} + {\bf \nabla}\,r\)</span> where <span class="math inline">\({{\bf x}\,}\)</span> is the position vector in 3 dimensions and <span class="math inline">\(r=|{\bf x}\,|\)</span>? What is the corresponding result in <span class="math inline">\(n\)</span> dimensions?</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '25';
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probs = document.querySelectorAll(".problem");
+		var prob_no = problemCounter;
+		for (var prob of probs) {
+			prob.setAttribute("data-number",prob_no);
+			prob_no +=1
+		}
+		sols = document.querySelectorAll(".solution");
+		var sol_no = problemCounter;
+		for (var sol of sols) {
+			sol.setAttribute("data-number",sol_no);
+			sol_no +=1
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
