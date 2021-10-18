@@ -9,7 +9,7 @@ profile:
   image: profile_pic_square.jpg
   address: >
     <p>Office: MCS 3078</p>
-    <p>Tel: +44 (0)191 33 <b>43087</b></p>
+    <p>Tel: +44 (0)191 33 <b>43052</b></p>
 
 news: true
 social: true
