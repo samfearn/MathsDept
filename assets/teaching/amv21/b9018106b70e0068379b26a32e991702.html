@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2021-22, Michaelmas: Topic 2 Solutions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2021-22, Michaelmas: Topic 2 Solutions</h1>
+</header>
+<p><span> </span></p>
+<div class="problem">
+<p>Compute the gradient, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span>, for the following functions:<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\qquad f(x,y,z)\,=\,\sqrt{x^2+y^2+z^2}\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(\partial f/\partial x=x/\sqrt{x^2+y^2+z^2}\)</span>, <span class="math inline">\(\partial f/\partial y=y/\sqrt{x^2+y^2+z^2}\)</span>, and <span class="math inline">\(\partial f/\partial z=z/\sqrt{x^2+y^2+z^2}\)</span>, so <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=(x{\bf e_1}+y{\bf e_2}+z{\bf e_3})/\sqrt{x^2+y^2+z^2}={\bf x}\,/|{\bf x}\,|\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\qquad f(x,y,z)\,=\,xy + yz + xz\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(\partial f/\partial x=y+z\)</span>, <span class="math inline">\(\partial f/\partial y=x+z\)</span>, <span class="math inline">\(\partial f/\partial z=y+x\)</span>, so <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=(y+z){\bf e_1}+(x+z){\bf e_2}+(x+y){\bf e_3}\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\qquad f(x,y,z)\,=\,1/(x^2+y^2+z^2)\)</span>.</p>
+<div class="solution">
+<p><span class="math inline">\(\partial f/\partial x=-2x/(x^2+y^2+z^2)^2\)</span>, <span class="math inline">\(\partial f/\partial y=-2y/(x^2+y^2+z^2)^2\)</span>, and <span class="math inline">\(\partial f/\partial z=-2z/(x^2+y^2+z^2)^2\)</span> so <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=-2(x{\bf e_1}+y{\bf e_2}+z{\bf e_3})/(x^2+y^2+z^2)^2=-2{\bf x}\,/|{\bf x}\,|^4\)</span>.</p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>Show that <span class="math inline">\(\underline{h}(s) = \left(s/\sqrt{2},\cos(s/\sqrt{2}),\sin(s/\sqrt{2})\right)\)</span> is the arc-length parameterisation of a helix, that is that <span class="math inline">\(|\frac{d\underline{h}}{ds}|=1 \quad \forall s\)</span>.</p>
+<p>Calculate the directional derivative of the scalar field <span class="math inline">\(f(\underline{x}) = (\log(x^2+y^2+z^2))\)</span> along <span class="math inline">\(\underline{h}(s)\)</span> at <span class="math inline">\(s=\sqrt{2}\pi\)</span>.</p>
+</div>
+<div class="solution">
+<p>To show that the curve is parameterised by arc-length, we need to show that <span class="math inline">\(|\frac{d\underline{h}}{ds}|=1 \quad \forall s\)</span>. We have <span class="math display">\[\frac{d\underline{h}}{ds} = \left(1/\sqrt{2},-\frac{1}{\sqrt{2}}\sin(s/\sqrt{2}),\frac{1}{\sqrt{2}}\cos(s/\sqrt{2})\right),\]</span> and therefore <span class="math display">\[\begin{aligned}
+			\left|\frac{d\underline{h}}{ds}\right| &amp;= \sqrt{\frac{1}{2} + \frac{1}{2}\sin^2(s/\sqrt{2}) + \frac{1}{2}\cos^2(s/\sqrt{2})} \\
+			&amp;= \sqrt{\frac{1}{2} + \frac{1}{2}} \\
+			&amp;= 1
+		\end{aligned}\]</span></p>
+<p>The directional derivative of <span class="math inline">\(f(\underline{x})\)</span> along <span class="math inline">\(\underline{h}(s)\)</span> at <span class="math inline">\(s=\sqrt{2}\pi\)</span> is then given by <span class="math display">\[\frac{df(\underline{h})}{ds}(\sqrt{2}\pi) = \frac{d\underline{h}}{ds}(\sqrt{2}\pi).\underline{\nabla\mkern-2mu}\mkern 3mu f(\underline{h}(\sqrt{2}\pi)),\]</span> and so we need to calculate the gradient of <span class="math inline">\(f\)</span> and evaluate this at <span class="math inline">\(\underline{h}(\sqrt{2}\pi)\)</span>. We have <span class="math display">\[\begin{aligned}
+			\underline{\nabla\mkern-2mu}\mkern 3mu f &amp;= \left( \frac{2x}{x^2 + y^2 + z^2}, \frac{2y}{x^2 + y^2 + z^2}, \frac{2z}{x^2 + y^2 + z^2}\right) \\
+			&amp;= \frac{2\underline{x}}{x^2 + y^2 + z^2} \\
+			\underline{h}(\sqrt{2}\pi) &amp;= \left( \pi, \cos(\pi), \sin(\pi) \right) \\
+			&amp;= \left( \pi, -1, 0 \right),
+		\end{aligned}\]</span> and so <span class="math display">\[\begin{aligned}
+			\frac{df(\underline{h})}{ds}(\sqrt{2}\pi) &amp;= \frac{d\underline{h}}{ds}(\sqrt{2}\pi).\underline{\nabla\mkern-2mu}\mkern 3mu f(\underline{h}(\sqrt{2}\pi)) \\
+			&amp;= \left(\frac{1}{\sqrt{2}},-\frac{1}{\sqrt{2}}\sin(\pi),\frac{1}{\sqrt{2}}\cos(\pi)\right).\underline{\nabla\mkern-2mu}\mkern 3mu f( \pi, -1, 0) \\
+			&amp;= \frac{2}{\pi^2 + 1}\left(\frac{1}{\sqrt{2}},0,-\frac{1}{\sqrt{2}}\right) . \left(\pi,-1,0\right) \\
+			&amp;= \frac{\pi}{\sqrt{2}(\pi^2+1)}.
+		\end{aligned}\]</span></p>
+</div>
+<div class="problem">
+<p>Draw a sketch of the contour plot of the scalar field on <span class="math inline">\(\mathbb{R}^2\)</span> <span class="math inline">\(f(\underline{x}) = xy\)</span>, as well as the gradient of <span class="math inline">\(f\)</span>. What do you notice?</p>
+</div>
+<div class="solution">
+<p>The level sets of <span class="math inline">\(f\)</span> are of the form <span class="math inline">\(xy=c\)</span> for a constant <span class="math inline">\(c\in \mathbb{R}\)</span>. Rearranging this as <span class="math inline">\(y = c/x\)</span>, we can then plot a few of these level sets. This looks as follows:</p>
+<div class="center">
+<p><img src="Contourplot.png" style="width:60.0%" alt="image" /></p>
+</div>
+<p>The gradient of <span class="math inline">\(f\)</span> is given as <span class="math display">\[\begin{aligned}
+			\text{grad} f = \underline{\nabla\mkern-2mu}\mkern 3mu f &amp;= \left( \underline{e}_1 \frac{\partial}{\partial x}, \underline{e}_2 \frac{\partial}{\partial y} \right) f \\
+			&amp;= \left( y, x \right).
+		\end{aligned}\]</span> A plot of this overlaid on to top of the contour plot of <span class="math inline">\(f\)</span> is as follows:</p>
+<div class="center">
+<p><img src="contourgradient.png" style="width:60.0%" alt="image" /></p>
+</div>
+<p>We see that the vectors of the vector field <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> are normal to the level sets of <span class="math inline">\(f\)</span>, as we expect.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(f,g:\mathbb{R}^3 \to \mathbb{R}\)</span> be scalar fields on <span class="math inline">\(\mathbb{R}^3\)</span>, <span class="math inline">\(h:\mathbb{R}\to \mathbb{R}\)</span> be a function on <span class="math inline">\(\mathbb{R}\)</span> and <span class="math inline">\(a\)</span> be a constant in <span class="math inline">\(\mathbb{R}\)</span>. Show (using the definition of <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span>) that <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu (a f(\underline{x})g(\underline{x}) + h(f(\underline{x}))) = a(\underline{\nabla\mkern-2mu}\mkern 3mu f)g + af\underline{\nabla\mkern-2mu}\mkern 3mu g + \underline{\nabla\mkern-2mu}\mkern 3mu f \frac{dh}{df}.\]</span></p>
+</div>
+<div class="solution">
+<p>For this question, we are supposed to use only the definition of the gradient in <span class="math inline">\(\mathbb{R}^3\)</span>, not the properties of the gradient. This is just a slog in keeping track of all the terms. We have <span class="math display">\[\begin{aligned}
+			\underline{\nabla\mkern-2mu}\mkern 3mu (a f(\underline{x})g(\underline{x}) + h(f(\underline{x}))) =&amp;\; \underline{e}_1 \frac{\partial}{\partial x}\left( a f(\underline{x})g(\underline{x}) + h(f(\underline{x})) \right) +  \underline{e}_2 \frac{\partial}{\partial y} \left( a f(\underline{x})g(\underline{x}) + h(f(\underline{x})) \right) \\
+			&amp;+ \underline{e}_3 \frac{\partial}{\partial z} \left( a f(\underline{x})g(\underline{x}) + h(f(\underline{x}))\right) \\
+			=&amp;\; \underline{e}_1 \left( a\frac{\partial}{\partial x} f(\underline{x})g(\underline{x}) + \frac{\partial}{\partial x}h(f(\underline{x})) ) \right)  \qquad \text{by linearity} \\
+			&amp;+ \underline{e}_2 \left( a\frac{\partial}{\partial y} f(\underline{x})g(\underline{x}) + \frac{\partial}{\partial y}h(f(\underline{x})) ) \right)  \qquad \text{of partial } \\
+			&amp;+ \underline{e}_3 \left( a\frac{\partial}{\partial z} f(\underline{x})g(\underline{x}) + \frac{\partial}{\partial z}h(f(\underline{x})) ) \right) \qquad \text{derivatives} \\
+			=&amp;\; \underline{e}_1 \left( a\frac{\partial f(\underline{x})}{\partial x}g(\underline{x}) + af(\underline{x})\frac{\partial g(\underline{x})}{\partial x} + \frac{\partial h(f)}{\partial f}\frac{\partial f(\underline{x})}{\partial x} \right) \\
+			&amp;+ \underline{e}_2 \left( a\frac{\partial f(\underline{x})}{\partial y}g(\underline{x}) + af(\underline{x})\frac{\partial g(\underline{x})}{\partial y} + \frac{\partial h(f)}{\partial f}\frac{\partial f(\underline{x})}{\partial y} \right) \\
+			&amp;+ \underline{e}_3 \left( a\frac{\partial f(\underline{x})}{\partial z}g(\underline{x}) + af(\underline{x})\frac{\partial g(\underline{x})}{\partial z} + \frac{\partial h(f)}{\partial f}\frac{\partial f(\underline{x})}{\partial z} \right),
+		\end{aligned}\]</span> where we used the product rule and chain rule for the partial derivative in each component. We can now recollect the terms to give <span class="math display">\[\begin{aligned}
+			\underline{\nabla\mkern-2mu}\mkern 3mu (a f(\underline{x})g(\underline{x}) + h(f(\underline{x}))) =&amp;\; a \left( \underline{e}_1 \frac{\partial f(\underline{x})}{\partial x}g(\underline{x}) + \underline{e}_2 \frac{\partial f(\underline{x})}{\partial y}g(\underline{x}) + \underline{e}_3 \frac{\partial f(\underline{x})}{\partial z}g(\underline{x}) \right) \\
+			&amp;+ a\left( \underline{e}_1 f(\underline{x})\frac{\partial g(\underline{x})}{\partial x} + \underline{e}_2 f(\underline{x})\frac{\partial g(\underline{x})}{\partial y} + \underline{e}_3 f(\underline{x})\frac{\partial g(\underline{x})}{\partial z} \right)\\
+			&amp;+ \left( \underline{e}_1\frac{\partial h(f)}{\partial f}\frac{\partial f(\underline{x})}{\partial x} + \underline{e}_2\frac{\partial h(f)}{\partial f}\frac{\partial f(\underline{x})}{\partial y} + \underline{e}_3\frac{\partial h(f)}{\partial f}\frac{\partial f(\underline{x})}{\partial z} \right) \\
+			=&amp;\; a(\underline{\nabla\mkern-2mu}\mkern 3mu f)g + af\underline{\nabla\mkern-2mu}\mkern 3mu g + \underline{\nabla\mkern-2mu}\mkern 3mu f \frac{dh}{df}.
+		\end{aligned}\]</span></p>
+</div>
+<div class="problem">
+<p>Exam question June 2001 (Section B): You are given the following family of scalar functions labelled by a real parameter <span class="math inline">\(\lambda\)</span> : <span class="math inline">\(\Phi_{\lambda}(x,y,z)=(y-\lambda) {\rm{cos}}x +zxy\)</span>.<br />
+</p>
+<ul>
+<li><p>What are their derivatives in the direction <span class="math inline">\({\bf V}= {{\bf e_1}} + 2( {{\bf e_2}} +{{\bf e_3}})\)</span>?</p>
+<div class="solution">
+<p><span class="math inline">\(\nabla\Phi_{\lambda}={\bf e_1}((\lambda-y)\sin x +zy)+{\bf e_2}(\cos x +zx)+{\bf e_3}xy\)</span> and the directional derivative of <span class="math inline">\(\Phi_{\lambda}\)</span> in the direction of <span class="math inline">\({\bf V}\)</span> is <span class="math display">\[{{\bf V}\over |{\bf V}|}\cdot \nabla\Phi_{\lambda}=
+{{{\bf e_1}} + 2( {{\bf e_2}} +{{\bf e_3}})\over \sqrt{1+4+4}}\cdot \nabla\Phi_{\lambda}\]</span> <span class="math display">\[={1\over 3}\left((\lambda-y)\sin x +zy+2\cos x +2zx+2xy\right)\]</span></p>
+</div></li>
+<li><p>Which member of the family has its gradient at the point <span class="math inline">\((\frac{\pi}{2},1,1)\)</span> equal to <span class="math inline">\(\frac{\pi}{2}({{\bf e_1}}+{{\bf e_2}}+{{\bf e_3}})\)</span>?</p>
+<div class="solution">
+<p><span class="math inline">\(\nabla\Phi_{\lambda}(\frac{\pi}{2},1,1)={\bf e_1}\lambda+{\bf e_2}\pi/2+ {\bf e_3}\pi/2\)</span> so take <span class="math inline">\(\lambda=\pi/2\)</span>.</p>
+</div></li>
+<li><p>Calling this particular member of the family <span class="math inline">\(\Phi_{\lambda_0}\)</span>, in which direction is <span class="math inline">\(\Phi_{\lambda_0}\)</span> decreasing most rapidly when starting at the point <span class="math inline">\((\frac{\pi}{2},1,1)\)</span>?</p>
+<div class="solution">
+<p>At this point <span class="math inline">\(\Phi_{\lambda_0}\)</span> <span><em>decreases</em></span> most rapidly in the direction of <span class="math inline">\(-\nabla \Phi_{\lambda_0}=-\frac{\pi}{2}({{\bf e_1}}+{{\bf e_2}}+{{\bf e_3}})\)</span>.</p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section A): Give the unit vector normal to the surface of equation <span class="math inline">\({x^2}/{a^2}+{y^2}/{b^2}+{z^2}/{c^2}=4\)</span> where <span class="math inline">\(a,b,c\)</span> are three real constants.<br />
+What is the unit vector normal to a sphere of radius 2 at the point <span class="math inline">\((x,y,z)=(\sqrt{2},0,\sqrt{2})\)</span>?</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\(\nabla f({\bf x}\,)\)</span> is orthogonal to the level surface <span class="math inline">\(f=const.\)</span> at the point <span class="math inline">\({\bf x}\,\)</span>, so take <span class="math inline">\(f={x^2}/{a^2}+{y^2}/{b^2}+{z^2}/{c^2}\)</span>, then <span class="math inline">\(\nabla f({\bf x}\,)= {\bf e_1}2 x/{a^2}+{\bf e_2}2y/{b^2}+{\bf e_3}2z/{c^2}\)</span> is normal to the surface at <span class="math inline">\({\bf x}\,\)</span>. A unit vector normal to the surface is therefore <span class="math inline">\({\bf n}\equiv\nabla f({\bf x}\,)/|\nabla f({\bf x}\,)|=
+({\bf e_1}x/{a^2}+{\bf e_2}y/{b^2}+{\bf e_3}z/{c^2})/\sqrt{x^2/{a^4}+y^2/{b^4}+ z^2/{c^4}
+}\)</span><br />
+When <span class="math inline">\(a=b=c=1\)</span> the ellipsoid in the first part of the question becomes a sphere of radius <span class="math inline">\(2\)</span>, so substituting this and <span class="math inline">\((x,y,z)=(\sqrt{2},0,\sqrt{2})\)</span> into <span class="math inline">\({\bf n}\)</span> gives <span class="math inline">\(({\bf e_1}\sqrt{2}+{\bf e_3}\sqrt{2})/2\)</span>, which is a unit vector along the radial direction at <span class="math inline">\((x,y,z)=(\sqrt{2},0,\sqrt{2})\)</span>, as it should be.</p>
+</div>
+<div class="problem">
+<p>Find the vector equations of tangent and normal lines in <span class="math inline">\(\mathbb{R}^2\)</span> to the following curves at the given points<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\quad x^2+2y^2=3\)</span>  at  <span class="math inline">\((1,1)\)</span>,</p>
+<div class="solution">
+<p>Set <span class="math inline">\(f(x,y)=x^2+2y^2\)</span> so the curve is the level set <span class="math inline">\(f=3\)</span>. <span class="math inline">\(\nabla f=2x{\bf e_1}+4y{\bf e_2}\)</span> is orthogonal to this. At <span class="math inline">\((1,1)\)</span> <span class="math inline">\(\nabla f=2{\bf e_1}+4{\bf e_2}\)</span>. The line through <span class="math inline">\((1,1)\)</span> parallel to <span class="math inline">\({\bf e_1}+2{\bf e_2}\)</span> has vector parametric equation <span class="math inline">\({\bf x}\,={\bf e_1}+{\bf e_2}+t({\bf e_1}+2{\bf e_2})\)</span>, this is the normal. The line through <span class="math inline">\((1,1)\)</span> orthogonal to <span class="math inline">\({\bf e_1}+2{\bf e_2}\)</span>, i.e. parallel to <span class="math inline">\(2{\bf e_1}-{\bf e_2}\)</span>, has vector parametric equation <span class="math inline">\({\bf x}\,={\bf e_1}+{\bf e_2}+t(2{\bf e_1}-{\bf e_2})\)</span>, this is the tangent.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad xy=1\)</span>  at  <span class="math inline">\((2,1/2)\)</span>,</p>
+<div class="solution">
+<p>This time, set <span class="math inline">\(f(x,y)=xy\)</span> so the curve is the level set <span class="math inline">\(f=1\)</span>. <span class="math inline">\(\nabla
+f=y{\bf e}_1+x{\bf e}_2\)</span>, which is equal to <span class="math inline">\(1/2\,{\bf e}_1+2\,{\bf e}_2\)</span> at <span class="math inline">\((2,1/2)\)</span>. The normal line can therefore be written in vector form as <span class="math inline">\({\bf x}=2\,{\bf e}_1+1/2\,{\bf e}_2+t (1/2\,{\bf e}_1+2\,{\bf e}_2)\)</span>. Picking a vector orthogonal to <span class="math inline">\(\nabla f\)</span>, say <span class="math inline">\(2\,{\bf e}_1-1/2\,{\bf e}_2\)</span>, the tangent line can be written as <span class="math inline">\({\bf x}=2\,{\bf e}_1+1/2\,{\bf e}_2+t (2\,{\bf e}_1-1/2\,{\bf e}_2)\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad x^2-y^3=3\)</span>  at  <span class="math inline">\((2,1)\)</span>.</p>
+<div class="solution">
+<p>Now <span class="math inline">\(f(x,y)=x^2-y^3\)</span>, the relevant level set is <span class="math inline">\(f=3\)</span>, and <span class="math inline">\(\nabla f=2x{\bf e}_1-3y^2{\bf e}_2\)</span>. At <span class="math inline">\((2,1)\)</span> this is <span class="math inline">\(4\,{\bf e}_1-3\,{\bf e}_2\)</span> and so an equation for the normal is <span class="math inline">\({\bf x}=2\,{\bf e}_1+{\bf e}_2+t (4\,{\bf e}_1-3\,{\bf e}_2)\)</span>, and for the tangent, <span class="math inline">\({\bf x}=2\,{\bf e}_1+{\bf e}_2+t (3\,{\bf e}_1+4\,{\bf e}_2)\)</span>.</p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>Exam question June 2003 (Section A): Find the directional derivative of the function <span class="math inline">\(\phi(x,y,z)=xy^2z^3\)</span> at the point <span class="math inline">\(P=(1,1,1)\)</span> in the direction from P towards <span class="math inline">\(Q=(3,1,-1)\)</span>. Starting from P, in which direction is the directional derivative maximum and what is the value of this maximum?</p>
+</div>
+<div class="solution">
+<p>The directional derivative of <span class="math inline">\(\phi\)</span> at P in the direction from P towards <span class="math inline">\({\bf Q}=(3,1,-1)\)</span> is <span class="math inline">\({\bf n}\cdot \nabla \phi ({\bf P})\)</span> where <span class="math inline">\({\bf n}\)</span> is a unit vector in this direction, i.e. <span class="math inline">\({\bf n}=({\bf Q}-{\bf P})/|{\bf Q}-{\bf P}|\)</span>. Now <span class="math inline">\(\nabla \phi={\bf e_1}y^2z^3+{\bf e_2}2xyz^3+{\bf e_3}3xy^2z^2\)</span>, so <span class="math inline">\(\nabla \phi ({\bf
+P})
+={\bf e_1}+{\bf e_2}2+{\bf e_3}3\)</span>, and <span class="math inline">\({\bf n}=({\bf e_1}2-{\bf e_3}2)/\sqrt 8=({\bf e_1}-{\bf e_3})/\sqrt 2\)</span> so the required directional derivative is <span class="math inline">\(({\bf e_1}+{\bf e_2}2+{\bf e_3}3)\cdot ({\bf e_1}-{\bf e_3}
+)/\sqrt 2\)</span> which equals <span class="math inline">\(-\sqrt 2\)</span>. The directional derivative is a maximum in the direction of <span class="math inline">\({\bf e_1}+{\bf e_2}2+{\bf e_3}3\)</span>, i.e. parallel to <span class="math inline">\({\bf e_1}+{\bf e_2}2+{\bf e_3}3\)</span>, and its value then is <span class="math inline">\(|\nabla \phi|=\sqrt{1+4+9}=\sqrt{14}\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section A): What is the derivative of the scalar function <span class="math inline">\(\phi(x,y,z)=x {\rm cos}z - y\)</span> in the direction <span class="math inline">\(\bf{V}={\bf e_1}+{\bf e_2}+{\bf e_3}\)</span>? What is the gradient at the point <span class="math inline">\((x,y,z)=(0,1,\pi/2)\)</span>? In which direction is <span class="math inline">\(\phi\)</span> increasing the most when moving away from this point?</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\(\nabla\phi(x,y,z)= {\bf e_1}{\rm cos}z-{\bf e_2}-{\bf e_3}x {\rm sin}z\)</span>, so the derivative in the direction of <span class="math inline">\(\bf{V}\)</span> is <span class="math inline">\(|{\bf V}|^{-1}{\bf V}\cdot \nabla\phi(x,y,z)=\sqrt 3^{-1}({\rm cos}z-1 - 
+   x {\rm sin}z)\)</span>. At <span class="math inline">\((x,y,z)=(0,1,\pi/2)\)</span> the gradient is <span class="math inline">\(\nabla\phi(x,y,z)=-{\bf e_2}\)</span>. <span class="math inline">\(\phi\)</span> increases the most when moving in the direction of <span class="math inline">\(\nabla\phi(x,y,z)=-{\bf e_2}\)</span> away from this point.</p>
+</div>
+<div class="problem">
+<p>A marble is released from the point <span class="math inline">\((1,1,c-a-b)\)</span> on the elliptic paraboloid defined by <span class="math inline">\(z = c -ax^2 - by^2\)</span>, where <span class="math inline">\(a,b,c\)</span> are positive real numbers and the <span class="math inline">\(z\)</span>-coordinate is vertical. In which direction in the <span class="math inline">\((x,y)\)</span> plane does the marble begin to roll?</p>
+</div>
+<div class="solution">
+<p>Here <span class="math inline">\(z=f(x,y)\)</span> is the height of the marble, and this decreases the fastest in the direction of <span class="math inline">\(-\nabla f=2ax{\bf e_1}+2by{\bf e_2}=2a{\bf e_1}+2b{\bf e_2}\)</span> at <span class="math inline">\((1,1,c-a-b)\)</span>.</p>
+</div>
+<div class="problem">
+<p>In which direction does the function <span class="math inline">\(f(x,y)= x^2 -y^2\)</span> increase fastest at the points<br />
+(a)  <span class="math inline">\((1,0)\)</span> ,  (b)  <span class="math inline">\((-1,0)\)</span> ,  (c)  <span class="math inline">\((2,1)\)</span> ? Illustrate with a sketch.</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\(f\)</span> increases the fastest in the direction of its gradient <span class="math inline">\(\nabla f={\bf e_1}
+2x-{\bf e_2}2y\)</span>. At (a) <span class="math inline">\((1,0)\)</span>, <span class="math inline">\(\nabla f=2{\bf e_1}\)</span>, a unit vector in this direction is <span class="math inline">\({\bf e_1}\)</span>, (b) <span class="math inline">\((-1,0)\)</span>, <span class="math inline">\(\nabla f=-2{\bf e_1}\)</span>, a unit vector in this direction is <span class="math inline">\(-{\bf e_1}\)</span>, (c) <span class="math inline">\((2,1)\)</span>, <span class="math inline">\(\nabla f=4{\bf e_1}-2{\bf e_2}\)</span> a unit vector in this direction is <span class="math inline">\((2{\bf e_1}-{\bf e_2})/\sqrt{5}\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(f(x,y) = {({x^2 - y^2})/ ({x^2 + y^2})}\)</span>.<br />
+</p>
+<ul>
+<li><p>In which direction is the directional derivative of <span class="math inline">\(f\)</span> at <span class="math inline">\((1,1)\)</span> equal to zero?</p>
+<div class="solution">
+<p>We have <span class="math inline">\(f(x,y) =1-2y^2/ ({x^2 + y^2}) =
+ 2x^2/ ({x^2 + y^2})-1\)</span> so <span class="math display">\[{\partial f\over\partial x}={\partial \over\partial x}(1-2y^2/ ({x^2 +
+y^2}))= 4xy^2/ ({x^2 + y^2})^2\]</span> and <span class="math display">\[{\partial f\over\partial y}={\partial \over\partial y}(2x^2/ ({x^2 +
+y^2})-1)
+=-4x^2y/ ({x^2 + y^2})^2\]</span> So at <span class="math inline">\((1,1)\)</span> <span class="math inline">\(\nabla f={\bf e_1}-{\bf e_2}\)</span>. The directional derivative in the direction of the unit vector <span class="math inline">\(\bf n\)</span> is <span class="math inline">\({\bf n}\cdot \nabla f\)</span>, which vanishes when <span class="math inline">\(\bf n\)</span> and <span class="math inline">\(\nabla f\)</span> are perpendicular, i.e. when <span class="math inline">\({\bf
+n}=\pm({\bf e_1}+{\bf e_2})/\sqrt{2}\)</span>.</p>
+</div></li>
+<li><p>What about at an arbitrary point <span class="math inline">\((x_0, y_0)\)</span> in the first quadrant?</p>
+<div class="solution">
+<p>At <span class="math inline">\((x_0, y_0)\)</span> <span class="math inline">\(\nabla f=4x_0y_0(y_0{\bf e_1}-x_0{\bf e_2})/({x_0^2 + y_0^2})^2\)</span> which is perpendicular to <span class="math inline">\({\bf n}=\pm(x_0{\bf e_1}+y_0{\bf e_2})/\sqrt{x_0^2 + y_0^2}\)</span></p>
+</div></li>
+<li><p>Describe the level curves of <span class="math inline">\(f\)</span> and discuss them in the light of the result in (b).</p>
+<div class="solution">
+<p>The level curves are orthogonal to <span class="math inline">\(\nabla f\)</span>, and so tangent to <span class="math inline">\(\bf n\)</span>. They are thus straight lines through the origin.</p>
+</div></li>
+</ul>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '6';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
