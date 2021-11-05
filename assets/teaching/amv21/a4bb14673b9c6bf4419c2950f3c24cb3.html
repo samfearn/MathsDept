@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2020-21, Michaelmas: Topic 4 Solutions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2020-21, Michaelmas: Topic 4 Solutions</h1>
+</header>
+<p><span> </span></p>
+<div id="vecresultsindex" class="problem">
+<p> Let <span class="math inline">\({\bf x}\,\)</span> be the position vector in three dimensions, with <span class="math inline">\(r=|{\bf x}\,|\)</span>, and let <span class="math inline">\(\bf a\)</span> be a constant vector. Using index notation, show that</p>
+<ul>
+<li><p><span class="math inline">\(\quad  {\rm div}\,{\bf x}\,\,=\,3\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[{\rm div}\,{\bf x}\,=\frac{\partial x_i}{\partial x_i}=\delta_{ii}=3\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,{\bf x}\,\,=0\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[({\rm curl}\,{\bf x}\,)_i
+		=\varepsilon_{ijk}\frac{\partial x_k}{\partial x_j}
+		=\varepsilon_{ijk}\delta_{jk}=0\,,\]</span> using the fact that <span class="math inline">\(\varepsilon_{ijk}\)</span> is antisymmetric under swaps of <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> while <span class="math inline">\(\delta_{jk}\)</span> is symmetric.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm grad}\,r\,=\,{\bf x}\,/r\)</span>,<br />
+</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+				({\rm grad}\,r)_i= \frac{\partial}{\partial x_i}r &amp;=	\frac{\partial}{\partial x_i}(x_jx_j)^{1/2} \\
+				&amp;= \frac{1}{2}(x_jx_j)^{-1/2}\,\frac{\partial}{\partial x_i} x_k x_k \\
+				&amp;= \frac{1}{2}(x_jx_j)^{-1/2}\,(2\delta_{ik}x_k) \\
+				&amp;= (x_jx_j)^{-1/2}\,x_i \\
+				&amp;= x_i/r\,.
+			\end{aligned}\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,(r^n {\bf x}\,)\,=\,(n+3)\, r^n\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+		{\rm div}\,(r^n{\bf x})
+		&amp;=\frac{\partial}{\partial x_i}(r^nx_i)
+		=(\frac{\partial}{\partial x_i}r^n)x_i
+		+r^n(\frac{\partial}{\partial x_i}x_i)
+		=nr^{n-1} (\frac{\partial}{\partial x_i}r)x_i
+		+r^n\delta_{ii}\\
+		&amp;=nr^{n-1}(x_i/r)\,x_i+3r^n
+		=nr^n+3r^n=(n+3)r^n.
+		\end{aligned}\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm grad}\,({\bf a}\cdot {\bf x}\,)\,=\,{\bf a}\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[({\rm grad}\,({\bf a}\cdot{\bf x}))_i=
+		\frac{\partial}{\partial x_i}(a_jx_j)=a_j
+		\frac{\partial}{\partial x_i}x_j
+		=a_j\delta_{ij}=a_i\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,( {\bf a}\times{\bf x}\,)\,=0\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[{\rm div}\,({\bf a}\times{\bf x})
+		=\frac{\partial}{\partial x_i}(\varepsilon_{ijk}a_jx_k)
+		=\varepsilon_{ijk}a_j\delta_{ik}=0\,,\]</span> using the fact that <span class="math inline">\(\varepsilon_{ijk}\)</span> is antisymmetric under swaps of <span class="math inline">\(i\)</span> and <span class="math inline">\(k\)</span> while <span class="math inline">\(\delta_{ik}\)</span> is symmetric.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,({\bf a}\times{\bf x}\,)\,=\,2\,{\bf a}\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+		({\rm curl}\,({\bf a}\times{\bf x}))_i
+		&amp;
+		= \varepsilon_{ijk}\frac{\partial}{\partial x_j}(\varepsilon_{klm}a_lx_m)
+		= \varepsilon_{ijk} \varepsilon_{klm}
+		a_l \frac{\partial}{\partial x_j} x_m \\
+		&amp;
+		=
+		(\delta_{il}\delta_{jm}- \delta_{im}\delta_{jl})
+		a_l \frac{\partial}{\partial x_j} x_m 
+		=
+		(\delta_{il}\delta_{jm}- \delta_{im}\delta_{jl})
+		a_l \delta_{jm}\\
+		&amp;=a_i\delta_{jj}-\delta_{ij}a_j=3a_i-a_i=2a_i\,.
+		\end{aligned}\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,( r^2 {\bf a})\,=\,2\, ({\bf x}\,\times{\bf a})\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+		({\rm curl}\,( r^2 {\bf a}))_i
+		&amp;=\varepsilon_{ijk}\frac{\partial}{\partial x_j}(r^2{\bf a}_k)
+		=\varepsilon_{ijk}\Bigl(\frac{\partial}{\partial x_j}r^2\Bigr){\bf a}_k\\[2pt]
+		&amp;=\varepsilon_{ijk}2r\frac{\partial r}{\partial x_j}\,{\bf a}_k
+		=\varepsilon_{ijk}2r\frac{x_j}{r}\,{\bf a}_k
+		=(2\, ({\bf x}\,\times{\bf a}))_i\,.
+		\end{aligned}\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\quad \nabla^2 (1/r)\,=\,0\)</span>  if <span class="math inline">\(r\ne 0\)</span> :  using <span class="math inline">\(\frac{\partial}{\partial x_i}r=x_i/r\)</span> from part (c),</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+		\nabla^2 (1/r)&amp;=
+		\frac{\partial}{\partial x_i}
+		\frac{\partial}{\partial x_i}(r^{-1})
+		=
+		\frac{\partial}{\partial x_i}
+		\bigl(-r^{-2}\frac{\partial}{\partial x_i}r
+		\bigr)
+		=
+		\frac{\partial}{\partial x_i}
+		\bigl(-r^{-3}x_i
+		\bigr) 
+		\\[2pt]
+		&amp;=
+		-\bigl(\frac{\partial}{\partial x_i}
+		r^{-3} \bigr) x_i
+		-r^{-3}
+		\bigl(\frac{\partial}{\partial x_i}x_i\bigr)
+		=
+		3r^{-4}\bigl(\frac{\partial}{\partial x_i}r\bigr)x_i
+		-r^{-3} \delta_{ii}
+		\\[3pt]
+		&amp;=
+		3r^{-5} x_ix_i
+		-3r^{-3} 
+		=(3-3)r^{-3}=0\,.
+		\end{aligned}\]</span> Notice that this is only valid for <span class="math inline">\(r\neq 0\)</span> since the calculation involves division by <span class="math inline">\(r\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad \nabla^2 (\log r)\,=\,1/r^2\)</span>  if  <span class="math inline">\(r\ne 0\)</span> :</p>
+<div class="solution">
+<p>as in part (i), and using <span class="math inline">\(\frac{\partial}{\partial x_i}r=x_i/r\)</span> again, <span class="math display">\[\begin{aligned}
+		\nabla^2 (\log r)&amp;=
+		\frac{\partial}{\partial x_i}
+		\frac{\partial}{\partial x_i}(\log r)
+		=
+		\frac{\partial}{\partial x_i}
+		\bigl(r^{-1}\frac{\partial}{\partial x_i}r
+		\bigr)
+		=
+		\frac{\partial}{\partial x_i}
+		\bigl(r^{-2}x_i
+		\bigr) 
+		\\[2pt]
+		&amp;=
+		\bigl(\frac{\partial}{\partial x_i}
+		r^{-2} \bigr) x_i
+		+r^{-2}
+		\bigl(\frac{\partial}{\partial x_i}x_i\bigr)
+		=
+		-2r^{-3}\bigl(\frac{\partial}{\partial x_i}r\bigr)x_i
+		+r^{-2} \delta_{ii}
+		\\[3pt]
+		&amp;=
+		-2r^{-4} x_ix_i
+		+3r^{-2} 
+		=(-2+3)r^{-2}=1/r^2.
+		\end{aligned}\]</span> Again, this is only valid for <span class="math inline">\(r\neq 0\)</span> since the calculation involves division by <span class="math inline">\(r\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,[ ({\bf a}\cdot {\bf x}\,) {\bf x}\,]\,=\,4\, {\bf a}\cdot {\bf x}\,\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+		{\rm div}\,[ ({\bf a}\cdot {\bf x}\,) {\bf x}\,] &amp;= 
+		\frac{\partial}{\partial x_i} \bigl( a_jx_jx_i\bigr)=
+		a_j\frac{\partial}{\partial x_i} \bigl( x_jx_i\bigr)=
+		a_j\Bigl(
+		\bigl(\frac{\partial}{\partial x_i}x_j\bigr)x_i
+		+x_j\bigl(\frac{\partial}{\partial x_i}x_i\bigr)\Bigr)\\[4pt]
+		&amp;= a_j\bigl(\delta_{ij}x_i+x_j\delta_{ii}\bigr)
+		= a_j\bigl(x_j+3x_j\bigr) =4a_jx_j=4{\bf a}\cdot{\bf x}\,.
+		\end{aligned}\]</span> Using <span class="math inline">\({\rm div}\,f {\bf V}=(\nabla f)\cdot {\bf V}+f{\rm div}\,{\bf V}\)</span>, with <span class="math inline">\(f={\bf a}
+		\cdot {\bf x}\,\)</span> so <span class="math inline">\(\nabla f={\bf a}\)</span> from part (e) and <span class="math inline">\({\bf V}={\bf x}\,\)</span> so <span class="math inline">\({\rm div}\,{\bf x}\,=3\)</span> from part (a) hence <span class="math inline">\({\rm div}\,[ ({\bf a}\cdot {\bf x}\,) {\bf x}\,]\,={\bf a}\cdot{\bf x}\,+{\bf a}\cdot{\bf x}\,3=4{\bf a}\cdot{\bf x}\,\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,[ {\bf x}\,\times( {\bf x}\,\times{\bf a})]\,=\,2\, {\bf a}\cdot
+	{\bf x}\,\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+		{\rm div}\,[ {\bf x}\,\times( {\bf x}\,\times{\bf a})]
+		&amp;=
+		\frac{\partial}{\partial x_i}\left(
+		\varepsilon_{ijk}x_j\varepsilon_{klm}x_la_m\right)
+		=
+		\varepsilon_{ijk}
+		\varepsilon_{klm}
+		\frac{\partial}{\partial x_i}\left(
+		x_jx_l\right)a_m\\[3pt]
+		&amp;=
+		\left(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}\right)
+		\frac{\partial}{\partial x_i}\left(
+		x_jx_l\right)a_m\\[3pt]
+		&amp;=
+		\frac{\partial}{\partial x_i}\left(
+		x_jx_i\right)a_j
+		-
+		\frac{\partial}{\partial x_i}\left(
+		x_jx_j\right)a_i \\[3pt]
+		&amp;=
+		\delta_{ij}x_ia_j+x_j\delta_{ii}a_j-
+		\delta_{ij}x_ja_i-x_j\delta_{ij}a_i\\[3pt]
+		&amp;=x_ja_j+3x_ja_j-x_ja_j-x_ja_j=2x_ja_j=2{\bf a}\cdot{\bf x}\,.
+		\end{aligned}\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,\left( {{{\bf a}\times{\bf x}\,}/ {r^3}} \right)\,=
+	\, 3\, {{({\bf a}\cdot {\bf x}\,) {\bf x}\,}/{r^5}}\,-\,{{{\bf a}}/{r^3}}\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+		\left({\rm curl}\,\left( {{{\bf a}\times{\bf x}\,}/ {r^3}} \right)\right)_i
+		&amp;=
+		\varepsilon_{ijk}\frac{\partial}{\partial x_j}\left(
+		\varepsilon_{klm}a_lx_m/r^3 \right)
+		=
+		\varepsilon_{ijk} \varepsilon_{klm}a_l
+		\frac{\partial}{\partial x_j}\left(
+		x_m/r^3 \right)
+		\\[3pt]
+		&amp;=
+		\varepsilon_{ijk} \varepsilon_{klm}a_l
+		\Bigl( \delta_{jm}r^{-3} 
+		+x_m\frac{\partial}{\partial x_j}r^{-3} 
+		\Bigr)
+		\\[3pt]
+		&amp;=
+		\varepsilon_{ijk} \varepsilon_{klm}a_l
+		\Bigl( \delta_{jm}r^{-3} 
+		-3x_mr^{-4}\frac{\partial}{\partial x_j}r 
+		\Bigr)
+		\\[3pt]
+		&amp;=
+		\varepsilon_{ijk} \varepsilon_{klm}a_l
+		\Bigl( \delta_{jm}r^{-3} 
+		-3x_mr^{-5}x_j 
+		\Bigr)
+		\\[3pt]
+		&amp;=
+		\left(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}
+		\right)a_l
+		\Bigl( \delta_{jm}r^{-3} 
+		-3x_mr^{-5}x_j 
+		\Bigr)
+		\\[3pt]
+		&amp;=
+		a_i\delta_{jj}r^{-3}-a_j\delta_{ij}r^{-3}
+		-3a_ix_jr^{-5}x_j+3a_jx_ir^{-5}x_j
+		\\[3pt]
+		&amp;=
+		3a_ir^{-3}-a_ir^{-3}-3a_ir^{-3}+3x_ia_jx_jr^{-5}
+		\\[3pt]
+		&amp;=-a_ir^{-3}+3x_ia_jx_jr^{-5}
+		=\left(-{\bf a}/r^3+3{\bf x}({\bf a}\cdot{\bf x})/r^5\right)_i\,.
+		\end{aligned}\]</span> <em>Remark</em>: in this question, and also in some of the earlier ones, there is some freedom in the order in which you, for example, use the product rule on derivatives, use the very useful formula, and simplify <span class="math inline">\(\delta\)</span>s involving summed indices. In such cases any order is fine – the final answer will be the same.</p>
+</div></li>
+<li><p>Exam question June 2002 (Section A): calculate the curl of <span class="math inline">\(({\bf a}\cdot {\bf x}\,)~ {\bf x}\,\)</span>.</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+		\bigl({\rm curl}\,(({\bf a}\cdot {\bf x}\,)\, {\bf x}\,)\bigr)_i
+		&amp;=
+		\varepsilon_{ijk}\frac{\partial}{\partial x_j}\bigl( a_lx_lx_k\bigr) \\[3pt]
+		&amp;=
+		\varepsilon_{ijk}a_l\bigl(\delta_{jl}x_k+x_l\delta_{jk}\bigr) \\[3pt]
+		&amp;=
+		\varepsilon_{ijk}a_jx_k+\varepsilon_{ijj}a_lx_l
+		=\varepsilon_{ijk}a_jx_k=\bigl({\bf a}\times{\bf x}\bigr)_i\,,
+		\end{aligned}\]</span> using the fact that <span class="math inline">\(\varepsilon_{ijj}=0\)</span>, by the antisymmetry of the Levi-Civita symbol. Note: in the first line <span class="math inline">\({\bf a}\cdot{\bf x}\)</span> was written using <span class="math inline">\(l\)</span> as the repeated index rather than <span class="math inline">\(j\)</span> or <span class="math inline">\(k\)</span>, since <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> were already being used to write the curl.</p>
+<p><em>General remark</em>: Even though some of these index notation calculations look a little long, they are (almost) all self-contained, while in the version of this question on the Topic 3 sheet, there was much more quoting of results from other parts.</p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>The vector <span class="math inline">\({\bf a}\)</span> has components <span class="math inline">\((a_r)=(1,1,1)\)</span> and the vector <span class="math inline">\({\bf b}\)</span> has components <span class="math inline">\((b_r)=(2,3,4)\)</span>. In the following expressions state which indices are free and which are dummy, and give the numerical values of the expressions for each value that the free variable takes (e.g. for <span class="math inline">\(a_r-b_r\)</span> the free variable is <span class="math inline">\(r\)</span> and it takes the values <span class="math inline">\(1,\, 2,\, 3\)</span> so <span class="math inline">\(a_1-b_1=-1\)</span>, <span class="math inline">\(a_2-b_2=-2\)</span>, <span class="math inline">\(a_3-b_3=-3\)</span> )<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(a_r+b_r\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(r\)</span> is a free index so we need to specify 3 pieces of information. <span class="math inline">\(a_r+b_r\)</span> is the r-th component of the vector <span class="math inline">\({\bf a}+{\bf b}\)</span> so we can give the information in the form <span class="math inline">\((a_r+b_r)=(3,4,5)\)</span> or as <span class="math inline">\(a_1+b_1=3\)</span>, <span class="math inline">\(a_2+b_2=4\)</span>, <span class="math inline">\(a_3+b_3=5\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(a_r\, b_r\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(r\)</span> is a dummy index and <span class="math inline">\(a_r\,b_r=a_1\,b_1+a_2\,b_2+a_3\,b_3=9\)</span>, which is the scalar product of <span class="math inline">\({\bf a}\)</span> and <span class="math inline">\({\bf b}\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(a_r\,b_s\,a_r\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(r\)</span> is a dummy index, and <span class="math inline">\(s\)</span> is free so to specify <span class="math inline">\(a_r\,b_s\,a_r\)</span> we need to specify 3 pieces of information, these are the components of the vector <span class="math inline">\({\bf b} \,{\bf a}\cdot{\bf a}\)</span>. Now <span class="math inline">\(a_r\,a_r=a_1^2+a_2^2+a_3^2=3\)</span> so <span class="math inline">\((a_r\,b_s\,a_r)=(3b_s)=(6,9,12)\)</span></p>
+</div></li>
+<li><p><span class="math inline">\(a_r\,b_s\,a_r\,b_s-a_r\,b_r\,a_s\,b_s\)</span>.</p>
+<div class="solution">
+<p><span class="math inline">\(r\)</span> and <span class="math inline">\(s\)</span> are both dummy indices. <span class="math inline">\(a_r\,b_s\,a_r\,b_s-a_r\,b_r\,a_s\,b_s= (a_r\,a_r)(b_s\,b_s)-(a_r\,b_r)
+		(a_s\,b_s)\)</span> now <span class="math inline">\(a_r\,a_r=3\)</span> and <span class="math inline">\(b_s\,b_s=4+9+16=29\)</span> so <span class="math inline">\(a_r\,b_s\,a_r\,b_s-a_r\,b_r\,a_s\,b_s=3\times 29-9^2=6\)</span>.</p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(\delta_{rs}\)</span> is the three-dimensional Kronecker delta, evaluate<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\delta_{rs}\,\delta_{sr}\,\delta_{pq}\,\delta_{pq}\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(\delta_{rs}\,\delta_{sr}\,\delta_{pq}\,\delta_{pq}=
+	\delta_{rr}\,\delta_{pq}\,\delta_{pq}=3\,\delta_{pp}=3\times 3=9\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\delta_{rs}\,\delta_{sk}\,\delta_{kl}\,\delta_{lr}\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(\delta_{rs}\,\delta_{sk}\,\delta_{kl}\,\delta_{lr}=
+	\delta_{rk}\,\delta_{kl}\,\delta_{lr}=\delta_{rl}\,\delta_{lr}=
+	\delta_{rr}=3\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\delta_{rs}\,\delta_{qr}\,\delta_{pq}\,\delta_{sp}\)</span>.</p>
+<div class="solution">
+<p><span class="math inline">\(\delta_{rs}\,\delta_{qr}\,\delta_{pq}\,\delta_{sp}=
+	\delta_{qs}\,\delta_{pq}\,\delta_{sp}=\delta_{ps}\,\delta_{sp}=
+	\delta_{ss}=3\)</span>.</p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(\delta_{rs}\)</span> is the three-dimensional Kronecker delta, simplify<br />
+</p>
+<ul>
+<li><p><span class="math inline">\((\delta_{rp}\,\delta_{sq}-\delta_{rq}\,
+\delta_{sp})\,a_p\,b_q\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\((\delta_{rp}\,\delta_{sq}-\delta_{rq}\,
+	\delta_{sp})\,a_p\,b_q=\delta_{rp}\,\delta_{sq}\,a_p\,b_q
+	-\delta_{rq}\,\delta_{sp}\,a_p\,b_q=\,a_r\,b_s-\,a_s\,b_r\,,\)</span></p>
+</div></li>
+<li><p><span class="math inline">\((\delta_{rp}\,\delta_{sq}-\delta_{rq}\,
+\delta_{sp})\,\delta_{pq}\)</span>.</p>
+<div class="solution">
+<p><span class="math inline">\((\delta_{rp}\,\delta_{sq}-\delta_{rq}\,
+	\delta_{sp})\,\delta_{pq}=\delta_{rp}\,\delta_{sq}\,\delta_{pq}-
+	\delta_{rq}\,\delta_{sp}\,\delta_{pq}=\delta_{rs}-\delta_{rs}=0\)</span> .</p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(\delta_{rs}\)</span> is the Kronecker delta in <span class="math inline">\(n\)</span> dimensions, calculate<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\delta_{rr}\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(\delta_{rr}=1+1+..+1\)</span> (n terms), so <span class="math inline">\(\delta_{rr}=n\)</span>,</p>
+</div></li>
+<li><p><span class="math inline">\(\delta_{rs}\,\delta_{rs}\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(\delta_{rs}\,\delta_{rs}=\delta_{rr}=n\)</span>,</p>
+</div></li>
+<li><p><span class="math inline">\(\delta_{rs}\,\delta_{st}\,\delta_{tr}\)</span>.</p>
+<div class="solution">
+<p><span class="math inline">\(\delta_{rs}\,\delta_{st}\,\delta_{tr}=
+	\delta_{rs}\,\delta_{sr}=\delta_{rr}=n\)</span>.</p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>Starting from <span class="math inline">\(\varepsilon_{ijk}\,\varepsilon_{klm}
+=\delta_{il}\,\delta_{jm}-\delta_{im}\,\delta_{jl}\)</span> simplify as much as possible:<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\varepsilon_{ijk}\varepsilon_{ijp}\)</span> ,</p>
+<div class="solution">
+<p>First use the cyclic symmetry of <span class="math inline">\(\varepsilon_{ijk}\)</span> to rewrite the expression with the repeated indices next to each other: <span class="math inline">\(\varepsilon_{ijk}\varepsilon_{ijp}=
+	\varepsilon_{jki}\varepsilon_{ijp}\)</span> . Then, relabelling in the starting formula, <span class="math display">\[\varepsilon_{jki}\varepsilon_{ijp}
+	=\delta_{jj}\,\delta_{kp}-\delta_{jp}\,\delta_{kj}
+	=3\,\delta_{kp}-\delta_{kp}=2\,\delta_{kp}\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\varepsilon_{ijk}\varepsilon_{ijk}\)</span>.</p>
+<div class="solution">
+<p>Substituting <span class="math inline">\(p=k\)</span> into part (a), <span class="math display">\[\varepsilon_{ijk}\varepsilon_{ijk}=2\,\delta_{kk}=6\]</span></p>
+</div></li>
+</ul>
+</div>
+<div id="epijj" class="problem">
+<p> Calculate <span class="math inline">\(\varepsilon_{ijj}\)</span> .</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\(\varepsilon_{ijk}\)</span> vanishes whenever two indices take the same value, so <span class="math inline">\(\varepsilon_{ijj}\)</span> also vanishes, being a sum of terms in each of which the last two indices take the same value.</p>
+</div>
+<div class="problem">
+<p>Show, using index notation, that<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(~ {\bf a}\times({\bf b}\times{\bf c})\,+\,
+{\bf b}\times({\bf c}\times{\bf a})\,+\,{\bf c}\times
+({\bf a}\times{\bf b})\,
+=\,0\)</span> ,</p>
+<div class="solution">
+<p>The <span class="math inline">\(i\)</span>-th component of <span class="math inline">\(\quad {\bf a}\times({\bf b}\times{\bf c})\)</span> is <span class="math display">\[\begin{aligned}
+	\varepsilon_{ijk}\,a_j\,(\varepsilon_{krs}\,b_r\,c_s)&amp;=
+	(\varepsilon_{ijk}\,\varepsilon_{rsk})\,a_j\,b_r\,c_s=
+	(\delta_{ir}\,\delta_{js}-\delta_{is}\,\delta_{jr})\,a_j\,b_r\,c_s\\
+	&amp;=
+	\delta_{ir}\,\delta_{js}\,a_j\,b_r\,c_s-\delta_{is}\,\delta_{jr}\,a_j\,b_r\,c_s
+	=\,a_s\,b_i\,c_s-\,a_r\,b_r\,c_i
+	\end{aligned}\]</span> so the <span class="math inline">\(i\)</span>-th component of <span class="math inline">\({\bf a}\times({\bf b}\times{\bf c})\,+\,
+	{\bf b}\times({\bf c}\times{\bf a})\,+\,{\bf c}\times
+	({\bf a}\times{\bf b})\)</span> is <span class="math display">\[\begin{aligned}
+	&amp;\hspace{-30pt}
+	(a_s\,b_i\,c_s-\,a_r\,b_r\,c_i)+(b_s\,c_i\,a_s-\,b_r\,c_r\,a_i)+(c_s\,a_i\,b_s-\,c_r\,a_r\,b_i)\\
+	&amp;=
+	a_i\, (c_s\,\,b_s-\,b_r\,c_r)+b_i\,(a_s\,c_s-\,c_r\,a_r)+c_i\,(b_s\,a_s
+	-\,a_r\,b_r)=0
+	\end{aligned}\]</span> since the names of dummy indices can be changed.</p>
+</div></li>
+<li><p><span class="math inline">\(~ ({\bf a}\times{\bf b}) \times({\bf c}\times{\bf d})\,=\,
+\left[{\bf d}\cdot ({\bf a}\times{\bf b})\right] {\bf c}\,-\,
+\left[{\bf c}\cdot ({\bf a}\times{\bf b})\right] {\bf d}\\[2pt]
+~~\quad\qquad\qquad\qquad
+\ \ \  =\,\left[{\bf a}\cdot ({\bf c}\times{\bf d})\right] {\bf b}\,-\,
+\left[ {\bf b}\cdot ({\bf c}\times{\bf d})\right] {\bf a},\)</span></p>
+<div class="solution">
+<p>The <span class="math inline">\(i\)</span>-th component of <span class="math inline">\(({\bf a}\times{\bf b}) \times({\bf c}\times{\bf d})\)</span> is<br />
+<span class="math display">\[\begin{aligned}
+	\varepsilon_{ijk}\,\left(\varepsilon_{jrs}\,a_r\,b_s\right)\,\left(\varepsilon_{kpq}\,c_p\,d_q\right)&amp;=
+	\varepsilon_{ijk}\,\varepsilon_{jrs}\,\varepsilon_{kpq}\,a_r\,b_s\,c_p\,d_q\\
+	&amp;=(\varepsilon_{jki}\,\varepsilon_{jrs})\,\varepsilon_{kpq}\,a_r\,b_s\,c_p\,d_q \\
+	&amp;=\delta_{kr}\,\delta_{is}\,\varepsilon_{kpq}\,a_r\,b_s\,c_p\,d_q-\delta_{ks}\,\delta_{ir}\,\varepsilon_{kpq}\,a_r\,b_s\,c_p\,d_q\\
+	&amp;=\varepsilon_{rpq}\,a_r\,b_i\,c_p\,d_q-
+	\varepsilon_{spq}\,a_i\,b_s\,c_p\,d_q
+	\end{aligned}\]</span> which is the same as the <span class="math inline">\(i\)</span>-th component of <span class="math inline">\(\left[{\bf a}\cdot ({\bf c}\times{\bf d})\right] {\bf b}\,-\,
+	\left[ {\bf b}\cdot ({\bf c}\times{\bf d})\right] {\bf a}\)</span> , because this is <span class="math display">\[\left[ \, a_r\,(  \varepsilon_{rpq} \,c_p\,d_q)       \right]\,b_i\,
+	\,-\,
+	\left[ \,b_s\, (\varepsilon_{spq}\,c_p\,d_q  )      \right]\,a_i\]</span> We can also expand the <span class="math inline">\(i\)</span>-th component of <span class="math inline">\(({\bf a}\times{\bf b}) \times
+	({\bf c}\times{\bf d})\)</span> as <span class="math display">\[\varepsilon_{ijk}\,\left(\varepsilon_{jrs}\,a_r\,b_s\right)\,\left(\varepsilon_{kpq}\,c_p\,d_q\right)=
+	\varepsilon_{ijk}\,\varepsilon_{jrs}\,\varepsilon_{kpq}\,a_r\,b_s\,c_p\,d_q\]</span> <span class="math display">\[(\varepsilon_{ijk}\,\varepsilon_{pqk})\,\varepsilon_{jrs}\,a_r\,b_s\,c_p\,d_q
+	=
+	\delta_{ip}\,\delta_{jq}\,\varepsilon_{jrs}\,a_r\,b_s\,c_p\,d_q-\delta_{iq}\,\delta_{jp}\,\varepsilon_{jrs}\,a_r\,b_s\,c_p\,d_q\]</span> <span class="math display">\[=
+	\varepsilon_{qrs}\,a_r\,b_s\,c_i\,d_q  \varepsilon_{prs}\,a_r\,b_s\,c_p\,d_i\]</span> which is the same as the <span class="math inline">\(i\)</span>-th component of <span class="math inline">\(\left[{\bf d}\cdot ({\bf a}\times{\bf b})\right] {\bf c}\,-\,
+	\left[{\bf c}\cdot ({\bf a}\times{\bf b})\right] {\bf d}\)</span> , because this is <span class="math display">\[\left[  \,d_q\,( \varepsilon_{qrs}\,a_r\,b_s       )\right]\,c_i\,
+	-\,
+	\left[  \,c_p \,(   \varepsilon_{prs}\,a_r\,b_s\,     )\right]\, d_i \,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(~ ({\bf a}\times{\bf b}) \cdot ({\bf c}\times{\bf d})\,=\,
+({\bf a}\cdot {\bf c}) ({\bf b}\cdot {\bf d})\,-\,
+({\bf a}\cdot {\bf d}) ({\bf b}\cdot {\bf c})\)</span> ,</p>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+			({\bf a}\times{\bf b}) \cdot ({\bf c}\times{\bf d}) &amp;= ({\bf a}\times{\bf b})_i({\bf c}\times{\bf d})_i \\
+			&amp;= \epsilon_{ijk}a_jb_k \epsilon_{ilm}c_l d_m \\
+			&amp;= \epsilon_{ijk}\epsilon_{ilm} a_jb_k c_l d_m \\
+			&amp;= (\delta_{jl}\delta_{km} - \delta_{jm}\delta_{kl}) a_jb_k c_l d_m \\
+			&amp;= a_j c_j b_k d_k - a_j d_j b_k c_k \\
+			&amp;= ({\bf a}\cdot {\bf c})({\bf d}\cdot {\bf b}) - ({\bf a}\cdot {\bf d})({\bf b}\cdot {\bf c}).
+		\end{aligned}\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\bf a}\times[ {\bf a}\times( {\bf a}
+ \times{\bf b})]\,=\, a^2\, ( {\bf b}\times{\bf a})\)</span> ,</p>
+<div class="solution">
+<p>Note that the left-hand side of this expression is a vector, so we will write down the <span class="math inline">\(i\)</span>th component of this vector, and check that this gives the <span class="math inline">\(i\)</span>th component of the right-hand side of the expression. If this holds for all <span class="math inline">\(i\)</span>, the expression is then true as a statement about vectors. <span class="math display">\[\begin{aligned}
+			\left( {\bf a}\times [{\bf a}\times ({\bf a}\times {\bf b})] \right)_i &amp;= \epsilon_{ijk}a_j\epsilon_{klm}a_l\epsilon_{mno}a_nm_o \\
+			&amp;= \epsilon_{ijk}(\delta_{kn}\delta_{lo} - \delta_{ko}\delta_{ln})a_j a_l a_n b_o \\
+			&amp;= \epsilon_{ijk}a_ja_k a_l b_l - \epsilon_{ijk}a_jb_ka_la_l \\
+			&amp;= ({\bf a}\cdot {\bf b})({\bf a}\times {\bf a})_i - ({\bf a}\cdot {\bf a})({\bf a}\times {\bf b})_i.
+		\end{aligned}\]</span> Now note that <span class="math inline">\({\bf a}\times {\bf a}= 0\)</span> for all vectors <span class="math inline">\({\bf a}\)</span>, and recall that <span class="math inline">\({\bf a}\times {\bf b}= - {\bf b}\times {\bf a}\)</span>, so we have <span class="math display">\[\left( {\bf a}\times [{\bf a}\times ({\bf a}\times {\bf b})] \right) = ({\bf a}\cdot {\bf a})({\bf b}\times {\bf a}),\]</span> and letting <span class="math inline">\(a = |{\bf a}|\)</span>, we have the required result.</p>
+</div></li>
+<li><p><span class="math inline">\(~ ({\bf a}\times{\bf b}) \cdot ({\bf c}\times{\bf d})+
+({\bf b}\times{\bf c}) \cdot ({\bf a}\times{\bf d})+ 
+({\bf c}\times{\bf a}) \cdot ({\bf b}\times{\bf d}) =0\)</span> .</p>
+<div class="solution">
+<p>Using part (a), we have <span class="math display">\[\begin{aligned}
+			({\bf a}\times{\bf b}) &amp;\cdot ({\bf c}\times{\bf d})+
+			({\bf b}\times{\bf c}) \cdot ({\bf a}\times{\bf d})+ 
+			({\bf c}\times{\bf a}) \cdot ({\bf b}\times{\bf d}) \\
+			=&amp;\ ({\bf a}\cdot {\bf c})({\bf d}\cdot {\bf b}) - ({\bf a}\cdot {\bf d})({\bf b}\cdot {\bf c}) + ({\bf b}\cdot {\bf a})({\bf c}\cdot {\bf d}) \\
+			&amp;- ({\bf b}\cdot {\bf d})({\bf c}\cdot {\bf a}) + ({\bf c}\cdot {\bf b})({\bf a}\cdot {\bf d}) - ({\bf c}\cdot {\bf d})({\bf a}\cdot {\bf b}) \\
+			=&amp;\ 0.
+		\end{aligned}\]</span></p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section A): Evaluate <span class="math inline">\(\varepsilon_{ijk}
+\varepsilon_{ijl}x_k x_l\)</span>.</p>
+</div>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+\varepsilon_{ijk} \varepsilon_{ijl}x_k
+x_l&amp; =(\delta_{jj}\delta_{kl}-\delta_{jl}\delta_{kj})x_k x_l\\[2pt]
+&amp;=(3\delta_{kl}-\delta_{kl})x_k x_l=2\delta_{kl}x_k x_l=2x_lx_l
+=2|{\bf x}|^2.\end{aligned}\]</span></p>
+</div>
+<div class="problem">
+<p>Exam question June 2001 (Section A): Evaluate <span class="math inline">\(\varepsilon_{ijk} \partial_i \partial_j (x_l x_l)^{1/2}\)</span> away from the origin.</p>
+</div>
+<div class="solution">
+<p>The answer is zero, because the mixed second partial derivatives are symmetric in <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> while the <span class="math inline">\(\varepsilon_{ijk}\)</span> is antisymmetic. For full marks you should say that the mixed partial derivatives are symmetric in <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> because they are continuous functions at all points away from the origin (which are the only points which need to be considered).</p>
+</div>
+<div class="problem">
+<p>Exam question June 2003 (Section A): Calculate <span class="math inline">\(\partial_i\,(\varepsilon_{ijk}~ \varepsilon_{jkl}~x_l\,)\)</span>. (Hint: use the connection between <span class="math inline">\(\partial_ix_j=\frac{\partial x_j}{\partial
+x_i}\)</span> and the Kronecker delta.)</p>
+</div>
+<div class="solution">
+<p>Use <span class="math inline">\(\partial_i x_j=\delta_{ij}\)</span> in <span class="math inline">\(\partial_i\,(\varepsilon_{ijk}~
+\varepsilon_{jkl}~x_l\,)\)</span> <span class="math inline">\(=\varepsilon_{ijk}~ \varepsilon_{jkl}~\partial_i\,x_l\)</span> <span class="math inline">\(=\varepsilon_{ijk}~ \varepsilon_{jkl}\,\delta_{il}\)</span><span class="math inline">\(=\varepsilon_{ijk}~ \varepsilon_{jki}\)</span><span class="math inline">\(=\varepsilon_{ijk}~
+\varepsilon_{ijk}\)</span><span class="math inline">\(=\delta_{ii}\delta_{jj}-\delta_{ij}\delta_{ji}\)</span><span class="math inline">\(=3\times 3-\delta_{ii}=9-3\)</span><span class="math inline">\(=6\)</span>.</p>
+</div>
+<div class="problem">
+<p>The functions <span class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span> are scalars, while <span class="math inline">\({\bf A}\)</span> and <span class="math inline">\({\bf B}\)</span> are vector functions with components <span class="math inline">\(A_i\)</span> and <span class="math inline">\(B_i\)</span> respectively. Verify the following identities using index notation:</p>
+<ul>
+<li><p><span class="math inline">\(\quad {\rm grad}\,\, (fg)\,=\, f\, {\rm grad}\,g\,+\,
+ g\, {\rm grad}\,f\)</span>,</p>
+<div class="solution">
+<p>The <span class="math inline">\(i\)</span>-th component of the LHS is <span class="math inline">\(\partial_i (fg)=f\partial_i g+g\partial_i f\)</span> by the product-rule. This is the <span class="math inline">\(i\)</span>-th component of the RHS, which proves the identity.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad  {\rm grad}\, ({\bf A} \cdot {\bf B})\,=\, 
+{\bf A} \times{\rm curl}\, {\bf B} + {\bf B} \times{\rm curl}\, {\bf A}
+\,+\,({\bf B}\cdot \nabla) {\bf A} \,+\, ({\bf A}\cdot \nabla) {\bf B}\)</span>,</p>
+<div class="solution">
+<p>This time it’s best to start on the RHS (general message: it’s always a good idea to start with the most complicated side and then simplify). We have <span class="math display">\[\begin{aligned}
+\left({\bf A} \times{\rm curl}\, {\bf B} + {\bf B} \times{\rm curl}\, {\bf
+A}\right)_i &amp;\,=\,
+\varepsilon_{ijk}A_j \varepsilon_{klm}\partial_lB_m
++
+\varepsilon_{ijk}B_j \varepsilon_{klm}\partial_lA_m\\
+&amp;\,=\,
+\varepsilon_{ijk}\varepsilon_{klm}
+\left(A_j\partial_lB_m+B_j\partial_lA_m\right)\\
+&amp;\,=\,
+\left(\delta_{il}\delta_{jm}-
+\delta_{im}\delta_{jl}\right)
+\left(A_j\partial_lB_m+B_j\partial_lA_m\right)\\
+&amp;\,=\,
+A_j\partial_iB_j
++B_j\partial_iA_j
+-A_j\partial_jB_i
+-B_j\partial_jA_i\end{aligned}\]</span> The last two terms in the final line are exactly cancelled by the <span class="math inline">\(i\)</span>-th component of <span class="math inline">\(({\bf B}\cdot \nabla) {\bf A} \,+\, ({\bf A}\cdot \nabla) {\bf B}\)</span>, while the first two are reasonably-easily seen to be the <span class="math inline">\(i\)</span>-th component of <span class="math inline">\({\rm grad}\, ({\bf A} \cdot {\bf B})\)</span>, proving the identity.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad  {\rm div}\, (f {\bf A})\,=\,f\,{\rm div}\,{\bf A}\,+\,
+({\rm grad} f) \cdot {\bf A}\)</span>,</p>
+<div class="solution">
+<p>The LHS is a scalar equal to <span class="math inline">\(\partial_i(fA_i)=f\partial_iA_i+(\partial_if)A_i\)</span> by the product rule for derivatives. This equals the RHS, which proves the identity.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad 
+ {\rm curl}\, (f {\bf A})\,=
+\, f\, {\rm curl}\,{\bf A}\,+\, ({\rm grad}\,f) \times{\bf A}\)</span>,</p>
+<div class="solution">
+<p>The LHS is a vector whose <span class="math inline">\(i\)</span>-th component is <span class="math display">\[\varepsilon_{ijk}\partial_j(fA_k)=\varepsilon_{ijk}\left(f\partial_jA_k
++ (\partial_j f)A_k\right)\]</span> <span class="math display">\[=f\varepsilon_{ijk}\partial_jA_k+\varepsilon_{ijk}(\partial_j f)A_k\]</span> This is the <span class="math inline">\(i\)</span>-th component of the RHS, which proves the identity.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,({\bf A}\times{\bf B})\,=\,{\bf B}\cdot {\rm curl}\,{\bf A}\,-\,
+ {\bf A}\cdot {\rm curl}\,{\bf B}\)</span>,</p>
+<div class="solution">
+<p>The LHS is a scalar equal to <span class="math inline">\(\partial_i(\varepsilon_{ijk}A_jB_k)=\varepsilon_{ijk}\partial_i(A_jB_k)\)</span> since <span class="math inline">\(\varepsilon_{ijk}\)</span> is just a number, independent of <span class="math inline">\({\bf x}\)</span>. Using the product-rule this becomes <span class="math display">\[\varepsilon_{ijk}(\partial_iA_j)B_k+\varepsilon_{ijk}A_j(\partial_iB_k)
+=B_k\left(\varepsilon_{kij}(\partial_iA_j)\right)-A_j(\varepsilon_{jik}\partial_iB_k)\]</span> This equals the RHS, which proves the identity.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,({\bf A}\times{\bf B})\,=\,({\rm div}\,{\bf B}) {\bf A}\,-\,({\rm div}\,{\bf A}) {\bf B}\,+\,
+({\bf B}\cdot \nabla) {\bf A} \,-\, ({\bf A}\cdot \nabla) {\bf B}\)</span>,</p>
+<div class="solution">
+<p>The LHS is a vector whose <span class="math inline">\(i\)</span>-th component is <span class="math inline">\(\varepsilon_{ijk}\partial_j(\varepsilon_{krs}A_rB_s)=
+\varepsilon_{ijk}\varepsilon_{rsk}\partial_j(A_rB_s)\)</span> since <span class="math inline">\(\varepsilon_{krs}=\varepsilon_{rsk}\)</span> is just a number, independent of <span class="math inline">\({\bf x}\)</span>. Using the product-rule, and the very useful formula, this becomes <span class="math display">\[(\delta_{ir}\delta_{js}-\delta_{is}\delta_{jr})\left((\partial_jA_r)B_s+A_r(\partial_jB_s)\right)\]</span> <span class="math display">\[=\delta_{ir}\delta_{js}(\partial_jA_r)B_s +
+\delta_{ir}\delta_{js}A_r(\partial_jB_s) -\delta_{is}\delta_{jr}
+(\partial_jA_r)B_s-\delta_{is}\delta_{jr}A_r(\partial_jB_s)\]</span> <span class="math display">\[=(\partial_sA_i)B_s+A_i(\partial_sB_s)
+- (\partial_rA_r)B_i-A_r(\partial_rB_i)=A_i(\partial_sB_s)- (\partial_rA_r)B_i
++(B_s\partial_s)A_i-(A_r\partial_r)B_i\]</span> This is the <span class="math inline">\(i\)</span>-th component of the RHS, which proves the identity.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm div}\,{\rm curl}\,{\bf A}\;=\;0\)</span>,</p>
+<div class="solution">
+<p>The LHS is a scalar equal to <span class="math inline">\(\partial_i(\varepsilon_{ijk}\partial_jA_k)=
+\varepsilon_{ijk}\partial_i\partial_jA_k\)</span>. On the assumption that <span class="math inline">\(\partial_i\partial_jA_k\)</span> is continuous then <span class="math inline">\(\partial_i\partial_jA_k=\partial_j\partial_iA_k\)</span> so <span class="math inline">\(\varepsilon_{ijk}\partial_i\partial_jA_k=\varepsilon_{ijk}\partial_j\partial_iA_k
+=\varepsilon_{jik}\partial_i\partial_jA_k\)</span> by re-naming dummy variables, but this is <span class="math inline">\(-\varepsilon_{ijk}\partial_i\partial_jA_k\)</span> by skew symmetry of <span class="math inline">\(\varepsilon_{ijk}\)</span>, i.e. <span class="math inline">\(\varepsilon_{ijk}\partial_i\partial_jA_k=-\varepsilon_{ijk}\partial_i\partial_jA_k\)</span> which implies <span class="math inline">\(\varepsilon_{ijk}\partial_i\partial_jA_k=0\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\quad {\rm curl}\,\,{\rm curl}\,{\bf A}\,=\, {\rm grad}\,{\rm div}\,{\bf A}- \nabla^2 {\bf A}\)</span>.</p>
+<div class="solution">
+<p>The LHS is a vector whose <span class="math inline">\(i\)</span>-th component is <span class="math display">\[\varepsilon_{ijk}\partial_j(\varepsilon_{krs}\partial_rA_s)=
+\varepsilon_{ijk}\varepsilon_{rsk}\partial_j(\partial_rA_s )\]</span> since <span class="math inline">\(\varepsilon_{krs}=\varepsilon_{rsk}\)</span> is just a number, independent of <span class="math inline">\({\bf
+x}\)</span>. Using the very useful formula, this becomes <span class="math display">\[(\delta_{ir}\delta_{js}-\delta_{is}\delta_{jr})\partial_j\partial_rA_s 
+=\delta_{ir}\delta_{js}\partial_j\partial_rA_s-\delta_{is}\delta_{jr}\partial_j\partial_rA_s
+=\partial_s\partial_iA_s-\partial_r\partial_rA_i\]</span> On the assumption that <span class="math inline">\(\partial_j\partial_rA_s\)</span> is continuous we can write this as <span class="math inline">\(\partial_i\partial_sA_s-\partial_r\partial_rA_i\)</span>. This is the <span class="math inline">\(i\)</span>-th component of the RHS, which proves the identity.</p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>What is the divergence of the vector function <span class="math inline">\({\bf{A}}({{\bf x}\,})=
+r\,{{\bf x}\,} + {\bf \nabla}\,r\)</span> where <span class="math inline">\({{\bf x}\,}\)</span> is the position vector in 3 dimensions and <span class="math inline">\(r=|{\bf x}\,|\)</span>? What is the corresponding result in <span class="math inline">\(n\)</span> dimensions?</p>
+</div>
+<div class="solution">
+<p>Using components, <span class="math inline">\(\nabla\cdot {\bf{A}}
+=
+\partial_i\left(rx_i+\partial_i(r)\right)
+=
+\partial_i(r)x_i+r\partial_ix_i+
+\partial_i(\partial_i(r))\)</span> . Using <span class="math inline">\(\partial_i(r)=\partial_i(x_jx_j)^{1/2}={\textstyle\frac{1}{2}}(x_jx_j)^{-1/2}2x_i=x_i/r\)</span> (as in <a href="#vecresultsindex" data-reference-type="ref" data-reference="vecresultsindex">[vecresultsindex]</a>(c)) this is <span class="math display">\[\begin{aligned}
+x_ix_i/r+r\delta_{ii}+\partial_i(x_i/r)&amp;=
+r+3r+(\partial_ix_i)/r-x_ir^{-2}\partial_i(r) \\
+&amp;= 4r+\delta_{ii}/r-x_ir^{-2}x_i/r \\
+&amp;= 4r+3/r-1/r=4r+2/r\,.\end{aligned}\]</span> In <span class="math inline">\(n\)</span> dimensions <span class="math inline">\(\delta_{ii}=n\)</span> which changes the result to <span class="math inline">\((n+1)r+(n-1)/r\)</span>.</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '24';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
