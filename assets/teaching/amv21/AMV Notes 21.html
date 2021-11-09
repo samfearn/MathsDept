@@ -26,7 +26,7 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Analysis in Many Variables II – Lecture Notes Michaelmas 2020</h1>
+<h1 class="title">Analysis in Many Variables II – Lecture Notes Michaelmas 2021</h1>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -69,6 +69,11 @@
 <li><a href="#sub:thechainrulerevisited"><span class="toc-section-number">6.5</span> The chain rule revisited</a></li>
 <li><a href="#the-implicit-function-theorem"><span class="toc-section-number">6.6</span> The implicit function theorem</a></li>
 <li><a href="#implicit-function-theorem-for-surfaces">Implicit function theorem for surfaces</a></li>
+</ul></li>
+<li><a href="#sec:differentiabilityofvectorfields"><span class="toc-section-number">7</span> Differentiability of vector fields</a>
+<ul>
+<li><a href="#sub:differentiablemapsfromrntorn"><span class="toc-section-number">7.1</span> Differentiable maps <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^n\)</span></a></li>
+<li><a href="#diffeomorphisms-and-the-inverse-function-theorem"><span class="toc-section-number">7.2</span> Diffeomorphisms and the inverse function theorem</a></li>
 </ul></li>
 
 </ul>
@@ -1181,6 +1186,235 @@
 			\Rightarrow\quad \quad\quad \quad\frac{\pi}{2} x - y -z &amp;= \pi
 		\end{aligned}\]</span></p>
 <p>Note, that if we write <span class="math inline">\(z=g(x,y)\)</span> and rearrange to get <span class="math inline">\(g(x,y) = \frac{\pi}{2} x - y - \pi\)</span>, we see that <span class="math inline">\(\frac{\partial g}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial g}{\partial y}\)</span> agree with the values found above, as they must.</p>
+</div>
+</section>
+</section>
+<section id="sec:differentiabilityofvectorfields" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Differentiability of vector fields</h1>
+<section id="sub:differentiablemapsfromrntorn" class="level2" data-number="7.1">
+<h2 data-number="7.1"><span class="header-section-number">7.1</span> Differentiable maps <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^n\)</span></h2>
+<p>We will now generalise the idea of differentiability of scalar fields from last term. Recall that for a scalar field <span class="math inline">\(f(\underline{x}) : U \to \mathbb{R}\)</span>, with <span class="math inline">\(U\)</span> open in <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math inline">\(f\)</span> is differentiable at <span class="math inline">\(\underline{a} \in U\)</span> if <span class="math display">\[\begin{aligned}
+		f(\underline{a} + \underline{h}) - f(\underline{a}) \; &amp;=\; \underline{h}.\underline{\nabla\mkern-2mu}\mkern 3mu f(\underline{a}) \;+\; R(\underline{h})   \quad \quad\quad \quad\quad \quad(a) \\ 
+		\text{with} \quad \quad\quad \quad\lim_{\underline{h}\to \underline{0}}  \frac{R(\underline{h})}{| \underline{h}|} \;&amp;=\;  0, \quad \quad\quad \quad\quad \quad\quad \quad\quad \quad\quad \quad\quad (b)
+	\end{aligned}\]</span> where you should note that the first term on RHS of <span class="math inline">\((a)\)</span>, <span class="math inline">\(\underline{h}.\underline{\nabla\mkern-2mu}\mkern 3mu f(\underline{a})\)</span>, is <span><em>linear</em></span> in <span class="math inline">\(\underline{h}\)</span>.</p>
+<div id="def:def:differentiablevecfield" class="definition">
+<p> Consider a <u>vector</u> field <span class="math inline">\(\underline{F}(\underline{x}): U \to \mathbb{R}^n\)</span>, <span class="math inline">\(U\)</span> open in <span class="math inline">\(\mathbb{R}^n\)</span>. Then <span class="math inline">\(\underline{F}\)</span> is defined to be <em>differentiable</em> at <span class="math inline">\(\underline{a} \in U\)</span> if there is a linear function <span class="math inline">\(\underline{L} : \mathbb{R}^n\to \mathbb{R}^n\)</span> such that <span class="math display">\[\begin{aligned}
+			\underline{F}(\underline{a}+\underline{h}) - \underline{F}(\underline{a}) \;&amp;=\; \underline{L}(\underline{h}) \;+\; \underline{R}(\underline{h})  \quad \quad\quad \quad\quad \quad\quad \;\; (A) \\
+			\text{with} \quad \quad\quad \quad\lim_{\underline{h}\to \underline{0}}  \frac{\underline{R}(\underline{h})}{| \underline{h}|}
+			\;&amp;=\;  \underline{0}\,. \quad \quad\quad \quad\quad \quad\quad \quad\quad \quad\quad \quad\quad (B)
+		\end{aligned}\]</span></p>
+</div>
+<p>Now linear functions <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^n\)</span> are matrices. To see what matrix use the standard basis, <span class="math display">\[\begin{aligned}
+		\underline{F}(\underline{x}) &amp;= F_1(\underline{x}) \underline{e}_1 +  F_2(\underline{x}) \underline{e}_2 + \dots +  F_n(\underline{x}) \underline{e}_n  \\
+		\underline{L}(\underline{h}) &amp;= L_1(\underline{h}) \underline{e}_1 +  L_2(\underline{h}) \underline{e}_2 + \dots +  L_n(\underline{h}) \underline{e}_n  \\
+		\underline{R}(\underline{h}) &amp;= R_1(\underline{h}) \underline{e}_1 +  R_2(\underline{h}) \underline{e}_2 + \dots +  R_n(\underline{h}) \underline{e}_n,
+	\end{aligned}\]</span> so the <span class="math inline">\(j\)</span>th components of <span class="math inline">\((A)\)</span> and <span class="math inline">\((B)\)</span> are <span class="math display">\[\begin{aligned}
+		F_j(\underline{a}+\underline{h}) - F_j(\underline{a}) \;&amp;=&amp;\; L_j(\underline{h}) \;+\; R_j(\underline{h}) \quad \quad\quad \quad\quad \quad\quad \quad(A)_j   \\
+		\text{with} \quad \quad\quad \quad\lim_{\underline{h}\to \underline{0}}  \frac{R_j(\underline{h})}{| \underline{h}|}
+		\;&amp;=&amp;\;  0\,. \quad \quad\quad \quad\quad \quad\quad \quad\quad \quad\quad \quad\quad \quad(B)_j
+	\end{aligned}\]</span> These are just conditions <span class="math inline">\((a)\)</span> and <span class="math inline">\((b)\)</span> for <span class="math inline">\(F_j(\underline{x})\)</span> to be differentiable as a map <span class="math inline">\(U \to \mathbb{R}\)</span>, i.e. as a scalar field. So we can use results from last term to see that <span class="math display">\[L_j(\underline{h}) \;\;=\;\; \underline{h}.\underline{\nabla\mkern-2mu}\mkern 3mu F_j(\underline{a}),\]</span> that is <span class="math display">\[\begin{aligned}
+		L_1 \;&amp;=\; \underline{h}.\underline{\nabla\mkern-2mu}\mkern 3mu F_1(\underline{a}) \;\;=\;\; h_1 \frac{\partial F_1}{\partial x_1} + h_2 \frac{\partial F_1}{\partial x_2} + \dots + h_n \frac{\partial F_1}{\partial x_n}  \\
+		L_2 \;&amp;=\; \underline{h}.\underline{\nabla\mkern-2mu}\mkern 3mu F_2(\underline{a}) \;\;=\;\; h_1 \frac{\partial F_2}{\partial x_1} + h_2 \frac{\partial F_2}{\partial x_2} + \dots + h_n \frac{\partial F_2}{\partial x_n}  \\
+		\vdots \;&amp; \;\;\; \vdots \\
+		L_n \;&amp;=\; \underline{h}.\underline{\nabla\mkern-2mu}\mkern 3mu F_n(\underline{a}) \;\;=\;\; h_1 \frac{\partial F_n}{\partial x_1} + h_2 \frac{\partial F_n}{\partial x_2} + \dots + h_n \frac{\partial F_n}{\partial x_n},
+	\end{aligned}\]</span> or <span class="math display">\[\begin{aligned}
+		\begin{pmatrix}
+		L_1 \\
+		L_2 \\
+		\vdots \\
+		L_n
+		\end{pmatrix}  \;&amp;=\; 
+		\begin{pmatrix}
+		 h_1 \frac{\partial F_1}{\partial x_1} \;+\; h_2 \frac{\partial F_1}{\partial x_2} \;+\; \dots \;+\; h_n \frac{\partial F_1}{\partial x_n}  \\
+		 h_1 \frac{\partial F_2}{\partial x_1} \;+\; h_2 \frac{\partial F_2}{\partial x_2} \;+\; \dots \;+\; h_n \frac{\partial F_2}{\partial x_n}  \\
+		 \vdots  \\
+		 h_1 \frac{\partial F_n}{\partial x_1} \;+\; h_2 \frac{\partial F_n}{\partial x_2} \;+\; \dots \;+\; h_n \frac{\partial F_n}{\partial x_n}  
+		\end{pmatrix} \\
+		\;&amp;=\; 
+		\begin{pmatrix}
+		  \frac{\partial F_1}{\partial x_1} &amp; \frac{\partial F_1}{\partial x_2}&amp; \dots &amp; \frac{\partial F_1}{\partial x_n}  \\
+		 \frac{\partial F_2}{\partial x_1} &amp; \frac{\partial F_2}{\partial x_2}  &amp;\dots &amp;\frac{\partial F_2}{\partial x_n}  \\
+		 \vdots  &amp; \vdots &amp;&amp; \vdots \\
+		  \frac{\partial F_n}{\partial x_1} &amp; \frac{\partial F_n}{\partial x_2}  &amp;\dots&amp;  \frac{\partial F_n}{\partial x_n}  
+		\end{pmatrix}  
+		\begin{pmatrix}
+		h_1 \\
+		h_2 \\
+		\vdots \\
+		h_n
+		\end{pmatrix}\,.
+	\end{aligned}\]</span></p>
+<p>The <span class="math inline">\(n\times n\)</span> matrix on the RHS of the last equation is called the <u>Jacobian matrix</u>, or <u>differential</u>, of <span class="math inline">\(\underline{F}(\underline{x})\)</span> at <span class="math inline">\(\underline{x}=\underline{a}\)</span>; it is written as <span class="math inline">\(D\underline{F}(\underline{a})\)</span>, or <span class="math inline">\(d\underline{F}(\underline{a})\)</span> (or <span class="math inline">\(D\underline{F}_{\underline{a}}\)</span> or <span class="math inline">\(d\underline{F}_{\underline{a}}\)</span> or even <span class="math inline">\(J_{ij}\)</span>).</p>
+<div id="def:Jacobian" class="definition">
+<p> The determinant of the differential, <span class="math display">\[\det(D\underline{v}) \equiv |D\underline{v}|\]</span> is called the <u>Jacobian</u>, <span class="math inline">\(J(\underline{v})\)</span>.</p>
+</div>
+<div id="eg:simpledifferential" class="example">
+<p> If <span class="math display">\[\underline{v}(\underline{x}) \;=\; \begin{pmatrix}
+			x^2-y^2 \\
+			2xy 
+			\end{pmatrix}  \;=\; 
+			\begin{pmatrix}
+			v_1 \\
+			v_2
+			\end{pmatrix},\]</span> then <span class="math display">\[D\underline{v}(\underline{x}) \;=\; 
+		\begin{pmatrix}
+			\frac{\partial v_1}{\partial x} &amp; \frac{\partial v_1}{\partial y} \\
+			\frac{\partial v_2}{\partial x} &amp; \frac{\partial v_2}{\partial y}
+		\end{pmatrix}
+		\;=\; 
+		\begin{pmatrix}
+			2x&amp; -2y \\
+			2y &amp; 2x
+		\end{pmatrix}\]</span></p>
+<p>The Jacobian is then given by <span class="math display">\[\begin{aligned}
+			J(\underline{v}) \;&amp;=\; 
+			\begin{vmatrix}
+			2x&amp; -2y \\
+			2y &amp; 2x
+			\end{vmatrix}  \\
+			&amp;= \; 4(x^2+y^2) \;\;=\;\; 4 |\underline{x}|^2
+		\end{aligned}\]</span></p>
+</div>
+<div id="eg:identitymap" class="example">
+<p> If <span class="math inline">\(\underline{x}\in \mathbb{R}^n\)</span> and <span class="math inline">\(\underline{v}(\underline{x}) \;=\; \underline{x}\)</span> then <span class="math display">\[D\underline{v}(\underline{x}) \;\;=\;\; 
+		\begin{pmatrix}
+			\frac{\partial x_1}{\partial x_1} &amp; \frac{\partial x_1}{\partial x_2} &amp; \dots &amp; \frac{\partial x_1}{\partial x_n} \\
+			\vdots &amp; \vdots &amp; &amp; \vdots \\
+			\frac{\partial x_n}{\partial x_1} &amp; \frac{\partial x_n}{\partial x_2} &amp; \dots &amp; \frac{\partial x_n}{\partial x_n}
+		\end{pmatrix}
+		\;\;=\;\; 
+		\begin{pmatrix}
+			1&amp;0&amp; \dots &amp;0 \\
+			0&amp;1&amp; \dots &amp;0 \\
+			\vdots&amp; &amp; \ddots&amp; \vdots \\
+			0&amp;0&amp; \dots &amp; 1
+		\end{pmatrix}
+		\;\;=\;\; \mathbb{I}_n,\]</span> the <span class="math inline">\(n\times n\)</span> identity matrix, and <span class="math display">\[J(\underline{v}) \;\;=\;\; |\mathbb{I}_n| \;\;=\;\; 1\]</span></p>
+</div>
+</section>
+<section id="diffeomorphisms-and-the-inverse-function-theorem" class="level2" data-number="7.2">
+<h2 data-number="7.2"><span class="header-section-number">7.2</span> Diffeomorphisms and the inverse function theorem</h2>
+<p>We can think of a vector field <span class="math inline">\(\underline{v}(\underline{x})\)</span> as a mapping <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^n\)</span>, or equivalently as a <u>coordinate transformation</u> on <span class="math inline">\(\mathbb{R}^n\)</span>. If we think of the components of <span class="math inline">\(\underline{h}\)</span> as the coordinates of a point <span class="math inline">\(\underline{x}= \underline{a} +\underline{h}\)</span> relative to an “origin" at <span class="math inline">\(\underline{a}\)</span>, then the components of <span class="math inline">\(\underline{v}(\underline{a}+\underline{h}) - \underline{v}(\underline{a})\)</span> are the transformed coordinates relative to the transformed origin <span class="math inline">\(\underline{v}(\underline{a})\)</span>. Then for differentiable <span class="math inline">\(\underline{v}\)</span> (and small <span class="math inline">\(\underline{h}\)</span>) <span class="math display">\[\begin{aligned}
+\underline{v}(\underline{a}+\underline{h}) - \underline{v}(\underline{a}) \;\; &amp;\simeq \;\; ~~D
+\underline{v}(\underline{a})\,.\,\underline{h}\\
+\text{new coordinates} \;\; &amp;\simeq \;\; \text{matrix}  \; \times \; \text{old coordinates,}\end{aligned}\]</span> which is a <span class="math inline">\(\underline{linear}\)</span> transformation, invertible if the determinant of <span class="math inline">\(D\underline{v}(\underline{a})\)</span> (i.e. the Jacobian) is non-zero.</p>
+<p>The <u>inverse function theorem</u> says that this invertibility can be extended beyond the linear behaviour:</p>
+<div id="thm:inversefunctiontheorem" class="theorem">
+<p> Let <span class="math inline">\(\underline{v}: U \to \mathbb{R}^n\)</span> (with <span class="math inline">\(U\)</span> open in <span class="math inline">\(\mathbb{R}^n\)</span>) be a differentiable vector field with continuous partial derivatives, and let <span class="math inline">\(\underline{a} \in U\)</span>. Then if <span class="math inline">\(J(\underline{v}(\underline{a})) \ne 0\)</span>, <span class="math inline">\(\exists\)</span> an open set <span class="math inline">\(\tilde{U} \subseteq U\)</span> containing <span class="math inline">\(\underline{a}\)</span> such that</p>
+<ol>
+<li><p><span class="math inline">\(\underline{v}(\tilde{U})\)</span> is open</p></li>
+<li><p>The mapping <span class="math inline">\(\underline{v}\)</span> from <span class="math inline">\(\tilde{U}\)</span> to <span class="math inline">\(\underline{v}(\tilde{U})\)</span> has a differentiable inverse - i.e. there exists a differentiable vector field <span class="math inline">\(\underline{w}: \underline{v}(\tilde{U}) \to \mathbb{R}^n\)</span> such that <span class="math inline">\(\underline{w}(\underline{v}(\underline{x})) = \underline{x}\)</span> and <span class="math inline">\(\underline{v}(\underline{w}(\underline{y})) = \underline{y}\)</span></p></li>
+</ol>
+</div>
+<div class="center">
+<figure>
+<img src="Inverse_function_theorem.png" id="fig:diffeomorphism" style="width:60.0%" alt="A diffeomorphism from \tilde{U} to \tilde{V}" /><figcaption aria-hidden="true">A diffeomorphism from <span class="math inline">\(\tilde{U}\)</span> to <span class="math inline">\(\tilde{V}\)</span></figcaption>
+</figure>
+</div>
+<div id="def:diffeomorphism" class="definition">
+<p>  </p>
+<ul>
+<li><p>A mapping <span class="math inline">\(\underline{v}: \tilde{U} \to V \subset \mathbb{R}^n\)</span> satisfying (i) and (ii) above is called a <u>diffeomorphism</u> of <span class="math inline">\(\tilde{U}\)</span> onto <span class="math inline">\(\tilde{V}=\underline{v}(\tilde{U})\)</span>, and <span class="math inline">\(\tilde{U}\)</span> and <span class="math inline">\(\tilde{V}\)</span> are said to be <u>diffeomorphic</u>.</p></li>
+<li><p>More generally, a mapping <span class="math inline">\(\underline{v}: U \to V\)</span> is called a <u>local diffeomorphism</u> if for every point <span class="math inline">\(\underline{a}\in U\)</span> there is an open set <span class="math inline">\(\tilde{U}\subset U\)</span> containing <span class="math inline">\(\underline{a}\)</span> such that <span class="math inline">\(\underline{v}: \tilde{U} \to \underline{v}(\tilde{U})\)</span> is a diffeomorphism.</p></li>
+</ul>
+</div>
+<p><strong>Remarks</strong> In general, suppose that <span class="math display">\[\begin{aligned}
+		\underline{v}&amp;: U \to V \subset \mathbb{R}^n\\
+		\underline{w}&amp;: V \to W \subset \mathbb{R}^n
+	\end{aligned}\]</span> (with <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> both open in <span class="math inline">\(\mathbb{R}^n\)</span>) are both continuously differentiable vector fields (not necessarily diffeomorphisms).</p>
+<div class="center">
+<figure>
+<img src="UtoVtoW.png" id="fig:compositionofmaps" alt="Composition of maps \underline{v} and \underline{w}" /><figcaption aria-hidden="true">Composition of maps <span class="math inline">\(\underline{v}\)</span> and <span class="math inline">\(\underline{w}\)</span></figcaption>
+</figure>
+</div>
+<p>Then <span class="math inline">\(\underline{w}(\underline{v}(\underline{x}))\)</span> is a mapping <span class="math inline">\(U \to W \subset \mathbb{R}^n\)</span> and its differential can be calculated using the chain rule: <span class="math display">\[\begin{aligned}
+		D\underline{w}(\underline{v}(\underline{x})) \;&amp;=\; 
+		\begin{pmatrix}
+			\frac{\partial w_1(\underline{v}(\underline{x}))}{\partial x_1} &amp; \frac{\partial w_1(\underline{v}(\underline{x}))}{\partial x_2} &amp; \dots &amp; \frac{\partial w_1(\underline{v}(\underline{x}))}{\partial x_n} \\
+			\vdots &amp; \vdots &amp; &amp; \vdots \\
+			\frac{\partial w_n(\underline{v}(\underline{x}))}{\partial x_1} &amp; \frac{\partial w_n(\underline{v}(\underline{x}))}{\partial x_2} &amp; \dots &amp; \frac{\partial w_n(\underline{v}(\underline{x}))}{\partial x_n}
+		\end{pmatrix}\\
+		\;&amp;=\; \begin{pmatrix}
+			\sum_j \frac{\partial w_1}{\partial v_j} \frac{\partial v_j}{\partial x_1}  &amp; \sum_j \frac{\partial w_1}{\partial v_j} \frac{\partial v_j}{\partial x_2} &amp; \dots &amp; \sum_j \frac{\partial w_1}{\partial v_j} \frac{\partial v_j}{\partial x_n}  \\
+			\vdots &amp; \vdots &amp; &amp; \vdots \\
+			\sum_j \frac{\partial w_n}{\partial v_j} \frac{\partial v_j}{\partial x_1}  &amp;\sum_j \frac{\partial w_n}{\partial v_j} \frac{\partial v_j}{\partial x_2} &amp; \dots &amp; \sum_j \frac{\partial w_n}{\partial v_j} \frac{\partial v_j}{\partial x_n}
+		\end{pmatrix} \\
+		&amp;\\
+		&amp; \quad \quad\quad \quad\quad \quad\quad \quad\quad \quad\text{using chain rule on each matrix element,} \\
+		&amp;\\
+		\;&amp;=\; 
+		\begin{pmatrix}
+			\frac{\partial w_1}{\partial v_1} &amp; \frac{\partial w_1}{\partial v_2} &amp; \dots &amp; \frac{\partial w_1}{\partial v_n} \\
+			\vdots &amp; \vdots &amp; &amp; \vdots \\
+			\frac{\partial w_n}{\partial v_1} &amp; \frac{\partial w_n}{\partial v_2} &amp; \dots &amp; \frac{\partial w_n}{\partial v_n}
+		\end{pmatrix}
+		\begin{pmatrix}
+			\frac{\partial v_1}{\partial x_1} &amp; \frac{\partial v_1}{\partial x_2} &amp; \dots &amp; \frac{\partial v_1}{\partial x_n} \\
+			\vdots &amp; \vdots &amp; &amp; \vdots \\
+			\frac{\partial v_n}{\partial x_1} &amp; \frac{\partial v_n}{\partial x_2} &amp; \dots &amp; \frac{\partial v_n}{\partial x_n}
+		\end{pmatrix} \\
+		\;&amp;=\;   D\underline{w}(\underline{v})  \; D\underline{v}(\underline{x}) \quad \quad\quad \quad\text{i.e. matrix multiplication}
+	\end{aligned}\]</span></p>
+<p>For the special case when <span class="math inline">\(\underline{v}\)</span> is a local diffeomorphism and <span class="math inline">\(\underline{w}\)</span> is its inverse map, <span class="math display">\[\begin{aligned}
+		\underline{w}(\underline{v}(\underline{x})) \;&amp;=\; \underline{x}\\
+		\Rightarrow D \underline{w}\; D\underline{v}\;&amp;=\; D \underline{w}(\underline{v}(\underline{x})) \;\;=\;\; D \underline{x}
+		(\underline{x}) \;\;=\;\; \mathbb{I}_n,
+	\end{aligned}\]</span> using Example <a href="#eg:identitymap" data-reference-type="ref" data-reference="eg:identitymap">[eg:identitymap]</a> above. Likewise <span class="math display">\[\begin{aligned}
+		\underline{v}(\underline{w}(\underline{y})) \;&amp;=\; \underline{y}\\
+		\Rightarrow D \underline{v}\; D\underline{w}\;&amp;=\; D \underline{v}(\underline{w}(\underline{y})) \;\;=\;\; D \underline{y}
+		(\underline{y}) \;\;=\;\; \mathbb{I}_n.
+	\end{aligned}\]</span></p>
+<p>So <span class="math inline">\(D\underline{v}\)</span> is an invertible matrix, with inverse <span class="math inline">\((D\underline{v})^{-1} \;=\; D\underline{w}\)</span>. Taking determinants, <span class="math display">\[J(\underline{w}) \;\;=\;\; \frac{1}{J(\underline{v})},\]</span> and in particular, <span class="math inline">\(J(\underline{v})\ne 0\)</span>, which was the main condition of the inverse function theorem.</p>
+<div id="def:orientations" class="definition">
+<p> Such a <span class="math inline">\(\underline{v}\)</span> is called <u>orientation preserving</u> if <span class="math inline">\(J(\underline{v}) &gt;0\)</span>, and <u>orientation reversing</u> if <span class="math inline">\(J(\underline{v}) &lt;0\)</span>.</p>
+</div>
+<div id="eg:simpledifferentialcontinued" class="example">
+<p> Continuing Example <a href="#eg:simpledifferential" data-reference-type="ref" data-reference="eg:simpledifferential">[eg:simpledifferential]</a>, we had <span class="math display">\[\underline{v}(\underline{x}) \;=\; \begin{pmatrix}
+		x^2-y^2 \\
+		2xy 
+		\end{pmatrix}  \quad \quad\Rightarrow \quad \quad J(\underline{v}) \;=\; 4(x^2+y^2).\]</span></p>
+<p>So for <span class="math inline">\((x,y)\ne (0,0), J(\underline{v}) &gt; 0\)</span>.</p>
+<p>Hence if <span class="math inline">\(U = \mathbb{R}^2 -\{\underline{0}\}\)</span>, <span class="math inline">\(\underline{v}: U \to U\)</span> is an orientation preserving local diffeomorphism. However it is not a global diffeomorphism since <span class="math inline">\(\underline{v}(-\underline{x})=\underline{v}(\underline{x})\)</span> (so no inverse can exist globally). But <span class="math inline">\(\underline{v}\)</span> <u>does</u> map <span class="math inline">\(\{(x,y): x&gt;0\}\)</span> onto <span class="math inline">\(\mathbb{R}^2-\{(x,0),x\le 0 \}\)</span> diffeomorphically.</p>
+</div>
+<div id="eg:" class="example">
+<p> Consider the transformation from polar coordinates <span class="math inline">\((r,\theta)\)</span> back to cartesians <span class="math inline">\((x,y)\)</span>. We have <span class="math display">\[\underline{v}(r,\theta) \;\;=\;\; 
+			\begin{pmatrix}
+				x(r,\theta) \\
+				y(r,\theta) 
+				\end{pmatrix}\;\;=\;\;
+				\begin{pmatrix}
+				r \cos \theta \\
+				r \sin \theta
+			\end{pmatrix}\]</span></p>
+<p><u>Differential</u>: <span class="math display">\[D\underline{v}\;\;=\;\; \begin{pmatrix}
+			\frac{\partial x}{\partial r} &amp; \frac{\partial x}{\partial \theta} \\
+			\frac{\partial y}{\partial r} &amp; \frac{\partial y}{\partial \theta}
+		\end{pmatrix}
+		\;\;=\;\;
+		\begin{pmatrix}
+			\cos \theta &amp; -r \sin \theta \\
+			\sin \theta &amp; r \cos \theta
+		\end{pmatrix}\]</span></p>
+<p><u>Jacobian</u>: <span class="math display">\[\begin{aligned}
+			J(\underline{v}(r,\theta)) \;&amp;=\; 
+			\begin{vmatrix}
+			\frac{\partial x}{\partial r} &amp; \frac{\partial x}{\partial \theta} \\
+			\frac{\partial y}{\partial r} &amp; \frac{\partial y}{\partial \theta} 
+			\end{vmatrix} \;\;=\;\;
+			\begin{vmatrix}
+			\cos \theta &amp; -r \sin \theta \\
+			\sin \theta &amp; r \cos \theta 
+			\end{vmatrix}  \\\
+			\;&amp;=\; r \cos^2 \theta + r \sin^2 \theta \;\;=\;\; r
+		\end{aligned}\]</span></p>
+<p>For <span class="math inline">\(r&gt;0\)</span>, <span class="math inline">\(J(\underline{v})&gt;0\)</span>, and the transformation is therefore orientation preserving.</p>
+<p>The inverse mapping is <span class="math display">\[\underline{w}(x,y) \;\;=\;\; \begin{pmatrix}
+			r(x,y) \\ \theta(x,y) 
+		\end{pmatrix} \;\;=\;\; 
+		\begin{pmatrix}
+			\sqrt{x^2+y^2} \\ \tan^{-1} \left(\frac{y}{x}\right)
+		\end{pmatrix}\]</span></p>
+<p><u>Exercise</u>: check this!</p>
 </div>
 </section>
 </section>
