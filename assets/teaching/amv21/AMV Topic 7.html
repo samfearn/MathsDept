@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Analysis in Many Variables II – Lecture Notes Michaelmas 2021</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Analysis in Many Variables II – Lecture Notes Michaelmas 2021</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#volume-line-and-surface-integrals"><span class="toc-section-number">7</span> Volume, line and surface integrals</a>
+<ul>
+<li><a href="#double-integrals-and-fubinis-theorem"><span class="toc-section-number">7.1</span> Double integrals and Fubini’s theorem</a></li>
+<li><a href="#sub:fubini">Double integrals</a></li>
+<li><a href="#sub:volumeintegrals"><span class="toc-section-number">7.2</span> Volume integrals</a></li>
+<li><a href="#sec:surf_line"><span class="toc-section-number">7.3</span> Line integrals</a></li>
+<li><a href="#surface-integrals-i-defining-a-surface"><span class="toc-section-number">7.4</span> Surface integrals I: defining a surface</a></li>
+<li><a href="#surface-integrals-ii-evaluating-the-integral"><span class="toc-section-number">7.5</span> Surface integrals II: evaluating the integral</a></li>
+</ul></li>
+</ul>
+</nav>
+<p> </p>
+<section id="volume-line-and-surface-integrals" class="level1" data-number="1">
+<h1 data-number="7"><span class="header-section-number">7</span> Volume, line and surface integrals</h1>
+<section id="double-integrals-and-fubinis-theorem" class="level2" data-number="1.1">
+<h2 data-number="7.1"><span class="header-section-number">7.1</span> Double integrals and Fubini’s theorem</h2>
+<p>We’ll start with the familiar case of one-dimensional integrals. Recall the single integral computes the area under a curve, as illustrated in figure <a href="#fig:1D" data-reference-type="ref" data-reference="fig:1D">1</a>.</p>
+<div class="center">
+<figure>
+<img src="1D_disc.jpg" id="fig:1D" style="width:50.0%" alt="" /><figcaption> Graph showing a section of the (red) curve given by <span class="math inline">\(y=h(x)\)</span>, with the discretised area under the curve given by the sum of the black rectangles of width <span class="math inline">\(\Delta x_i\)</span>.</figcaption>
+</figure>
+</div>
+<p>As the widths of the rectangles tend to zero, so the sum of their areas tends to the integral of the curve over the desired range, defining the integral via a Riemann sum: <span class="math display">\[\int_a^b h(x)\,dx =\lim_{n\to\infty} \sum_{i=0}^{n-1} h(x_i^*)\Delta
+x_i\,,\]</span> where the interval <span class="math inline">\([a,b]\)</span> is partitioned as <span class="math inline">\(a=x_0&lt;x_1&lt;...&lt;x_i&lt;...&lt;x_n=b\)</span> , <span class="math inline">\(\Delta x_i = x_{i+1}-x_i\)</span> , and the choice of <span class="math inline">\(x_i^*\in[x_i,x_{i+1}]\)</span> is arbitrary as long as the limit exists (in the figure they were all taken at the left-hand ends).</p>
+<p>In general the <span class="math inline">\(\Delta x_i\)</span>’s can be different sizes, but if they are, the limit <span class="math inline">\(n\to \infty\)</span> must include the extra requirement that <span class="math inline">\(\sup (\Delta x_i)\to 0\)</span>. From here on we will assume equally-spaced partitions, and mostly assume that the functions we deal with are such that the relevant limits all exist.</p>
+</section>
+<section id="sub:fubini" class="level2 unnumbered">
+<h2 class="unnumbered">Double integrals</h2>
+<p>As for the single integral, the double integral, written as <span class="math inline">\(\int_R f(x,y)\,dA\)</span> (or sometimes <span class="math inline">\(\iint_R f(x,y)\,dA\)</span>), can be used to calculate the volume under the surface defined by the equation <span class="math inline">\(z=f(x,y)\)</span> where <span class="math inline">\(f(x,y)\)</span> is continuous over <span class="math inline">\(R\subset\mathbb{R}^2\)</span>, the region over which we wish to perform the integration. This is illustrated in figure <a href="#fig:surf" data-reference-type="ref" data-reference="fig:surf">2</a>.</p>
+<div class="center">
+<figure>
+<img src="surf_proj.jpg" id="fig:surf" style="width:60.0%" alt="" /><figcaption> The section of the surface <span class="math inline">\(z=f(x,y)\)</span> lying above the region <span class="math inline">\(R=\{\,(x,y)\in\mathbb{R}^2\,|\,x\in[1,4]\)</span>, <span class="math inline">\(y\in[1,4]\,\}\)</span> .</figcaption>
+</figure>
+</div>
+<p>This double integral can be defined in a similar fashion to the single integral using a Riemann sum. We start by splitting the region of integration <span class="math inline">\(R\)</span> into <span class="math inline">\(N\)</span> smaller areas <span class="math inline">\(\Delta A_k\)</span> (see figure <a href="#fig:disc_surf" data-reference-type="ref" data-reference="fig:disc_surf">3</a>, where the areas <span class="math inline">\(\Delta A_k\)</span> are chosen to be rectangles).</p>
+<div class="center">
+<figure>
+<img src="disc_surf.jpg" id="fig:disc_surf" style="width:60.0%" alt="" /><figcaption> A sketch of the discretised surface <span class="math inline">\(z=f(x,y)\)</span>. The double integral can be approximated by the sum of the volumes of all the small cuboids; if we take the limit of infinitely many cuboids, the sum tends to the integral.</figcaption>
+</figure>
+</div>
+<p>As for single integrals, where we add the areas of the small rectangles, we can add up the smaller volumes (prisms, with volumes <span class="math inline">\(\textrm{(area of base $=\Delta A_k$)} \times \textrm{(height)}\)</span>) to give an approximation to the double integral. As we increase the number of prisms the approximation becomes more and more accurate, and the integral can be defined as the limit of the sum: <span class="math display">\[\int_R f(x,y)\,dA = \lim_{N\to\infty} \sum_{k=1}^{N} 
+f(x_k^*,y_k^*)\,\Delta A_k \,.\]</span> Here <span class="math inline">\((x_k^*,y_k^*)\)</span> is in the base of the <span class="math inline">\(k^{\rm th}\)</span> prism. If we choose the small areas to be rectangles on a regular grid, then <span class="math inline">\(\Delta A_k =
+\Delta x_i\Delta y_j\)</span> with <span class="math inline">\(\Delta x_i = x_{i+1}-x_{i}\)</span>, <span class="math inline">\(\Delta y_j =
+y_{j+1}-y_{j}\)</span> and <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are partitioned in a similar way to that used before: <span class="math inline">\(x_0&lt; x_1&lt;...&lt;x_i&lt;...&lt;x_n\)</span>, <span class="math inline">\(y_0&lt; y_1&lt;...&lt;y_j&lt;...&lt;y_m\)</span>. We then obtain <span class="math display">\[\int_R f(x,y)\,dA = \lim_{n,m\to\infty}
+\sum_{i=0}^{n-1}\sum_{j=0}^{m-1}
+f(x_i^*,y_j^*)\Delta x_i\Delta y_j \,,\]</span> where <span class="math inline">\(x_i^*\)</span> and <span class="math inline">\(y_j^*\)</span> are the coordinates of the points at which the function is evaluated and are in the ranges <span class="math inline">\(x_i^*\in[x_i,x_{i+1}]\)</span>, <span class="math inline">\(y_j^*\in[y_j,y_{j+1}]\)</span>. These points are often taken to be the mid-points. If we take the limit <span class="math inline">\(m\to\infty\)</span> first, and only then take <span class="math inline">\(n\to\infty\)</span>, we get: <span class="math display">\[\begin{aligned}
+\lim_{n,m\to\infty} \sum_{i=0}^{n-1}\sum_{j=0}^{m-1}
+f(x_i^*,y_j^*)\Delta y_j\Delta
+x_i&amp;=\lim_{n\to\infty}\sum_{i=0}^{n-1}\left(\int\limits_y
+f(x_i^*,y)dy \right) \Delta
+x_i\\[3pt]
+&amp;=\int\limits_x\left(\int\limits_y f(x,y)\,dy\right) dx\,.\end{aligned}\]</span></p>
+<p>Let’s see an example of calculating a double integral:</p>
+<div id="eg:easy" class="example">
+<p> Integrate the function <span class="math inline">\(f(x,y)=6xy^2\)</span> over <span class="math inline">\(R=[2,4]\times[1,2]\)</span>. <span class="math display">\[\begin{aligned}
+\int_2^4\int_1^2 6xy^2\,dy\,dx&amp;=\int_2^4\left[2xy^3\right]_1^2dx\\
+&amp;=\int_2^4(16x-2x)\,dx\\
+&amp;=\left[7x^2\right]_2^4 = 84\,.\end{aligned}\]</span> If we’d taken <span class="math inline">\(n\to\infty\)</span> first instead, we would have ended up with the opposite order of integrations, but the final result is unchanged: <span class="math display">\[\begin{aligned}
+\int_1^2\int_2^4 6xy^2dx\,dy
+&amp;=\int_1^2\left[3x^2y^2\right]_2^4 dy\\[2pt]
+&amp;=\int_1^2 36y^2 dy\\[2pt]
+&amp;=\left[12y^3\right]_1^2
+=84\,.\end{aligned}\]</span> As we can see, we obtain the same final result as before.</p>
+</div>
+<p>Things become a little more complicated if the region of integration, let’s call it <span class="math inline">\(A\)</span>, is not a rectangle. Suppose that it is defined to be the set of points in the <span class="math inline">\(x,y\)</span> plane lying between two curves <span class="math inline">\(y_0(x)\)</span> and <span class="math inline">\(y_1(x)\)</span> with <span class="math inline">\(a\le x\le b\,\)</span>: <span class="math display">\[A=\{(x,y)\in\mathbb{R}^2 \,|~ a\le x\le b\,,~y_0(x)\le y\le
+y_1(x)\}\,.\]</span> (To visualise this, it might help to draw a picture!) Then taking <span class="math inline">\(m\to\infty\)</span> first: <span class="math display">\[\int_Af(x,y)\,dx\,dy=\int_a^b\int_{y_0(x)}^{y_1(x)}f(x,y)\,dy\,dx\,.\]</span> Instead we could take <span class="math inline">\(n\to\infty\)</span> first, taking care to rearrange the limits (see example <a href="#eg:harder" data-reference-type="ref" data-reference="eg:harder">[eg:harder]</a> below for this in action). Again, the final answer will be the same.</p>
+<p><strong>Fubini’s theorem</strong> sums this all up.</p>
+<div id="thm:fubini" class="theorem">
+<p> If the function <span class="math inline">\(f(x,y)\)</span> is continuous over a bounded and closed (i.e. compact) region of integration <span class="math inline">\(A\)</span>, then the double integral over that region can be written as an <strong>iterated integral</strong>, with the integrals in either order: <span class="math display">\[\boxed{\int_A f(x,y)\,dA = \int_y \int_x f(x,y)\,dx\,dy = \int_x \int_y
+	f(x,y)\,dy\,dx\,.}\]</span></p>
+</div>
+<p>In order to calculate an integral in this form we take the inner integration first while treating the outer variable as a constant, and then do the outer integration. In this way the problem of two- (or more!) dimensional integration has been reduced to doing a bunch of one-dimensional integrals, one after the other.</p>
+<p><strong>Important note:</strong> If the region and/or the function is unbounded (the latter option arising, for example, if <span class="math inline">\(A\)</span> is open and <span class="math inline">\(f(x,y)\)</span>, while continuous on <span class="math inline">\(A\)</span>, tends to infinity somewhere on its boundary), then Fubini’s theorem still holds <strong>provided that the double integral is absolutely convergent</strong>, meaning that the integral of <span class="math inline">\(|f(x,y)|\)</span> over <span class="math inline">\(A\)</span> must be finite. If this doesn’t hold then the result might not be true, with the iterated integrals in the two orders giving different answers – see questions 61, 63 and 64 from the problem sheets for some examples.</p>
+<div id="eg:harder" class="example">
+<p> Consider integrating <span class="math inline">\(f(x,y)=4xy-y^3\)</span> over the region drawn in figure <a href="#fig:area1" data-reference-type="ref" data-reference="fig:area1">4</a> below, where the region we wish to integrate over is the area between two curves.</p>
+<figure>
+<img src="Figs/area1.jpg" id="fig:area1" alt="" /><figcaption> Graph of the region of integration, lying between the two curves.</figcaption>
+</figure>
+<p>From the graph we can see that <span class="math inline">\(0\le x\le 1\)</span> and <span class="math inline">\(x^3\le y\le
+\sqrt{x}\)</span>, so in the notations of the previous page we should take <span class="math inline">\(a=0\)</span>, <span class="math inline">\(b=1\)</span>, <span class="math inline">\(y_0(x)=x^3\)</span>, and <span class="math inline">\(y_1(x)=\sqrt{x}\)</span>. The integral of <span class="math inline">\(f(x,y)=4xy-y^3\)</span> over this region can be calculated as: <span class="math display">\[\begin{aligned}
+\int_0^1\int_{x^3}^{\sqrt{x}}(4xy-y^3)\,dy\,dx
+&amp;=\int_0^1\left[2xy^2-\frac{y^4}{4})\right]_{x^3}^{\sqrt{x}}dx\\[2pt]
+&amp;=\int_0^1 (\frac{7}{4}x^2-2x^7+\frac{x^{12}}{4})\,dx\\[2pt]
+&amp;=\left[\frac{7x^{3}}{12}-\frac{x^8}{4}+\frac{x^{13}}{52}\right]_0^1
+=\frac{55}{156}\,.\end{aligned}\]</span> If we want to change the order of integration, we must take care over the limits, as they are functions. To integrate with respect to <span class="math inline">\(x\)</span> first so we must calculate the limits of the inner integral in the form <span class="math inline">\(x=g(y)\)</span>; on inspection of the graph, figure <a href="#fig:area1" data-reference-type="ref" data-reference="fig:area1">4</a>, we can see that the lower limit will be given by the line <span class="math inline">\(y=\sqrt{x}\)</span> which must be re-written as <span class="math inline">\(x=y^2\)</span>, similarly the upper limit will be <span class="math inline">\(x=y^{1/3}\)</span>. The outer integral, with respect to <span class="math inline">\(y\)</span>, has lower and upper limits given by <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=1\)</span> respectively. Now we are ready to integrate! <span class="math display">\[\begin{aligned}
+\int_0^1\int_{y^2}^{y^{1/3}}(4xy-y^3)\,dx\,dy
+&amp;=\int_0^1\left[2x^2y-y^3x\right]_{y^2}^{y^{1/3}}dy\\[2pt]
+&amp;=\int_0^1(2y^{5/3}-y^{10/3}-y^5)dy\\[2pt]
+&amp;=\left[\frac{3y^{8/3}}{4}-\frac{3y^{13/3}}{13}-\frac{y^6}{6}\right]_0^1
+=\frac{55}{156}\,.\end{aligned}\]</span></p>
+</div>
+<p>In the example just treated, changing the order of integration didn’t make much difference to the calculation, but sometimes it can be crucial:</p>
+<div class="example">
+<p>Evaluate the integral of the function <span class="math inline">\(f(x,y)= e^{-x^2}\)</span> over the triangle <span class="math inline">\(A\)</span> shown in figure <a href="#fig:triangle" data-reference-type="ref" data-reference="fig:triangle">5</a>.</p>
+<figure>
+<img src="Figs/triangle.jpg" id="fig:triangle" alt="" /><figcaption> Graph of the region of integration <span class="math inline">\(A\)</span>, a triangle with base and height <span class="math inline">\(=1\)</span>.</figcaption>
+</figure>
+<p>Attempting to take the <span class="math inline">\(x\)</span> integral first, we have <span class="math display">\[I=\int_A e^{-x^2}dA\\
+= \int_0^1\int_y^1 e^{-x^2}dx\,dy\,,\]</span> and then we seem to be stuck: the integral w.r.t. <span class="math inline">\(x\)</span> has no elementary solution, and can only be given in terms of the error function. Thankfully all is not lost: using Fubini we can change the order of integration and obtain the answer:<br />
+<span class="math display">\[\begin{aligned}
+I&amp;=\int_A e^{-x^2}dA\\[2pt]
+&amp;= \int_0^1\int_0^x e^{-x^2}dy\,dx\\[2pt]
+&amp;=\int_0^1 xe^{-x^2}dx\\[2pt]
+&amp;= \left[-{\textstyle\frac{1}{2}}\,e^{-x^2}\right]_0^1 
+=  {\textstyle\frac{1}{2}}\,(1-e^{-1})\,.\end{aligned}\]</span></p>
+</div>
+<p><em>Note:</em> to calculate an area in the plane, for example between two curves, simply set <span class="math inline">\(f(x,y)=1\)</span>: <span class="math display">\[\boxed{\int_R 1\,dA = \int_R dA = \textrm{Area of } R}\]</span> an integral which can be evaluated in whichever order is easiest.</p>
+<p>Sometimes it is better to use a non-rectangular grid of elementary areas <span class="math inline">\(\Delta A_k\)</span>, but the idea is the same.</p>
+<div id="circeg" class="example">
+<p> Integrate <span class="math inline">\(f(x,y)=x^2+y^2\)</span> over the unit circle centred on the origin.</p>
+<p>Using polar coordinates, the elementary areas are <span class="math inline">\(\Delta A=\Delta
+r_i\times(r_j\Delta\theta_j)\)</span>, and so <span class="math display">\[\begin{aligned}
+\int\!\int_A(x^2+y^2)\,dA 
+&amp;=\int_0^{2\pi}\int_0^1r^2\,r\,dr\,d\theta\\
+&amp;=\int_0^{2\pi}\int_0^1r^3\,dr\,d\theta\\
+&amp;=\int_0^{2\pi}\left[{\textstyle\frac{1}{4}}r^4\right]^1_0\,d\theta\\
+&amp;=\int_0^{2\pi}{\textstyle\frac{1}{4}}\,d\theta\,=\,\pi/2\,.\end{aligned}\]</span> There will be more on the systematics of this later in the term.</p>
+</div>
+</section>
+<section id="sub:volumeintegrals" class="level2" data-number="1.2">
+<h2 data-number="7.2"><span class="header-section-number">7.2</span> Volume integrals</h2>
+<p><strong>Volume integrals</strong> are the obvious extension to all of this, and Fubini’s theorem applies to them too (and also to four, five and so on dimensional integrals, though we’ll stop at three). To begin, let’s divide up our volume and define the integral as the limit of a Riemann sum.</p>
+<div class="center">
+<figure>
+<img src="vol.png" id="fig:vol" style="width:60.0%" alt="" /><figcaption> Diagram showing a volume to be integrated over, <span class="math inline">\(V\)</span>, with its bounding surface, <span class="math inline">\(S\)</span>. <span class="math inline">\(\Delta V_i\)</span> is a volume element in the partition, situated at <span class="math inline">\(\underline{x}_i\)</span>. </figcaption>
+</figure>
+</div>
+<p>Let <span class="math inline">\(f(\underline{x})\)</span> be a continuous scalar field defined on a volume <span class="math inline">\(V\in\mathbb{R}^3\)</span> enclosed by the surface <span class="math inline">\(S\)</span>. We define the volume integral of <span class="math inline">\(f\)</span> over <span class="math inline">\(V\)</span> (<span class="math inline">\(I = \int_V f(\underline{x})\,dV\)</span>) as the limit of a Riemann sum associated with a partition of <span class="math inline">\(V\)</span> into many, <span class="math inline">\(N\)</span>, small volumes <span class="math inline">\(\Delta V_i\)</span>, as in figure <a href="#fig:vol" data-reference-type="ref" data-reference="fig:vol">6</a>, as the number of these small volumes tends to infinity and their sizes all tend to zero: <span class="math display">\[I = \int_V f(\underline{x})\,dV = 
+\lim\limits_{N\to \infty}\sum\limits_{i=1}^{N} f(\underline{x}_i)\Delta
+V_i\,.\]</span></p>
+<p>Some notes:</p>
+<ul>
+<li><p>The limit should be independent of the partition taken, as we saw with double integrals.</p></li>
+<li><p>Geometrically the volume (triple) integral is a 4-dimensional ‘hypervolume’ lying ‘below’ the graph of <span class="math inline">\(f(x,y,z)\)</span> in <span class="math inline">\(\mathbb{R}^4\)</span>. This is a natural extension of single integrals giving the area under the curve and double integrals giving the (3-D) volume under the surface, but it is hard to visualise!</p></li>
+<li><p>Physically, if <span class="math inline">\(f(\underline{x})\)</span> is the density of some quantity (e.g. number of flying ants per unit volume), then <span class="math inline">\(I = \int_V f(\underline{x})\,dV\)</span> is the amount of ‘stuff’ (total number of flying ants) inside all of <span class="math inline">\(V\)</span>.</p></li>
+<li><p>As in the double integral case, we can calculate the volume inside a surface by setting <span class="math inline">\(f(x,y,z)=1\)</span>: <span class="math display">\[\boxed{\,\int_V 1\,dV = \int_V dV = \textrm{Volume inside } S.}\]</span></p></li>
+</ul>
+<p>Now consider a simple shape such as the sphere shown in figure <a href="#fig:ball" data-reference-type="ref" data-reference="fig:ball">7</a>, which can be split into an upper and lower surface <span class="math inline">\(z=g_U(x,y)\)</span> and <span class="math inline">\(z=g_L(x,y)\)</span> respectively. (Note that the sphere does not need to be centred on the origin for this to be possible.)</p>
+<div class="center">
+<figure>
+<img src="ball.png" id="fig:ball" style="width:60.0%" alt="" /><figcaption> Diagram showing the volume to be integrated over, <span class="math inline">\(V\)</span> with its bounding surface, <span class="math inline">\(S\)</span>. The circle on the <span class="math inline">\(x,y\)</span> plane is the projection of the volume onto the plane, and it is labelled <span class="math inline">\(A\)</span>. Simple shapes like the sphere can be split into an upper surface <span class="math inline">\(z=g_U(x,y)\)</span> and a lower surface <span class="math inline">\(z=g_L(x,y)\)</span>.</figcaption>
+</figure>
+</div>
+<p>If we consider in this case a simple partition which is parallel to the coordinate planes then <span class="math display">\[\Delta V_i = \Delta x_r\Delta y_s\Delta z_t\,,\]</span> where <span class="math inline">\(\Delta x_r = x_{r+1}-x_r\)</span>, <span class="math inline">\(\Delta y_s = y_{s+1}-y_s\)</span>, <span class="math inline">\(\Delta z_t =
+z_{t+1}-z_t\)</span>.</p>
+<p>Taking the limits of the Riemann sum, <span class="math display">\[\begin{aligned}
+I
+&amp;=\lim\limits_{N\to \infty}\sum\limits_{i=1}^{N} f(\underline{x}_i)\Delta V_i\\
+&amp;= \lim\limits_{N\to \infty}\sum\limits_{r,s,t} f(x_r^*, y_s^*, z_t^*)\Delta x_r\Delta y_s\Delta z_t\\
+&amp;= \lim\limits_{\Delta x_r, \Delta y_s\to 0}\sum\limits_{r,s}\left(\lim\limits_{\Delta z_t\to 0}\sum_{t} f(x_r^*, y_s^*, z_t^*)\Delta z_t\right)\Delta x_r\Delta y_s\quad \textrm{take $z$ limit first}\\
+&amp;= \lim\limits_{\Delta x_r, \Delta y_s\to 0}\sum\limits_{r,s}\left(\int\limits_{z=g_L(x_r^*, y_s^*)}^{z=g_U(x_r^*, y_s^*)} f(x_r^*, y_s^*, z)dz\right)\Delta x_r\Delta y_s\quad \textrm{and now $x$, $y$ limits}\\
+&amp;=\int\limits_A\left(\int\limits_{z=g_L(x, y)}^{z=g_U(x, y)} f(x, y,
+z)dz\right)dx\,dy\,,\end{aligned}\]</span> where <span class="math inline">\(x^*_r\in[x_r, x_{r+1}]\)</span>, <span class="math inline">\(y^*_s\in[y_s, y_{s+1}]\)</span>, <span class="math inline">\(z^*_t\in[z_t, z_{t+1}]\)</span>. We may also disentangle the area integral to write <span class="math inline">\(I\)</span> as a three-times iterated integral: <span class="math display">\[I \,=\, \int_x\int_y\int_z f(\underline{x})\,dz\,dy\,dx\,.\]</span> By Fubini’s theorem, we can change the order of integration as long as <span class="math inline">\(f(\underline{x})\)</span> is continuous over the closed volume, as in the following example.</p>
+<div id="yurt" class="example">
+<p> Find the mass <span class="math inline">\(M\)</span> of air inside a hemispherical volume of radius <span class="math inline">\(r\)</span> centred on the origin, when the air density varies with height as <span class="math inline">\(\rho=cz+\rho_0\)</span> (and <span class="math inline">\(c\)</span> and <span class="math inline">\(\rho_0\)</span> are constants).</p>
+<p>Doing the integrals in the order <span class="math inline">\(x\)</span> first, then <span class="math inline">\(y\)</span>, then <span class="math inline">\(z\)</span>, we have <span class="math display">\[M
+=\int_0^r\int_{-r_z}^{r_z}\int_{-\sqrt{r_z^2-y^2}}^{\sqrt{r_z^2-y^2}}
+\rho(z)\,dx\,dy\,dz\]</span> where <span class="math inline">\(r_z=\sqrt{r^2-z^2}\)</span>. Noting that <span class="math inline">\(\rho(z)\)</span> can be taken outside the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> integrals, <span class="math display">\[M = \int_0^r\rho(z)\left(
+\int_{-r_z}^{r_z}\int_{-\sqrt{r_z^2-y^2}}^{\sqrt{r_z^2-y^2}}
+\,dx\,dy\right)\,dz\,.\]</span> Now the quantity in round brackets is just the area <span class="math inline">\(A(z)\)</span> of the horizontal ‘slice’ of the hemisphere at height <span class="math inline">\(z\)</span>, so it’s equal to <span class="math inline">\(\pi r_z^2\)</span>, and <span class="math display">\[\begin{aligned}
+M
+&amp;= \pi\int_0^r(cz+\rho_0)r_z^2\,dz\\
+&amp;= \pi\int_0^r(cz+\rho_0)(r^2-z^2)\,dz\\
+&amp;= \pi\int_0^rcr^2z+\rho_0r^2-cz^3-\rho_0z^2\,dz\\[3pt]
+&amp;=
+\pi\left[{\textstyle\frac{1}{2}}cr^2z^2+\rho_0r^2z-{\textstyle\frac{1}{4}}cz^4-{\textstyle\frac{1}{3}}\rho_0z^3
+\right]_0^r\\[4pt]
+&amp;=\pi({\textstyle\frac{1}{4}}cr^4+{\textstyle\frac{2}{3}}\rho_0r^3)\,.\end{aligned}\]</span></p>
+</div>
+<div id="spherevol" class="example">
+<p> Use the volume integral to calculate the volume of a sphere of radius <span class="math inline">\(a\)</span> (which we know to be <span class="math inline">\(V = \frac{4}{3}\pi a^3\)</span>).</p>
+<p>We can calculate this volume as <span class="math inline">\(\int_V f\,dV\)</span>, where <span class="math inline">\(V\)</span> is the set of points <span class="math inline">\(\{(x,y,z)\in\mathbb{R}^3: x^2+y^2+z^2 \le a^2\}\)</span> and <span class="math inline">\(f=1\)</span>. We have: <span class="math display">\[\begin{aligned}
+\int_V dV
+&amp;= \int_A\left(\int_{z=g_L(x, y)}^{z=g_U(x, y)}
+dz\right)dx\,dy\\
+&amp;=\int_A\left(\int_{z=-\sqrt{a^2-x^2-y^2}}^{z=\sqrt{a^2-x^2-y^2}}
+dz\right)dx\,dy\\
+&amp;=\int_A 2\sqrt{a^2-x^2-y^2}dx\,dy\\
+&amp;=
+\int_{-a}^a\int_{-\sqrt{a^2-y^2}}^{\sqrt{a^2-y^2}}2\sqrt{a^2-x^2-y^2}\,dx\,dy\\
+&amp;\textrm{Use a substitution to complete the x-integration:
+$x=\sqrt{a^2-y^2}\cos\theta$, $dx=-\sqrt{a^2-y^2}\sin\theta\,d\theta$}\\
+&amp;=\int_{-a}^a \left(\int_{\pi}^{2\pi}2(a^2-y^2)\sin^2\theta\,d\theta\right)dy\\
+&amp;=\int_{-a}^a (a^2-y^2)\pi\,dy
+\,=\,\pi(2a^3- \frac{2a^3}{3})\,=\,\frac{4}{3}\pi a^3\textrm{, as expected.}\end{aligned}\]</span></p>
+</div>
+<p>Later, we’ll rederive this result slightly less painfully, via a change of variables.</p>
+</section>
+<section id="sec:surf_line" class="level2" data-number="1.3">
+<h2 data-number="7.3"><span class="header-section-number">7.3</span> Line integrals</h2>
+<p>So far the integrals have been over ‘flat’ regions in one, two or three dimensions, but for applications it is important to generalise to curved lines and surfaces.</p>
+<p>A <em>regular arc</em> <span class="math inline">\(C\subset \mathbb{R}^n\)</span> is a parametrised curve <span class="math inline">\(\underline{x}(t)\)</span> for which the Cartesian components <span class="math inline">\(x_a(t)\)</span>, <span class="math inline">\(a=1\dots n\)</span> are continuous with continuous first derivatives, where <span class="math inline">\(t\)</span> lies in some (maybe infinite) interval <span class="math inline">\([\alpha,\beta]\)</span>. A <em>regular curve</em> consists of a finite number of regular arcs joined end to end.</p>
+<p>If <span class="math inline">\(\underline{v}(\underline{x})\)</span> is a vector field in <span class="math inline">\(\mathbb{R}^n\)</span>, then its restriction to a regular arc, <span class="math inline">\(\underline{v}(\underline{x}(t))\)</span>, is a vector function of <span class="math inline">\(t\)</span> and its scalar product with the tangent <span class="math inline">\(d\underline{x}(t)/dt\)</span> to the arc is a scalar function of <span class="math inline">\(t\)</span>. We can therefore integrate it along the arc to get a real number, called the <em>line integral</em> of <span class="math inline">\(\underline{v}\)</span> along the arc <span class="math inline">\(C\)</span>: <span class="math inline">\(t\mapsto \underline{x}(t),~t=\alpha\dots\beta\)</span>, denoted <span class="math inline">\(\int_C\underline{v}\cdot d\underline{x}\)</span> : <span class="math display">\[\begin{equation} \boxed{
+\int_C\underline{v}\cdot d\underline{x} = 
+\int_{\alpha}^{\beta}\underline{v}(\underline{x}(t))\cdot
+\frac{d\underline{x}(t)}{dt}\,dt\,.
+}
+\label{lineintdef} \end{equation}\]</span> An important fact is that, as suggested by the notation, the line integral does not depend on the choice of parametrisation of <span class="math inline">\(C\)</span>. This follows from the chain rule, but it is instructive to check it for yourself in some examples.</p>
+<p>If <span class="math inline">\(C\)</span> is a regular curve made up of one or more regular arcs, then the line integral of <span class="math inline">\(\underline{v}\)</span> along <span class="math inline">\(C\)</span> is the sum of the line integrals over these arcs; it is also denoted as <span class="math inline">\(\int_C\underline{v}\cdot
+d\underline{x}\)</span> .</p>
+<p>Finally, if the integral is performed over a <em>closed</em> regular curve then it is often written as <span class="math inline">\(\oint_C\underline{v}\cdot d\underline{x}\)</span> .</p>
+<p>Some variants:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Interpretation</th>
+<th style="text-align: center;">Form</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Length of curve, <span class="math inline">\(C\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\int_C ds = \int_a^b
+||\frac{d\underline{x}(t)}{dt}||\,dt\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Mass, if <span class="math inline">\(f\)</span> is a density function</td>
+<td style="text-align: center;"><span class="math inline">\(\int_C fds =
+\int_a^bf(\underline{x}(t))\,||\frac{d\underline{x}(t)}{dt}||\,dt\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Work done, if <span class="math inline">\(\underline{F}\)</span> is a force</td>
+<td style="text-align: center;"><span class="math inline">\(\int_C\underline{F}\cdot d\underline{x}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Here is a quick list of useful parametrisations (with a positive orientation i.e. anti-clockwise) for some common curves in two dimensions:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Curve</th>
+<th style="text-align: center;">Parametric Equations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Ellipse: <span class="math inline">\(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x(t)=a\cos(t)\)</span>, <span class="math inline">\(y(t)=b\sin(t)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(y=f(x)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x(t)=t\)</span>, <span class="math inline">\(y(t)=f(t)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(x=g(y)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x(t)=g(t)\)</span>, <span class="math inline">\(y(t)=t\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Straight line segment from <span class="math inline">\((x_0,y_0)\)</span> to <span class="math inline">\((x_1,y_1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x(t)=(1-t)x_0+tx_1\)</span>, <span class="math inline">\(y(t)=(1-t)y_0+ty_1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span id="tab:par" label="tab:par">[tab:par]</span></p>
+<div class="example">
+<p>Let <span class="math inline">\(\underline{u}(\underline{x})\)</span> be the vector field <span class="math inline">\((x^2z,xyz,x)\)</span> and <span class="math inline">\(C\)</span> be the circle parallel to the <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> plane with centre <span class="math inline">\(\underline{a}=(a_1,a_2,a_3)\)</span> and radius <span class="math inline">\(r\)</span>, given by <span class="math display">\[\underline{x}(t)=\underline{a}+r\cos t\,\underline{e}_1+r\,\sin t\,\underline{e}_2\,,\quad
+0\le t\le 2\pi\,.\]</span> Evaluate <span class="math inline">\(\oint_C\underline{u}\cdot d\underline{x}\)</span>.</p>
+<p>Calculating, we have <span class="math display">\[\frac{d\underline{x}}{dt}=-r\,\sin t\,\underline{e}_1+r\,\cos t\,\underline{e}_2 =
+(-r\,\sin t,r\,\cos t,0)\]</span> and <span class="math display">\[\underline{x}(t)=(a_1+r\,\cos t,a_2+r\,\sin t,a_3)\]</span> so <span class="math display">\[\underline{u}(\underline{x}(t))=
+((a_1+r\,\cos t)^2a_3,(a_1+r\,\cos t)(a_2+r\,\sin t)a_3,a_1+r\,\cos t)\]</span> and <span class="math display">\[\underline{u}(\underline{x}(t))\cdot\frac{d\underline{x}}{dt}=
+-r\,\sin t(a_1+r\,\cos t)^2a_3 +r\,\cos t(a_1+r\,\cos t)(a_2+r\,\sin
+t)a_3\,.\]</span> Hence <span class="math display">\[\begin{aligned}
+\oint_C\underline{u}\cdot d\underline{x}
+&amp;=
+\int_0^{2\pi}
+\left(-r\,\sin t(a_1+r\,\cos t)^2a_3 +r\,\cos t(a_1+r\,\cos t)(a_2+r\,\sin 
+t)a_3\right)dt\\[2pt]
+&amp;=\dots\\[2pt]
+&amp;= \pi r^2 a_2a_3\,.\end{aligned}\]</span> Note: if we had instead parametrized <span class="math inline">\(C\)</span> as <span class="math display">\[\underline{x}(t)=\underline{a}+r\cos 2t\,\underline{e}_1+r\,\sin 2t\,\underline{e}_2\,,\quad
+0\le t\le \pi\]</span> the steps of the calculation would have changed slightly, but the final answer is unchanged – it’s worthwhile to check this for yourself.</p>
+</div>
+<div class="example">
+	<p>Consider a circle of radius 1, centred at the origin. Let <span class="math inline">\(C\)</span> be the arc of this circle which lies in the first quadrant, taken in an anticlockwise direction. Find the value of the line integral of <span class="math inline">\(\underline{F}(x,y) = (-y, -xy)\)</span> along <span class="math inline">\(C\)</span>.</p>
+<p>First we must parametrise the path, <span class="math inline">\(C\)</span>: <span class="math inline">\(\underline{x}(t) = (\cos(t),
+\sin(t))\)</span>, <span class="math inline">\(0\le t\le \pi/2\)</span> (the restriction on the range of <span class="math inline">\(t\)</span> is because the arc lies only in the first quadrant). Therefore <span class="math inline">\(\frac{d\underline{x}(t)}{dt} = (-\sin(t), \cos(t))\)</span>. Next note that <span class="math inline">\(\underline{F}(\underline{x}(t)) = \underline{F}(x(t),y(t)) = (-\sin(t),
+-\cos(t)\sin(t))\)</span>, so <span class="math display">\[\begin{aligned}
+\int_C \underline{F}\cdot d\underline{x} &amp;=
+\int_0^\frac{\pi}{2} (-\sin(t), -\cos(t)\sin(t))\cdot(-\sin(t),
+\cos(t))\,dt\\
+&amp;= \int_0^\frac{\pi}{2} (\sin^2(t)-\cos^2(t)\sin(t))\,dt\\
+&amp;= \int_0^\frac{\pi}{2}\left( {\textstyle\frac{1}{2}}(1-\cos(2t)) -
+\cos^2(t)\sin(t)\right)dt\\
+&amp;= \Bigl[{\textstyle\frac{1}{2}}(t-{\textstyle\frac{1}{2}}\sin(2t))
++{\textstyle\frac{1}{3}}\cos^3(t) \Bigr]_0^{\frac{\pi}{2}}
+= {\textstyle\frac{1}{4}}{\pi}-{\textstyle\frac{1}{3}}\,.\end{aligned}\]</span> Once you have understood Green’s theorem [next chapter!], try to use it to double-check this result.</p>
+</div>
+<p>To summarize: the steps for performing a line integral of a vector field <span class="math inline">\(\underline{v}(\underline{x})\)</span> along a regular arc <span class="math inline">\(C\)</span> are as follows:<br />
+</p>
+<ul>
+<li><p>parametrise <span class="math inline">\(C\)</span> somehow, as <span class="math inline">\(t\mapsto\underline{x}(t)\)</span>, with <span class="math inline">\(t\)</span> in some range;</p></li>
+<li><p>compute <span class="math inline">\(\frac{d\underline{x}(t)}{dt}\)</span> and <span class="math inline">\(\underline{v}(\underline{x}(t))\)</span>;</p></li>
+<li><p>compute their scalar product and re-write the integrand in terms of <span class="math inline">\(t\)</span>;</p></li>
+<li><p>perform the integration between the limits identified in the first part.</p></li>
+</ul>
+<p>For a regular curve made up of a number of regular arcs, just do the above steps for each arc, and then add up the results.</p>
+</section>
+<section id="surface-integrals-i-defining-a-surface" class="level2" data-number="1.4">
+<h2 data-number="7.4"><span class="header-section-number">7.4</span> Surface integrals I: defining a surface</h2>
+<p>As with a line integral where the integration of a vector field along a curve yields a real number, a three-dimensional vector field can be integrated over a two-dimensional surface <span class="math inline">\(S\)</span> sitting in <span class="math inline">\(\mathbb{R}^3\)</span>, to give a double integral analogue of the line integral. Surface integrals are of particular importance in electromagnetism and fluid mechanics.</p>
+<p>The first task is to specify the surface. There are (at least) two standard ways to do this:</p>
+<p><strong>Method 1:</strong> Give the surface in <em>parametric form</em> as <span class="math inline">\(\underline{x}(u,v)\)</span> where the real parameters <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> lie in some region <span class="math inline">\(U\subset\mathbb{R}^2\)</span> called the <em>parameter domain</em>.</p>
+<div id="spheresurf" class="example">
+<p> Points on a sphere of radius <span class="math inline">\(a\)</span> centred on the origin can be parametrised in spherical (polar) coordinates, with <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> usually written as <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span>, as <span class="math display">\[\underline{x}(\theta,\phi)=( x(\theta,\phi), y(\theta,\phi), z(\theta,\phi))\]</span> where <span class="math display">\[x(\theta,\phi)=a\sin\theta\,\cos\phi\,,~~
+y(\theta,\phi)=a\sin\theta\,\sin\phi\,,~~
+z(\theta,\phi)=a\cos\theta\,,\]</span> and <span class="math inline">\(0\le\theta\le\pi\)</span>, <span class="math inline">\(0\le\phi\le 2\pi\)</span> .</p>
+</div>
+<p><em>Small aside:</em>  The parametrisation for the surface of a sphere comes from the spherical polar coordinate system, a three-dimensional extension of two-dimensional polar coordinates. Figure <a href="#fig:polar" data-reference-type="ref" data-reference="fig:polar">8</a> shows how we get these coordinates: first calculate <span class="math inline">\(r&#39; =
+r\sin(\theta)\)</span>. Then <span class="math inline">\(x = r&#39;\cos(\phi) = r\sin(\theta)\cos(\phi)\)</span>, <span class="math inline">\(y
+= r&#39;\sin(\phi) = r\sin(\theta)\sin(\phi)\)</span>, while <span class="math inline">\(z = r\cos(\theta)\)</span>. As ever, <span class="math inline">\(r = \sqrt{x^2+y^2+z^2}\)</span> is the distance from the origin, while <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> are known as the polar and azimuthal angles respectively, with <span class="math inline">\(\theta\in[0,\pi]\)</span> and <span class="math inline">\(\phi\in[0,2\pi]\)</span>. Beware that some texts have these the other way around, so that <span class="math inline">\(\theta\)</span> is the azimuthal and <span class="math inline">\(\phi\)</span> the polar angle. Note though that here we fix <span class="math inline">\(r\)</span> to be equal to <span class="math inline">\(a\)</span>, the radius of the sphere, as we want to stay on its surface.</p>
+<p>The following table gives some more examples:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Surface</th>
+<th style="text-align: center;">Parametric Equations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">General</td>
+<td style="text-align: center;"><span class="math inline">\(\underline{x}(u,v) = x(u,v)\underline{e}_1 + y(u,v)\underline{e}_2 + z(u,v)\underline{e}_3\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Sphere/part sphere, radius <span class="math inline">\(a\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x=a\sin(u)\cos(v)\)</span>, <span class="math inline">\(y=a\sin(v)\sin(u)\)</span>, <span class="math inline">\(z=a\cos(u)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Cylinder, radius <span class="math inline">\(a\)</span>, centred on <span class="math inline">\(z\)</span>-axis</td>
+<td style="text-align: center;"><span class="math inline">\(x = a\cos(u)\)</span>, <span class="math inline">\(y=a\sin(u)\)</span>, <span class="math inline">\(z=v\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(z=f(x,y)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x=u\)</span>, <span class="math inline">\(y=v\)</span>, <span class="math inline">\(z=f(u,v)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(y=g(x,z)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x=u\)</span>, <span class="math inline">\(y=g(u,v)\)</span>, <span class="math inline">\(z=v\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(x=h(y,z)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x=h(u,v)\)</span>, <span class="math inline">\(z=v\)</span>, <span class="math inline">\(y=u\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="center">
+<figure>
+<img src="polar.png" id="fig:polar" style="width:50.0%" alt="" /><figcaption> Spherical polar coordinates <span class="math inline">\((r,\theta,\phi)\)</span>.</figcaption>
+</figure>
+</div>
+<p>Returning to the general case, <span class="math inline">\(\frac{\partial\underline{x}}{\partial u}\)</span> and <span class="math inline">\(\frac{\partial\underline{x}}{\partial v}\)</span> are two tangent vectors to <span class="math inline">\(S\)</span> at <span class="math inline">\(\underline{x}(u,v)\)</span>, and so their cross product <span class="math display">\[\frac{\partial\underline{x}(u,v)}{\partial u}\times
+\frac{\partial\underline{x}(u,v)}{\partial v}\]</span> is a normal vector to <span class="math inline">\(S\)</span> there, and <span class="math display">\[\widehat{\underline{n}}=
+\Bigl(\frac{\partial\underline{x}(u,v)}{\partial u}\times
+\frac{\partial\underline{x}(u,v)}{\partial v}\Bigr)
+\bigg/ %
+\left|{\frac{\partial\underline{x}(u,v)}{\partial u}\times
+\frac{\partial\underline{x}(u,v)}{\partial v}}\right|\]</span> is a unit normal to <span class="math inline">\(S\)</span> at <span class="math inline">\(\underline{x}(u,v)\)</span>. If <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are swapped over, then we also get a unit normal to <span class="math inline">\(S\)</span> at <span class="math inline">\(\underline{x}(u,v)\)</span>, but one pointing in the opposite direction (which for a surface sitting in <span class="math inline">\(\mathbb{R}^3\)</span> is the only other option).</p>
+<p>It’s a good exercise to check for example <a href="#spheresurf" data-reference-type="ref" data-reference="spheresurf">[spheresurf]</a> that this recipe gives the answer you’d expect, that is a unit vector pointing in the radial direction. For this case the relevant partial derivatives are <span class="math display">\[\begin{aligned}
+\frac{\partial \underline{x}}{\partial \theta} 
+&amp;= (a\cos\theta\cos\phi, a\cos\theta\sin\phi, -a\sin\theta)\\
+\frac{\partial \underline{x}}{\partial \phi} 
+&amp;= (-a\sin\theta\sin\phi, a\cos\phi\sin\theta, 0)\end{aligned}\]</span> and so <span class="math display">\[\underline{x}_{\theta}\times\underline{x}_{\phi} \,=\,
+(a^2\sin^2\theta\cos\phi,a^2\sin^2\theta\sin\phi,
+a^2\sin\theta\cos\theta) = a\sin\theta\,\underline{x}\,.\]</span> Finally constructing the unit normal vector gives <span class="math display">\[\widehat{\underline{n}} = \frac{a\sin\theta\,\underline{x}}{a\sin\theta\,|\underline{x}|} =
+\frac{(x,y,z)}{a}\,,\]</span> which is indeed the expected answer, if you think about it.</p>
+<p><strong>Method 2:</strong> Express the surface as (part of) a <strong>level surface</strong> (recall from term 1) of a scalar field <span class="math inline">\(f\)</span>, i.e. give the surface implicitly as <span class="math inline">\(f(x,y,z)=\textrm{const}\)</span>. Then the gradient of <span class="math inline">\(f\)</span>, <span class="math inline">\(\nabla f\)</span>, is a normal vector to <span class="math inline">\(S\)</span>, and <span class="math display">\[\begin{equation} \label{eqn:delf}
+\widehat{\underline{n}} = \frac{\underline{\nabla\mkern-2mu}\mkern 3mu f}{|\underline{\nabla\mkern-2mu}\mkern 3mu f|}\,, \end{equation}\]</span> is a unit normal.</p>
+<div id="eg:prelim" class="example">
+<p> For the sphere discussed above, we can take <span class="math inline">\(f(x,y,z) := x^2 + y^2 + z^2 -a^2 = 0\)</span> (or <span class="math inline">\(f(x,y,z) := x^2 + y^2 + z^2
+= a^2\)</span> would work just as well). Then <span class="math display">\[\begin{aligned}
+\widehat{\underline{n}} &amp;= \frac{\underline{\nabla\mkern-2mu}\mkern 3mu f}{|\underline{\nabla\mkern-2mu}\mkern 3mu f|}\\
+&amp;= \frac{(2x,2y,2z)}{\sqrt{4x^2+4y^2+4z^2}}\\
+&amp;= \frac{(x,y,z)}{\sqrt{x^2+y^2+z^2}} = \frac{(x,y,z)}{a}\,.\end{aligned}\]</span> This agrees with the result from method 1.</p>
+</div>
+<p>Note: if we’d instead defined the surface of the sphere by <span class="math inline">\(h(x,y,z)=-f(x,y,z)=a^2-x^2-y^2-z^2=0\)</span>, then the normal vector obtained by using <span class="math inline">\(f\)</span> (which we’ll call <span class="math inline">\(\widehat{\underline{n}}_f\)</span>) would have been replaced by <span class="math display">\[\widehat{\underline{n}}_h = \frac{(-x,-y,-z)}{\sqrt{x^2+y^2+z^2}} =
+-\widehat{\underline{n}}_f\]</span> This reflects the same ambiguity in the sign of the normal vector that was seen when swapping <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> in method 1.</p>
+</section>
+<section id="surface-integrals-ii-evaluating-the-integral" class="level2" data-number="1.5">
+<h2 data-number="7.5"><span class="header-section-number">7.5</span> Surface integrals II: evaluating the integral</h2>
+<p>We will once again use a Riemann sum to define the surface integral of a continuous vector field <span class="math inline">\(\underline{F}(\underline{x})\)</span> over a surface <span class="math inline">\(S\)</span> lying in <span class="math inline">\(\mathbb{R}^3\)</span>. The parametrised position vector of a point on the surface is <span class="math inline">\(\underline{x} = \underline{x}(u,v)\)</span> with <span class="math inline">\((u,v)\in
+U\)</span>, the parameter domain. We will also assume that the partial derivatives of <span class="math inline">\(\underline{x}\)</span> exist and are continuous, and that the unit normal vector <span class="math inline">\(\widehat{\underline{n}}(u,v)\)</span> is continuous – this means that the surface is what we call orientable. (This last point may seem obvious but it is not always true e.g. the Möbius strip is a non-orientable surface.) The general setup is illustrated in figure <a href="#fig:surf_dA" data-reference-type="ref" data-reference="fig:surf_dA">10</a>. Then the surface integral is <em>defined</em> as <span class="math display">\[\begin{equation} \label{eqn:surf_int}
+\int_S\underline{F}\cdot d\underline{A}= \lim\limits_{\Delta A_k\to
+0}\sum\limits_k \underline{F}(\underline{x}^*_k)\cdot \widehat{\underline{n}}_k\,\Delta A_k\,. \end{equation}\]</span> Note the dot product between the normal to the surface and the vector field: this implies that we are looking at the vector field contributions which are perpendicular to the surface.</p>
+<p>To turn this rather-formal definition into something which can be used in practice, we use either method 1 or method 2 to specify the surface, and then convert everything into a ‘flat’ two-dimensional area integral of the sort seen in section <a href="#sub:fubini" data-reference-type="ref" data-reference="sub:fubini">7.1</a> above.</p>
+<table id="fig:surf_dA">
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width:50%"><img src="hemis.jpg" title="fig:" id="fig:surf_dA" alt=" Plot (a) shows a hemispherical surface, over which we may wish to integrate a vector field; plot (b) shows an area element, \Delta
+A_{ij}, of the surface with unit normal vector \widehat{\underline{n}}_{ij}" /></td>
+<td style="text-align: center; width:50%"><img src="surf_dA.png" title="fig:" id="fig:surf_dA" alt=" Plot (a) shows a hemispherical surface, over which we may wish to integrate a vector field; plot (b) shows an area element, \Delta
+A_{ij}, of the surface with unit normal vector \widehat{\underline{n}}_{ij}" /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(a)</td>
+<td style="text-align: center;">(b)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Method 1:</strong> We construct the area elements <span class="math inline">\(\Delta
+A_k\)</span> by approximating them as parallelograms given by the partitioning of the surface along lines of constant <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>. Remember <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are in the parameter domain <span class="math inline">\(U\)</span>, split as shown in figure <a href="#fig:surf_dA" data-reference-type="ref" data-reference="fig:surf_dA">10</a>(b) and indexed <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> respectively, and that the modulus of the cross product of two vectors in equal to the area of the parallelogram that they span. Thus <span class="math display">\[\begin{align}
+% \label{eqn:nA}
+\widehat{\underline{n}}_k\Delta A_k&amp;\approx  (\underline{x}(u_i +\Delta u_i, v_j) -
+\underline{x}(u_i, v_j))\times(\underline{x}(u_i, v_j+\Delta v_j) - \underline{x}(u_i,
+v_j))\nonumber\\
+&amp;\approx  (\Delta u_i\frac{\partial \underline{x}}{\partial u})\times (\Delta v_j\frac{\partial \underline{x}}{\partial v})\textrm{.}
+\label{eqn:area_el}\end{align}\]</span> Substituting equation <span class="math inline">\(\eqref{eqn:area_el}\)</span> into equation <span class="math inline">\(\eqref{eqn:surf_int}\)</span> gives us <span class="math display">\[\int_S\underline{F}\cdot d\underline{A}
+= \lim\limits_{\Delta u_i, \Delta v_j\to
+0}\sum\limits_{i,j} \underline{F}(\underline{x}^*_{ij})\cdot \left(\frac{\partial
+\underline{x}(u_i,v_j)}{\partial u}\times \frac{\partial
+\underline{x}(u_i,v_j)}{\partial v}\right)\Delta u_i\Delta v_j\]</span> and, taking the limit, we get the key formula, the ‘surface’ version of the line integral definition (<a href="#lineintdef" data-reference-type="ref" data-reference="lineintdef">[lineintdef]</a>): <span class="math display">\[\begin{equation} \boxed{
+\int_S\underline{F}\cdot d\underline{A}
+= \int_U \underline{F}(\underline{x}(u,v))\cdot \left(\frac{\partial
+\underline{x}}{\partial u}\times \frac{\partial \underline{x}}{\partial v}\right)
+du\,dv\,.
+}
+\label{eqn:Sint} \end{equation}\]</span> This is a double integral over the parameter domain <span class="math inline">\(U\)</span>, and can be written neatly as <span class="math display">\[\int_S \underline{F}\cdot d\underline{A} = \int_U
+\underline{F}\cdot \underline{N}\,du\,dv\,,\]</span> where <span class="math inline">\(\underline{N} = \underline{x}_u\times\underline{x}_v\)</span> is a normal vector to <span class="math inline">\(S\)</span> (but not of unit length).</p>
+<div id="method1eg" class="example">
+<p> Find the integral of <span class="math inline">\(\underline{F} = \underline{e}_3\)</span> over the surface, <span class="math inline">\(S\)</span>, given by the hemisphere of radius 1, centred at the origin, with <span class="math inline">\(z&gt;0\)</span>, as shown in figure <a href="#fig:surf_dA" data-reference-type="ref" data-reference="fig:surf_dA">10</a> (a). We have <span class="math display">\[\int_S \underline{F}\cdot d\underline{A} = \int_U
+\underline{F}(\underline{x})\cdot \left(\frac{\partial \underline{x}}{\partial u}\times
+\frac{\partial \underline{x}}{\partial v}\right) du\,dv\,,\]</span> where <span class="math inline">\(r = 1\)</span>, and taking <span class="math inline">\(U=\{(u, v)\in\mathbb{R}^2: 
+0\le u\le\frac{\pi}{2}, 0\le v\le 2\pi\}\)</span> captures the part of the surface of the unit sphere with <span class="math inline">\(z\ge 0\)</span>. We also calculated <span class="math inline">\(\underline{x}_u\times \underline{x}_v\)</span> in example <a href="#eg:prelim" data-reference-type="ref" data-reference="eg:prelim">[eg:prelim]</a>, and substituting all our values and completing the calculation, <span class="math display">\[\begin{aligned}
+\int_S \underline{F}\cdot d\underline{A}&amp;=
+\int_0^{2\pi}\int_0^{\frac{\pi}{2}}\underline{F}(\underline{x})\cdot
+\left(\frac{\partial \underline{x}}{\partial u}\times \frac{\partial
+\underline{x}}{\partial v}\right) du\,dv\\
+&amp;= \int_0^{2\pi}\int_0^{\frac{\pi}{2}} \underline{e}_3\cdot
+(\sin^2(u)\cos(v)\underline{e}_1 + \sin^2(u)\sin(v)\underline{e}_2 +
+\sin(u)\cos(u)\underline{e}_3)\,du\,dv\\
+&amp;= \int_0^{2\pi}\int_0^{\frac{\pi}{2}} \sin(u)\cos(u)\,du\,dv\\
+&amp;= \int_0^{2\pi}\left[{\textstyle\frac{1}{2}}\sin^2(u)\right]^{\frac{\pi}{2}}_0 dv
+= \int_0^{2\pi}\!{\textstyle\frac{1}{2}}\,dv = \pi\,.\end{aligned}\]</span></p>
+</div>
+<p><strong>Method 2:</strong> Suppose that <span class="math inline">\(S\)</span> is given as the level set (or part of the level set) of a function <span class="math inline">\(f(x,y,z)\)</span>, and furthermore that <span class="math inline">\(\partial f/\partial z\neq 0\)</span> on <span class="math inline">\(S\)</span>. Then, by the implicit function theorem for surfaces, the points of <span class="math inline">\(S\)</span> can be written as <span class="math inline">\((x,y,g(x,y))\)</span> for some function <span class="math inline">\(g(x,y)\)</span>, where the <span class="math inline">\((x,y)\)</span> ranges over some region <span class="math inline">\(A\)</span> of the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane, which is the projection of <span class="math inline">\(S\)</span> onto that plane. (This is not possible for every surface; for example the <span class="math inline">\(x\)</span>,<span class="math inline">\(z\)</span> plane cannot be parametrised this way, and neither can the surface of a whole sphere.) We can then apply method 1 taking the parameters to be the <span class="math inline">\(x,\,y\)</span> coordinates, so that <span class="math inline">\({\bf x}(x,y)=(x,y,g(x,y))=
+x\,\underline{e}_1+y\,\underline{e}_2+g(x,y)\,\underline{e}_3\)</span>, and (after a short calculation) <span class="math display">\[\frac{\partial \underline{x}}{\partial x}\times \frac{\partial \underline{x}}{\partial y}=
+-{\bf e}_1\frac{\partial g}{\partial x}-{\bf e}_2\frac{\partial
+g}{\partial y}+{\bf e}_3\,.\]</span> The partial derivatives of <span class="math inline">\(g\)</span> can be calculated as in the implicit function theorem for surfaces, noting that the function of two variables, <span class="math inline">\(F(x,y)\)</span>, defined by <span class="math inline">\(F(x,y)=f(x,\,y,\,g(x,y))\)</span>, is constant, so that <span class="math display">\[0=\frac{\partial F}{\partial x}=\frac{\partial f}{\partial
+x}+\frac{\partial f}{\partial z}\frac{\partial g}{\partial x}\]</span> <span class="math display">\[0=\frac{\partial F}{\partial y}=\frac{\partial f}{\partial
+y}+\frac{\partial f}{\partial z}\frac{\partial g}{\partial y}\]</span> Using these equations, <span class="math display">\[\frac{\partial \underline{x}}{\partial x}\times \frac{\partial \underline{x}}{\partial y}=
+{\bf e}_1\frac{\partial f}{\partial x}/\frac{\partial f}{\partial z}
++{\bf e}_2\frac{\partial f}{\partial y}/\frac{\partial f}{\partial
+z}+{\bf e}_3=(\nabla f)/({\bf e}_3\cdot\nabla f)\,,\]</span> enabling the surface integral of <span class="math inline">\(\bf F\)</span> over <span class="math inline">\(S\)</span> to be written as an area integral over the region <span class="math inline">\(A\)</span> in the <span class="math inline">\(x,y\)</span>-plane: <span class="math display">\[\int_S\underline{F}\cdot d\underline{A}=\int_A \frac{\underline{F}\cdot
+\nabla f}{\underline{e}_3\cdot \nabla f}\,dx\,dy\,.\]</span></p>
+<p><em>Note:</em> whenever we compute a surface integral, there is a choice as to the direction to take the normal vectors to the surface – ‘in’ or ‘out’ for a closed surface, or ‘upwards’ or ‘downwards’ for a surface lying above the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane, for example. In the derivation of the formula just given, <span class="math inline">\(z\)</span> component of <span class="math inline">\(\frac{\partial \underline{x}}{\partial
+x}\times \frac{\partial \underline{x}}{\partial y}\)</span> was equal to <span class="math inline">\(1\)</span>, so it corresponds to the ‘upwards’ choice of normals. If the downwards option was the one you were after, the formula should be negated.</p>
+<div class="center">
+<figure>
+<img src="planes.png" id="fig:planes" style="width:70.0%" alt="" /><figcaption> Plot of the tangent plane to a surface at a point <span class="math inline">\(\underline{x}_k\)</span>, making an angle <span class="math inline">\(\psi\)</span> with the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane.</figcaption>
+</figure>
+</div>
+<p>We can give an alternative derivation of the method 2 formula starting from the definition of the surface integral in terms of a Riemann sum, equation <span class="math inline">\(\eqref{eqn:surf_int}\)</span>. We shall use equation <span class="math inline">\(\eqref{eqn:delf}\)</span> for the unit normal, <span class="math inline">\(\widehat{\underline{n}}_k =
+\frac{\nabla f}{|\underline{\nabla\mkern-2mu}\mkern 3mu f|}\)</span> , where <span class="math inline">\(f(x,y,z)=\textrm{const}\)</span> defines the surface. Instead of approximating the small area element by a parallelogram we can use a geometrical argument. Figure <a href="#fig:planes" data-reference-type="ref" data-reference="fig:planes">11</a> shows the tangent plane to <span class="math inline">\(S\)</span> at a point of interest, <span class="math inline">\(\underline{x}_k\)</span>, on <span class="math inline">\(S\)</span>, and an area <span class="math inline">\(\Delta A_k\)</span> on that plane together with the ‘shadow’ <span class="math inline">\(\Delta A=\Delta x\Delta y\)</span> that it casts on the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane. From the figure we can see that <span class="math inline">\(\frac{\Delta A}{\Delta A_k} = \cos(\psi)\)</span> , while <span class="math inline">\(\cos(\psi) =
+\underline{e}_3\cdot\widehat{\underline{n}}_k\)</span> from definition of dot product. Hence we can write <span class="math display">\[\Delta A_k = \frac{\Delta x\Delta y}{\cos(\psi)} = 
+\frac{\Delta x\Delta y}{\underline{e}_3\cdot\widehat{\underline{n}}_k}~~\mbox{and}~~
+\widehat{\underline{n}}_k\,\Delta A_k = 
+\frac{\widehat{\underline{n}}_k\,\Delta x\Delta
+y}{\underline{e}_3\cdot\widehat{\underline{n}}_k}\,.\]</span> Returning to the Riemann sum, and substituting <span class="math inline">\(\widehat{\underline{n}}_k=\frac{\underline{\nabla\mkern-2mu}\mkern 3mu f}{|\underline{\nabla\mkern-2mu}\mkern 3mu f|}\)</span> in the formula just given for <span class="math inline">\(\widehat{\underline{n}}_k\,\Delta_k\)</span> , we have <span class="math display">\[\begin{aligned}
+\int_S\underline{F}\cdot d\underline{A} &amp;= \lim\limits_{\Delta A_k\to 0}\sum\limits_k \underline{F}(\underline{x}^*_k)\cdot \widehat{\underline{n}}_k\Delta A_k\\
+&amp;= \lim\limits_{\Delta x_i, \Delta y_j\to 0}\sum\limits_{i,j} \underline{F}(\underline{x}^*_{i,j})\cdot \frac{\underline{\nabla\mkern-2mu}\mkern 3mu f}{\left|\underline{\nabla\mkern-2mu}\mkern 3mu f\right|}\frac{\Delta x_i\Delta y_j}{\underline{e}_3\cdot \frac{\underline{\nabla\mkern-2mu}\mkern 3mu f}{\left|\underline{\nabla\mkern-2mu}\mkern 3mu f\right|}}\\
+&amp;=\lim\limits_{\Delta x_i, \Delta y_j\to 0}\sum\limits_{i,j} \frac{\underline{F}(\underline{x}^*_{i,j})\cdot \underline{\nabla\mkern-2mu}\mkern 3mu f}{\underline{e}_3\cdot \underline{\nabla\mkern-2mu}\mkern 3mu f}\Delta x_i\Delta y_j\\
+&amp;= \int_A \frac{\underline{F}\cdot \underline{\nabla\mkern-2mu}\mkern 3mu f}{\underline{e}_3\cdot \underline{\nabla\mkern-2mu}\mkern 3mu f} \,dx\,dy\,,\end{aligned}\]</span> where <span class="math inline">\(A\)</span> is the area of the surface projected onto the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane. Let’s return to the previous example and calculate the surface integral using method 2.</p>
+<div id="method2eg" class="example">
+<p> Recompute the integral of <span class="math inline">\(\underline{F} = \underline{e}_3\)</span> over the surface, <span class="math inline">\(S\)</span>, given by the hemisphere of radius 1 and centred at the origin with <span class="math inline">\(z&gt;0\)</span>, as shown in figure <a href="#fig:surf_dA" data-reference-type="ref" data-reference="fig:surf_dA">10</a>(a), using method 2. Here the surface can be represented by <span class="math inline">\(f(x,y,z) = x^2 +y^2 +z^2 =1\)</span>, <span class="math inline">\(A\)</span> is the unit circle centred at the origin, and <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f = (2x,2y,2z)\)</span>. Hence <span class="math display">\[\begin{aligned}
+\int_S\underline{F}\cdot d\underline{A}
+&amp;= \int_A \frac{\underline{F}\cdot
+\underline{\nabla\mkern-2mu}\mkern 3mu f}{\underline{e}_3\cdot \underline{\nabla\mkern-2mu}\mkern 3mu f}\,dx\,dy\\[3pt]
+&amp;= \int_A \frac{\underline{e}_3\cdot \underline{\nabla\mkern-2mu}\mkern 3mu f}{\underline{e}_3\cdot \underline{\nabla\mkern-2mu}\mkern 3mu 
+f}\,dx\,dy\\[3pt]
+&amp;= \int_A dx\,dy = \pi\,,\end{aligned}\]</span> since the area of the unit disk is <span class="math inline">\(\pi\)</span>. This agrees with our previous calculation, as of course it had to.</p>
+</div>
+<p>To recap: there are two ways to evaluate a surface integral, and which one is the best to use depends on the form of the surface you are integrating over:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Equation of surface</th>
+<th style="text-align: center;">Form of surface integral</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Parametric: <span class="math inline">\(\underline{x}(u,v)\)</span> as in example <a href="#method1eg" data-reference-type="ref" data-reference="method1eg">[method1eg]</a></td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle \int_S\underline{F}\cdot d\underline{A} 
+% = \int_U \vec{F}\cdot \vec{N}\,du\,dv 
+= \int_U \underline{F}\cdot
+(\underline{x}_u\times\underline{x}_v)\,du\,dv\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Implicit/level surface: <span class="math inline">\(f(x,y,z)=\textrm{const}\)</span> as in example <a href="#method2eg" data-reference-type="ref" data-reference="method2eg">[method2eg]</a></td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle \int_S\underline{F}\cdot d\underline{A}= \int_A
+\frac{\underline{F}\cdot \underline{\nabla\mkern-2mu}\mkern 3mu f}{\underline{e}_3\cdot \underline{\nabla\mkern-2mu}\mkern 3mu f}\,dx\,dy\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>These two forms of the surface integral are equivalent, but one may be easier than the other for any given example so you must practise! The problem sheets contain plenty of examples, many of them in the context of the three theorems that will be discussed next.</p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+
+	var counterOffset = '06';
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = levelCount+(".0".repeat(numberWithin-levelSpec));
+				levelCount = String(parseInt(levelCount)+parseInt(counterOffset));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Figs/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
