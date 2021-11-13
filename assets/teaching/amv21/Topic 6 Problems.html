@@ -45,8 +45,8 @@
 (r\sin\theta\cos\phi,r\sin\theta\sin\phi,r\cos\theta)\)</span> .</p></li>
 </ul>
 </div>
-<div class="problem">
-<p>Adapted from exam question 2009 (Section B) Q7:</p>
+<div id="chainruleJacobian" class="problem">
+<p> Adapted from exam question 2009 (Section B) Q7:</p>
 <ul>
 <li><p>Let <span class="math inline">\(\underline{V}  : \mathbb{R}^n \to \mathbb{R}^n\)</span> be a vector field. Give the definition of <span class="math inline">\(\underline{V}\)</span> being differentiable at a point <span class="math inline">\(\underline{a}\)</span>.</p></li>
 <li><p>Let <span class="math inline">\(\underline{V}(x)\)</span> and <span class="math inline">\(\underline{W}(x)\)</span> be two differentiable vector fields in <span class="math inline">\(\mathbb{R}^2\)</span>. Give formulae for the two differentials <span class="math inline">\(D\underline{V}_{\underline{x}}\)</span> and <span class="math inline">\(D\underline{W}_{\underline{x}}\)</span>.</p></li>
@@ -61,8 +61,15 @@ D\underline{V}_{\underline{W}} D \underline{W}_{\underline{x}} \,.\]</span></p><
 <li><p>Given a vector field <span class="math inline">\(\underline{u}(\underline{x}) = \underline{w}(\underline{v}(\underline{x}))\)</span>, use the chain rule to show that <span class="math inline">\(D\underline{u}(\underline{x}) = D\underline{w}(\underline{v})D\underline{v}(\underline{x})\)</span>, and hence <span class="math inline">\(J(\underline{u}) = J(\underline{w})J(\underline{v})\)</span>.</p></li>
 <li><p>Let <span class="math display">\[\begin{aligned}
 			\underline{v}(\underline{x}) &amp;= (v_1,v_2) = (\cos y, \sin x) \\
-			\underline{w}(\underline{x}) &amp;= (w_1,w_2) = (x^2 - y^2, 2xy),
+			\underline{w}(\underline{x}) &amp;= (w_1,w_2) = (x^2 + y^3, x^2y),
 		\end{aligned}\]</span> and define <span class="math inline">\(\underline{u}(\underline{x}) = \underline{w}(\underline{v}(\underline{x}))\)</span>. Use the result from part <span class="math inline">\((a)\)</span> to calculate <span class="math inline">\(J(\underline{u})\)</span>. Verify your answer by direct substitution.</p></li>
+</ul>
+</div>
+<div class="problem">
+<ul>
+<li><p>Let <span class="math inline">\(\underline{v}  : \mathbb{R}^n \to \mathbb{R}^n\)</span> be a vector field. Give the definition of <span class="math inline">\(\underline{V}\)</span> being differentiable on an open set <span class="math inline">\(U\subseteq\mathbb{R}^n\)</span>.</p></li>
+<li><p>For <span class="math inline">\(\underline{x}=x\underline{e}_1 + y\underline{e}_2\)</span>, let <span class="math inline">\(\underline{v}:\mathbb{R}^2\to\mathbb{R}^2\)</span> be given by <span class="math display">\[\underline{v}(\underline{x}) = (x^2 + y^2, x+y).\]</span> Using the definition of differentiability, show that <span class="math inline">\(\underline{v}\)</span> is differentiable on <span class="math inline">\(\mathbb{R}^2\)</span>.</p></li>
+<li><p>Draw a diagram to show where <span class="math inline">\(\underline{v}\)</span> defines an orientation preserving local diffeomorphism (on <span class="math inline">\(U\subseteq\mathbb{R}^2\)</span>), and where <span class="math inline">\(\underline{v}\)</span> defines an orientation reversing local diffeomorphism (on <span class="math inline">\(V\subseteq\mathbb{R}^2\)</span>).</p></li>
 </ul>
 </div>
 <script>
