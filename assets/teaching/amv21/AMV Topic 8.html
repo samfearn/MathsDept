@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Analysis in Many Variables II – Lecture Notes Michaelmas 2021</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Analysis in Many Variables II – Lecture Notes Michaelmas 2021</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#greens-stokes-and-divergence-theorems"><span class="toc-section-number">8</span> Green’s, Stokes’ and divergence theorems</a>
+<ul>
+<li><a href="#the-three-big-theorems"><span class="toc-section-number">8.1</span> The three big theorems</a></li>
+<li><a href="#examples"><span class="toc-section-number">8.2</span> Examples</a></li>
+<li><a href="#subsec:conservation"><span class="toc-section-number">8.3</span> Conservation laws and the continuity equation</a></li>
+<li><a href="#path-independence-of-line-integrals"><span class="toc-section-number">8.4</span> Path independence of line integrals</a></li>
+<li><a href="#sec:Jac"><span class="toc-section-number">8.5</span> Changing integration variables</a></li>
+</ul></li>
+</ul>
+</nav>
+<p> </p>
+<section id="greens-stokes-and-divergence-theorems" class="level1" data-number="1">
+<h1 data-number="8"><span class="header-section-number">8</span> Green’s, Stokes’ and divergence theorems</h1>
+<section id="the-three-big-theorems" class="level2" data-number="1.1">
+<h2 data-number="8.1"><span class="header-section-number">8.1</span> The three big theorems</h2>
+<p>1. <em>Green’s theorem in the plane</em></p>
+<p>Let <span class="math inline">\(P(x,y)\)</span> and <span class="math inline">\(Q(x,y)\)</span>, <span class="math inline">\((x,y)\in\mathbb{R}^2\)</span>, be continuously differentiable scalar fields in 2 dimensions. Then <span class="math display">\[\begin{equation} \label{eqn:green}
+\boxed{\,\oint_C \bigl(P(x,y)\,dx + Q(x,y)\,dy\bigr) = \int_A
+\Bigl(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial
+y}\Bigr)\,dx\,dy\,} \end{equation}\]</span> where <span class="math inline">\(C\)</span> is the boundary of <span class="math inline">\(A\)</span>, traversed in a positive (anti-clockwise) direction. A good way to remember which way is positive is to imagine you are walking around the boundary with the area of integration to your left; then you are walking in a positive direction!</p>
+<p>Green’s theorem in the plane can also be written in vector form, embedding the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane into <span class="math inline">\(\mathbb{R}^3\)</span> (with <span class="math inline">\(z=0\)</span>) and setting <span class="math inline">\(\underline{F}(x,y,z) = (P(x,y),Q(x,y),R)\)</span> with <span class="math inline">\(R\)</span> arbitrary: <span class="math display">\[\oint_C \underline{F}\cdot d\underline{x} = \int_A (\underline{\nabla\mkern-2mu}\mkern 3mu \times
+\underline{F})\cdot\underline{e}_3\,dA\,.\]</span> It’s a good exercise to check that you agree with this statement!</p>
+<p>2. <em>Stokes’ theorem</em></p>
+<p>This generalises the vector form of Green’s theorem to arbitrary surfaces in <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+<p>Take a continuously differentiable vector field <span class="math inline">\(\underline{F}(x,y,z)\)</span> in <span class="math inline">\(\mathbb{R}^3\)</span>, and a surface <span class="math inline">\(S\)</span> also in <span class="math inline">\(\mathbb{R}^3\)</span> with area elements <span class="math inline">\(d\underline{A}=\widehat{\underline{n}}\,dA\)</span> and boundary curve <span class="math inline">\(C \equiv \partial S\)</span>. Then <span class="math display">\[\begin{equation} \label{eqn:stokes}
+\boxed{\,\oint_C \underline{F}\cdot d\underline{x} = \int_S (\underline{\nabla\mkern-2mu}\mkern 3mu \times
+\underline{F})\cdot d\underline{A}\,
+% = \int_S (\del\times \vec{F})\cdot\vec{\hat{n}}\,dA\, 
+} \end{equation}\]</span></p>
+<p>As with Green’s theorem, we need to make a comment about orientations. The surface <span class="math inline">\(S\)</span> has two choices of normal vector (say <span class="math inline">\(\widehat{\underline{n}}\)</span> and <span class="math inline">\(-\widehat{\underline{n}}\)</span>), and the curve <span class="math inline">\(C=\partial S\)</span> also has two possible choices of orientation. In either integral, changing from one orientation to the other (changing from <span class="math inline">\(\widehat{\underline{n}}\)</span> to <span class="math inline">\(-\widehat{\underline{n}}\)</span>, or vice versa, in the case of the surface integral) changes the overall sign of the answer. So, given a surface with a choice of normal, how do we know which orientation we should take for the boundary (or equivalently, given a choice of boundary orientation, which normal should we take for the surface) in order to get the equality of Stokes’ theorem?</p>
+<p>The answer is given by the <strong>right hand rule:</strong></p>
+<p>Curl the fingers of your right hand, and extend your thumb. If you imagine placing your hand on the surface, near the boundary, with your thumb pointing in the direction of the surface normal, then your fingers curl in the direction of the orientation of the boundary.</p>
+<p>Equivalently, if you were to stand on the boundary with your head pointing in the direction of the normal, and walk around the boundary such that the surface is on your left, then you are walking in the direction the boundary should be oriented.</p>
+<p>3. <em>The divergence theorem:</em></p>
+<p>As the name suggests, this theorem involves the divergence operator. If <span class="math inline">\(\underline{F}\)</span> is a continuously differentiable vector field defined over the volume <span class="math inline">\(V\)</span> with bounding surface <span class="math inline">\(S\)</span>, then <span class="math display">\[\begin{equation} \label{eqn:divergencetheorem}
+\boxed{\,\int_S \underline{F}\cdot d\underline{A} = \int_V \underline{\nabla\mkern-2mu}\mkern 3mu 
+\cdot \underline{F}\, dV\,} \end{equation}\]</span> As in Stokes’ theorem, <span class="math inline">\(d\underline{A} = \widehat{\underline{n}}\,dA\)</span>, while <span class="math inline">\(\widehat{\underline{n}}\)</span> is the outward unit normal.</p>
+<p>Proofs? See later!</p>
+<p>These theorems can be considered as higher-dimensional analogues of the fundamental theorem of calculus: in each case the integral of a differentiated object over some region is equated to the integral of the undifferentiated object over the boundary of that region, as illustrated in figure <a href="#fig:compare" data-reference-type="ref" data-reference="fig:compare">1</a>.</p>
+<div class="center">
+<figure>
+<img src="Int_thrms.png" id="fig:compare" style="width:90.0%" alt="" /><figcaption> The integration regions for the divergence theorem, Stokes’ theorem, and the fundamental theorem of calculus. Note the similarities between the formulae: the left hand side of each has one less integral than the right hand side, and this is ‘compensated’ by the presence of a derivative on each right hand side. Also notice that the domains of the right hand side integrations, <span class="math inline">\(V\)</span>, <span class="math inline">\(S\)</span> and <span class="math inline">\(I\)</span>, are bounded by the domains of the left hand sides, <span class="math inline">\(S\)</span>, <span class="math inline">\(C\)</span> and <span class="math inline">\(\{a,b\}\)</span> respectively. </figcaption>
+</figure>
+</div>
+</section>
+<section id="examples" class="level2" data-number="1.2">
+<h2 data-number="8.2"><span class="header-section-number">8.2</span> Examples</h2>
+<div class="example">
+<p>(Green) Check Green’s theorem when <span class="math inline">\(P(x,y) = y^2 - 7y\)</span>, <span class="math inline">\(Q(x,y) = 2xy+2x\)</span> and the area of integration is bounded by the unit circle <span class="math inline">\(x^2+y^2 = 1\)</span>. Calculating the RHS of equation <span class="math inline">\(\eqref{eqn:green}\)</span> first: <span class="math display">\[\begin{aligned}
+\int_A (\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial
+y})dx\,dy &amp;= \int_A (2y+2)-(2y-7)\,dx\,dy\\
+&amp;= 9\int_A dx\,dy = 9\pi\,,\end{aligned}\]</span> since <span class="math inline">\(\int_Adx\,dy\)</span> is the area of the unit circle (recall from section 1). Next we parametrise the circle as before, so that <span class="math inline">\(dx =
+-\sin t\,dt\)</span>, <span class="math inline">\(dy = \cos t\,dt\)</span>, and calculate the LHS of equation <span class="math inline">\(\eqref{eqn:green}\)</span>: <span class="math display">\[\begin{aligned}
+\oint_C (P\frac{dx}{dt} + Q\frac{dy}{dt})\,dt &amp;=
+\int_0^{2\pi}\left((\sin^2t - 7\sin t)(-\sin t) + (2\cos t\sin t +
+2\cos t)(\cos t)\right)dt\\
+&amp;= \int_0^{2\pi}(-\sin^3t + 7\sin^2t + 2\cos^2t\sin t + 2\cos^2t)\,dt
+\,=\, 9\pi\end{aligned}\]</span> This agrees with the previous calculation, but was more arduous. Usually (not always) the area integral is the easier part, so if faced with a tough closed line integral, see if Green’s Theorem is applicable.</p>
+</div>
+<div class="example">
+<p>(Stokes) Evaluate <span class="math inline">\(I=\oint_C\underline{F}\cdot d\underline{x}\)</span> where <span class="math display">\[\underline{F}=x^2e^{5z}\underline{e}_1+x\,\cos y\,\underline{e}_2+3y\,\underline{e}_3\]</span> and <span class="math inline">\(C\)</span> is the circle defined by <span class="math inline">\(x=0\)</span>, <span class="math inline">\(y=2+2\cos\theta\)</span>, <span class="math inline">\(z=2+2\sin\theta\)</span>, <span class="math inline">\(0\le\theta\le 2\pi\)</span> .</p>
+<p>We’ll do this in two ways. First, the direct route. We have <span class="math display">\[\underline{x}(\theta)=(2+2\cos\theta)\,\underline{e}_2+(2+2\sin\theta)\,\underline{e}_3\]</span> so <span class="math display">\[\frac{d\underline{x}}{d\theta}=-2\sin\theta\,\underline{e}_2+2\cos\theta\,\underline{e}_3\]</span> and <span class="math display">\[\underline{F}(\underline{x}(\theta))\cdot\frac{d\underline{x}}{d\theta}=
+3(2+2\cos\theta)2\cos\theta\,.\]</span> Hence <span class="math display">\[I=\int_0^{2\pi}12(1+\cos\theta)\cos\theta\,d\theta = 12\pi\,.\]</span> Alternatively, Stokes’ theorem can be used. Calculating, <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=3\,\underline{e}_1+5x^2e^{5z}\underline{e}_2+\cos y\,\underline{e}_3\,.\]</span> Take <span class="math inline">\(S\)</span> to be the planar (flat) disk spanning <span class="math inline">\(C\)</span>. Note that <span class="math inline">\(C\)</span> is such that <span class="math inline">\(y\)</span> initially decreases as <span class="math inline">\(\theta\)</span> increases from 0, and that <span class="math inline">\(z\)</span> increases similarly. By the right hand rule, we should therefore take the normal on <span class="math inline">\(S\)</span> in the positive <span class="math inline">\(x\)</span> direction. So <span class="math inline">\(\widehat{\underline{n}}=\underline{e}_1\)</span> everywhere on <span class="math inline">\(S\)</span>, <span class="math inline">\(d\underline{A}=\underline{e}_1\,dA\)</span>, and <span class="math inline">\((\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F})\cdot d\underline{A}=3\,dA\)</span>. Hence <span class="math display">\[I=\iint_A3\,dA=3\times(\mbox{area of $S$}) = 12\pi\quad\mbox{as before.}\]</span> Clearly, if we had taken the normal as <span class="math inline">\(-\underline{e}_1\)</span> instead, we would have got the opposite sign for the surface integral, and the two answers wouldn’t have agreed.</p>
+</div>
+<div class="example">
+<p>(Stokes again) Let <span class="math inline">\(S\)</span> be the upper (<span class="math inline">\(z\ge 0\)</span>) half of the sphere <span class="math inline">\(x^2+y^2+z^2=1\)</span> ; evaluate the surface integral <span class="math display">\[I=\int_S(x^3e^y\underline{e}_1-3x^2e^y\underline{e}_2)\cdot d\underline{A}\,.\]</span> To do this directly is tricky; instead we’ll attempt to use Stokes’ theorem. Observe that if <span class="math inline">\(\underline{F}=x^3e^y\underline{e}_3\)</span>, then <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=(x^3e^y\underline{e}_1-3x^2e^y\underline{e}_2)\)</span>, which is the thing we want to integrate over the hemisphere. Hence by Stokes’ theorem <span class="math display">\[I=\oint_C\underline{F}\cdot d\underline{x}\]</span> where <span class="math inline">\(C\)</span> is the boundary of <span class="math inline">\(S\)</span>, which can be parametrised via <span class="math inline">\(\underline{x}(\theta)=\cos\theta\,\underline{e}_1+\sin\theta\,\underline{e}_2\)</span>, <span class="math inline">\(0\le\theta\le 2\pi\)</span>. Then <span class="math inline">\(\frac{d\underline{x}}{d\theta}=-\sin\theta\,\underline{e}_1+\cos\theta\,\underline{e}_2\)</span>, which has zero scalar product with <span class="math inline">\(\underline{F}\)</span> for all <span class="math inline">\(\theta\)</span>. Hence <span class="math inline">\(I=0\)</span>.</p>
+</div>
+<div class="example">
+<p>(Divergence) Evaluate <span class="math inline">\(I=\int_S(3x\,\underline{e}_1+2y\,\underline{e}_2)\cdot d\underline{A}\)</span> where <span class="math inline">\(S\)</span> is the sphere <span class="math inline">\(x^2+y^2+z^2=9\)</span>.<br />
+Here <span class="math inline">\(\underline{F}=(3x,2y,0)\)</span> so <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \cdot\underline{F}=3+2=5\)</span> and so, by the divergence theorem, <span class="math display">\[I=\int_V5\,dV=5\frac{4}{3}\pi\,3^3=180\pi\]</span> where we used the fact that the volume of <span class="math inline">\(V\)</span>, the interior of <span class="math inline">\(S\)</span>, is <span class="math inline">\(\frac{4}{3}\pi\,3^3\)</span>.</p>
+</div>
+<div class="example">
+<p>(Divergence again) Let <span class="math inline">\(R\)</span> be the region of <span class="math inline">\(\mathbb{R}^3\)</span> bounded by the surface <span class="math inline">\(z=x^2+y^2\)</span> (a paraboloid) and the plane <span class="math inline">\(z=1\)</span>, and let <span class="math inline">\(S\)</span> be its boundary. Evaluate <span class="math inline">\(I=\int_S\underline{F}\cdot d\underline{A}\)</span> where <span class="math inline">\(\underline{F}=(y,x,z^2)\)</span>.<br />
+Using the divergence theorem, <span class="math display">\[\begin{aligned}
+I&amp;=\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot\underline{F}\,dV\\[2pt]
+&amp;=\int_V2z\,dV\\[2pt]
+&amp;=\int_0^12z\,\pi\,r_z^2\,dz\quad\mbox{where $r_z=\sqrt{z}$, as in example
+\ref{yurt}}\\[2pt]
+&amp;=\int_0^12\,\pi\,z^2\,dz=\frac{2\pi}{3}\,.\end{aligned}\]</span></p>
+</div>
+</section>
+<section id="subsec:conservation" class="level2" data-number="1.3">
+<h2 data-number="8.3"><span class="header-section-number">8.3</span> Conservation laws and the continuity equation</h2>
+<p>This is an important application of the divergence theorem; it might also help you to get an intuition for the meaning of the surface integral <span class="math inline">\(\int_S \underline{F}\cdot d\underline{A}\)</span>, which is usually interpreted as the flux of some quantity <span class="math inline">\(\underline{F}\)</span> through the surface of interest, <span class="math inline">\(S\)</span>. Flux is the rate of flow per unit area, which is measured perpendicular to the face of the surface, so it is <span class="math inline">\(dA\)</span> multiplied by the unit normal vector <span class="math inline">\(\widehat{\underline{n}}\)</span> with which the dot product with <span class="math inline">\(\underline{F}\)</span> is taken. Typical fluxes of interest are the magnetic flux (<span class="math inline">\(\underline{F}=\underline{B}\)</span>), the electric flux (<span class="math inline">\(\underline{F}=\underline{E}\)</span>), and transport fluxes such as mass (<span class="math inline">\(\underline{F}=\rho\underline{v}\)</span>) (of fluid perhaps), heat or energy.</p>
+<p>To give a concrete example, let us consider a swarm of bees and suppose that at time <span class="math inline">\(t\)</span> and position <span class="math inline">\(\underline{x}\in\mathbb{R}^3\)</span> their density (number of bees per unit volume) is <span class="math inline">\(\rho (\underline{x},t)\)</span>, and that near that point they are flying with average velocity <span class="math inline">\(\underline{v}(\underline{x},t)\)</span>. Then the flux of bees is <span class="math inline">\(\underline{j} = \rho\underline{v}\)</span>, meaning that the number of bees per unit time passing through a small area <span class="math inline">\(\Delta A\)</span> with unit normal <span class="math inline">\(\widehat{\underline{n}}\)</span> is <span class="math inline">\(\underline{j}\cdot\widehat{\underline{n}}\,\Delta A\)</span>.</p>
+<div class="center">
+<figure>
+<img src="ants.png" id="fig:ants" alt="" /><figcaption> Cartoon of flying bees, travelling through the surface <span class="math inline">\(\Delta A\)</span> at a velocity <span class="math inline">\(\underline{v}\)</span>.</figcaption>
+</figure>
+</div>
+<p>To see this, imagine you are one of the flying bees near to the area element <span class="math inline">\(\Delta A\)</span>; in a small time interval <span class="math inline">\(\delta t\)</span> this element will appear to move with a distance <span class="math inline">\(\underline{v}\delta t\)</span> and so the element will have swept out a volume <span class="math inline">\(\Delta A \widehat{\underline{n}}\cdot\underline{v}\delta
+t\)</span>, as shown in figure <a href="#fig:ants" data-reference-type="ref" data-reference="fig:ants">2</a>. The total number of bees in this volume is <span class="math inline">\(\rho\Delta A
+\widehat{\underline{n}}\cdot\underline{v}\delta t\)</span>, and they will all cross the area element <span class="math inline">\(\Delta A\)</span> in this time <span class="math inline">\(\delta t\)</span>; this implies that the rate at which the bees fly through <span class="math inline">\(\Delta A\)</span> is <span class="math inline">\(\rho\Delta A
+\widehat{\underline{n}}\cdot\underline{v}\)</span>. Now imagine we have a larger surface <span class="math inline">\(S\)</span> made up of many small area elements <span class="math inline">\(\widehat{\underline{n}}\,dA\)</span>. The total flux of bees across the whole surface <span class="math inline">\(S\)</span> can be found by subdividing <span class="math inline">\(S\)</span> into its constiuent area elements and adding up the fluxes across each of these. Taking the limit as the sizes of these small area elements tend to zero, the total flux through <span class="math inline">\(S\)</span> is <span class="math display">\[\lim\limits_{\Delta A\to 0}\sum\limits_{\textrm{all }\Delta
+A\textrm{&#39;s}} \rho\,\Delta A\,\widehat{\underline{n}}\cdot \underline{v} = \int_S
+\underline{j}\cdot d\underline{A}\,.\]</span> We can now think about the implications of the “conservation of bees" to this situation. The total number of bees in some fixed volume <span class="math inline">\(V\)</span> at time <span class="math inline">\(t\)</span> is <span class="math display">\[B(t) = \int_V\rho\,dV =
+\int_V\rho(x,y,z,t)\,dx\,dy\,dz\]</span> and the rate of change of <span class="math inline">\(B(t)\)</span> is <span class="math display">\[\frac{dB}{dt} = \frac{d}{dt}\int_V\rho\,dV =
+\int_V \frac{\partial\rho}{\partial t}\,dV\]</span> (where the derivative can be taken inside the integral since the volume <span class="math inline">\(V\)</span> is fixed). At the same time, the rate of flow of bees out of <span class="math inline">\(V\)</span> is <span class="math display">\[R=\int_S\underline{j}\cdot d\underline{A}\]</span> where <span class="math inline">\(S\)</span> is the boundary of <span class="math inline">\(V\)</span>. Assuming no bees are being born (hatched?) or killed, it must be true that <span class="math display">\[\frac{dB}{dt}=-R\]</span> where the minus sign is because <span class="math inline">\(R\)</span> is the rate of flow <em>out</em> of <span class="math inline">\(V\)</span>, while it is flow <em>into</em> <span class="math inline">\(V\)</span> which causes <span class="math inline">\(B\)</span> to increase. Substituting in the formulae obtained above for <span class="math inline">\(B\)</span> and <span class="math inline">\(R\)</span>, <span class="math display">\[\int_V\frac{\partial\rho}{\partial t}\,dV 
+=-\int_S\underline{j}\cdot d\underline{A} 
+=-\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot\underline{j}\,dV\]</span> using the divergence theorem for the second equality. It’s important to remember that it is the <em>three</em>-dimensional divergence (involving <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> derivatives) that appears on the right-hand side, since it arose from applying the divergence theorem to a three-dimensional surface integral in <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>. Hence, <span class="math display">\[\int_V\left(\frac{\partial\rho}{\partial t}+\underline{\nabla\mkern-2mu}\mkern 3mu \cdot\underline{j}\right)dV
+=0\]</span> must hold, and must do so for <em>all</em> volumes <span class="math inline">\(V\)</span>. The only way for this to be true is for the thing being integrated to be zero everywhere, or in other words <span class="math display">\[\frac{\partial\rho}{\partial t}= -\underline{\nabla\mkern-2mu}\mkern 3mu \cdot\underline{j}\,.\]</span> This is called the <em>continuity equation</em> and besides its relevance to beekeeping, it crops up in fluid mechanics, electromagnetism, and many other situations where some conservation law is in play.</p>
+<p>Bees are perhaps not the best example, since they are not continuous and so the dot product in the integral will consider only the part of the bee crossing the surface perpendicularly. So what happens to the other part of the bee? (This is why we should really consider continuous quantities e.g. flow of water, magnetic fluxes etc.)</p>
+<p>To quote Monty Python, “Eric the half a bee”:</p>
+<p>“Half a bee, philosophically, must <em>ipso facto</em> half not be. But half the bee has got to be, <em>vis-à-vis</em> its entity - d’you see? But can a bee be said to be or not to be an entire bee when half the bee is not a bee, due to some ancient injury?”</p>
+</section>
+<section id="path-independence-of-line-integrals" class="level2" data-number="1.4">
+<h2 data-number="8.4"><span class="header-section-number">8.4</span> Path independence of line integrals</h2>
+<p>Having seen an application of the divergence theorem, we now discuss an important special case of Stokes’ theorem.</p>
+<p>In general, line integrals will depend on the path taken between their end points. This is not always the case, though, and vector fields for which the line integral is path independent are rather special. They are called <em>conservative</em> vector fields. We begin with a short example.</p>
+<div class="example">
+<p>Calculate the line integral <span class="math inline">\(\int_C \underline{F}\cdot d\underline{x}\)</span>, for <span class="math inline">\(\underline{F} =(y\cos(x), \sin(x))\)</span> between <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,1)\)</span> over the two paths shown in figure <a href="#fig:conF" data-reference-type="ref" data-reference="fig:conF">3</a> below.</p>
+<div class="center">
+<figure>
+<img src="conF.jpg" id="fig:conF" style="width:60.0%" alt="" /><figcaption> The field plot of <span class="math inline">\(\underline{F}\)</span> with two distinct paths shown, <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2 = C_{21} + C_{22}\)</span>.</figcaption>
+</figure>
+</div>
+<p>Let us first calculate <span class="math inline">\(\int_{C_1} \underline{F}\cdot d\underline{x}\)</span>. The parametrisation (recall the table of parametrisations given in section <a href="#sec:surf_line" data-reference-type="ref" data-reference="sec:surf_line">[sec:surf_line]</a>) of this path can be taken to be <span class="math inline">\(\underline{x}(t) = (t,t)\)</span> (<span class="math inline">\(0\le
+t\le 1\)</span>), giving <span class="math inline">\(d\underline{x} = (1,1)\,dt\)</span> and <span class="math inline">\(\underline{F}(\underline{x}(t))=
+(t\cos(t), \sin(t))\)</span>. We can now perform the integration: <span class="math display">\[\int_{C_1} \underline{F}\cdot d\underline{x} 
+=\int_0^1 (t\cos(t) + \sin(t))\,dt\\
+=\int_0^1{d(t\sin(t))\over dt}\,dt 
+=\sin(1)\,.\]</span> Okay, now let’s try along the second path. It can be split into two sub-paths <span class="math inline">\(C_{21}\)</span> and <span class="math inline">\(C_{22}\)</span> , parametrised as <span class="math inline">\(\underline{x}(t) = (t,0)\)</span> and <span class="math inline">\(\underline{x}(t) = (1,t)\)</span> respectively, with <span class="math inline">\(t\)</span> running from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span> in each case. Using this setup we obtain for <span class="math inline">\(C_{21}\)</span>: <span class="math inline">\(d\underline{x} = (1,0)\,dt\)</span>, <span class="math inline">\(\underline{F}(\underline{x}(t)) =
+(0,\sin(t))\)</span>, and so <span class="math inline">\(\underline{F}\cdot d\underline{x} = 0\)</span>. For <span class="math inline">\(C_{22}\)</span>: <span class="math inline">\(d\underline{x} = (0,1)\,dt\)</span>, <span class="math inline">\(\underline{F}(\underline{x}(t)) = (t\cos(1),\sin(1))\)</span>, and so <span class="math inline">\(\underline{F}\cdot
+d\underline{x} = \sin(1)\)</span>. Putting these together to perform the line integral along <span class="math inline">\(C_{2}\)</span> gives <span class="math display">\[\int_{C_2} \underline{F}\cdot d\underline{x} 
+= \int_{C_{21}} \underline{F}\cdot
+d\underline{x}+\int_{C_{22}} \underline{F}\cdot d\underline{x}\\
+=\int_{C_{22}} \underline{F}\cdot d\underline{x}\\
+=\int_0^1 \sin(1)\,dt
+=\sin(1)\,.\]</span> Both paths give us the same answer!</p>
+</div>
+<p>Now, we only showed path independence for two very simple paths between two particular points, and to get the general result, in other words to prove that the field is conservative, we would need to check all possible paths joining all pairs of points. This would be both tediously (infinitely!) time consuming, and rather hard in the case of very wiggly paths. We will now show that there is a simple method to show path independence for all possible paths, which uses Stokes’ theorem in a crucial way.</p>
+<p>Suppose that <span class="math inline">\(\underline{F}(\underline{x})\)</span> is a continuously differentiable vector field defined on an open subset <span class="math inline">\(D\)</span> of <span class="math inline">\(\mathbb{R}^3\)</span>. Let <span class="math inline">\(C_{1}\)</span> and <span class="math inline">\(C_{2}\)</span> be any two paths from point <span class="math inline">\(\underline{a}\)</span> to point <span class="math inline">\(\underline{b}\)</span> in <span class="math inline">\(D\)</span>, as shown in figure <a href="#fig:2path" data-reference-type="ref" data-reference="fig:2path">4</a>.</p>
+<div class="center">
+<figure>
+<img src="2paths.png" id="fig:2path" style="width:50.0%" alt="" /><figcaption> Two paths between points <span class="math inline">\(\underline{a}\)</span> and <span class="math inline">\(\underline{b}\)</span> in a domain <span class="math inline">\(D\)</span>.</figcaption>
+</figure>
+</div>
+<p>Let us investigate the conditions required for<br />
+<span class="math display">\[\Delta I := \int_{C_1} \underline{F}\cdot d\underline{x} - \int_{C_2}
+\underline{F}\cdot d\underline{x}\]</span> to be zero, i.e. path independence. Suppose we have parametrised <span class="math inline">\(C_2\)</span> by a parameter <span class="math inline">\(t\)</span> running from <span class="math inline">\(t_{\underline{a}}\)</span> to <span class="math inline">\(t_{\underline{b}}\)</span>, and that <span class="math inline">\(\overline{C}_2\)</span> is the path along <span class="math inline">\(C_2\)</span> taken in the opposite direction. Then <span class="math display">\[\int_{\overline{C}_2} \underline{F}\cdot d\underline{x} 
+= \int_{t_{\underline{b}}}^{t_{\underline{a}}}\underline{F}(\underline{x}(t))\cdot
+\frac{d\underline{x}}{dt}dt =
+-\int_{t_{\underline{a}}}^{t_{\underline{b}}}\underline{F}(\underline{x}(t))\cdot
+\frac{d\underline{x}}{dt}\,dt\nonumber \\
+=-\int_{C_2} \underline{F}\cdot d\underline{x}\,.\]</span> Combining these equations we have<br />
+<span class="math display">\[\Delta I = \int_{C_1} \underline{F}\cdot d\underline{x} + \int_{\overline{C}_2}
+\underline{F}\cdot d\underline{x} = \oint_C \underline{F}\cdot d\underline{x}\,,\]</span> where <span class="math inline">\(C\)</span> is the closed path consisting of <span class="math inline">\(C_1\)</span> followed by <span class="math inline">\(\overline{C}_2\)</span>. Now if <span class="math inline">\(C\)</span> is the boundary of a surface <span class="math inline">\(S\)</span> in <span class="math inline">\(D\)</span> then, by Stokes’ theorem, <span class="math display">\[\Delta I = \int_S\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}\cdot d\underline{A}\,.\]</span> and so <span class="math inline">\(\Delta I\)</span> will be zero if <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F} = \underline{0}\)</span> throughout <span class="math inline">\(D\)</span>, giving us path independence. However for this to work we need not only that <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\)</span> in <span class="math inline">\(D\)</span>, but also that every closed path in <span class="math inline">\(D\)</span> is the boundary of some surface in <span class="math inline">\(D\)</span>. Fortunately, there is a standard condition which ensures that this is the case. A region <span class="math inline">\(D\)</span> is called <em>simply connected</em> if any closed curve in <span class="math inline">\(D\)</span> can be continuously shrunk to a point in <span class="math inline">\(D\)</span>, which in particular implies the condition we need, namely that every closed curve in <span class="math inline">\(D\)</span> is the boundary of a surface in <span class="math inline">\(D\)</span>. Two examples: the two-dimensional surface of a sphere is simply connected, while the two-dimensional surface of a torus is not simply connected – see figure <a href="#fig:torus" data-reference-type="ref" data-reference="fig:torus">6</a>.</p>
+<table id="fig:torus" class="imageTable">
+<caption> Examples of simply and non simply connected spaces: the surface of a sphere (a) and of a torus (b). The closed curve on (a) can be shrunk to a point and is the boundary of a part of the surface, while the closed curve on (b) can’t be shrunk to a point, and is not the boundary of a part of the surface.</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="sphere.jpg" title="fig:" id="fig:torus" style="width:47.0%" alt=" Examples of simply and non simply connected spaces: the surface of a sphere (a) and of a torus (b). The closed curve on (a) can be shrunk to a point and is the boundary of a part of the surface, while the closed curve on (b) can’t be shrunk to a point, and is not the boundary of a part of the surface." /></td>
+<td style="text-align: center;"><img src="torus.jpg" title="fig:" id="fig:torus" style="width:47.0%" alt=" Examples of simply and non simply connected spaces: the surface of a sphere (a) and of a torus (b). The closed curve on (a) can be shrunk to a point and is the boundary of a part of the surface, while the closed curve on (b) can’t be shrunk to a point, and is not the boundary of a part of the surface." /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(a)</td>
+<td style="text-align: center;">(b)</td>
+</tr>
+</tbody>
+</table>
+<p>Three-dimensional spaces are harder to visualise, but for example <span class="math inline">\(D=\mathbb{R}^3\)</span> is simply-connected, while if we drill out a cylinder around the <span class="math inline">\(z\)</span> axis to leave the set of points <span class="math display">\[D&#39;=\left\{(x,y,z)\in\mathbb{R}^3\,:~ x^2+y^2&gt;1\right\}\]</span> then <span class="math inline">\(D&#39;\)</span> is not simply connected. (Check that you can see why – can you identify a closed curve in <span class="math inline">\(D&#39;\)</span> which can’t be contracted to a point?)</p>
+<p>To summarise: if a vector field <span class="math inline">\(\underline{F}\)</span> satisfies <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F} = \underline{0}\)</span> in some simply-connected region <span class="math inline">\(D\)</span>, and if <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are two paths in <span class="math inline">\(D\)</span> joining points <span class="math inline">\(\underline{a}\)</span> and <span class="math inline">\(\underline{b}\)</span>, then <span class="math display">\[\int_{C_1}\underline{F}\cdot d\underline{x}=
+\int_{C_2}\underline{F}\cdot d\underline{x}\]</span> and the line integral depends only on the end points – it is <em>path independent</em> and the vector field <span class="math inline">\(\underline{F}\)</span> is conservative.</p>
+<section id="the-scalar-potential" class="level3 unnumbered">
+<h3 class="unnumbered">The scalar potential</h3>
+<p>A further observation: last term we saw that one way for <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}\)</span> to be zero in some region <span class="math inline">\(D\)</span> is for <span class="math inline">\(\underline{F}\)</span> to be the gradient of a scalar field there. A natural question is to ask whether it is possible to go the other way, and deduce from <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\)</span> that <span class="math inline">\(\underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> for some <span class="math inline">\(\phi\)</span>. If the region <span class="math inline">\(D\)</span> is simply connected, then the answer is yes. Suppose that <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\)</span> in <span class="math inline">\(D\)</span>, and define a scalar field <span class="math inline">\(\phi\)</span> by <span class="math display">\[\phi(\underline{x}) = \int_{\underline{x}_0}^{\underline{x}}\underline{F}\cdot d\underline{x}\]</span> where <span class="math inline">\(\underline{x}_0\)</span> is some (fixed) reference point in <span class="math inline">\(D\)</span>. By path independence, this is well-defined. But what is its gradient?</p>
+<p>We can prove this in a few different ways. One method (which is covered in the lectures), is just to calculate the partial derivatives directly. Consider the partial derivative of <span class="math inline">\(\phi\)</span> with respect to <span class="math inline">\(x\)</span>, <span class="math display">\[\frac{\partial \phi}{\partial x} = \lim_{h \to 0} \frac{\phi(\underline{x}+h\underline{e}_1) - \phi(\underline{x})}{h} = \lim_{h\to 0} \frac{\int_{\underline{x_0}}^{\underline{x}+ h\underline{e}_1}\underline{F}\cdot d\underline{x}- \int_{\underline{x_0}}^{\underline{x}}\underline{F}\cdot d\underline{x}}{h}.\]</span></p>
+<p>Since we have that <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times \underline{F} = 0\)</span> over a simply-connected region <span class="math inline">\(D\)</span>, then the line integral of <span class="math inline">\(\underline{F}\)</span> is path independent over <span class="math inline">\(D\)</span>. For the first of the two integrals in the expression above, let us therefore choose to integrate along a path that goes first from <span class="math inline">\(\underline{x}_0\)</span> to <span class="math inline">\(\underline{x}\)</span>, then from <span class="math inline">\(\underline{x}\)</span> to <span class="math inline">\(\underline{x}+ h\underline{e}_1\)</span> in a straight line, as shown in figure <a href="#fig:2path2" data-reference-type="ref" data-reference="fig:2path2">7</a> (where <span class="math inline">\(\underline{h}\)</span> is taken to be <span class="math inline">\(h\underline{e_1}\)</span>).</p>
+<div class="center">
+<figure>
+<img src="phipath.png" id="fig:2path2" style="width:60.0%" alt="" /><figcaption> A path <span class="math inline">\(C\)</span> from <span class="math inline">\(\underline{x}_0\)</span> to <span class="math inline">\(\underline{x}\)</span>, and <span class="math inline">\(\Delta
+C\)</span> from <span class="math inline">\(\underline{x}\)</span> to <span class="math inline">\(\underline{x} + \underline{h}\)</span>, where <span class="math inline">\(\underline{h}\)</span> is a small increment.</figcaption>
+</figure>
+</div>
+<p>We can therefore compute the line integral of <span class="math inline">\(\underline{F}\)</span> from <span class="math inline">\(\underline{x}_0\)</span> to <span class="math inline">\(\underline{x}+h\underline{e}_1\)</span> as the sum of the line integrals along the two parts of this path, and hence <span class="math display">\[\frac{\partial \phi}{\partial x} = \lim_{h\to 0} \frac{\int_{\underline{x_0}}^{\underline{x}}\underline{F}\cdot d\underline{x}+ \int_{\underline{x}}^{\underline{x}+ h\underline{e}_1}\underline{F}\cdot d\underline{x}- \int_{\underline{x_0}}^{\underline{x}}\underline{F}\cdot d\underline{x}}{h} = \lim_{h\to 0} \frac{1}{h}\int_{\underline{x}}^{\underline{x}+ h\underline{e}_1}\underline{F}\cdot d\underline{x}\,.\]</span> If we parameterise this path as <span class="math inline">\(\underline{x}(t) = (x+th,y,z),\, 0\le t \le 1\)</span>, then we have <span class="math inline">\(\underline{F}(\underline{x}(t)) = \underline{F}(x+th,y,z)\)</span> and <span class="math inline">\(\frac{d \underline{x}}{dt} = (h,0,0)\)</span>, so <span class="math display">\[\int_{\underline{x}}^{\underline{x}+ h\underline{e}_1}\underline{F}\cdot d\underline{x}= \int_0^1 \underline{F}(x+th,y,z) \cdot h\underline{e}_1\, dt = h\int_0^1 F_1(x+th,y,z)\, dt,\]</span> where <span class="math inline">\(F_1\)</span> is the <span class="math inline">\(\underline{e}_1\)</span> component of <span class="math inline">\(\underline{F}\)</span>. Substituting this back in to our expression for <span class="math inline">\(\frac{\partial \phi}{\partial x}\)</span> gives <span class="math display">\[\frac{\partial \phi}{\partial x} =  \lim_{h\to 0} \int_0^1 F_1(x+th,y,z)\, dt.\]</span></p>
+<p>A nice way to evaluate this expression is using the mean value theorem for integrals, which in general states that <span class="math inline">\(\int_a^b G(x)\,dx=G(x^*)(b-a)\)</span> for some <span class="math inline">\(x^*\in[a,b]\)</span>. In this case, this says that there exists a <span class="math inline">\(t^* \in [0,1]\)</span> such that <span class="math inline">\(\int_0^1 F_1(x+th,y,z) = F_1(z+t^*h,y,z)\)</span>, and then taking the limit gives <span class="math inline">\(\frac{\partial \phi}{\partial x} = F_1(x,y,z)\)</span> by continuity.</p>
+<p>Alternatively, we can consider a Taylor expansion of <span class="math inline">\(F_1(x+th,y,z)\)</span>, and then we see that <span class="math display">\[\begin{aligned}
+		\frac{\partial \phi}{\partial x} &amp;=  \lim_{h\to 0} \int_0^1 (F_1(x,y,z) + th\frac{\partial}{\partial x}F_1(x,y,z) + \ldots) \, dt \\
+		&amp;=  \lim_{h\to 0} \left[ tF_1(x,y,z) + \frac{1}{2}t^2h\frac{\partial}{\partial x}F_1(x,y,z) + \ldots \right]_0^1 \\
+		&amp;= \lim_{h\to 0} \left(F_1(x,y,z) + \frac{1}{2}h\frac{\partial}{\partial x}F_1(x,y,z) + \ldots\right),
+	\end{aligned}\]</span> where all the terms contained within <span class="math inline">\(\ldots\)</span> are of order at least <span class="math inline">\(h^2\)</span>, and hence upon taking the limit we obtain <span class="math display">\[\frac{\partial \phi}{\partial x} = F_1(x,y,z).\]</span></p>
+<p>The partial derivatives with respect to <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> can be calculated following exactly the same procedure, and so we find <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu \phi (\underline{x}) = F_1(x,y,z)\underline{e}_1 + F_2(x,y,z)\underline{e}_2 + F_3(x,y,z)\underline{e}_3 = \underline{F}(\underline{x}),\]</span> as required.</p>
+<p>Here’s an alternative (though similar) approach, which doesn’t require us to consider the different components separately, and has the bonus of showing that <span class="math inline">\(\phi\)</span> is fully differentiable in the sense seen last term. If we return to <a href="#fig:2path2" data-reference-type="ref" data-reference="fig:2path2">7</a>, then (similarly to before), for <span class="math inline">\(\underline{x}+\underline{h}\in D\)</span>, we can write: <span class="math display">\[\phi(\underline{x}+\underline{h})-\phi(\underline{x}) = \int_{\Delta C}\underline{F}\cdot
+d\underline{x}\,.\]</span> Choosing the small increment to the path to be a straight line, we can parametrise <span class="math inline">\(\Delta C\)</span> as <span class="math inline">\(\underline{x}(t) =
+\underline{x} + \underline{h}\,t\)</span>, where <span class="math inline">\(0\le t\le 1\)</span>. Now <span class="math display">\[\int_{\Delta C}\underline{F}\cdot d\underline{x} =
+\int_0^1\underline{F}(\underline{x}+\underline{h}\,t)\cdot\underline{h}\,dt =
+\underline{F}(\underline{x}+t_*\,\underline{h})\cdot\underline{h}\,,\qquad \text{for some } t^*\in [0,1]\,,\]</span> where again the last step comes from the integral form of the mean value theorem. So, we have <span class="math display">\[\begin{equation} \phi(\underline{a}+\underline{h})-\phi(\underline{a}) = \underline{F}(\underline{a})\cdot\underline{h} +
+\underbrace{\underline{F}(\underline{a}+t_*\,\underline{h})\cdot\underline{h}-
+\underline{F}(\underline{a})\cdot\underline{h}}_{R(\underline{h})}\textrm{.}\label{diffc} \end{equation}\]</span> Denoting the unit vector in the direction <span class="math inline">\(\underline{h}\)</span> by <span class="math inline">\(\widehat{\underline{n}}_h\)</span>, <span class="math display">\[\frac{R(\underline{h})}{|\underline{h}|}=
+\left(\underline{F}(\underline{a}+t_*\,\underline{h})-\underline{F}(\underline{a})
+\right)\cdot\widehat{\underline{n}}_h\]</span> which tends to zero as <span class="math inline">\(\underline{h}\to\underline{0}\)</span> if <span class="math inline">\(\underline{F}\)</span> is continuous. Hence <span class="math inline">\(\phi\)</span> is differentiable at <span class="math inline">\(\underline{a}\)</span>, and the piece linear in <span class="math inline">\(\underline{h}\)</span> allows us to identify <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu \phi(\underline{a})
+=\underline{F}(\underline{a})\,.\]</span></p>
+<p>To conclude: if <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\)</span> in <span class="math inline">\(D\)</span> and <span class="math inline">\(D\)</span> is simply connected, then</p>
+<p><span class="math display">\[\boxed{\,\exists\,\phi~~\textrm{s.t.}~~\underline{F} =
+\underline{\nabla\mkern-2mu}\mkern 3mu \phi}\]</span> in <span class="math inline">\(D\)</span>. The function <span class="math inline">\(\phi\)</span> (or sometimes its negative) is called the <em>scalar potential</em>.</p>
+<p>One more question: starting with <span class="math inline">\(\underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span>, can we show path independence directly? The answer is again yes. This follows from the answer to exercise 68 on problem sheet 7, but for completeness the relevant calculation is repeated here. Let <span class="math inline">\(C\)</span> be any curve running from <span class="math inline">\(\underline{a}\)</span> to <span class="math inline">\(\underline{b}\)</span>, and <span class="math inline">\(t\mapsto \underline{x}(t)\)</span>, <span class="math inline">\(t=t_{\underline{a}}\dots t_{\underline{b}}\)</span> be any parametrisation of it, so that <span class="math inline">\(\underline{x}(t_{\underline{a}})=\underline{a}\)</span> and <span class="math inline">\(\underline{x}(t_{\underline{b}})=\underline{b}\)</span> . Then <span class="math display">\[\begin{aligned}
+\int_{C}\underline{F}\cdot
+d\underline{x}
+&amp;=\int_{t_{\underline{b}}}^{t_{\underline{a}}}\underline{\nabla\mkern-2mu}\mkern 3mu \phi(\underline{x}(t))\cdot
+\frac{d\underline{x}}{dt}\,dt\\
+&amp;=\int_{t_{\underline{b}}}^{t_{\underline{a}}}\frac{\partial \phi}{\partial
+x_i}\frac{dx_i}{dt}\,dt
+\qquad\qquad\mbox{(Einstein notation!)}\\[2pt]
+&amp;=\int_{t_{\underline{b}}}^{t_{\underline{a}}}\frac{d\phi(\underline{x}(t))}{dt}\,dt
+\qquad~\,\quad\mbox{(Chain rule)}\\[4pt]
+&amp;=\phi(\underline{x}(t_{\underline{a}}))-\phi(\underline{x}(t_{\underline{b}}))
+\quad~~\,\mbox{(Fundamental Theorem of Calculus)}\\[4pt]
+&amp;=\phi(\underline{a})-\phi(\underline{b})\,.\end{aligned}\]</span> Since we have not specified <span class="math inline">\(C\)</span> beyond giving its end points <span class="math inline">\(\underline{a}\)</span> and <span class="math inline">\(\underline{b}\)</span>, the integral is path independent.</p>
+<p>Finally we can use our double ended arrows! In a simply connected region <span class="math inline">\(D\)</span>, <span class="math display">\[\boxed{\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\,\Leftrightarrow\,
+\textrm{path independence of }I\,\Leftrightarrow\,\exists\,\phi 
+\textrm{ s.t. }
+\underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi.}\]</span></p>
+<div class="example">
+<p>Compute <span class="math inline">\(I=\int_C\underline{F}\cdot d\underline{x}\)</span> for <span class="math inline">\(\underline{F}=
+(y\,\cos(xy),x\,\cos(xy)-z\,\sin(yz),-y\,\sin(yz))\)</span> , where <span class="math inline">\(C\)</span> is specified by <span class="math display">\[t\mapsto \underline{x}(t)=\left(\frac{\sin(t)}{\sin(1)},
+\frac{\log(1{+}t)}{\log(2)},\frac{1-e^t}{1-e}\right)\,,\quad 0\le t\le
+1\,.\]</span> Answer: first note that <span class="math inline">\(\underline{x}(0)=(0,0,0)\)</span> and <span class="math inline">\(\underline{x}(1)=(1,1,1)\)</span> . Then compute <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\dots
+=\underline{0}\)</span> , on all of <span class="math inline">\(\mathbb{R}^3\)</span> (which is simply connected). Hence <span class="math inline">\(\underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> for some <span class="math inline">\(\phi\)</span>. To find <span class="math inline">\(\phi\)</span> we need to solve <span class="math display">\[(1)~\phi_x=F_1\,;\qquad
+(2)~\phi_y=F_2\,;\qquad
+(3)~\phi_z=F_3\,.\]</span> From (1), <span class="math inline">\(\phi=\sin(xy)+f(y,z)\)</span> for some function <span class="math inline">\(f\)</span> of <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>; then from (2), <span class="math inline">\(f(y,z)=\cos(yz)+g(z)\)</span>. Finally from (3), <span class="math inline">\(g(z)=\mbox{constant}=A\)</span>, say. Hence <span class="math display">\[\phi(x,y,z)=\sin(xy)+\cos(yz)+A\]</span> and <span class="math display">\[I=\phi(1,1,1)-\phi(0,0,0)=(\sin(1)+\cos(1)+A) - (1+A) =
+\sin(1)+\cos(1)-1\,.\]</span></p>
+</div>
+<p><em>Some vocabulary:</em> if <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\mathbf{0}\)</span>, <span class="math inline">\(\underline{F}\)</span> is said to be <em>closed</em>; and if <span class="math inline">\(\underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span>, <span class="math inline">\(\underline{F}\)</span> is said to be <em>exact</em>. Even though it wasn’t phrased in this way, we saw in subsection <a href="#sub:applyingdeltwice" data-reference-type="ref" data-reference="sub:applyingdeltwice">[sub:applyingdeltwice]</a> that exact <span class="math inline">\(\Rightarrow\)</span> closed, and we have just shown that closed <span class="math inline">\(\Rightarrow\)</span> exact whenever the space <span class="math inline">\(D\)</span> on which <span class="math inline">\(\underline{F}\)</span> is defined is simply connected. However, if <span class="math inline">\(D\)</span> is not simply connected, this may fail, and the extent of this failure gives some information about the ‘shape’ (or topology) of <span class="math inline">\(D\)</span>. This features in a scene in the film ‘A beautiful mind’…</p>
+<div id="eg:topology" class="example">
+<p> A quick example to see what can go wrong on a non-simply connected space.</p>
+<p>Let <span class="math inline">\(\underline{F}(\underline{x}) = \left( \frac{-y}{x^2 + y^2}, \frac{x}{x^2 + y^2}, 0 \right)\)</span> be a vector field defined on <span class="math inline">\(D = \mathbb{R}^3 - \{\underline{0}\}\)</span>. <span class="math inline">\(D\)</span> is a non-simply connected region, as can be seen by considering any circle around the origin. Then <span class="math inline">\(\underline{F}\)</span> is closed, since we have <span class="math display">\[\partial_x F_2 = \partial_y F_1=  \frac{y^2 - x^2}{(x^2 + y^2)^2},\]</span> and hence <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times \underline{F}= \underline{0}\)</span>.</p>
+<p>Now consider <span class="math inline">\(\int_C \underline{F}\cdot d\underline{x}\)</span>, where <span class="math inline">\(C\)</span> is the circle of radius 1 in the <span class="math inline">\(x,y\)</span>-plane centred on the origin, which we can parameterise as <span class="math inline">\(\underline{x}(t) = (\cos(t),\sin(t),0)\)</span> for <span class="math inline">\(0\le t \le 2\pi\)</span>. Then using our standard method for computing line integrals, we have <span class="math inline">\(\frac{d\underline{x}(t)}{dt} = (-\sin(t),\cos(t),0)\)</span> and <span class="math inline">\(\underline{F}(\underline{x}(t))= (-\sin(t),\cos(t),0)\)</span>, and hence <span class="math display">\[\int_C \underline{F}\cdot d\underline{x}= \int_0^{2\pi} \underline{F}(\underline{x}(t)) \cdot \frac{d\underline{x}(t)}{dt} dt = \int_0^{2\pi}1 \,dt = 2\pi.\]</span></p>
+<p>If we now consider the left and right semicircles <span class="math inline">\(C_L\)</span> and <span class="math inline">\(C_R\)</span> as shown in Figure <a href="#fig:circlelineintegral" data-reference-type="ref" data-reference="fig:circlelineintegral">8</a>, then we must have <span class="math inline">\(\int_{C_L} \underline{F}\cdot d\underline{x}\ne \int_{C_R} \underline{F}\cdot d\underline{x}\)</span>, as otherwise <span class="math inline">\(\int_C \underline{F}\cdot d\underline{x}= \int_{C_R} \underline{F}\cdot d\underline{x}- \int_{C_L} \underline{F}\cdot d\underline{x}\)</span>, in contradiction to the direct calculation we did above.</p>
+<div class="center">
+<figure>
+<img src="Circlelineintegral.jpeg" id="fig:circlelineintegral" style="width:50.0%" alt="" /><figcaption>The curve <span class="math inline">\(C\)</span>, and the left and right semicircles <span class="math inline">\(C_L\)</span> and <span class="math inline">\(C_R\)</span>.</figcaption>
+</figure>
+</div>
+<p>Line integrals of <span class="math inline">\(\underline{F}\)</span> on <span class="math inline">\(D\)</span> are therefore not necessarily path independent, and we cannot find a scalar field <span class="math inline">\(\phi\)</span> such that <span class="math inline">\(\underline{F}= \underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> on <span class="math inline">\(D\)</span>. <span class="math inline">\(\underline{F}\)</span> is therefore not exact.</p>
+<p>The existence of a vector field which is closed, but not exact, is due to the topology of <span class="math inline">\(D\)</span>.</p>
+</div>
+</section>
+<section id="aside-green-rightarrow-cauchy" class="level3 unnumbered">
+<h3 class="unnumbered">Aside: Green <span class="math inline">\(\Rightarrow\)</span> Cauchy</h3>
+<p>One final remark, which might be relevant if you are taking the complex variable course (otherwise, don’t worry about it). In two dimensions Stokes becomes Green, stating that if <span class="math inline">\(P(x,y)\)</span> and <span class="math inline">\(Q(x,y)\)</span> are continuously differentiable on <span class="math inline">\(A\subset\mathbb{R}^2\)</span> then <span class="math display">\[\oint_{C=\partial A}P(x,y)\,dx+Q(x,y)\,dy = 
+\int_A\left(\frac{\partial Q}{\partial x} -
+\frac{\partial P}{\partial y} \right) dA\,.\]</span> A special (‘zero-curl’) case is the fact that that if <span class="math inline">\(P(x,y)\)</span> and <span class="math inline">\(Q(x,y)\)</span> are continuously differentiable on <span class="math inline">\(A\subset\mathbb{R}^2\)</span> and satisfy <span class="math inline">\(\frac{\partial Q}{\partial x} =
+\frac{\partial P}{\partial y}\)</span> there, then <span class="math display">\[\oint_{C=\partial A}P(x,y)\,dx+Q(x,y)\,dy = 0\,.\]</span> This might remind you of Cauchy’s integral theorem, which states that if <span class="math inline">\(f:\mathbb{C}\to\mathbb{C}\)</span> is holomorphic on some region <span class="math inline">\(A\subset\mathbb{C}\)</span>, then <span class="math display">\[\oint_{C=\partial A}f(z)\,dz=0\,.\]</span> This isn’t a coincidence. In fact Cauchy is a consequence of Green, at least if <span class="math inline">\(f\)</span> is assumed to have continuous partial derivatives<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. To prove this, write <span class="math display">\[f(z)=f(x+iy)=u(x,y)+i\,v(x,y)\,.\]</span> Given that <span class="math inline">\(f\)</span> is holomorphic, the following (Cauchy-Riemann) equations hold: <span class="math display">\[\frac{\partial u}{\partial x}=
+\frac{\partial v}{\partial y}~~~\mbox{(CR1)}\,;\qquad
+\frac{\partial u}{\partial y}=
+-\frac{\partial v}{\partial x}~~~\mbox{(CR2)}\,.\]</span> Since <span class="math inline">\(dz=dx+i\,dy\)</span>, we have <span class="math display">\[\oint_Cf(z)\,dz =
+\oint_C(u+iv)\,(dx+i\,dy) =
+\oint_C(u\,dx-v\,dy) + i \oint_C(v\,dx+u\,dy)\,.\]</span> Using Green with <span class="math inline">\(P=u\)</span> and <span class="math inline">\(Q=-v\)</span> the first integral on the right-hand side can be rewritten as <span class="math display">\[\oint_C(u\,dx-v\,dy) = \int_A\left(-\frac{\partial v}{\partial x} -
+\frac{\partial u}{\partial y}\right) dA\]</span> which vanishes since the integrand on the RHS is zero by (CR2). Likewise the second integral is <span class="math display">\[\oint_C(v\,dx+u\,dy) = \int_A\left(\frac{\partial u}{\partial x} -
+\frac{\partial v}{\partial y}\right) dA\]</span> and this is also zero, by (CR1). Hence <span class="math inline">\(\oint_Cf(z)\,dz =0\)</span>, as stated by Cauchy.</p>
+</section>
+</section>
+<section id="sec:Jac" class="level2" data-number="1.5">
+<h2 data-number="8.5"><span class="header-section-number">8.5</span> Changing integration variables</h2>
+<p>Simply put, changing variables can make life easier. How and why a change of variables makes calculations easier can be seen by revisiting example <a href="#circeg" data-reference-type="ref" data-reference="circeg">[circeg]</a>, but this time, somewhat perversely, using Cartesian coordinates:</p>
+<div id="eg:polar" class="example">
+<p> Integrate <span class="math inline">\(f(x,y)=x^2+y^2\)</span> over the unit disc, using Cartesian coordinates.</p>
+<div class="center">
+<figure>
+<img src="circle.jpg" id="fig:circle" style="width:50.0%" alt="" /><figcaption> The region of integration is the area between two curves, which together make a circle.</figcaption>
+</figure>
+</div>
+<p>The equation of a unit circle is given implicitly by <span class="math inline">\(x^2+y^2=1\)</span>, but in order to perform our iterated integral (with respect to <span class="math inline">\(y\)</span> first) we must consider the upper and lower halves of the circle as individual curves given by <span class="math inline">\(y=\sqrt{1-x^2}\)</span> and <span class="math inline">\(y=-\sqrt{1-x^2}\)</span> respectively, with <span class="math inline">\(-1\le x\le 1\)</span>. <span class="math display">\[\begin{aligned}
+\int_{-1}^1\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}(x^2+y^2)\,dy\,dx
+&amp;=\int_{-1}^1
+\left[x^2y+{\textstyle\frac{1}{3}}y^3\right]_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}dx
+=\int_{-1}^{1}{\textstyle\frac{2}{3}}(1+2x^2)\sqrt{1-x^2}\,dx\\[2pt]
+&amp;\textrm{Using the substitution $x=\sin\theta$,
+$\sqrt{1-x^2}dx=\cos^2\theta\,d\theta$:}\\
+&amp;=\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}
+{\textstyle\frac{2}{3}}(\cos^2\theta+2\sin^2\theta\cos^2\theta)\,d\theta\\
+&amp;\textrm{Use trig double angle identities to simplify and get:}\\
+&amp;={\textstyle\frac{2}{3}}\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}
+({\textstyle\frac{3}{4}}+{\textstyle\frac{1}{2}}\cos 2\theta-{\textstyle\frac{1}{4}}\cos 4\theta)\,d\theta\\
+&amp;=
+\left[{\textstyle\frac{1}{2}}\theta
++{\textstyle\frac{1}{6}}\sin 2\theta
+-{\textstyle\frac{1}{24}}\sin 4\theta
+\right]_{-\frac{\pi}{2}}^{\frac{\pi}{2}}
+\,=\,{\textstyle\frac{1}{2}}\pi\,.\end{aligned}\]</span></p>
+<p>That was quite hard work, so let’s recap on how changing variables can simplify life. We’ll change to polar coordinates: <span class="math inline">\((x,y)\to(r,\theta)\)</span> where <span class="math inline">\(x=r\cos\theta\)</span>, <span class="math inline">\(y=r\sin\theta\)</span>. Our limits must also change to <span class="math inline">\(0\le r\le 1\)</span>, <span class="math inline">\(0\le\theta\le 2\pi\)</span>, and also <span class="math inline">\(dA=rdrd\theta\)</span>; we will see later why this is so. This form of <span class="math inline">\(dA\)</span> is very important and the extra <span class="math inline">\(r\)</span>, which may look out of place, is crucial. Therefore we can write: <span class="math display">\[\begin{aligned}
+\int_{-1}^1\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}(x^2+y^2)\,dy\,dx 
+&amp;=\int_0^{2\pi}\int_0^1 r^3 drd\theta\\[2pt]
+&amp;=\int_0^{2\pi} \left[{\textstyle\frac{1}{4}}r^4\right]_0^1d\theta
+=\left[{\textstyle\frac{1}{4}}\theta\right]_0^{2\pi} \,=\, {\textstyle\frac{1}{2}}\pi\,.\end{aligned}\]</span></p>
+</div>
+<p>The change of variables made our computation much simpler, but how do we change from one set of variables to another in general? A change of variables is a change of coordinate systems, and usually (though not always) the good choice is pretty obvious – e.g. if you are dealing with a circular area of integration, polar coordinates will probably be best. One further word of warning: if we start with two variables in the integration (e.g. <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>) then we need to keep two variables free after the coordinate change (e.g. <span class="math inline">\(r\)</span>, <span class="math inline">\(\theta\)</span>). So NEVER, when changing variables to make an integration easier, substitute actual values for the variables (so NEVER do this: <span class="math inline">\(r=3\)</span>)!!! The values are for the integration limits.</p>
+<p><strong>This small section is to give some intuition for what will follow:</strong></p>
+<p>We briefly look at the change from Cartesian coordinates to polar coordinates from a geometric point of view before giving the general method.</p>
+<div class="center">
+<figure>
+<img src="arc.jpg" id="fig:arc" style="width:50.0%" alt="" /><figcaption> A small area <span class="math inline">\(dA\)</span> in terms of polar coordinates, i.e. small changes in <span class="math inline">\(r\)</span> and <span class="math inline">\(\theta\)</span> instead of in <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</figcaption>
+</figure>
+</div>
+<p>If we start at the point <span class="math inline">\(B=(r,\theta)\)</span> on the diagram shown in figure <a href="#fig:arc" data-reference-type="ref" data-reference="fig:arc">10</a>, small increases in <span class="math inline">\(r\)</span> and <span class="math inline">\(\theta\)</span> will give us the region traced out by the points <span class="math inline">\(B=(r,\theta)\)</span>, <span class="math inline">\(C=(r+dr,\theta)\)</span>, <span class="math inline">\(D=(r+dr,\theta +d\theta)\)</span> and <span class="math inline">\(E=(r,\theta+d\theta)\)</span>. When <span class="math inline">\(d\theta\)</span> and <span class="math inline">\(dr\)</span> are very small we can approximate this by a rectangle, and its area <span class="math inline">\(dA\)</span> is approximately equal to the product of the lengths <span class="math inline">\(|BC|\)</span> and <span class="math inline">\(|BE|\)</span>. It is clear that <span class="math inline">\(|BC| = dr\)</span>, while <span class="math inline">\(|BE|\)</span> is approximately equal to the length of the corresponding circular arc, which can be obtained by considering it as a proportion of the full circumference, <span class="math inline">\(C=2\pi r\)</span>. The proportion is simply given by the ratio of the angle of the arc to that of the whole circle, so <span class="math inline">\(|BE|=2\pi r \frac{d\theta}{2\pi} = rd\theta\)</span> and the infinitesimal area is given by <span class="math display">\[\begin{equation} \label{eqn:arc}
+dA = |BC||BE| = rdrd\theta\,. \end{equation}\]</span> You can also see that this holds by calculating the area of the sector <span class="math inline">\(OCDO\)</span> and subtracting the area of <span class="math inline">\(OBEO\)</span>, and then neglecting higher order terms as they become negligible when <span class="math inline">\(dr\)</span> is small: <span class="math inline">\(dA=\frac{d\theta}{2\pi}(\pi (r+dr)^2-\pi r^2)\sim r dr d\theta\)</span>.</p>
+<p><strong>Now back to the general case:</strong></p>
+<p>In the above example the change of variables from <span class="math inline">\((x,y)\)</span> to <span class="math inline">\((r,\theta)\)</span> was (apart from the special point at the origin, which is exceptional enough to be ignored) a diffeomorphism from one set of coordinates to another. Consider a general diffeomorphism <span class="math inline">\(\underline{v}: U\to
+V=\underline{v}(U)\)</span>, with inverse <span class="math inline">\(\underline{w}\)</span>, and suppose that <span class="math inline">\(V\)</span>, with coordinates <span class="math inline">\((x,y)\)</span>, is an area over which we wish to integrate some scalar field <span class="math inline">\(f\)</span>: <span class="math inline">\(V\to\mathbb{R}\)</span>. The big picture is shown in figure <a href="#fig:diffeo" data-reference-type="ref" data-reference="fig:diffeo">12</a> (a), while figure <a href="#fig:diffeo" data-reference-type="ref" data-reference="fig:diffeo">12</a> (b) zooms in on a single infinitesimal area element in <span class="math inline">\(U\)</span> and its image in <span class="math inline">\(V\)</span>.</p>
+<table id="fig:diffeo" class="imageTable">
+<caption> On the left is a diffeomorphism, <span class="math inline">\(\underline{v}\)</span>, and its inverse, <span class="math inline">\(\underline{w}\)</span>, mapping to and from an area of integration <span class="math inline">\(V\)</span>. On the right are infinitesimal areas in the coordinate systems <span class="math inline">\((u,v)\in U\)</span> (lower) and <span class="math inline">\((x,y)\in V\)</span> (upper). Note that the transformation illustrated is rather special in that small squares in <span class="math inline">\(U\)</span> are mapped to small squares in <span class="math inline">\(V\)</span> – it is a <em>conformal</em> mapping. In general the image of a small square in <span class="math inline">\(U\)</span> would be a parallelogram in <span class="math inline">\(V\)</span>.</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="diffeo1.jpg" title="fig:" id="fig:diffeo" style="width:45.0%" alt=" On the left is a diffeomorphism, \underline{v}, and its inverse, \underline{w}, mapping to and from an area of integration V. On the right are infinitesimal areas in the coordinate systems (u,v)\in U (lower) and (x,y)\in V (upper). Note that the transformation illustrated is rather special in that small squares in U are mapped to small squares in V – it is a conformal mapping. In general the image of a small square in U would be a parallelogram in V." /></td>
+<td style="text-align: center;"><img src="diffeo2.jpg" title="fig:" id="fig:diffeo" style="width:45.0%" alt=" On the left is a diffeomorphism, \underline{v}, and its inverse, \underline{w}, mapping to and from an area of integration V. On the right are infinitesimal areas in the coordinate systems (u,v)\in U (lower) and (x,y)\in V (upper). Note that the transformation illustrated is rather special in that small squares in U are mapped to small squares in V – it is a conformal mapping. In general the image of a small square in U would be a parallelogram in V." /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(a)</td>
+<td style="text-align: center;">(b)</td>
+</tr>
+</tbody>
+</table>
+<p>The integral of <span class="math inline">\(f\)</span> over <span class="math inline">\(V\)</span> can be found as the limit of a Riemann sum using the initial integration variables <span class="math inline">\((x,y)\in V\)</span>, as in section <a href="#sub:fubini" data-reference-type="ref" data-reference="sub:fubini">[sub:fubini]</a>: <span class="math display">\[\begin{align}
+I 
+&amp;= \int_V f(x,y)\,dxdy\\
+% \label{eqn:genI}
+&amp;= \lim\limits_{N\to\infty}\sum\limits_{k=0}^N f(\underline{x}_k^*)\,\Delta A_k\\
+&amp;= \lim \limits_{\Delta x_{i},\,\Delta y_{j}\to 0}\sum\limits_{i,j}
+f(\underline{x}_{ij}^*)\, \Delta x_{i}\Delta y_{j}\,.\end{align}\]</span> where the choice of partition of <span class="math inline">\(V\)</span> is taken to be parallel to the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axes in <span class="math inline">\(V\)</span>, i.e. <span class="math inline">\(\Delta A_k = \Delta x_{i}\Delta y_{j}\)</span>.</p>
+<p>However, the value of the integral does not depend on the partition taken to compute it, so let us use another one, the image under <span class="math inline">\(\underline{u}\)</span> of a partition of <span class="math inline">\(U\)</span> parallel to the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> axes in <span class="math inline">\(U\)</span>. From the lower panel of figure <a href="#fig:diffeo" data-reference-type="ref" data-reference="fig:diffeo">12</a> (b), a typical area element from such a partition can be specified by its lower left, lower right, and upper left corners, which have position vectors <span class="math inline">\((u,v)\)</span>, <span class="math inline">\((u+du,v)\)</span>, and <span class="math inline">\((u,v+dv)\)</span> respectively.</p>
+<p>These three corners are mapped to the points <span class="math inline">\(\underline{v}(u,v)\)</span>, <span class="math inline">\(\underline{v}(u+du,v)\)</span>, and <span class="math inline">\(\underline{v}(u,v+dv)\)</span> in <span class="math inline">\(V\)</span> by the diffeomorphism <span class="math inline">\(\underline{v}\)</span>, which define the in general skewed area element <span class="math inline">\(dA_k\)</span> in <span class="math inline">\(V\)</span>. As this area element is small we can treat it as an approximate parallelogram and compute its area via the cross product of vectors along two neighbouring sides (temporarily embedding the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane into <span class="math inline">\(\mathbb{R}^3\)</span> in order to define the cross product). Thus <span class="math display">\[\begin{aligned}
+\Delta A_k &amp;\approx  \Vert
+(\underline{v}(u+du,v)-\underline{v}(u,v))
+\times (\underline{v}(u,v+du)-\underline{v}(u,v))
+\Vert\quad\mbox{(area of parallelogram)}\\
+&amp;\approx  
+\Vert du \frac{\partial \underline{v}}{\partial u}
+\times dv \frac{\partial \underline{v}}{\partial v}\Vert
+\qquad\qquad\qquad\,\mbox{(from the definition of the
+partial derivatives)}\\
+&amp;= |\,
+\left|\begin{array}{ccc}
+\underline{e_1}&amp;\underline{e_2}&amp;\underline{e_3}\\[2pt]
+\frac{\partial v_1}{\partial u}&amp;\frac{\partial v_2}{\partial u}&amp;0\\[4pt]
+\frac{\partial v_1}{\partial v}&amp;\frac{\partial v_2}{\partial v}&amp;0
+\end{array}\right|\,| ~du\,dv
+\qquad\mbox{(definition of cross product)}\\[3pt]
+&amp;=
+|\,
+\left| \begin{array}{cc}
+\frac{\partial v_1}{\partial u}&amp;\frac{\partial v_2}{\partial u}\\[3pt]
+\frac{\partial v_1}{\partial v}&amp;\frac{\partial v_2}{\partial v}
+\end{array}\right|\,| ~du\,dv
+\qquad\qquad\mbox{(expanding out the determinant)}\\[3pt]
+&amp;=
+|\,\left| \begin{array}{cc}
+\frac{\partial v_1}{\partial u}&amp;\frac{\partial v_1}{\partial v}\\[3pt]
+\frac{\partial v_2}{\partial u}&amp;\frac{\partial v_2}{\partial v}
+\end{array}\right|\,| ~du\,dv
+\qquad\qquad\mbox{(rearranging using properties of $2\times 2$ determinants)}
+\\[2pt]
+&amp;= |J(\underline{v})|\,du\,dv \,,\end{aligned}\]</span> where <span class="math inline">\(J(\underline{v})\)</span> is the Jacobian matrix of the transformation <span class="math inline">\(\underline{v}\)</span>. Now that we have calculated the area element under the diffeomorphism we can recalculate the integral using a Riemann sum with our new partition, with <span class="math inline">\(\Delta A_{k} =
+|J(\underline{v})|\,du\,dv\)</span> :<br />
+<span class="math display">\[\begin{aligned}
+I &amp;=
+\lim\limits_{N\to\infty}\sum\limits_{k=0}^N 
+f(\underline{v}(u_k^*,v_k^*))\,\Delta A_k\\
+&amp;= 
+\lim\limits_{du_{i}dv_{j}\to 0}
+\sum\limits_{i,j}f(\underline{v}(u_k^*,v_k^*))\,|J(\underline{v})|\,du_idv_j\\
+&amp;=
+\int_{U}f(\underline{v}(u,v))\,|J(\underline{v})|\,du\,dv\,.\end{aligned}\]</span> Note that <span class="math inline">\(U=\underline{w}(V)\)</span> is the area of integration in the new coordinate system, and that the limits of integration must be altered accordingly.</p>
+<p>Let’s use this result to check the form of <span class="math inline">\(dA\)</span> used in example <a href="#circeg" data-reference-type="ref" data-reference="circeg">[circeg]</a>. In this case our ‘<span class="math inline">\(V\)</span>’ coordinates were <span class="math inline">\((x,y)\)</span> and our ‘<span class="math inline">\(U\)</span>’ ones were <span class="math inline">\((r,\theta)\)</span> with <span class="math inline">\(x=r\cos\theta\)</span>, <span class="math inline">\(y=r\sin\theta\)</span>, and so <span class="math display">\[\begin{aligned}
+dA_{new} &amp;= |J(\underline{v})| \,dr\,d\theta  \\[2pt]
+&amp;= 
+% drd\theta \,
+|\,\left|
+\begin{array}{cc}
+\frac{\partial x}{\partial r}&amp;\frac{\partial x}{\partial
+\theta}\\[3pt]
+\frac{\partial y}{\partial r}&amp;\frac{\partial
+y}{\partial\theta}\end{array}\right|\,| ~dr\,d\theta\\[2pt]
+&amp;=|\, \left|\begin{array}{cc}\cos\theta &amp; -r\sin\theta\\
+\sin\theta &amp;r\cos\theta \end{array}\right| \,| ~dr\,d\theta\\
+&amp;=r\,dr\,d\theta \,.\end{aligned}\]</span> This is the formula quoted in example <a href="#circeg" data-reference-type="ref" data-reference="circeg">[circeg]</a> and agrees with equation <span class="math inline">\(\eqref{eqn:arc}\)</span>. The Jacobian allows us to convert complicated integrals into easier ones by means of a variable change.</p>
+<p>In summary:<br />
+<span class="math display">\[\boxed{dA=dxdy = |J|\,du\,dv}\]</span></p>
+<p>Changing variables for volume (triple) integrals is very similar to double integrals. Again we assume that there is a diffeomorphism <span class="math inline">\(\underline{U}\)</span> which maps the volume between the two coordinate systems <span class="math inline">\((W_1, W_2, W_3)\)</span> and <span class="math inline">\((U_1, U_2, U_3)\)</span>, and an inverse <span class="math inline">\(\underline{W}\)</span> which maps in the other direction, from <span class="math inline">\((U_1, U_2, U_3)\)</span> to <span class="math inline">\((W_1, W_2, W_3)\)</span>.</p>
+<p>Then, much as before, <span class="math display">\[\int_V f(\underline{W})\,dW_1\,dW_2\,dW_3 =
+\int_{\underline{U}(V)}f(\underline{W}(\underline{U}))\,|J(\underline{W})|\,dU_1\,dU_2\,dU_3\,,\]</span> where <span class="math inline">\(|J(\underline{W})|\)</span> is the magnitude of Jacobian, and <span class="math inline">\(J\)</span>, the Jacobian matrix or differential, is now the determinant of a 3-by-3 matrix of partial derivatives: <span class="math display">\[|J(\underline{W})| = |\left|\begin{array}{ccc}
+\frac{\partial W_1}{\partial U_1}&amp;\frac{\partial W_1}{\partial
+U_2}&amp;\frac{\partial W_1}{\partial U_3}\\[3pt]
+\frac{\partial W_2}{\partial U_1}&amp;\frac{\partial W_2}{\partial
+U_2}&amp;\frac{\partial W_2}{\partial U_3}\\[3pt]
+\frac{\partial W_3}{\partial U_1}&amp;\frac{\partial W_3}{\partial
+U_2}&amp;\frac{\partial W_3}{\partial U_3}\\
+\end{array}\right||\,.\]</span></p>
+<p>For example, for the usual Cartesian <span class="math inline">\(\longrightarrow\)</span> Spherical Polars coordinate change, take <span class="math inline">\(\underline{W}(r,\theta,\phi) = (x,y,z) = (r\sin\theta\cos\phi, r\sin\theta\sin\phi,
+r\cos\theta)\)</span> and <span class="math inline">\(\underline{U} = (r, \theta, \phi)\)</span>. As can be calculated (exercise!), the magnitude of the Jacobian of this mapping is <span class="math inline">\(|J| = r^2\sin\theta\)</span>.</p>
+<p>Just to re-iterate, this is a change of variables in all three dimensions (and NOT a parametrisation of a surface), so we need all three coordinates. We only fix <span class="math inline">\(r\)</span> to specific values in, for example, the limits of an integration.</p>
+<div class="example">
+<p>Let us use the coordinate change to re-evaluate the volume of a sphere of radius <span class="math inline">\(a\)</span>, found before in bonus example <a href="#spherevol" data-reference-type="ref" data-reference="spherevol">[spherevol]</a>: <span class="math display">\[\begin{aligned}
+\int_V dV&amp;=\int_0^{2\pi}\int_0^{\pi}\int_0^a
+r^2\sin\theta\,dr\,d\theta\,d\phi\\[2pt]
+&amp;=\int_0^{2\pi}\int_0^{\pi} \frac{a^3}{3}\sin\theta\,d\theta\,d\phi\\[2pt]
+&amp;=\int_0^{2\pi}\frac{2a^3}{3}\,d\phi
+=\frac{4\pi a^3}{3}\,.\end{aligned}\]</span> This agrees with our previous calculation but the steps were fewer and easier!</p>
+</div>
+<p>One last example:</p>
+<div class="example">
+<p>Integrate <span class="math inline">\(f(x,y)=x^2+y^2\)</span> over the square shown in figure <a href="#fig:sqr" data-reference-type="ref" data-reference="fig:sqr">13</a>.</p>
+<div class="center">
+<figure>
+<img src="sqr.jpg" id="fig:sqr" style="width:50.0%" alt="" /><figcaption> The area of integration, a square with sides of length <span class="math inline">\(\sqrt{2}\)</span>, shown with old coordinates <span class="math inline">\((x,y)\)</span> and new ones <span class="math inline">\((u,v)\)</span>.</figcaption>
+</figure>
+</div>
+<p>Doing this in Cartesian coordinates <span class="math inline">\((x,y)\)</span> is possible, but would involve splitting the integral into two and having limits which are functions, for example <span class="math display">\[I = \int_0^1\int_{y=-x}^{y=x} (x^2+y^2)\,dy\,dx +
+\int_1^2\int_{y=x-2}^{y=-x+2}(x^2+y^2)\,dy\,dx\textrm{.}\]</span> If we instead use coordinates <span class="math inline">\((u,v)\)</span>, which are given by taking the axes starting at the origin, along the sides of the square labelled <span class="math inline">\(u=0\)</span>, <span class="math inline">\(v=0\)</span>, we get a transformation <span class="math inline">\(x+y=u\)</span>, <span class="math inline">\(x-y=v\)</span>. This gives us <span class="math inline">\(x=\frac{1}{2}(u+v)\)</span> and <span class="math inline">\(y=\frac{1}{2}(u-v)\)</span>, which we can use to find the absolute value of the Jacobian: <span class="math display">\[|J| \,=\, |\,\left|\begin{array}{cc}\frac{\partial x}{\partial u} &amp;
+\frac{\partial x}{\partial v}\\[3pt]
+\frac{\partial y}{\partial u}&amp;\frac{\partial y}{\partial v}
+\end{array}\right|\,| \,=\, |-\frac{1}{2}|\,=\,\frac{1}{2}\,.\]</span> So now we have the easier integral <span class="math display">\[I \,=\, 
+\int_0^2\int_0^2 \frac{1}{2}(u^2+v^2)\frac{1}{2}\,du\,dv \,=\,
+\int_0^2\int_0^2 \frac{1}{2}u^2\,du\,dv \,=\,
+\frac{8}{3}\,.\]</span> Note this illustrates the need to take the absolute value of the Jacobian when changing variables – clearly the integral must be positive since it is the integral of an everywhere-positive function, while our answer would have been negative if we had used <span class="math inline">\(J\)</span> instead of <span class="math inline">\(|J|\)</span> in the above.</p>
+</div>
+</section>
+</section>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>For a more powerful result special to complex analysis, look up <em>Goursat’s theorem</em>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '7';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				console.log(counterOffset);
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		console.log(figs);
+		for (var fig of figs) {
+			console.log(fig);
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Figs/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

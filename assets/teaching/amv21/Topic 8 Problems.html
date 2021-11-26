@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2021-22, Michaelmas: Topic 8 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2021-22, Michaelmas: Topic 8 Problems</h1>
+</header>
+<p><span> </span></p>
+<div class="problem">
+<p>For a simple closed curve <span class="math inline">\(C\)</span> in the <span class="math inline">\((x,y)-\)</span>plane, show by Green’s theorem that the area enclosed is <span class="math inline">\(A\,=\,\frac{1}{2}\,\oint_C\,(x dy - y dx)\, .\)</span> (Note, ‘simple’ means that <span class="math inline">\(C\)</span> does not cross itself, which means that it encloses a well-defined area <span class="math inline">\(A\)</span>.)</p>
+</div>
+<div class="problem">
+<p>Evaluate <span class="math inline">\(\oint\,{\bf F}\cdot {\bf dx}\,\)</span> around the circle <span class="math inline">\(x^2\,+\,y^2\,+2x\,=\,0\)</span>, where <span class="math inline">\({\bf F}\,=\,y {\bf e_1}\,-\,x {\bf e_2}\)</span>, both directly and by using Green’s theorem in the plane.</p>
+</div>
+<div class="problem">
+<p>Evaluate <span class="math inline">\(\oint_C\, 2x dy - 3y dx\)</span> around the square with vertices at <span class="math inline">\((x,y)=(0,2)\)</span>, <span class="math inline">\((2,0)\)</span>, <span class="math inline">\((-2,0)\)</span> and <span class="math inline">\((0,-2)\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\underline{v}}\)</span> be the radial vector field <span class="math inline">\({\underline{v}}({\underline{x}})={\underline{x}}\)</span> .<br />
+</p>
+<ol>
+<li><p>Compute <span class="math inline">\(l_1=\int_{C_1}{\underline{v}}\cdot d{\underline{x}}\)</span> , where <span class="math inline">\(C_1\)</span> is the straight-line contour from the origin to the point <span class="math inline">\((2,0,0)\)</span> .</p></li>
+<li><p>Compute <span class="math inline">\(l_2=\int_{C_2}{\underline{v}}\cdot d{\underline{x}}\)</span> , where <span class="math inline">\(C_2\)</span> is the semi-circular contour from the origin to the point <span class="math inline">\((2,0,0)\)</span> defined by <span class="math inline">\(0\le x\le 2\)</span>, <span class="math inline">\(y=+\sqrt{1-(x{-}1)^2}\)</span> , <span class="math inline">\(z=0\)</span>. <span>[It may help to start by sketching <span class="math inline">\(C_2\)</span> , and then to parameterize it as <span class="math inline">\({\underline{x}}(t)=
+(1-\cos t,\sin t,0)\)</span> with <span class="math inline">\(0\le t\le\pi\)</span>. ]</span></p></li>
+<li><p>You should have found that <span class="math inline">\(l_1=l_2\)</span>. Explain this result using Stokes’ theorem.</p></li>
+</ol>
+</div>
+<div class="problem">
+<p>Integrate <span class="math inline">\({\rm curl}\,{\bf F}\)</span>, where <span class="math inline">\({\bf F}\,=\, 3y {\bf e_1}- xz {\bf e_2}+ y z^2 {\bf e_3}\)</span>, over the portion <span class="math inline">\(S\)</span> of the surface <span class="math inline">\(2z\,=\, x^2 + y^2\)</span> below the plane <span class="math inline">\(z=2\)</span>, both directly and by using Stokes’ theorem. Take the area elements of <span class="math inline">\(S\)</span> to point outwards, so that their <span class="math inline">\(z\)</span> components are negative.</p>
+</div>
+<div class="problem">
+<p>The paraboloid of equation <span class="math inline">\(z=x^2+y^2\)</span> intersects the plane <span class="math inline">\(z=y\)</span> in a curve <span class="math inline">\(C\)</span>. Calculate <span class="math inline">\(\oint_C\, {\bf v} \cdot {\bf dx}\,\)</span> for <span class="math inline">\({\bf v}=2z {{\bf e_1}}+x {{\bf e_2}} + y {{\bf e_3}}\)</span> using Stokes’ theorem. Check your answer by evaluating the line integral directly.</p>
+</div>
+<div class="problem">
+<p>For an open surface <span class="math inline">\(S\)</span> with boundary <span class="math inline">\(C\)</span>, show that <span class="math inline">\(2\int_S\,{\bf u}\cdot d{\bf A}=\oint_C\, ( {\bf u}\times{\bf x}\,)\cdot d{\bf x}\,\,,\)</span> where <span class="math inline">\({\bf u}\)</span> is a fixed vector.</p>
+</div>
+<div class="problem">
+<p>Verify Stokes’ theorem for the upper hemispherical surface <span class="math inline">\(S\)</span>: <span class="math inline">\(z=\sqrt{1-x^2-y^2}\)</span>, <span class="math inline">\(z\ge 0\)</span>, with <span class="math inline">\({\bf F}\)</span> equal to the radial vector field, i.e. <span class="math inline">\({\bf F}(x,y,z)\,=\,x{\bf e_1}+ y{\bf e_2}+
+z{\bf e_3}\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\bf F}\,=\, y e^z\, {\bf e_1}+ x e^z\, {\bf e_2}+ xy e^z\, {\bf e_3}\)</span>. Show that the integral of <span class="math inline">\({\bf F}\)</span> around a regular closed curve <span class="math inline">\(C\)</span> that is the boundary of a surface <span class="math inline">\(S\)</span> is zero.</p>
+</div>
+<div class="problem">
+<p>By applying Stokes’ theorem to the vector field <span class="math inline">\({\bf G}=|{\bf x}\,|^2 {\bf a}\)</span> (with <span class="math inline">\({\bf a}\)</span> a constant vector), or otherwise, show that <span class="math inline">\(\int_S {\bf x}\,\times d{\bf A}=- \frac{1}{2}\oint_C |{\bf x}\,|^2\, d{\bf x}\,\)</span>, where <span class="math inline">\(S\)</span> is the area bounded by the closed curve <span class="math inline">\(C\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section B): Evaluate the line integral <span class="math inline">\(I=\int_C {\bf F}\cdot {d{\bf x}\,}\)</span> where <span class="math inline">\({\bf F}({ {\bf x}\,})=2y {\bf e_1}+z {\bf e_2}+3y {\bf e_3}\)</span> and the path <span class="math inline">\(C\)</span> is the intersection of the surface of equation <span class="math inline">\(x^2+y^2+z^2=4z\)</span> and the surface of equation <span class="math inline">\(z=x+2\)</span>, taken in a clockwise direction to an observer at the origin. A picture of the path is required, as well as full justifications of the theoretical results you might use.</p>
+</div>
+<div class="problem">
+<p>Exam question 2012 (Section B) Q9(a)(ii): Use Stokes’ theorem to calculate the line integral <span class="math inline">\(\oint_Cydx+zdy+xdz\)</span>, where C is the intersection of the surfaces <span class="math inline">\(x^2 + y^2 + z^2 = a^2\)</span> and <span class="math inline">\(x + y + z = 0\)</span> and is orientated anticlockwise when viewed from above.<br />
+<em>Suggestion:</em> Instead of one of the two standard methods for surface integrals, just use <span class="math inline">\(d\mathbf{A}=\frac{\underline{\nabla\mkern-2mu}\mkern 3mu f}{|\underline{\nabla\mkern-2mu}\mkern 3mu f|}dA\)</span> and think about how the surfaces intersect.</p>
+</div>
+<div class="problem">
+<p>Consider the vector field <span class="math inline">\({\bf F}\;=\;y \ {\bf e_1}\,+\, (z-x)\ {\bf e_2}\,+\,(x^3+y) \ {\bf e_3}\)</span>. Evaluate <span class="math inline">\(\int_S\, (\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})\cdot {\bf dA}\,\)</span> explicitly, where<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(S\)</span> is the disk <span class="math inline">\(x^2 + y^2 \le 4\)</span>, <span class="math inline">\(z=1\)</span>,</p></li>
+<li><p><span class="math inline">\(S\)</span> is the surface of a paraboloid <span class="math inline">\(x^2 + y^2 = 5 - z\)</span> above the plane <span class="math inline">\(z=1\)</span>.</p></li>
+</ul>
+<p>Verify that each of these agrees with Stokes’ theorem by considering the integral of <span class="math inline">\({\bf F}\)</span> around each bounding contour.</p>
+</div>
+<div class="problem">
+<p>Evaluate the line integral <span class="math display">\[\int_{P_1}^{P_2}\; \,yz\,dx +\, xz\,dy+\, (xy + z^2)\,dz\]</span> from <span class="math inline">\(P_1\)</span> with co-ordinates (1,0,0) to <span class="math inline">\(P_2\)</span> at (1,0,1) explicitly,<br />
+</p>
+<ul>
+<li><p>along a straight line in the <span class="math inline">\(z\)</span>–direction, and</p></li>
+<li><p>along a helical path parametrised by <span class="math inline">\({\bf x}\,(t)= {{\bf e_1}}\,\cos t+ {{\bf e_2}}\,\sin t+{{\bf e_3}}\,t/{2\pi}\,,\)</span> where <span class="math inline">\(t\)</span> varies along the path.</p></li>
+</ul>
+<p>Compare these two results – does this suggest that there might be a general formula for the integral from <span class="math inline">\(P_1 =(1,0,0)\)</span> to any point <span class="math inline">\(P\)</span> with coordinates <span class="math inline">\((x,y,z)\)</span>? Check your answer when <span class="math inline">\(P = P_2\)</span>.</p>
+</div>
+<div class="problem">
+<p>State a necessary and sufficient condition for a vector field <span class="math inline">\({\bf F}\)</span> to be expressible in the form <span class="math inline">\({\bf F}\;=\;  \underline{\nabla\mkern-2mu}\mkern 3mu \, \phi\)</span> in some simply-connected region. The scalar field <span class="math inline">\(\phi\)</span> is called a <em>scalar potential</em>, though sometimes the opposite sign is used.</p>
+<p>Determine whether the following vector fields are expressible in this form</p>
+<p>(i)<span class="math inline">\(\quad ({\bf a} \cdot { {\bf x}\,}\,) \,{ {\bf x}\,} \,\)</span>, (ii)<span class="math inline">\(\quad ({\bf a} \cdot { {\bf x}\,}\,) \,{\bf a}\,\)</span>, (iii)<span class="math inline">\(\quad ({\bf a} \cdot { {\bf a}}\,) \,{\bf x}\,\,\)</span>, (iv)<span class="math inline">\(\quad {\bf a} \times{ {\bf x}\,}\,\)</span>, (v)<span class="math inline">\(\quad {\bf a} \times\left( {\bf a} \times{ {\bf x}\,}\, \right)\)</span> ,</p>
+<p>and find the vector fields, <span class="math inline">\({\bf F}\)</span>, for which the corresponding potentials are</p>
+<p>(a)<span class="math inline">\(\quad  {\textstyle\frac{1}{2}}({\bf a} \cdot { {\bf x}\,}\,)^2\,\)</span>, (b)<span class="math inline">\(\quad \frac{1}{2}a^2 |{\bf x}\,|^2  -\frac{1}{2}({\bf a} \cdot {
+{\bf x}\,}\,)^2\)</span>.</p>
+<p>Here <span class="math inline">\({\bf a}\)</span> is a constant non-zero vector, and <span class="math inline">\(a^2=|{\bf a}|^2\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section B):<br />
+</p>
+<ul>
+<li><p>State the conditions for the line integral <span class="math inline">\(\int_c {\bf F}
+\cdot {d{\bf x}\,}\)</span> from <span class="math inline">\({ {\bf x}\,}_0\)</span> to <span class="math inline">\({ {\bf x}\,}_1\)</span> to be independent of the path connecting these two points.</p></li>
+<li><p>Determine the value of the line integral <span class="math inline">\(\int_c {\bf F}\cdot
+{d{\bf x}\,}\)</span> where <span class="math display">\[{\bf F}= (e^{-y} - ze^{-x})\,{\bf e_1}+ (e^{-z}- xe^{-y})\,{\bf e_2}+(e^{-x}-
+ye^{-z})\,{\bf e_3},\]</span> and <span class="math inline">\(C\)</span> is the path <span class="math display">\[x= \frac{1}{\ln 2} \ln (1+p),\quad
+y={\rm sin} \frac{\pi p}{2},\quad
+z=\frac{1-e^p}{1-e}\,,\]</span> with the parameter <span class="math inline">\(p\)</span> in the range <span class="math inline">\(0 \le p \le 1\)</span>, from <span class="math inline">\((0,0,0)\)</span> to <span class="math inline">\((1,1,1)\)</span>.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\({\bf F}= x\,{\bf e_1}+ y\,{\bf e_2}\)</span>, calculate <span class="math inline">\(\int_S{\bf F}\cdot {\bf dA}\,\)</span>, where <span class="math inline">\(S\)</span> is the part of the surface <span class="math inline">\(z= 9 - x^2 - y^2\)</span> that is above the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane, by applying the divergence theorem to the volume bounded by the surface and the piece it cuts out of the <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> plane.<br />
+<span><em>Hint:</em></span> what is <span class="math inline">\({\bf F}\cdot {\bf dA}\,\)</span> <span><em>on</em></span> the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane?</p>
+</div>
+<div class="problem">
+<p>Evaluate each of the integrals below as <span><strong>either</strong></span> a volume integral <span><strong>or</strong></span> a surface integral, whichever is easier:</p>
+<ul>
+<li><p><span class="math inline">\(\int_S {\bf x}\,\cdot{\bf dA}\,\)</span> over the whole surface of a cylinder bounded by <span class="math inline">\(x^2 + y^2 = R^2\)</span>, <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=L\)</span>. Note that <span class="math inline">\({\bf x}\,\)</span> means <span class="math inline">\(x\,{\bf e_1}+ y\,{\bf e_2}+ z\,{\bf e_3}\)</span>.</p></li>
+<li><p><span class="math inline">\(\int_S{\bf F}\cdot{\bf dA}\,\)</span>, where <span class="math inline">\({\bf F}= x \cos^2 y\,{\bf e_1}+xz\,{\bf e_2}+z \sin^2 y\,{\bf e_3}\)</span> , over the surface of a sphere with centre at the origin and radius <span class="math inline">\(\pi\)</span>.</p></li>
+<li><p><span class="math inline">\(\int_V \underline{\nabla\mkern-2mu}\mkern 3mu \cdot {\bf F}\,dV\)</span>, where <span class="math inline">\({\bf F}=\sqrt{x^2{+}y^2} (x\,{\bf e_1}+ y\,{\bf e_2})\)</span>, over the three-dimensional volume <span class="math inline">\(x^2 + y^2 \le R^2\)</span>, <span class="math inline">\(0 \le z \le L\)</span>.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Suppose the vector field <span class="math inline">\({\bf F}\)</span> is everywhere tangent to the closed surface <span class="math inline">\(S\)</span>, which encloses the volume <span class="math inline">\(V\)</span>. Prove that <span class="math display">\[\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot {\bf F}\, dV=0\,.\]</span></p>
+</div>
+<div class="problem">
+<p>Exam question June 2003 (Section A): Evaluate <span class="math inline">\(\int_S \,{\bf B}({ {\bf x}\,}) \cdot {\bf dA}\,\)</span>, where <span class="math display">\[{\bf B}({\bf x}\,)=(8x+\alpha \, y-z)\,{\bf e_1}+
+(x+2y+\beta\,z)\,{\bf e_2}+(\gamma \,x+y-z)\,{\bf e_3}\]</span> and <span class="math inline">\(S\)</span> is the surface of the sphere having centre at <span class="math inline">\((\alpha, \beta,
+\gamma)\)</span> and radius <span class="math inline">\(\gamma\)</span>, where <span class="math inline">\(\alpha, \beta \in \mathbb{R}\)</span>, and <span class="math inline">\(\gamma\)</span> is an arbitrary positive real number.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(A\)</span> be the interior of the circle of unit radius centred on the origin. Evaluate <span class="math inline">\(\iint_A \, \exp(x^2 + y^2)\, dx\, dy\)</span> by making a change of variables to polar co-ordinates.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(A\)</span> be the region <span class="math inline">\(0 \le y \le x\)</span> and <span class="math inline">\(0 \le x \le 1\)</span>. Evaluate <span class="math inline">\(\int_A \, ( x + y)\,dx\, dy\)</span> by making the change of variables <span class="math inline">\(x= u + v\)</span>, <span class="math inline">\(y = u - v\)</span>. Check your answer by evaluating the integral directly.</p>
+</div>
+<div class="problem">
+<p>The expressions below are called Green’s first and second identities. Derive them from the divergence theorem with <span class="math inline">\({\bf F}= f\underline{\nabla\mkern-2mu}\mkern 3mu g\)</span> or <span class="math inline">\(g\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> as appropriate, where <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are differentiable functions: <span class="math display">\[\begin{aligned}
+\int_V\,( f \underline{\nabla\mkern-2mu}\mkern 3mu ^2 g+\underline{\nabla\mkern-2mu}\mkern 3mu f \cdot \underline{\nabla\mkern-2mu}\mkern 3mu g)\, dV&amp;=
+\int_S\,
+(f \underline{\nabla\mkern-2mu}\mkern 3mu g)\cdot {\bf dA}\,\,, \\[2pt]
+\int_V\,( f \underline{\nabla\mkern-2mu}\mkern 3mu ^2 g-g \underline{\nabla\mkern-2mu}\mkern 3mu ^2 f )\, dV &amp;= \int_S\,
+(f \underline{\nabla\mkern-2mu}\mkern 3mu g- g \underline{\nabla\mkern-2mu}\mkern 3mu f) \cdot {\bf dA}\,\,. \end{aligned}\]</span> where the volume <span class="math inline">\(V\)</span> is that enclosed by the closed surface <span class="math inline">\(S\)</span>.</p>
+</div>
+<div class="problem">
+<p>A gas holder has the form of a vertical cylinder of radius <span class="math inline">\(R\)</span> and height <span class="math inline">\(H\)</span> with hemispherical top also of radius <span class="math inline">\(R\)</span>. The density, <span class="math inline">\(\rho\)</span>, (i.e. the mass per unit volume) of the gas inside varies with height <span class="math inline">\(z\)</span> above the base according to the relation <span class="math inline">\(\rho = C \exp(-z)\)</span>, where <span class="math inline">\(C\)</span> is a constant. Calculate the total mass of gas in the holder, taking care to define any coordinate system used and the range of the corresponding variables.<br />
+Use this result to find the integral of the field <span class="math display">\[{\bf F}\,=\,B\ z\ e^{-y}\,{\bf e_1}\,+\,
+C\ y\ e^{-z}\,{\bf e_2}\]</span> over the curved surface of the gas holder.<br />
+<span><em>Hint</em></span>: it may help to note first what the integral over the base of the holder is.</p>
+</div>
+<div class="problem">
+<p>Exam question June 2001 (Section B): In electrostatic theory, Gauss’ law states that the flux of an electrostatic (vector) field <span class="math inline">\({\bf E} ({\bf x}\,)\)</span> over some closed surface <span class="math inline">\(S\)</span> is equal to the enclosed charge <span class="math inline">\(q\)</span> divided by a constant <span class="math inline">\(\epsilon_0\)</span> : <span class="math display">\[\int_S {\bf E} ({ {\bf x}\,})\cdot{\bf dA}\,=  \frac{q}{\epsilon_0}\,.\]</span> If the electrostatic field is given by <span class="math inline">\({\bf E}(x,y)=\alpha x {\bf e_1}+
+\beta y {\bf e_2}\)</span>, use Gauss’ law to find the total charge in the compact region bounded by the surface S consisting of <span class="math inline">\(S_1\)</span>, the curved portion of the half-cylinder <span class="math inline">\(z=(R^2-y^2)^{1/2}\)</span> of length <span class="math inline">\(H\)</span>; <span class="math inline">\(S_2\)</span> and <span class="math inline">\(S_3\)</span> the two semi-circular plane end pieces; and <span class="math inline">\(S_4\)</span>, the rectangular portion of the <span class="math inline">\((x,y)\)</span>-plane. (In equations, the relevant bounded region may be described by <span class="math inline">\(z^2+y^2 \le R^2, z \ge 0, -\frac{H}{2} \le x \le \frac{H}{2}\)</span>). Express your result in terms of <span class="math inline">\(\alpha, \beta, R\)</span> and <span class="math inline">\(H\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section A): In electrostatic theory, Gauss’ law states that the flux of an electrostatic field <span class="math inline">\({\bf E} ({ {\bf x}\,})\)</span> over a closed surface <span class="math inline">\(S\)</span> is given by the ratio of the enclosed charge <span class="math inline">\(q\)</span> and a constant <span class="math inline">\(\epsilon_0\)</span>. Calculate the electric charge enclosed in the ellipsoid of equation <span class="math inline">\(x^2+\frac{1}{2}y^2+z^2=1\)</span> in the presence of<br />
+</p>
+<ul>
+<li><p>an electrostatic field <span class="math inline">\({\bf E} ({ {\bf x}\,})= y z {\bf e_1}+x z {\bf e_2}
++x y {\bf e_3}\)</span> ,</p></li>
+<li><p>an electrostatic field <span class="math inline">\({\bf E} ({ {\bf x}\,})=x {\bf e_1}+ y {\bf e_2}+ z
+{\bf e_3}\)</span> .</p></li>
+</ul>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '75';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
