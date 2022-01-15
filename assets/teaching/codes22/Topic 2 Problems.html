@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Codes III: Topic 2 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Codes III: Topic 2 Problems</h1>
+</header>
+<p>******The following questions are concerned with Chapter 2 of the notes - Linear Codes.******</p>
+<div class="problem">
+<p>Write out an addition table and a multiplication table for <span class="math inline">\({\mathbb Z}/5\)</span> and <span class="math inline">\({\mathbb Z}/6\)</span>. Use your tables to show that <span class="math inline">\({\mathbb Z}/6\)</span> is not a field.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C=\{(0,0,2),(1,1,0),(2,2,1)\}\subseteq {\mathbb F}_3^3\)</span>. Is <span class="math inline">\(C\)</span> a linear code? Find its span, <span class="math inline">\(\langle C \rangle\)</span>, a ternary <span class="math inline">\([n, k,d]\)</span> code. What are <span class="math inline">\(n, k\)</span>, and <span class="math inline">\(d\)</span>?</p>
+</div>
+<div class="problem">
+<p>Show that a <span class="math inline">\(q\)</span>-ary <span class="math inline">\([n,k,d]\)</span> MDS code satisfies <span class="math inline">\(d = n-k+1\)</span>. Use this to check that the code <span class="math inline">\(C = \{000,111\} \subset \mathbb{F}_2^3\)</span> is MDS.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C=\langle\{(0,1,0,1,0),(1,0,1,1,0),(0,1,1,1,0),(1,0,0,1,0)\}\rangle \subseteq {\mathbb F}_2^5\)</span>. Find a basis for <span class="math inline">\(C\)</span>, and its dimension.</p>
+</div>
+<div class="problem">
+<p>Show that, for a prime <span class="math inline">\(p\)</span>, the <span class="math inline">\(p\)</span>-ary code <span class="math inline">\(C=\{(0,1),(1,1), \ldots, (p-1,1)\} \subseteq F_p^2\)</span>, is a <span class="math inline">\((2,p,1)\)</span> code but not a <span class="math inline">\([2,1,1]\)</span> code.</p>
+</div>
+<div class="problem">
+<p>Show that, in a decoding array constructed according to the algorithm given, every possible received word <span class="math inline">\({\bf y}\in {\mathbb F}_q^n\)</span> appears exactly once. (Hint: Show first that the same <span class="math inline">\({\bf y}\)</span> cannot appear twice in the same row, and then that the same <span class="math inline">\({\bf y}\)</span> cannot appear twice in <span><em>different</em></span> rows. (This contradiction argument is similar to the proof of Proposition 2.10.))</p>
+</div>
+<div class="problem">
+<p>Make a decoding array for the code <span class="math inline">\(C_2 = \{(0,0,0),(1,1,1)\}\subseteq {\mathbb F}_2^3\)</span>. If <span class="math inline">\(C_2\)</span> is transmitted over a symmetric binary channel with symbol-error probability <span class="math inline">\(p\)</span>, use Proposition 2.11 to find the probability that a codeword <span class="math inline">\({\bf c}\in C_2\)</span> will be successfully decoded.</p>
+</div>
+<div class="problem">
+<p>Make a decoding array for the code <span class="math inline">\(C_3 = \{(0,0,0),(1,1,1), (2,2,2)\}\subseteq {\mathbb F}_3^3\)</span>. Use it to decode the words (<span class="math inline">\(1,2,1)\)</span> and <span class="math inline">\((1,2,0)\)</span>. If <span class="math inline">\(C_3\)</span> is transmitted over a symmetric ternary channel with symbol-error probability <span class="math inline">\(p\)</span>, use Proposition 2.11 to find the probability that a codeword <span class="math inline">\(c \in C_3\)</span> will be successfully decoded.</p>
+</div>
+<div class="problem">
+<p>In making your array for Q24, when did you have to make arbitrary choices? Which of these choices will affect decoding? Which words may be decoded differently by different arrays? Explain by considering a different (but still correct!) array for <span class="math inline">\(C_3\)</span>. Is the situation the same for <span class="math inline">\(C_2\)</span> of Q23?</p>
+</div>
+<div class="problem">
+<p>Suppose we have a decoding array for a q-ary <span class="math inline">\([n, k, 2t+1]\)</span> code <span class="math inline">\(C\)</span> (<span class="math inline">\(t\)</span> any integer). For <span class="math inline">\({\bf c}\in C\)</span> and <span class="math inline">\(r \leq t\)</span>, where in the array would we find the the words of the sphere <span class="math inline">\(S({\bf c}, r)\)</span>? (Look at Q25, and/or draw a general, schematic array).</p>
+</div>
+<div class="problem">
+<p>In terms of the definition of a perfect code ("there is some <span class="math inline">\(t\)</span> such that...."), what words are in the first column of a decoding array for a perfect code? Explain why, for perfect codes, all arrays will decode identically.</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '16';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
