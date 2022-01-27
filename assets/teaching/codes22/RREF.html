@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RREF</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<p><span><strong>RREF and all that.</strong> </span>Codes/SKD/2019</p>
+<dl>
+<dt><span>What is RREF?</span></dt>
+<dd><p>A matrix is in RREF if:</p>
+<ol>
+<li><p>The first non-zero entry in any row is 1. We call these ‘leading 1s’ (or ‘pivots’).</p></li>
+<li><p>If a column contains a leading 1, then every other entry in that column is 0.</p></li>
+<li><p>Each leading 1 is to the right of any leading 1 in a higher row.</p></li>
+<li><p>Any row of zeros is below all the rows with non-zero entries.</p></li>
+</ol>
+<p>So, typically, a matrix in RREF looks something like this:</p>
+<p><span class="math inline">\(\left(\begin{matrix}
+1&amp;*&amp;0&amp;0&amp;*&amp;*&amp;0&amp;*\\
+0&amp;0&amp;1&amp;0&amp;*&amp;*&amp;0&amp;*\\
+0&amp;0&amp;0&amp;1&amp;*&amp;*&amp;0&amp;*\\ 
+0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;1&amp;*\\
+0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;0\\  
+\end{matrix}\right),\)</span> where the <span class="math inline">\(*\)</span>s can be anything (including 0 or 1). A matrix in RREF could also have some extra columns of 0s at the left. (If it is a ‘portrait’ matrix, it <span><em>must</em></span> have one or more rows of 0s at the bottom.)</p>
+</dd>
+<dt><span>How do we get there?</span></dt>
+<dd><p>To “put a matrix into RREF" we use elementary row operations - EROs. These are:</p>
+<dl>
+<dt><span class="math inline">\(P_{i,j}\)</span>:</dt>
+<dd><p>Swap row <span class="math inline">\(i\)</span> with row <span class="math inline">\(j\)</span>. Using these we can permute the rows however we wish.</p>
+</dd>
+<dt><span class="math inline">\(M_\lambda\)</span>:</dt>
+<dd><p>Multiply a row by some <span class="math inline">\(\lambda \neq 0\)</span> from the field we are working in.</p>
+</dd>
+<dt><span class="math inline">\(A_{i,j}(\lambda)\)</span>:</dt>
+<dd><p>Add <span class="math inline">\(\lambda\times\)</span>row <span class="math inline">\(i\)</span> to row <span class="math inline">\(j\)</span>.</p>
+</dd>
+</dl>
+<p>Although we never used this term in the Codes module, for the rest of this document I will say that two matrices <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> are <span><em>row-equivalent</em></span> if you can turn one into the other using only EROs.</p>
+</dd>
+<dt><span>Is RREF unique?</span></dt>
+<dd><p>Given a matrix, there are usually many different sequences of EROs you could use to get it into RREF. (That’s why it’s such a pain to mark these questions, and it helps if people write down the <span class="math inline">\(P\)</span>, <span class="math inline">\(M\)</span> or <span class="math inline">\(A\)</span> for the EROs they use!)</p>
+<p>But the final RREF matrix is unique. In other words, any matrix is row-equivalent to exactly one matrix in RREF. This is useful if you want to see whether two matrices are row-equivalent: just find the RREF for each of them. If it’s the same, they are row-equivalent; if not, not.</p>
+</dd>
+<dt><span>Are there other, related forms for a matrix?</span></dt>
+<dd><p>Yes.</p>
+<dl>
+<dt>Echelon Form</dt>
+<dd><p>This requires:</p>
+<ol>
+<li><p>The first non-zero entry in any row is to the right of the first non-zero entry in any higher row.</p></li>
+<li><p>Any row of zeros is below all the rows with non-zero entries.</p></li>
+</ol>
+<p>So, typically, a matrix in echelon form looks something like this:</p>
+<p><span class="math inline">\(\left(\begin{matrix}
+\dagger &amp;*&amp;*&amp;*&amp;*&amp;*&amp;*&amp;*\\
+0&amp;0&amp;\dagger &amp;*&amp;*&amp;*&amp;*&amp;*\\
+0&amp;0&amp;0&amp;\dagger&amp;*&amp;*&amp;*&amp;*\\ 
+0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;\dagger&amp;*\\
+0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;0\\  
+\end{matrix}\right)\)</span>, where <span class="math inline">\(*\)</span>s can be anything, but <span class="math inline">\(\dagger\)</span>s are non-zero. Clearly, RREF <span class="math inline">\(\Rightarrow\)</span> echelon form, but not the other way. Echelon form is similar to upper-triangular form, but makes sense also for non-square matrices. When we use matrices to solve systems of linear equations, we can choose whether to go all the way to RREF, or stop at echelon form, before ‘substituting back’.</p>
+</dd>
+<dt>Standard Form <span class="math inline">\((I | A )\)</span></dt>
+<dd><p>Clearly, this standard form <span class="math inline">\(\Rightarrow\)</span> RREF, but not the other way. It follows from the uniqueness of RREF that, if matrix <span class="math inline">\(M\)</span> has RREF which is <span><em>not</em></span> in standard form, then <span class="math inline">\(M\)</span> is not row-equivalent to any matrix in standard form.</p>
+</dd>
+</dl>
+</dd>
+<dt><span>What do R, R, E and F stand for, anyway?</span></dt>
+<dd><p>It doesn’t really matter, once we have the definition above, but I have seen two answers to this:</p>
+<dl>
+<dt>Row-Reduced Echelon Form</dt>
+<dd><p>- because the process of using ERO’s can be called ‘row-reduction’, and we do get a (special!) echelon form.</p>
+</dd>
+<dt>Reduced Row-Echelon Form</dt>
+<dd><p>- because the echelon form discussed above can also be called ‘row-echelon form’. We have achieved that but also ‘reduced’ the matrix further: extra ones and zeros!</p>
+</dd>
+</dl>
+</dd>
+<dt><span>What are the implications for codes?</span></dt>
+<dd><p>If two matrices are row-equivalent, then the span of each set of rows is the same. This means that, if the generator-matrices of two codes are row-equivalent, then the two codes are in fact the same set of vectors. However, two different generator-matrices for the same code will encode the same message as different codewords. (Try an example...). So when you come to channel-decode the codeword back to the message, you must use the generator-matrix that was used for encoding.</p>
+<p>Similarly, doing EROs to a check-matrix correponds to manipulating the equations which codewords must satisfy, in such a way that the set of solutions remains the same. So if the check-matrices of two codes are row-equivalent, then the two codes are in fact the same. But in syndrome-decoding we must use the same check-matrix to make the table, and to find the syndrome of the received word.</p>
+<p>Finally, note that the <span class="math inline">\(G \leftrightarrow H\)</span> algorithm, which streamlines the process of finding the solutions to equations, <span><em>requires a matrix in RREF</em></span>. Echelon form is not enough!</p>
+</dd>
+<dt><span>How does equivalence of codes relate to row-equivalence of matrices?</span></dt>
+<dd><p>Given a generator- or check-matrix for a code, we can make the matrix for an equivalent code by using <span><em>column</em></span> operations. One could describe these as ECOs - but we only allow two kinds:</p>
+<dl>
+<dt><span class="math inline">\(CP_{i,j}\)</span>:</dt>
+<dd><p>Swap column <span class="math inline">\(i\)</span> with column <span class="math inline">\(j\)</span>. Using these we can permute the columns however we wish.</p>
+</dd>
+<dt><span class="math inline">\(CM_\lambda\)</span>:</dt>
+<dd><p>Multiply a column by some <span class="math inline">\(\lambda \neq 0\)</span> from the field we are working in.</p>
+</dd>
+</dl>
+<p>So, roughly speaking, we could say that row-equivalence of matrices gives you the <span><em>same</em></span> code, but ‘column-equivalence’ of matrices only gives you an <span> <em>equivalent</em></span> code.</p>
+<p>Note that we do <span><em>not</em></span> use these column operations when putting a matrix into RREF. Once you have it in RREF, you might then use column operations to get the matrix to standard form - but then you don’t have the same code any more, only an equivalent one.</p>
+</dd>
+</dl>
+<p> </p>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+		var allLevels = document.querySelectorAll('[class^="level"]');
+		console.log(allLevels);
+		for (var level of allLevels) {
+			levelCount = level.getAttribute("data-number");
+			levelCount = String(parseFloat(levelCount)+(counterOffset));
+			level.setAttribute("data-number",levelCount);
+		} 
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+		egs = document.querySelectorAll(".example, .exampleqed");
+		var eg_no = problemCounter;
+		for (var eg of egs) {
+			eg.setAttribute("data-number",eg_no);
+			eg_no +=1
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Department of Mathematical Sciences, Durham University The notes for this term were originally written by Dr. Sophy Darwin and are based on a previous course developed by Rob de Jeu, Sophy Darwin, Fredrik Strömberg, and Emilie Dufresne Please send questions, comments or corrections to s.m.fearn@durham.ac.uk" />
+  <title>MATH3401 Error-correcting Codes Epiphany term 2021/22</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><span>MATH3401</span><br />
+<span>Error-correcting Codes</span><br />
+<span>Epiphany term 2021/22</span></h1>
+<p class="author">Sam Fearn<br />
+<span>Department of Mathematical Sciences, Durham University</span><br />
+<span>The notes for this term were originally written by Dr. Sophy Darwin</span><br />
+<span>and are based on a previous course developed by</span><br />
+Rob de Jeu, Sophy Darwin, Fredrik Strömberg, and Emilie Dufresne<br />
+<span>Please send questions, comments or corrections to</span><br />
+<code>s.m.fearn@durham.ac.uk</code></p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#codes-as-images"><span class="toc-section-number">3</span> Codes as Images</a>
+<ul>
+<li><a href="#mappings-and-matrices"><span class="toc-section-number">3.1</span> Mappings and Matrices</a></li>
+<li><a href="#generator-matrices"><span class="toc-section-number">3.2</span> Generator-matrices</a></li>
+<li><a href="#encoding-and-channel-decoding"><span class="toc-section-number">3.3</span> Encoding and Channel Decoding</a></li>
+<li><a href="#equivalence-and-standard-form"><span class="toc-section-number">3.4</span> Equivalence and Standard Form</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="codes-as-images" class="level1" data-number="1">
+<h1 data-number="3"><span class="header-section-number">3</span> Codes as Images</h1>
+<p>So far we have only two ways to specify a (linear) code: we can list the codewords, or we can give a spanning set, which might also be a basis. But since codes are vector subspaces, we can also describe them as the image or the kernel of a suitable mapping between spaces. It turns out that these mappings are also helpful for the encoding and decoding processes.</p>
+<section id="mappings-and-matrices" class="level2" data-number="1.1">
+<h2 data-number="3.1"><span class="header-section-number">3.1</span> Mappings and Matrices</h2>
+<p>Let <span class="math inline">\({\mathbb F}_q^k\)</span> and <span class="math inline">\({\mathbb F}_q^n\)</span> be two vector spaces, over the same field <span class="math inline">\({\mathbb F}_q\)</span> but of possibly different dimensions, and let <span class="math inline">\(f:{\mathbb F}_q^k \longrightarrow {\mathbb F}_q^n\)</span> be a linear mapping between them. This means that <span class="math inline">\(f\)</span> preserves the linear structure: if <span class="math inline">\({\bf x}\)</span> and <span class="math inline">\({\bf y}\)</span> are vectors in <span class="math inline">\({\mathbb F}_q^k\)</span>, and <span class="math inline">\(\lambda\)</span> is a scalar in <span class="math inline">\({\mathbb F}_q\)</span>, we have <span class="math inline">\(f({\bf x}+{\bf y}) = f({\bf x}) +f({\bf y})\)</span> and <span class="math inline">\(f(\lambda {\bf x}) = \lambda f({\bf x})\)</span>. Then we know that we can perform the mapping <span class="math inline">\(f\)</span> by multiplying by a suitable matrix <span class="math inline">\(A\)</span>, with entries from <span class="math inline">\({\mathbb F}_q\)</span>. We are writing our vectors as rows: <span class="math inline">\({\bf x}\in {\mathbb F}_q^k\)</span> is a <span class="math inline">\(1 \times k\)</span> ‘matrix’, and <span class="math inline">\(f({\bf x}) \in {\mathbb F}_q^n\)</span> is <span class="math inline">\(1 \times n\)</span>. So we need <span class="math inline">\(A\)</span> to be <span class="math inline">\(k \times n\)</span>; we can write that <span class="math inline">\(A \in M_{k,n}({\mathbb F}_q)\)</span>. And we must multiply <span class="math inline">\({\bf x}\)</span> by <span class="math inline">\(A\)</span> on the <span><em>right</em></span>.</p>
+<div class="exampleqed">
+<p>Let <span class="math inline">\(f:{\mathbb F}_5^3 \longrightarrow {\mathbb F}_5^4\)</span> such that <span class="math inline">\(f({\bf x}) = {\bf x}A\)</span>, where <span class="math inline">\(A =\left( \begin{array}{cccc} 
+1&amp;0&amp;1&amp;3 \\
+3&amp;2&amp;0&amp;1 \\
+4&amp;2&amp;1&amp;4 \\
+\end{array}\right) \in M_{3,4}({\mathbb F}_5).\)</span> Then, for example, if <span class="math inline">\({\bf x}= (0,1,2)\)</span>, <span class="math display">\[f({\bf x}) = {\bf x}A = (0,1,2)\left( \begin{array}{cccc} 
+1&amp;0&amp;1&amp;3 \\
+3&amp;2&amp;0&amp;1 \\
+4&amp;2&amp;1&amp;4 \\
+\end{array}\right) = (1, 1,2, 4).\]</span></p>
+</div>
+<p>This may look unfamiliar. In Linear Algebra 1 you mostly wrote vectors as columns, and multiplied by <span class="math inline">\(A\)</span> on the left. Of course, we could still do it that way, by taking the transpose of everything: if <span class="math inline">\({\bf x}A = {\bf y}\)</span>, then also <span class="math inline">\(A^t{\bf x}^t = ({\bf x}A)^t = y^t\)</span>. But coding theory always uses row vectors, and you will get used to it!</p>
+<p>The <span><strong>image</strong></span> of the mapping <span class="math inline">\(f\)</span> is all the vectors in <span class="math inline">\({\mathbb F}_q^n\)</span> which can be written as <span class="math inline">\(f({\bf x})\)</span> for some <span class="math inline">\({\bf x}\)</span> in <span class="math inline">\({\mathbb F}_q^k\)</span>:</p>
+<p><span class="math display">\[{\rm im}(f) = f({\mathbb F}_q^k) = \{ f({\bf x})\;|\; {\bf x}\in {\mathbb F}_q^k\} = \{ {\bf x}A\;|\; {\bf x}\in {\mathbb F}_q^k\}\subseteq {\mathbb F}_q^n\]</span></p>
+<p>(Draw your own“fried egg" diagram.) Let us regard the rows of <span class="math inline">\(A\)</span> as vectors <span class="math inline">\({\bf a}_1, \ldots,{\bf a}_k \in {\mathbb F}_q^n\)</span>. Then since <span class="math inline">\({\bf x} = (x_1, \ldots,x_n)\)</span> can be any vector in <span class="math inline">\({\mathbb F}_q^k\)</span>, <span class="math inline">\({\rm im}(f)\)</span> is all the linear combinations <span class="math inline">\(x_1{\bf a}_1  +  \cdots + x_k{\bf a}_k\)</span> of the <span class="math inline">\({\bf a}_i\)</span>. This is the span of the <span class="math inline">\({\bf a}_i\)</span>, so we can say that <span class="math inline">\({\rm Im}(f)= \langle \{{\bf a}_1, \ldots,{\bf a}_k\}\rangle\)</span>, or that the rows of <span class="math inline">\(A\)</span> are a spanning set for the image.</p>
+</section>
+<section id="generator-matrices" class="level2" data-number="1.2">
+<h2 data-number="3.2"><span class="header-section-number">3.2</span> Generator-matrices</h2>
+<p>If the rows of <span class="math inline">\(A\)</span> are also linearly independent, then they are a basis for <span class="math inline">\({\rm Im}(f)\)</span>, and <span class="math inline">\(k\)</span>, the number of rows, is the dimension of this image.</p>
+<div class="definition">
+<p>For some matrix <span class="math inline">\(G \in M_{k,n}({\mathbb F}_q)\)</span>, let <span class="math inline">\(f:{\mathbb F}_q^k \longrightarrow {\mathbb F}_q^n\)</span> be defined by <span class="math inline">\(f({\bf x}) = {\bf x}G\)</span>, and let the linear code <span class="math inline">\(C = {\rm im}(f)  = \{ {\bf x}G\;|\; {\bf x}\in {\mathbb F}_q^k\}\subseteq {\mathbb F}_q^n\)</span>. Then if <span class="math inline">\(G\)</span> has linearly independent rows, G is a <span><strong>generator-matrix</strong></span> for C.</p>
+</div>
+<p>So if we are given a code as a span, <span class="math inline">\(C = \langle \{{\bf a}_1, \ldots, {\bf a}_m\}\rangle\)</span>, how can we find a generator-matrix for <span class="math inline">\(C\)</span>? We can easily make the matrix <span class="math inline">\(A\)</span> with rows <span class="math inline">\({\bf a}_i\)</span>, but we still need to determine whether these rows are linearly independent. If they are not, we must find another, smaller set of vectors which are independent, but span the same subspace of <span class="math inline">\({\mathbb F}_q^n\)</span>.</p>
+<p>As you know, this can be done by row-reducing the matrix <span class="math inline">\(A\)</span>. This process, which takes linear combinations of the rows, does not change their span. Of course, the row-reduction must be done in <span class="math inline">\({\mathbb F}_q\)</span>, but this is easier than in <span class="math inline">\({\mathbb R}\)</span>. The numbers stay small, and you never need to subtract or divide: just use inverses, and add or multiply.</p>
+<p>We obtain a matrix in reduced row echelon form (RREF). If there are any rows of zeros at the bottom, we remove them. Let the resulting matrix be <span class="math inline">\(B\)</span>, with rows <span class="math inline">\({\bf b}_1, \ldots {\bf b}_k ,\; k \leq m\)</span>, and consider the two possible cases:</p>
+<ul>
+<li><p><span><strong>If the rows of <span class="math inline">\(A\)</span> were independent</strong></span>, there were no rows of zeros, and <span class="math inline">\(k=m\)</span>. In this case both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> correspond to maps from <span class="math inline">\({\mathbb F}_q^k\)</span> to <span class="math inline">\({\mathbb F}_q^n\)</span>; <span class="math inline">\(f_A({\bf x}) = {\bf x}A\)</span> and <span class="math inline">\(f_B({\bf x}) = {\bf x}B\)</span>. Their images are the same, so we can let <span class="math display">\[C = {\rm im}(f_A) = {\rm im}(f_B) = \{{\bf x}A\;|\; {\bf x}\in {\mathbb F}_q^k\} = \{{\bf x}B\;| \;{\bf x}\in {\mathbb F}_q^k\}.\]</span> (But of course in general, for a given <span class="math inline">\({\bf x}\)</span>, <span class="math inline">\({\bf x}A \neq {\bf x}B\)</span>.)</p>
+<p>Moreover, since the rows of <span class="math inline">\(A\)</span> are linearly independent, we know that <span class="math display">\[(x_1, \ldots,x_k)\left(\begin{array}{ccc} -&amp; {\bf a}_1 &amp; - \\ 
+    &amp; \vdots  &amp;\\ 
+    - &amp; {\bf a}_k &amp; - \end{array}\right) 
+    = x_1 {\bf a}_1 + \cdots + x_k {\bf a}_k = {\bf 0}
+    \Longrightarrow x_1 = \ldots = x_k = 0.\]</span> So<span class="math inline">\(f_A\)</span> is injective, and dim<span class="math inline">\(({\rm im}(f_A)) =\)</span> dim<span class="math inline">\(({\mathbb F}_q^k) = k\)</span>. (We know this already as the <span class="math inline">\({\bf a}_i\)</span> are a basis for <span class="math inline">\({\rm im}(f_A)\)</span>.) All this is equally true for <span class="math inline">\(B\)</span>. Both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are generator matrices for <span class="math inline">\(C\)</span>.</p></li>
+<li><p><span><strong>If the rows of <span class="math inline">\(A\)</span> were dependent</strong></span>, we had to remove at least one row of zeros, and <span class="math inline">\(k&lt;m\)</span>. Then for <span class="math inline">\(B\)</span> we can say, as above, that <span class="math inline">\(f_B: {\mathbb F}_q^k \longrightarrow {\mathbb F}_q^n\)</span> is injective, and dim<span class="math inline">\(({\rm im}(f_B)) = k\)</span>. But <span class="math inline">\(f_A: {\mathbb F}_q^m \longrightarrow {\mathbb F}_q^n\)</span> is not injective: We know there are some <span class="math inline">\(\lambda_i\)</span>, not all zero, such that <span class="math inline">\(\lambda_1{\bf a}_1 + \cdots + \lambda_m{\bf a}_m = {\bf 0}\)</span>. Then if <span class="math inline">\({\bf x}= ( \lambda_1, \ldots, \lambda_m)\)</span>, we have <span class="math inline">\({\bf x}\neq {\bf 0}\)</span> but <span class="math inline">\({\bf x}A = {\bf 0}\)</span>. The map <span class="math inline">\(f_A\)</span> maps a larger space onto a smaller, dimension <span class="math inline">\(m\)</span> to dimension <span class="math inline">\(k\)</span>. In this case, <span class="math inline">\(B\)</span> is a generator matrix for <span class="math inline">\(C = {\rm im}(f_B)\)</span>, but A is not.</p></li>
+</ul>
+<p>Thus a generator-matrix not only specifies a code, it also immediately tells us its dimension and so its size.</p>
+<div class="exampleqed">
+<p>Let <span class="math inline">\(C = \langle\{(0,0,3,1,4),(2,4,1,4,0),(5,3,0,1,6)\}\rangle \subseteq F_7^5\)</span>. To find <span class="math inline">\(|C|\)</span>, and a generator matrix for <span class="math inline">\(C\)</span>, we make <span class="math inline">\(A\)</span>, and row-reduce: <span class="math display">\[A = \left(\begin{matrix} 2&amp;4&amp;1&amp;4&amp;0 \\
+                    5&amp;3&amp;0&amp;1&amp;6 \\
+                    0&amp;0&amp;3&amp;1&amp;4\\
+      \end{matrix}\right) 
+      \stackrel{A_{12}}{\longrightarrow}
+      \left(\begin{matrix} 2&amp;4&amp;1&amp;4&amp;0 \\
+                    0&amp;0&amp;1&amp;5&amp;6 \\
+                    0&amp;0&amp;3&amp;1&amp;4\\
+      \end{matrix}\right) 
+      \stackrel{M_1(4)}{\longrightarrow}
+      \left(\begin{matrix} 1&amp;2&amp;4&amp;2&amp;0 \\
+                    0&amp;0&amp;1&amp;5&amp;6 \\
+                    0&amp;0&amp;3&amp;1&amp;4\\
+      \end{matrix}\right) 
+      \stackrel{A_{21}(3),A_{23}(4)}{\longrightarrow}
+      \left(\begin{matrix} 1&amp;2&amp;0&amp;3&amp;4 \\
+                    0&amp;0&amp;1&amp;5&amp;6 \\
+                    0&amp;0&amp;0&amp;0&amp;0\\
+      \end{matrix}\right)\]</span></p>
+<p>Thus <span class="math inline">\(B = \left(\begin{matrix} 1&amp;2&amp;0&amp;3&amp;4 \\
+                    0&amp;0&amp;1&amp;5&amp;6 \\
+      \end{matrix}\right)\)</span> is a generator matrix for <span class="math inline">\(C\)</span> , and <span class="math inline">\(|C| = 7^2 = 49\)</span>.</p>
+</div>
+</section>
+<section id="encoding-and-channel-decoding" class="level2" data-number="1.3">
+<h2 data-number="3.3"><span class="header-section-number">3.3</span> Encoding and Channel Decoding</h2>
+<p>Recall the basic situation described in Chapter 1. The generator-matrix provides a very easy way to encode messages to codewords: we let our messages be vectors in <span class="math inline">\({\mathbb F}_q^k\)</span>, and then multiply by the generator-matrix <span class="math inline">\(G\)</span> to to obtain codewords in <span class="math inline">\(C \subseteq {\mathbb F}_q^n\)</span>.</p>
+<p><span class="math inline">\(\boxed{\text{SENDER}} \underset{{\bf x}\in {\mathbb F}_q^k}{\overset{ \text{message}   }{\longrightarrow\longrightarrow\longrightarrow}}
+ \boxed{\substack{\text{ENCODER} \\ {\bf c}= {\bf x}G}}
+ \underset{{\bf c}\in C \subseteq {\mathbb F}_q^n}{\overset{\text{codeword} }{\longrightarrow\longrightarrow\longrightarrow}}  \boxed{\text{CHANNEL} }\)</span></p>
+<p>It is crucial that the rows of <span class="math inline">\(G\)</span> are independent, so that <span class="math inline">\(f_G\)</span> is injective; otherwise, two different messages would have the same codeword. Also, if the code is to enable us to correct (or even detect) any errors, then there must be some words in <span class="math inline">\({\mathbb F}_q^n\)</span> but not in <span class="math inline">\(C\)</span>, so <span class="math inline">\(k\)</span> must be strictly <span class="math inline">\(&lt;n\)</span>. Thus a generator-matrix is always ‘landscape’ in shape.</p>
+<p>The codeword <span class="math inline">\({\bf c}\)</span> then travels through the channel, where it may or may not be changed, and is received as <span class="math inline">\({\bf y}\in {\mathbb F}_q^n\)</span>. The receivers do their best to correct any error, finding a codeword <span class="math inline">\({\bf c}&#39;\)</span> which is the (or one of the) most likely to have been sent. (In Chapter 4 we will look again at this process.) And finally, they must find the message corresponding to this codeword, <span class="math inline">\({\bf x}&#39;\)</span> such that <span class="math inline">\({\bf x}&#39; G = {\bf c}&#39;\)</span>. This last process is called “channel decoding", to distinguish it from the “decoding" which attempts to correct errors. ( In the first pictures in Chapter 1, ‘<span class="math inline">\(\sim\)</span>’ is decoding, and ‘<span class="math inline">\(\rightarrow\)</span>’ is channel decoding.) So at the receiver’s end we have:</p>
+<p><span class="math inline">\(\boxed{\text{CHANNEL}} \underset{{\bf y}\in {\mathbb F}_q^n}{\overset{\text{received word}}{\longrightarrow\longrightarrow\longrightarrow}} 
+\boxed{\substack{\text{DECODER} \\ \text{error correction?}}} 
+\underset{{\bf c}&#39; \in C}{\overset{ \text{codeword} }{\longrightarrow\longrightarrow\longrightarrow}}
+\boxed{\text{CHANNEL DECODER}}
+\underset{{\bf x}&#39; \in {\mathbb F}_q^k}{\overset{\text{message?}}{\longrightarrow\longrightarrow\longrightarrow}}
+\boxed{USER}\)</span></p>
+<p>But how can we find <span class="math inline">\({\bf x}&#39;\)</span> from <span class="math inline">\({\bf c}&#39;\)</span>? Our <span class="math inline">\(G\)</span> is not invertible; it is not even square. Let <span class="math inline">\({\bf x}&#39; = (x_1&#39;, \ldots x_k&#39;)\)</span>, <span class="math inline">\({\bf c}&#39; = (c_1&#39;, \ldots c_k&#39;)\)</span>, and <span class="math inline">\(G\)</span> have <span><em>columns</em></span> <span class="math inline">\({\bf g}_1,\ldots {\bf g}_n\)</span>. Then <span class="math display">\[{\bf x}&#39; G = (x_1, \ldots,x_k)
+\left(\begin{array}{ccc}
+ |    &amp;      &amp; |     \\
+ {\bf g}_1 &amp;\cdots&amp; {\bf g}_n  \\
+ |    &amp;      &amp; |     \\                  
+      \end{array}\right) = (c_1&#39;, \ldots,c_k&#39;) = {\bf c}&#39;\]</span> So, using the usual dot product (or scalar product), we have <span class="math inline">\(n\)</span> equations <span class="math inline">\({\bf x}&#39; \cdot {\bf g}_i = c_i&#39;\)</span>, each in <span class="math inline">\(k\)</span> unknowns, the <span class="math inline">\(x_i\)</span>. It is because <span class="math inline">\({\bf c}&#39;\)</span> is a codeword that these equations are consistent and we can find such an <span class="math inline">\({\bf x}&#39;\)</span>, and because the map <span class="math inline">\(f_G: {\mathbb F}_q^k \longrightarrow {\mathbb F}_q^n\)</span> is injective that there is only one solution.</p>
+<p>You can solve these equations by any method you like; you might prefer to think about <span class="math inline">\(G^t ({\bf x}&#39;)^t = ({\bf c}&#39;)^t\)</span>, and row-reduce the augmented matrix <span class="math inline">\((G^t \;| \; ({\bf c}&#39;)^t)\)</span>. But by picking the right generator-matrix for <span class="math inline">\(C\)</span> in the first place, we can make this much easier. Suppose that <span class="math inline">\(G\)</span> is in RREF. Then <span class="math inline">\(G\)</span> has <span class="math inline">\(k\)</span> columns, <span class="math inline">\({\bf g}_{i_1}, \ldots, {\bf g}_{i_k}\)</span>, which have a leading 1 and zeros elsewhere. Each of these picks out one coordinate of <span class="math inline">\({\bf x}&#39;\)</span>, so <span class="math inline">\(c&#39;_{i_j} = {\bf x}&#39; \cdot {\bf g}_{i_j} = x_j&#39;\)</span>. So in this case we can read off <span class="math inline">\({\bf x}&#39;\)</span> from <span class="math inline">\({\bf c}&#39;\)</span> without any calculation.</p>
+<div class="exampleqed">
+<p>Let <span class="math inline">\(C \subseteq {\mathbb F}_7^5\)</span> have generator matrix <span class="math inline">\(G = \left(\begin{matrix} 1&amp;2&amp;0&amp;3&amp;4 \\
+                    0&amp;0&amp;1&amp;5&amp;6 \\
+      \end{matrix}\right)\)</span>, and suppose we have corrected some received word to the codeword (6,5,3,5,0). Then to channel decode, we must find <span class="math inline">\({\bf x}&#39; = (x_i &#39;,x_2 &#39;)\)</span> such that <span class="math display">\[(x_i &#39;,x_2 &#39;) \left(\begin{matrix} 1&amp;2&amp;0&amp;3&amp;4 \\
+                    0&amp;0&amp;1&amp;5&amp;6 \\
+      \end{matrix}\right) = (6,5,3,5,0).\]</span> Clearly <span class="math inline">\({\bf x}&#39; = (6,3)\)</span>.</p>
+</div>
+</section>
+<section id="equivalence-and-standard-form" class="level2" data-number="1.4">
+<h2 data-number="3.4"><span class="header-section-number">3.4</span> Equivalence and Standard Form</h2>
+<p>Sometimes two codes have different codewords, but are the same in all the ways that matter.</p>
+<div id="def:equiv" class="definition">
+<p> Two codes <span class="math inline">\(C_1,\ C_2\)</span> are <em>equivalent</em> if we can transform one to the other by applying a sequence of changes of two kinds to all the codewords:</p>
+<ul>
+<li><p>permuting the <span class="math inline">\(n\)</span> positions.</p></li>
+<li><p>in a particular position, permuting the <span class="math inline">\(|A|=q\)</span> symbols.</p></li>
+</ul>
+</div>
+<div id="equivsamenmd" class="proposition">
+<p> Two codes which are equivalent have the same parameters <span class="math inline">\((n,M,d)\)</span>.</p>
+</div>
+<div id="def:permutationequiv" class="definition">
+<p> Two linear codes <span class="math inline">\(\subseteq {\mathbb F}_q^n\)</span> are <span><strong>permutation equivalent</strong></span> if we can transform one to the other by applying a sequence of permutations to all of the codewords.</p>
+</div>
+<div id="def:monomialequiv" class="definition">
+<p> Two linear codes <span class="math inline">\(\subseteq {\mathbb F}_q^n\)</span> are <em>monomially equivalent</em> if we can transform one to the other by applying a sequence of permutations to all of the codewords of the following form:</p>
+<ul>
+<li><p>permuting the <span class="math inline">\(n\)</span> positions.</p></li>
+<li><p>in a particular position, multiplying by <span class="math inline">\(\lambda \in {\mathbb F}_q, \lambda \neq 0\)</span> .</p></li>
+</ul>
+</div>
+<p>Clearly if two codes are permutation equivalent, then they are monomially equivalent, and we will simply never need to use a transformation of type ii) from the definition of monomial equivalence. Also, since <span class="math inline">\({\mathbb F}_q\)</span> is a field, multiplying by <span class="math inline">\(\lambda \neq 0\)</span> will permute the elements of <span class="math inline">\({\mathbb F}_q\)</span>, but not all permutations of <span class="math inline">\({\mathbb F}_q\)</span> can be obtained in this way. So if two codes are monomially equivalent, then they are also equivalent, but not vice-versa.</p>
+<p>A change of either type is a bijective map <span class="math inline">\(\pi:{\mathbb F}_q^n \longrightarrow {\mathbb F}_q^n\)</span>; it just permutes the vectors of <span class="math inline">\({\mathbb F}_q^n\)</span>. Let us write <span class="math inline">\(\Pi\)</span> for a sequence of such changes, so <span class="math inline">\(\Pi = \pi_s \circ \cdots \circ \pi_1\)</span>. If there exists such a <span class="math inline">\(\Pi\)</span> with <span class="math inline">\(\Pi(C_1) = C_2\)</span>, then <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are equivalent, and we write <span class="math inline">\(C_1 \equiv C_2\)</span> if the type of equivalence being considered is clear.</p>
+<p>It is also quite easy to see that any such <span class="math inline">\(\pi\)</span> will preserve the linear structure: <span class="math inline">\(\pi({\bf x}+{\bf y}) = \pi({\bf x}) + \pi({\bf y})\)</span> and <span class="math inline">\(\pi( \lambda {\bf x}) = \lambda\pi({\bf x})\)</span>, and so the same is true for any <span class="math inline">\(\Pi\)</span>. Since <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> must have the same dimension (as they are both linear codes over the same field with the same number of codewords), then as a consequence of the rank-nullity theorem it follows that <span class="math inline">\(\Pi(C_1) = C_2\)</span> if and only if <span class="math inline">\(\Pi\)</span> changes a basis for <span class="math inline">\(C_1\)</span> into a basis for <span class="math inline">\(C_2\)</span>. We can therefore define equivalence in terms of generator-matrices.</p>
+<div id="def:permutationmatrix" class="definition">
+<p> An <span class="math inline">\(m\times m\)</span> matrix <span class="math inline">\(P\in M_{m,m}(\mathbb{Z}_2)\)</span> is a <em>permutation matrix</em> if it has a single 1 in each row and column, and zeros elsewhere. Note that any permutation can be written as a permutation matrix of an appropriate size.</p>
+</div>
+<p>Those of you studying Representation Theory III will probably recognise such matrices as those found when considering representations of the symmetric group.</p>
+<div id="prop:permutationequivalencegeneratormatrix" class="proposition">
+<p> Let <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> be codes in <span class="math inline">\({\mathbb F}_q^n\)</span> with generator-matrices <span class="math inline">\(G_1\)</span> and <span class="math inline">\(G_2\)</span> respectively. Then if <span class="math inline">\(G_2=G_1 P\)</span> for some permutation matrix <span class="math inline">\(P\)</span>, then <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are permutation equivalent.</p>
+</div>
+<div id="eg:permutationmatrix" class="exampleqed">
+<p> Let <span class="math inline">\(C_1,C_2 \subseteq \mathbb{F}_q^3\)</span>, and let <span class="math inline">\(C_1\)</span> have generator matrix <span class="math inline">\(G_1\)</span> where <span class="math display">\[G_1 = \left(\begin{array}{ccc}
+ |    &amp;   |   &amp; |    \\
+ {\bf g}_1 &amp; {\bf g}_2 &amp; {\bf g}_3  \\
+ |    &amp;   |   &amp; |     \\                  
+      \end{array}\right).\]</span></p>
+<p>If <span class="math display">\[G_2 =  \left(\begin{array}{ccc}
+ |    &amp;   |   &amp; |    \\
+ {\bf g}_1 &amp; {\bf g}_2 &amp; {\bf g}_3  \\
+ |    &amp;   |   &amp; |     \\                  
+      \end{array}\right)\left( \begin{array}{ccc}
+      	0 &amp; 1 &amp; 0 \\
+		0 &amp; 0 &amp; 1 \\
+		1 &amp; 0 &amp; 0
+      \end{array} \right) = \left(\begin{array}{ccc}
+ |    &amp;   |   &amp; |    \\
+ {\bf g}_3 &amp; {\bf g}_1 &amp; {\bf g}_2  \\
+ |    &amp;   |   &amp; |     \\                  
+      \end{array}\right),\]</span> is a generator matrix for <span class="math inline">\(C_2\)</span>, then by linearity every <span class="math inline">\(c_2\in C_2\)</span> is the image of a <span class="math inline">\(c_1 \in C_1\)</span> under the permutation given in cycle form as <span class="math inline">\((123)\)</span>.</p>
+</div>
+<div id="def:monomialmatrix" class="definition">
+<p> An <span class="math inline">\(m\times m\)</span> matrix <span class="math inline">\(M\in M_{m,m}(\mathbb{F}_q)\)</span> is a <em>monomial matrix</em> if it has exactly one non-zero element in each row and column.</p>
+<p>A monomial matrix <span class="math inline">\(M\)</span> can always be written as <span class="math inline">\(M=DP\)</span> or <span class="math inline">\(M=PD&#39;\)</span>, for <span class="math inline">\(P\)</span> a permutation matrix, and <span class="math inline">\(D,D&#39;\)</span> diagonal matrices. We call <span class="math inline">\(P\)</span> the <em>permutation part</em> and <span class="math inline">\(D,D&#39;\)</span> the <em>diagonal part</em> of <span class="math inline">\(M\)</span> respectively.</p>
+</div>
+<div id="eg:monomialmatrix" class="exampleqed">
+<p> <span class="math display">\[\underset{D}{\left( \begin{array}{ccc}
+	      	2 &amp; 0 &amp; 0 \\
+			0 &amp; 3 &amp; 0 \\
+			0 &amp; 0 &amp; 1
+	      \end{array} \right)}
+		  \underset{P}{\left( \begin{array}{ccc}
+	      	0 &amp; 1 &amp; 0 \\
+			0 &amp; 0 &amp; 1 \\
+			1 &amp; 0 &amp; 0
+	      \end{array} \right)}
+		  =
+		  \underset{M}{\left( \begin{array}{ccc}
+	      	0 &amp; 2 &amp; 0 \\
+			0 &amp; 0 &amp; 3 \\
+			1 &amp; 0 &amp; 0
+	      \end{array} \right)}
+		  =
+		  \underset{P}{\left( \begin{array}{ccc}
+	      	0 &amp; 1 &amp; 0 \\
+			0 &amp; 0 &amp; 1 \\
+			1 &amp; 0 &amp; 0
+	      \end{array} \right)}
+		  \underset{D&#39;}{\left( \begin{array}{ccc}
+	      	1 &amp; 0 &amp; 0 \\
+			0 &amp; 2 &amp; 0 \\
+			0 &amp; 0 &amp; 3
+	      \end{array} \right)}\]</span></p>
+<p>If we apply <span class="math inline">\(M\)</span> to the generator matrix <span class="math inline">\(G_1\)</span> of a code <span class="math inline">\(C_1\subseteq \mathbb{F}_5^3\)</span>, as <span class="math inline">\(G_2=GM\)</span>, then this consists of first multiplying all codewords by 2 in the first position, and by three in the second position, and then by applying the permutation <span class="math inline">\((123)\)</span>. Equivalently, we could apply the permutation first, and then multiply all words by 2 in the second position and by 3 in the third position.</p>
+<p>The matrix <span class="math inline">\(G_2\)</span> is then the generator matrix for a monomially equivalent code to <span class="math inline">\(C_1\)</span>.</p>
+</div>
+<div id="prop:monomialequivalencegeneratormatrix" class="proposition">
+<p> Let <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> be codes in <span class="math inline">\({\mathbb F}_q^n\)</span> with generator-matrices <span class="math inline">\(G_1\)</span> and <span class="math inline">\(G_2\)</span> respectively. Then if <span class="math inline">\(G_2=G_1 M\)</span> for some monomial matrix <span class="math inline">\(M\)</span>, then <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are monomially equivalent.</p>
+</div>
+<p>Note that Propositions <a href="#prop:permutationequivalencegeneratormatrix" data-reference-type="ref" data-reference="prop:permutationequivalencegeneratormatrix">[prop:permutationequivalencegeneratormatrix]</a> and <a href="#prop:monomialequivalencegeneratormatrix" data-reference-type="ref" data-reference="prop:monomialequivalencegeneratormatrix">[prop:monomialequivalencegeneratormatrix]</a> do not say “if and only if". This is because most codes have many possible generator-matrices: if <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are linearly equivalent, there must be a <span class="math inline">\(\Pi\)</span> taking <span class="math inline">\(G_1\)</span> to <span><em>some</em></span> generator-matrix for <span class="math inline">\(C_2\)</span> - but it might not be <span class="math inline">\(G_2\)</span>. However, if <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are equivalent, and <span class="math inline">\(C_1\)</span> has generator matrix <span class="math inline">\(G_1\)</span>, then <span class="math inline">\(G_2=G_1 H\)</span> (for <span class="math inline">\(H\)</span> either a monomial matrix or permutation matrix as appropriate) is a generator matrix for <span class="math inline">\(G_2\)</span>.</p>
+<p>If we let <span class="math inline">\(S\)</span> be the set of all codes of length <span class="math inline">\(n\)</span> over <span class="math inline">\({\mathbb F}_q\)</span>, then both permutation equivalence and monomial equivalence are <em>equivalence relations</em>, meaning that they satisfy the following conditions:</p>
+<ul>
+<li><p><span class="math inline">\(C \sim C\)</span>, <span class="math inline">\(\forall\ C \in S \quad\)</span> (Reflexive)</p></li>
+<li><p>If <span class="math inline">\(C_1 \sim C_2\)</span>, then <span class="math inline">\(C_2 \sim C_1 \quad\)</span> (Symmetric)</p></li>
+<li><p>If <span class="math inline">\(C_1 \sim C_2\)</span> and <span class="math inline">\(C_2 \sim C_3\)</span>, then <span class="math inline">\(C_1 \sim C_3 \quad\)</span> (Transitive)</p></li>
+</ul>
+<p>We can therefore partition the set of all codes of length <span class="math inline">\(n\)</span> over <span class="math inline">\({\mathbb F}_q\)</span> into equivalence classes (using either permutation equivalence or monomial equivalence). For those of you who have done Algebra II, this is the <em>orbit</em> of the code under the symmetric group.</p>
+<p>However, there may be some permutations which don’t just send the code to another element of its equivalence class, but rather send the code to itself. In the language of algebra, these are stabilisers of the code, and the set of all stabilisers forms a group under composition.</p>
+<div id="def:permutationautomorphismgroup" class="definition">
+<p> The set of permutations sending a code to itself forms a group under composition, with the trivial permutation acting as the identity. This group is known as the <em>permutation automorphism group</em> of <span class="math inline">\(C\)</span>, and is written as <span class="math inline">\(\operatorname{PAut}(C)\)</span>.</p>
+<p>In practice, we may think of these permutations either as matrices, or in their cycle form. The two are equivalent as demonstrated in Example <a href="#eg:permutationmatrix" data-reference-type="ref" data-reference="eg:permutationmatrix">[eg:permutationmatrix]</a>.</p>
+<p>For a code <span class="math inline">\(C\)</span> of block length <span class="math inline">\(n\)</span>, <span class="math inline">\(\operatorname{PAut}(C)\)</span> is a subgroup of the symmetric group on <span class="math inline">\(n\)</span> symbols <span class="math inline">\(S_n\)</span>, <span class="math inline">\(\operatorname{PAut}(C)\subseteq S_n\)</span>.</p>
+</div>
+<p><strong>Aside:</strong> If you didn’t study Algebra II, you may not have seen the definition of a subgroup, so I’ll repeat it here.</p>
+<p><span id="def:subgroup" label="def:subgroup">[def:subgroup]</span> Given a group <span class="math inline">\(G\)</span>, a subset <span class="math inline">\(H\subseteq G\)</span> is said to be a <em>subgroup</em> if:</p>
+<ol>
+<li><p>The identity <span class="math inline">\(e \in H\)</span>,</p></li>
+<li><p>For any <span class="math inline">\(h_1,\ h_2 \in H\)</span>, we have <span class="math inline">\(h_1 h_2 \in H\)</span>,</p></li>
+<li><p>For any <span class="math inline">\(h \in H\)</span>, we have that the inverse <span class="math inline">\(h^{-1}\in H\)</span>.</p></li>
+</ol>
+<p>Similarly, the set of all monomial matrices which send a code to itself also forms a group.</p>
+<div id="def:monomialautomorphismgroup" class="definition">
+<p> The set of monomial matrices sending a code to itself forms a group under composition. This group is known as the <em>monomial automorphism group</em> of <span class="math inline">\(C\)</span>, and is written as <span class="math inline">\(\operatorname{MAut}(C)\)</span>.</p>
+</div>
+<p>For a binary code we have that <span class="math inline">\(\operatorname{PAut}(C)=\operatorname{MAut}(C)\)</span>, but more generally we have <span class="math inline">\(\operatorname{PAut}(C)\subseteq\operatorname{MAut}(C)\)</span>.</p>
+<p>The idea of equivalence allows us to work with particularly convenient generator-matrices:</p>
+<div class="definition">
+<p>For <span class="math inline">\(k \leq n\)</span>, if a <span class="math inline">\(k \times n\)</span> generator-matrix is of the form <span class="math inline">\((I_k \;|\; A)\)</span>, we say that it is in <span><strong>standard form</strong></span>.</p>
+</div>
+<p>Here <span class="math inline">\(I_k\)</span> is the <span class="math inline">\(k\times k\)</span> identity matrix, and <span class="math inline">\(A\)</span> some <span class="math inline">\(k \times (n-k)\)</span> matrix.</p>
+<div class="proposition">
+<p>Any linear code is linearly equivalent to one with a generator-matrix in standard form.</p>
+</div>
+<div class="proof">
+<p>For any code <span class="math inline">\(C_1  \subseteq {\mathbb F}_q^n\)</span> we can find a generator-matrix <span class="math inline">\(G_1\)</span> which is in RREF. Then by permuting columns we can obtain <span class="math inline">\(G_2\)</span> of form <span class="math inline">\((I \; |\; A)\)</span>, and this is the generator-matrix of an equivalent code <span class="math inline">\(C_2\)</span>.</p>
+</div>
+<p>One advantage of standard form is that it makes channel decoding even easier. The first <span class="math inline">\(k\)</span> digits of the codeword are the corresponding message.</p>
+<div class="exampleqed">
+<p>Let <span class="math inline">\(C_1 \subseteq {\mathbb F}_7^5\)</span> have generator matrix <span class="math inline">\(G_1 = \left(\begin{matrix} 1&amp;2&amp;0&amp;3&amp;4 \\
+                    0&amp;0&amp;1&amp;5&amp;6 \\
+      \end{matrix}\right)\)</span> as above. By swapping columns 2 and 3, we obtain <span class="math inline">\(G_2 = \left(\begin{matrix} 
+                    1&amp;0&amp;2&amp;3&amp;4 \\
+                    0&amp;1&amp;0&amp;5&amp;6 \\
+      \end{matrix}\right)\)</span>, which is in standard form. Then using the equivalent code <span class="math inline">\(C_2\)</span> which has this generator matrix, a sender would encode message (1,5) as <span class="math display">\[(1,5) \left(\begin{matrix} 1&amp;0&amp;2&amp;3&amp;4 \\
+                    0&amp;1&amp;0&amp;5&amp;6 \\
+      \end{matrix}\right)= (1,5,2,0,6),\]</span> and a receiver would channel decode (6,3,5,5,0) to (6,3).</p>
+</div>
+<p>To end this chapter I will briefly introduce some terminology which we will not stress, but you may meet in other sources.</p>
+<p>Suppose we encode using a generator-matrix in standard form. Then the first <span class="math inline">\(k\)</span> digits of the codeword are the message, and the remaining <span class="math inline">\(n-k\)</span> digits, calculated from the message using the <span class="math inline">\(A\)</span> part of the generator-matrix, are sometimes called <span><strong>check-digits</strong></span>. Their role is to show up symbol-errors in the message digits: if only a message-digit is changed, the result will not be a codeword. Syndrome decoding (Section 4.3) exploits this kind of idea.</p>
+<p>The <span><strong>rank</strong></span> of a code is its dimension, <span class="math inline">\(k\)</span>. (This is also the rank, in the linear algebra sense, of its generator-matrix.) Its <span><strong>redundancy</strong></span> is <span class="math inline">\(n-k\)</span>, the number of check-digits. These are “redundant" in the sense that they are not the message, though they are certainly not useless. And the <span><strong>rate</strong></span> of the code is <span class="math inline">\(k/n\)</span>, the fraction of the stream of symbols which is the actual messages. Redundancy and rate are most easily explained for a code with generator-matrix in standard form, but these names can be used for the parameters <span class="math inline">\(n-k\)</span> and <span class="math inline">\(k/n\)</span> of any linear code.</p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '2';
+	var subcounterOffset = '';
+	var problemCounter = '24';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+		egs = document.querySelectorAll(".example, .exampleqed");
+		var eg_no = problemCounter;
+		for (var eg of egs) {
+			eg.setAttribute("data-number",eg_no);
+			eg_no +=1
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
