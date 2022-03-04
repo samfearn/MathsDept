@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Sam Fearn Department of Mathematical Sciences, Durham University The notes for this term were originally written by Dr. Sophy Darwin and are based on a previous course developed by Rob de Jeu, Sophy Darwin, Fredrik Strömberg, and Emilie Dufresne Please send questions, comments or corrections to s.m.fearn@durham.ac.uk" />
-  <title>MATH3401 Error-correcting Codes Epiphany term 2021/22</title>
+  <title>MATH3401 Error-correcting Codes Epiphany term 2020</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -29,7 +29,7 @@
 <header id="title-block-header">
 <h1 class="title"><span>MATH3401</span><br />
 <span>Error-correcting Codes</span><br />
-<span>Epiphany term 2021/22</span></h1>
+<span>Epiphany term 2020</span></h1>
 <p class="author">Sam Fearn<br />
 <span>Department of Mathematical Sciences, Durham University</span><br />
 <span>The notes for this term were originally written by Dr. Sophy Darwin</span><br />
@@ -66,6 +66,12 @@ Rob de Jeu, Sophy Darwin, Fredrik Strömberg, and Emilie Dufresne<br />
 <li><a href="#check-matrices"><span class="toc-section-number">4.2</span> Check-matrices</a></li>
 <li><a href="#syndrome-decoding"><span class="toc-section-number">4.3</span> Syndrome Decoding</a></li>
 <li><a href="#minimum-distance-from-a-check-matrix"><span class="toc-section-number">4.4</span> Minimum distance from a check-matrix</a></li>
+</ul></li>
+<li><a href="#perfect-codes"><span class="toc-section-number">5</span> Perfect Codes</a>
+<ul>
+<li><a href="#hamming-codes"><span class="toc-section-number">5.1</span> Hamming codes</a></li>
+<li><a href="#extending-and-puncturing"><span class="toc-section-number">5.2</span> Extending and Puncturing</a></li>
+<li><a href="#sec:golay_codes"><span class="toc-section-number">5.3</span> Golay Codes</a></li>
 </ul></li>
 
 </ul>
@@ -1296,6 +1302,371 @@ P(\text{we decode back to 000}) &amp; = &amp; P(\text{we receive 000, 001, 010, 
 <div class="exampleqed">
 <p>For the code <span class="math inline">\(C\)</span> in the example above, we have found that columns 2, 3 and 5 are linearly dependent. But this only tells us that <span class="math inline">\(d(C)\leq 3\)</span>. To be sure that <span class="math inline">\(d(C) = 3\)</span>, we need also to check that there are no linearly dependent pairs of columns, that is, no column is a multiple of another. For many of the <span class="math inline">\(\binom{5}{2}\)</span> pairs this is easy: its zero means that column 4 is not a multiple of any other, and (since they are not identical) the top entry 1 in columns 2, 3, and 5 means they cannot be multiples of each other. It remains to check that column 1 is not a multiple of column 2, 3 or 5. It is not, so <span class="math inline">\(d(C)=3\)</span>.</p>
 </div>
+</section>
+</section>
+<section id="perfect-codes" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Perfect Codes</h1>
+<p>Having established how linear codes work in general, we now begin to to look more closely at particular codes and types of codes. These will still be linear, but first we will return briefly to ideas from Section <a href="#sec:boundsoncodes" data-reference-type="ref" data-reference="sec:boundsoncodes">1.4</a> about more general codes.</p>
+<p>We know (Proposition <a href="#prop:hammingbound" data-reference-type="ref" data-reference="prop:hammingbound">[prop:hammingbound]</a>) that a <span class="math inline">\(q\)</span>-ary <span class="math inline">\((n,M,d)\)</span> code satisfies: <span class="math display">\[M \cdot \sum_{k=0}^t\binom{n}{k} (q-1)^k  \leq q^n, \;\; {\rm where} \; t = \left\lfloor\frac{d-1}{2}\right\rfloor.\]</span> This is because the spheres <span class="math inline">\(S(c,t)\)</span> round all the codewords have to fit into <span class="math inline">\({\mathbb F}_q^n\)</span> without overlapping. If these spheres also fill <span class="math inline">\({\mathbb F}_q^n\)</span> then we have equality and the code is perfect. For a given <span class="math inline">\(q\)</span>, <span class="math inline">\(n\)</span> and <span class="math inline">\(d\)</span>, we have made <span class="math inline">\(M\)</span> as large as possible. Thus for a code to be perfect we need <span class="math inline">\(|S(x,t)| =\sum_{k=0}^t\binom{n}{k} (q-1)^k\)</span> to divide <span class="math inline">\(q^n\)</span>. (If <span class="math inline">\(q\)</span> is a prime power, this means that <span class="math inline">\(|S(x,t)|\)</span> is a power of <span class="math inline">\(q\)</span>.)</p>
+<p>There are two very trivial solutions to this, with <span class="math inline">\(t=0\)</span>, or <span class="math inline">\(t = n\)</span> (see Q60) More useful, though still regarded as trivial, are the odd binary repetition codes, for example <span class="math inline">\(\{(0,0,0), (1,1,1)\} \subseteq {\mathbb F}_2^3\)</span> and <span class="math inline">\(\{(0,0,0,0,0), (1,1,1,1,1)\} \subseteq {\mathbb F}_2^5\)</span> (see Q63). Apart from these, computer searches have found that relatively few values for <span class="math inline">\(q\)</span>, <span class="math inline">\(n\)</span> and <span class="math inline">\(d\)</span> have <span class="math inline">\(|S(x,t)|\)</span> dividing <span class="math inline">\(q^n\)</span>. Of non-trivial parameters which meet this criterion, most are parameters for a Hamming code; we shall consider these in section 5.1. Remarkably, for <span class="math inline">\(n\leq 1000,\; d\leq 1000\)</span> and <span class="math inline">\(q\leq 100\)</span> there are only three other possibilities. For <span class="math inline">\(q=2\)</span> a [23,12,7] code or a [90,78,5] code would be perfect, if it exists; for <span class="math inline">\(q=3\)</span> a [11,6,5] code would be perfect. In 1949, Golay showed that a [90,78,5] binary code does not exist (see Q74), but he specified perfect codes for the other two sets of parameters. We shall study these in Section 5.3. Later work has gone on to show that all non-trivial perfect codes either have the same parameters as the Hamming Codes, or the Golay codes, though we won’t prove this in this course.</p>
+<section id="hamming-codes" class="level2" data-number="5.1">
+<h2 data-number="5.1"><span class="header-section-number">5.1</span> Hamming codes</h2>
+<p>If a code is to be able to correct one symbol-error, we need <span class="math inline">\(d \geq 3\)</span>. For a linear code, by Theorem <a href="#thm:lindepcolsdistance" data-reference-type="ref" data-reference="thm:lindepcolsdistance">[thm:lindepcolsdistance]</a>, we can achieve this by making sure that no two columns of its check matrix are multiples of each other. This is simplest in the binary case.</p>
+<div class="definition">
+<p>For <span class="math inline">\(r \geq 2, \; n= 2^r - 1\)</span>, let the matrix <span class="math inline">\(H \in M_{r,n}({\mathbb F}_2)\)</span> have as columns all non-zero vectors in <span class="math inline">\({\mathbb F}_2^r\)</span>. The <span><strong>binary Hamming code of redundancy <span class="math inline">\(r\)</span></strong></span>, is Ham<span class="math inline">\(_2(r) = \{ {\bf x}\in {\mathbb F}_2^n \; |\; {\bf x}H^t = 0\}\)</span>.</p>
+</div>
+<div class="exampleqed">
+<p>For <span class="math inline">\(r =2\)</span> and <span class="math inline">\(r =3\)</span> respectively, we can take <span class="math inline">\(H_2 = \left(\begin{matrix}
+0&amp;1&amp;1\\
+1&amp;0&amp;1
+\end{matrix}\right)\;\;\)</span> and <span class="math inline">\(\;\;H_3 = \left(\begin{matrix}
+0&amp;0&amp;0&amp;1&amp;1&amp;1&amp;1\\
+0&amp;1&amp;1&amp;0&amp;0&amp;1&amp;1\\
+1&amp;0&amp;1&amp;0&amp;1&amp;0&amp;1\\
+\end{matrix}\right)\)</span>.</p>
+</div>
+<p>Note that, according to the definition, we could have had the columns in any order. Thus strictly Ham<span class="math inline">\(_2(r)\)</span> is not just one code, but an equivalence class of codes.</p>
+<div id="prop:binaryhammingcodeparams" class="proposition">
+<p> For <span class="math inline">\(r \geq 2\)</span>, Ham<span class="math inline">\(_2(r)\)</span> is a perfect <span class="math inline">\([2^r -1, 2^r-r-1, 3 \;]\)</span> code, with check matrix <span class="math inline">\(H\)</span>.</p>
+</div>
+<div class="proof">
+<p>There are five things to check here:</p>
+<ul>
+<li><p><span class="math inline">\(n= 2^r - 1\)</span>: There are <span class="math inline">\(|{\mathbb F}_2^r - \{{\bf 0}\}|\)</span> columns in <span class="math inline">\(H\)</span>.</p></li>
+<li><p><span class="math inline">\(H\)</span> is a check-matrix for Ham<span class="math inline">\(_2(r)\)</span>: Since <span class="math inline">\(H\)</span> is certainly acting-check, we need only show its rows are linearly independent. This is clear since its columns include standard basis vectors <span class="math inline">\({\bf e}_1, \ldots, {\bf e}_r\)</span>, so each row has (at least) one entry 1 where all other rows have 0.</p></li>
+<li><p><span class="math inline">\(k = 2^r - r -1\)</span>: As <span class="math inline">\(H\)</span> is a check-matrix, it has <span class="math inline">\(n-k\)</span> rows, so <span class="math inline">\(n-r = k\)</span>.</p></li>
+<li><p><span class="math inline">\(d= 3\)</span>: No column is a multiple of another, but columns <span class="math inline">\({\bf e}_1, {\bf e}_2\)</span> and <span class="math inline">\({\bf e}_1+{\bf e}_2\)</span> are linearly dependent.</p></li>
+<li><p>Ham<span class="math inline">\(_2(r)\)</span> is perfect: We know <span class="math inline">\(|{\rm Ham}_2(r)| = 2^k = 2^{2^r-r-1}\)</span>, and that by Lemma 1.7 <span class="math inline">\(|S(c,1)| = 1+n =2^r\)</span>. But then since the <span class="math inline">\(S(c,1)\)</span> are disjoint, <span class="math inline">\(|\bigcup_{c \in C} S(c,1)| = 2^{2^r-r-1} \cdot 2^r  = 2^n\)</span>. So the spheres fill the space.</p></li>
+</ul>
+</div>
+<p>If we choose the right order for the columns of <span class="math inline">\(H\)</span>, we can decode very neatly, without even making a syndrome table. Notice that in the matrices above, the columns actually count in binary, from left to right. For example, in <span class="math inline">\(H_3\)</span> the sixth column is 110, which is the binary representation of six.</p>
+<p><span><strong>Algorithm: Decoding for binary Hamming codes.</strong></span></p>
+<ol>
+<li><p>Use the Ham<span class="math inline">\(_2(r)\)</span> with check-matrix H having column <span class="math inline">\(j\)</span> equal to the binary representation of <span class="math inline">\(j\)</span>, for <span class="math inline">\(1\leq j\leq n= 2^r - 1\)</span>.</p></li>
+<li><p>Having received <span class="math inline">\({\bf y}\in {\mathbb F}_2^n\)</span>, compute its syndrome <span class="math inline">\(S({\bf y}) ={\bf y}H^t\)</span></p></li>
+<li><p>If <span class="math inline">\(S({\bf y}) = 0\)</span>, then <span class="math inline">\({\bf y}\)</span> is a codeword, so decode as <span class="math inline">\({\bf y}\)</span>.</p></li>
+<li><p>Otherwise, read <span class="math inline">\(S({\bf y})\)</span> as a number <span class="math inline">\(j\)</span> in binary, and decode <span class="math inline">\({\bf y}\)</span> by changing its <span class="math inline">\(j\)</span>th entry.</p></li>
+</ol>
+<div class="exampleqed">
+<p>Suppose we are using Ham<span class="math inline">\(_2(3)\)</span>, with check-matrix <span class="math inline">\(H_3\)</span> as above, and we receive <span class="math inline">\({\bf y}= (0,1,1,0,1,0,1)\)</span>. Then <span class="math inline">\(S({\bf y}) = {\bf y}(H_3)^t = (0,1,1)\)</span>. Since 011 in binary is three, we change the third entry of <span class="math inline">\(y\)</span>, and decode it as <span class="math inline">\((0,1,0,0,1,0,1)\)</span>.</p>
+</div>
+<p>Why does this algorithm work? Since the <span class="math inline">\(S({\bf c},1)\)</span> partition <span class="math inline">\({\mathbb F}_2^n\)</span>, any received <span class="math inline">\({\bf y}\)</span> equals <span class="math inline">\({\bf c}+ {\bf x}\)</span>, where <span class="math inline">\({\bf c}\in {\rm Ham}_2(r)\)</span>, and <span class="math inline">\(w({\bf x})\leq 1\)</span>. If <span class="math inline">\(w({\bf x})=1\)</span>, then <span class="math inline">\({\bf x}= {\bf e}_j\)</span> for some <span class="math inline">\(j\)</span>. So <span class="math inline">\(S({\bf y}) = ({\bf c}+{\bf e}_j)H^t = {\bf e}_jH^t =  j^{th}\)</span> row of <span class="math inline">\(H^t =\)</span> binary representation of <span class="math inline">\(j\)</span>. By changing the <span class="math inline">\(j\)</span>th entry of <span class="math inline">\({\bf y}\)</span>, we find <span class="math inline">\({\bf y}- {\bf e}_j = {\bf c}\)</span>.</p>
+<p>We can also make Hamming codes with <span class="math inline">\(q &gt; 2\)</span>, but we must take more care to avoid two columns of <span class="math inline">\(H\)</span> being multiples of each other. Let <span class="math inline">\({\bf v}\)</span> be one of the <span class="math inline">\(q^r -1\)</span> non-zero vectors in <span class="math inline">\({\mathbb F}_q^r\)</span>, and consider the set <span class="math inline">\(L_{{\bf v}} = \{ \lambda {\bf v}\;|\; \lambda \in {\mathbb F}_q, \lambda \neq 0 \}\)</span>. Then <span class="math inline">\(|L_{{\bf v}}| = q-1\)</span>, and if <span class="math inline">\({\bf w}\in L_{{\bf v}}\)</span>, we have <span class="math inline">\(L_{{\bf w}} = L_{{\bf v}}\)</span>. So the <span class="math inline">\(L_{{\bf v}}\)</span> partition <span class="math inline">\({\mathbb F}_q^n -\{{\bf 0}\}\)</span>, and there are <span class="math inline">\((q^r-1)/(q-1)\)</span> of them.</p>
+<div class="exampleqed">
+<p>For <span class="math inline">\(q=3,\; r=2\)</span> we have <span class="math inline">\(8/2 =4\)</span> sets: <span class="math display">\[L_{(0,1)} = \{(0,1),(0,2)\},\;L_{(1,0)} = \{(1,0),(2,0)\},\]</span> <span class="math display">\[L_{(1,1)} = \{(1,1),(2,2)\},\;L_{(1,2)} = \{(1,2),(2,1)\}.\]</span></p>
+</div>
+<div class="definition">
+<p>For <span class="math inline">\(r \geq 2, \; n= (q^r - 1)/(q-1)\)</span>, let the sets <span class="math inline">\(L_{{\bf v}}\)</span> as above partition <span class="math inline">\({\mathbb F}_q^n -\{{\bf 0}\}\)</span>. Construct <span class="math inline">\(H \in M_{r,n}({\mathbb F}_q)\)</span> by taking one column from each <span class="math inline">\(L_{{\bf v}}\)</span>. The <span><strong>Hamming code of redundancy <span class="math inline">\(r\)</span></strong></span>, is Ham<span class="math inline">\(_q(r) = \{ {\bf x}\in {\mathbb F}_q^n \; |\; {\bf x}H^t = 0\}\)</span>.</p>
+</div>
+<div class="exampleqed">
+<p>For Ham<span class="math inline">\(_3(2)\)</span>, <span class="math inline">\(H\)</span> could be <span class="math inline">\(\left(\begin{matrix}
+0&amp;2&amp;2&amp;2\\1&amp;2&amp;0&amp;1\\
+\end{matrix}\right)\)</span>.</p>
+</div>
+<div id="prop:qaryhammingcodeparams" class="proposition">
+<p> For <span class="math inline">\(r \geq 2\)</span>, Ham<span class="math inline">\(_q(r)\)</span> is a perfect <span class="math inline">\([n, n-r, 3 \;]\)</span> code, with check-matrix <span class="math inline">\(H\)</span>.</p>
+</div>
+<p>Notice that this definition, and Proposition <a href="#prop:binaryhammingcodeparams" data-reference-type="ref" data-reference="prop:binaryhammingcodeparams">[prop:binaryhammingcodeparams]</a>, actually include the binary case discussed above. The proof of Proposition <a href="#prop:qaryhammingcodeparams" data-reference-type="ref" data-reference="prop:qaryhammingcodeparams">[prop:qaryhammingcodeparams]</a> is almost the same as that of Proposition <a href="#prop:binaryhammingcodeparams" data-reference-type="ref" data-reference="prop:binaryhammingcodeparams">[prop:binaryhammingcodeparams]</a>; proving <span class="math inline">\(d = 3\)</span>, and that the code is perfect, need a little more detail (see Q67). Again, a different choice and/or ordering of vectors for the columns of <span class="math inline">\(H\)</span> will give an equivalent code. For the following algorithm, it may be convenient to choose each column so that its last non-zero entry is 1. Again we exploit the fact that the Ham<span class="math inline">\(_q(r)\)</span> is perfect.</p>
+<p><span><strong>Algorithm: Decoding for Hamming codes.</strong></span></p>
+<ol>
+<li><p>Having received <span class="math inline">\({\bf y}\in {\mathbb F}_q^n\)</span>, compute its syndrome <span class="math inline">\(S({\bf y}) ={\bf y}H^t\)</span></p></li>
+<li><p>If <span class="math inline">\(S({\bf y}) = 0\)</span>, then <span class="math inline">\({\bf y}\)</span> is a codeword, so decode as <span class="math inline">\({\bf y}\)</span>.</p></li>
+<li><p>Otherwise, find <span class="math inline">\(j\)</span> and <span class="math inline">\(\lambda\)</span> such that <span class="math inline">\(S({\bf y})\)</span> is <span class="math inline">\(\lambda\)</span> times the <span class="math inline">\(j^{th}\)</span> column of <span class="math inline">\(H\)</span>, and decode <span class="math inline">\({\bf y}\)</span> as <span class="math inline">\({\bf y}-\lambda {\bf e}_j\)</span>.</p></li>
+</ol>
+<div class="exampleqed">
+<p>Let us use Ham<span class="math inline">\(_3(2)\)</span>, with <span class="math inline">\(H =\left(\begin{matrix}
+1&amp;0&amp;1&amp;2\\0&amp;1&amp;1&amp;1\\
+\end{matrix}\right)\)</span>. If <span class="math inline">\({\bf y}= (2,1,0,1)\)</span> is received, then <span class="math inline">\(S({\bf y}) = (1,2)\)</span>, which is twice the last column of <span class="math inline">\(H\)</span>. So we decode to <span class="math inline">\({\bf y}- 2{\bf e}_4 = (2,1,0,2)\)</span>.</p>
+</div>
+</section>
+<section id="extending-and-puncturing" class="level2" data-number="5.2">
+<h2 data-number="5.2"><span class="header-section-number">5.2</span> Extending and Puncturing</h2>
+<p>To improve error-correction or -detection we may wish to increase the minimum distance of a code, even at the expense of longer codewords. One way to attempt this is to extend the code. This puts the codewords into a bigger space, so they may be further apart.</p>
+<div class="definition">
+<p>Let the <span class="math inline">\([n,k,d]\)</span> code <span class="math inline">\(C\)</span> have check-matrix <span class="math inline">\(H\)</span>. Then the <span><strong>extended</strong></span> code <span class="math inline">\(\widehat{C}\)</span> has check-matrix <span class="math inline">\(\widehat{H} = \left(\begin{matrix}
+ &amp; &amp; &amp;0 \\
+  &amp;H&amp; &amp;\vdots\\
+  &amp; &amp; &amp; 0 \\
+ 1&amp; \cdots &amp;1&amp;1 \\
+\end{matrix}\right)\)</span>.</p>
+</div>
+<p>The last row perform a “parity check": it requires that the entries of a codeword add to zero.</p>
+<p>The definition implies that the rows of <span class="math inline">\(\widehat{H}\)</span> are linearly independent, but this is true, because the rows of <span class="math inline">\(H\)</span> were linearly independent, and only the last row has a non-zero entry in the last column.</p>
+<div id="prop:extendedcodeparams" class="proposition">
+<p> If <span class="math inline">\(C\)</span> is an <span class="math inline">\([n,k,d]\)</span> code then <span class="math inline">\(\widehat{C}\)</span> is an <span class="math inline">\([n&#39;,k&#39;,d&#39;]\)</span> code, with <span class="math inline">\(n&#39; = n+1\)</span>, <span class="math inline">\(k&#39; = k\)</span>, and <span class="math inline">\(d \leq d&#39;\leq d+1\)</span>.</p>
+</div>
+<div class="proof">
+<p>Clearly <span class="math inline">\(n&#39; = n+1\)</span>. Since <span class="math inline">\(\widehat{H}\)</span> is a check matrix for <span class="math inline">\(\widehat{C}\)</span>, it has <span class="math inline">\(n&#39;-k&#39;\)</span> rows, but it also has one more row than <span class="math inline">\(H\)</span>, so <span class="math inline">\((n+1)-k&#39; = (n-k)+1\)</span>. Using Thm. 4.11, it is clear that <span class="math inline">\(d \leq d&#39;\)</span>, because if some set of columns of <span class="math inline">\(\widehat{H}\)</span> is linearly dependent, then certainly those columns of <span class="math inline">\(H\)</span> must also be linearly dependent <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. On the other hand, if some set of columns of <span class="math inline">\(H\)</span> are linearly dependent, those columns in <span class="math inline">\(\widehat{H}\)</span> will not usually satisfy this relationship; we may need to use the last column to make zero in the last co-ordinate.</p>
+</div>
+<div id="eg:extendedhamming" class="exampleqed">
+<p> Let <span class="math inline">\(C_2 \subseteq F_2^3\)</span> and <span class="math inline">\(C_3\subseteq F_3^4\)</span> have check-matrices <span class="math display">\[H_2 = \left(\begin{matrix}
+1 &amp; 0&amp;1  \\
+ 0 &amp; 1&amp; 1\\
+\end{matrix}\right), \;\;
+\text{and} \;\; H_3 = \left(\begin{matrix}
+1 &amp; 0&amp;1 &amp;2 \\
+ 0 &amp; 1&amp; 1&amp;1\\
+ \end{matrix}\right).\]</span> Then <span class="math inline">\(\widehat{C}_2\)</span> and <span class="math inline">\(\widehat{C}_3\)</span> have check-matrices <span class="math inline">\(\widehat{H}_2 = \left(\begin{matrix}
+1 &amp; 0&amp;1 &amp;0 \\
+ 0 &amp; 1&amp; 1&amp;0\\
+ 1&amp; 1&amp; 1&amp;  1 \\
+\end{matrix}\right)\)</span>, and <span class="math inline">\(\widehat{H}_3 = \left(\begin{matrix}
+1 &amp; 0&amp;1 &amp;2&amp;0 \\
+ 0 &amp; 1&amp; 1&amp;1&amp;0\\
+  1&amp; 1&amp; 1&amp; 1 &amp;1\\
+\end{matrix}\right)\)</span>. Looking at the columns of <span class="math inline">\(H_2\)</span> and <span class="math inline">\(\widehat{H}_2\)</span>, it is clear that <span class="math inline">\(d(C_2)=3\)</span> but <span class="math inline">\(d(\widehat{C}_2)=4\)</span>. On the other hand, in both <span class="math inline">\(H_3\)</span> and <span class="math inline">\(\widehat{H}_3\)</span> columns 2 to 4 add up to zero, so <span class="math inline">\(d(C_3) = d(\widehat{C}_3)=3\)</span>.</p>
+</div>
+<p>Here <span class="math inline">\(C_2\)</span> is a Ham<span class="math inline">\(_2(2)\)</span> code, so this is an example of the following:</p>
+<p><span id="cor:extendedbinary" label="cor:extendedbinary">[cor:extendedbinary]</span> If a binary <span class="math inline">\([n,k,d]\)</span> code <span class="math inline">\(C\)</span> has <span class="math inline">\(d\)</span> odd, then <span class="math inline">\(\widehat{C}\)</span> is a <span class="math inline">\([n+1, k, d+1]\)</span> code.</p>
+<div class="proof">
+<p>Using Proposition <a href="#prop:extendedcodeparams" data-reference-type="ref" data-reference="prop:extendedcodeparams">[prop:extendedcodeparams]</a>, we need only show for Theorem <a href="#thm:lindepcolsdistance" data-reference-type="ref" data-reference="thm:lindepcolsdistance">[thm:lindepcolsdistance]</a> that any <span class="math inline">\(d\)</span> columns in the check-matrix for <span class="math inline">\(\widehat{C}\)</span> are linearly independent. But this is clear, as their last entries must add to 1 in <span class="math inline">\({\mathbb F}_2\)</span>.</p>
+</div>
+<p><span id="cor:extendedhamming" label="cor:extendedhamming">[cor:extendedhamming]</span> The extended binary Hamming code <span class="math inline">\({\rm H\widehat{am}}_2(r)\)</span> is a <span class="math inline">\([2^r, 2^r-r-1, 4]\)</span> code.</p>
+<p>Since 4 is even, <span class="math inline">\({\rm H\widehat{am}}_2(r)\)</span> is not perfect (see Q16). By Prop.1.2, <span class="math inline">\({\rm H\widehat{am}}_2(r)\)</span> can still only correct one symbol-error, but it can detect two. This is a gain worth having, particularly if we can ask for retransmission. (Strictly, it can detect three - but with three symbol-errors even unique-nearest-neighbour decoding may give the wrong answer.)</p>
+<p>Suppose we have two equivalent codes, <span class="math inline">\(C\)</span> and <span class="math inline">\(C&#39;\)</span>, with check-matrices <span class="math inline">\(H\)</span> and <span class="math inline">\(H&#39;\)</span>, and we form the extended codes <span class="math inline">\(\widehat{C}\)</span> and <span class="math inline">\(\widehat{C}&#39;\)</span>, with check-matrices <span class="math inline">\(\widehat{H}\)</span> and <span class="math inline">\(\widehat{H}&#39;\)</span>. Will <span class="math inline">\(\widehat{C}\)</span> and <span class="math inline">\(\widehat{C}&#39;\)</span> be equivalent? If the codes are binary then yes: <span class="math inline">\(H\)</span> and <span class="math inline">\(H&#39;\)</span> have the same columns in a (possibly) different order, and so do <span class="math inline">\(\widehat{H}\)</span> and <span class="math inline">\(\widehat{H}&#39;\)</span>. But if <span class="math inline">\(q \geq3\)</span>, then some column of <span class="math inline">\(H&#39;\)</span> may be a multiple (<span class="math inline">\(\lambda \neq 0, \neq1\)</span>) of a column of <span class="math inline">\(H\)</span>. With one added at the end of each, they are no longer multiples, so <span class="math inline">\(\widehat{C}\)</span> and <span class="math inline">\(\hat{C}&#39;\)</span> may not be equivalent (Q70).</p>
+<p>To find a generator-matrix for an extended code, we can use the <span class="math inline">\(G \leftrightarrow H\)</span> algorithm on <span class="math inline">\(\widehat{H}\)</span>. But we can also get it directly from the original generator-matrix, by adding an overall check-digit to each row, and so to each codeword.</p>
+<p><span><strong>Notation:</strong></span> If <span class="math inline">\({\bf g}= (g_1, \,\ldots,\, g_n)\)</span>, we write <span class="math inline">\(({\bf g},\, a)\)</span> for <span class="math inline">\((g_1, \,\ldots,\, g_n, a)\)</span>.</p>
+<div id="prop:extendedgeneratormatrix" class="proposition">
+<p> If <span class="math inline">\(C\)</span> has generator-matrix <span class="math inline">\(G\)</span> with rows <span class="math inline">\({\bf g}_i = (g_{i1}, \,\ldots,\, g_{in})\)</span>, for <span class="math inline">\(\leq i \leq k\)</span>, then <span class="math inline">\(\widehat{C}\)</span> has generator-matrix <span class="math inline">\(\widehat{G}\)</span> with rows <span class="math inline">\(\widehat{{\bf g}_i} = ({\bf g}_i,\, -\sum_{j=1}^n g_{ij})\)</span></p>
+</div>
+<div id="eg:extendedgeneratormatrix" class="exampleqed">
+<p> Using Proposition <a href="#prop:dualstandardform" data-reference-type="ref" data-reference="prop:dualstandardform">[prop:dualstandardform]</a>, the code <span class="math inline">\(C_3\)</span> from Example <a href="#eg:extendedhamming" data-reference-type="ref" data-reference="eg:extendedhamming">[eg:extendedhamming]</a> has generator matrix <span class="math display">\[G = \left( \begin{array}{cccc}
+			2 &amp; 2 &amp; 1 &amp; 0 \\
+			1 &amp; 2 &amp; 0 &amp; 1
+		\end{array} \right).\]</span></p>
+<p>Using Proposition <a href="#prop:extendedgeneratormatrix" data-reference-type="ref" data-reference="prop:extendedgeneratormatrix">[prop:extendedgeneratormatrix]</a>, the generator matrix for <span class="math inline">\(\widehat{C}_3\)</span> is therefore <span class="math display">\[\widehat{G} = \left( \begin{array}{ccccc}
+			2 &amp; 2 &amp; 1 &amp; 0 &amp; 1 \\
+			1 &amp; 2 &amp; 0 &amp; 1 &amp; 2
+		\end{array} \right),\]</span> and one can easily check that the rows of this matrix are orthogonal to the extended check matrix in Example <a href="#eg:extendedhamming" data-reference-type="ref" data-reference="eg:extendedhamming">[eg:extendedhamming]</a>.</p>
+</div>
+<div class="proof">
+<p>(Of These <span class="math inline">\(\widehat{{\bf g}_i}\)</span> are linearly independent, and there are <span class="math inline">\(k\)</span> of them as required. We need only check that they are in <span class="math inline">\(\widehat{C}\)</span>. Let the rows of <span class="math inline">\(C\)</span>’s check-matrix <span class="math inline">\(H\)</span> be <span class="math inline">\({\bf h}_1,\,\ldots,\,{\bf h}_{n-k}\)</span>. Then <span class="math inline">\(\widehat{C}\)</span> has check-matrix <span class="math inline">\(\widehat{H}\)</span> with rows <span class="math inline">\(\widehat{{\bf h}}_1 =({\bf h}_1,0),\,\ldots,\,\widehat{{\bf h}}_{n-k}=({\bf h}_{n-k},0)\)</span> and <span class="math inline">\(\widehat{{\bf h}}_{n-k+1}=(1, \ldots, 1)\)</span>. Then <span class="math display">\[\begin{aligned}
+		\widehat{{\bf g}_i} \cdot \widehat{{\bf h}_l}&amp; = ({\bf g}_i,\, -\sum_{j=1}^n g_{ij}) \cdot ({\bf h}_l,0)\; = \;{\bf g}_i \cdot {\bf h}_l = 0 \;\;\;\text{for}\; 1 \leq l \leq n-k, \\
+		\text{and} \;\;\widehat{{\bf g}_i} \cdot \widehat{{\bf h}}_{n-k+1} &amp; = ({\bf g}_i,\, -\sum_{j=1}^n g_{ij}) \cdot (1, \ldots, 1) = \sum_{j=1}^n g_{ij}-\sum_{j=1}^n g_{ij} = 0.
+	\end{aligned}\]</span></p>
+</div>
+<p>How can we return from <span class="math inline">\(\widehat{C}\)</span> to <span class="math inline">\(C\)</span>? In terms of <span class="math inline">\(\widehat{G}\)</span>, this is obvious: we just delete the last column, thus deleting the last symbol from each codeword of <span class="math inline">\(\widehat{C}\)</span>. More generally:</p>
+<div class="definition">
+<p>To <span><strong>puncture</strong></span> a <span class="math inline">\([n,k,d]\)</span> code <span class="math inline">\(C\)</span>, we choose <span class="math inline">\(1 \leq j\leq n\)</span>, and remove the <span class="math inline">\(j^{th}\)</span> entry from every codeword.</p>
+</div>
+<div id="prop:punctureonce" class="proposition">
+<p> Let <span class="math inline">\(C&#39;\)</span> be the <span class="math inline">\([n-1,k&#39;,d&#39;]\)</span> code obtained by puncturing the <span class="math inline">\([n,k,d]\)</span> code <span class="math inline">\(C\)</span> in the <span class="math inline">\(i\)</span><sup>th</sup> position.</p>
+<ol>
+<li><p>If <span class="math inline">\(d \ge 2\)</span>, then <span class="math inline">\(k&#39; = k\)</span>. If <span class="math inline">\(C\)</span> has a codeword of minimum weight with a non-zero entry in the <span class="math inline">\(i\)</span><sup>th</sup> position, then <span class="math inline">\(d&#39; = d-1\)</span>. Otherwise, <span class="math inline">\(d&#39;=d\)</span>.</p></li>
+<li><p>If <span class="math inline">\(d=1\)</span>, and <span class="math inline">\(C\)</span> contains a weight 1 codeword whose non-zero element is in the <span class="math inline">\(i\)</span><sup>th</sup> position, then <span class="math inline">\(k&#39;=k-1\)</span> (as long as <span class="math inline">\(k&gt;1\)</span>) and <span class="math inline">\(d&#39;\ge 1\)</span>. Otherwise, <span class="math inline">\(k&#39;=k\)</span> and <span class="math inline">\(d&#39;=1\)</span>.</p></li>
+</ol>
+</div>
+<div class="proof">
+<p>Clearly we always have <span class="math inline">\(n&#39; = n-1\)</span>.</p>
+<p>If <span class="math inline">\(d&gt;1\)</span>, then no two codewords can become the same by removing the <span class="math inline">\(i\)</span><sup>th</sup> position, hence <span class="math inline">\(q^{k&#39;}=q^k\)</span>. If <span class="math inline">\(c\in C\)</span> is a codeword of minimum weight <span class="math inline">\(w(c)=d\)</span>, with a non-zero entry in the <span class="math inline">\(i\)</span><sup>th</sup> position, then in <span class="math inline">\(C&#39;\)</span> this becomes the codeword <span class="math inline">\(c&#39;\)</span> with <span class="math inline">\(w(c&#39;)=d-1\)</span>. If no minimal weight codeword (with weight <span class="math inline">\(d\)</span>) in <span class="math inline">\(C\)</span> has a non-zero entry in the <span class="math inline">\(i\)</span><sup>th</sup> position, then in <span class="math inline">\(C&#39;\)</span> all such words still have weight <span class="math inline">\(d\)</span>, and removing the <span class="math inline">\(i\)</span><sup>th</sup> position from all codewords cannot produce a word of weight less that <span class="math inline">\(d\)</span>.</p>
+<p>If <span class="math inline">\(d=1\)</span>, then there exists at least one codeword of weight one by Proposition <a href="#prop:mindminw" data-reference-type="ref" data-reference="prop:mindminw">[prop:mindminw]</a>. Since <span class="math inline">\({\mathbb F}_q\)</span> is a field, there exist weight 1 words in <span class="math inline">\(C\)</span> whose non-zero entry is a 1. Of course, there may be multiple such words whose 1s are in different positions. Then the generator matrix for <span class="math inline">\(C\)</span> in RREF must contain each of these words as rows (as they cannot be written as the sum of multiple rows of the generator matrix, due to the leading ones in the rows of this matrix).</p>
+<p>If <span class="math inline">\(C\)</span> contains such a word whose 1 is in the <span class="math inline">\(i\)</span><sup>th</sup> position, then the corresponding row of the generator matrix (in RREF) for <span class="math inline">\(C&#39;\)</span> is 0 in all positions, and so <span class="math inline">\(k&#39;&lt;k\)</span>. Since no other row of this generator matrix contains a 1 in this position (as it is in RREF), the remaining rows must be linearly independent, and so <span class="math inline">\(k&#39;=k-1\)</span>. The minimum distance of <span class="math inline">\(C&#39;\)</span> is then the minimum weight of the remaining words of <span class="math inline">\(C&#39;\)</span>, so <span class="math inline">\(d&#39;\ge 1\)</span>.</p>
+<p>If <span class="math inline">\(C\)</span> contains a word of weight 1 whose non-zero entry is not in the <span class="math inline">\(i\)</span><sup>th</sup> position, then this word still has weight 1 in <span class="math inline">\(C&#39;\)</span>, and so <span class="math inline">\(d&#39;=1\)</span>. If no weight 1 word in <span class="math inline">\(C\)</span> has a non-zero entry in the <span class="math inline">\(i\)</span><sup>th</sup> position, then by linearity no two words of <span class="math inline">\(C\)</span> can differ in only the <span class="math inline">\(i\)</span><sup>th</sup> position, and no two codewords can become the same by removing their <span class="math inline">\(i\)</span><sup>th</sup> positions, so <span class="math inline">\(q^{k&#39;}=q^k\)</span>.</p>
+</div>
+<p>Slightly more generally, given a code <span class="math inline">\(C\subseteq {\mathbb F}_q^n\)</span> and set of <span class="math inline">\(m\)</span> coordinates <span class="math inline">\(T=\{t_1,\ldots,t_m\}\)</span>, where <span class="math inline">\(1\le t_i \le n\)</span> for <span class="math inline">\(1 \le i \le m\)</span>, we can puncture <span class="math inline">\(C\)</span> on each position in <span class="math inline">\(T\)</span> to obtain the code <span class="math inline">\(C^T\)</span>. The code obtained by puncturing <span class="math inline">\(C\)</span> in position <span class="math inline">\(i\)</span> as above, can then be written as <span class="math inline">\(C^{\{i\}}\)</span>.</p>
+<div id="prop:puncturemultiple" class="proposition">
+<p> Let <span class="math inline">\(C\subseteq {\mathbb F}_q^n\)</span> be an <span class="math inline">\([n,k,d]\)</span> code, and <span class="math inline">\(T\)</span> be a coordinate set of size <span class="math inline">\(m\)</span> as above. Then <span class="math inline">\(C^T\)</span> is an <span class="math inline">\([n-m,k&#39;,d&#39;]\)</span> code, with <span class="math inline">\(k&#39;\ge k-m\)</span> and <span class="math inline">\(d&#39;\ge d-m\)</span>.</p>
+</div>
+<div id="pf:puncturemultiple" class="proof">
+<p> Use Proposition <a href="#prop:punctureonce" data-reference-type="ref" data-reference="prop:punctureonce">[prop:punctureonce]</a> and induction.</p>
+</div>
+<p>So it seems there could be <span class="math inline">\(n\)</span> different single punctured versions of a code. These may or may not be equivalent; they may not even have the same minimum distance.</p>
+<div id="eg:extendingandpuncturing" class="exampleqed">
+<p> Let <span class="math inline">\(C\subset {\mathbb F}_2^5\)</span> be the <span class="math inline">\([5,2,2]\)</span> code generated by <span class="math display">\[G = \left( \begin{array}{ccccc}
+		1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+		0 &amp; 1 &amp; 0 &amp; 1 &amp; 1
+		\end{array}\right).\]</span> Using Proposition <a href="#prop:dualstandardform" data-reference-type="ref" data-reference="prop:dualstandardform">[prop:dualstandardform]</a>, this has check-matrix <span class="math display">\[H = \left( \begin{array}{ccccc}
+		1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+		0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+		0 &amp; 1 &amp; 0 &amp; 0 &amp; 1
+		\end{array}\right),\]</span> and so the extended code <span class="math inline">\(\widehat{C}\)</span> has check-matrix <span class="math display">\[\widehat{H} = \left( \begin{array}{cccccc}
+		1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+		0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+		0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+		1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1
+		\end{array}\right),\]</span> and by Proposition <a href="#prop:extendedgeneratormatrix" data-reference-type="ref" data-reference="prop:extendedgeneratormatrix">[prop:extendedgeneratormatrix]</a>, <span class="math inline">\(\widehat{C}\)</span> has generator matrix <span class="math display">\[\widehat{G} = \left( \begin{array}{cccccc}
+		1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+		0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1
+		\end{array}\right).\]</span></p>
+<p>If we puncture in the 6<sup>th</sup> position, we clearly get back <span class="math inline">\(C\)</span>, so <span class="math inline">\(\widehat{C}^{\{6\}} = C\)</span>. However, if we puncture <span class="math inline">\(\widehat{C}\)</span> in the 3<sup>rd</sup> position, we get a code <span class="math inline">\(\widehat{C}^{\{3\}}\)</span> with generator matrix <span class="math display">\[G&#39; = \left( \begin{array}{ccccc}
+		1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+		0 &amp; 1 &amp; 1 &amp; 1 &amp; 1
+		\end{array}\right),\]</span> which is clearly a code of minimum distance 1, which is not even (permutation) equivalent to <span class="math inline">\(C\)</span>.</p>
+<p>The code <span class="math inline">\(\widehat{C}^{\{1,3\}}\)</span> has generator matrix <span class="math display">\[\tilde{G} = \left( \begin{array}{cccc}
+		1 &amp; 1 &amp; 1 &amp; 1
+		\end{array}\right),\]</span> and hence has dimension 1 and minimum distance 4.</p>
+</div>
+<p>To summarise, extending takes a code <span class="math inline">\(C\)</span> of dimension <span class="math inline">\(k\)</span> in the space <span class="math inline">\({\mathbb F}_q^n\)</span>, and makes a new code <span class="math inline">\(\widehat{C}\)</span>, still of dimension <span class="math inline">\(k\)</span>, in <span class="math inline">\({\mathbb F}_q^{n+1}\)</span>. Puncturing <span class="math inline">\(\widehat{C}\)</span> (once) projects it back into <span class="math inline">\({\mathbb F}_q^n\)</span>, but may or may not give <span class="math inline">\(C\)</span> again.</p>
+</section>
+<section id="sec:golay_codes" class="level2" data-number="5.3">
+<h2 data-number="5.3"><span class="header-section-number">5.3</span> Golay Codes</h2>
+<p><strong>The remainder of this chapter of the notes is non-examinable, and is provided only for your interest.</strong></p>
+<p>The perfect binary [23,12,7] code found by Golay is known as <span class="math inline">\(\mathcal{G}_{23}\)</span>. We shall find it indirectly: assuming such a code exists, we shall first consider an extended version of it, and then puncture this. We call this code <span class="math inline">\(\mathcal{G}_{24}\)</span>; by Corollary <a href="#cor:extendedbinary" data-reference-type="ref" data-reference="cor:extendedbinary">[cor:extendedbinary]</a> it is a <span class="math inline">\([24, 12, 8]\)</span> code, and is not perfect. We first describe how to construct a generator matrix for <span class="math inline">\(\mathcal{G}_{24}\)</span> and then show that the code generated from this is indeed a binary <span class="math inline">\([24,12,8]\)</span> code. In fact, one can prove that a <span class="math inline">\([24,12,8]\)</span> code is unique up to equivalence, a fact which we will use without proof.</p>
+<section id="sub:the_extended_binary_golay_code_g_24" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1"><span class="header-section-number">5.3.1</span> The Extended Binary Golay Code <span class="math inline">\(\mathcal{G}_{24}\)</span></h3>
+<p>We construct our generator matrix using the adjacencies of the vertices of the icosahedron. We recall that an icosahedron is a twenty sided platonic solid with five equilateral triangles meeting at each vertex. The icosahedron is shown in Figure <a href="#fig:icosahedron" data-reference-type="ref" data-reference="fig:icosahedron">5.1</a>. It is easiest to consider the adjacency of the icosahedron by studying its net (Figure <a href="#fig:icosahedronnet" data-reference-type="ref" data-reference="fig:icosahedronnet">5.2</a>).</p>
+<figure>
+<img src="../Images/Icosahedron.png" id="fig:icosahedron" style="width:50.0%" alt="" /><figcaption>The Icosahedron.</figcaption>
+</figure>
+<p> </p>
+<figure>
+<img src="../Images/IcoNet.png" id="fig:icosahedronnet" alt="" /><figcaption>The net of the icosahedron, with the vertices labelled A to L.</figcaption>
+</figure>
+<div class="definition">
+<p>Two points of the icosahedron are <em>adjacent</em> if in the net there is a single line joining the two points.</p>
+</div>
+<p>Note that by the above definition, a point X is not adjacent to itself, since there is no single line joining any point to itself in the net of the icosahedron.</p>
+<p>Let us label the vertices of the Icosahedron as <span class="math inline">\(v_i\)</span> for <span class="math inline">\(1\le i\le 12\)</span>. We now define a matrix <span class="math inline">\(A\)</span>, where the entry in row <span class="math inline">\(i\)</span>, column <span class="math inline">\(j\)</span>, is 0 if the two points indexed by the position in the matrix are adjacent, and 1 if not. That is, we let <span class="math inline">\(A \in M_{12,12}({\mathbb F}_2)\)</span> be given by <span class="math display">\[A_{i,j} =
+	\begin{cases}
+	      0 &amp; \text{if $v_i$ is adjacent to $v_j$} \\
+		  1 &amp; \text{if $v_i$ is not adjacent to $v_j$}.
+	\end{cases}\]</span> Explicitly, we have <span class="math display">\[A = \left(\begin{matrix}
+	1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+	0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+	0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+	0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+	0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+	0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+	1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0\\
+	1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+	1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+	1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+	1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+	1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+	\end{matrix}\right)\]</span> Note that this matrix is symmetric, since <span class="math inline">\(v_i\)</span> is adjacent to <span class="math inline">\(v_j\)</span> <span class="math inline">\(\iff\)</span> <span class="math inline">\(v_j\)</span> is adjacent to <span class="math inline">\(v_i\)</span>.</p>
+<div id="def:golaygenerator" class="definition">
+<p> A generator matrix <span class="math inline">\(G\)</span> for the <strong>Extended Binary Golay Code</strong> <span class="math inline">\(\mathcal{G}_{24}\)</span> is then given in standard form as <span class="math inline">\((I_{12} \;|\; A)\)</span>, <span class="math display">\[G = \left(\begin{matrix}
+		1&amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+		 &amp;1&amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+		 &amp; &amp;1&amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+		 &amp; &amp; &amp;1&amp; &amp; &amp; &amp; &amp;0&amp; &amp; &amp; &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+		 &amp; &amp; &amp; &amp;1&amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+		 &amp; &amp; &amp; &amp; &amp;1&amp; &amp; &amp; &amp; &amp; &amp; &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+		 &amp; &amp; &amp; &amp; &amp; &amp;1&amp; &amp; &amp; &amp; &amp; &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0\\
+		 &amp; &amp; &amp; &amp; &amp; &amp; &amp;1&amp; &amp; &amp; &amp; &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+		 &amp; &amp; &amp;0&amp; &amp; &amp; &amp; &amp;1&amp; &amp; &amp; &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+		 &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp;1&amp; &amp; &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+		 &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp;1&amp; &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+		 &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp;1&amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+		\end{matrix}\right).\]</span></p>
+</div>
+<p>Since <span class="math inline">\(G\)</span> is in standard form, every row in <span class="math inline">\(G\)</span> can be written as <span class="math inline">\(({\bf e}_i , {\bf a}_i)\)</span>, where the <span class="math inline">\({\bf e}_i\)</span> are standard basis vectors, and the <span class="math inline">\({\bf a}_i\)</span> are rows of <span class="math inline">\(A\)</span>. The code generated by <span class="math inline">\(G\)</span> is clearly a binary code with <span class="math inline">\(n=24\)</span> and <span class="math inline">\(k=12\)</span>. In order to show that <span class="math inline">\(\mathcal{G}_{24}\)</span> is a binary <span class="math inline">\([24,12,8]\)</span> code, we ‘just’ need to show that the code generated by <span class="math inline">\(G\)</span> has <span class="math inline">\(d=8\)</span>. We do not use Theorem <a href="#thm:lindepcolsdistance" data-reference-type="ref" data-reference="thm:lindepcolsdistance">[thm:lindepcolsdistance]</a> here, as we would need to show that no combination of 7 or less columns of <span class="math inline">\(G\)</span> are linearly dependent. Instead, we show this in several steps by considering the weights of the codewords directly.</p>
+<div id="def:intersection" class="definition">
+<p> For <span class="math inline">\({\bf x}\)</span> and <span class="math inline">\({\bf y}\in {\mathbb F}_2^n\)</span>, the <em>intersection</em> of <span class="math inline">\({\bf x}\)</span> and <span class="math inline">\({\bf y}\)</span>, written as <span class="math inline">\({\bf x}\cap{\bf y}\)</span>, is coordinatewise product of <span class="math inline">\({\bf x}\)</span> and <span class="math inline">\({\bf y}\)</span>.</p>
+</div>
+<p>This intersection of <span class="math inline">\({\bf x}\)</span> and <span class="math inline">\({\bf y}\)</span> has 1s in exactly <span class="math inline">\(\{\text{places where } {\bf x}\text{ has a 1}\} \cap \{\text{places where } {\bf y}\text{ has a 1}\}\)</span>, and zeros elsewhere.</p>
+<div id="lem:intersectionweight" class="lemma">
+<p> For <span class="math inline">\({\bf x}\)</span> and <span class="math inline">\({\bf y}\)</span> in <span class="math inline">\({\mathbb F}_2^n\)</span>: <span>i)</span> <span class="math inline">\(w({\bf x}+{\bf y}) = w({\bf x}) + w({\bf y}) - 2 w({\bf x}\cap {\bf y})\)</span>. <span>ii)</span> <span class="math inline">\({\bf x}\cdot {\bf y}= 0 \in {\mathbb F}_2\)</span> if and only if <span class="math inline">\(w({\bf x}\cap {\bf y})\)</span> is even. <span>iii)</span> <span class="math inline">\({\bf x}\cdot {\bf x}= 0 \in {\mathbb F}_2\)</span> if and only if <span class="math inline">\(w({\bf x})\)</span> is even.</p>
+</div>
+<div class="proof">
+<p>Easy - see Q75.</p>
+</div>
+<div id="eg:golaycodewordweight" class="exampleqed">
+<p> <span class="math inline">\({\bf a}_2= (0 , 1 , 0 , 1 , 1 , 0 , 0 , 1 , 1 , 1 , 0 , 1),\; {\bf a}_3 = ( 0 , 0 , 1 , 0 , 1 , 1 , 0 , 0 , 1 , 1 , 1 , 1)\)</span>. Then <span class="math inline">\({\bf a}_2 + {\bf a}_3 = ( 0,1,1,1,0,1,0,1,0,0,1,0)\)</span>, <span class="math inline">\({\bf a}_2 \cap {\bf a}_3 = (0,0,0,0,1,0,0,0,1,1,0,1)\)</span>. The weights are <span class="math inline">\(w({\bf a}_2)=w({\bf a}_3)=7\)</span>, <span class="math inline">\(w({\bf a}_2 + {\bf a}_3) = 6\)</span>, and <span class="math inline">\(w({\bf a}_2 \cap {\bf a}_3)= 4\)</span>.</p>
+<p>In fact, we have <span class="math inline">\(w({\bf a}_i) = 7\)</span> and <span class="math inline">\(w({\bf g}_i)=8\)</span> for <span class="math inline">\(i = 1,\ldots,12\)</span>, since each point on the icosahedron is not adjacent to exactly 7 other points.</p>
+</div>
+<div id="prop:golayweight8" class="proposition">
+<p> <span class="math display">\[d(\mathcal{G}_{24}) = 8.\]</span></p>
+</div>
+<p>As noted in Example <a href="#eg:golaycodewordweight" data-reference-type="ref" data-reference="eg:golaycodewordweight">[eg:golaycodewordweight]</a>, there certainly exist codewords in the Extended Binary Golay Code of weight 8. We show there are no codewords with <span class="math inline">\(w({\bf c}) &lt; 8\)</span> via four lemmas. The first two concern the code as a whole.</p>
+<div id="lem:golayselfdual" class="lemma">
+<p> The code <span class="math inline">\(\mathcal{G}_{24}\)</span> is self-dual, that is, <span class="math inline">\(\mathcal{G}_{24}^\perp = \mathcal{G}_{24}\)</span>.</p>
+</div>
+<div id="pf:golayselfdual" class="proof">
+<p> We know that <span class="math inline">\(\operatorname{dim}(\mathcal{G}_{24}^\perp) = n - k = 12,\)</span> and so <span class="math inline">\(\lvert \mathcal{G}_{24}^\perp \rvert = \lvert \mathcal{G}_{24} \rvert\)</span>. It is therefore enough to show that <span class="math inline">\(\mathcal{G}_{24} \subset \mathcal{G}_{24}^\perp\)</span>. Recalling that <span class="math inline">\(\mathcal{G}_{24}^\perp = \{ {\bf x}\in \mathbb{F}_2^{24}\ \vert\ {\bf x}\cdot G^t = {\bf 0} \}\)</span>, we therefore have <span class="math inline">\(\mathcal{G}_{24} \subset \mathcal{G}_{24}^\perp \iff {\bf c}\cdot G^t = {\bf 0} \ \forall\ {\bf c}\in \mathcal{G}_{24}\)</span>. By linearity, it is enough to check this for a basis for <span class="math inline">\(\mathcal{G}_{24}\)</span>. We therefore check that for any two rows <span class="math inline">\(({\bf e}_i,{\bf a}_i)\)</span> and <span class="math inline">\(({\bf e}_j,{\bf a}_j)\)</span> of <span class="math inline">\(G\)</span>, we have <span class="math inline">\(({\bf e}_i,{\bf a}_i) \cdot ({\bf e}_j,{\bf a}_j) = 0\)</span>.</p>
+<p>By Lemma <a href="#lem:intersectionweight" data-reference-type="ref" data-reference="lem:intersectionweight">[lem:intersectionweight]</a>, this is true whenever we have <span class="math inline">\(i=j\)</span>, since all rows of <span class="math inline">\(G\)</span> have even weight. For <span class="math inline">\(i \ne j\)</span>, <span class="math display">\[\begin{aligned}
+			({\bf e}_i,{\bf a}_i) \cdot ({\bf e}_j,{\bf a}_j) &amp;= {\bf e}_i \cdot {\bf e}_j + {\bf a}_i \cdot {\bf a}_j \\
+				&amp;= {\bf a}_i \cdot {\bf a}_j.
+		\end{aligned}\]</span> In terms of our icosahedron, <span class="math inline">\({\bf a}_i \cdot {\bf a}_j\)</span> is just the number of points on the icosahedron not adjacent to <span class="math inline">\(v_i\)</span> <em>and</em> not adjacent to <span class="math inline">\(v_j\)</span> modulo 2. By the rotational symmetry of the icosahedron, without loss of generality we can assume that <span class="math inline">\(v_i\)</span> is <span class="math inline">\(v_1=A\)</span>, and <span class="math inline">\(v_j\)</span> is one of <span class="math inline">\(v_2 = B\)</span>, <span class="math inline">\(v_7 = G\)</span> or <span class="math inline">\(v_{12}=L\)</span>. If we let <span class="math inline">\(E_i = \{ \text{points in the icosahedron adjacent to } v_i\}\)</span>, then by the Inclusion-Exclusion principle, we have <span class="math display">\[\begin{aligned}
+			{\bf a}_i \cdot {\bf a}_j &amp;= 12 - \lvert E_i \cup E_j \rvert \\
+			&amp;= 12 - \lvert E_i \rvert - \lvert E_j \rvert + \lvert E_i \cap E_j \rvert.
+		\end{aligned}\]</span> We can now consider the three possibilities for <span class="math inline">\(v_j\)</span> in turn:</p>
+<ul>
+<li><p>If <span class="math inline">\(v_j\)</span> is <span class="math inline">\(v_{12} = L\)</span>, then <span class="math inline">\({\bf a}_i \cdot {\bf a}_j = 12 - 5 -5 + 0 \pmod{2} = 0\)</span>.</p></li>
+<li><p>If <span class="math inline">\(v_j\)</span> is <span class="math inline">\(v_{7} = G\)</span>, then <span class="math inline">\({\bf a}_i \cdot {\bf a}_j = 12 - 5 -5 + 2 \pmod{2} = 0\)</span>.</p></li>
+<li><p>If <span class="math inline">\(v_j\)</span> is <span class="math inline">\(v_{2} = B\)</span>, then <span class="math inline">\({\bf a}_i \cdot {\bf a}_j = 12 - 5 -5 + 2 \pmod{2} = 0\)</span>.</p></li>
+</ul>
+<p>We therefore see that <span class="math display">\[\begin{equation} \label{eq:intersectionweightinnerprod}
+		{\bf a}_i \cdot {\bf a}_j = w({\bf a}_i \cap {\bf a}_j)\! \pmod{2} = 0 \quad \forall\, 1 \le i,j \le 12. \end{equation}\]</span> This shows that every basis vector is orthogonal to every other basis vector, and hence by linearity that <span class="math inline">\(\mathcal{G}_{24} = \mathcal{G}_{24}^\perp\)</span>.</p>
+</div>
+<div class="lemma">
+<p><span class="math inline">\((A \;|\; I_{12})\)</span> is another generator-matrix for <span class="math inline">\(\mathcal{G}_{24}\)</span>.</p>
+</div>
+<div class="proof">
+<p>By Proposition <a href="#prop:dualstandardform" data-reference-type="ref" data-reference="prop:dualstandardform">[prop:dualstandardform]</a>, <span class="math inline">\(( -A^t \;|\; I_{12})\)</span> is a generator-matrix for <span class="math inline">\(\mathcal{G}_{24}^\perp\)</span>. But <span class="math inline">\(-A^t = A\)</span>, and by Lemma <a href="#lem:golayselfdual" data-reference-type="ref" data-reference="lem:golayselfdual">[lem:golayselfdual]</a>, <span class="math inline">\(\mathcal{G}_{24} = \mathcal{G}_{24}^\perp\)</span>. We therefore have that <span class="math inline">\((A \;|\; I_{12})\)</span> is a generator matrix for <span class="math inline">\(\mathcal{G}_{24}\)</span> also.</p>
+</div>
+<p>The next two Lemmas are about individual codewords of <span class="math inline">\(\mathcal{G}_{24}\)</span>.</p>
+<div id="lem:doublyeven" class="lemma">
+<p> If <span class="math inline">\({\bf c}\in \mathcal{G}_{24}\)</span>, then <span class="math inline">\(w({\bf c})\)</span> is divisible by 4.</p>
+</div>
+<div id="pf:doublyeven" class="proof">
+<p> Let <span class="math inline">\({\bf c}_1,\, {\bf c}_2 \in \mathcal{G}_{24}\)</span> have weights divisible by 4. Since <span class="math inline">\(\mathcal{G}_{24}\)</span> is self-dual by Lemma <a href="#lem:golayselfdual" data-reference-type="ref" data-reference="lem:golayselfdual">[lem:golayselfdual]</a>, <span class="math inline">\({\bf c}_1 \cdot {\bf c}_2 = 0\)</span>, so <span class="math inline">\(w({\bf c}_1 \cap {\bf c}_2)\)</span> is even by Lemma <a href="#lem:intersectionweight" data-reference-type="ref" data-reference="lem:intersectionweight">[lem:intersectionweight]</a>. So, <span class="math inline">\(w({\bf c}_1 + {\bf c}_2) = w({\bf c}_1) + w({\bf c}_2) - 2w({\bf c}_1 \cap {\bf c}_2)\)</span> is also divisible by 4. Since any <span class="math inline">\({\bf c}\in \mathcal{G}_{24}\)</span> is a sum of rows of <span class="math inline">\(G\)</span>, all of which have weight 8, then all such <span class="math inline">\({\bf c}\)</span> must have weight divisible by 4.</p>
+</div>
+<div id="lem:noweight4" class="lemma">
+<p> No <span class="math inline">\({\bf c}\in \mathcal{G}_{24}\)</span> has weight 4.</p>
+</div>
+<div id="pf:noweight4" class="proof">
+<p> We prove this via a contradiction. Suppose <span class="math inline">\({\bf c}\in \mathcal{G}_{24},\, w({\bf c})=4\)</span>. Since <span class="math inline">\((I_{12} \;|\; A)\)</span> and <span class="math inline">\((A \;|\; I_{12})\)</span> are both generator matrices for <span class="math inline">\(\mathcal{G}_{24}\)</span>, then <span class="math inline">\({\bf c}\)</span> can be written as a sum of <span class="math inline">\(({\bf e}_i,{\bf a}_i)\)</span> <em>and</em> as a sum of <span class="math inline">\(({\bf a}_i,{\bf e}_i)\)</span>. Let <span class="math inline">\({\bf l}= (c_1,\ldots,c_{12}),\, {\bf r}= (c_{13},\ldots,c_{24})\)</span>, such that <span class="math inline">\({\bf c}= ({\bf l},{\bf r})\)</span>. Then <span class="math inline">\(w({\bf l}) + w({\bf r}) = 4\)</span> and so we can consider the different cases satisfying this:</p>
+<ul>
+<li><p>If <span class="math inline">\(w({\bf l})=0\)</span>, then we have no <span class="math inline">\(({\bf e}_i,{\bf a}_i)\)</span>, and so <span class="math inline">\(w({\bf c})=0\)</span>.</p></li>
+<li><p>If <span class="math inline">\(w({\bf r})=0\)</span>, then we have no <span class="math inline">\(({\bf a}_i,{\bf e}_i)\)</span>, and so <span class="math inline">\(w({\bf c})=0\)</span>.</p></li>
+<li><p>If <span class="math inline">\(w({\bf l})=1\)</span>, then we have one <span class="math inline">\(({\bf e}_i,{\bf a}_i)\)</span>, and so <span class="math inline">\(w({\bf c})=8\)</span>.</p></li>
+<li><p>If <span class="math inline">\(w({\bf r})=1\)</span>, then we have one <span class="math inline">\(({\bf a}_i,{\bf e}_i)\)</span>, and so <span class="math inline">\(w({\bf c})=8\)</span>.</p></li>
+<li><p>If <span class="math inline">\(w({\bf l})=w({\bf r})=2\)</span>, then we have two <span class="math inline">\(({\bf e}_i,{\bf a}_i)\)</span>, and so <span class="math display">\[\begin{aligned}
+				w({\bf c}) &amp;= 2 + w({\bf a}_i + {\bf a}_j) \\
+				    &amp;= 2 + w({\bf a}_i) + w({\bf a}_j) - 2w({\bf a}_i \cap {\bf a}_j) \\
+					&amp;= 16 - 2w({\bf a}_i \cap {\bf a}_j)
+			\end{aligned}\]</span></p></li>
+</ul>
+<p>However, by Equation <span class="math inline">\(\eqref{eq:intersectionweightinnerprod}\)</span>, we see that we have already shown that <span class="math inline">\(w({\bf a}_i \cap {\bf a}_j) \ne 6\)</span> for any <span class="math inline">\(i,j\)</span> in the proof of Lemma <a href="#lem:golayselfdual" data-reference-type="ref" data-reference="lem:golayselfdual">[lem:golayselfdual]</a>, and therefore no <span class="math inline">\({\bf c}\in \mathcal{G}_{24}\)</span> has <span class="math inline">\(w({\bf c})=4\)</span>.</p>
+</div>
+<p>Lemmas <a href="#lem:doublyeven" data-reference-type="ref" data-reference="lem:doublyeven">[lem:doublyeven]</a> and <a href="#lem:noweight4" data-reference-type="ref" data-reference="lem:noweight4">[lem:noweight4]</a> together complete the proof of Proposition <a href="#prop:golayweight8" data-reference-type="ref" data-reference="prop:golayweight8">[prop:golayweight8]</a> – we have shown that the weights of all codewords are divisible by 4, no word of weight 4 exists and there does exist at least one (in fact there are 759) words of weight 8. The Extended Binary Golay Code is therefore a binary <span class="math inline">\([24,12,8]\)</span> code as claimed.</p>
+</section>
+<section id="sub:the_perfect_ternary_golay_code_g_23" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2"><span class="header-section-number">5.3.2</span> The Perfect Binary Golay Code <span class="math inline">\(\mathcal{G}_{23}\)</span></h3>
+<p>We can now puncture the code by deleting the last column of <span class="math inline">\(G\)</span>, to get a generator matrix for the Golay code <span class="math inline">\(\mathcal{G}_{23}\)</span>. Since <span class="math inline">\(G\)</span> contained a minimum weight codeword with a non-zero entry in the final position, then by Proposition <a href="#prop:punctureonce" data-reference-type="ref" data-reference="prop:punctureonce">[prop:punctureonce]</a>, <span class="math inline">\(\mathcal{G}_{23}\)</span> is a [23, 12, 7] code. (It is true, though not obvious, that deleting any other column of <span class="math inline">\(G\)</span> would give a permutation equivalent code which we could also call <span class="math inline">\(\mathcal{G}_{23}\)</span>.)</p>
+<p>We can quickly confirm that <span class="math inline">\(\mathcal{G}_{23}\)</span> is perfect: since <span class="math inline">\(d=7\)</span>, spheres <span class="math inline">\(S({\bf c},3)\)</span> around each of the <span class="math inline">\(2^{12}\)</span> codewords do not intersect, and since <span class="math inline">\(2^{12}\left( 1 + 23 + \binom{23}{2} +\binom{23}{3}\right) = 2^{23}\)</span>, they fill <span class="math inline">\({\mathbb F}_2^{23}\)</span> as required.</p>
+</section>
+<section id="sub:subsection_name" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3"><span class="header-section-number">5.3.3</span> The Ternary Golay Codes <span class="math inline">\(\mathcal{G}_{12}\)</span> &amp; <span class="math inline">\(\mathcal{G}_{11}\)</span></h3>
+<p>We now look briefly at the perfect Ternary Golay Code <span class="math inline">\(\mathcal{G}_{11}\)</span>, with parameters <span class="math inline">\([11, 6, 5]\)</span>. We can find it in the same way as the perfect Binary Golay Code, by first considering the Extended Ternary Golay Code <span class="math inline">\(\mathcal{G}_{12}\)</span>. One possible generator matrix for <span class="math inline">\(\mathcal{G}_{12}\)</span> is <span class="math display">\[G = [I_6 \;|\;A] =\left(\begin{matrix}
+1&amp; &amp; &amp; &amp; &amp; &amp;0&amp;1&amp;1&amp;1&amp;1&amp;1\\
+ &amp;1&amp; &amp; &amp;0&amp; &amp;1&amp;0&amp;1&amp;2&amp;2&amp;1\\
+ &amp; &amp;1&amp; &amp; &amp; &amp;1&amp;1&amp;0&amp;1&amp;2&amp;2\\
+ &amp; &amp; &amp;1&amp; &amp; &amp;1&amp;2&amp;1&amp;0&amp;1&amp;2\\
+ &amp;0&amp; &amp; &amp;1&amp; &amp;1&amp;2&amp;2&amp;1&amp;0&amp;1\\
+ &amp; &amp; &amp; &amp; &amp;1&amp;1&amp;1&amp;2&amp;2&amp;1&amp;0\\
+\end{matrix}\right).\]</span> As before we can confirm that this gives parameters <span class="math inline">\([12,6,6]\)</span>, and then delete the last column to get a generator-matrix for <span class="math inline">\(\mathcal{G}_{11}\)</span>. Alternatively, in this slightly smaller case we can construct a check-matrix <span class="math inline">\(H \in M_{5,11}({\mathbb F}_3)\)</span> for <span class="math inline">\(\mathcal{G}_{11}\)</span> directly, with any 4 columns linearly independent. (See Q76 and Q77.)</p>
+</section>
+<section id="sub:other_constructions_for_g_24" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4"><span class="header-section-number">5.3.4</span> Other Constructions for <span class="math inline">\(\mathcal{G}_{24}\)</span></h3>
+
+<p>Aside from the construction of <span class="math inline">\(\mathcal{G}_{24}\)</span> discussed above in terms of the geometry of the icosahedron, there are many other interesting constructions of the code. Here, I would like to very briefly mention two other (related) constructions.</p>
+<p>Firstly, the Extended Binary Golay Code can be constructed using a so called <em>Lexicographic</em> construction. In this construction, we start with a set <span class="math inline">\(C\)</span> containing only the vector <span class="math inline">\({\bf c}_0 = (0,\ldots,0) \in \mathbb{F}_2^{24}\)</span>. We now consider each non-zero element of <span class="math inline">\(\mathbb{F}_2^{24}\)</span> in turn, ordered increasingly by their values when read as binary numbers. This is known as a lexicographical ordering of the elements of <span class="math inline">\(\mathbb{F}_2^{24}\)</span>. That is, we first consider <span class="math inline">\((0,\ldots,0,1)\)</span>, then <span class="math inline">\((0,\ldots,0,1,0)\)</span>, and so on. Every time we consider a vector with distance at least 8 from every element already in our set <span class="math inline">\(C\)</span>, we add it to the set <span class="math inline">\(C\)</span>. So the first element we add to <span class="math inline">\(C\)</span> is the vector <span class="math inline">\({\bf c}_1=(0,\ldots,0,1,1,1,1,1,1,1,1)\)</span>, as this is the first element of <span class="math inline">\(\mathbb{F}_2^{24}\)</span> in the lexicographical ordering with distance at least 8 from <span class="math inline">\({\bf c}_0\)</span>. The next element of <span class="math inline">\(\mathbb{F}_2^{24}\)</span> to be added is <span class="math inline">\({\bf c}_2 = (0,\ldots,0,1,1,1,1,0,0,0,0,1,1,1,1)\)</span>, as this is the first element in the lexicographical ordering with distance at least 8 from the two words we have already added to <span class="math inline">\(C\)</span>, namely <span class="math inline">\({\bf c}_0\)</span> and <span class="math inline">\({\bf c}_1\)</span>.</p>
+<p>In this construction, the fact that the code being constructed has <span class="math inline">\(n=24\)</span> and <span class="math inline">\(d=8\)</span> is clear by construction. However, it is not immediately clear that this code is linear, or that it has dimension <span class="math inline">\(k=12\)</span>. As an exercise, you may wish to code the algorithm described above on a computer, and run it to see how many elements of <span class="math inline">\(\mathbb{F}_2^{24}\)</span> end up getting added to <span class="math inline">\(C\)</span>. You should find that you end up with <span class="math inline">\(4096\)</span> elements of <span class="math inline">\(C\)</span>, which implies that <em>if</em> the code is linear, it has dimension <span class="math inline">\(k=12\)</span>. Since we stated (without proof) that a <span class="math inline">\([24,12,8]\)</span> code is unique up to equivalence, this implies that this is a lexicographical construction of <span class="math inline">\(\mathcal{G}_{24}\)</span>.</p>
+<p>A related construction is via a two-player impartial game known as Mogul. The rules of this game are defined as follows:</p>
+<div id="def:mogulrules" class="definition">
+<p> Mogul is a game, played by two players with a row of twenty-four coins.</p>
+<ul>
+<li><p>To begin with, the twenty-four coins are all placed heads up.</p></li>
+<li><p>The two players then take turns to turn over between one and seven coins (inclusive), with the condition that the right-most coin turned is turned from heads to tails. Any other coins turned, if there are any others turned, may be turned from heads to tails or tails to heads.</p></li>
+<li><p>The winner is the player who makes the last possible move.</p></li>
+</ul>
+</div>
+<p>A possible first move for Mogul is shown in Figure <a href="#fig:mogul" data-reference-type="ref" data-reference="fig:mogul">5.3</a>. One can prove that under the assumption that both players play optimally, the player who makes the first move (P1) will always lose. We therefore say that P2 has a winning strategy, and this strategy consists of P2 always moving to one of a predefined set of positions on his turn. This set of positions, from which P1 can never hope to win, is exactly the Extended Binary Golay Code.</p>
+<div class="center">
+<figure>
+<img src="../Images/Mogul.png" id="fig:mogul" alt="" /><figcaption>A move in the the mathematical game of Mogul</figcaption>
+</figure>
+</div>
+</section>
+<section id="sub:_g_24_and_moonshine" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5"><span class="header-section-number">5.3.5</span> <span class="math inline">\(\mathcal{G}_{24}\)</span> and Moonshine</h3>
+<p>Perhaps the most interesting thing about <span class="math inline">\(\mathcal{G}_{24}\)</span> is its connection to Mathematical Physics through a phenomenon known as Mathieu Moonshine. This moonshine connects the physics of superstring theory to the mathematics of modular forms and the representation theory of a sporadic group called Mathieu 24 (<span class="math inline">\(M_{24}\)</span>).</p>
+<p>In Section <a href="#sec:equivalence" data-reference-type="ref" data-reference="sec:equivalence">3.4</a>, we saw that two binary codes are permutation equivalent if applying a permutation to the <span class="math inline">\(n\)</span> positions of all codewords maps the set of codewords of one code to the other. The set of permutations which map a code to itself forms a group (under composition of permutations) known as the permutation automorphism group of the code <span class="math inline">\(C\)</span>, <span class="math inline">\(\operatorname{PAut}(C)\)</span>. For the Extended Binary Golay Code, this automorphism group can be shown to be the simple sporadic group <span class="math inline">\(M_{24} \subset A_{24}\)</span>. The automorphism groups of the other 3 Golay codes are related to three other simple sporadic groups, <span class="math inline">\(M_{11},\,M_{12}\)</span> and <span class="math inline">\(M_{23}\)</span>.</p>
+<p>Those of you who are also studying representation theory will know that an algebraic object such as a group can be studied via its representations. Roughly speaking, these are maps from the group to a vector space on which the group can be seen to have a well defined action. That is, for a group <span class="math inline">\(G\)</span>, a representation is a homomorphism from <span class="math inline">\(G\)</span> to <span class="math inline">\(GL(V)\)</span>, the group of invertible linear transformations for some vector space <span class="math inline">\(V\)</span>. We say that such a representation has a <em>dimension</em> equal to the dimension of the vector space <span class="math inline">\(V\)</span>. The representations of the group <span class="math inline">\(M_{24}\)</span> appear to play a role in the physics of superstring theory, via an important (mock-)modular form <span class="math display">\[H^1_2(q) = 2q^{-1/8}\left( -1 + 45q + 231q^2 + 770q^3 + 2277q^4 + 5796 q^5 + \ldots \right).\]</span> Each of the coefficients of <span class="math inline">\(q\)</span> in this form is the dimension of a representation of <span class="math inline">\(M_{24}\)</span>. However, the appearance of <span class="math inline">\(M_{24}\)</span> in this context is still not fully understood. Due to similarities with a mathematical phenomenon known as Monstrous Moonshine, this appearance of the representation theory of <span class="math inline">\(M_{24}\)</span> in the mock-modular form <span class="math inline">\(H^1_2\)</span> is known as Mathieu Moonshine.</p>
+<p>The Extended Ternary Golay also has a connection to moonshine via its automorphism group. This moonshine is one of a collection of 23 instances of Moonshine known as Umbral Moonshine, in which the two Extended Golay Codes, as well as two other codes which you may meet in this course known as the Tetracode and the Hexacode, all appear.</p>
+</section>
 </section>
 </section>
 
