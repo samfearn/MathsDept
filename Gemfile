@@ -11,3 +11,5 @@ group :jekyll_plugins do
 	gem 'jekyll-coffeescript'
   # gem 'jekyll-category-pages'
 end
+
+gem "webrick", "~> 1.7"
