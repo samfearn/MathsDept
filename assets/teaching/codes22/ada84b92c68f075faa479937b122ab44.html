@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Codes III: Topic 3 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Codes III: Topic 3 Problems</h1>
+</header>
+<p>******The following questions are concerned with Chapter 3 of the notes - Codes as Images.******</p>
+<div class="problem">
+<p>Let code <span class="math inline">\(C_5 \subseteq {\mathbb F}_5^4\)</span> be the span of the set <span class="math inline">\(\{(0,1,2,3),(1,1,1,1), (3,1,4,2)\}\)</span>. Find a generator-matrix for <span class="math inline">\(C_5\)</span>. What is the dimension of <span class="math inline">\(C_5\)</span>?</p>
+</div>
+<div class="solution">
+<p>We make a matrix with these vectors and row-reduce in <span class="math inline">\({\mathbb F}_5\)</span>:</p>
+<p><span class="math display">\[\left(\begin{matrix} 
+1 &amp; 1 &amp; 1 &amp; 1   \\
+0 &amp; 1 &amp; 2 &amp; 3   \\
+0 &amp; 3 &amp; 1 &amp; 4   \\
+      \end{matrix}\right) 
+  \stackrel{A_{1,3}(2)}{\longrightarrow}
+      \left(\begin{matrix} 
+1 &amp; 1 &amp; 1 &amp; 1   \\
+0 &amp; 1 &amp; 2 &amp; 3   \\
+0 &amp; 3 &amp; 1 &amp; 4   \\
+      \end{matrix}\right) 
+  \stackrel{A_{2,1}(4), A_{2,3}(2)}{\longrightarrow}
+      \left(\begin{matrix} 
+1 &amp; 0 &amp; 4 &amp; 3   \\
+0 &amp; 1 &amp; 2 &amp; 3   \\
+0 &amp; 0 &amp; 0 &amp; 0   \\
+      \end{matrix}\right).\]</span> So we remove the all-zero row, to get <span class="math inline">\(G= \left(\begin{matrix} 
+1 &amp; 0 &amp; 4 &amp; 3   \\
+0 &amp; 1 &amp; 2 &amp; 3   \\
+      \end{matrix}\right)\)</span>, and dim<span class="math inline">\((C_5) = 2\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let code <span class="math inline">\(C_7 \subseteq {\mathbb F}_7^4\)</span> be the span of the set <span class="math inline">\(\{ (0,1,2,3),(1,1,1,1),(3,1,4,2) \}\)</span>. Find a generator-matrix for <span class="math inline">\(C_7\)</span>. What is the dimension of <span class="math inline">\(C_7\)</span>? ( - so, identical to the previous question, except that we are over a different field.)</p>
+</div>
+<div class="solution">
+<p>Over <span class="math inline">\({\mathbb F}_7\)</span>, <span class="math inline">\(\left(\begin{matrix} 
+1 &amp; 1 &amp; 1 &amp; 1   \\
+0 &amp; 1 &amp; 2 &amp; 3   \\
+0 &amp; 3 &amp; 1 &amp; 4   \\
+      \end{matrix}\right) 
+  \stackrel{A_{1,3}(4)}{\longrightarrow}
+      \left(\begin{matrix} 
+1 &amp; 1 &amp; 1 &amp; 1   \\
+0 &amp; 1 &amp; 2 &amp; 3   \\
+0 &amp; 5 &amp; 1 &amp; 6   \\
+      \end{matrix}\right) 
+  \stackrel{A_{2,1}(6), A_{2,3}(2)}{\longrightarrow}
+      \left(\begin{matrix} 
+1 &amp; 0 &amp; 6 &amp; 5   \\
+0 &amp; 1 &amp; 2 &amp; 3   \\
+0 &amp; 0 &amp; 5 &amp; 5   \\
+      \end{matrix}\right)\)</span> <span class="math inline">\(\stackrel{M_3(3)}{\longrightarrow}
+      \left(\begin{matrix} 
+1 &amp; 0 &amp; 6 &amp; 6   \\
+0 &amp; 1 &amp; 2 &amp; 3   \\
+0 &amp; 0 &amp; 1 &amp; 1   \\
+      \end{matrix}\right)      
+\stackrel{A_{3,1}(1), A_{3,2}(5)}{\longrightarrow}
+      \left(\begin{matrix} 
+1 &amp; 0 &amp; 0 &amp; 5   \\
+0 &amp; 1 &amp; 0 &amp; 1   \\
+0 &amp; 0 &amp; 1 &amp; 1   \\ 
+\end{matrix}\right)  = G\)</span>, so dim<span class="math inline">\((C_7) = 3.\)</span></p>
+</div>
+<div class="problem">
+<p>For each of the codes above, <span class="math inline">\(C_5\)</span> and <span class="math inline">\(C_7\)</span>, write down an alternative generator-matrix.</p>
+</div>
+<div class="solution">
+<p>If two matrices are related by EROs, they generate the same code. So, for <span class="math inline">\(C_7\)</span>, any of the matrices in the row-reduction is also a generator-matrix. For <span class="math inline">\(C_5\)</span> we could do <span class="math inline">\(A_{1,2}(1)\)</span> to <span class="math inline">\(G\)</span>, to get <span class="math inline">\(\left(\begin{matrix} 
+1 &amp; 0 &amp; 4 &amp; 3   \\
+1 &amp; 1 &amp; 1 &amp; 1   \\
+      \end{matrix}\right)\)</span>.</p>
+</div>
+<div class="problem">
+<p>a) Draw 49 points in a square grid, to represent <span class="math inline">\({\mathbb F}_7^2\)</span>. (You could label just the “axes", <span class="math inline">\(S((0,0),1)\)</span>). Find the points corresponding to the code <span class="math inline">\(C\)</span> with generator-matrix <span class="math inline">\((2 \;1)\)</span>. Does it look like a “line" in a “plane"? Can you think of a better way to draw (or model?) these vector spaces? b) Perhaps on a new grid, draw the code <span class="math inline">\(C&#39;\)</span> with generator-matrix <span class="math inline">\((1\;3)\)</span>. Can you see two different ways to draw the “line"? Is one better than the other?</p>
+</div>
+<div class="solution">
+<p>a) The situation is shown in Figure <a href="#fig:F72line" data-reference-type="ref" data-reference="fig:F72line">1</a>. The code does look like a line in the plane, but we should note that, i) the code consists of only the 7 points highlighted (there is nothing ‘in between’ the points), ii) the ‘line’ is made up of 2 disjoint sections.</p>
+<div class="center">
+<figure>
+<img src="./Images/F72line.png" id="fig:F72line" style="width:40.0%" alt="" /><figcaption>The 49 points of <span class="math inline">\(\mathbb{F}_7^2\)</span> in the plane, with the points corresponding to the code <span class="math inline">\(C=\langle\{(2,1)\}\rangle\)</span> drawn in red and joined by a line.</figcaption>
+</figure>
+</div>
+<p>We could perhaps improve this picture, by first rolling the plane into a cylinder, as show in Figure <a href="#fig:F72folded" data-reference-type="ref" data-reference="fig:F72folded">3</a>(a), and then joining the ends of the cylinder to form a torus as shown in Figure <a href="#fig:F72folded" data-reference-type="ref" data-reference="fig:F72folded">3</a>(b). On the torus, where again we should remember that <span class="math inline">\(\mathbb{F}_7^2\)</span> consists of only a discrete set of 49 points, the line now becomes a continuous cycle.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img class="imageTable" src="./Images/F72cylinder.png" title="fig:" id="fig:F72folded" alt=" The points of \mathbb{F}_7^2 drawn on (a) a cylinder, and (b) a torus." /></td>
+<td style="text-align: center;"><img class="imageTable" src="./Images/F72torus.png" title="fig:" id="fig:F72folded" alt=" The points of \mathbb{F}_7^2 drawn on (a) a cylinder, and (b) a torus." /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(a)</td>
+<td style="text-align: center;">(b)</td>
+</tr>
+</tr>
+</tbody>
+	<tfoot style="text-align: center;">
+		<tr>
+			<td colspan="2" style="text-align: center;">Figure 2: The points of <span class="math inline">\(\mathbb{F}_7^2\)</span> drawn on (a) a cylinder, and (b) a torus.</td>
+		</tr>
+	</tfoot>
+</table>
+<p>b) This time, the situation is as shown in Figure <a href="#fig:F72line2" data-reference-type="ref" data-reference="fig:F72line2">4</a>. The blue line shows the points joined ‘in order’ as multiples of <span class="math inline">\((1,3)\)</span>. However, drawn in this way, each codeword looks to have ‘closer’ codewords, and the line joining each codeword to this ‘closest’ codeword is shown in dashed red. This notion of ‘closer’ is Euclidian though, and so is irrelevant to the code, which measures distance using the Hamming distance - with this measure, each codeword is distance exactly 2 from each other codeword. The red line is generated by <span class="math inline">\((2,-1)\)</span>, but over <span class="math inline">\(\mathbb{F}_7\)</span>, this is the same as <span class="math inline">\((2,6)=2(1,3)\)</span>.</p>
+<div class="center">
+<figure>
+<img src="./Images/F72line2.png" id="fig:F72line2" style="width:40.0%" alt="" /><figcaption>The 49 points of <span class="math inline">\(\mathbb{F}_7^2\)</span> in the plane, with the points corresponding to the code <span class="math inline">\(C=\langle\{(1,3)\}\rangle\)</span> drawn in blue and joined with 2 ‘different’ lines, one in blue and one dashed red.</figcaption>
+</figure>
+</div>
+</div>
+<div class="problem">
+<p>The code <span class="math inline">\(C \subseteq {\mathbb F}_7^5\)</span> has generator matrix <span class="math inline">\(G_1 = \left(\begin{matrix} 
+1 &amp; 2 &amp; 3 &amp; 3 &amp; 3  \\
+0 &amp; 2 &amp; 1 &amp; 5 &amp; 5  \\
+4 &amp; 5 &amp; 0 &amp; 6 &amp; 3  \\
+      \end{matrix}\right)\)</span>. Use this to encode the message <span class="math inline">\((3,2,1) \in {\mathbb F}_7^3\)</span> to a codeword <span class="math inline">\({\bf c}\)</span>. Also, channel-decode codeword <span class="math inline">\({\bf c}&#39; =(4,5,0,0,2)\)</span> to find the corresponding message. (You will need to solve a set of five equations - possibly by row-reducing a suitable augmented matrix.)</p>
+</div>
+<div class="solution">
+<p>We encode <span class="math inline">\((3,2,1)\)</span> to <span class="math inline">\({\bf c}= (3,2,1)G_1 = (0,1,4,4,1)\)</span>. To channel decode (4,5,0,0,2) we must solve <span class="math inline">\({\bf x}G_1 = (4,5,0,0,2)\)</span>, or, taking transposes, <span class="math inline">\(G_1^t (x_1,x_2,x_3)^t = (4,5,0,0,2)^t\)</span>. So we row-reduce the augmented matrix <span class="math inline">\(\left(\begin{matrix} 
+1 &amp; 0 &amp; 4 &amp; | &amp; 4  \\
+2 &amp; 2 &amp; 5 &amp; | &amp; 5  \\
+3 &amp; 1 &amp; 0 &amp; | &amp; 0  \\
+3 &amp; 5 &amp; 6 &amp; | &amp; 0  \\
+3 &amp; 5 &amp; 3 &amp; | &amp; 2  \\
+      \end{matrix}\right)\)</span>, losing two all-zero rows , to get <span class="math inline">\(\left(\begin{matrix} 
+1 &amp; 0 &amp; 0 &amp; | &amp; 2  \\
+0 &amp; 1 &amp; 0 &amp; | &amp; 1  \\
+0 &amp; 0 &amp; 1 &amp; | &amp; 4  \\
+      \end{matrix}\right)\)</span>. So <span class="math inline">\({\bf x}= (2,1,4)\)</span>.</p>
+</div>
+<div class="problem">
+<p>For the code <span class="math inline">\(C\)</span> of Q32, find an alternative generator-matrix, <span class="math inline">\(G_2\)</span>, in RREF. Use this to encode the message <span class="math inline">\((3,2,1)\)</span>. Also, use <span class="math inline">\(G_2\)</span> to channel-decode the codeword <span class="math inline">\((2,1,1,4,0)\)</span>.</p>
+</div>
+<div class="solution">
+<p>We first need to row reduce over <span class="math inline">\(\mathbb{F}_7\)</span> to put <span class="math inline">\(G_1\)</span> into RREF. We find <span class="math display">\[\begin{aligned}
+	\left(\begin{matrix} 
+	1 &amp; 2 &amp; 3 &amp; 3 &amp; 3   \\
+	0 &amp; 2 &amp; 1 &amp; 5 &amp; 5   \\
+	4 &amp; 5 &amp; 0 &amp; 6 &amp; 3   \\
+	      \end{matrix}\right) 
+	  &amp;\overset{A_{1,3}(3)}{\longrightarrow}
+	      \left(\begin{matrix} 
+	1 &amp; 2 &amp; 3 &amp; 3 &amp; 3   \\
+	0 &amp; 2 &amp; 1 &amp; 5 &amp; 5   \\
+	0 &amp; 4 &amp; 2 &amp; 1 &amp; 5   \\
+	      \end{matrix}\right) 
+	  \underset{A_{2,3}(5)}{\overset{A_{2,1}(6)}{\longrightarrow}}
+	      \left(\begin{matrix} 
+	1 &amp; 0 &amp; 2 &amp; 5 &amp; 5   \\
+	0 &amp; 2 &amp; 1 &amp; 5 &amp; 5   \\
+	0 &amp; 0 &amp; 0 &amp; 5 &amp; 2   \\
+	      \end{matrix}\right) \\
+	&amp;\underset{M_3(3)}{\overset{M_2(4)}{\longrightarrow}}
+	      \left(\begin{matrix} 
+	1 &amp; 0 &amp; 2 &amp; 5 &amp; 5   \\
+	0 &amp; 1 &amp; 4 &amp; 6 &amp; 6   \\
+	0 &amp; 0 &amp; 0 &amp; 1 &amp; 6   \\
+	      \end{matrix}\right)      
+	\underset{A_{3,2}(1)}{\overset{A_{3,1}(2)}{\longrightarrow}}
+	      \left(\begin{matrix} 
+	1 &amp; 0 &amp; 2 &amp; 0 &amp; 3   \\
+	0 &amp; 1 &amp; 4 &amp; 0 &amp; 5   \\
+	0 &amp; 0 &amp; 0 &amp; 1 &amp; 6   \\
+	\end{matrix}\right)  = G_2
+\end{aligned}\]</span></p>
+<p>Now we can encode <span class="math inline">\((3,2,1)\)</span> as <span class="math inline">\((3,2,1)G_2\)</span>. <span class="math display">\[(3,2,1)\left(\begin{matrix} 
+	1 &amp; 0 &amp; 2 &amp; 0 &amp; 3   \\
+	0 &amp; 1 &amp; 4 &amp; 0 &amp; 5   \\
+	0 &amp; 0 &amp; 0 &amp; 1 &amp; 6   \\
+	\end{matrix}\right) = (3,2,0,1,4).\]</span></p>
+<p>We can also decode <span class="math inline">\((2,1,1,4,0)\)</span> just by looking at positions <span class="math inline">\(1,2\)</span> and <span class="math inline">\(4\)</span>. Explicitly, we have <span class="math display">\[(2,1,4)\left(\begin{matrix} 
+	1 &amp; 0 &amp; 2 &amp; 0 &amp; 3   \\
+	0 &amp; 1 &amp; 4 &amp; 0 &amp; 5   \\
+	0 &amp; 0 &amp; 0 &amp; 1 &amp; 6   \\
+	\end{matrix}\right) = (2,1,1,4,0),\]</span> so <span class="math inline">\((2,1,1,4,0)\)</span> should be decoded as <span class="math inline">\((2,1,4)\)</span>.</p>
+</div>
+<div class="problem">
+<p>There is a code <span class="math inline">\(C&#39;\)</span> which is permutation equivalent to code <span class="math inline">\(C\)</span> of Q32 but has a generator matrix <span class="math inline">\(G_3\)</span> in standard form. Use this matrix to encode <span class="math inline">\((3,2,1)\)</span> to a codeword of <span class="math inline">\(C&#39;\)</span>, and channel-decode the codeword <span class="math inline">\((2,1,4,1,0)\)</span>.</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\(C&#39;\)</span> has generator matrix <span class="math display">\[G_3=\left(\begin{matrix} 
+	1 &amp; 0 &amp; 0 &amp; 2 &amp; 3   \\
+	0 &amp; 1 &amp; 0 &amp; 4 &amp; 5   \\
+	0 &amp; 0 &amp; 1 &amp; 0 &amp; 6   \\
+	\end{matrix}\right),\]</span> found by applying the permutation <span class="math inline">\((3\ 4)\)</span> to <span class="math inline">\(G_2\)</span>. Then <span class="math display">\[(3,2,1)\left(\begin{matrix} 
+	1 &amp; 0 &amp; 0 &amp; 2 &amp; 3   \\
+	0 &amp; 1 &amp; 0 &amp; 4 &amp; 5   \\
+	0 &amp; 0 &amp; 1 &amp; 0 &amp; 6   \\
+	\end{matrix}\right) = (3,2,1,0,4),\]</span> and if <span class="math inline">\({\bf x}G_3 = (2,1,4,1,0)\)</span>, then <span class="math inline">\({\bf x}=(2,1,4)\)</span>.</p>
+</div>
+<div class="problem">
+<p>Equivalent codes have the same rank, redundancy and rate. Find these values for <span class="math inline">\(C&#39;\)</span> and <span class="math inline">\(C\)</span> above.</p>
+</div>
+<div class="solution">
+<p>rank = <span class="math inline">\(k = 3\)</span>, redundancy = <span class="math inline">\(n-k = 5-3=2\)</span>, rate = <span class="math inline">\(k/n = 0.6\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C\)</span> be an <span class="math inline">\((n,M,d)\)</span> over an alphabet of order <span class="math inline">\(q\)</span>, not necessarily linear. If <span class="math inline">\(C_2\)</span> is equivalent to <span class="math inline">\(C_1\)</span>, show that <span class="math inline">\(C_2\)</span> is also an <span class="math inline">\((n,M,d)\)</span> code over an alphabet of order <span class="math inline">\(q\)</span>.</p>
+</div>
+<div class="solution">
+<p>If two <span class="math inline">\(q\)</span>-ary codes, not necessarily linear, are <em>equivalent</em>, then we can transform one to the other by permuting the <span class="math inline">\(n\)</span> positions of all codewords simultaneously, and by permuting the <span class="math inline">\(q\)</span> symbols in a given position in all codewords simultaneously. Clearly neither kind of transformation changes the block length of codes. Now by considering two codewords <span class="math inline">\({\bf c}_1,\,{\bf c}_2\ \in C_1\)</span>, we see that changing the order of the positions of the codewords, and permuting the symbols in a given position, can’t change the total number of positions in which the two codewords agree. So all distances between codewords are preserved between equivalent codes, and hence the minimum distance is preserved. But also, if the distances between words is fixed, two different words in <span class="math inline">\(C_1\)</span> cannot become the same word in <span class="math inline">\(C_2\)</span>, and so the total number of codewords is fixed.</p>
+</div>
+<div class="problem">
+<p>The codes <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> in <span class="math inline">\({\mathbb F}_5^6\)</span> have generator-matrices <span class="math inline">\(G_1\)</span> and <span class="math inline">\(G_2\)</span> respectively, where <span class="math inline">\(G_1 = \left(\begin{matrix} 
+0 &amp; 3 &amp; 1 &amp; 0 &amp; 3 &amp; 1 \\
+1 &amp; 4 &amp; 0 &amp; 2 &amp; 3 &amp; 4 \\
+2 &amp; 0 &amp; 3 &amp; 4 &amp; 3 &amp; 0 \\
+      \end{matrix}\right)\)</span> and <span class="math inline">\(G_2 = \left(\begin{matrix} 
+3 &amp; 1 &amp; 4 &amp; 1 &amp; 0 &amp; 0 \\
+4 &amp; 4 &amp; 0 &amp; 1 &amp; 4 &amp; 1 \\
+0 &amp; 0 &amp; 2 &amp; 1 &amp; 3 &amp; 2 \\
+      \end{matrix}\right)\)</span>. Show that <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are monomially equivalent.</p>
+</div>
+<div class="solution">
+<p>We have <span class="math display">\[G_1 = \left( \begin{matrix}
+	0 &amp; 3 &amp; 1 &amp; 0 &amp; 3 &amp; 1 \\
+	1 &amp; 4 &amp; 0 &amp; 2 &amp; 3 &amp; 4 \\
+	2 &amp; 0 &amp; 3 &amp; 4 &amp; 3 &amp; 0 \\
+\end{matrix} \right) \underset{(2\ 1\ 6)(4\ 5)}{\overset{\text{Apply}}{\longrightarrow}}
+\left( \begin{matrix}
+	3 &amp; 1 &amp; 1 &amp; 3 &amp; 0 &amp; 0 \\
+	4 &amp; 4 &amp; 0 &amp; 3 &amp; 2 &amp; 1 \\
+	0 &amp; 0 &amp; 3 &amp; 3 &amp; 4 &amp; 2 \\
+\end{matrix} \right) \underset{\substack{3 \text{ by } 4\\ 4 \text{ by } 2 \\ 5 \text{ by } 2}}{\overset{\text{Multiply Cols:}}{\longrightarrow}}
+\left( \begin{matrix}
+	3 &amp; 1 &amp; 4 &amp; 1 &amp; 0 &amp; 0 \\
+	4 &amp; 4 &amp; 0 &amp; 1 &amp; 4 &amp; 1 \\
+	0 &amp; 0 &amp; 2 &amp; 1 &amp; 3 &amp; 2 \\
+\end{matrix} \right) = G_2.\]</span> So the two generators are related by a monomial transformation, and hence <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are monomially equivalent.</p>
+<p>The relevant monomial matrix here can easily be check to be <span class="math display">\[M = \begin{pmatrix}
+	0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+	1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+	0 &amp; 0 &amp; 4 &amp; 0 &amp; 0 &amp; 0 \\
+	0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 \\
+	0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 &amp; 0 \\
+	0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 
+\end{pmatrix},\]</span> so that <span class="math inline">\(G_1 M = G_2\)</span>.</p>
+</div>
+<div class="problem">
+<p>Given a code <span class="math inline">\(C\subseteq \mathbb{F}_q^n\)</span>, prove that <span class="math inline">\(\operatorname{PAut}(C)\)</span> is a group.</p>
+</div>
+<div class="solution">
+<p>In order to be a group, the set <span class="math inline">\(\operatorname{PAut}(C)\)</span> must: i) Be closed under composition of permutations; ii) Contain an identity permutation; iii) Have an inverse permutation <span class="math inline">\(\rho^{-1}\in\operatorname{PAut}(C)\)</span> for each <span class="math inline">\(\rho \in \operatorname{PAut}(C)\)</span>; iv) Satisfy the associativity property <span class="math inline">\(a\circ(b\circ c) = (a\circ b)\circ c \quad \forall a,b,c\in\operatorname{PAut}(C)\)</span>. Since we know (from Linear Algebra I or elsewhere) that the set of all permutations on <span class="math inline">\(n\)</span> objects form a group (the Symmetric group, <span class="math inline">\(S_n\)</span>), we are really trying to show that <span class="math inline">\(\operatorname{PAut}(C)\)</span> is a subgroup of <span class="math inline">\(S_n\)</span>.</p>
+<p>Since <span class="math inline">\(S_n\)</span> is a group, and hence satisfies associativity, the subset <span class="math inline">\(\operatorname{PAut}(C)\)</span> must also be associative. We therefore just need to check that the subset is <em>closed</em>, the identity permutation (which must exist, since <span class="math inline">\(S_n\)</span> is a group) is in <span class="math inline">\(\operatorname{PAut}(C)\)</span>, and for each <span class="math inline">\(\rho\in\operatorname{PAut}(C)\)</span>, the inverse (which must exist, since <span class="math inline">\(S_n\)</span> is a group) <span class="math inline">\(\rho^{-1}\in\operatorname{PAut}(C)\)</span>.</p>
+<p>If <span class="math inline">\(\rho,\sigma \in \operatorname{PAut}(C)\)</span>, then <span class="math inline">\(\rho(C)=C=\sigma(C)\)</span> by definition of the permutation automorphism group (and where <span class="math inline">\(\rho(C)\)</span> indicates the action of <span class="math inline">\(\rho\)</span> on <span class="math inline">\(C\)</span>). Hence <span class="math inline">\((\rho\circ\sigma)(C) = \rho(\sigma(C)) = \rho(C) = C\)</span>, and so <span class="math inline">\((\rho\circ\sigma)\in \operatorname{PAut}(C)\)</span> and so <span class="math inline">\(\operatorname{PAut}(C)\)</span> is closed under composition.</p>
+<p>Clearly the identity permutation <span class="math inline">\(e\)</span> satisfies <span class="math inline">\(e(C)=C\)</span> (trivially), and so <span class="math inline">\(e\in\operatorname{PAut}(C)\)</span> and so <span class="math inline">\(\operatorname{PAut}(C)\)</span> has an identity (which automatically satisfies <span class="math inline">\(e\circ\rho = \rho\circ e = \rho\ \ \forall \rho \in\operatorname{PAut}(C)\)</span> since <span class="math inline">\(e\)</span> is the identity of <span class="math inline">\(S_n\)</span>).</p>
+<p>Finally, given <span class="math inline">\(\rho\in\operatorname{PAut}(C)\)</span>, since <span class="math inline">\(\rho^{-1}\circ\rho=e\)</span> we have <span class="math inline">\(C = e(C) = (\rho^{-1}\circ\rho)(C) = \rho^{-1}(\rho(C)) = \rho^{-1}(C)\)</span>. Hence <span class="math inline">\(\rho^{-1}(C) = C\)</span> and so for all <span class="math inline">\(\rho\in\operatorname{PAut}(C)\)</span>, we have <span class="math inline">\(\rho^{-1}\in\operatorname{PAut}(C)\)</span>.</p>
+<p>We have therefore shown that <span class="math inline">\(\operatorname{PAut}(C)\)</span> is a group.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C\subseteq \mathbb{F}_3^4\)</span> be the code with generator matrix <span class="math display">\[G=\left( \begin{array}{cccc}
+		1 &amp; 0 &amp; 1 &amp; 1\\
+		0 &amp; 1 &amp; 1 &amp; 2
+	\end{array} \right).\]</span> Let <span class="math inline">\(g=(1 3 4)\in S_4\)</span>. Show that <span class="math inline">\(g \in \operatorname{PAut}(C).\)</span></p>
+</div>
+<div class="solution">
+<p>We have <span class="math display">\[g(G) = \begin{pmatrix}
+	1 &amp; 0 &amp; 1 &amp; 1 \\
+	2 &amp; 1 &amp; 0 &amp; 1
+\end{pmatrix},\]</span> and so <span class="math inline">\(g\in\operatorname{PAut}(C)\)</span> if <span class="math inline">\(g(G)\)</span> generates the same code <span class="math inline">\(C\)</span> that <span class="math inline">\(G\)</span> generates. Note that <span class="math inline">\(G\)</span> is in RREF, and the RREF form of a generator matrix is unique, so we can put <span class="math inline">\(g(G)\)</span> into RREF and see if this gives us back <span class="math inline">\(G\)</span>. If so <span class="math inline">\(g(G)\)</span> generates the same code as <span class="math inline">\(G\)</span>, since elementary row operations don’t change the image of the associated linear map. <span class="math display">\[g(G) = \begin{pmatrix}
+	1 &amp; 0 &amp; 1 &amp; 1 \\
+	2 &amp; 1 &amp; 0 &amp; 1
+\end{pmatrix} \overset{A_{12}(1)}{\longrightarrow} \begin{pmatrix}
+	1 &amp; 0 &amp; 1 &amp; 1 \\
+	0 &amp; 1 &amp; 1 &amp; 2
+\end{pmatrix} = G,\]</span> so <span class="math inline">\(g(G)\)</span> is another generator matrix for <span class="math inline">\(C\)</span> and hence <span class="math inline">\(g\in\operatorname{PAut}(C)\)</span></p>
+</div>
+<div class="problem">
+<p>Consider two maps <span class="math inline">\(\pi:{\mathbb F}_q^n \longrightarrow {\mathbb F}_q^n\)</span>. Map <span class="math inline">\(\pi_{s(i,j)}\)</span> swaps the <span class="math inline">\(i^{th}\)</span> and <span class="math inline">\(j^{th}\)</span> entry of each vector, and map <span class="math inline">\(\pi_{m(i,\mu)}\)</span> multiplies the <span class="math inline">\(i^{th}\)</span> entry by <span class="math inline">\(\mu  \in {\mathbb F}_q\)</span>. Show that for each of these maps, and for any <span class="math inline">\({\bf x}, {\bf y}\in {\mathbb F}_q^n\)</span> and <span class="math inline">\(\lambda  \in {\mathbb F}_q\)</span>, we have <span class="math inline">\(\pi({\bf x}+{\bf y}) = \pi({\bf x}) + \pi({\bf y})\)</span>, and <span class="math inline">\(\pi( \lambda {\bf x}) = \lambda\pi({\bf x})\)</span>. For this reason we say that these maps “preserve linear structure".</p>
+</div>
+<div class="solution">
+<p>Let <span class="math inline">\({\bf x}= (x_1, \ldots, x_i, \ldots, x_j, \ldots, x_n), {\bf y}= (y_1, \ldots,  y_i, \ldots, y_j, \ldots ,y_n)\)</span>. Then <span class="math display">\[\begin{aligned}
+\pi_{s(i,j)}({\bf x}+ {\bf y}) &amp; = &amp; \pi_{s(i,j)}(x_1+y_1, \ldots, x_i+y_i, \ldots, x_j+y_j, \ldots, x_n+y_n)  \\
+ &amp; = &amp; (x_1+y_1, \ldots, x_j+y_j, \ldots, x_i+y_i, \ldots, x_n+y_n) \\ 
+  &amp; = &amp;  (x_1, \ldots, x_j, \ldots, x_i, \ldots, x_n)+ (y_1, \ldots,  y_j, \ldots, y_i, \ldots, y_n) \\
+  &amp; = &amp; \pi_{s(i,j)}({\bf x})+\pi_{s(i,j)}({\bf y}) \; ; \\
+ % 
+\pi_{s(i,j)}(\lambda{\bf x}) &amp; = &amp; \pi_{s(i,j)}(\lambda x_1, \ldots, \lambda x_i, \ldots, \lambda x_j, \ldots, \lambda x_n)\\
+ &amp; = &amp; (\lambda x_1, \ldots, \lambda x_j, \ldots, \lambda x_i, \ldots, \lambda x_n) \\
+  &amp; = &amp; \lambda(x_1, \ldots, x_j, \ldots, x_i, \ldots, x_n)= \lambda \pi_{s(i,j)}({\bf x}) \; ;\\
+%  
+  \pi_{m(i,\mu)}({\bf x}+ {\bf y}) &amp; = &amp; \pi_{m(i,\mu)}(x_1+y_1, \ldots, x_i+y_i, \ldots, x_n+y_n)  \\
+ &amp; = &amp; (x_1+y_1, \ldots, \mu( x_i+y_i), \ldots x_n+y_n) \\ 
+  &amp; = &amp;  (x_1, \ldots, \mu x_i, \ldots, x_n)+ (y_1, \ldots, \mu y_i, \ldots, y_n) \\
+  &amp; = &amp; \pi_{m(i,\mu)}({\bf x})+\pi_{m(i,\mu)}({\bf y}) \; ; \\
+% 
+\pi_{m(i,\mu)}(\lambda{\bf x}) &amp; = &amp; \pi_{m(i,\mu)}(\lambda x_1, \ldots, \lambda x_i,  \ldots, \lambda x_n)\\
+ &amp; = &amp; (\lambda x_1, \ldots, \mu \lambda x_i, \ldots, \lambda x_n) \\
+  &amp; = &amp; \lambda(x_1,  \ldots,\mu x_i, \ldots, x_n)= \lambda \pi_{m(i,\mu)}({\bf x}) \; .\\
+ \end{aligned}\]</span></p>
+</div>
+<div class="problem">
+<p>Suppose an <span class="math inline">\([n,k,d]\)</span> code <span class="math inline">\(C\)</span> has a generator-matrix <span class="math inline">\(G\)</span> in RREF. By considering the weights of the rows of G, find a new proof that <span class="math inline">\(d \leq n-k+1\)</span> (the Singleton bound for linear codes).</p>
+</div>
+<div class="solution">
+<p>Being in RREF, <span class="math inline">\(G\)</span> has <span class="math inline">\(k\)</span> leading 1s, in <span class="math inline">\(k\)</span> columns. So each row has a leading 1 and <span class="math inline">\(k-1\)</span> zeros, in these columns (though it could also have more zeros). Thus the weight of each row is at most <span class="math inline">\(n-(k-1)\)</span>. Since the rows are codewords, <span class="math inline">\(d(C) \leq \text{min}\{ w({\bf c}) \;|\; {\bf c}\in C\} \leq n-k+1\)</span>.</p>
+</div>
+<div class="problem">
+<p>We know that any generator-matrix for a code <span class="math inline">\(C\)</span> can be row-reduced to a generator-matrix <span class="math inline">\(G\)</span> in RREF, and that this RREF generator-matrix is unique. Thus, if <span class="math inline">\(C\)</span> does have a generator-matrix in standard form <span class="math inline">\((I \;|\; A)\)</span>, it will be this matrix <span class="math inline">\(G\)</span>. Again by considering weights of rows, show that if <span class="math inline">\(C\)</span> is maximum distance separable then it has a generator-matrix in standard form. (Hint: Prove the contrapositive.)</p>
+</div>
+<div class="solution">
+<p>A code is MDS iff it has <span class="math inline">\(d = n-k+1\)</span>. We shall prove the contrapositive: that if <span class="math inline">\(C\)</span>’s RREF generator matrix is <span><em>not</em></span> of form <span class="math inline">\(G = (I\;|\;A)\)</span>, then it has <span class="math inline">\(d &lt; n-k+1\)</span>. If <span class="math inline">\(G \neq (I\;|\;A)\)</span> then the <span class="math inline">\(k\)</span>th (last) leading 1 is in column <span class="math inline">\(j &gt; k\)</span>. In the last row, before this 1, we have <span class="math inline">\(j-1\)</span> zeros. So <span class="math inline">\(w(\text{last row})\leq n-(j-1) \leq n-k\)</span>, since <span class="math inline">\(j-1 \geq k\)</span>. But rows of <span class="math inline">\(G\)</span> are codewords, so <span class="math inline">\(d(C) \leq n-k &lt;n-k+1\)</span>.</p>
+</div>
+<div class="problem">
+<p>Show (by example or argument) that the converse of Q42, “If <span class="math inline">\(C\)</span> has a generator-matrix in standard form then it is MDS." is false.</p>
+</div>
+<div class="solution">
+<p>: Let <span class="math inline">\(C\)</span> have generator-matrix <span class="math inline">\(G = (I\;|\;A)  = 
+\left(\begin{matrix} 
+1 &amp; 0 &amp; 0 &amp; 5 &amp; 6  \\
+0 &amp; 1 &amp; 0 &amp; 3 &amp; 4  \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 2 \\
+      \end{matrix}\right)\)</span>. Since the last row has weight 2, <span class="math inline">\(d(C) \leq 2\)</span>. But <span class="math inline">\(n-k+1 = 5-3+1 =3\)</span>. : Suppose the <span class="math inline">\([n,k,d]\)</span>-code C has generator-matrix <span class="math inline">\(G\)</span> in RREF, but <span class="math inline">\(G\)</span> is not of form <span class="math inline">\((I\;|\;A)\)</span>. Then by Q40, <span class="math inline">\(d&lt;n-k+1\)</span>. By Proposition 3.13 there is a monomially equivalent code <span class="math inline">\(C&#39;\)</span> with generator-matrix <span class="math inline">\(G&#39;= (I\;|\;A)\)</span>, and parameters <span class="math inline">\([n&#39;,k&#39;,d&#39;]\)</span>. But monomially equivalent codes have the same parameters, so <span class="math inline">\(d&#39; = d &lt; n-k+1 = n&#39;-k&#39; +1\)</span>, so <span class="math inline">\(C&#39;\)</span> is a counter-example. (There will be extra zeros in <span class="math inline">\(A\)</span>, as above.)</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '27';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
