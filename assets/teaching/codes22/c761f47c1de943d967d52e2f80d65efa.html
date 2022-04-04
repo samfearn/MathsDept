@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Codes III: Topic 5 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Codes III: Topic 5 Problems</h1>
+</header>
+<p>******The following questions are concerned with Chapter 5 of the notes - Perfect Codes.******</p>
+<div class="problem">
+<p>Let <span class="math inline">\(C_1 = \langle (0,1,1,1)\rangle\)</span>, and <span class="math inline">\(C_2 = \langle (0,1,1,1,), (1,0,1,2,)\rangle\)</span>, both codes in <span class="math inline">\({\mathbb F}_3^4\)</span>. Find parameters <span class="math inline">\([n,k,d]\)</span> for each code, and find <span class="math inline">\(|S({\bf x},1)|\)</span> for <span class="math inline">\({\bf x}\in {\mathbb F}_3^4\)</span>. Show that <span class="math inline">\(|C_1|\)</span>, <span class="math inline">\(|C_2|\)</span> and <span class="math inline">\(|S({\bf x},1)|\)</span> all divide <span class="math inline">\(|{\mathbb F}_3^4|\)</span>, but only one of the codes is perfect.</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\(C_1 = \{ (0,0,0,0),(0,1,1,1),(0,2,2,2)\}\)</span> has parameters <span class="math inline">\([4, 1, 3]\)</span>, and <span class="math inline">\(|C_1| = 3\)</span>. <span class="math inline">\(C_2\)</span> has check matrix <span class="math inline">\(\left(\begin{matrix} 
+2 &amp; 2 &amp; 1 &amp; 0 \\
+1 &amp; 2 &amp; 0 &amp; 1 \\
+      \end{matrix}\right)\)</span>, so parameters <span class="math inline">\([4, 2, 3]\)</span> and <span class="math inline">\(|C_2| = 3^2\)</span>. In <span class="math inline">\({\mathbb F}_3^4\)</span>, we have <span class="math inline">\(|S({\bf x},1)| = 1 + 4\times 2 = 9\)</span>. So this, and <span class="math inline">\(|C_1|\)</span> and <span class="math inline">\(|C_2|\)</span>, all divide <span class="math inline">\(|{\mathbb F}_3^4| = 81\)</span>. Note that since for both codes <span class="math inline">\(d=3\)</span>, the <span class="math inline">\(S({\bf c},1)\)</span> are disjoint. Since <span class="math inline">\(|S({\bf c},1)||C_2| = 81\)</span>, these spheres round the codewords of <span class="math inline">\(C_2\)</span> exactly fill the space, and <span class="math inline">\(C_2\)</span> is perfect. However for <span class="math inline">\(C_1\)</span>, with fewer spheres, of the same size, the space is not filled.</p>
+</div>
+<div class="problem">
+<p>For <span class="math inline">\({\bf x}\in {\mathbb F}_q^n\)</span>, find <span class="math inline">\(|S({\bf x},t)|\)</span> for <span class="math inline">\(t=0\)</span> and <span class="math inline">\(t=n\)</span>. Show that there is a perfect code for each value of <span class="math inline">\(t\)</span>, and give parameters <span class="math inline">\((n,M,d)\)</span> if possible. Are these “trivial" codes linear? Explain why they are not useful.</p>
+</div>
+<div class="solution">
+<p>If <span class="math inline">\(t=0\)</span>, then <span class="math inline">\(|S({\bf x},t)| = \sum_{k=0}^t\binom{n}{k} (q-1)^k = 1\)</span>, and we take <span class="math inline">\(C = {\mathbb F}_q^n\)</span>. This is a <span class="math inline">\((n, q^n, 1)\)</span> code so we cannot detect or correct any errors. If <span class="math inline">\(t = n\)</span>, any sphere <span class="math inline">\(S(x,t) = {\mathbb F}_q^n\)</span>, and we have just one codeword.</p>
+</div>
+<div class="problem">
+<p>A binary repetition code is <span class="math inline">\(C_n = \{(0, \ldots,0),(1, \ldots,1)\} \subset {\mathbb F}_2^n\)</span>. If <span class="math inline">\(n = 2t+1\)</span> is odd, show that <span class="math inline">\(C_n\)</span> is perfect. (<span><em>Hint</em></span>: Use well-known properties of Pascal’s triangle.)</p>
+</div>
+<div class="solution">
+<p>This code has just two codewords. Since <span class="math inline">\(d=n\)</span>, the spheres <span class="math inline">\(S({\bf c}, t)\)</span> are disjoint. The number of words in the sphere, <span class="math inline">\(|S({\bf c}, t)| = \sum_{i=0}^t \binom{n}{i} (q-1)^i\)</span>, which is exactly half of the sum of the <span class="math inline">\(n^{th}\)</span> row in Pascal’s triangle. The whole row has sum <span class="math inline">\(2^n\)</span>, so <span class="math inline">\(|S({\bf c}, t)| = 2^{n-1}\)</span>. Thus both spheres together cover all of <span class="math inline">\({\mathbb F}_2^n\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let Ham<span class="math inline">\(_2(3)\)</span> have the standard check-matrix described in the lecture. Use the algorithm to decode the received words <span class="math inline">\({\bf y}_1 =(0,0,1,0,0,1,0)\)</span> and <span class="math inline">\({\bf y}_2 =(1,0,1,0,1,0,1)\)</span>.</p>
+</div>
+<div class="solution">
+<p>Using <span class="math inline">\(H = \left(\begin{matrix}
+0&amp;0&amp;0&amp;1&amp;1&amp;1&amp;1\\
+0&amp;1&amp;1&amp;0&amp;0&amp;1&amp;1\\
+1&amp;0&amp;1&amp;0&amp;1&amp;0&amp;1\\
+\end{matrix}\right)\)</span> we get <span class="math inline">\(S({\bf y}_1) = (1,0,1)\)</span> which is 5 written in base 2. So we alter the 5th digit and decode to (<span class="math inline">\((0,0,1,0,1,1,0)\)</span>. But <span class="math inline">\(S({\bf y}_2) = (0, 0, 0)\)</span>, so <span class="math inline">\({\bf y}_2\)</span> is in the code.</p>
+</div>
+<div class="problem">
+<p>Construct check-matrices for these two Hamming codes: (In each case, write out a couple of the <span class="math inline">\(L_{\bf v}\)</span> sets, but you do not have to list them all.) a) Ham<span class="math inline">\(_5(2)\)</span> b) Ham<span class="math inline">\(_3(3)\)</span></p>
+</div>
+<div class="solution">
+<p>a) For Ham<span class="math inline">\(_5(2)\)</span>, two of the <span class="math inline">\(L_{\bf v}\)</span> sets would be <span class="math inline">\(L_{(1,0)} = \{(1,0),(2,0),(3,0),(4,0)\)</span> and <span class="math inline">\(L_{(1,2)} = \{(1,2),(2,4),(3,1),(4,3)\)</span>. One possible check-matrix would be <span class="math inline">\(H =\left(\begin{matrix} 
+4 &amp; 2 &amp; 2 &amp; 0 &amp; 4 &amp; 1\\
+0 &amp; 2 &amp; 3 &amp; 1 &amp; 3 &amp; 3\\
+      \end{matrix}\right)\)</span>. b) For Ham<span class="math inline">\(_3(3)\)</span>, two of the <span class="math inline">\(L_{\bf v}\)</span> sets would be <span class="math inline">\(L_{(1,0,2)} = \{(1,0,2),(2,0,1)\}\)</span> and <span class="math inline">\(L_{(1,1,2)} = \{(1,1,2),(2,1,1)\}\)</span>. Two possible check-matrix would be <span class="math display">\[H_1 =\left(\begin{matrix} 
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 2 \\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 2 &amp; 1 &amp; 2 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 2 &amp; 0 &amp; 2 &amp; 1 &amp; 1 \\
+      \end{matrix}\right), H_2 =\left(\begin{matrix} 
+1 &amp; 2 &amp; 2 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 2 &amp; 2 &amp; 1 &amp; 2 \\
+0 &amp; 2 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 0 &amp; 0 &amp; 2 &amp; 2 \\
+0 &amp; 2 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 2 &amp; 2 &amp; 0 &amp; 2 &amp; 1 &amp; 1 &amp; 1 \\
+      \end{matrix}\right).\]</span></p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C\)</span> be the Ham<span class="math inline">\(_7(2)\)</span> code with check-matrix <span class="math inline">\(H =\left(\begin{matrix} 
+ 1 &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+      \end{matrix}\right)\)</span>. Decode the received words <span class="math inline">\({\bf y}_1 = (1,0,2,0,3,0,4,0)\)</span> and <span class="math inline">\({\bf y}_2 = (0,6,0,5,0,4,0,3)\)</span>.</p>
+</div>
+<div class="solution">
+<p>For a Hamming code, we decode the received words by first calculating their syndromes. We therefore have <span class="math inline">\(S({\bf y}_1) = {\bf y}_1 H^t = (1+2+9+20,2+3+4) = (4,2)\)</span>. Since this is not 0, <span class="math inline">\({\bf y}_1\)</span> is not itself a codeword. Since the Hamming code is perfect with minimum distance 3, each received word lies in a sphere of radius 1 around some codeword, so we must have <span class="math inline">\({\bf y}_1 = {\bf c}_1 + \lambda {\bf e}_i\)</span>, where <span class="math inline">\({\bf e}_i\)</span> is a standard basis vector, respresenting our error of weight 1.</p>
+<p>In terms of this error vector, we have <span class="math inline">\(S({\bf y}_1) = S({\bf c}_1 + \lambda e_i) = S({\bf c}_1) + \lambda S(e_i) = \lambda {\bf h}_i\)</span>, where <span class="math inline">\({\bf h}_i\)</span> is the <span class="math inline">\(i\)</span><sup>th</sup> column of <span class="math inline">\(H\)</span>, and where we’ve used linearity of the syndrome, and that all codewords have syndrome 0. We therefore need to find <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(i\)</span>, such that <span class="math inline">\(\lambda {\bf h}_i = (4,2)\)</span>. Since all of the columns of <span class="math inline">\(H\)</span> end in a 1, we immediately see that we must have <span class="math inline">\(\lambda=2\)</span>, and therefore <span class="math inline">\(i = 4\)</span>, as <span class="math inline">\((4,2) = 2(2,1)\)</span>. We can therefore decode <span class="math inline">\({\bf y}_1\)</span> as <span class="math inline">\({\bf c}_1 = {\bf y}_1 - 2 e_4 = (1,0,2,5,3,0,4,0)\)</span>.</p>
+<p>The process is the same for decoding <span class="math inline">\({\bf y}_2 = (0,6,0,5,0,4,0,3)\)</span>. We first calculate <span class="math inline">\(S({\bf y}_2) = (10 + 16 + 18, 6+5+4+3) = (2,4) = 4(4,1)\)</span>. So we have <span class="math inline">\(\lambda=4,\,i=6\)</span>, and we decode <span class="math inline">\({\bf y}_2\)</span> as <span class="math inline">\({\bf c}_2 = {\bf y}_2 - 4{\bf e}_6 = (0,6,0,5,0,0,0,3)\)</span>.</p>
+</div>
+<div class="problem">
+<p>Show that Ham<span class="math inline">\(_q(r)\)</span> is perfect.</p>
+</div>
+<div class="solution">
+<p>Since, by construction, no column in the check-matrix is a multiple of another, we know that <span class="math inline">\(d(\text{ Ham}_q(r)) \geq 3\)</span>. So spheres of radius 1 are disjoint. For a codeword <span class="math inline">\({\bf c}\)</span>, how many words have <span class="math inline">\(d({\bf v},{\bf c})=1\)</span>? Choose a position to change, and then choose a different symbol, so <span class="math inline">\(n(q-1)\)</span>. Thus <span class="math inline">\(|S({\bf c}, 1)| = 1 + n(q-1) = 1 + q^r-1 = q^r\)</span>. But <span class="math inline">\(|\text{Ham}_q(r)| = q^k = q^{n-r}\)</span>. So the disjoint union of all the <span class="math inline">\(|S({\bf c}, 1)|\)</span> contains <span class="math inline">\(q^{n-r}q^r = q^n\)</span> words. This is all of <span class="math inline">\({\mathbb F}_q^n\)</span>, as required.</p>
+</div>
+<div class="problem">
+<p>Explain why the decoding algorithm for <span class="math inline">\(q\)</span>-ary Hamming codes works.</p>
+</div>
+<div class="solution">
+<p>Since <span class="math inline">\(\text{Ham}_q(r)\)</span> has <span class="math inline">\(d = 3\)</span> and is perfect, any word <span class="math inline">\({\bf y}\)</span> in <span class="math inline">\({\mathbb F}_q^n\)</span> is in exactly one <span class="math inline">\(S({\bf c}, 1)\)</span>. So <span class="math inline">\({\bf y}= {\bf c}+ {\bf x}\)</span>, with <span class="math inline">\(w({\bf x}) \leq 1\)</span>. If <span class="math inline">\(w({\bf x})=0\)</span>, then <span class="math inline">\({\bf y}\)</span> is a codeword. If <span class="math inline">\(w({\bf x})=1\)</span>, then <span class="math inline">\({\bf x}= \lambda {\bf e}_i\)</span> for some <span class="math inline">\(\lambda \in {\mathbb F}_q\)</span> and standard basis vector <span class="math inline">\({\bf e}_i, 1\leq i\leq n\)</span>. So <span class="math inline">\({\bf y}= {\bf c}+ \lambda {\bf e}_i\)</span>. Now <span class="math inline">\(S({\bf y}) = S({\bf c}) + S(\lambda {\bf e}_i) = \lambda S({\bf e}_i) = \lambda \cdot \;\text{column } i \;\text{of } H\)</span>. By the construction of the check-matrix <span class="math inline">\(H\)</span>, for any <span class="math inline">\(S({\bf y})\)</span> there is just one <span class="math inline">\(\lambda\)</span> and one <span class="math inline">\(i\)</span> which make this work. We then subtract the error <span class="math inline">\(\lambda {\bf e}_i\)</span> to get <span class="math inline">\({\bf c}\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C  \subseteq {\mathbb F}_5^5\)</span> have check-matrix <span class="math inline">\(H =\left(\begin{matrix} 
+ 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 2 &amp; 3\\
+      \end{matrix}\right)\)</span>. Show that <span class="math inline">\(C\)</span> is not a Hamming code. Nonetheless, try to use the Hamming decoding algorithm to decode received words <span class="math inline">\({\bf y}_1 = (3,3,1,0,4)\)</span> and <span class="math inline">\({\bf y}_2 = (1,2,1,0,0)\)</span>. Why does the algorithm only sometimes work? When it doesn’t, can you still use the syndrome to find a nearest neighbour in the code for that word? Explain.</p>
+</div>
+<div class="solution">
+<p>Since <span class="math inline">\(q=5,r=2\)</span>, a Hamming code Ham<span class="math inline">\(_5(2)\)</span> would have <span class="math inline">\(n= \frac{5^2-1}{5-1} = 6\)</span>. But <span class="math inline">\(C\)</span> has <span class="math inline">\(n=5\)</span>, so it is not a Hamming code. Alternatively, <span class="math inline">\(C\)</span> is not a Hamming code because no column is from <span class="math inline">\(L_{(1, 4)}\)</span>. We find that <span class="math inline">\(S({\bf y}_1) = (3, 1) = 3(1,2)\)</span>. Since this is 3 times column 4 of <span class="math inline">\(H\)</span>, we can assume the error-vector was <span class="math inline">\((0,0,0,3,0)\)</span> and decode to <span class="math inline">\({\bf c}_1 = (3,3,1,2,4)\)</span>. But <span class="math inline">\(S(y_2) = (2, 3) = 2(1,4)\)</span>, and this is not a multiple of any column. So there cannot be an error-vector of weight 1. No <span class="math inline">\(S({\bf c},1)\)</span> contains <span class="math inline">\(y_2\)</span>; unlike a Hamming code, <span class="math inline">\(C\)</span> is not perfect. However, since <span class="math inline">\(S(y_2) = 2(1,0) + 3(0,1)\)</span>, one possible error-vector of weight 2 is <span class="math inline">\((2,3,0,0,0)\)</span> and we could decode to a nearest neighbour <span class="math inline">\({\bf y}_2 -(2,3,0,0,0) = (4, 4,1,0,0) \in C\)</span>. But there are many other possible error-vectors of weight 2, so many other nearest neighbours. Since <span class="math inline">\(d(C) = 3\)</span> (by Theorem 4.11.), a word can easily be at distance 2 from several codewords.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> in <span class="math inline">\({\mathbb F}_3^5\)</span> have generator-matrices <span class="math inline">\(G_1 =\left(\begin{matrix} 
+ 1&amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
+      \end{matrix}\right)\)</span> and <span class="math inline">\(G_2 =\left(\begin{matrix} 
+ 1 &amp; 2 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 1 &amp; 2 &amp; 2\\
+      \end{matrix}\right)\)</span>. Show that these codes are (monomially) equivalent. Write down generator matrices for the extended codes <span class="math inline">\(\widehat{C_1}\)</span> and <span class="math inline">\(\widehat{C_2}\)</span>, and show that these codes have different <span class="math inline">\(d(\widehat{C_i})\)</span>, and so are not equivalent. (You could find check-matrices and use Theorem 4.11., or you could just think about possible weights of codewords.)</p>
+</div>
+<div class="solution">
+<p>Multiplying the 2nd, 4th and 5th column of <span class="math inline">\(G_1\)</span> by 2 gives <span class="math inline">\(G_2\)</span>, so they are equivalent. By Proposition 5.9, we can write down <span class="math inline">\(\widehat{G_1} =\left(\begin{matrix} 
+  1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+  0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0\\
+      \end{matrix}\right)\)</span> and <span class="math inline">\(\widehat{G_2} =\left(\begin{matrix} 
+  1 &amp; 2 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 1 &amp; 2 &amp; 2 &amp; 1\\
+      \end{matrix}\right)\)</span>. (You just have to make the rows add to 0.) Because every column in <span class="math inline">\(\widehat{G_1}\)</span> has one zero, one non-zero, it is easy to see what weights codewords of <span class="math inline">\(\widehat{C_1}\)</span> can have: any codeword in <span class="math inline">\(\widehat{C_1}\)</span> is <span class="math inline">\((a,b)\widehat{G_1}\)</span>, and these have weights 0, 3, and 6 as both, one, or neither of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are 0, respectively. Similarly, <span class="math inline">\(\widehat{C_2}\)</span> has words of weight 0, 2, 4, and 6. So <span class="math inline">\(d(\widehat{C_1}) = 3\)</span>, <span class="math inline">\(d(\widehat{C_2}) = 2\)</span>, and they are not equivalent.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C  \subseteq {\mathbb F}_5^5\)</span> have generator-matrix <span class="math inline">\(G =\left(\begin{matrix} 
+ 2 &amp; 1 &amp; 1 &amp; 0 &amp; 0\\
+  3 &amp; 2 &amp; 0 &amp; 1 &amp; 1\\
+      \end{matrix}\right)\)</span>. By finding their minimum distances, show that the codes <span class="math inline">\(C^{\{5\}}\)</span> and <span class="math inline">\(C^{\{3\}}\)</span> are not equivalent.</p>
+</div>
+<div class="solution">
+<p>The punctured code have generator-matrices <span class="math inline">\(G^{\{5\}} =\left(\begin{matrix} 
+ 2 &amp; 1 &amp; 1 &amp; 0 \\
+  3 &amp; 2 &amp; 0 &amp; 1 \\
+      \end{matrix}\right)\)</span> and <span class="math inline">\(G^{\{p\}} =\left(\begin{matrix} 
+ 2 &amp; 1 &amp; 0 &amp; 0\\
+  3 &amp; 2 &amp; 1 &amp; 1\\
+      \end{matrix}\right)\)</span> respectively. Then <span class="math inline">\(C^{\{5\}}\)</span> has check-matrix <span class="math inline">\(\left(\begin{matrix} 
+ 1 &amp; 0 &amp; 3 &amp; 2 \\
+ 0 &amp; 1 &amp; 4 &amp; 3 \\
+      \end{matrix}\right)\)</span>, and so <span class="math inline">\(d(C^{\{5\}}) = 3\)</span>. For <span class="math inline">\(C^{\{3\}}\)</span> we row-reduce <span class="math inline">\(G^{\{3\}}\)</span> to <span class="math inline">\(\left(\begin{matrix} 
+ 1 &amp; 0 &amp; 4 &amp; 4 \\
+ 0 &amp; 1 &amp; 2 &amp; 2 \\
+      \end{matrix}\right)\)</span>, so <span class="math inline">\(C^{\{3\}}\)</span> has check-matrix <span class="math inline">\(\left(\begin{matrix} 
+ 1 &amp; 3 &amp; 1 &amp; 0 \\
+ 1 &amp; 3 &amp; 0 &amp; 1 \\
+      \end{matrix}\right)\)</span>, and <span class="math inline">\(d(C^{\{3\}}) = 2\)</span>. So they cannot be equivalent.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C \subseteq {\mathbb F}_3^4\)</span> have check-matrix <span class="math inline">\(H = \left(\begin{matrix}
+  1 &amp; 0 &amp; 1 &amp; 1 \\
+  0 &amp; 1 &amp; 1 &amp; 2\\
+ \end{matrix}\right)\)</span>. a) Find a generator-matrix <span class="math inline">\(G\)</span> for <span class="math inline">\(C\)</span>, and check- and generator-matrices <span class="math inline">\(\widehat{H}\)</span> and <span class="math inline">\(\widehat{G}\)</span> for the extended code <span class="math inline">\(\widehat{C}\)</span>. b) Now puncture <span class="math inline">\(\widehat{C}\)</span> at each position in turn, to give generator-matrices <span class="math inline">\(G_{p1},\; G_{p2},\; G_{p3},\; G_{p4},\; G_{p5}\)</span> for codes <span class="math inline">\(C_{p1},\; C_{p2},\; C_{p3},\; C_{p4},\; C_{p5}\)</span>. c) Which of the six codes <span class="math inline">\(C,\; C_{p1},\; \ldots,\; C_{p5}\)</span> have the same minimum distance? Which are equivalent? Which are actually the same code? There are many ways to do all this, and you may find different matrices. But you should get the same answers for c). It might save you work to use a <span class="math inline">\(\widehat{G}\)</span> in form <span class="math inline">\(( A|I)\)</span> or <span class="math inline">\((I|A)\)</span>.</p>
+</div>
+<div class="solution">
+<p>a) By the definition of an extended code, <span class="math inline">\(\widehat{H} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+  0 &amp; 1 &amp; 1 &amp; 2 &amp; 0\\
+  1 &amp; 1 &amp; 1 &amp; 1 &amp; 1\\
+ \end{matrix}\right)\)</span>, (and since col.s 1,3, and 4 add to 0, <span class="math inline">\(d(\widehat{C})=3\)</span>). By Proposition 4.5, since <span class="math inline">\(H\)</span> is in form <span class="math inline">\((I\;|\; A)\)</span>, we have <span class="math inline">\(G=  \left(\begin{matrix}
+  2 &amp; 2 &amp; 1 &amp; 0 \\
+  2 &amp; 1 &amp; 0 &amp; 1\\
+ \end{matrix}\right)\)</span>. So by Proposition 5.9, <span class="math inline">\(\widehat{C}\)</span> has a generator matrix <span class="math inline">\(\left(\begin{matrix}
+  2 &amp; 2 &amp; 1 &amp; 0 &amp; 1\\
+  2 &amp; 1 &amp; 0 &amp; 1 &amp; 2\\
+ \end{matrix}\right)\)</span>. b) Applying EROs <span class="math inline">\(P_{1,2}\)</span> then <span class="math inline">\(A_{2,1}(1)\)</span> gives <span class="math inline">\(\widehat{G} =\left(\begin{matrix}
+  1 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+  2 &amp; 2 &amp; 1 &amp; 0 &amp; 1\\
+ \end{matrix}\right)\)</span>, which is also a generator matrix for <span class="math inline">\(\widehat{C}\)</span>. We can then puncture this at each position: <span class="math inline">\(G_{p1} = \left(\begin{matrix}
+  0 &amp; 1 &amp; 1 &amp; 0 \\
+   2 &amp; 1 &amp; 0 &amp;1\\
+\end{matrix}\right)\)</span>, so <span class="math inline">\(H_{p1} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 0 &amp; 1 \\
+  0 &amp; 1 &amp; 2 &amp; 2\\
+\end{matrix}\right)\)</span>, and <span class="math inline">\(d(C_{p1}) = 2\)</span>. <span class="math inline">\(G_{p2} = \left(\begin{matrix}
+  1 &amp; 1 &amp; 1 &amp; 0 \\
+   2 &amp; 1 &amp; 0 &amp;1\\
+\end{matrix}\right)\)</span>, so <span class="math inline">\(H_{p2} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 2 &amp; 1 \\
+  0 &amp; 1 &amp; 2 &amp; 2\\
+\end{matrix}\right)\)</span>, and <span class="math inline">\(d(C_{p2}) = 3\)</span>. <span class="math inline">\(G_{p3} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 1 &amp; 0 \\
+   2 &amp; 2 &amp; 0 &amp;1\\
+\end{matrix}\right)\)</span>, so <span class="math inline">\(H_{p3} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 2 &amp; 1 \\
+  0 &amp; 1 &amp; 0 &amp; 1\\
+\end{matrix}\right)\)</span>, and <span class="math inline">\(d(C_{p3}) = 2\)</span>. <span class="math inline">\(G_{p4} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 1 &amp; 0 \\
+   2 &amp; 2 &amp; 1 &amp;1 \\
+\end{matrix}\right)
+\stackrel{A_{1,2}(2)}{\longrightarrow}
+G&#39;_{p4} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 1 &amp; 0 \\
+  1 &amp; 2 &amp; 0 &amp; 1 \\
+\end{matrix}\right)\)</span>, so <span class="math inline">\(H_{p4} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 2 &amp; 2 \\
+  0 &amp; 1 &amp; 0 &amp; 1 \\
+\end{matrix}\right)\)</span>, and <span class="math inline">\(d(C_{p4}) = 2\)</span>. <span class="math inline">\(G_{p5} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 1 &amp; 1 \\
+  2 &amp; 2 &amp; 1 &amp; 0 \\
+\end{matrix}\right)
+\stackrel{P_{1,2}}{\longrightarrow}
+\left(\begin{matrix}
+  2 &amp; 2 &amp; 0 &amp; 1 \\
+  1 &amp; 0 &amp; 1 &amp; 1 \\
+\end{matrix}\right)
+\stackrel{A_{1,2}(2)}{\longrightarrow}
+\left(\begin{matrix}
+  2 &amp; 2 &amp; 1 &amp; 0 \\
+  2 &amp; 1 &amp; 0 &amp; 1 \\
+\end{matrix}\right)\)</span>, <span class="math inline">\(H_{p5} = \left(\begin{matrix}
+  1 &amp; 0 &amp; 1 &amp; 1 \\
+  0 &amp; 1 &amp; 1 &amp; 2 \\
+\end{matrix}\right)\)</span>, <span class="math inline">\(d(C_{p5}) = 3\)</span>. Since all six check-matrices are in RREF, we know that we cannot turn one into another by row operations, so different matrices do give different codes. As they have the same check-matrix, <span class="math inline">\(C_{p5} = C\)</span>, as we would expect; puncturing in the last position has reversed the extending process. Also, since multiplying col.4 of <span class="math inline">\(H_{p5}\)</span> by 2 gives <span class="math inline">\(H_{p2}\)</span>, <span class="math inline">\(C_2\)</span> is also equivalent to these (see Q59). Swapping col.s 1 and 2 of <span class="math inline">\(G_{p1}\)</span> gives <span class="math inline">\(G&#39;_{p4}\)</span>, so <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_4\)</span> are equivalent. But even though it has the same <span class="math inline">\(d(C)\)</span>, it seems that <span class="math inline">\(C_3\)</span> is not equivalent to these, as <span class="math inline">\(H_{p3}\)</span> and <span class="math inline">\(H_{p4}\)</span> match apart from their last columns which are not multiples of each other. (I don’t think we have the theory to prove this rigorously!)</p>
+</div>
+<div class="problem">
+<p>Can we “extend" and “puncture" over <span class="math inline">\({\mathbb R}\)</span>? Let <span class="math inline">\(C\)</span> be the line <span class="math inline">\(y=2x\)</span> in <span class="math inline">\({\mathbb R}^2\)</span>. a) Find <span class="math inline">\(H\)</span> and <span class="math inline">\(G\)</span> such that <span class="math inline">\(C = \{{\bf x}\in {\mathbb R}^2 \;|\; {\bf x}H^t = 0\} = \{\lambda G\;|\; \lambda \in {\mathbb R}\}\)</span>. b) Now, in <span class="math inline">\({\mathbb R}^3\)</span>, consider the intersection of the plane <span class="math inline">\(y = 2x\)</span> with the plane <span class="math inline">\(x+y+z = 0\)</span>. Find a check-matrix <span class="math inline">\(\widehat{H}\)</span> and a generator-matrix <span class="math inline">\(\widehat{G}\)</span> for this line <span class="math inline">\(\widehat{C}\)</span>. c) Puncturing <span class="math inline">\(\widehat{C}\)</span> in each position gives three different lines, back in <span class="math inline">\({\mathbb R}^2\)</span> again. Specify them; in geometric terms, how are they related to <span class="math inline">\(\widehat{C}\)</span>?</p>
+</div>
+<div class="solution">
+<p>a) <span class="math inline">\(H = (-2 \;\; 1)\)</span> and <span class="math inline">\(G = (1\;\;2)\)</span>. b) <span class="math inline">\(\widehat{C} = \{{\bf x}\in {\mathbb R}^3 \;|\; {\bf x}\widehat{H}^t = 0\} = \{\lambda \widehat{G}\;|\; \lambda \in {\mathbb R}\}\)</span>, where <span class="math inline">\(\widehat{H} = \left(\begin{matrix}
+-2 &amp; 1 &amp; 0  \\
+ 1 &amp; 1 &amp; 1\\
+\end{matrix}\right)\)</span> and <span class="math inline">\(\widehat{G} = (1 \;\;2 \,\;-3)\)</span>. c) Deleting the last co-ordinate <span class="math inline">\(z\)</span> projects <span class="math inline">\(\widehat{C}\)</span> back to <span class="math inline">\(C\)</span> in the <span class="math inline">\(x\)</span>-<span class="math inline">\(y\)</span> plane. But deleting <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> gives different lines: <span class="math inline">\(3y+2z=0\)</span> in the <span class="math inline">\(y\)</span>-<span class="math inline">\(z\)</span> plane or <span class="math inline">\(3x+z =0\)</span> in the <span class="math inline">\(x\)</span>-<span class="math inline">\(z\)</span> plane. (It all works very much like extending and puncturing a code over <span class="math inline">\({\mathbb F}_q\)</span>, except that over <span class="math inline">\({\mathbb R}\)</span> there is no such thing as a minimum distance for <span class="math inline">\(C\)</span>.)</p>
+</div>
+<div class="problem">
+<p>a) Show that a binary <span class="math inline">\([90,k,5]\)</span>-code, if it exists, could be perfect, and that if it is perfect, <span class="math inline">\(k  = 78\)</span>. The rest of this questions shows, by contradiction, that there is no such code. b) Show that, in <span class="math inline">\({\mathbb F}_2^r\)</span>, exactly half the vectors have odd weight, half even. (<span><em>Hint:</em></span> pair them up...) c) Suppose that a binary <span class="math inline">\([90,78,5]\)</span>-code exists. Then the columns of its check-matrix <span class="math inline">\(H\)</span> are <span class="math inline">\({\bf h}_1, \ldots, {\bf h}_{90}\)</span>, in <span class="math inline">\({\mathbb F}_2^{12}\)</span>. Now consider the following vectors in <span class="math inline">\({\mathbb F}_2^{12}\)</span>: <span class="math inline">\({\bf 0}\)</span>; the <span class="math inline">\({\bf h}_i\)</span>, <span class="math inline">\(1 \leq i \leq 90\)</span>; the <span class="math inline">\({\bf h}_i+{\bf h}_j\)</span>, <span class="math inline">\(1 \leq i  &lt;j \leq 90\)</span>. Show that all of these vectors are distinct. d) Let the set <span class="math inline">\(X = \{{\bf 0}\} \cup \{{\bf h}_i \;|\; 1 \leq i \leq 90\} \cup \{{\bf h}_i+{\bf h}_j\;|\; 1 \leq i  &lt;j \leq 90\}\)</span>. Show that <span class="math inline">\(X = {\mathbb F}_2^{12}\)</span>. e) Now let <span class="math inline">\(m\)</span> be the number of odd-weight columns of <span class="math inline">\(H\)</span>. In terms of <span class="math inline">\(m\)</span>, how many vectors in <span class="math inline">\(X\)</span> have odd weight? Use b) to reach a contradiction.</p>
+</div>
+<div class="solution">
+<p>a) A code is perfect if we have equality in the Hamming bound, <span class="math inline">\(M |S(c,t)| = q^n\)</span>. If <span class="math inline">\(d=5\)</span>, then we have <span class="math inline">\(t= \lfloor \frac{d-1}{2} \rfloor = 2\)</span>, and so as in the proof of Proposition 1.15, spheres of radius 2 are disjoint. So, we now check whether these spheres cover the space (i.e. whether the Hamming bound is satisfied). <span class="math display">\[|S(c,t)|=\sum_{j=0}^t\binom{n}{j}(q-1)^j = \sum_{j=0}^2\binom{90}{j} = 4096 = 2^{12}.\]</span> So in total, the spheres cover <span class="math inline">\(2^{12}M\)</span> words. But in a linear code <span class="math inline">\(M=q^k\)</span>, so the spheres cover <span class="math inline">\(2^{12+k}\)</span> words. This code is therefore perfect if <span class="math inline">\(2^{12+k}=2^{90}\)</span>, which is true if <span class="math inline">\(k=78\)</span>.</p>
+<p>b) Consider the words <span class="math inline">\((0,x_2,x_3,\ldots,x_n),\,(1,x_2,x_3,\ldots,x_n)\)</span>. Clearly, if the first word has odd weight, the second word has even weight, and vice versa. Every word of <span class="math inline">\({\mathbb F}_2^r\)</span> is of one of these two forms, and for each word of <span class="math inline">\({\mathbb F}_2^r\)</span> with a zero in the first position, there is a word with a 1 in the first position (and vice versa), so the number of words of each form must be equal. Therefore half of the vectors of <span class="math inline">\({\mathbb F}_2^r\)</span> have odd weight, which is a total of <span class="math inline">\(\frac{1}{2}2^r = 2^{r-1}\)</span> words.</p>
+<p>c) Columns of <span class="math inline">\(H\)</span> are of length <span class="math inline">\(n-k = 12\)</span>, so <span class="math inline">\({\bf h}_i\in {\mathbb F}_2^{12}\)</span> for <span class="math inline">\(1&lt;i&lt;90\)</span>. If <span class="math inline">\(H\)</span> is a check matrix for a code of minimum distance 5, then by Theorem 4.11, any 4 columns of <span class="math inline">\(H\)</span> must be linearly independent. We therefore <strong>cannot</strong> have:</p>
+<ul>
+<li><p><span class="math inline">\({\bf h}_i = 0\)</span> – otherwise <span class="math inline">\(d=1\)</span></p></li>
+<li><p><span class="math inline">\({\bf h}_i = {\bf h}_j\)</span> for <span class="math inline">\(i\ne j\)</span> – otherwise <span class="math inline">\(d=2\)</span></p></li>
+<li><p><span class="math inline">\({\bf h}_i = {\bf h}_j+{\bf h}_k\)</span> for <span class="math inline">\(i,j,k\)</span> distinct – otherwise <span class="math inline">\({\bf h}_i-{\bf h}_j-{\bf h}_k={\bf 0} \implies d=3\)</span></p></li>
+<li><p><span class="math inline">\({\bf h}_i + {\bf h}_j={\bf h}_k + {\bf h}_l\)</span> for <span class="math inline">\(i,j,k,l\)</span> distinct – otherwise <span class="math inline">\({\bf h}_i+{\bf h}_j-{\bf h}_k-{\bf h}_l={\bf 0} \implies d=4\)</span>.</p></li>
+</ul>
+<p>d) Let <span class="math inline">\(X = \{{\bf 0}\} \cup \{{\bf h}_i \;|\; 1 \leq i \leq 90\} \cup \{{\bf h}_i+{\bf h}_j\;|\; 1 \leq i  &lt;j \leq 90\}\)</span>. Since the three sets <span class="math inline">\(\{{\bf 0}\},\,\{{\bf h}_i\},\,\{{\bf h}_i+{\bf h}_j\}\)</span> have no elements in common by part c), the size of <span class="math inline">\(X\)</span> is therefore the sum of the sizes of these constituent sets. We therefore have <span class="math inline">\(|X| = 1 + 90 + \binom{90}{2} = 4096 = 2^{12} = |{\mathbb F}_2^{12}\)</span>. So since <span class="math inline">\({\bf h}_i \in {\mathbb F}_2^{12}\)</span>, we have <span class="math inline">\(X\subseteq{\mathbb F}_2^{12}\)</span> and therefore <span class="math inline">\(X = {\mathbb F}_2^{12}\)</span>.</p>
+<p>e) If <span class="math inline">\(m\)</span> of the <span class="math inline">\({\bf h}_i\)</span> have odd weight, then <span class="math inline">\(90-m\)</span> have even weight. By Lemma 5.16, <span class="math inline">\(w({\bf h}_i + {\bf h}_j) = w({\bf h}_i) + w({\bf h}_j) - 2w({\bf h}_i \cap {\bf h}_j)\)</span>. We therefore have that <span class="math inline">\({\bf h}_i+{\bf h}_j\)</span> has odd weight if one of <span class="math inline">\({\bf h}_i\)</span> or <span class="math inline">\({\bf h}_j\)</span> has odd weight and the other has even weight. There are then <span class="math inline">\(m(90-m)\)</span> <span class="math inline">\({\bf h}_i+{\bf h}_j\)</span> of odd weight, and therefore a total of <span class="math inline">\(m+m(90-m)=m(91-m)\)</span> vectors in <span class="math inline">\(X\)</span> of odd weight. Now if <span class="math inline">\(m\)</span> is even, then <span class="math inline">\(91-m\)</span> is odd, and vice versa, so this is therefore an odd number times an even number. However, in part b) we showed that the number of odd weight vectors in <span class="math inline">\({\mathbb F}_2^{12}\)</span> was <span class="math inline">\(2^{11}\)</span>, which certainly has no odd factors, and we therefore have a contradiction. Hence no such code can exist.</p>
+</div>
+<div class="problem">
+<p>Prove Lemma 5.12.</p>
+</div>
+<div class="solution">
+<p>i) The positions where <span class="math inline">\({\bf x}\)</span> and <span class="math inline">\({\bf y}\)</span> both have 1 are counted twice in <span class="math inline">\(w({\bf x}) + w({\bf y})\)</span>, not at all in <span class="math inline">\(w({\bf x}+{\bf y})\)</span>. ii), iii) Calculated in <span class="math inline">\({\mathbb Z}\)</span>, <span class="math inline">\({\bf x}\cdot {\bf y}=  w({\bf x}\cap {\bf y})\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\mathcal G}_{12}\)</span> be the ternary code with generator-matrix <span class="math display">\[G = [I_6 \;|\;A] =\left(\begin{matrix}
+1&amp; &amp; &amp; &amp; &amp; &amp;0&amp;1&amp;1&amp;1&amp;1&amp;1\\
+ &amp;1&amp; &amp; &amp;0&amp; &amp;1&amp;0&amp;1&amp;2&amp;2&amp;1\\
+ &amp; &amp;1&amp; &amp; &amp; &amp;1&amp;1&amp;0&amp;1&amp;2&amp;2\\
+ &amp; &amp; &amp;1&amp; &amp; &amp;1&amp;2&amp;1&amp;0&amp;1&amp;2\\
+ &amp;0&amp; &amp; &amp;1&amp; &amp;1&amp;2&amp;2&amp;1&amp;0&amp;1\\
+ &amp; &amp; &amp; &amp; &amp;1&amp;1&amp;1&amp;2&amp;2&amp;1&amp;0\\
+\end{matrix}\right).\]</span> We write <span class="math inline">\({\bf a}_1, {\bf a}_2, \ldots ,{\bf a}_6\)</span> for the rows of <span class="math inline">\(A\)</span>. a) Show that <span class="math inline">\({\mathcal G}_{12}^ \perp ={\mathcal G}_{12}\)</span>, explaining briefly why we do not need to calculate 21 separate dot products. It follows that <span class="math inline">\({\mathcal G}_{12}\)</span> also has a generator matrix <span class="math inline">\([B \;|\; I_6]\)</span>; how do the rows of <span class="math inline">\(B\)</span> relate to the <span class="math inline">\({\bf a}_i\)</span>? b) Find the values of <span class="math inline">\(w({\bf a}_i + {\bf a}_j)\)</span> and <span class="math inline">\(w({\bf a}_i - {\bf a}_j)\)</span> for <span class="math inline">\(1 \le i&lt;j \le 6\)</span>. (Again, there are only a few cases to consider.) c) Show that if <span class="math inline">\({\bf c}\in {\mathcal G}_{12}, {\bf c}\neq {\bf 0}\)</span>, then <span class="math inline">\(w({\bf c}) \ge 6\)</span>. Do this by contradiction, writing <span class="math inline">\({\bf c}= ({\bf l}, {\bf r})\)</span>. d) To make <span class="math inline">\({\mathcal G}_{11}\)</span>, we puncture the code <span class="math inline">\({\mathcal G}_{12}\)</span> by removing the last column of <span class="math inline">\(G\)</span>. Show that <span class="math inline">\({\mathcal G}_{11}\)</span> is an <span class="math inline">\([11,6,5]\)</span> code.</p>
+</div>
+<div class="solution">
+<p>We write the rows of <span class="math inline">\(G\)</span> as <span class="math inline">\({\bf g}_i = ({\bf e}_i,{\bf a}_i)\)</span>. a) We first show that <span class="math inline">\(\mathcal{G}_{12}\subseteq \mathcal{G}_{12}^\perp\)</span>, by showing that <span class="math inline">\(({\bf e}_i,{\bf a}_i)\cdot G = 0\)</span>, or equivalently that <span class="math inline">\(({\bf e}_i,{\bf a}_i)\cdot({\bf e}_j,{\bf a}_j) = 0\)</span> for any <span class="math inline">\(1\le i \le j \le 6\)</span>.</p>
+<p>Note that <span class="math inline">\(({\bf e}_i,{\bf a}_i).({\bf e}_j,{\bf a}_j) = {\bf e}_i \cdot {\bf e}_j + {\bf a}_i \cdot {\bf a}_j\)</span>, that <span class="math inline">\(A\)</span> is symmetric, and that the lower-right <span class="math inline">\(5\times 5\)</span> submatrix of <span class="math inline">\(A\)</span> is cyclic; each row is the one above with the entries permuted one place to the right. Now consider the following cases:</p>
+<ol>
+<li><p>If <span class="math inline">\(i=j\)</span>, then <span class="math inline">\({\bf e}_i\cdot {\bf e}_i = 1\)</span> and <span class="math inline">\({\bf a}_i\cdot {\bf a}_i = w(a_i)=5\)</span>. Therefore <span class="math inline">\(({\bf e}_i,{\bf a}_i).({\bf e}_i,{\bf a}_i) = 0 \in {\mathbb F}_3\)</span> for all <span class="math inline">\(1\le i \le 6\)</span>.</p></li>
+<li><p>Consider <span class="math inline">\(({\bf e}_1,{\bf a}_1).({\bf e}_j,{\bf a}_j)\)</span> for <span class="math inline">\(2\le j \le 6\)</span>. We have <span class="math inline">\({\bf e}_1\cdot {\bf e}_j = 0\)</span>. The first term of <span class="math inline">\({\bf a}_1 \cdot {\bf a}_j\)</span> is zero, and the other terms which get summed in this product are always 0,1,2,2 and 1, in some order depending on the cyclic shift of <span class="math inline">\({\bf a}_j\)</span>. So again we have <span class="math inline">\(({\bf e}_1,{\bf a}_1).({\bf e}_j,{\bf a}_j) = 0 \in {\mathbb F}_3\)</span>.</p></li>
+<li><p>Next, consider <span class="math inline">\(({\bf e}_2,{\bf a}_2).({\bf e}_j,{\bf a}_j)\)</span> for <span class="math inline">\(3\le j \le 6\)</span>. Again, the product <span class="math inline">\({\bf e}_2\cdot {\bf e}_j = 0\)</span>. <span class="math inline">\({\bf a}_1 \cdot {\bf a}_j\)</span> has two terms involving 0s, two terms where the entries of the <span class="math inline">\({\bf a}\)</span> match and so contribute a 1, and two terms where the entries of the <span class="math inline">\({\bf a}\)</span> differ and so contribute a 2. We therefore have <span class="math inline">\({\bf a}_1 \cdot {\bf a}_j = 0\)</span> and hence <span class="math inline">\(({\bf e}_2,{\bf a}_2).({\bf e}_j,{\bf a}_j) = 0 \in {\mathbb F}_3\)</span>.</p></li>
+<li><p>Finally, if we consider any two other rows of <span class="math inline">\(G\)</span>, the <span class="math inline">\({\bf e}_i\)</span> will also be orthogonal, and the <span class="math inline">\({\bf a}_i\)</span> will be the same as a pair already consider up to a cyclic permutation, and hence we’ve already checked that the inner product will be 0.</p></li>
+</ol>
+<p>We therefore see that all codewords in <span class="math inline">\(\mathcal{G}_{12}\)</span> are orthogonal to every other codeword of <span class="math inline">\(\mathcal{G}_{12}\)</span> by linearity, and hence <span class="math inline">\(\mathcal{G}_{12}\subseteq \mathcal{G}_{12}^\perp\)</span>. Since we also have <span class="math inline">\(\dim{\mathcal{G}_{12}^\perp} = 12-6 = 6 = \dim{\mathcal{G}_{12}}\)</span>, and hence <span class="math inline">\(|\mathcal{G}_{12}| = |\mathcal{G}_{12}^\perp|\)</span>, we therefore have <span class="math inline">\(\mathcal{G}_{12} = \mathcal{G}_{12}^\perp\)</span>.</p>
+<p>Since <span class="math inline">\(G = (I_6\ |\ A)\)</span> is a generator matrix for <span class="math inline">\(\mathcal{G}_{12}\)</span>, <span class="math inline">\(H=(-A^t\ |\ I_6) = (-A\ |\ I_6)\)</span> is a check-matrix for <span class="math inline">\(\mathcal{G}_{12}\)</span>, and hence a generator matrix for <span class="math inline">\(\mathcal{G}_{12}\)</span>. But since <span class="math inline">\(\mathcal{G}_{12}=\mathcal{G}_{12}^\perp\)</span>, this is also a generator matrix for <span class="math inline">\(\mathcal{G}_{12}\)</span>. So the rows of <span class="math inline">\(B\)</span> are <span class="math inline">\({\bf b}_i = -{\bf a}_i\)</span>.</p>
+<p>b) For <span class="math inline">\(i\ne j\)</span>, <span class="math inline">\({\bf a}_i\pm {\bf a}_j\)</span> has two non-zero entries where <span class="math inline">\({\bf a}_i\)</span> or <span class="math inline">\({\bf a}_j\)</span>, but not both, has a zero. In the other 4 positions, both <span class="math inline">\({\bf a}_i\)</span> and <span class="math inline">\({\bf a}_j\)</span> have non-zero entries, and they match in two positions and differ in two positions. We have that <span class="math inline">\({\bf a}_i+{\bf a}_j\)</span> is non-zero where they match and zero where they differ, and vice versa for <span class="math inline">\({\bf a}_i-{\bf a}_j\)</span>. We therefore have <span class="math inline">\(w({\bf a}_i\pm{\bf a}_j)=4\)</span> for all <span class="math inline">\(i\ne j\)</span>.</p>
+<p>c) Consider <span class="math inline">\({\bf c}\in \mathcal{G}_{12},\,{\bf c}\ne{\bf 0}\)</span>, and suppose that <span class="math inline">\(1\le w(c)\le 5\)</span>. If we write <span class="math inline">\({\bf c}\)</span> as <span class="math inline">\(({\bf l},{\bf r})\)</span>, then we have <span class="math inline">\(w({\bf c}) = w({\bf l}) + w({\bf r})\)</span>, and hence we must have one of <span class="math inline">\({\bf l},\,{\bf r}\)</span> with weight either 1 or 2. If <span class="math inline">\(w({\bf l}) = 1\)</span>, then since <span class="math inline">\({\bf c}\)</span> is a linear combination or rows of <span class="math inline">\(G\)</span>, we must have <span class="math inline">\({\bf c}=({\bf e}_i,{\bf a}_i)\)</span> and so <span class="math inline">\(w({\bf c})=6\)</span>. If <span class="math inline">\(w({\bf r})=1\)</span>, then since <span class="math inline">\({\bf c}\)</span> is a linear combination of rows of <span class="math inline">\(H\)</span>, we must have that <span class="math inline">\({\bf c}= (-{\bf a}_i,{\bf e}_i)\)</span> and so <span class="math inline">\(w({\bf r})=6\)</span>. If <span class="math inline">\(w({\bf l})=2\)</span>, then <span class="math inline">\({\bf c}\)</span> is either the sum or difference of two rows of <span class="math inline">\(G\)</span>, so <span class="math inline">\({\bf c}= \pm({\bf e}_i,{\bf a}_i)\pm({\bf e}_j,{\bf a}_j)\)</span> with <span class="math inline">\(i\ne j\)</span>, and so <span class="math inline">\(w({\bf c})=6\)</span> using part b). If <span class="math inline">\(w({\bf r}) = 2\)</span>, then similarly <span class="math inline">\(w({\bf c})=6\)</span>, by considering the sum/difference of two rows of <span class="math inline">\(H\)</span>. Hence there is no such <span class="math inline">\({\bf c}\in\mathcal{G}_{12}\)</span> with <span class="math inline">\(1\le w({\bf c})\le 6\)</span>, and so all non-zero words must have weight <span class="math inline">\(\ge\)</span> 6.</p>
+<p>d) Firstly, we see that <span class="math inline">\(\mathcal{G}_{12}\)</span> has block length 12, dimension 6. By part c) the minimum distance of <span class="math inline">\(\mathcal{G}_{12}\)</span> is <span class="math inline">\(\ge\)</span> 6, but since the rows of <span class="math inline">\(G\)</span> have weight 6, then <span class="math inline">\(\mathcal{G}_{12}\)</span> certainly contains words of weight 6, and so <span class="math inline">\(d(\mathcal{G}_{12})=6\)</span>. Hence <span class="math inline">\(\mathcal{G}_{12}\)</span> is a <span class="math inline">\([12,6,6]_3\)</span> code.</p>
+<p>We now puncture <span class="math inline">\(\mathcal{G}_{12}\)</span> in the last position to obtain <span class="math inline">\(\mathcal{G}_{11}\)</span>. By Proposition 5.11, <span class="math inline">\(\mathcal{G}_{11}\)</span> has <span class="math inline">\(n=11\)</span> and <span class="math inline">\(k=6\)</span>, and since <span class="math inline">\(\mathcal{G}_{12}\)</span> has a word of weight 6 with a non-zero entry in the final position (all but the last row of <span class="math inline">\(G\)</span> for instance), we have <span class="math inline">\(d(\mathcal{G}_{11})=5\)</span>, and so <span class="math inline">\(\mathcal{G}_{11}\)</span> is a <span class="math inline">\([11,6,5]_3\)</span> code. Plugging these parameters into the Hamming bound shows that this code is perfect.</p>
+</div>
+<div class="problem">
+<p>Constructing new objects in maths often combines deduction (it must be like this) with convenient choices (try one like this) and checking (does it work?). We shall construct a check-matrix <span class="math inline">\(H\)</span> for <span class="math inline">\({\mathcal G}_{11}\)</span> as follows:</p>
+<p>We can certainly choose to have <span class="math inline">\(H\)</span> in RREF, and (by choosing the right code from the equivalence class) we can assume <span class="math inline">\(H = [I_5\;|\;A]\)</span>. This time we work with <span><em>columns</em></span>, not rows: the columns of <span class="math inline">\(I_5\)</span> are <span class="math inline">\({\bf e}_1, \ldots, {\bf e}_5\)</span>; let the columns of <span class="math inline">\(A\)</span> be <span class="math inline">\({\bf a}_1, \ldots, {\bf a}_6\)</span>. By Theorem 4.11. we need to make <span class="math inline">\(A\)</span> so that no four columns of of <span class="math inline">\(H\)</span> are linearly dependent. This requirement tells us a lot about the <span class="math inline">\({\bf a}_i\)</span>. a) Show that all <span class="math inline">\(w({\bf a}_i) \ge 4\)</span>. b) Show that all <span class="math inline">\(w({\bf a}_i + {\bf a}_j)\)</span> and all <span class="math inline">\(w({\bf a}_i - {\bf a}_j)\)</span> must be <span class="math inline">\(\ge 3\)</span>. c) Suppose <span class="math inline">\(w({\bf a}_i) =  w({\bf a}_j) = 5\)</span>. Show that <span class="math inline">\(w({\bf a}_i + {\bf a}_j) +w({\bf a}_i - {\bf a}_j) = 5\)</span>. Deduce that we can have at most one <span class="math inline">\({\bf a}_i\)</span> of weight 5 in <span class="math inline">\(A\)</span>. d) Similarly, show that if <span class="math inline">\({\bf a}_i\)</span> and <span class="math inline">\({\bf a}_j\)</span> each have just one 0, these 0s must be in different rows.</p>
+<p>Using c) and d), we choose to have our weight 5 column be all 1s, and place the columns in a convenient order, taking <span class="math display">\[H = [I_5 \;|\;A] =\left(\begin{matrix}
+1&amp; &amp; &amp; &amp; &amp;  1&amp;*&amp;*&amp;*&amp;*&amp;0\\
+ &amp;1&amp; &amp;0&amp; &amp;  1&amp;*&amp;*&amp;*&amp;0&amp;*\\
+ &amp; &amp;1&amp; &amp; &amp;  1&amp;*&amp;*&amp;0&amp;*&amp;*\\
+ &amp;0&amp; &amp;1&amp; &amp;  1&amp;*&amp;0&amp;*&amp;*&amp;*\\
+ &amp; &amp; &amp; &amp;1&amp;  1&amp;0&amp;*&amp;*&amp;*&amp;*\\
+\end{matrix}\right),\]</span> where each * is either 1 or 2. e) Use b) and <span class="math inline">\({\bf a}_1\)</span> to show that each <span class="math inline">\({\bf a}_j , 2 \le j \le 6\)</span>, must have two 1s and two 2s. f) For <span class="math inline">\(2 \le j \le 6\)</span>, <span class="math inline">\({\bf a}_i\)</span> and <span class="math inline">\({\bf a}_j\)</span> will differ in at least two positions, because of their 0s. Show that they must differ in at least one other position, and match in at least one other position. g) Using e) and f), and working column by column, complete the matrix <span class="math inline">\(A\)</span>.</p>
+<p>Do we know that the matrix H we have constructed gives a code with <span class="math inline">\(d = 5\)</span>? h) Find a linearly dependent set of 5 columns. i) Any linearly dependent set of 4 columns would involve <span class="math inline">\(n_e\)</span> columns from <span class="math inline">\(I\)</span>, and <span class="math inline">\(n_a\)</span> columns from <span class="math inline">\(A\)</span>, with <span class="math inline">\(n_e+ n_a = 4\)</span>. Which values of <span class="math inline">\(n_a\)</span> have we ruled out? How much more checking would we need to do?</p>
+</div>
+<div class="solution">
+<p>a) Clearly <span class="math inline">\({\bf a}_i\)</span> and the right <span class="math inline">\(w({\bf a}_i)\)</span> of the <span class="math inline">\({\bf e}_j\)</span> from <span class="math inline">\(I_5\)</span> make a linearly dependent set of size <span class="math inline">\(w({\bf a}_i)+1\)</span>. So we need all the <span class="math inline">\(w({\bf a}_i)\)</span> to be <span class="math inline">\(\geq 4\)</span>; no more than one zero in any <span class="math inline">\({\bf a}_i\)</span>. b) If <span class="math inline">\(w({\bf a}_i+{\bf a}_j)\)</span> or <span class="math inline">\(w({\bf a}_i-{\bf a}_j)\)</span> is <span class="math inline">\(\leq 2\)</span>, then <span class="math inline">\({\bf a}_i\)</span> and <span class="math inline">\({\bf a}_j\)</span> with at most two of the <span class="math inline">\({\bf e}_j\)</span>s would make a linearly dependent set of size 3 or 4, so we must avoid this. c) Suppose we have <span class="math inline">\(w({\bf a}_i)\)</span> and <span class="math inline">\(w({\bf a}_j) =5\)</span>, with <span class="math inline">\({\bf a}_i = ( x_1, \ldots, x_5)\)</span> and <span class="math inline">\({\bf a}_j = ( y_1, \ldots, y_5)\)</span>. The <span class="math inline">\(x_k\)</span> and the <span class="math inline">\(y_k\)</span> are either 1 or 2. For a given <span class="math inline">\(k\)</span>, if they match, we have <span class="math inline">\(x_k -y_k =0,\; x_k + y_k \neq 0\)</span>; if they differ we have <span class="math inline">\(x_k +y_k =0,\; x_k - y_k \neq 0\)</span>. Thus <span class="math inline">\(w({\bf a}_i+{\bf a}_j) + w({\bf a}_i-{\bf a}_j) = 5\)</span>. It follows that either <span class="math inline">\(w({\bf a}_i+{\bf a}_j)\)</span> or <span class="math inline">\(w({\bf a}_i-{\bf a}_j) \leq 2\)</span>, which we must avoid. So there can be only one column of <span class="math inline">\(H\)</span> with no zeros. d) If <span class="math inline">\({\bf a}_i\)</span> and <span class="math inline">\({\bf a}_j\)</span> each have a single zero, in the same position, then arguing as for c) we have that <span class="math inline">\(w({\bf a}_i+{\bf a}_j) + w({\bf a}_i-{\bf a}_j) = 4\)</span>. So again either <span class="math inline">\(w({\bf a}_i+{\bf a}_j)\)</span> or <span class="math inline">\(w({\bf a}_i-{\bf a}_j) \leq 2\)</span>, which we must avoid. e) Where <span class="math inline">\({\bf a}_j\)</span> has a 2, <span class="math inline">\({\bf a}_1+{\bf a}_j\)</span> has a 0; where <span class="math inline">\({\bf a}_j\)</span> has a 1, <span class="math inline">\({\bf a}_1-{\bf a}_j\)</span> has a 0. By b) we cannot have more than two 0s in either one. It follows that we must have two 1s and two 2s in <span class="math inline">\({\bf a}_j\)</span>. f) So <span class="math inline">\(w({\bf a}_i+{\bf a}_j)\)</span> and <span class="math inline">\(w({\bf a}_i-{\bf a}_j)\)</span> are <span class="math inline">\(\geq\)</span> 2, but we still need <span class="math inline">\({\bf a}_i\)</span> and <span class="math inline">\({\bf a}_j\)</span> to differ in at least one other position, to make <span class="math inline">\(w({\bf a}_i-{\bf a}_j)\geq 3\)</span>, and match in at least one other position, to make <span class="math inline">\(w({\bf a}_i+{\bf a}_j)\geq 3\)</span>. g) There are still many ways to do this. If we keep the last 5 columns symmetrical across both diagonals, we can get <span class="math display">\[H = \left(\begin{matrix}
+1&amp; &amp; &amp; &amp; &amp; 1 &amp; 1 &amp; 1 &amp; 2 &amp; 2 &amp; 0  \\
+ &amp;1&amp; &amp;0&amp; &amp; 1 &amp; 1 &amp; 2 &amp; 1 &amp; 0 &amp; 2  \\
+ &amp; &amp;1&amp; &amp; &amp; 1 &amp; 2 &amp; 1 &amp; 0 &amp; 1 &amp; 2  \\
+ &amp;0&amp; &amp;1&amp; &amp; 1 &amp; 2 &amp; 0 &amp; 1 &amp; 2 &amp; 1  \\
+ &amp; &amp; &amp; &amp;1&amp; 1 &amp; 0 &amp; 2 &amp; 2 &amp; 1 &amp; 1  \\
+\end{matrix}\right),\]</span> h) For example, <span class="math inline">\(2{\bf e}_1 + 2{\bf e}_2 + {\bf e}_3 + {\bf e}_4 + {\bf a}_7 = {\bf 0}\)</span>. i) a) rules out <span class="math inline">\(n_a = 1\)</span>, b) rules out <span class="math inline">\(n_a = 2\)</span>. It still seems possible that four <span class="math inline">\({\bf a}_j\)</span>, or three <span class="math inline">\({\bf a}_j\)</span> and an <span class="math inline">\({\bf e}_i\)</span>, might be linearly dependent. There are only <span class="math inline">\(\binom{6}{4} =15\)</span> and <span class="math inline">\(\binom{6}{3} \times 5 =  100\)</span> cases to check, respectively (and we might be able to cut this down further using symmetries...).</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '60';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

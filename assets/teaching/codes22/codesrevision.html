@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>codesrevision</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#crypto-revision-exercises">Crypto Revision Exercises</a></li>
+<li><a href="#sec:codes_revision_exercies">Codes Revision Exercises</a></li>
+</ul>
+</nav>
+<section id="crypto-revision-exercises" class="level1 unnumbered">
+<h1 class="unnumbered">Crypto Revision Exercises</h1>
+<ol>
+<li><ol>
+<li><p>Let <span class="math inline">\(p=71\)</span> be a prime, let <span class="math inline">\(g=31\)</span> be a primitive root modulo <span class="math inline">\(p\)</span>. Then use the baby step, giant step algorithm to compute the index <span class="math inline">\(I(6)\)</span>.</p></li>
+<li><p>Bob has an RSA public key of the form <span class="math inline">\((n,3)\)</span>, i.e. <span class="math inline">\(e=3\)</span>. When Alice wants to send a number <span class="math inline">\(0\leq x&lt;n\)</span> to Bob, she encrypts it using Bob’s public key. For some reason, Bob fails to receive the message correctly, he informs Alice on the matter, and she retries to send the message again. However, this time, to prevent repeating the same message, Alice encrypts <span class="math inline">\(x+1\)</span> instead and sends it to Bob. Suppose that Eve has intercepted both encrypted messages successfully and she knows that the second time Alice encrypted <span class="math inline">\(x+1\)</span> and sent it to Bob. Show how Eve can exploit this information to easily obtain <span class="math inline">\(x\)</span>.<br />
+(Hint: First try to compute <span class="math inline">\(x^2+x\)</span> from this information).</p></li>
+<li><p>Alice is signing messages using the Elgamal signature scheme with a public prime <span class="math inline">\(p\)</span> and a primitive root <span class="math inline">\(g\)</span>. Her public verification key is <span class="math inline">\(y\equiv g^\alpha \bmod{p}\)</span>. Suppose that she signs two different messages <span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span> with signatures <span class="math inline">\((r,s_1)\)</span> and <span class="math inline">\((r,s_2)\)</span> respectively. Here you may assume that <span class="math inline">\(0&lt;m_1, m_2&lt;p-1\)</span> and <span class="math inline">\(\gcd(s_1-s_2,p-1)=\gcd(r,p-1)=1\)</span>. Show how this information can be used to find Alice’s private key <span class="math inline">\(\alpha\)</span>.</p></li>
+</ol></li>
+<li><ol>
+<li><p>Alice is using the following elliptic curve version of a Hash function to a compute hash of a message <span class="math inline">\(0\leq m&lt;N\)</span>:</p>
+<p>She fixes an elliptic curve <span class="math inline">\(E\)</span> over a finite field <span class="math inline">\({\mathbb F}_p\)</span> where <span class="math inline">\(p\)</span> is a large prime, approximately of size <span class="math inline">\(\sqrt{N}\)</span>. She fixes two points <span class="math inline">\(P_1,P_2\in E({\mathbb F}_p)\)</span> with orders <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> respectively, where <span class="math inline">\(n_1\neq n_2\)</span> are two large primes. Alice makes <span class="math inline">\(E({\mathbb F}_p)\)</span>, <span class="math inline">\(P_1,P_2\)</span> and their orders <span class="math inline">\(n_1,n_2\)</span> public. The message <span class="math inline">\(0\leq m&lt;N\)</span> is further assumed to be co-prime to both <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. The hash function <span class="math inline">\(H\)</span> is then defined as: <span class="math display">\[H(m)=[m^{-1}\bmod{n_1}]P_1\oplus [m^{-1}\bmod{n_2}]P_2.\]</span> Prove that <span class="math inline">\(H\)</span> is pre-image resistant (or one way) but not strongly collision free.<br />
+</p></li>
+<li><p>Let <span class="math inline">\(n=pq\)</span>, where <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are odd primes such that <span class="math inline">\(|p-q|&lt;12\sqrt[4]{n}\)</span>. We use Fermat’s factorisation method to factorise <span class="math inline">\(n\)</span>. Give an upper bound for the number of steps needed. Your answer should be an integer not depending on <span class="math inline">\(n\)</span>. Justify your answer rigorously.</p></li>
+</ol></li>
+<li><ol>
+<li><p>Let <span class="math inline">\(E\)</span> be an elliptic curve defined over <span class="math inline">\(\mathbb{Q}\)</span> by the equation <span class="math display">\[y^2=x^3+2p,\]</span> where <span class="math inline">\(p\)</span> is a prime. Compute the torsion subgroup <span class="math inline">\(E(\mathbb{Q})_{\mathrm{tors}}\)</span> for all possible values of the prime <span class="math inline">\(p\)</span>.</p></li>
+<li><p>Alice wants to send the same secret message <span class="math inline">\(m\)</span> to both Bob and Oscar. Suppose she has already shared <span class="math inline">\(n\times n\)</span> block cipher matrices <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> with Bob and Oscar respectively. The matrix <span class="math inline">\(M_1\)</span> is supposed to be only known to Alice and Bob (and similarly <span class="math inline">\(M_2\)</span> is only known to Alice and Oscar).</p>
+<ol>
+<li><p>Using the matrices <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span>, devise a way for Alice to securely send the message <span class="math inline">\(m\)</span> to both Bob and Oscar in such a way that they can not decipher <span class="math inline">\(m\)</span> on their own just using their respective keys. However, Bob and Oscar can jointly figure out what <span class="math inline">\(m\)</span> is by communicating with each other on public channels. Note that Bob and Oscar should never share their respective keys <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> with each other.</p></li>
+<li><p>Suppose Alice is wary of a further issue that either Bob or Oscar could lie to the other in the above process. So she wants to further devise a way to help both Bob and Oscar verify that the message <span class="math inline">\(m\)</span> that they obtain at the end of this process is the correct one. How can she further ensure this? For this part, you should just indicate which public key cryptosystem she can use to achieve this.</p></li>
+</ol></li>
+</ol></li>
+</ol>
+</section>
+<section id="sec:codes_revision_exercies" class="level1 unnumbered">
+<h1 class="unnumbered">Codes Revision Exercises</h1>
+<ol>
+<li><ol>
+<li><ol>
+<li><p>Show that <span class="math inline">\(x^2 + 2x + 2\)</span> is irreducible in <span class="math inline">\(\mathbb{F}_3[x]\)</span>, and is a primitive polynomial over <span class="math inline">\(\mathbb{F}_3\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\mathbb{F}_9 = \mathbb{F}_3[x]/(x^2+2x+2)\)</span>, and let <span class="math inline">\(C\subseteq\mathbb{F}_9^6\)</span> be given by <span class="math display">\[\begin{aligned}C=&amp;\langle\{(2x,0,1,0,2x,x+2),(2x+1,x,0,0,2x+2,x+1),\\&amp;\ (2x,x,x+2,2,2,2x+2)\}\rangle.\end{aligned}\]</span> What are the parameters <span class="math inline">\([n,k,d]\)</span> of <span class="math inline">\(C\)</span>?</p></li>
+<li><p>Calculate the parameters <span class="math inline">\([n&#39;,k&#39;,d&#39;]\)</span> for the code <span class="math inline">\(C^{\{6\}}\)</span>.</p></li>
+</ol></li>
+</ol></li>
+<li><ol>
+<li><p>Alice is sending messages to Bob, using the code <span class="math inline">\(C \subseteq {\mathbb F}_5^5\)</span> with generator-matrix <span class="math inline">\(G = \begin{pmatrix}1&amp;2&amp;0&amp;3&amp;4\\
+                          0&amp;0&amp;1&amp;2&amp;3 
+                        \end{pmatrix}.\)</span></p>
+<ol>
+<li><p>Find the parameters <span class="math inline">\([n,k,d \,]\)</span> and a check-matrix <span class="math inline">\(H\)</span> for this code.</p></li>
+<li><p>Alice encodes message <span class="math inline">\({\bf m}_1\)</span> as <span class="math inline">\({\bf c}_1\)</span>, and sends it to Bob. In the channel it suffers one symbol-error, and Bob receives the word <span class="math inline">\({\bf y}_1 = (1,2,4,2,0)\)</span>. Show how, <span><em>without</em></span> making a whole syndrome table, Bob can use <span class="math inline">\(S({\bf y}_1)\)</span> to find <span class="math inline">\({\bf c}_1\)</span> and then <span class="math inline">\({\bf m}_1\)</span>. How does he know that <span class="math inline">\({\bf c}_1\)</span> is the <span><em>unique</em></span> nearest neighbour of <span class="math inline">\({\bf y}_1\)</span>?</p></li>
+<li><p>If the channel is a <span class="math inline">\(q\)</span>-ary symmetric channel with symbol-error probability <span class="math inline">\(\frac{1}{2}\)</span> (for suitable <span class="math inline">\(q\)</span>), what was the probability that <span class="math inline">\({\bf y}_1\)</span> was received if <span class="math inline">\({\bf c}_1\)</span> is the word that was sent? Explain why syndrome decoding is a suitable decoding technique if this code is sent using such a channel.</p></li>
+</ol></li>
+<li><p>Let the code <span class="math inline">\(C \subseteq {\mathbb F}_3^4\)</span> have check-matrix <span class="math inline">\(H = \begin{pmatrix} 
+1&amp;0&amp;1&amp;1\\
+0&amp;1&amp;1&amp;2\\
+ \end{pmatrix}\)</span>.</p>
+<ol>
+<li><p>Find the parameters <span class="math inline">\([n,k,d\,]\)</span> of <span class="math inline">\(C\)</span>, and show that <span class="math inline">\(C\)</span> is MDS.</p></li>
+<li><p>Show that <span class="math inline">\(C\)</span> is self-dual - that is, <span class="math inline">\(C = C^\perp\)</span>.</p></li>
+<li><p>Show that <span class="math inline">\(C\)</span> is perfect.</p></li>
+<li><p>In a <span><em>simplex</em></span> code, the Hamming distance <span class="math inline">\(d({\bf c}_1, {\bf c}_2)\)</span> between any two distinct codewords is the same. Show that <span class="math inline">\(C\)</span> is a simplex code.</p></li>
+</ol></li>
+</ol></li>
+<li><p>In this question we use <span class="math inline">\({\mathbb F}_4 = {\mathbb F}_2[x]/(x^2 + x+1)\)</span>. To construct our code we also use some polynomials <span class="math inline">\(\phi(y) = ay^2 + by + c\)</span> over <span class="math inline">\({\mathbb F}_4\)</span>. (So the coefficients <span class="math inline">\(a, b,c\)</span> are from <span class="math inline">\({\mathbb F}_4\)</span>, and we write <span class="math inline">\(y\)</span> for the variable to avoid confusion. We can then ‘plug in’ elements of <span class="math inline">\({\mathbb F}_4\)</span> for <span class="math inline">\(y\)</span>.)</p>
+<p>The hexacode <span class="math inline">\(C \subseteq {\mathbb F}_4^6\)</span> is given by <span class="math display">\[C = \{(\, a,\, b,\, c,\, \phi(1),\, \phi(x),\, \phi(x^2)\,) \;|\: \phi(y) = ay^2 + by + c\;\: \text{with} \;\: a,b,c, \in {\mathbb F}_4\}\]</span></p>
+<ol>
+<li><p>How many words are in this code?</p></li>
+<li><p>Show that <span class="math inline">\(G = \begin{pmatrix} 
+1&amp;0&amp;0&amp; 1&amp;x^2 &amp; x\\
+0&amp;1&amp;0&amp; 1&amp;x &amp; x^2\\
+0&amp;0&amp;1&amp; 1&amp;1 &amp; 1
+ \end{pmatrix}\)</span> is a generator-matrix for <span class="math inline">\(C\)</span>.</p></li>
+<li><p>Find a check-matrix <span class="math inline">\(H\)</span> for <span class="math inline">\(C\)</span>, and show that <span class="math inline">\(C^\perp \neq C\)</span>, but <span class="math inline">\(C^\perp\)</span> is permutation equivalent to <span class="math inline">\(C\)</span>.</p></li>
+<li><p>By puncturing <span class="math inline">\(C\)</span> at the 6th and 3rd position respectively, we make new codes <span class="math inline">\(C_6\)</span> and <span class="math inline">\(C_3\)</span>. Show that these are Hamming codes.</p></li>
+<li><p>Consider the extended code <span class="math inline">\(\widehat{C}_6\)</span>. Is it equal, or equivalent, to <span class="math inline">\(C\)</span>? You may use the fact that <span class="math inline">\(d(C) = 4\)</span>. (<span><em>Hint:</em></span> First show that <span class="math inline">\((x^2, x, 1, 0, 0) \in C_6\)</span>.)</p></li>
+</ol></li>
+</ol>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
