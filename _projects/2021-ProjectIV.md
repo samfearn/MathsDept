@@ -3,7 +3,7 @@ layout: page
 title: Codes and Lattices
 description: Discussing connections between error-correcting codes and unimodular lattices in dimensions up to 24.
 img: /assets/img/E8Petrie.png
-current: true
+current: false
 hidden: false
 module: Project IV
 academicYear: 2021/22

@@ -15,13 +15,11 @@ This post is really just to host the files for a workshop I gave about Mathemati
 
 The slides from the talk are available here.
 
-<a href="/~sxwc62/assets/postfiles/20190621/MathematicaTalk.pdf"><span class="fas fa-download">&nbsp; Mathematica Workshop Talk</span></a>
-{: .center}
+{% dlink {"title":"Mathematica Workshop Talk", "link":"assets/postfiles/20190621/MathematicaTalk.pdf"} %}
 
 The idea for the workshop was for students to complete a Notebook that I had created in advance. That notebook is available here.
 
-<a href="/~sxwc62/assets/postfiles/20190621/MathematicaNotebook.nb"><span class="fas fa-download">&nbsp; Mathematica Workshop Notebook</span></a>
-{: .center}
+{% dlink {"title":"Mathematica Workshop Notebook", "link":"assets/postfiles/20190621/MathematicaNotebook.nb"} %}
 
 [Mathematica]:http://www.wolfram.com/mathematica/
 [spikeystory]:https://blog.stephenwolfram.com/2018/12/the-story-of-spikey/

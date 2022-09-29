@@ -2,11 +2,10 @@
 layout: page
 title: Niemeier Lattices and Moonshine
 description: Investigating the connections between Lie algebras, lattices, modular forms, and string theory.
-img: /assets/img/ade.png
-current: false
-hidden: true
+img: /assets/img/A2Weyl.png
+current: true
 module: Project IV
-academicYear: 2020/21
+academicYear: 2022/23
 ---
 Description
 -----------
@@ -14,8 +13,7 @@ Moonshine describes a series of interesting connections between number theory, a
 
 Lie algebras describe the infinitesimal symmetries associated with classical symmetry groups such as $SO(N)$ and $SU(N)$. Though this connection to the associated groups, known as Lie groups, has very interesting geometric meaning, the Lie algebras themselves have a very rich mathematical structure which can be studied independently. Given an algebraic structure such as a group or a Lie algebra, one can try to study the algebraic object using linear algebra, by considering vector spaces on which the algebraic object acts through linear transformations. Such a vector space, along with a description of how the algebraic objects acts on the space, is known as a representation of the algebraic object. In a physical context, representations of Lie algebras appear naturally, as the quantum states of the physical system must form representations of the underlying symmetry algebra of the system.
 
-In this project, we will start by introducing the theory of Lie algebras and their representations. We will see how Lie algebras may be classified by their root systems and the associated Dynkin diagrams. We will see how the root systems of these Lie algebras can be used to construct interesting lattices with connections to many different areas of mathematics and physics. Depending on your interests, as part of this project you will be able to explore how Lie algebras connect to [linear codes], [modular forms], [moonshine][cheng interview] (connections between modular forms and the representation theory of simple groups), [string theory] and conformal field theory.
-
+In this project, we will start by introducing the theory of Lie algebras and their representations. We will see how Lie algebras may be classified by their root systems and the associated Dynkin diagrams. We will see how the root systems of these Lie algebras can be used to construct interesting lattices with connections to many different areas of mathematics and physics. In particular, we will see how the phenomena of [Monstrous and Umbral Moonshine][cheng interview] connect Lie algebras and their associated lattices (using some [linear codes]) to the theory of [modular forms], and the representation theory of some simple sporadic groups (via [string theory] and conformal field theory).
 <div class="img_row">
 	<a title="A Kummer K3 surface, by Claudio Rocchini" href="https://commons.wikimedia.org/wiki/File:Kummer_surface.png"><img class="col one left" alt="A Kummer K3 surface" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kummer_surface.png/512px-Kummer_surface.png"></a>
 	<a title="The E8 root system, by Jgmoxness" href="https://commons.wikimedia.org/wiki/File:E8Petrie.svg"><img class="col one left" alt="This picture shows a projection of the E8 root system into the Coxeter plane" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/E8Petrie.svg/512px-E8Petrie.svg.png"></a>
@@ -31,7 +29,7 @@ In this project, we will start by introducing the theory of Lie algebras and the
 Prerequisites
 -------------
 
-Algebra II is a prerequisite for this project. Representation Theory III/IV will be beneficial to this project, but it is not a compulsory prerequisite. Students taking this project will also be expected to have a good understanding of linear algebra.
+Algebra II is a prerequisite for this project, and students taking this project will also be expected to have a good understanding of linear algebra. Cryptography and Codes III will be beneficial to the project, but it is not a compulsory pre-requisite. Representation Theory IV will be beneficial to this project, but it is not a compulsory co-requisite.
 
 Resources
 ----------
