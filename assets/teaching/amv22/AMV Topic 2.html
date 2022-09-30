@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Analysis in Many Variables II – Lecture Notes Michaelmas 2022</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Analysis in Many Variables II – Lecture Notes Michaelmas 2022</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#the-gradient-of-a-scalar-field"><span class="toc-section-number">2</span> The gradient of a scalar field</a>
+<ul>
+<li><a href="#differential-operators-and-underlinenablamkern-2mumkern-3mu"><span class="toc-section-number">2.1</span> Differential operators and <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span></a></li>
+<li><a href="#directional-derivatives"><span class="toc-section-number">2.2</span> Directional derivatives</a></li>
+<li><a href="#some-properties-of-the-gradient"><span class="toc-section-number">2.3</span> Some properties of the gradient</a></li>
+</ul></li>
+</ul>
+</nav>
+<p> </p>
+<section id="the-gradient-of-a-scalar-field" class="level1" data-number="1">
+<h1 data-number="2"><span class="header-section-number">2</span> The gradient of a scalar field</h1>
+<section id="differential-operators-and-underlinenablamkern-2mumkern-3mu" class="level2" data-number="1.1">
+<h2 data-number="2.1"><span class="header-section-number">2.1</span> Differential operators and <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span></h2>
+<p>In the previous section, we saw that when we can compute the rate of change of a scalar field <span class="math inline">\(f(\underline{x})\)</span> along a curve <span class="math inline">\(C\)</span> given by <span class="math inline">\(\underline{x}(t) = x_i(t)\underline{e}_i\)</span> (ESC), using the chain rule as <span class="math display">\[\frac{d F(t)}{d t} = \frac{d}{d t} f(\underline{x}(t)) \;=\; \frac{d x_1}{d t} \frac{\partial f}{\partial x_1} + \dots + \frac{d x_n}{d t} \frac{\partial f}{\partial x_n} = \frac{d x_i}{d t} \frac{\partial f}{\partial x_i},\]</span> where <span class="math inline">\(F(t)\)</span> is the restriction of <span class="math inline">\(f(\underline{x})\)</span> to the curve <span class="math inline">\(\underline{x}(t)\)</span>, and where again we’ve used ESC in the final equality.</p>
+<p>Since this is true for all (differentiable) scalar fields, it’s often useful to write this rule in terms of the derivative operators themselves, separate from the field <span class="math inline">\(F(t)\)</span>. In this form, the chain rule can be given as <span class="math display">\[\frac{d}{d t} \;=\; \frac{d x_1}{d t} \frac{\partial}{\partial x_1} + \dots + \frac{d x_n}{d t} \frac{\partial}{\partial x_n}\]</span></p>
+<p>This is known as a <em>differential operator</em>, which can be thought of as a map which takes functions to functions using derivatives.</p>
+<p>When using operator notation, we need to be careful about exactly what the differential operator is acting on.</p>
+<div id="eg:differentialoperators" class="example">
+<p> Given two real functions <span class="math inline">\(f(x),g(x):\mathbb{R}\to \mathbb{R}\)</span>, then:</p>
+<ul>
+<li><p><span class="math inline">\(f(x)\frac{d}{d x}\)</span> is a differential operator which can act on <span class="math inline">\(g(x)\)</span> to give <span class="math inline">\(f(x)\frac{d g(x)}{d x}\)</span>.</p></li>
+<li><p><span class="math inline">\(\frac{d}{d x}f(x)\)</span> is a differential operator which can on <span class="math inline">\(g(x)\)</span> to give <span class="math inline">\(\frac{d}{d x}(f(x)g(x)) = \frac{d f(x)}{d x}g(x) + f(x)\frac{d g(x)}{d x}\)</span> by the product rule.</p></li>
+<li><p>If I want an operator which multiples <span class="math inline">\(g(x)\)</span> by <span class="math inline">\(\frac{d f(x)}{d x}\)</span>, then I should write the operator as <span class="math inline">\(\left( \frac{d}{d x}f(x) \right)\)</span>, where the brackets make it clear the the derivative is “used up”, only acting on <span class="math inline">\(f(x)\)</span>.</p></li>
+</ul>
+</div>
+<p>The derivative with respect to <span class="math inline">\(t\)</span> along the curve <span class="math inline">\(C: \underline{x}(t) = x_i(t)\underline{e}_i\)</span> as above, in operator <span class="math inline">\(\frac{d}{d t}\)</span> form, can then be rewritten using the scalar product as <span class="math display">\[\label{eq:introducedel}
+	\begin{align}
+		\frac{d}{d t}  &amp;= \frac{d x_1}{d t} \frac{\partial}{\partial x_1} + \dots + \frac{d x_n}{d t} \frac{\partial}{\partial x_n}  \\
+		&amp;= \left( \underline{e}_1 \frac{d x_1}{d t} +\dots+ \underline{e}_n \frac{d x_n}{d t} \right) . \left( \underline{e}_1 \frac{\partial}{\partial x_1} + \dots +  \underline{e}_n\frac{\partial}{\partial x_n} \right) \\
+		&amp;= \frac{d \underline{x}}{d t} \;.\; \underline{\nabla\mkern-2mu}\mkern 3mu ,
+	\end{align}\]</span> where <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu =  \underline{e}_1 \frac{\partial}{\partial x_1} + \dots +  \underline{e}_n\frac{\partial}{\partial x_n} \;=\; \underline{e}_i \frac{\partial}{\partial x_i}. \quad \text{(ESC)}\]</span></p>
+<p>This differential operator <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> is called ‘del’, or ‘nabla’, and is one of the most important objects in this course. Note that since <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> is a vector quantity, we always write it with an underline.</p>
+<p>If <span class="math inline">\(f(\underline{x}) : \mathbb{R}^n\to \mathbb{R}\)</span> is a scalar field, then we define its <span><u>g</u>radient</span> (“grad <span class="math inline">\(f\)</span>") to be given by the action of <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> on <span class="math inline">\(f\)</span>: <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu f \; \equiv \; \text{grad} \;f  =  \underline{e}_1 \frac{\partial f}{\partial x_1} + \underline{e}_2 \frac{\partial f}{\partial x_2} + \dots +  \underline{e}_n\frac{\partial f}{\partial x_n}.\]</span> The gradient of a scalar field is therefore a <u>vector field</u>, with components <span class="math inline">\(\frac{\partial f}{\partial x_a}\)</span>.</p>
+<div id="eg:gradscalarfield" class="example">
+<p> In two dimensions, with <span class="math inline">\(\underline{x}= x\underline{e}_1+y\underline{e}_2\)</span>, let <span class="math inline">\(f(\underline{x}) = (x^2+y^2)/4\)</span>. Then we have <span class="math display">\[\begin{aligned}
+			\Rightarrow \quad \frac{\partial f}{\partial x} &amp;=&amp; \frac{x}{2} \quad \frac{\partial f}{\partial y} \;=\; \frac{y}{2} \\
+			\Rightarrow \quad \underline{\nabla\mkern-2mu}\mkern 3mu f &amp;=&amp; \frac{1}{2}  x\underline{e}_1+ \frac{1}{2} y\underline{e}_2 \;=\; \frac{1}{2} \underline{x}.
+		\end{aligned}\]</span></p>
+<p>The vector field can be drawn by arrows of length <span class="math inline">\(|\underline{\nabla\mkern-2mu}\mkern 3mu f |\)</span> and direction parallel to <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> starting at a variety of sample points:</p>
+<div class="center">
+<figure>
+<img src="gradientscalarfieldexample.png" id="fig:gradientscalarfield" style="width:60.0%" alt="" /><figcaption>Level sets of the function <span class="math inline">\(f(\underline{x}) = (x^2+y^2)/4\)</span> are shown in a contour plot. A plot of the vector field <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f(\underline{x})\)</span> is overlaid on top of this, showing the vectors pointing away from the origin, parallel to the position vectors <span class="math inline">\(\underline{x}\)</span>. The vectors in the vector field <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f(\underline{x})\)</span> are perpendicular to the level sets of <span class="math inline">\(f(\underline{x})\)</span>.</figcaption>
+</figure>
+</div>
+</div>
+<div id="eg:gradscalfield2" class="example">
+<p> In three dimensions, with <span class="math inline">\(\underline{x}= x\underline{e}_1+y\underline{e}_2 +z\underline{e}{3}\)</span>, let <span class="math inline">\(\underline{a} = a_1\underline{e}_1 +  a_2 \underline{e}_2 + a_3\underline{e}_3\)</span> be a constant vector, and let <span class="math inline">\(f(\underline{x}) = \underline{a}.\underline{x}-\underline{x}.\underline{x}\)</span>. Then we have <span class="math display">\[\begin{aligned}
+			f &amp;= a_1 x + a_2 y + a_3 z - (x^2+y^2 + z^2) \\
+			\Rightarrow \quad \frac{\partial f}{\partial x} &amp;= a_1 -2x, \quad \quad\frac{\partial f}{\partial y} \;=\; a_2 -2y, \quad \quad\frac{\partial f}{\partial z} \;=\; a_3 -2z \\
+			\Rightarrow \quad \underline{\nabla\mkern-2mu}\mkern 3mu f &amp;= \underline{e}_1(a_1-2x)+\underline{e}_2(a_2-2y)+ \underline{e}_3(a_3-2z) \\
+			&amp;= \underline{a} -2\underline{x}.
+		\end{aligned}\]</span></p>
+<p>Although the picture is less easy to interpret than the 2-dimensional example, for completeness this is included as Figure <a href="#fig:gradientscalarfield3d" data-reference-type="ref" data-reference="fig:gradientscalarfield3d">2</a>.</p>
+<div class="center">
+<figure>
+<img src="gradientscalarfieldexample2.png" id="fig:gradientscalarfield3d" style="width:50.0%" alt="" /><figcaption>The contour plot of a scalar field overlaid with the gradient vector field in 3d. Parts of three level sets can be seen as spherical shells (with what center?) and representative vectors of <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> can be seen as red arrows. As in example <a href="#eg:gradscalarfield" data-reference-type="ref" data-reference="eg:gradscalarfield">[eg:gradscalarfield]</a>, the vectors of <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> can be seen to be normal to the level sets of <span class="math inline">\(f\)</span>. We return to this idea in the next section.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="directional-derivatives" class="level2" data-number="1.2">
+<h2 data-number="2.2"><span class="header-section-number">2.2</span> Directional derivatives</h2>
+<p>Let <span class="math inline">\(C:\underline{x}=\underline{x}(t)\)</span> be a curve in <span class="math inline">\(\mathbb{R}^n\)</span>, and <span class="math inline">\(f:\mathbb{R}^n\to \mathbb{R}\)</span> a scalar field. Then <span class="math inline">\(f(\underline{x}(t)): \mathbb{R}\to \mathbb{R}\)</span> is <span class="math inline">\(f\)</span> restricted to <span class="math inline">\(C\)</span> and <span class="math display">\[\frac{d}{d t} f(\underline{x}(t)) \;=\; \frac{d \underline{x}}{d t} . \underline{\nabla\mkern-2mu}\mkern 3mu f \quad \quad\text{by chain rule.}\]</span></p>
+<div class="center">
+<figure>
+<img src="directionalderivative.jpg" id="fig:directionalderivative" style="width:60.0%" alt="" /><figcaption>The tangent to a curve <span class="math inline">\(C\)</span> at a point <span class="math inline">\(p\)</span> is shown alongside an example of the gradient of a scalar field at the same point <span class="math inline">\(p\)</span>. </figcaption>
+</figure>
+</div>
+<p>As we saw in subsection 1.2, <span class="math inline">\(\frac{d \underline{x}}{d t}\)</span> is tangent to <span class="math inline">\(C\)</span> at <span class="math inline">\(\underline{x}(t)\)</span>. If we change to a parameterisation in terms of the arc-length <span class="math inline">\(s\)</span>, such that the tangent <span class="math inline">\(\frac{d \underline{x}}{d s} = \hat{\underline{n}}\)</span> is a unit tangent (see example 4 for a justification as to why this is possible), then we have <span class="math display">\[\frac{d f(\underline{x}(s))}{d s} \;=\; \hat{\underline{n}} \:.\: \underline{\nabla\mkern-2mu}\mkern 3mu f.\]</span></p>
+<p>Now <span class="math inline">\(\frac{d f(\underline{x}(s))}{d s}\)</span> is the rate of change of <span class="math inline">\(f\)</span> with respect to distance (arc length) in the direction <span class="math inline">\(\hat{\underline{n}}\)</span>. This is called the <u>directional derivative</u> of <span class="math inline">\(f\)</span> in the direction <span class="math inline">\(\hat{\underline{n}}\)</span> (and is sometimes written <span class="math inline">\(\frac{d f}{d \hat{\underline{n}}}\)</span>).</p>
+<p>Notice that: <span class="math display">\[\begin{aligned}
+		\frac{d f}{d s} &amp;= \hat{\underline{n}}\:.\: \underline{\nabla\mkern-2mu}\mkern 3mu f \;=\; | \hat{\underline{n}}|  \; | \underline{\nabla\mkern-2mu}\mkern 3mu f | \cos \theta\\
+		&amp;= | \underline{\nabla\mkern-2mu}\mkern 3mu f | \cos \theta\; \le \; | \underline{\nabla\mkern-2mu}\mkern 3mu f |.
+	\end{aligned}\]</span></p>
+<p>Therefore <span class="math inline">\(| \underline{\nabla\mkern-2mu}\mkern 3mu f |\)</span> is the greatest value of the directional derivative over all possible directions <span class="math inline">\(\hat{\underline{n}}\)</span>. This value is achieved when <span class="math inline">\(\theta=0\)</span>, i.e. when <span class="math inline">\(\hat{\underline{n}}\parallel  \underline{\nabla\mkern-2mu}\mkern 3mu f\)</span>. Therefore <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> points in the direction <u>where <span class="math inline">\(f\)</span> increases fastest</u>.</p>
+<p>Note that in example <a href="#eg:gradscalarfield" data-reference-type="ref" data-reference="eg:gradscalarfield">[eg:gradscalarfield]</a>, the vectors in the vector field <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> are normal to the curves of constant <span class="math inline">\(| \underline{x}|\)</span>, which were the curves of constant <span class="math inline">\(f\)</span>. This also holds more generally. In <span class="math inline">\(\mathbb{R}^n\)</span>, suppose <span class="math inline">\(C\)</span> lies entirely in the <u>level set</u> <span class="math inline">\(f(\underline{x}) = k\)</span> for <span class="math inline">\(k\)</span> some constant. Call this whole level set <span class="math inline">\(S\)</span>, so <span class="math inline">\(C \subset S\)</span>.</p>
+<div class="center">
+<figure>
+<img src="levelset.jpg" id="fig:curveinlevelset" style="width:50.0%" alt="" /><figcaption>The curve <span class="math inline">\(C\)</span> contained entirely within a level set of the function <span class="math inline">\(f\)</span>. In two dimension the level sets are themselves curves, but in higher dimension spaces these level sets become surfaces, and hypersurfaces. You should think that the condition <span class="math inline">\(f(\underline{x})=k\)</span> is a single constraint on a <span class="math inline">\(n\)</span>-dimensional space, so the points which satisfy this constraint for an <span class="math inline">\((n-1)\)</span>-dimensional hypersurface.</figcaption>
+</figure>
+</div>
+<p>So on this <span class="math inline">\(C\)</span>, <span class="math inline">\(f(\underline{x}(t)) = k\)</span> and <span class="math display">\[\label{eq:gradientnormaltolevelset}
+	\begin{align}
+		0 &amp;= \frac{d f}{d t} \;=\; \frac{d \underline{x}}{d t} \:.\; \underline{\nabla\mkern-2mu}\mkern 3mu f \\
+		\Rightarrow \quad &amp; \frac{d \underline{x}}{d t} \bot \underline{\nabla\mkern-2mu}\mkern 3mu f,
+	\end{align}\]</span> i.e. At all points <span class="math inline">\(p\)</span> in a level set of <span class="math inline">\(f\)</span>, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> is orthogonal to any curve through <span class="math inline">\(p\)</span> contained in the level set.</p>
+<p>In <span class="math inline">\(\mathbb{R}^3\)</span>, the <u>plane</u> through <span class="math inline">\(P\)</span> orthogonal to <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> is called the <u>tangent plane</u> to <span class="math inline">\(S\)</span> at <span class="math inline">\(P\)</span>. The tangent to any curve in <span class="math inline">\(S\)</span> through <span class="math inline">\(P\)</span> lies in this plane. In Calculus I you already used this to find the equation of the tangent plane to a surface at a point.</p>
+</section>
+<section id="some-properties-of-the-gradient" class="level2" data-number="1.3">
+<h2 data-number="2.3"><span class="header-section-number">2.3</span> Some properties of the gradient</h2>
+<p>If <span class="math inline">\(f,g:\mathbb{R}^n\to\mathbb{R}\)</span> are scalar fields, <span class="math inline">\(\phi\)</span> is a function <span class="math inline">\(\phi: \mathbb{R}\to \mathbb{R}\)</span>, and <span class="math inline">\(a\)</span> &amp; <span class="math inline">\(b\)</span> are constants then, <span class="math display">\[\begin{aligned}
+		(i)&amp;\quad \underline{\nabla\mkern-2mu}\mkern 3mu (af+bg) \;\;=\;\; a\underline{\nabla\mkern-2mu}\mkern 3mu f + b \underline{\nabla\mkern-2mu}\mkern 3mu g   \\
+		(ii)&amp;\quad \underline{\nabla\mkern-2mu}\mkern 3mu (fg) \;\;=\;\; (\underline{\nabla\mkern-2mu}\mkern 3mu f) g + f(\underline{\nabla\mkern-2mu}\mkern 3mu g) \\
+		(iii)&amp;\quad \underline{\nabla\mkern-2mu}\mkern 3mu \phi(f) \;\;=\;\; (\underline{\nabla\mkern-2mu}\mkern 3mu f) \frac{d \phi}{d f}.
+	\end{aligned}\]</span> Note that as always with differential operators, the brackets are very important here. This is because <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu fg\)</span> means <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu (fg)\)</span>, since derivatives (<span class="math inline">\(\frac{\partial}{\partial x}\)</span> etc.) act on everything to the right.</p>
+<div id="eg:propertiesofgrad" class="example">
+<p> Let <span class="math inline">\(n=2\)</span> and <span class="math inline">\(\underline{x}= x\underline{e}_1 + y\underline{e}_2\)</span>. If we now take <span class="math inline">\(\phi(f) = f^2\)</span> and <span class="math inline">\(f(x,y) = x \sin y\)</span>,</p>
+<p>If we now take <span class="math display">\[\begin{aligned}
+			\phi(f(x,y)) &amp;= x^2 \sin^2 y  \\
+			\Rightarrow \quad \underline{\nabla\mkern-2mu}\mkern 3mu \phi(f) &amp;= \underline{\nabla\mkern-2mu}\mkern 3mu (x^2 \sin^2 y) \\
+			&amp;= 2x\sin^2 y \; \underline{e}_1 + 2x^2\cos y \sin y \; \underline{e}_2,
+		\end{aligned}\]</span> by direct calculation. Or: <span class="math display">\[\begin{aligned}
+			\underline{\nabla\mkern-2mu}\mkern 3mu f &amp;= \sin y \; \underline{e}_1 + x \cos y \; \underline{e}_2  \\
+			\Rightarrow \quad \frac{d \phi}{d f} &amp;= 2f    \\
+			\Rightarrow \quad (\underline{\nabla\mkern-2mu}\mkern 3mu f) \frac{d \phi}{d f} &amp;=  (\sin y \; \underline{e}_1 + x \cos y \; \underline{e}_2) 2 x \sin y  \\
+			\Rightarrow \quad \underline{\nabla\mkern-2mu}\mkern 3mu \phi(f) &amp;= 2x\sin^2 y \; \underline{e}_1 + 2x^2\cos y \sin y \; \underline{e}_2,
+		\end{aligned}\]</span> which shows that property iii holds in this case.</p>
+</div>
+<p>If we now let <span class="math inline">\(\underline{x}= x_1\underline{e}_1 + \ldots + x_n\underline{e}_n\)</span>, then these properties can be shown to hold in the general case as follows: <span class="math display">\[\begin{aligned}
+		(i)\quad \underline{\nabla\mkern-2mu}\mkern 3mu (af + bg) &amp;= \underline{e}_1\frac{\partial}{\partial x_1}(af+bg) + \ldots + \underline{e}_n\frac{\partial}{\partial x_n}(af+bg) \\
+		  &amp;= \underline{e}_1\left(a\frac{\partial f}{\partial x_1} + b\frac{\partial g}{\partial x_1}\right) + \ldots + \underline{e}_n \left(a \frac{\partial f}{\partial x_n} + b \frac{\partial g}{\partial x_n}\right) \\
+		  &amp;= a\left(\underline{e}_1\frac{\partial f}{\partial x_1} + \ldots + \underline{e}_n \frac{\partial f}{\partial y}\right) + b\left( \underline{e}_1 \frac{\partial g}{\partial x_1} + \underline{e}_2 \frac{\partial g}{\partial x_n}\right) \\
+		  &amp;= a\underline{\nabla\mkern-2mu}\mkern 3mu f + b\underline{\nabla\mkern-2mu}\mkern 3mu g.
+	\\\\
+		(ii)\quad \underline{\nabla\mkern-2mu}\mkern 3mu (fg) &amp;= \underline{e}_1\frac{\partial}{\partial x_1}(fg) + \ldots + \underline{e}_n\frac{\partial}{\partial x_n}(fg)  \\
+		 &amp;= \underline{e}_1 \left( \left(\frac{\partial f}{\partial x_1} \right)g +  f\frac{\partial g}{\partial x_1} \right)   + \ldots +  \underline{e}_n  \left( \left(\frac{\partial f}{\partial x_n} \right)g + f\frac{\partial g}{\partial x_n} \right)  \\
+		 &amp;=  \left(\underline{e}_1\frac{\partial f}{\partial x_1} + \ldots + \underline{e}_n\frac{\partial f}{\partial x_n} \right)g + f \left(\underline{e}_1\frac{\partial g}{\partial x_1} + \ldots + \underline{e}_n\frac{\partial g}{\partial x_n} \right)\\
+		 &amp;= (\underline{\nabla\mkern-2mu}\mkern 3mu f)g + f\underline{\nabla\mkern-2mu}\mkern 3mu g.
+	\\\\
+		(iii)\quad\underline{\nabla\mkern-2mu}\mkern 3mu \phi &amp;= \underline{e}_1 \frac{\partial \phi}{\partial x_1} + \dots + \underline{e}_n \frac{\partial \phi}{\partial x_n} \\
+			&amp;= \underline{e}_1 \frac{\partial f}{\partial x_1}\frac{d \phi}{d f} + \dots + \underline{e}_n \frac{\partial f}{\partial x_n}\frac{d \phi}{d f} \\
+			&amp;= (\underline{\nabla\mkern-2mu}\mkern 3mu f) \frac{d \phi}{d f}.
+	\end{aligned}\]</span></p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+
+	var counterOffset = '01';
+	console.log(counterOffset);
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = levelCount+(".0".repeat(numberWithin-levelSpec));
+				levelCount = String(parseInt(levelCount)+parseInt(counterOffset));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Figs/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

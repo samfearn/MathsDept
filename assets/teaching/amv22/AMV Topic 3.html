@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Analysis in Many Variables II – Lecture Notes Michaelmas 2022</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Analysis in Many Variables II – Lecture Notes Michaelmas 2022</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#underlinenablamkern-2mumkern-3mu-acting-on-vector-fields"><span class="toc-section-number">3</span> <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> acting on vector fields</a>
+<ul>
+<li><a href="#sub:divergence"><span class="toc-section-number">3.1</span> Divergence (div)</a></li>
+<li><a href="#curl"><span class="toc-section-number">3.2</span> Curl</a></li>
+<li><a href="#sub:applyingdeltwice"><span class="toc-section-number">3.3</span> Applying <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> twice</a></li>
+</ul></li>
+</ul>
+</nav>
+<p> </p>
+<section id="underlinenablamkern-2mumkern-3mu-acting-on-vector-fields" class="level1" data-number="1">
+<h1 data-number="3"><span class="header-section-number">3</span> <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> acting on vector fields</h1>
+<p>So far we’ve introduced scalar fields and vector fields, and seen how the differential operator <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> can act on a scalar field <span class="math inline">\(f(\underline{x}):\mathbb{R}^n \to \mathbb{R}\)</span> to give a vector field known as the gradient of the scalar field, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span>. We also saw that the gradient tells us the direction in which the scalar field increases fastest. As the title of this section suggests, we’re now going to see how we can define an action of <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> on vector fields <span class="math inline">\(\underline{v}(\underline{x}): \mathbb{R}^n \to \mathbb{R}^n\)</span>, and what these quantities can tell us about the original vector field.</p>
+<section id="sub:divergence" class="level2" data-number="1.1">
+<h2 data-number="3.1"><span class="header-section-number">3.1</span> Divergence (div)</h2>
+<p>Since <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> is a vector operator, and vector fields assign a vector <span class="math inline">\(\underline{v}(\underline{x})\)</span> for each point <span class="math inline">\(\underline{x}\in \mathbb{R}^n\)</span>, we can take the dot product between <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> and <span class="math inline">\(\underline{v}(\underline{x})\)</span>. This quantity <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}\)</span> is the known as the <em>divergence</em> of <span class="math inline">\(\underline{v}\)</span>, and is also written as div <span class="math inline">\(\underline{v}\)</span>.</p>
+<p>In the standard <u>cartesian</u> basis for <span class="math inline">\(\mathbb{R}^n\)</span> <span class="math display">\[\begin{aligned}
+		\underline{v}(\underline{x}) &amp;= \underline{e}_1 v_1(\underline{x}) + \underline{e}_2v_2(\underline{x}) + \dots + \underline{e}_n v_n(\underline{x}) \\
+		\Rightarrow \quad \quad\underline{\nabla\mkern-2mu}\mkern 3mu . \underline{v}\;\equiv\;  {\rm div}\:\underline{v}&amp;\equiv (\underline{e}_1 \frac{\partial}{\partial x_1} + \dots + \underline{e}_n \frac{\partial}{\partial x_n}) \: . \: (\underline{e}_1 v_1(\underline{x}) + \dots + \underline{e}_n v_n(\underline{x}) ) \\
+		&amp;= \frac{\partial v_1}{\partial x_1} + \frac{\partial v_2}{\partial x_2} + \dots + \frac{\partial v_n}{\partial x_n} \\
+		&amp;= \sum_{i=1}^n \frac{\partial v_i}{\partial x_i} \quad \quad\text{(index notation)} \\
+		&amp;= \frac{\partial v_i}{\partial x_i}, \quad \quad\text{(Einstein Summation Convention)}
+	\end{aligned}\]</span> since the <span class="math inline">\(\underline{e}_a\)</span> are <u>orthonormal</u> and <u>constant</u>.</p>
+<p><u>Beware!</u> In other coordinate systems the basis vectors <span class="math inline">\(\underline{e}_a\)</span> might vary with <span class="math inline">\(\underline{x}\)</span> and hence the formula needs more care. We may return to the divergence in other coordinate systems later in the term, depending on time.</p>
+<p><u>Note</u>: <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu . \underline{v}(\underline{x})\)</span> is a <u>scalar</u> field, as can be seen in the following example.</p>
+<div id="eg:divisscalar" class="example">
+<p> <span class="math display">\[\begin{aligned}
+			\underline{v}(\underline{x}) &amp;= (v_1(\underline{x}),v_2(\underline{x}),v_3(\underline{x})) \;=\; (x^2, y^2, z^2) \\
+			\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}&amp;= \frac{\partial x^2}{\partial x} + \frac{\partial y^2}{\partial y} + \frac{\partial z^2}{\partial z} \\
+			&amp;= 2(x+y+z),
+		\end{aligned}\]</span> a <u>number</u> for each point <span class="math inline">\(\underline{x}=(x,y,z)\)</span> <u>not</u> a vector.</p>
+</div>
+<p>Although we treat <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> like a vector, note that it is a vector <u>differential operator</u>, and therefore is not actually a vector in <span class="math inline">\(\mathbb{R}^n\)</span> like <span class="math inline">\(\underline{x}\)</span> is. Therefore although the inner product on <span class="math inline">\(\mathbb{R}^n\)</span> is symmetric, note that <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu . \underline{v}\; \ne \; \underline{v}. \underline{\nabla\mkern-2mu}\mkern 3mu ,\]</span> as the left-hand side of this is a scalar field, whereas the right-hand side is the (scalar) differential operator <span class="math display">\[\left(x^2 \frac{\partial}{\partial x} + y^2\frac{\partial}{\partial y} + z^2\frac{\partial}{\partial z} \right)\]</span> acting on scalar fields.</p>
+<p>To get an intuition of what the divergence tells us about our vector field, we should think of our vector field as if it were a fluid, where the direction of a vector at a point tells us the direction of fluid flow at that point, and the magnitude of the vector tells us how fast the fluid is flowing at the point. The divergence of the vector field at a point then tells us whether the point is acting like a <em>source</em> (corresponding to positive divergence) or a <em>sink</em> (negative divergence) for the fluid. That is, whether more of the ‘fluid’ is entering than the point than is leaving. This is shown for a vector field <span class="math inline">\(\underline{v}\)</span> in Figure <a href="#fig:divergence" data-reference-type="ref" data-reference="fig:divergence">3</a>, where the divergence at the origin is positive, negative and zero respectively.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="positivedivergence.png" title="fig:" id="fig:divergence"  alt="The divergence of a vector field at a point tells us whether the point acts like a source or a sink for the vector field, if we think of the vector field as describing the flow of a fluid." />  </td>
+<td style="text-align: center;">  <img src="negativedivergence.png" title="fig:" id="fig:divergence"  alt="The divergence of a vector field at a point tells us whether the point acts like a source or a sink for the vector field, if we think of the vector field as describing the flow of a fluid." />  </td>
+<td style="text-align: center;">  <img src="zerodivergence.png" title="fig:" id="fig:divergence"  alt="The divergence of a vector field at a point tells us whether the point acts like a source or a sink for the vector field, if we think of the vector field as describing the flow of a fluid." /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}&gt;0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}&lt;0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}=0\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="properties-of-div" class="level2 unnumbered">
+<h2 class="unnumbered">Properties of div:</h2>
+<p>Let <span class="math inline">\(a,b\)</span> be constants, <span class="math inline">\(f,g\)</span> be scalar fields and <span class="math inline">\(\underline{v},\underline{w}\)</span> vector fields, all in <span class="math inline">\(\mathbb{R}^n\)</span>. Then <span class="math display">\[\begin{aligned}
+		(i)&amp; \underline{\nabla\mkern-2mu}\mkern 3mu .(a\underline{v}+ b\underline{w}) \;=\; a \underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}+ b \underline{\nabla\mkern-2mu}\mkern 3mu .\underline{w}\\
+		(ii)&amp; \underline{\nabla\mkern-2mu}\mkern 3mu .(f\underline{v}) \;=\; (\underline{\nabla\mkern-2mu}\mkern 3mu f).\underline{v}+ f \underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}
+	\end{aligned}\]</span></p>
+<p><u>Proof:</u> (i) This follows from linearity of the partial derivative: <span class="math display">\[\begin{aligned}
+		\underline{\nabla\mkern-2mu}\mkern 3mu . (a\underline{v}+ b\underline{w}) &amp;= \frac{\partial (av_1 + bw_1)}{\partial x_1} + \dots + \frac{\partial (av_n + bw_n)}{\partial x_n} \\
+		&amp;= a\frac{\partial v_1}{\partial x_1} + b\frac{\partial w_1}{\partial x_1} + \dots + a\frac{\partial v_n}{\partial x_n} + b\frac{\partial w_n}{\partial x_n} \\
+		&amp;=  a \left( \frac{\partial v_1}{\partial x_1} + \dots + \frac{\partial v_n}{\partial x_n} \right) + b \left( \frac{\partial w_1}{\partial x_1} + \dots + \frac{\partial w_n}{\partial x_n} \right) \\
+		&amp;= a\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}+ b \underline{\nabla\mkern-2mu}\mkern 3mu .\underline{w}.
+	\end{aligned}\]</span> (ii) First note that <span class="math inline">\(f\underline{v}\)</span> is a vector field with components <span class="math inline">\((fv_1,fv_2, fv_3, \dots, fv_n)\)</span>, so <span class="math display">\[\begin{aligned}
+		\underline{\nabla\mkern-2mu}\mkern 3mu . (f\underline{v}) &amp;= \frac{\partial fv_1}{\partial x_1}+\dots + \frac{\partial fv_n}{\partial x_n} \\
+		&amp;= \frac{\partial f}{\partial x_1}v_1 + f\frac{\partial v_1}{\partial x_1} + \dots +  \frac{\partial f}{\partial x_n}v_n + f\frac{\partial v_n}{\partial x_n} \\
+		&amp;=  \frac{\partial f}{\partial x_1}v_1 + \dots +  \frac{\partial f}{\partial x_n}v_n \;+\; f\frac{\partial v_1}{\partial x_1} + \dots + f\frac{\partial v_n}{\partial x_n} \\
+		&amp;= (\underline{\nabla\mkern-2mu}\mkern 3mu f).\underline{v}\:+\: f(\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{v}).
+	\end{aligned}\]</span> Once we finish section 4, we’ll be able to derive this more effectively by using index notation.</p>
+<div id="eg:divergenceproperty" class="example">
+<p> Suppose <span class="math display">\[\begin{aligned}
+			f(\underline{x}) &amp;= \underline{a}.\underline{x}\\
+			\underline{v}(\underline{x})&amp;= \underline{a}\quad \quad\text{a constant} \\
+			\Rightarrow\quad \quad f\underline{v}&amp;= (\underline{a}.\underline{x}) \underline{a}\\
+			&amp;= (a_1x+a_2y+a_3 z)(a_1\underline{e}_1 + a_2\underline{e}_2 + a_3\underline{e}_3) \\
+			\Rightarrow\quad \underline{\nabla\mkern-2mu}\mkern 3mu .((\underline{a}.\underline{x}) \underline{a}) &amp;= \frac{\partial}{\partial x}(a_1(a_1x+a_2y+a_3z)) \\
+			&amp; +\frac{\partial}{\partial y}(a_2(a_1x+a_2y+a_3z)) \\
+			&amp; +\frac{\partial}{\partial z}(a_3(a_1x+a_2y+a_3z)) \\
+			&amp;= a_1^2 + a_2^2 + a_3^2 \;=\; \|\underline{a}\|^2 \quad \quad
+		\end{aligned}\]</span> by direct calculation. Or, using property (ii): <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu .((\underline{a}.\underline{x}) \underline{a}) \;=\; (\underline{\nabla\mkern-2mu}\mkern 3mu \underline{a}.\underline{x}). \underline{a}+ (\underline{a}.\underline{x}) \underline{\nabla\mkern-2mu}\mkern 3mu .\underline{a}.\]</span> But <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu .\underline{a}=0\)</span>, while <span class="math display">\[\begin{aligned}
+		\underline{\nabla\mkern-2mu}\mkern 3mu (\underline{a}.\underline{x}) &amp;= (\underline{e}_1\frac{\partial}{\partial x} + \underline{e}_2\frac{\partial}{\partial y} + \underline{e}_3\frac{\partial}{\partial z} ) (a_1x+a_2y+a_3z) \\
+		&amp;= \underline{e}_1a_1 + \underline{e}_2a_2 + \underline{e}_3 a_3 \;=\; \underline{a}\\
+		\quad \quad\underline{\nabla\mkern-2mu}\mkern 3mu .((\underline{a}.\underline{x}) \underline{a}) &amp;= \underline{a}.\underline{a}\;=\; \|\underline{a}\|^2
+	\end{aligned}\]</span> agreeing with the direct calculation.</p>
+</div>
+</section>
+<section id="curl" class="level2" data-number="1.2">
+<h2 data-number="3.2"><span class="header-section-number">3.2</span> Curl</h2>
+<p>In 3 dimensions, there is a second type of product one can take between vectors, and this is the vector cross product. Recall that we define the vector product of two vectors <span class="math inline">\(\underline{A}\)</span> and <span class="math inline">\(\underline{B}\)</span> as <span class="math display">\[\begin{aligned}
+		\underline{A} \times \underline{B} &amp;= \left| 
+					\begin{array}{ccc}
+					\underline{e}_1 &amp; \underline{e}_2 &amp; \underline{e}_3 \\
+					A_1 &amp; A_2 &amp; A_3 \\
+					B_1 &amp; B_2 &amp; B_3 \\
+					\end{array}
+					\right|  \\
+					&amp;= \underline{e}_1 (A_2 B_3 -A_3 B_2) + \underline{e}_2 (A_3B_1-A_1B_3) + \underline{e}_3 (A_1B_2 - A_2 B_1).
+	\end{aligned}\]</span></p>
+<p>Then, for a vector field <span class="math inline">\(\underline{v}(\underline{x})\)</span> in 3 dimensions, define the <u>curl</u> of <span class="math inline">\(\underline{v}\)</span> as <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu \times \underline{v}(\underline{x}) \;\equiv\; {\rm curl}\: \underline{v}\:\equiv\; 
+				\left| 
+				\begin{array}{ccc}
+				\underline{e}_1 &amp; \underline{e}_2 &amp; \underline{e}_3 \\
+				\frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp; \frac{\partial}{\partial z} \\
+				v_1 &amp; v_2 &amp; v_3 \\
+				\end{array}
+				\right|,\]</span> where we have to expand this <em>always making sure that the derivatives <span class="math inline">\(\frac{\partial}{\partial x_i}\)</span> are on the left of the <span class="math inline">\(v_i\)</span></em>. So therefore we have <span class="math display">\[\begin{aligned}
+		\underline{\nabla\mkern-2mu}\mkern 3mu \times \underline{v}(\underline{x}) &amp;=
+					\left| 
+					\begin{array}{ccc}
+					\underline{e}_1 &amp; \underline{e}_2 &amp; \underline{e}_3 \\
+					\frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp; \frac{\partial}{\partial z} \\
+					v_1 &amp; v_2 &amp; v_3 \\
+					\end{array}
+					\right|
+			&amp;=  \underline{e}_1 (\frac{\partial v_3}{\partial y} - \frac{\partial v_2}{\partial z}) + \underline{e}_2 (\frac{\partial v_1}{\partial z}-\frac{\partial v_3}{\partial x}) + \underline{e}_3 (\frac{\partial v_2}{\partial x} - \frac{\partial v_1}{\partial y}).
+	\end{aligned}\]</span> Note that the curl of a vector field is therefore a <em>new</em> <u>vector</u> field.</p>
+<div id="eg:curl" class="example">
+<p> if <span class="math inline">\(\underline{v}: \mathbb{R}^3 \to \mathbb{R}^3\)</span> is a vector field, and can be expressed in terms of its components as <span class="math inline">\(\underline{v}= (x^2z,xyz,x)\)</span>, then <span class="math display">\[\begin{aligned}
+			\text{curl } \underline{v}&amp;= \underline{\nabla\mkern-2mu}\mkern 3mu \times \underline{v}\;=\; 
+						\left| 
+						\begin{array}{ccc}
+						\underline{e}_1 &amp; \underline{e}_2 &amp; \underline{e}_3 \\
+						\frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp; \frac{\partial}{\partial z} \\
+						x^2z &amp; xyz &amp; x \\
+						\end{array}
+						\right|  \\
+			&amp;= \underline{e}_1 (\frac{\partial x}{\partial y} - \frac{\partial xyz}{\partial z}) + \underline{e}_2 (\frac{\partial x^2z}{\partial z}-\frac{\partial x}{\partial x}) + \underline{e}_3 (\frac{\partial xyz}{\partial x} - \frac{\partial x^2z}{\partial y}) \\
+			&amp;= -xy \underline{e}_1 + (x^2-1) \underline{e}_2 + yz \underline{e}_3
+		\end{aligned}\]</span></p>
+</div>
+<p>Note that since <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times \underline{v}\)</span> is a vector field, we can calculate its divergence. In the case of <span class="math inline">\(\underline{v}\)</span> being the vector field from Example <a href="#eg:curl" data-reference-type="ref" data-reference="eg:curl">[eg:curl]</a>, <span class="math display">\[\begin{aligned}
+		\underline{\nabla\mkern-2mu}\mkern 3mu .(\underline{\nabla\mkern-2mu}\mkern 3mu \times \underline{v}) &amp;= \frac{\partial}{\partial x}(-xy) + \frac{\partial}{\partial y} (x^2-1) + \frac{\partial}{\partial z}(yz) \\
+			&amp;= -y +0 +y \;=\; 0.
+	\end{aligned}\]</span> In turns out that this is <u>always</u> true so long as <span class="math inline">\(\underline{v}\)</span> has components with continuous second partial derivatives. We’ll come back to this in subsection <a href="#sub:applyingdeltwice" data-reference-type="ref" data-reference="sub:applyingdeltwice">1.3</a>.</p>
+<p>The curl of a vector field <span class="math inline">\(\underline{v}\)</span>, tells us how much <span class="math inline">\(\underline{v}\)</span> is ‘curling around’ at a point. If we imagine our vector field <span class="math inline">\(\underline{v}\)</span> as a fluid, like when we thought about the meaning of the divergence (see subsection <a href="#sub:divergence" data-reference-type="ref" data-reference="sub:divergence">1.1</a>), the magnitude of the curl then tells us about the rotational speed of the fluid, and the direction of the curl then tells us which axis the fluid is rotating around. This axis is determined using the so-called ‘right-hand rule’: If you curl the fingers of your right hand, such that your fingers represent the rotation of the fluid, then your thumb points in the direction of the curl vector.</p>
+<div id="eg:simplecurl" class="example">
+<p> Consider the vector field <span class="math inline">\(\underline{v}\)</span> with components <span class="math inline">\(\underline{v}=(-y,x,0)\)</span>. To imagine this vector field, realise that it is independent of <span class="math inline">\(z\)</span>, and so you can imagine the vector field in the <span class="math inline">\(z=0\)</span> plane, and the vector field in any other plane of <span class="math inline">\(z\)</span> is then just a translation of the vector field at <span class="math inline">\(z=0\)</span>. This <span class="math inline">\(z=0\)</span> plane is shown in Figure <a href="#fig:simplecurl" data-reference-type="ref" data-reference="fig:simplecurl">4</a></p>
+<div class="center">
+<figure>
+<img src="simplevectorfieldexample2.png" id="fig:simplecurl" style="width:60.0%" alt="" /><figcaption>The plane <span class="math inline">\(z=0\)</span> of the vector field <span class="math inline">\(\underline{v}=(-y,x,0)\)</span>, where the horizontal axis of the image is the <span class="math inline">\(x\)</span>-axis, and the vertical axis is the <span class="math inline">\(y\)</span>-axis. You should imagine the <span class="math inline">\(z\)</span>-axis as coming straight out of the page.</figcaption>
+</figure>
+</div>
+<p>The curl of this vector field can then easily be checked to be <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu \times \underline{v}= (0,0,2),\]</span> so is a vector field of constant magnitude pointing in the positive <span class="math inline">\(z\)</span> direction, as one would expect using the right-hand rule.</p>
+</div>
+</section>
+<section id="sub:properties_of_curl" class="level2 unnumbered">
+<h2 class="unnumbered">Properties of curl:</h2>
+<p>Let <span class="math inline">\(a,b\)</span> be constants, <span class="math inline">\(\underline{v},\underline{w}\)</span> be vector fields, and <span class="math inline">\(f\)</span> be a scalar field, all in <span class="math inline">\(\mathbb{R}^3\)</span>. Then: <span class="math display">\[\begin{aligned}
+		(i)&amp; \underline{\nabla\mkern-2mu}\mkern 3mu \times(a\underline{u}+b\underline{v}) \;=\; a\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{u}+b \underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v}\\
+		(ii)&amp; \underline{\nabla\mkern-2mu}\mkern 3mu \times(f\underline{v}) \;=\; (\underline{\nabla\mkern-2mu}\mkern 3mu f)\times \underline{v}+ f\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v}
+	\end{aligned}\]</span></p>
+<p><u>Proof:</u></p>
+<p>(i) follows from linearity of derivatives, as before.</p>
+<p>Lets check (ii): <span class="math display">\[\begin{aligned}
+		\underline{\nabla\mkern-2mu}\mkern 3mu \times(f\underline{v}) =&amp; \underline{e}_1 \left[ \frac{\partial}{\partial y}(fv_3) - \frac{\partial}{\partial z}(fv_2) \right] + \underline{e}_2 \left[ \frac{\partial}{\partial z}(fv_1) - \frac{\partial}{\partial x}(fv_3) \right] \\ 
+				&amp;+ \underline{e}_3 \left[ \frac{\partial}{\partial x}(fv_2) - \frac{\partial}{\partial y}(fv_1) \right] \\
+			=&amp;\ \underline{e}_1\left[   \left( \frac{\partial f}{\partial y} \right) v_3 + f\frac{\partial v_3}{\partial y} - \left( \frac{\partial f}{\partial z} \right) v_2 - f\frac{\partial v_2}{\partial z}   \right]
+				+ \left[  \dots  \right] + \left[  \dots  \right]   \\
+			=&amp;\ \underline{e}_1 \left[  \left( \frac{\partial f}{\partial y} \right) v_3 - \left( \frac{\partial f}{\partial z} \right) v_2  \right] \;+\; \underline{e}_1 f \left[   \frac{\partial v_3}{\partial y} - \frac{\partial v_2}{\partial z}  \right] + \dots + \dots \\
+			=&amp;\ \underline{\nabla\mkern-2mu}\mkern 3mu f \times \underline{v}\:+\: f\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v}
+	\end{aligned}\]</span></p>
+<p>This is tedious. Once we develop our index notation in section 4 we will be able to do this in a slicker way.</p>
+</section>
+<section id="sub:applyingdeltwice" class="level2" data-number="1.3">
+<h2 data-number="3.3"><span class="header-section-number">3.3</span> Applying <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu\)</span> twice</h2>
+<p>If <span class="math inline">\(f: \mathbb{R}^n\to \mathbb{R}\)</span> is a scalar field then <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> is a vector field and we can take its divergence. This is <span class="math display">\[\begin{aligned}
+		\underline{\nabla\mkern-2mu}\mkern 3mu .(\underline{\nabla\mkern-2mu}\mkern 3mu f) &amp;= \text{div grad } f \equiv  \nabla^2f \equiv \Delta f  \\
+		&amp;= \left(  \underline{e}_1 \frac{\partial}{\partial x_1} + \dots + \underline{e}_n \frac{\partial}{\partial x_n}  \right) . \left(  \underline{e}_1 \frac{\partial}{\partial x_1} + \dots + \underline{e}_n \frac{\partial}{\partial x_n}  \right)  f \\
+		&amp;= \frac{\partial^2 f}{\partial x_1^2} + \dots + \frac{\partial^2 f}{\partial x_n^2}
+	\end{aligned}\]</span> in <u>cartesian</u> coordinates - note that it will look different in other coordinates if the basis vectors are not constant (as in the case of polar coordinates for example).</p>
+<p><span class="math inline">\(\Delta f \equiv \nabla^2f\)</span> is called the <u>Laplacian</u> of <span class="math inline">\(f\)</span>. Since the Laplacian is the divergence of a vector field, it is a scalar field.</p>
+<p>Note that you actually met the Laplacian in Calculus I, when you considered <em>Linear Partial Differential Equations</em>. In particular, the Laplacian is a differential operator that appears in <em>Laplace’s Equation</em>, the <em>Heat Equation</em> and the <em>Wave Equation</em>. More on this next term.</p>
+<div id="eg:laplacian" class="example">
+<p> For <span class="math inline">\(n=2\)</span>, let <span class="math inline">\(f=log(x^2+y^2) = log(\underline{x}.\underline{x})\)</span>. Then <span class="math display">\[\begin{aligned}
+			\Rightarrow\quad \frac{\partial f}{\partial x} &amp;= \frac{2x}{x^2+y^2}, \quad \frac{\partial^2 f}{\partial x^2} \;=\; \frac{2}{x^2+y^2}-\frac{4x^2}{(x^2+y^2)^2} \;=\; \frac{2(y^2-x^2)}{(x^2+y^2)^2} \\
+			\Rightarrow\quad \frac{\partial f}{\partial y} &amp;= \frac{2y}{x^2+y^2}, \quad \frac{\partial^2 f}{\partial y^2}  \;=\; \frac{2(x^2-y^2)}{(x^2+y^2)^2}  \quad \quad\text{(just swap $x$ and $y$)}\\
+			\Rightarrow\quad \nabla^2f &amp;= \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} \;=\; \frac{2(y^2-x^2)}{(x^2+y^2)^2} + \frac{2(x^2-y^2)}{(x^2+y^2)^2} \\
+				&amp;= 0 \quad \quad\text{if $\underline{x}\ne \underline{0}$}
+		\end{aligned}\]</span></p>
+</div>
+<div id="eg:laplaciancomplexanalytic" class="example">
+<p> Again, with <span class="math inline">\(n=2\)</span> let <span class="math inline">\(f=x^3-3xy^2\)</span>. Then <span class="math display">\[\begin{aligned}
+			\frac{\partial^2 f}{\partial x^2} &amp;= \frac{\partial}{\partial x}(3x^2-3y^2) \;=\; 6x \\
+			\frac{\partial^2 f}{\partial y^2} &amp;= \frac{\partial}{\partial y}(-6xy) \;=\; -6x \\
+			\Rightarrow\quad \nabla^2f &amp;= 0
+		\end{aligned}\]</span> <u>Notice</u>: If we let <span class="math inline">\(z=x+iy\)</span>, then <span class="math inline">\(f= {\rm Re}[(x+iy)^3] = \text{Re}[z^3]\)</span>. If you study Complex Analysis II, you will see that this is a differentiable complex function. As such, the real and imaginary parts of the function satisfy the Cauchy-Riemann equations. One can show (exercise) that in this case the Laplacian of both the real and imaginary parts of the function have Laplacian equal to 0.</p>
+</div>
+<p>For <span class="math inline">\(n=3\)</span> (i.e. in <span class="math inline">\(\mathbb{R}^3\)</span>) there are a couple of other natural combinations. Firstly, since the gradient of a scalar field is a vector field, we can take its curl: <span class="math display">\[\begin{aligned}
+		\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{\nabla\mkern-2mu}\mkern 3mu f &amp;= \left| 
+					\begin{array}{ccc}
+					\underline{e}_1 &amp; \underline{e}_2 &amp; \underline{e}_3 \\
+					\frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp; \frac{\partial}{\partial z} \\
+					\frac{\partial f}{\partial x} &amp; \frac{\partial f}{\partial y} &amp; \frac{\partial f}{\partial z} \\
+					\end{array}
+					\right| \\
+				&amp;= 	\underline{e}_1 (\frac{\partial}{\partial y}\frac{\partial f}{\partial z} - \frac{\partial}{\partial z}\frac{\partial f}{\partial y}) + \underline{e}_2 (\frac{\partial}{\partial z}\frac{\partial f}{\partial x} - \frac{\partial}{\partial x}\frac{\partial f}{\partial z}) + \underline{e}_3 (\frac{\partial}{\partial x}\frac{\partial f}{\partial y} - \frac{\partial}{\partial y}\frac{\partial f}{\partial x}) \nonumber\\
+				&amp;= \underline{0},
+	\end{aligned}\]</span> assuming the 2nd partial derivatives of <span class="math inline">\(f\)</span> are continuous (so we can equate <span class="math inline">\(\frac{\partial^2 f}{\partial y \partial z} = \frac{\partial^2 f}{\partial z \partial y}\)</span> etc.). Also in <span class="math inline">\(\mathbb{R}^3\)</span>, we can find the divergence of a curl. We did this once follow example <a href="#eg:curl" data-reference-type="ref" data-reference="eg:curl">[eg:curl]</a>, but in general <span class="math display">\[\begin{aligned}
+		\underline{\nabla\mkern-2mu}\mkern 3mu .(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{v}) &amp;= \underline{\nabla\mkern-2mu}\mkern 3mu . \left| 
+					\begin{array}{ccc}
+					\underline{e}_1 &amp; \underline{e}_2 &amp; \underline{e}_3 \\
+					\frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp; \frac{\partial}{\partial z} \\
+					v_1 &amp; v_2 &amp; v_3 \\
+					\end{array}
+					\right|  \\
+				&amp;=  \frac{\partial}{\partial x} (\frac{\partial v_3}{\partial y} - \frac{\partial v_2}{\partial z}) + \frac{\partial}{\partial y} (\frac{\partial v_1}{\partial z}-\frac{\partial v_3}{\partial x}) + \frac{\partial}{\partial z} (\frac{\partial v_2}{\partial x} - \frac{\partial v_1}{\partial y}) \\
+				&amp;= \underline{0},
+	\end{aligned}\]</span> again, assuming the 2nd partial derivatives of <span class="math inline">\(f\)</span> are continuous. Later we will redo these cases in a more elegant way using index notation.</p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+
+	var counterOffset = '02';
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = levelCount+(".0".repeat(numberWithin-levelSpec));
+				levelCount = String(parseInt(levelCount)+parseInt(counterOffset));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Figs/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

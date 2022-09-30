@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Analysis in Many Variables II – Lecture Notes Michaelmas 2022</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Analysis in Many Variables II – Lecture Notes Michaelmas 2022</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#sec:mappsbetweenrealvectorspaces"><span class="toc-section-number">1</span> Maps between real vector spaces</a>
+<ul>
+<li><a href="#sub:generalnotation"><span class="toc-section-number">1.1</span> General notation</a></li>
+<li><a href="#sub:scalar_fields_vector_fields_and_curves"><span class="toc-section-number">1.2</span> Scalar fields, vector fields and curves</a></li>
+<li><a href="#sub:partial_derivatives_and_the_chain_rule"><span class="toc-section-number">1.3</span> Partial derivatives and the chain rule</a></li>
+</ul></li>
+</ul>
+</nav>
+<p> </p>
+<section id="sec:mappsbetweenrealvectorspaces" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Maps between real vector spaces</h1>
+<section id="sub:generalnotation" class="level2" data-number="1.1">
+<h2 data-number="1.1"><span class="header-section-number">1.1</span> General notation</h2>
+<ul>
+<li><p><span class="math inline">\(\mathbb{R}\)</span>: the set of real numbers, which we think of as points on a line.</p></li>
+<li><p><span class="math inline">\(\mathbb{R}^n\)</span>: the set of ordered <span class="math inline">\(n\)</span>-tuples <span class="math inline">\((x_1,x_2,\dots,x_n)\)</span> where each <span class="math inline">\(x_i\)</span> is real (<span class="math inline">\(x_i \in \mathbb{R}\)</span>). Such an n-tuple can be thought of as the cartesian coordinates of a point in <span class="math inline">\(n\)</span>-dimensional space. <span class="math inline">\(\mathbb{R}^n\)</span> is a real vector space (see Linear Algebra I for the full set of axioms of a real vector space), and so we refer to elements of <span class="math inline">\(\mathbb{R}^n\)</span> as <span class="math inline">\(n\)</span>-dimensional vectors. You may be used to using column vector notation for such vectors, but here we will use row vector notation.</p></li>
+<li><p>Recall that the standard basis vector <span class="math inline">\(e_i\)</span> is defined as the vector with a 1 in the <span class="math inline">\(i\)</span><sup>th</sup> position, and a 0 in all other positions, e.g. <span class="math inline">\(x_2 = (0,1,0,\ldots,0)\)</span>.</p>
+<p>The standard basis vectors <span class="math inline">\(\underline{e}_i\)</span> are othonormal (orthogonal, and normalised to have length 1) with respect to the scalar (dot) product on ^n: <span class="math display">\[\begin{equation} \label{eq:orthonormalstandardbasis}
+	\underline{e}_i . \underline{e}_j \;=\; \left\{  \begin{array}{lc}
+						1, \quad &amp; i=j \\
+						0, \quad &amp; i\ne j 
+						\end{array}
+				\right\} \;\equiv \; \delta_{ij}. \end{equation}\]</span> <span class="math inline">\(\delta_{ij}\)</span> as just defined is called the Kronecker delta, and we will revisit this in our later section on index notation.</p></li>
+<li><p>In terms of the standard basis of <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math inline">\(\{e_1,e_2,\ldots,e_n\}\)</span>, the position vector of a point in <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math inline">\(\underline{x}\)</span> can be written as <span class="math display">\[\begin{equation} \label{eq:standardbasisexpansion}
+	\underline{x} \;=\; x_1\underline{e}_1 + x_2 \underline{e}_2 + \dots + x_n \underline{e}_n \;=\; \sum_{i=1}^n x_i \underline{e}_i \;=\; x_i \underline{e}_i. \end{equation}\]</span></p></li>
+<li><p>Note: Index notation (as in the final expression in <span class="math inline">\(\eqref{eq:standardbasisexpansion}\)</span>, <span class="math inline">\(x_i \underline{e}_i\)</span>) is a very important convention: when we see an index (like <span class="math inline">\(i\)</span>) repeated, we will assume that it is to be summed over from 1 to <span class="math inline">\(n\)</span> and leave off the “<span class="math inline">\(\sum_{i=1}^n\)</span>". This convention is known as the <strong>Einstein Summation Convention</strong> (ESC). Index notation is sufficiently important in vector calculus that we will have a whole section on it later in the course.</p></li>
+<li><p>For low values of <span class="math inline">\(n\)</span>, we will often write <span class="math inline">\(x_1, x_2,\dots\)</span> as <span class="math inline">\(x,y,\dots\)</span> <span class="math display">\[\begin{array}{lcl}
+	{\rm e.g.} &amp; n=2: &amp; \underline{x}\;=\; x\underline{e}_1 + y \underline{e}_2 \\
+	  &amp; n=3: &amp; \underline{x}\;=\; x\underline{e}_1 + y \underline{e}_2 + z\underline{e}_3.
+	\end{array}\]</span></p></li>
+<li><p>Important: <strong>Don’t forget the vector signs</strong>, i.e. <span class="math inline">\(\underline{x}\ne x\)</span>. <span class="math inline">\(xe_i\)</span> has a quite different meaning to <span class="math inline">\(\underline{x}.e_i\)</span>.</p></li>
+<li><p>Given two vectors <span class="math inline">\(\underline{u},\underline{v} \in \mathbb{R}^n\)</span> <span class="math display">\[\begin{aligned}
+		\underline{u} =&amp; u_1\underline{e}_1 + u_2\underline{e}_2+\dots + u_n\underline{e}_n \;=\; \sum_{i=1}^n u_i \underline{e}_i   \;=\; u_i \underline{e}_i\\
+		\underline{v} =&amp; v_1\underline{e}_1 + v_2\underline{e}_2+\dots + v_n\underline{e}_n \;=\; \sum_{i=1}^n v_i \underline{e}_i  \;=\; v_i \underline{e}_i
+	\end{aligned}\]</span> (note the use of the Einstein summation convention again here), the scalar (dot) product between these vectors is then <span class="math display">\[\underline{u}.\underline{v} \;=\; u_1v_1+u_2v_2+\dots+u_nv_n \;=\; \sum_{i=1}^n u_i v_i   \;=\; u_i v_i.\]</span> This can easily be proved by multiplying out <span class="math inline">\(\underline{u}.\underline{v}\)</span>, and using the fact that the standard basis vectors are orthonormal.</p></li>
+<li><p>The <u>length</u> or <u>magnitude</u> of <span class="math inline">\(\underline{u}\)</span> is found using the dot product between <span class="math inline">\(\underline{u}\)</span> and itself, <span class="math display">\[|\underline{u}| \;=\; \sqrt{\underline{u}.\underline{u}},\]</span> and if <span class="math inline">\(\theta\)</span> is the <u>angle</u> between <span class="math inline">\(\underline{u}\)</span> and <span class="math inline">\(\underline{v}\)</span>, then <span class="math display">\[\underline{u}.\underline{v} \;=\; |\underline{u}|\;|\underline{v}| \cos(\theta).\]</span></p>
+<p><span class="math inline">\(|\underline{x}|\)</span> is sometimes denoted <span class="math inline">\(r\)</span> (note that this is a scalar quantity, and not a vector), since it is the radial coordinate of <span class="math inline">\(\underline{x}\)</span> in spherical polars. Similarly <span class="math inline">\(\underline{x}\)</span> is sometimes denoted <span class="math inline">\(\underline{r}\)</span>.</p></li>
+<li><p>Draw vectors as arrows:</p>
+<div class="center">
+<figure>
+<img src="vectorinr3.jpg" id="fig:vectorinr3" style="width:70.0%" alt="" /><figcaption>The vector <span class="math inline">\(\underline{x}\)</span> illustrated as the position vector of a point in <span class="math inline">\(\mathbb{R}^3\)</span>. The length of <span class="math inline">\(\underline{x}\)</span>, <span class="math inline">\(r\)</span>, is shown, as are the standard basis vectors of <span class="math inline">\(\mathbb{R}^3\)</span>. Using Einstein Summation Convention, we can write <span class="math inline">\(\underline{x}\)</span> in terms of the standard basis as <span class="math inline">\(\underline{x}= x_ie_i\)</span></figcaption>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="sub:scalar_fields_vector_fields_and_curves" class="level2" data-number="1.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> Scalar fields, vector fields and curves</h2>
+<p>Now we can introduce the main objects of study in this course, scalar fields, vector fields and curves. These are all defined as maps from one real vector space to another, that is as maps from <span class="math inline">\(\mathbb{R}^m \to \mathbb{R}^n\)</span>.</p>
+<ul>
+<li><p><strong>Scalar fields</strong> are real-valued functions on <span class="math inline">\(\mathbb{R}^n\)</span>, i.e. maps <span class="math display">\[\label{eq:scalarfielddef}
+	\begin{align}
+		\mathbb{R}^n&amp;\to \mathbb{R}\\
+		\underline{x}&amp; \mapsto f(\underline{x})
+	\end{align}\]</span> e.g. for <span class="math inline">\(n=3\)</span>, we could have the function <span class="math inline">\(f\)</span> defined as <span class="math display">\[f(\underline{x}) \;\;=\;\; \frac{xy}{\tan z}.\]</span> Note that here the argument of the function is underlined to show that it’s a vector quantity. <span class="math inline">\(f(\underline{x})\)</span> could also be written as <span class="math inline">\(f(x,y,z)\)</span>.</p>
+<p>The functions of two variables that you studied in the Epiphany term of Calculus I were all examples of scalar fields.</p></li>
+<li><p><strong>Vector fields</strong> are vector-valued functions on <span class="math inline">\(\mathbb{R}^n\)</span>, i.e. maps <span class="math display">\[\label{eq:vectorfielddef}
+	\begin{align}
+		\mathbb{R}^n&amp;\to \mathbb{R}^n\\
+		\underline{x}&amp; \mapsto \underline{f}(\underline{x}).
+	\end{align}\]</span> Note that since the image of <span class="math inline">\(\underline{x}\)</span> is also a vector, we underline the function <span class="math inline">\(\underline{f}\)</span> to indicate this. In textbooks you may also see vector fields written in bold, rather than underlined.</p>
+<div id="eg:vectorfield1" class="example">
+<p> Given a constant vector <span class="math inline">\(\underline{a} \in \mathbb{R}^n\)</span>, we might have the vector field <span class="math inline">\(\underline{f}\)</span> on <span class="math inline">\(\mathbb{R}^n\)</span>, given by <span class="math display">\[\underline{f}(\underline{x}) = ( \underline{a}.\underline{x})\underline{x}.\]</span></p>
+<p>If we let <span class="math inline">\(n=2\)</span> and take <span class="math inline">\(\underline{a}=(1,1)\)</span>, then the vector field near the origin looks as in Figure <a href="#fig:simplevectorfield" data-reference-type="ref" data-reference="fig:simplevectorfield">2</a>.</p>
+<div class="center">
+<figure>
+<img src="simplevectorfieldexample.png" id="fig:simplevectorfield" style="width:50.0%" alt="" /><figcaption>A plot of the vector field <span class="math inline">\(\underline{f}(\underline{x}) = (a.x)x\)</span> near the origin in 2 dimensions with <span class="math inline">\(a=(1,1)\)</span>. The vectors are drawn at a sample of points <u>x</u>, as arrows.</figcaption>
+</figure>
+</div>
+<p>Pay careful attention to the two different types of multiplication being used in this example. We take the <em>scalar product</em> between <span class="math inline">\(\underline{a}\)</span> and <span class="math inline">\(\underline{x}\)</span>, and we can then use <em>scalar multiplication</em> to multiply the vector <span class="math inline">\(\underline{x}\)</span> by the scalar <span class="math inline">\((\underline{a}.\underline{x})\)</span>.</p>
+</div>
+<p><u>Note</u>: We can also write the formula “in components”, i.e. using <u>index notation</u> - by giving a formula for the <span class="math inline">\(i\)</span>th component of <span class="math inline">\(\underline{f}\)</span>. So example <a href="#eg:vectorfield1" data-reference-type="ref" data-reference="eg:vectorfield1">[eg:vectorfield1]</a> would be (using index notation and ESC): <span class="math display">\[f_i \;\;=\;\; ( a_jx_j) x_i\]</span></p></li>
+<li><p><strong>Curves</strong> in <span class="math inline">\(\mathbb{R}^n\)</span> are given parametrically by specifying <span class="math inline">\(\underline{x}\)</span> as a function <span class="math inline">\(\underline{x}(t)\)</span> of some parameter, <span class="math inline">\(t\)</span> say. That is, a curve is a map <span class="math display">\[\label{eq:curveseq}
+	\begin{align}
+		\mathbb{R}&amp;\to \mathbb{R}^n\\
+		t &amp;\mapsto \underline{x}(t).
+	\end{align}\]</span> Since the image of <span class="math inline">\(t\)</span> is a vector quantity, we underline the function <span class="math inline">\(\underline{x}(t)\)</span> to indicate this. <span class="math inline">\(t\)</span> itself is a scalar quantity however, and so is not underlined.</p>
+<div id="eg:curve1" class="example">
+<p> Given constant vectors <span class="math inline">\(\underline{a},\underline{b} \in \mathbb{R}^n\)</span>, the curve <span class="math display">\[{\rm e.g.}\quad \underline{x}(t) =  \underline{a} + t \underline{b},\]</span> which can be written in components as <span class="math display">\[x_i(t) = a_i + t b_i,\]</span> is a straight line in <span class="math inline">\(\mathbb{R}^n\)</span>, which goes through the point <span class="math inline">\(\underline{a}\)</span> and is parallel to <span class="math inline">\(\underline{b}\)</span>.</p>
+</div>
+<p>If <span class="math inline">\(\underline{x}(t)\)</span> is differentiable, then <span class="math inline">\(\frac{d \underline{x}}{d t}\)</span> is tangent to the curve (if non-zero). (If you studied Dynamics I, then you’ve already come across this idea in that course. There, the <em>trajectory</em> of a particle <span class="math inline">\(\underline{r}(t)\)</span> was a curve in space, parameterised by time <span class="math inline">\(t\)</span>, the <em>velocity</em> was the derivative of the trajectory with respect to time, <span class="math inline">\(\frac{d\underline{r}(t)}{dt}\)</span>, and the <em>acceleration</em> was the second derivative <span class="math inline">\(\frac{d^2\underline{r}(t)}{dt^2}\)</span>.)</p>
+<div class="center">
+<figure>
+<img src="tangent_to_curve.jpg" id="fig:curvetangent" style="width:80.0%" alt="" /><figcaption>The tangent to a curve <span class="math inline">\(\underline{x}(t)\)</span> is found by differentiating the curve with respect to <span class="math inline">\(t\)</span>.</figcaption>
+</figure>
+</div>
+<div id="eg:tangenttohelix" class="example">
+<p> A helix in <span class="math inline">\(\mathbb{R}^3\)</span> can be parameterised as <span class="math display">\[\underline{x}(t) = \cos(t) \underline{e}_1 + \sin(t) \underline{e}_2 + t \underline{e}_3.\]</span> The tangent to the helix is therefore given by <span class="math display">\[\frac{d \underline{x}}{d t}(t) = -\sin (t) \underline{e}_1 + \cos( t) \underline{e}_2 +  \underline{e}_3.\]</span> Note that the standard basis vectors are constant, and hence the components of the derivative of <span class="math inline">\(\underline{x}(t)\)</span> with respect to <span class="math inline">\(t\)</span>, are just the derivatives of the components of <span class="math inline">\(\underline{x}(t)\)</span>.</p>
+<div class="center">
+<figure>
+<img src="helixandtangent.png" id="fig:helixandtangent" style="width:50.0%" alt="" /><figcaption>A helix in <span class="math inline">\(\mathbb{R}^3\)</span>, with the tangent at a point shown.</figcaption>
+</figure>
+</div>
+</div>
+<p><u>Note</u>: If a curve is parameterised in terms of the so-called <em>arc-length</em> <span class="math inline">\(s\)</span> (we won’t define this precisely here) along the curve from a fixed point on it, then <span class="math inline">\(| \frac{d \underline{x}}{d s}| =1\)</span>. <span class="math display">\[\label{eq:arclengthparam}
+	\begin{align}
+		{\text with} \quad t=s, &amp; \quad h = \delta s,   \\
+		| \underline{x}(s+\delta s) - \underline{x}(s) | &amp;\simeq \delta s \\
+		\Rightarrow \quad \lim_{\delta s \rightarrow 0} \frac{| \underline{x}(s+\delta s) - \underline{x}(s) | }{\delta s}  &amp;= 1 \\
+		\Rightarrow \;\; | \frac{d \underline{x}}{d s}| &amp;= 1 \quad \quad \text{a unit vector.}
+	\end{align}\]</span></p>
+<div class="center">
+<figure>
+<img src="arclengthunittangent.jpg" id="fig:arclengthparam" style="width:80.0%" alt="" /><figcaption>If the curve is parameterised by its arc-length (which we haven’t rigorously defined), then for small <span class="math inline">\(\delta s\)</span>, the length of the vector <span class="math inline">\(\underline{x}(s+\delta s)-\underline{x}(s)\)</span> becomes approximately the same as the length of the curve segment <span class="math inline">\(\delta s\)</span>. In the limit that <span class="math inline">\(\delta s \to 0\)</span>, these become equal, and hence the length of the derivative of the curve with respect to <span class="math inline">\(s\)</span> (the tangent) becomes 1.</figcaption>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="sub:partial_derivatives_and_the_chain_rule" class="level2" data-number="1.3">
+<h2 data-number="1.3"><span class="header-section-number">1.3</span> Partial derivatives and the chain rule</h2>
+<p>In Calculus I, given a function of two variables <span class="math inline">\(f(x,y): \mathbb{R}^2 \to \mathbb{R}\)</span>, you learned that the partial derivatives <span class="math display">\[\label{eq:partialderivatives}
+	\begin{align}
+		\frac{\partial f}{\partial x} &amp;=&amp; \lim_{h\to 0} \frac{f(x+h,y) - f(x,y)}{h} \\
+		\frac{\partial f}{\partial y} &amp;=&amp; \lim_{h\to 0} \frac{f(x,y+h) - f(x,y)}{h},
+	\end{align}\]</span> tell us the rate of change of the function <span class="math inline">\(f\)</span> as we move parallel to the <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>- axes respectively. If we write <span class="math inline">\(x,y\)</span> as <span class="math inline">\(x_1,x_2\)</span> &amp; <span class="math inline">\(f(x,y)\)</span> as <span class="math inline">\(f(\underline{x})\)</span>, with <span class="math inline">\(\underline{x}= x_1 \underline{e}_1 + x_2 \underline{e}_2\)</span>, then we can re-express the partial derivatives using vector notation as <span class="math display">\[\label{eq:partialderivativesvector}
+	\begin{align}
+		\frac{\partial f}{\partial x} &amp;\equiv&amp; \frac{\partial f}{\partial x_1} \;=\;  \lim_{h\to 0} \frac{f(\underline{x}+h\underline{e}_1) - f(\underline{x})}{h} \\
+		\frac{\partial f}{\partial y} &amp;\equiv&amp; \frac{\partial f}{\partial x_2} \;=\; \lim_{h\to 0} \frac{f(\underline{x}+h\underline{e}_2) - f(\underline{x})}{h}.
+	\end{align}\]</span> This now suggests the obvious generalisation to scalar fields in <span class="math inline">\(n\)</span> dimensions. If we let <span class="math inline">\(f(\underline{x}): \mathbb{R}^n \to \mathbb{R}\)</span>, then the function <span class="math inline">\(f\)</span> has <span class="math inline">\(n\)</span> (1<sup>st</sup> order) partial derivatives given by <span class="math display">\[\frac{\partial f(\underline{x})}{\partial x_a} \;\;=\;\;  \lim_{h\to 0} \frac{f(\underline{x}+h\underline{e}_a) - f(\underline{x})}{h},\]</span> for <span class="math inline">\(a=1,2,\dots,n\)</span>. These partial derivatives tell us about the rate of change of the function as we move parallel to any of the <span class="math inline">\(n\)</span> coordinate axes in <span class="math inline">\(n\)</span> dimensions.</p>
+<p>You also learned that the rate of change of a function <span class="math inline">\(f(x,y): \mathbb{R}^2 \to \mathbb{R}\)</span> along a parametrically defined curve <span class="math inline">\(C\)</span> given as <span class="math inline">\((x(t),y(t))\)</span> can be found using the chain rule. Along this curve we have <span class="math inline">\(F(t) \equiv f(x(t),y(t))\)</span>. Note that I don’t write the function of <span class="math inline">\(t\)</span> as <span class="math inline">\(f(t)\)</span>, since <span class="math inline">\(f\)</span> is a map from <span class="math inline">\(\mathbb{R}^2\)</span> and hence strictly speaking <span class="math inline">\(f(t)\)</span> is a different function, this time a map from <span class="math inline">\(\mathbb{R}\)</span>. To avoid the confusion of two different functions with the same name, we will denote the restricted function as <span class="math inline">\(F(t)\)</span>. The chain rule then tells us that <span class="math display">\[\frac{d F(t)}{d t} \;=\; \frac{d x}{d t} \frac{\partial f}{\partial x} + \frac{d y}{d t} \frac{\partial f}{\partial y}.\]</span></p>
+<p>To extend this to the <span class="math inline">\(n\)</span>-dimensional case using vector notation, we first note that in the two-dimensional case, the curve <span class="math inline">\(C\)</span> is given by <span class="math display">\[\underline{x}(t) \;\;=\;\; x_1(t) \underline{e}_1 + x_2(t) \underline{e}_2,\]</span> with <span class="math inline">\(x_1(t)=x(t)\)</span> and <span class="math inline">\(x_2(t)=y(t)\)</span>. Similarly, <span class="math inline">\(f(x,y)\)</span> is <span class="math inline">\(f(\underline{x})\)</span>, so <span class="math display">\[\frac{d F(t)}{d t} = \frac{d f(\underline{x}(t))}{d t} \;\;=\;\; \frac{d x_1}{d t}\frac{\partial f}{\partial x_1} + \frac{d x_2}{d t} \frac{\partial f}{\partial x_2}.\]</span> We can now see how this should be generalised to the case of a scalar field in <span class="math inline">\(n\)</span> dimensions. The curve <span class="math inline">\(C\)</span> can be given parametrically as <span class="math display">\[\underline{x}(t) \;\;=\;\; x_1(t) \underline{e}_1 + \ldots + x_n(t) \underline{e}_n.\]</span> Our scalar field is given as <span class="math inline">\(f(\underline{x}): \mathbb{R}^n \to \mathbb{R}\)</span>, and the restriction of the scalar field to the curve <span class="math inline">\(C\)</span> can then be written as <span class="math inline">\(F(t) = f(\underline{x}(t))\)</span>. The chain rule then tells us that <span class="math display">\[\frac{d F(t)}{d t} = \frac{d}{d t} f(\underline{x}(t)) \;=\; \frac{d x_1}{d t} \frac{\partial f}{\partial x_1} + \dots + \frac{d x_n}{d t} \frac{\partial f}{\partial x_n}.\]</span></p>
+<p><u>Note</u>: The chain rule holds for differentiable functions of two variables. You defined what this meant in the context of functions of two variables in Calculus I, and we shall revisit precisely what it means for a scalar function in <span class="math inline">\(n\)</span> dimensions to be differentiable in section 5. For now we simply assume that our scalar fields are indeed differentiable.</p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = levelCount+(".0".repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Figs/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
