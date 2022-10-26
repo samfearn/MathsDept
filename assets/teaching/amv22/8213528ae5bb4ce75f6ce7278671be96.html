@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2022-23, Michaelmas: Topic 3 Solutions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2022-23, Michaelmas: Topic 3 Solutions</h1>
+</header>
+<p><span> </span></p>
+<div class="problem">
+<p>Compute the divergence, <span class="math inline">\(\nabla \cdot {\bf A}\)</span>, of the following vector fields:<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\qquad {\bf A}(x,y,z)\,=\, yz{\bf e_1}+ xz {\bf e_2}+ xy {\bf e_3}\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[\nabla \cdot {\bf A}=
+{\partial (yz )\over \partial  x}+{\partial (xz )\over \partial  y}+{\partial (xy )\over \partial  z}=
+0+0+0=0\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\bf A}(x,y,z)\,=\, (x^2 + y^2 + z^2)\,  ( 3{\bf e_1}+ 4 {\bf e_2}+ 5{\bf e_3})\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[\nabla \cdot {\bf A}=
+{\partial (3(x^2 + y^2 + z^2) )\over \partial  x}+{\partial (4(x^2 + y^2 + z^2) )\over \partial  y}+{\partial (5(x^2 + y^2 + z^2) )\over \partial  z}=
+6x+8y+10z\,.\]</span> Alternatively write <span class="math inline">\({\bf A}=| {\bf x}\,|^2 {\bf B}\)</span> with <span class="math inline">\({\bf B}=3{\bf e_1}+ 4 {\bf e_2}+ 5{\bf e_3}\)</span> a constant vector and use <span class="math inline">\(\nabla \cdot (| {\bf x}\,|^2 {\bf B})=(\nabla (| {\bf x}\,
+|^2))\cdot{\bf B}+| {\bf x}\,|^2\nabla \cdot {\bf B}\)</span> with <span class="math display">\[\nabla (| {\bf x}\,|^2))=
+{\bf e_1}{\partial (x^2+y^2+z^2)\over \partial  x}+{\bf e_2}{\partial (x^2+y^2+z^2)\over
+\partial  y}
++{\bf e_3}{\partial (x^2+y^2+z^2)\over \partial  z}\]</span> <span class="math display">\[={\bf e_1}2x+{\bf e_2}2y +{\bf e_3}2z=2{\bf x}\,\]</span> and <span class="math inline">\(\nabla \cdot {\bf B}=0\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\bf A}(x,y,z)\,=\, (x+y){\bf e_1}+ (y+z) {\bf e_2}+ (z+x) {\bf e_3}\)</span>.</p>
+<div class="solution">
+<p><span class="math display">\[\nabla \cdot {\bf A}=
+{\partial (x+y )\over \partial  x}+{\partial (y+z )\over \partial  y}+{\partial (z+x )\over \partial  z}=
+1+1+1=3\,.\]</span></p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>Compute the curl, <span class="math inline">\(\nabla \times{\bf A}\)</span>, of each of the vector fields, <span class="math inline">\({\bf A}\)</span>, in the previous question.</p>
+</div>
+<div class="solution">
+<ul>
+<li><p><span class="math inline">\(\qquad {\bf A}(x,y,z)\,=\, yz{\bf e_1}+ xz {\bf e_2}+ xy {\bf e_3}\)</span>,</p>
+<p><span class="math display">\[\nabla \times{\bf A}=
+{\bf e_1}\left({\partial (xy )\over \partial  y}-{\partial (xz )\over \partial  z}\right)
++{\bf e_2}\left({\partial (yz )\over \partial  z}-{\partial (xy )\over \partial  x}\right)
++{\bf e_3}\left({\partial (xz )\over \partial  x}-{\partial (yz )\over \partial  y}\right)\]</span> <span class="math display">\[={\bf e_1}(x-x)+{\bf e_2}(y-y)+{\bf e_3}(z-z)={\bf 0}\,.\]</span></p></li>
+<li><p><span class="math inline">\(\qquad {\bf A}(x,y,z)\,=\, (x^2 + y^2 + z^2)\,  ( 3{\bf e_1}+ 4 {\bf e_2}+ 5{\bf e_3})\)</span>,</p>
+<p><span class="math display">\[\nabla \times{\bf A}=
+{\bf e_1}\left({\partial (5(x^2 + y^2 + z^2) )\over \partial  y}-{\partial (4(x^2 + y^2 + z^2) )\over \partial  z}\right)\]</span> <span class="math display">\[+{\bf e_2}\left({\partial (3(x^2 + y^2 + z^2) )\over \partial  z}-{\partial (5(x^2 + y^2 + z^2) )\over \partial  x}\right)\]</span> <span class="math display">\[+{\bf e_3}\left({\partial (4(x^2 + y^2 + z^2) )\over \partial  x}-{\partial (3(x^2 + y^2 + z^2) )\over \partial  y}\right)\]</span> <span class="math display">\[={\bf e_1}(10y-8z)+{\bf e_2}(6z-10x)+{\bf e_3}(8x-6y)
+\,.\]</span> Alternatively write <span class="math inline">\({\bf A}=| {\bf x}\,|^2 {\bf B}\)</span> with <span class="math inline">\({\bf B}=3{\bf e_1}+ 4 {\bf e_2}+ 5{\bf e_3}\)</span> a constant vector and use <span class="math inline">\(\nabla \times(| {\bf x}\,|^2 {\bf B})=(\nabla (| {\bf x}\,|^2))\times{\bf B}+| {\bf x}\,|^2\nabla \times{\bf B}\)</span> with <span class="math inline">\(\nabla (| {\bf x}\,|^2))=2{\bf x}\,\)</span> and <span class="math inline">\(\nabla \times{\bf B}=0\)</span>.</p></li>
+<li><p><span class="math inline">\(\qquad {\bf A}(x,y,z)\,=\, (x+y){\bf e_1}+ (y+z) {\bf e_2}+ (z+x) {\bf e_3}\)</span>.</p>
+<p><span class="math display">\[\nabla \times{\bf A}=\]</span> <span class="math display">\[{\bf e_1}\left({\partial (z+x )\over \partial  y}-{\partial (y+z )\over \partial  z}\right)
++{\bf e_2}\left({\partial (x+y )\over \partial  z}-{\partial (z+x )\over \partial  x}\right)
++{\bf e_3}\left({\partial (y+z )\over \partial  x}-{\partial (x+y )\over \partial  y}\right)\]</span> <span class="math display">\[={\bf e_1}(0-1)+{\bf e_2}(0-1)+{\bf e_3}(0-1)=-({\bf e_1}+{\bf e_2}+{\bf e_3})\,.\]</span></p></li>
+</ul>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(f(r)\)</span> is a differentiable function of <span class="math inline">\(r=|{\bf x}\,|\)</span>, for <span class="math inline">\({\bf x}\,\in\mathbb{R}^n,\ r\ne0,\)</span> show that<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\qquad {\rm grad}\,f(r)\,=\,f&#39;(r)\, {\bf x}\,/r\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[{\rm grad}\,f(r)={\bf e_1}{\partial f(r)\over \partial  x}+{\bf e_2}{\partial f(r)\over \partial  y}
++{\bf e_3}{\partial f(r)\over \partial  z}\]</span> <span class="math display">\[={\bf e_1}{df\over dr}{\partial r\over \partial  x}+{\bf e_2}{df\over dr}{\partial r\over \partial  y}
++{\bf e_3}{df\over dr}{\partial r\over \partial  z}\,.\]</span> Now <span class="math inline">\(r=\sqrt{x^2+y^2+z^2}\)</span> so <span class="math display">\[{\partial r\over \partial  x}={1\over 2} {2x\over r}={x\over r}\]</span> and similarly <span class="math display">\[{\partial r\over \partial  y}={y\over r}\,,\quad {\partial r\over \partial  z}={z\over r}\]</span> so <span class="math display">\[{\rm grad}\,f(r)={df\over dr}\left({\bf e_1}{x\over r}+{\bf e_2}{y\over r}+{\bf e_3}{z\over
+r}\right)={f&#39;(r)}{\bf x}\,/r\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm curl}\,[ f(r) {\bf x}\,]\,=\,0\)</span> , where now we let <span class="math inline">\(n=3\)</span>.</p>
+<div class="solution">
+<p>Using <span class="math inline">\({\rm curl}\,(f {\bf V})=(\nabla f)\times{\bf V}+f{\rm curl}\,{\bf V}\)</span>, the result to part (a) and <span class="math display">\[{\rm curl}\,{\bf x}\,={\bf e_1}\left({\partial z \over \partial  y}-{\partial y \over \partial  z}\right)
++{\bf e_2}\left({\partial x \over \partial  z}-{\partial z \over \partial  x}\right)
++{\bf e_3}\left({\partial y \over \partial  x}-{\partial x \over \partial  y}\right)={\bf 0}\,,\]</span> gives <span class="math inline">\({\rm curl}\,(f {{\bf x}\,})=(\nabla f)\times{{\bf x}\,}+f{\rm curl}\,{{\bf x}\,}=f&#39;(r){{\bf x}\,\over r}\times{{\bf x}\,}+{\bf 0}={\bf 0}\)</span> since <span class="math inline">\({\bf x}\,\times{\bf x}\,={\bf 0}\)</span>.</p>
+</div></li>
+</ul>
+</div>
+<div id="vecresults" class="problem">
+<p> Let <span class="math inline">\({\bf x}\,\)</span> be the position vector in three dimensions, with <span class="math inline">\(r=|{\bf x}\,|\)</span>, and let <span class="math inline">\(\bf a\)</span> be a constant vector. Show that</p>
+<ul>
+<li><p><span class="math inline">\(\qquad  {\rm div}\,{\bf x}\,\,=\,3\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[\nabla \cdot {\bf x}\,=
+{\partial x \over \partial  x}+{\partial y \over \partial  y}+{\partial z \over \partial  z}=
+1+1+1=3\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm curl}\,{\bf x}\,\,=0\)</span>,</p>
+<div class="solution">
+
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm grad}\,r\,=\,{\bf x}\,/r\)</span>,</p>
+<div class="solution">
+
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm div}\,(r^n {\bf x}\,)\,=\,(n+3)\, r^n\)</span>,</p>
+<div class="solution">
+<p>Use <span class="math inline">\({\rm div}\,(f{\bf V})=(\nabla f)\cdot {\bf V}+f{\rm div}\,{\bf V}\)</span> with <span class="math inline">\(f({\bf x}\,)=r^n\)</span> so that using 21 (a) <span class="math inline">\(\nabla f=nr^{n-1}{\bf x}\,/r=nr^{n-2}{\bf x}\,\)</span> and <span class="math inline">\({\bf V}={\bf x}\,\)</span> so <span class="math display">\[{\rm div}\,(r^n {\bf x}\,)\,=nr^{n-2}{\bf x}\,\cdot{\bf x}\,
++r^n{\rm div}\,{\bf x}\,=nr^n+3r^n=(n+3)r^n\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm grad}\,({\bf a}\cdot {\bf x}\,)\,=\,{\bf a}\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\({\bf a}\cdot {\bf x}\,=a_1x+a_2y+a_3z\)</span> so <span class="math display">\[{\partial ({\bf a}\cdot {\bf x}\,)\over \partial  x}=a_1,\quad{\partial ({\bf a}\cdot {\bf x}\,)\over \partial  y}=a_2,\quad{\partial ({\bf a}\cdot {\bf x}\,)\over \partial  z}=a_3\]</span> hence <span class="math inline">\({\rm grad}\,({\bf a}\cdot {\bf x}\,)\,=\, a_1{\bf e_1}+a_2{\bf e_2}+a_3{\bf e_3}\,= \,{\bf a}\,.\)</span></p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm div}\,( {\bf a}\times{\bf x}\,)\,=0\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\({\bf a}\times{\bf x}\,={\bf e_1}(a_2z-a_3y)+{\bf e_2}(a_3 x-a_1z)+{\bf e_3}(a_1y-a_2x)\)</span> so <span class="math display">\[{\rm div}\,( {\bf a}\times{\bf x}\,)\,={\partial (a_2z-a_3y)\over \partial x }+{\partial
+(a_3 x-a_1z)\over \partial  y}+{\partial (a_1y-a_2x)\over \partial  z}=0\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm curl}\,({\bf a}\times{\bf x}\,)\,=\,2\,{\bf a}\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[{\rm curl}\,({\bf a}\times{\bf x}\,)={\bf e_1}\left({\partial (a_1y-a_2x )\over \partial
+y}-{\partial (a_3 x-a_1z )\over \partial  z}\right)\]</span> <span class="math display">\[+{\bf e_2}\left({\partial (a_2z-a_3y )\over \partial  z}-{\partial (a_1y-a_2x
+)\over \partial  x}\right)
++{\bf e_3}\left({\partial (a_3 x-a_1z )\over \partial  x}-{\partial (a_2z-a_3y
+)\over \partial  y}\right)\]</span> <span class="math display">\[={\bf e_1}(a_1+a_1)+{\bf e_2}(a_2+a_2)+{\bf e_3}(a_3+a_3)=2{\bf a}\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm curl}\,( r^2 {\bf a})\,=\,2\, ({\bf x}\,\times{\bf a})\)</span>,</p>
+<div class="solution">
+<p>Use <span class="math inline">\({\rm curl}\,(f{\bf V})=({\rm grad}\,f)\times{\bf V}+f{\rm curl}\,{\bf V}\)</span> with <span class="math inline">\(f=r^2=|{\bf x}\,|^2\)</span> and <span class="math inline">\(\nabla (| {\bf x}\,|^2)=2{\bf x}\,\)</span> so that <span class="math inline">\({\rm curl}\,( r^2 {\bf a})\,=2{\bf x}\,\times{\bf a}+r^2{\rm curl}\,
+{\bf a}=2{\bf x}\,\times{\bf a}\)</span> .</p>
+</div></li>
+<li><p><span class="math inline">\(\qquad\nabla^2 (1/r)\,=\,0\;\; ,\quad {\rm if}\; r\ne 0\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(\nabla^2 (1/r)\,\equiv\nabla\cdot\nabla (1/r)\)</span>. From 21 (a) with <span class="math inline">\(f=1/r\)</span> we have <span class="math inline">\(\nabla (1/r)=-{\bf x}\,/r^3\)</span>. Then from 22 (d) <span class="math inline">\(\nabla\cdot ({\bf x}\,/r^3)=(-3+3)/r^3=0\)</span> so <span class="math inline">\(\nabla^2 (1/r)\,=\,0\)</span>, but this is only valid for <span class="math inline">\(r\neq 0\)</span> since the calculation involves division by <span class="math inline">\(r\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\qquad \nabla^2 (\log r)\,=\,1/r^2\, ,\quad {\rm if}\; r\ne 0\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\(\nabla^2 (\log r )\,\equiv\nabla\cdot\nabla (\log r)\)</span>. From 21 (a) with <span class="math inline">\(f=\log r\)</span>, <span class="math inline">\(\nabla (\log r)={\bf x}\,/r^2\)</span>. From 22 (d) <span class="math inline">\(\nabla\cdot ({\bf x}\,
+/r^2)=(-2+3)/r^3=1/r^2\)</span> so <span class="math inline">\(\nabla^2 (\log r)\,=\,1/r^2\)</span>, but as in part (i) this is only valid for <span class="math inline">\(r\neq 0\)</span> since the calculation involves division by <span class="math inline">\(r\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm div}\,[ ({\bf a}\cdot {\bf x}\,) {\bf x}\,]\,=\,4\, {\bf a}\cdot {\bf x}\,\)</span>,</p>
+<div class="solution">
+<p>Using <span class="math inline">\({\rm div}\,f {\bf V}=(\nabla f)\cdot {\bf V}+f{\rm div}\,{\bf V}\)</span>, with <span class="math inline">\(f={\bf a}
+\cdot {\bf x}\,\)</span> so <span class="math inline">\(\nabla f={\bf a}\)</span> from part (e) and <span class="math inline">\({\bf V}={\bf x}\,\)</span> so <span class="math inline">\({\rm div}\,{\bf x}\,=3\)</span> from part (a) hence <span class="math inline">\({\rm div}\,[ ({\bf a}\cdot {\bf x}\,) {\bf x}\,]\,={\bf a}\cdot{\bf x}\,+{\bf a}\cdot{\bf x}\,3=4{\bf a}\cdot{\bf x}\,\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm div}\,[ {\bf x}\,\times( {\bf x}\,\times{\bf a})]\,=\,2\, {\bf a}\cdot {\bf x}\,\)</span>,</p>
+<div class="solution">
+<p>Use <span class="math inline">\({\bf x}\,\times( {\bf x}\,\times{\bf a})={\bf x}\,({\bf x}\,\cdot{\bf a})-{\bf a}({\bf x}\,\cdot{\bf x}\,)\)</span> and then from part (k) use <span class="math inline">\({\rm div}\,({\bf x}\,({\bf x}\,\cdot{\bf a}))=4{\bf x}\,\cdot{\bf a}\)</span> and <span class="math display">\[\nabla \cdot (| {\bf x}\,|^2 {\bf a})=(\nabla (| {\bf x}\,|^2))\cdot{\bf a}+
+| {\bf x}\,|^2\nabla \cdot {\bf a}=2{\bf x}\,\cdot{\bf a}\]</span> so <span class="math display">\[{\rm div}\,[ {\bf x}\,\times( {\bf x}\,\times{\bf a})]\,={\rm div}\,({\bf x}\,({\bf x}\,\cdot{\bf a}))-\nabla \cdot (| {\bf x}\,|^2 {\bf a})=
+4{\bf x}\,\cdot{\bf a}-2{\bf x}\,\cdot{\bf a}\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm curl}\,\left( {{{\bf a}\times{\bf x}\,}/ {r^3}} \right)\,=
+\, 3\, {{({\bf a}\cdot {\bf x}\,) {\bf x}\,}/{r^5}}\,-\,{{{\bf a}}/{r^3}}\)</span>,</p>
+<div class="solution">
+<p><span class="math display">\[{\rm curl}\,\left( {{{\bf a}\times{\bf x}\,}/ {r^3}} \right)\,=\left({\rm curl}\,\left( {{{\bf a}
+\times{\bf x}\,}} \right)\right)/ {r^3}+
+(\nabla {r^{-3}})\times({\bf a}\times{\bf x}\,)\]</span> Using part (g) <span class="math inline">\({\rm curl}\,\left( {{{\bf a}\times{\bf x}\,}} \right)=2{\bf a}\)</span> together with <span class="math inline">\({\bf x}\,\times({\bf a}\times{\bf x}\,)={\bf a}({\bf x}\,\cdot{\bf x}\,)-{\bf x}\,({\bf a}\cdot{\bf x}\,)\)</span> and <span class="math inline">\(\nabla {r^{-3}}=-3{\bf x}\,/r^5\)</span> (from 21 (a)) gives <span class="math display">\[{\rm curl}\,\left( {{{\bf a}\times{\bf x}\,}/ {r^3}} \right)\,=
+{2{\bf a}\over r^3}-{3\over r^5}({\bf a}r^2-{\bf x}\,({\bf a}\cdot{\bf x}\,))=
+\, 3\, {{({\bf a}\cdot {\bf x}\,) {\bf x}\,}/{r^5}}\,-\,{{{\bf a}}/{r^3}}\,.\]</span></p>
+</div></li>
+<li><p>Exam question June 2002 (Section A): calculate the curl of <span class="math inline">\(({\bf a}\cdot {\bf x}\,)~ {\bf x}\,\)</span>.</p>
+<div class="solution">
+
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\({\bf x}\,\)</span> is the position vector, <span class="math inline">\({\bf x}\,= x {\bf e_1}+ y {\bf e_2}+ z {\bf e_3}\)</span>, <span class="math inline">\({\bf a}\)</span> is a constant vector, <span class="math inline">\({\bf F}=({\bf a}\cdot {\bf x}\,)\, {\bf x}\,\)</span> and <span class="math inline">\({\bf G}= r^2  {\bf a}\)</span>, (with <span class="math inline">\(r=|{\bf x}\,|\)</span>), show that<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\qquad {\rm div}\, {\bf F}= 2\;  {\rm div}\, {\bf G}= 4\,
+{\bf a}\cdot{\bf x}\,\)</span>,</p>
+<div class="solution">
+<p>Using the product rule <span class="math display">\[{\rm div}\, {\bf F}=\nabla\cdot (({\bf a}\cdot {\bf x}\,)\, {\bf x}\,)
+=(\nabla ({\bf a}\cdot {\bf x}\,))\cdot {\bf x}\,+({\bf a}\cdot {\bf x}\,)\,\nabla\cdot {\bf x}\,\]</span> As in 24 (e), <span class="math inline">\({\bf a}\cdot {\bf x}\,=a_1x+a_2y+a_3z\)</span> so <span class="math display">\[{\partial ({\bf a}\cdot {\bf x}\,)\over \partial  x}=a_1,\quad{\partial ({\bf a}\cdot {\bf x}\,
+)\over \partial  y}=a_2,\quad{\partial ({\bf a}\cdot {\bf x}\,)\over \partial
+z}=a_3\]</span> hence <span class="math inline">\({\rm grad}\,({\bf a}\cdot {\bf x}\,)\,=\, a_1{\bf e_1}+a_2{\bf e_2}+a_3{\bf e_3}\,= \,{\bf a}\)</span> and as in 24 (a) <span class="math display">\[\nabla \cdot {\bf x}\,=
+{\partial x \over \partial  x}+{\partial y \over \partial  y}+{\partial z
+\over \partial  z}= 1+1+1=3\,,\]</span> so <span class="math display">\[{\rm div}\, {\bf F}=\nabla\cdot (({\bf a}\cdot {\bf x}\,)\, {\bf x}\,)
+={\bf a}\cdot {\bf x}\,+3{\bf a}\cdot {\bf x}\,=4{\bf a}\cdot {\bf x}\,\,.\]</span> Using the product rule <span class="math display">\[{\rm div}\, {\bf G}=(\nabla (r^2))\cdot{\bf a}+r^2\nabla\cdot{\bf a}\]</span> and <span class="math inline">\(\nabla (| {\bf x}\,|^2)=2{\bf x}\,\)</span>, <span class="math inline">\(\nabla\cdot{\bf a}=0\)</span> so that <span class="math inline">\({\rm div}\, {\bf G}= 2\,
+{\bf a}\cdot{\bf x}\,\)</span>.</p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm curl}\, {\bf G}= - 2\;  {\rm curl}\, {\bf F}= 2
+\, {\bf x}\,\times{\bf a}\)</span>,</p>
+<div class="solution">
+<p>Use <span class="math inline">\({\rm curl}\,(f{\bf V})=({\rm grad}\,f)\times{\bf V}+f{\rm curl}\,{\bf V}\)</span> with <span class="math inline">\(f=r^2=|{\bf x}\,|^2\)</span> and <span class="math inline">\(\nabla (| {\bf x}\,|^2)=2{\bf x}\,\)</span> so that <span class="math display">\[{\rm curl}\, {\bf G}={\rm curl}\,( r^2 {\bf a})\,=2{\bf x}\,\times{\bf a}+r^2{\rm curl}\,{\bf a}=2{\bf x}\,\times
+{\bf a}\,.\]</span> Now use this product rule with <span class="math inline">\(f={\bf a}\cdot{\bf x}\,\)</span> and <span class="math inline">\({\bf V}={\bf x}\,\)</span> so that <span class="math display">\[\nabla\times(({\bf a}\cdot{\bf x}\,)\,{\bf x}\,)=
+(\nabla({\bf a}\cdot{\bf x}\,))\times{\bf x}\,+({\bf a}\cdot{\bf x}\,)\nabla\times{\bf x}\,\]</span> As in 24 (b) <span class="math display">\[{\rm curl}\,{\bf x}\,={\bf e_1}\left({\partial z \over \partial  y}-
+{\partial y \over \partial  z}\right)
++{\bf e_2}\left({\partial x \over \partial  z}-{\partial z \over \partial  x}\right)
++{\bf e_3}\left({\partial y \over \partial  x}-{\partial x \over \partial
+y}\right)={\bf 0}\,,\]</span> so <span class="math display">\[\nabla\times(({\bf a}\cdot{\bf x}\,)\,{\bf x}\,)={\bf a}\times{\bf x}\,=-{\bf x}\,\times{\bf a}\,.\]</span></p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm div}\,{\rm curl}\, {\bf F}=
+{\rm div}\,{\rm curl}\, {\bf G}= 0\)</span>,</p>
+<div class="solution">
+<p><span class="math inline">\({\rm div}\,{\rm curl}\, {\bf F}={\rm div}\,({\bf a}\times{\bf x}\,)=0\)</span> as in 24 (f):<br />
+<span class="math inline">\({\bf a}\times{\bf x}\,={\bf e_1}(a_2z-a_3y)+{\bf e_2}(a_3 x-a_1z)+{\bf e_3}(a_1y-a_2x)\)</span> so <span class="math display">\[{\rm div}\,( {\bf a}\times{\bf x}\,)\,={\partial (a_2z-a_3y)\over \partial x }+
+{\partial (a_3 x-a_1z)\over \partial  y}+
+{\partial (a_1y-a_2x)\over \partial  z}=0\,.\]</span> Since <span class="math inline">\({\rm curl}\, {\bf G}= - 2\;  {\rm curl}\, {\bf F}\)</span> this implies that <span class="math inline">\({\rm
+div}\,{\rm curl}\, {\bf G}= 0\)</span> .</p>
+</div></li>
+<li><p><span class="math inline">\(\qquad {\rm curl}\, {\rm curl}\, {\bf G}=
+-2 \; {\rm curl}\, {\rm curl}\, {\bf F}= -4 \, {\bf a}\)</span>.</p>
+<div class="solution">
+<p><span class="math display">\[{\rm curl}\, {\rm curl}\, {\bf G}=
+=2{\rm curl}\,({\bf x}\,\times{\bf a})=-4{\bf a}\]</span> using <span class="math inline">\({\bf a}\times{\bf x}\,=-{\bf x}\,\times{\bf a}\)</span> and 22 (g) <span class="math display">\[{\rm curl}\,({\bf a}\times{\bf x}\,)={\bf e_1}\left({\partial (a_1y-a_2x )\over \partial  y}-
+{\partial (a_3 x-a_1z )\over \partial  z}\right)\]</span> <span class="math display">\[+{\bf e_2}\left({\partial (a_2z-a_3y )\over \partial  z}-{\partial (a_1y-a_2x )\over \partial  x}\right)
++{\bf e_3}\left({\partial (a_3 x-a_1z )\over \partial  x}-{\partial (a_2z-a_3y )\over \partial  y}\right)\]</span> <span class="math display">\[={\bf e_1}(a_1+a_1)+{\bf e_2}(a_2+a_2)+{\bf e_3}(a_3+a_3)=2{\bf a}\,.\]</span> Since <span class="math inline">\({\rm curl}\, {\bf G}= - 2\;  {\rm curl}\, {\bf F}\)</span> this implies that <span class="math display">\[\qquad {\rm curl}\, {\rm curl}\, {\bf G}=
+-2 \; {\rm curl}\, {\rm curl}\, {\bf F}= -4 \, {\bf a}\,.\]</span></p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>Exam question June 2001 (Section A):<br />
+</p>
+<ul>
+<li><p>Give a representation of the vector function <span class="math inline">\({\bf{A}}(x,y)=y {{\bf e_1}}\)</span> as a collection of arrows in the region of the <span class="math inline">\((x,y)\)</span>-plane bounded by <span class="math inline">\((x_1,y_1)=(-2,2),(x_2,y_2)=(2,2),(x_3,y_3)=(2,-2),(x_4,y_4)=(-2,-2)\)</span>.</p>
+<div class="solution">
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="vectorplot1.png" style="width:2in" alt="image" /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span>The vector field <span class="math inline">\({\bf A}(x,y)\)</span></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></li>
+<li><p>Calculate the curl of the vector field <span class="math inline">\({\bf{A}}(x,y)=(-y{{\bf e_1}}+x{{\bf e_2}})/(x^2+y^2)\)</span> defined everywhere in the <span class="math inline">\((x,y)\)</span>-plane except at the origin. (You can consider <span class="math inline">\({\bf A}\)</span> to be embedded in three dimensions, independent of <span class="math inline">\(z\)</span> and with zero <span class="math inline">\(z\)</span> component.)</p>
+<div class="solution">
+<p><span class="math display">\[\nabla\times{\bf{A}}={\bf e_1}\left({\partial 0\over\partial y}-
+{\partial \over\partial z}{x\over
+x^2+y^2}\right)+{\bf e_2}\left({\partial \over\partial z}{-y\over x^2+y^2}-
+{\partial 0\over\partial x}\right)+
+{\bf e_3}\left({\partial \over\partial x}{x\over
+x^2+y^2}+{\partial \over\partial y}{y\over
+x^2+y^2}\right)\]</span> <span class="math display">\[= {\bf e_3}\left({1\over x^2+y^2}-{2x^2\over (x^2+y^2)^2}  
+      +{1\over x^2+y^2}-{2y^2\over (x^2+y^2)^2}
+\right)={\underline{0}}\,,\]</span></p>
+</div></li>
+<li><p>Give the unit vector normal to the surface of equation <span class="math inline">\(ax+by=cz\)</span>, where <span class="math inline">\(a,b,c\)</span>, are three real constants.</p>
+<div class="solution">
+<p><span class="math inline">\(ax+by=cz\)</span> is the equation of a plane, the general form of which would be <span class="math inline">\({\bf x}\,\cdot{\bf V}=k\)</span> where <span class="math inline">\({\bf V}\)</span> is orthogonal to the plane. Here <span class="math inline">\({\bf
+V}=(a,b,-c)\)</span>, so a unit vector normal to the surface is <span class="math inline">\((a/\sqrt{a^2+b^2+c^2},b/\sqrt{a^2+b^2+c^2},-c/\sqrt{a^2+b^2+c^2})\)</span>. Alternatively: in general <span class="math inline">\(\nabla f\)</span> is normal to the level-surface <span class="math inline">\(f=k\)</span>, here <span class="math inline">\(f=ax+by-cz\)</span> so <span class="math inline">\(\nabla f=(a,b,-c)\)</span> and again a unit vector normal to the surface is <span class="math inline">\(\nabla f/|\nabla f|
+=(a/\sqrt{a^2+b^2+c^2},b/\sqrt{a^2+b^2+c^2},-c/\sqrt{a^2+b^2+c^2})\)</span>.</p>
+</div></li>
+<li><p>(Slightly modified from exam) Let <span class="math inline">\({{\bf x}\,}\)</span> be the position vector in 3-dimensions and <span class="math inline">\({\bf a}\)</span> be a constant vector. Use the result <span class="math inline">\({{\bf x}\,} \times ({{\bf x}\,} \times {\bf a})={\bf x}\,({\bf x}\,\cdot {\bf a})-{\bf
+a}({\bf x}\,\cdot{\bf x}\,)\)</span> to show that <span class="math inline">\({\rm div}~ [~{{\bf x}\,} \times ({{\bf x}\,} \times {\bf a})]=2 {\bf
+a}\cdot {{\bf x}\,}\)</span>.</p>
+<div class="solution">
+<p>Using <span class="math inline">\({{\bf x}\,} \times ({{\bf x}\,} \times {\bf a})={\bf x}\,({\bf x}\,\cdot {\bf a})-{\bf
+a}({\bf x}\,\cdot{\bf x}\,)\)</span>, then <span class="math inline">\({\rm div}~ [~{{\bf x}\,} \times ({{\bf x}\,} \times {\bf a})]={\rm div}~({\bf x}\,({\bf x}\,\cdot {\bf
+a})-{\bf a}({\bf x}\,\cdot{\bf x}\,))=(\nabla\cdot{\bf x}\,)({\bf x}\,\cdot {\bf a})+{\bf x}\,\cdot\nabla({\bf x}\,\cdot
+{\bf a})
+-{\bf a}\cdot\nabla({\bf x}\,\cdot{\bf x}\,)\)</span>. This is <span class="math inline">\(3({\bf x}\,\cdot {\bf a})+({\bf x}\,\cdot {\bf
+a})-2({\bf x}\,\cdot {\bf a})=2({\bf x}\,\cdot {\bf a})\)</span></p>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(\underline{v}:\mathbb{R}^3\to\mathbb{R}^3\)</span> be a vector field. Prove the vector identity <span class="math display">\[\underline{v}\times(\underline{\nabla}\times\underline{v}) = \underline{\nabla}(|\underline{v}|^2/2) - (\underline{v}\cdot\underline{\nabla})\underline{v}.\]</span></p>
+</div>
+<div class="solution">
+<p>We compute the curl of <span class="math inline">\(\underline{v}\)</span> as <span class="math display">\[\underline{\nabla}\times\underline{v} = \underline{e}_1(\partial_2 v_3 - \partial_3 v_2) +\underline{e}_2(\partial_3 v_1 - \partial_1 v_3) + \underline{e}_3(\partial_1 v_2 - \partial_2 v_1),\]</span> where we have used the shorthand <span class="math inline">\(\partial_i \equiv \frac{\partial}{\partial x_i}\)</span>. The left hand side of the identity can therefore be written as <span class="math display">\[\begin{aligned}
+		\underline{v}\times(\underline{\nabla}\times\underline{v}) =&amp; \quad \underline{e}_1( v_2\left[ \partial_1 v_2 - \partial_2 v_1 \right] - v_3 \left[ \partial_3 v_1 - \partial_1 v_3 \right]) \\
+		 &amp; + \underline{e}_2 (v_3 \left[ \partial_2 v_3 - \partial_3 v_2 \right] - v_1 \left[ \partial_1 v_2 - \partial_2 v_1 \right]) \\
+		 &amp; + \underline{e}_3 (v_1 \left[ \partial_3 v_1 - \partial_1 v_3 \right] - v_2 \left[ \partial_2 v_3 - \partial_3 v_2 \right]) \\
+		 =&amp; \quad \underline{e}_1 ( v_2 \partial_1 v_2 + v_3 \partial_1 v_3 +  v_1 \partial_1 v_1 - v_1 \partial_1 v_1 - v_2 \partial_2 v_1 - v_3 \partial_3 v_1) \\
+		 &amp; + \underline{e}_2 ( v_1 \partial_2 v_1 + v_3 \partial_2 v_3 +  v_2 \partial_2 v_2 -  v_2 \partial_2 v_2 - v_1 \partial_1 v_2 - v_3 \partial_3 v_2 ) \\
+		 &amp; + \underline{e}_3 ( v_1 \partial_3 v_1 + v_2 \partial_3 v_2 + v_3 \partial_3 v_3 - v_3 \partial_3 v_3 - v_1 \partial_1 v_3 - v_2 \partial_2 v_3) \\
+		 =&amp; \quad \underline{e}_1 (\partial_1 |\underline{v}|^2/2 - (\underline{v}\cdot\underline{\nabla})v_1) + \underline{e}_2 (\partial_2 |\underline{v}|^2/2 - (\underline{v}\cdot\underline{\nabla})v_2) \\
+		 &amp; + \underline{e}_3 (\partial_3 |\underline{v}|^2/2 - (\underline{v}\cdot\underline{\nabla})v_3) \\
+		 =&amp; \quad \underline{\nabla}(|\underline{v}|^2/2) - (\underline{v}\cdot\underline{\nabla}) \underline{v},
+	\end{aligned}\]</span> proving the given identity.</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '20';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

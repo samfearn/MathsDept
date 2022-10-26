@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2022-23, Michaelmas: Topic 1 Solutions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2022-23, Michaelmas: Topic 1 Solutions</h1>
+</header>
+<p><span> </span></p>
+<div class="problem">
+<p>For the function <span class="math inline">\(f(x,y)=\cos (x+y)\,\exp (x-y)\)</span> calculate <span class="math inline">\(\partial f/\partial x\)</span>, <span class="math inline">\(\partial f/\partial y\)</span>, <span class="math inline">\(\partial ^2f/ \partial x^2\)</span>, <span class="math inline">\(\partial ^2f/ \partial y^2\)</span>, <span class="math inline">\(\partial ^2f/ \partial x \partial y\)</span>, <span class="math inline">\(\partial ^2f/ \partial y \partial x\)</span>. Use your results to show that <span class="math inline">\({\partial ^2f/ \partial x^2}=-{\partial ^2f/
+\partial y^2}\)</span> and <span class="math inline">\({\partial ^2f/ \partial x \partial y}={\partial ^2f/
+\partial y \partial x}\)</span>.</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\(\partial f/\partial x= -\sin (x+y)\,\exp (x-y) +\cos (x+y)\,\exp (x-y)\)</span>, <span class="math inline">\(\partial f/\partial y=-\sin (x+y)\,\exp (x-y) -\cos (x+y)\,\exp (x-y)\)</span>, <span class="math inline">\(\partial ^2f/ \partial x^2=-2\sin (x+y)\,\exp (x-y)\)</span>, <span class="math inline">\(\partial ^2f/ \partial y^2=2\sin (x+y)\,\exp (x-y)\)</span>, <span class="math inline">\(\partial ^2f/ \partial x \partial y=-2\cos (x+y)\,\exp (x-y)\)</span>, <span class="math inline">\(\partial ^2f/ \partial y \partial x=-2\cos (x+y)\,\exp (x-y)\)</span>. By inspection <span class="math inline">\({\partial ^2f/ \partial x^2}=-{\partial ^2f/ \partial y^2}\)</span> and <span class="math inline">\({\partial ^2f/ \partial x \partial y}={\partial ^2f/ \partial y \partial x}\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(F(t)\)</span> be the value of the function <span class="math inline">\(f(x,y,z)=\cos (xy)\,z\)</span> restricted to the helix <span class="math inline">\(x=\cos (t)\)</span>, <span class="math inline">\(y=\sin (t)\)</span> , <span class="math inline">\(z=t\)</span> which is parametrised by <span class="math inline">\(t\)</span> and <span class="math inline">\(-\infty &lt;t&lt;\infty\)</span>. Calculate <span class="math inline">\(dF/ dt\)</span> as a function of <span class="math inline">\(t\)</span> (i) directly by substituting the equations of the helix into <span class="math inline">\(f(x,y,z)\)</span> to calculate <span class="math inline">\(F(t)\)</span> as a function of <span class="math inline">\(t\)</span> and then differentiating, and (ii) using the chain rule. Note how similar these approaches are.</p>
+</div>
+<div class="solution">
+<p>(i) Substitution gives <span class="math inline">\(F=\cos (\cos (t) \sin (t))\,t\)</span>. Differentiating: <span class="math inline">\(dF/dt=\sin (\cos (t) \sin (t))\,\sin^2 (t)\,t-\sin (\cos (t) \sin
+(t))\,\cos^2 (t)\,t
++\cos (\cos (t) \sin (t))\)</span>. (ii) Using the chain rule: <span class="math display">\[\begin{aligned}
+dF/dt&amp;=(\partial f/\partial x)(dx/dt)+(\partial f/\partial y)(dy/dt)+(\partial
+f/\partial z)(dz/dt)\\
+&amp;=\sin(xy)\,yz\,\sin(t)
+-\sin(xy)\,xz\,\cos(t)+
+\cos (xy)\\
+&amp;=\sin (\cos (t) \sin (t))\,\sin^2 (t)\,t-
+\sin (\cos (t) \sin (t))\,\cos^2 (t)\,t
++\cos (\cos (t) \sin (t)).\end{aligned}\]</span></p>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\({\bf a}= \sin 2t\,{\bf e_1}+ e^t\, {\bf e_2}-(t^3-5t)\, {\bf e_3}\)</span>, find<br />
+    (a) <span class="math inline">\(d{\bf a}/dt\)</span>,  (b) <span class="math inline">\(||d{\bf a}/dt||\)</span>,   (c) <span class="math inline">\(d^2 {\bf a}/dt^2\)</span>,  (d) <span class="math inline">\(||d^2 {\bf a}/dt^2||\)</span>, all at <span class="math inline">\(t=0\)</span>.</p>
+</div>
+<div class="solution">
+<p>(a) <span class="math inline">\(d{\bf a}/dt =2\cos (2t)\,{\bf e_1}+e^t\,{\bf e_2}-(3t^2-5)\,{\bf e_3}\)</span>. At <span class="math inline">\(t=0\)</span> this is <span class="math inline">\(2\,{\bf e_1}+\,{\bf e_2}+5\,{\bf e_3}\)</span>.   (b) which has length <span class="math inline">\(||d{\bf a}/ dt||=\sqrt{2^2+1^2+5^2}=\sqrt{30}\)</span>,   (c) <span class="math inline">\(d^2 {\bf a}/dt^2=-4\sin (2t)\,{\bf e_1}+e^t\,{\bf e_2}-6t\,{\bf e_3}\)</span>, at <span class="math inline">\(t=0\)</span> this is <span class="math inline">\({\bf e_2}\)</span>,  (d) so <span class="math inline">\(||d^2 {\bf a}/dt^2||=1\)</span> at <span class="math inline">\(t=0\)</span>.</p>
+</div>
+<div class="problem">
+<p>Find a unit vector tangent to the space curve <span class="math inline">\(x=t^3, y=t, z=t^2\)</span> at <span class="math inline">\(t=2\)</span>.</p>
+</div>
+<div class="solution">
+<p>If <span class="math inline">\({\bf x}(t)=t^3{\bf e_1}+t{\bf e_2}+t^2{\bf e_3}\)</span> then <span class="math inline">\(d{\bf x}(t)/dt=
+3t^2{\bf e_1}+{\bf e_2}+2t{\bf e_3}\)</span> is parallel to the tangent. At <span class="math inline">\(t=2\)</span> this is <span class="math inline">\(12{\bf e_1}+{\bf e_2}+4{\bf e_3}\)</span> which has length <span class="math inline">\(\sqrt{161}\)</span> so a unit vector in this direction is <span class="math inline">\((12{\bf e_1}+{\bf e_2}+4{\bf e_3})/\sqrt{161}\)</span>.</p>
+</div>
+<div class="problem">
+<p>Use the chain rule to calculate <span class="math inline">\(df/dt\)</span> when <span class="math inline">\(f({\bf x}\,)=\exp  (-||{\bf x}\,||^2)\)</span> is restricted to the curves:<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\qquad {\bf x}\,={\bf e_1}\log t+{\bf e_2}t \log t +{\bf e_3}t\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad (x,y,z)=( \cosh t , \sinh t, 0)\)</span>.</p></li>
+</ul>
+</div>
+<div class="solution">
+<p>The chain rule to use here is <span class="math display">\[{df\over dt}={dx\over dt}{\partial f\over \partial x}+{dy\over dt}{\partial f\over \partial y}+{dz\over dt}{\partial f\over \partial z}\,.\]</span> Since <span class="math inline">\(f({\bf x}\,)=\exp  (-||{\bf x}\,||^2)=\exp  (-(x^2+y^2+z^2))\)</span> we have <span class="math display">\[{\partial f\over \partial x}=-2x\,f\,,\quad{\partial f\over \partial y}=-2y\,f\,,\quad{\partial f\over \partial z}=-2z\,f\,.\]</span></p>
+<ul>
+<li><p><span class="math inline">\(~~ {\bf x}\,={\bf e_1}\log t+{\bf e_2}t \log t +{\bf e_3}t\)</span>, so <span class="math inline">\(d{\bf x}\,/dt={\bf e_1}/ t+{\bf e_2}( \log t+1) +{\bf e_3}\)</span> and <span class="math display">\[{df\over dt}=(1/ t)(-2x)\,f+( \log t+1)(-2y)\,f+(-2z)\,f\]</span> <span class="math display">\[=-2((\log t)/ t+( \log t+1)t \log t+t)\,\exp-((\log t)^2+(t \log t)^2+t^2)
+\,.\]</span></p></li>
+<li><p><span class="math inline">\(~~ (x,y,z)=( \cosh t , \sinh t, 0)\)</span>, so <span class="math inline">\((dx/dt,dy/dt,dz/dt)=( \sinh t , \cosh t, 0)\)</span> giving <span class="math display">\[\begin{aligned}
+{df\over dt}&amp;=(\sinh t )(-2x)\,f+(\cosh t  )(-2y)\,f+0.(-2z)\,f\\
+&amp;=-4\sinh t\cosh t\, \exp(-\cosh^2t-\sinh^2t)
+=-4\sinh t\cosh t\, \exp(-\cosh 2t)
+\,.\end{aligned}\]</span></p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Show that the curve <span class="math inline">\(C\)</span>, given as points <span class="math inline">\(\underline{x}(s) = \left(\sin(s/\sqrt{2}),\cos(s/\sqrt{2}),s/\sqrt{2}\right),\)</span> is the arc-length parameterisation of a helix, that is that <span class="math inline">\(\left|\frac{d\underline{x}}{ds}\right|=1 \quad \forall s\)</span>.</p>
+</div>
+<div class="solution">
+<p>To show that the curve is parameterised by arc-length, we need to show that <span class="math inline">\(|\frac{d\underline{x}}{ds}|=1 \quad \forall s\)</span>. We have <span class="math display">\[\frac{d\underline{x}}{ds} = \left(\frac{1}{\sqrt{2}}\cos(s/\sqrt{2}),-\frac{1}{\sqrt{2}}\sin(s/\sqrt{2}),1/\sqrt{2}\right),\]</span> and therefore <span class="math display">\[\begin{aligned}
+			\left|\frac{d\underline{x}}{ds}\right| &amp;= \frac{1}{2}\cos^2(s/\sqrt{2}) + \frac{1}{2}\sin^2(s/\sqrt{2}) + \sqrt{\frac{1}{2}} \\
+			&amp;= \sqrt{\frac{1}{2} + \frac{1}{2}} \\
+			&amp;= 1.
+		\end{aligned}\]</span></p>
+</div>
+<div class="problem">
+<p>Describe the curve <span class="math inline">\(\gamma: \underline{x}(t) = (2t+1, t-3, 6 -2t)\)</span>. Find the arc-length parameterisation of <span class="math inline">\(\gamma\)</span>, that is, re-parameterise the curve in terms of a parameter <span class="math inline">\(s\)</span>, such that <span class="math inline">\(\left|\frac{d\underline{x}(s)}{ds}\right| = 1 \ \forall s\)</span>.</p>
+</div>
+<div class="solution">
+<p>We can write <span class="math inline">\(\underline{x}(t) = (1,-3,6) + t(2,1,-2)\)</span>, which we recognise as a parameterisation of a straight line through <span class="math inline">\(\underline{a}=(1,-3,6)\)</span> parallel to <span class="math inline">\(\underline{b}=(2,1,-2)\)</span>.</p>
+<p>Before trying to re-parameterise <span class="math inline">\(\gamma\)</span>, we should check whether the curve is <em>already</em> parameterised in terms of arc-length. We have <span class="math display">\[\frac{d\underline{x}}{dt} = (2,1,-2),\]</span> and so <span class="math display">\[\left|\frac{d\underline{x}}{dt}\right| = \sqrt{4+1+4}=3.\]</span> Since this is not equal to 1 <span class="math inline">\(\forall t\)</span>, <span class="math inline">\(t\)</span> does not give the arc length parameterisation of <span class="math inline">\(\gamma\)</span>.</p>
+<p>Note that we cannot just multiply <span class="math inline">\(\underline{x}(t)\)</span> by <span class="math inline">\(1/3\)</span>, as although the resulting curve would have tangent vectors of unit length, this would be a straight line through <span class="math inline">\(\underline{a}/3\)</span> rather than through <span class="math inline">\(\underline{a}\)</span>, and so this is a parameterisation of a different curve. However, we can see that if we let <span class="math inline">\(t=s/3\)</span>, then we will find that the resulting tangent vector <span class="math inline">\(\frac{d\underline{x}}{ds}\)</span> is unit length: <span class="math display">\[\begin{aligned}
+			\underline{x}(s)&amp;=\left(2\frac{s}{3}+1, \frac{s}{3}-3, 6 -2\frac{s}{3}\right),\\
+			\frac{d\underline{x}}{ds}&amp;= \left( \frac{2}{3}, \frac{1}{3}, \frac{-2}{3} \right),\\
+			\left|\frac{d\underline{x}}{ds}\right| &amp;= \sqrt{\frac{4}{9} + \frac{1}{9} + \frac{4}{9}} = 1.
+		\end{aligned}\]</span></p>
+<p>We can see that since the only changes we have made are to the parameter in the curve, this is still a parameterisation of a curve through <span class="math inline">\(\underline{a}\)</span> parallel to <span class="math inline">\(\underline{b}\)</span>. This is therefore the arc-length parameterisation of <span class="math inline">\(\gamma\)</span> that was required. If you choose to study Differential Geometry III, you will learn the general method for parameterising a curve in terms of its arc-length.</p>
+</div>
+<div class="problem">
+<p><strong>Harder:</strong> Let <span><strong>t</strong></span> denote the unit tangent vector to a space curve <span class="math inline">\({\bf a}={\bf a}(s)\)</span> in <span class="math inline">\(\mathbb{R}^3\)</span>, where <span class="math inline">\({\bf a}(s)\)</span> is assumed differentiable, and where <span class="math inline">\(s\)</span> measures the arclength from some fixed point on the curve. Define the unit vector <span class="math inline">\({\bf n}= \frac{1}{\kappa} \frac{d {\bf t}}{ds}\)</span>, where <span class="math inline">\(\kappa\)</span> is a scalar. Also define <span class="math inline">\({\bf b}= {\bf t} \times {\bf n}\)</span> as the <em>unit binormal vector</em> to the space curve.</p>
+<p>By considering the derivative of the product <span class="math inline">\({\bf t}.{\bf t}\)</span>, show that the the 3 vectors <span class="math inline">\({\bf t},{\bf n},{\bf b}\)</span> form an orthonormal basis of <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+<p>Hence, prove that <span class="math display">\[\frac{d {\bf b}}{ds}=-\tau {\bf n},~~~{\rm and}~~~
+\frac{d {\bf n}}{ds}=\tau {\bf b}- \kappa {\bf t},\]</span> where <span class="math inline">\(\tau\)</span> is some real constant.</p>
+<p>These formulae are of fundamental importance in differential geometry. They involve the curvature <span class="math inline">\(\kappa\)</span> and the torsion <span class="math inline">\(\tau\)</span>. The reciprocals of these are the radius of curvature (<span class="math inline">\(\rho=\frac{1}{\kappa}\)</span>) and the radius of torsion (<span class="math inline">\(\sigma =\frac{1}{\tau}\)</span>).</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\({\bf t}\)</span> is a unit tangent, and hence we have <span class="math inline">\({\bf t}.{\bf t} = 1\)</span>. Differentiating this expression with respect to <span class="math inline">\(s\)</span> using the product rule gives <span class="math inline">\(2{\bf t}.\frac{d{\bf t}}{ds} = 0\)</span>, and hence <span class="math inline">\(\frac{d{\bf t}}{ds}\)</span> is orthogonal to <span class="math inline">\({\bf t}\)</span>. Since <span class="math inline">\({\bf n} = \frac{1}{\kappa}\frac{d{\bf t}}{ds}\)</span>, we have <span class="math inline">\({\bf t}\)</span> and <span class="math inline">\({\bf n}\)</span> orthogonal, and since we define <span class="math inline">\({\bf b} = {\bf t} \times {\bf n}\)</span>, <span class="math inline">\({\bf b}\)</span> is orthogonal to the plane containing <span class="math inline">\({\bf t}\)</span> and <span class="math inline">\({\bf n }\)</span>. We have therefore shown that these three vectors form an orthogonal basis of <span class="math inline">\(\mathbb{R}^3\)</span>, and since both <span class="math inline">\({\bf t}\)</span> and <span class="math inline">\({\bf n }\)</span> are orthogonal vectors, then so is their vector product, and hence these vectors form an orthonormal basis of <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+<p>Since these vectors are all mutually orthogonal, alongside the relation <span class="math inline">\({\bf b} = {\bf t} \times {\bf n}\)</span>, we also have <span class="math inline">\({\bf t} = {\bf n} \times {\bf b}\)</span> and <span class="math inline">\({\bf n} = {\bf b} \times {\bf t}\)</span>, as can easily be seen using the right-hand rule.</p>
+<p>Now the derivative <span class="math inline">\(\frac{d {\bf b}}{ds}\)</span> is given by <span class="math display">\[\begin{aligned}
+		\frac{d {\bf b}}{ds}=
+		\frac{d}{ds}\left({\bf t} \times {\bf n}\right)
+		&amp;=
+		\left(\frac{d {\bf t}}{ds}\right) \times {\bf n} +
+		{\bf t} \times \left(\frac{d {\bf n}}{ds}\right) \\
+		&amp;= (\kappa {\bf n}) \times {\bf n} + {\bf t} \times \left(\frac{d {\bf n}}{ds}\right) \\
+		&amp;= {\bf t} \times \left(\frac{d {\bf n}}{ds}\right),
+	\end{aligned}\]</span> since the cross product of <span class="math inline">\({\bf n}\)</span> with itself is 0.</p>
+<p>Since <span class="math inline">\({\bf n}\)</span> is also a unit vector, we have <span class="math inline">\({\bf n}.{\bf n} = 1\)</span>, and as before differentiating this with respect to <span class="math inline">\(s\)</span> gives <span class="math inline">\(2{\bf n}.\frac{d{\bf n}}{ds} = 0\)</span>. <span class="math inline">\(\frac{d{\bf n}}{ds}\)</span> is therefore orthogonal to <span class="math inline">\({\bf n}\)</span>, and since <span class="math inline">\({\bf t}\)</span>, <span class="math inline">\({\bf n }\)</span> and <span class="math inline">\({\bf b}\)</span> form a basis of <span class="math inline">\(\mathbb{R}^3\)</span>, we therefore have that <span class="math display">\[\frac{d{\bf n}}{ds} = \sigma {\bf t} + \tau {\bf b}.\]</span></p>
+<p>Substituting this into our equation for the derivative of <span class="math inline">\({\bf b}\)</span> gives <span class="math display">\[\begin{aligned}
+		\frac{d {\bf b}}{ds} &amp;= {\bf t} \times \left(\sigma {\bf t} + \tau {\bf b}\right) \\
+		 &amp;= \tau {\bf t} \times {\bf b} \\
+		 &amp;= - \tau {\bf n},
+	\end{aligned}\]</span> which is the first of the equations we were asked to show.</p>
+<p>Finally, since <span class="math inline">\({\bf n} = {\bf b} \times {\bf t}\)</span>, we have <span class="math display">\[\begin{aligned}
+		\frac{d {\bf n}}{ds} &amp;= \frac{d{\bf b}}{ds} \times {\bf t} + {\bf b} \times \frac{d{\bf t}}{ds}, \\
+		&amp;= (- \tau {\bf n}) \times {\bf t} + {\bf b} \times (\kappa {\bf n})
+		&amp;= \tau {\bf b} - \kappa {\bf t}, 
+	\end{aligned}\]</span> which is the second equation we were asked to show.</p>
+<p>These are the Serret-Frenet formulas; see e.g. G.E.Hay, Vector and Tensor Analysis.</p>
+</div>
+<div class="bonusproblem">
+<p>If <span class="math inline">\(f(x,y)=F(r,\theta)\)</span> with <span class="math inline">\(x=r\cos\theta\)</span> and <span class="math inline">\(y=r\sin\theta\)</span>, use the chain rule to compute <span class="math inline">\({\partial ^2f/ \partial x^2}+{\partial ^2f/ \partial y^2}\)</span> in terms of partial <span class="math inline">\(r\)</span>- and <span class="math inline">\(\theta\)</span>- derivatives of <span class="math inline">\(F\)</span>, and hence find the general rotationally-symmetric solution to <span class="math inline">\({\partial ^2f/ \partial
+x^2}+{\partial ^2f/ \partial y^2}=0\)</span> in two dimensions which is non-singular away from the origin.<br />
+Suggestion: Begin by writing <span class="math inline">\(\partial r/\partial x\)</span>, <span class="math inline">\(\partial
+r/\partial y\)</span>, <span class="math inline">\(\partial \theta/\partial x\)</span> and <span class="math inline">\(\partial
+\theta/\partial y\)</span> as functions of <span class="math inline">\(r\)</span> and <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<div class="bonussolution">
+<p>Following the suggestion, and borrowing some of the calculations from section 0.2 of lectures, we have <span class="math display">\[\begin{aligned}
+\frac{\partial r}{\partial x} &amp;=\frac{x}{\sqrt{x^2+y^2}}=\cos\theta~;
+&amp;\frac{\partial r}{\partial y}
+&amp;=\frac{y}{\sqrt{x^2+y^2}}=\sin\theta~,\\[3pt]
+%
+\frac{\partial \theta}{\partial x}
+&amp;=\frac{-y}{x^2+y^2}=-\frac{\sin\theta}{r}~;
+&amp;\frac{\partial \theta}{\partial y}
+&amp;=\frac{x}{x^2+y^2}=\frac{\cos\theta}{r}~,\end{aligned}\]</span> and so by the chain rule <span class="math display">\[\begin{aligned}
+\frac{\partial}{\partial x}
+&amp;\,=\,\frac{\partial r}{\partial x}\,\frac{\partial}{\partial r}
++\frac{\partial \theta}{\partial x}\,\frac{\partial}{\partial \theta}
+\,=\,\cos\theta\,\frac{\partial}{\partial r}
+ -\frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}~,\\[5pt]
+\frac{\partial}{\partial y}
+&amp;\,=\,\frac{\partial r}{\partial y}\,\frac{\partial}{\partial r}
++\frac{\partial \theta}{\partial y}\,\frac{\partial}{\partial \theta}
+\,=\,\sin\theta\,\frac{\partial}{\partial r}
+ +\frac{\cos\theta}{r}\,\frac{\partial}{\partial \theta}~.\end{aligned}\]</span> Hence <span class="math display">\[\frac{\partial^2}{\partial x^2} \,=\,
+\left(\cos\theta\,\frac{\partial}{\partial r}
+ -\frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}\right)
+\left(\cos\theta\,\frac{\partial}{\partial r}
+ -\frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}\right)\,,\]</span> or, a little more explicitly <span class="math display">\[\frac{\partial^2f}{\partial x^2} \,=\,
+\left(\cos\theta\,\frac{\partial}{\partial r}
+ -\frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}\right)
+\left(\cos\theta\,\frac{\partial}{\partial r}
+ -\frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}\right)F\,.\]</span> Now for a key point – each derivative in this formula acts on <em>everything</em> to its right. So when expanding the brackets on the RHS you’ll get terms like <span class="math display">\[-\frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}
+\cos\theta\,\frac{\partial}{\partial r} F=
+-\frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}\left(
+\cos\theta\,\frac{\partial F}{\partial r} \right) =
+-\frac{\sin\theta}{r}\,\left(
+-\sin\theta\,\frac{\partial F}{\partial r} 
++\cos\theta\,\frac{\partial^2F}{\partial\theta\partial r} 
+\right)\]</span> where the first equality simply emphasises the fact that the <span class="math inline">\(\partial/\partial\theta\)</span> acts on everything to its right, while the second comes from using the product rule for derivatives. With practice you should be able to do these calculations in ‘operator’ notation, not bothering to write <span class="math inline">\(f\)</span> and <span class="math inline">\(F\)</span> explicitly but remembering that they are there implicitly, so the full calculation of <span class="math inline">\(\partial^2/\partial x^2\)</span> would look like <span class="math display">\[\begin{aligned}
+\frac{\partial^2}{\partial x^2} 
+&amp;\,=\,
+\left(\cos\theta\,\frac{\partial}{\partial r}
+ -\frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}\right)
+\left(\cos\theta\,\frac{\partial}{\partial r}
+ -\frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}\right)\\[4pt]
+&amp;\,=\, \cos^2\theta\frac{\partial^2}{\partial r^2}
++\frac{\cos\theta\sin\theta}{r^2}\frac{\partial}{\partial\theta}
+-\frac{\cos\theta\sin\theta}{r}\frac{\partial^2}{\partial
+r\partial\theta}\\[4pt]
+&amp;\qquad
++\frac{\sin^2\theta}{r}\frac{\partial}{\partial r}
+-\frac{\cos\theta\sin\theta}{r}\frac{\partial^2}{\partial
+r\partial\theta}
++\frac{\sin\theta\cos\theta}{r^2}\frac{\partial}{\partial\theta}
++\frac{\sin^2\theta}{r^2}\frac{\partial^2}{\partial\theta^2}\\[4pt]
+&amp;\,=\, \cos^2\theta\frac{\partial^2}{\partial r^2}
++\frac{2\cos\theta\sin\theta}{r^2}\frac{\partial}{\partial\theta}
+-\frac{2\cos\theta\sin\theta}{r}\frac{\partial^2}{\partial
+r\partial\theta}
++\frac{\sin^2\theta}{r}\frac{\partial}{\partial r}
++\frac{\sin^2\theta}{r^2}\frac{\partial^2}{\partial\theta^2}\end{aligned}\]</span> (Using the equality of the mixed second partial derivatives to gather the terms together.) A similar calculation (exercise!) gives <span class="math display">\[\frac{\partial^2}{\partial y^2} 
+\,=\,
+\sin^2\theta\frac{\partial^2}{\partial r^2}
+-\frac{2\sin\theta\cos\theta}{r^2}\frac{\partial}{\partial\theta}
++\frac{2\sin\theta\cos\theta}{r}\frac{\partial^2}{\partial
+r\partial\theta}
++\frac{\cos^2\theta}{r}\frac{\partial}{\partial r}
++\frac{\cos^2\theta}{r^2}\frac{\partial^2}{\partial\theta^2}\]</span> Adding the two, many terms cancel and/or simplify to leave the final result <span class="math display">\[\frac{\partial^2}{\partial x^2} +
+\frac{\partial^2}{\partial y^2} 
+\,=\,
+\frac{\partial^2}{\partial r^2}
++\frac{1}{r}\frac{\partial}{\partial r}
++\frac{1}{r^2}\frac{\partial^2}{\partial\theta^2}\,.\]</span> For the final part: for a rotationally-symmetric solution, <span class="math inline">\(F\)</span> will be independent of <span class="math inline">\(\theta\)</span> and so the equation (which is called Laplace’s equation) simplifies to <span class="math display">\[0=\frac{d^2F}{dr^2}+\frac{1}{r}\frac{dF}{dr}=
+\frac{1}{r}\frac{d}{dr}\left(r\frac{dF}{dr}\right)\]</span> (Since <span class="math inline">\(F\)</span> only depends on one variable, there’s no need to use the partial derivative symbol.) This equation is easily solved: <span class="math inline">\(F(r)=C\log r + D\)</span> with <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> two constants, and this is the general rotationally-symmetric solution to Laplace’s equation in two dimensions.</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '0';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
