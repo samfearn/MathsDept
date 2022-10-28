@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2022-23, Michaelmas: Topic 5 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2022-23, Michaelmas: Topic 5 Problems</h1>
+</header>
+<p><span> </span></p>
+<div class="problem">
+<p>For which values of <span class="math inline">\((x,y)\)</span> are the following continuous:<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\qquad {x/(x^2+y^2+1)}\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad {x/(x^2+y^2)}\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad {(x+y)/(x-y)}\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad {x^3/( y-x^2)}\)</span>?</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Let the scalar field <span class="math inline">\(f:\mathbb{R}^2\to\mathbb{R}\)</span> be defined as <span class="math display">\[f({\underline{x}}) = \left\{ \begin{aligned}
+		1 + \frac{x^2}{y}\qquad y \ne 0, \\
+		1 \qquad  y=0.
+	\end{aligned}\right.\]</span></p>
+<ol>
+<li><p>Show that, along any straight line through the origin, <span class="math inline">\(\lim_{{\underline{x}}\to{\underline{0}}}f({\underline{x}})=f({\underline{0}})\)</span>.</p></li>
+<li><p>Is <span class="math inline">\(f({\underline{x}})\)</span> continuous at <span class="math inline">\({\underline{0}}\)</span>? Explain your answer, with reference to the first part of this question.</p></li>
+</ol>
+</div>
+<div class="problem">
+<p>Let the scalar field <span class="math inline">\(f:\mathbb{R}^2\to\mathbb{R}\)</span> be defined as <span class="math display">\[f({\underline{x}}) = \left\{ \begin{aligned}
+		\frac{x^2y^2}{x^4 + y^4}\qquad \underline{x} \ne \underline{0}, \\
+		0 \qquad  \underline{x}=\underline{0}.
+	\end{aligned}\right.\]</span></p>
+<ol>
+<li><p>Show that <span class="math inline">\(\frac{\partial f}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial f}{\partial y}\)</span> both exist at <span class="math inline">\(\underline{0}\)</span>, and find their values at this point.</p></li>
+<li><p>Show that <span class="math inline">\(\lim_{\underline{x}\to\underline{0}}f(\underline{x})\)</span> does not exist, and hence <span class="math inline">\(f(\underline{x})\)</span> is not continuous at the origin. Comment on this in relation to the previous part of this question.</p></li>
+</ol>
+</div>
+<div class="problem">
+<p>Which of the following sets are open:<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(\qquad \{(x,y,z):x&gt;0\}\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad \{(x,y,z):y\ge 0\}\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad \{(x,y,z):1&gt;{(x^2+y^2)/ z}\}\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad \{(x,y,z):1\ge {(x^2+y^2)/ z}\}\)</span>?</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Prove that an open ball, as defined in lectures, is an open set.</p>
+</div>
+<div class="problem">
+<p>Prove that the intersection of two open sets, as defined in lectures, is another open set. (Note that the empty set is an open set: since it contains no points, the statement that every point in it sits inside an open ball which is also in the set is <em>vacuously</em> true.) What about the intersection of a finite number of open sets? And what about the intersection of an <em>infinite</em> number of open sets?</p>
+</div>
+<div class="problem">
+<p>Exam question June 2014 (Section A):</p>
+<ul>
+<li><p>Give the definition of the open ball <span class="math inline">\(B_{\delta}(\mathbf{a})\)</span> with centre <span class="math inline">\(\mathbf{a}\in\mathbb{R}^n\)</span> and radius <span class="math inline">\(\delta&gt;0\)</span>, and define what it means for a subset <span class="math inline">\(S\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> to be open.</p></li>
+<li><p>Which of the following subsets of <span class="math inline">\(\mathbb{R}^2\)</span> are open? In each case, justify your answer in terms of the definition you gave in part (a).</p>
+<ul>
+<li><p><span class="math inline">\(S_1=\{(x,y): x&gt;2\}\)</span> ,</p></li>
+<li><p><span class="math inline">\(S_2=\{(x,y): x&gt;2,y=2\}\)</span> ,</p></li>
+<li><p><span class="math inline">\(S_3=\{(x,y): x&gt;2,y&gt;2\}\)</span> .</p></li>
+</ul></li>
+</ul>
+</div>
+<div class="problem">
+<p>Exam question (last part) June 2014 (Section B): Determine the points of <span class="math inline">\(\mathbb{R}^2\)</span> at which the function <span class="math inline">\(f(x,y) = 
+|xy+x+y+1|\)</span> is<br />
+(a) continuously differentiable; (b) differentiable. (Hint: first factorise <span class="math inline">\(f\)</span>.)</p>
+</div>
+<div class="problem">
+<p>Determine the points of <span class="math inline">\(\mathbb{R}^2\)</span> at which the function <span class="math inline">\(f(x,y) = |x^2 - 
+y^2|\)</span> is<br />
+(a) continuously differentiable; (b) differentiable.</p>
+</div>
+<div class="problem">
+<p>Define <span class="math inline">\(f:\mathbb{R}^2\rightarrow\mathbb{R}\)</span> by <span class="math inline">\(f({\bf 0})=0\)</span> whilst for <span class="math inline">\({\bf x}\,\neq {\bf 0}\)</span>: <span class="math display">\[f({\bf x}\,)={x^3\over x^2+y^2}\,.\]</span> Calculate the partial derivatives of <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> at <span class="math inline">\({\bf x}\,={\bf 0}\)</span> <span><em>using their definitions as limits</em></span>. Defining <span class="math inline">\(R({\bf h})\)</span> at the origin by <span class="math inline">\(R({\bf h})=f({\bf h})-f({\bf
+0})-{\bf h}\cdot\nabla f\)</span> as usual, show that <span class="math inline">\(R({\bf h})/|{\bf h}|\)</span> does not tend to zero as <span class="math inline">\({\bf h}\)</span> tends to <span class="math inline">\(\bf 0\)</span>, so that <span class="math inline">\(f\)</span> is not differentiable at the origin.<br />
+On the line through the origin, <span class="math inline">\({\bf x}\,={\bf b}t\)</span>, (with <span class="math inline">\({\bf b}\)</span> a constant vector), <span class="math inline">\(f\)</span> becomes a function of the single variable <span class="math inline">\(t\)</span>, <span class="math inline">\(f({\bf b}t)\)</span>. Write <span class="math inline">\({\bf b}={\bf e_1}b_1+{\bf e_2}b_2\)</span> and use this to write <span class="math inline">\(f({\bf b}t)\)</span> explicitly as a function of <span class="math inline">\(t\)</span>. Show that this function is differentiable at the origin, i.e. <span class="math inline">\(df/dt\)</span> exists at <span class="math inline">\(t=0\)</span> despite <span class="math inline">\(f({\bf x}\,)\)</span> not being differentiable at <span class="math inline">\(\bf 0\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam Question June 2022 (Part B)</p>
+<ol>
+<li><p>Let <span class="math inline">\(f:\mathbb{R}^n\to\mathbb{R}\)</span> be a scalar field on <span class="math inline">\(\mathbb{R}^n\)</span>. Define what it means for the limit of <span class="math inline">\(f({\underline{x}})\)</span> as <span class="math inline">\({\underline{x}}\)</span> tends to <span class="math inline">\({\underline{a}}\)</span> to be <span class="math inline">\(L\)</span>.</p></li>
+<li><p>Define what it means for <span class="math inline">\(f\)</span> to be continuous at <span class="math inline">\({\underline{a}}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(f\)</span> be a scalar field on <span class="math inline">\(\mathbb{R}^2\)</span> given by <span class="math display">\[f(x,y) = \left\{\begin{array}{cc}
+			xy(x^2-y^2)/(x^2+y^2) \qquad\qquad&amp; (x,y) \ne (0,0),\\
+			0 \qquad\qquad&amp; (x,y) = (0,0).
+			\end{array}\right.\]</span> Show that <span class="math inline">\(f\)</span> is continuous on <span class="math inline">\(\mathbb{R}^2\)</span>, stating any results that you use.</p></li>
+<li><p>Is <span class="math inline">\(f\)</span> differentiable at the origin?</p></li>
+<li><p>Show that, at the origin, <span class="math display">\[\frac{\partial^2f}{\partial x \partial y}\ne \frac{\partial^2f}{\partial y \partial x}.\]</span></p></li>
+</ol>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(y = 1 + xy^5\)</span> show that <span class="math inline">\(y\)</span> may be written in the form <span class="math inline">\(y = f(x)\)</span> in a neighbourhood of <span class="math inline">\((0,1)\)</span> and find the gradient of the graph of <span class="math inline">\(f\)</span> at the point <span class="math inline">\((0,1)\)</span>.</p>
+</div>
+<div class="problem">
+<p>Show that the equation <span class="math inline">\(xy^3 - y^2 -3x^2 + 1 = 0\)</span> can be written in the form <span class="math inline">\(y = f(x)\)</span> in a neighbourhood of the point <span class="math inline">\((0,1)\)</span>, and in the form <span class="math inline">\(y = g(x)\)</span> in a neighbourhood of the point <span class="math inline">\((0,-1)\)</span>. Is it true that <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> are equivalent as functions of <span class="math inline">\(x\)</span>? What are the critical values of the curve <span class="math inline">\(H(x,y) = xy^3 - y^2 -3x^2 + 1\)</span>, and what are the regular values of this curve?</p>
+</div>
+<div class="problem">
+<p>Determine whether or not the equation <span class="math inline">\(x^2 + y + \sin (xy) =0\)</span> can be written in the form <span class="math inline">\(y = f(x)\)</span> or in the form <span class="math inline">\(x = g(y)\)</span> in some small open disc about the origin for some suitable continuously differentiable functions <span class="math inline">\(f,g\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question May 2015 (Section B, lightly edited):<br />
+Let <span class="math inline">\(f: \mathbb{R}^2\to\mathbb{R}\)</span> be the scalar function <span class="math inline">\(f(x,y)=e^{xy}-x+y\)</span>.<br />
+</p>
+<ul>
+<li><p>Find the vector equations of the tangent and normal lines to the curve <span class="math inline">\(f(x,y)=0\)</span> at the points <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,-1)\)</span>.</p></li>
+<li><p>Use the implicit function theorem for functions of two variables to determine whether or not the curve <span class="math inline">\(f(x,y)=2\)</span> can be written in the form <span class="math inline">\(y=g(x)\)</span> for some differentiable function <span class="math inline">\(g(x)\)</span> in the neighbourhoods of the points  (i) <span class="math inline">\((0,1)\)</span> ;   (ii) <span class="math inline">\((-1,0)\)</span>.<br />
+Determine also whether the curve can be written as <span class="math inline">\(x=h(y)\)</span> for some differentiable function <span class="math inline">\(h(y)\)</span>, in the neighbourhoods of the same two points.</p></li>
+<li><p>Does the function <span class="math inline">\(f(x,y)\)</span> have any critical points? Justify your answer. (You can quote without proof that <span class="math inline">\(|xe^{-x^2}|&lt;1\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>.)</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Part of Exam Question May 2017 (Section B):</p>
+<ul>
+<li><p>Consider the function <span class="math display">\[f(x,y) = (3x + y)e^{3xy}.\]</span> Determine whether or not the curve <span class="math inline">\(f(x,y)=c\)</span> can be written in the form <span class="math inline">\(y=g(x)\)</span>, and if not, state clearly the points <span class="math inline">\((x_0,y_0)\)</span> and corresponding values of <span class="math inline">\(c\)</span> where problems occur. You may assume that <span class="math inline">\(f\)</span> is differentiable on <span class="math inline">\(\mathbb{R}^2\)</span>.</p></li>
+<li><p>Using <span class="math inline">\(f(x,y)\)</span> as given in the previous part, determine whether or not the curve <span class="math inline">\((f(x,y)=c)\)</span> can be written in the form <span class="math inline">\(x=y(h)\)</span>, and if not, state clearly the points <span class="math inline">\((x_0,y_0)\)</span> where problems occur.</p></li>
+<li><p>Using <span class="math inline">\(f(x,y)\)</span> as in the previous parts of this question, are there any points where the curve <span class="math inline">\(f(x,y)=c\)</span> can neither be written as <span class="math inline">\(y=g(x)\)</span>, nor as <span class="math inline">\(x=h(y)\)</span>?</p></li>
+</ul>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '40';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
