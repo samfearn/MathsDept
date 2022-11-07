@@ -30,21 +30,26 @@
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#sec:differentiabilityofscalarfields"><span class="toc-section-number">5</span> Differentiability of scalar fields</a>
+<li><a href="#sec:differentiabilityofscalarfields"><span class="toc-section-number">0</span> Differentiability of scalar fields</a>
 <ul>
-<li><a href="#sub:continuity"><span class="toc-section-number">5.1</span> Continuity</a></li>
-<li><a href="#sub:opensets"><span class="toc-section-number">5.2</span> Open sets</a></li>
-<li><a href="#sub:differentiablemapsfromrntor"><span class="toc-section-number">5.3</span> Differentiable maps <span class="math inline">\(\mathbb{R}^n\to \mathbb{R}\)</span></a></li>
-<li><a href="#sub:continuous_differentiability"><span class="toc-section-number">5.4</span> Continuous Differentiability</a></li>
-<li><a href="#sub:thechainrulerevisited"><span class="toc-section-number">5.5</span> The chain rule revisited</a></li>
-<li><a href="#the-implicit-function-theorem"><span class="toc-section-number">5.6</span> The implicit function theorem</a></li>
+<li><a href="#sub:continuity"><span class="toc-section-number">0.1</span> Continuity</a></li>
+<li><a href="#sub:opensets"><span class="toc-section-number">0.2</span> Open sets</a></li>
+<li><a href="#sub:differentiablemapsfromrntor"><span class="toc-section-number">0.3</span> Differentiable maps <span class="math inline">\(\mathbb{R}^n\to \mathbb{R}\)</span></a></li>
+<li><a href="#sub:continuous_differentiability"><span class="toc-section-number">0.4</span> Continuous Differentiability</a></li>
+<li><a href="#sub:thechainrulerevisited"><span class="toc-section-number">0.5</span> The chain rule revisited</a></li>
+<li><a href="#the-implicit-function-theorem"><span class="toc-section-number">0.6</span> The implicit function theorem</a></li>
+<li><a href="#implicit-function-theorem-for-surfaces">Implicit function theorem for surfaces</a></li>
 </ul></li>
 </ul>
 </nav>
 <p> </p>
+<p><span>Michaelmas AMV Notes<br />
+<br />
+</span> The lecture notes for this term were originally prepared by Drs. Emma Coutts and Ian Vernon and Professor Patrick Dorey, and have been edited slightly since. If you find any typos, please let me know.<br />
+</p>
 <section id="sec:differentiabilityofscalarfields" class="level1" data-number="1">
-<h1 data-number="5"><span class="header-section-number">5</span> Differentiability of scalar fields</h1>
-<p>We first met <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu {}\)</span> in Section 2, when trying to work out how a scalar field <span class="math inline">\(f(\underline{x})\)</span> varied as we moved along a parametric curve <span class="math inline">\(\underline{x}(t)\)</span>, <span class="math display">\[\frac{d f(\underline{x}(t))}{d t} = \frac{d \underline{x}(t)}{d t}. \underline{\nabla\mkern-2mu}\mkern 3mu {}f.\]</span> This follows from the chain rule, which as we noted at the end of Subsection 1.3, holds for differentiable functions <span class="math inline">\(f\)</span>. So, when are our scalar fields differentiable?</p>
+<h1 data-number="0"><span class="header-section-number">0</span> Differentiability of scalar fields</h1>
+<p>We first met <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu {}\)</span> in Section <a href="#sec:gradientofascalarfield" data-reference-type="ref" data-reference="sec:gradientofascalarfield">[sec:gradientofascalarfield]</a>, when trying to work out how a scalar field <span class="math inline">\(f(\underline{x})\)</span> varied as we moved along a parametric curve <span class="math inline">\(\underline{x}(t)\)</span>, <span class="math display">\[\frac{d f(\underline{x}(t))}{d t} = \frac{d \underline{x}(t)}{d t}. \underline{\nabla\mkern-2mu}\mkern 3mu {}f.\]</span> This follows from the chain rule, which as we noted at the end of Subsection <a href="#sub:partial_derivatives_and_the_chain_rule" data-reference-type="ref" data-reference="sub:partial_derivatives_and_the_chain_rule">[sub:partial_derivatives_and_the_chain_rule]</a>, holds for differentiable functions <span class="math inline">\(f\)</span>. So, when are our scalar fields differentiable?</p>
 <p>In the Epiphany term of Calculus I, you saw that a function of two variables <span class="math inline">\(f(x,y)\)</span> was differentiable at a point <span class="math inline">\(\underline{x}_0=(x_0,y_0)\in D\)</span>, if <span class="math inline">\(\exists\; \delta &gt; 0\)</span> such that <span class="math inline">\(|\underline{x}- \underline{x}_0| &lt; \delta \implies \underline{x}\in D\)</span> and <span class="math display">\[\begin{equation} \label{eq:differentiablefuncoftwovars}
 	f(x,y) = f(x_0,y_0) + M (x-x_0) + N (y - y_0) + R(x,y), \end{equation}\]</span> such that <span class="math display">\[\lim_{\underline{x}\to \underline{x}_0 }\frac{R(x,y)}{|\underline{x}- \underline{x}_0|} = 0.\]</span> You also saw that the constants <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> were given by the partial derivatives <span class="math inline">\(\frac{\partial f}{\partial x}(x_0,y_0)\)</span> and <span class="math inline">\(\frac{\partial f}{\partial y}(x_0,y_0)\)</span> respectively, and hence Equation <span class="math inline">\(\eqref{eq:differentiablefuncoftwovars}\)</span> can be written as <span class="math display">\[\begin{equation} \label{eq:differentiablefuncoftwovarspartials}
 	f(x,y) - f(x_0,y_0) =  (x-x_0) \frac{\partial f}{\partial x}(x_0,y_0) + (y - y_0) \frac{\partial f}{\partial y}(x_0,y_0) + R(x,y), \end{equation}\]</span> where as before <span class="math display">\[\lim_{\underline{x}\to \underline{x}_0 }\frac{R(x,y)}{|\underline{x}- \underline{x}_0|} = 0.\]</span></p>
@@ -56,7 +61,7 @@
 </figure>
 </div>
 <section id="sub:continuity" class="level2" data-number="1.1">
-<h2 data-number="5.1"><span class="header-section-number">5.1</span> Continuity</h2>
+<h2 data-number="0.1"><span class="header-section-number">0.1</span> Continuity</h2>
 <p>Note that the definition of differentiability for a function of two variables requires us to define the limit <span class="math inline">\(\lim_{\underline{x}\to \underline{x}_0}\)</span>.</p>
 <div id="def:limitinrn" class="definition">
 <p> We say that a scalar field <span class="math inline">\(f(\underline{x}):\mathbb{R}^n \to \mathbb{R}\)</span> <em>tends to</em> <span class="math inline">\(L\)</span> as <span class="math inline">\(\underline{x}\)</span> <em>tends to</em> <span class="math inline">\(\underline{a}\)</span>, if the difference between <span class="math inline">\(f\)</span> and <span class="math inline">\(L\)</span> can be made as small as we please by taking <span class="math inline">\(\underline{x}\)</span> sufficiently close to <span class="math inline">\(\underline{a}\)</span> (without being equal to <span class="math inline">\(\underline{a}\)</span>).</p>
@@ -108,7 +113,7 @@
 </div>
 </section>
 <section id="sub:opensets" class="level2" data-number="1.2">
-<h2 data-number="5.2"><span class="header-section-number">5.2</span> Open sets</h2>
+<h2 data-number="0.2"><span class="header-section-number">0.2</span> Open sets</h2>
 <p>The definition of the limit of <span class="math inline">\(f\)</span> as <span class="math inline">\(\underline{x}\to \underline{a}\)</span> (Definition <a href="#def:limitinrn" data-reference-type="ref" data-reference="def:limitinrn">[def:limitinrn]</a>) requires us to consider the set of all points <span class="math inline">\(\underline{x}\)</span> such that <span class="math inline">\(0 &lt; |\underline{x}- \underline{a} | &lt; \delta\)</span> for a <span class="math inline">\(\delta &gt; 0\)</span>. To define differentiability for our scalar fields, we therefore want to introduce the notion of an <em>open set</em>, where the assumption that such points exist in the domain of our function <span class="math inline">\(f\)</span> is satisfied.</p>
 <p>We therefore make the following definitions, each of which may be well understood by the accompanying figure.</p>
 <div id="def:openball" class="definition">
@@ -143,11 +148,12 @@
 <div id="eg:openandclosedsets" class="example">
 <ul>
 <li><p><span class="math inline">\(D= \{ (x,y) \in \mathbb{R}^2 : x&gt;0\}\)</span> is open, as given <span class="math inline">\(\underline{a}=(a_1,a_2) \in D\)</span>, pick <span class="math inline">\(\delta=a_1/2\)</span> then <span class="math inline">\(B_\delta (\underline{a})\)</span> is in <span class="math inline">\(D\)</span>. This is demonstrated in Figure <a href="#fig:opensetD" data-reference-type="ref" data-reference="fig:opensetD">6</a>.</p>
-<table>
+<table id="fig:opensetD" class="imageTable">
+<caption>The set <span class="math inline">\(D= \{ (x,y) \in \mathbb{R}^2 : x&gt;0\}\)</span> is an open set, as we can find an open ball around every point in <span class="math inline">\(D\)</span>.</caption>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><img src="setd.jpeg" title="fig:" id="fig:opensetD" alt="The set D= \{ (x,y) \in \mathbb{R}^2 : x&gt;0\} is an open set, as we can find an open ball around every point in D." />  </td>
-<td style="text-align: center;">  <img src="ballinD.jpeg" title="fig:" id="fig:opensetD" alt="The set D= \{ (x,y) \in \mathbb{R}^2 : x&gt;0\} is an open set, as we can find an open ball around every point in D." /></td>
+<td style="text-align: center;"><img src="setd.jpeg" title="fig:" id="fig:opensetD" style="width:40.0%" alt="The set D= \{ (x,y) \in \mathbb{R}^2 : x&gt;0\} is an open set, as we can find an open ball around every point in D." />  </td>
+<td style="text-align: center;">  <img src="ballinD.jpeg" title="fig:" id="fig:opensetD" style="width:40.0%" alt="The set D= \{ (x,y) \in \mathbb{R}^2 : x&gt;0\} is an open set, as we can find an open ball around every point in D." /></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -158,11 +164,12 @@
 </tbody>
 </table></li>
 <li><p><span class="math inline">\(E=\{(x,y) \in \mathbb{R}^2: x\ge 0 \}\)</span> is <u>not</u> open, as e.g. the point <span class="math inline">\((0,0)\)</span> is in <span class="math inline">\(E\)</span>, but for all <span class="math inline">\(\delta&gt;0\)</span> there are points in <span class="math inline">\(B_\delta (\underline{0})\)</span> not in <span class="math inline">\(E\)</span>. This is demonstrated in Figure <a href="#fig:closedsetE" data-reference-type="ref" data-reference="fig:closedsetE">8</a>. Set <span class="math inline">\(E\)</span> is a closed set, as the complement of <span class="math inline">\(E\)</span>, <span class="math inline">\(E^c = \{ (x,y) \in \mathbb{R}^2: x&lt;0 \}\)</span> is an open set.</p>
-<table>
+<table id="fig:closedsetE" class="imageTable">
+<caption>The set <span class="math inline">\(E= \{ (x,y) \in \mathbb{R}^2 : x\ge 0\}\)</span> is not an open set, as we can find a point which isn’t contained in any open ball. This set is a closed set, as it is the complement of an open set.</caption>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><img src="setE.jpeg" title="fig:" id="fig:closedsetE" alt="The set E= \{ (x,y) \in \mathbb{R}^2 : x\ge 0\} is not an open set, as we can find a point which isn’t contained in any open ball. This set is a closed set, as it is the complement of an open set." />  </td>
-<td style="text-align: center;">  <img src="ballinE.jpeg" title="fig:" id="fig:closedsetE" alt="The set E= \{ (x,y) \in \mathbb{R}^2 : x\ge 0\} is not an open set, as we can find a point which isn’t contained in any open ball. This set is a closed set, as it is the complement of an open set." /></td>
+<td style="text-align: center;"><img src="setE.jpeg" title="fig:" id="fig:closedsetE" style="width:40.0%" alt="The set E= \{ (x,y) \in \mathbb{R}^2 : x\ge 0\} is not an open set, as we can find a point which isn’t contained in any open ball. This set is a closed set, as it is the complement of an open set." />  </td>
+<td style="text-align: center;">  <img src="ballinE.jpeg" title="fig:" id="fig:closedsetE" style="width:40.0%" alt="The set E= \{ (x,y) \in \mathbb{R}^2 : x\ge 0\} is not an open set, as we can find a point which isn’t contained in any open ball. This set is a closed set, as it is the complement of an open set." /></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -173,11 +180,12 @@
 </tbody>
 </table></li>
 <li><p>Likewise <span class="math inline">\(F = \{(x,y)\in \mathbb{R}^2: 1&lt;x&lt;3,1&lt;y&lt;2\}\)</span> is open, but <span class="math inline">\(G = \{(x,y)\in \mathbb{R}^2: 1 \le x \le 3,1&lt;y&lt;2\}\)</span> is not (but <span class="math inline">\(G\)</span> is <u>not</u> closed either!). This is demonstrated in Figure <a href="#fig:setsFG" data-reference-type="ref" data-reference="fig:setsFG">10</a></p>
-<table>
+<table id="fig:setsFG" class="imageTable">
+<caption>The set <span class="math inline">\(F= \{ (x,y) \in \mathbb{R}^2 : 1&lt;x&lt;3, 1&lt;y&lt;2\}\)</span> is an open set, but the set <span class="math inline">\(G= \{ (x,y) \in \mathbb{R}^2 : 1\le x \le 3, 1&lt;y&lt;2\}\)</span> is neither open (since points along the left and right edges aren’t contained in any open balls), nor closed (since the complement is the outside of the rectangle, along with the top and bottom edges of the rectangle, and hence contains points which aren’t contained in any open ball).</caption>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><img src="setF.jpeg" title="fig:" id="fig:setsFG"  alt="The set F= \{ (x,y) \in \mathbb{R}^2 : 1&lt;x&lt;3, 1&lt;y&lt;2\} is an open set, but the set G= \{ (x,y) \in \mathbb{R}^2 : 1\le x \le 3, 1&lt;y&lt;2\} is neither open (since points along the left and right edges aren’t contained in any open balls), nor closed (since the complement is the outside of the rectangle, along with the top and bottom edges of the rectangle, and hence contains points which aren’t contained in any open ball)." />  </td>
-<td style="text-align: center;">  <img src="setG.jpeg" title="fig:" id="fig:setsFG" alt="The set F= \{ (x,y) \in \mathbb{R}^2 : 1&lt;x&lt;3, 1&lt;y&lt;2\} is an open set, but the set G= \{ (x,y) \in \mathbb{R}^2 : 1\le x \le 3, 1&lt;y&lt;2\} is neither open (since points along the left and right edges aren’t contained in any open balls), nor closed (since the complement is the outside of the rectangle, along with the top and bottom edges of the rectangle, and hence contains points which aren’t contained in any open ball)." /></td>
+<td style="text-align: center;"><img src="setF.jpeg" title="fig:" id="fig:setsFG" style="width:40.0%" alt="The set F= \{ (x,y) \in \mathbb{R}^2 : 1&lt;x&lt;3, 1&lt;y&lt;2\} is an open set, but the set G= \{ (x,y) \in \mathbb{R}^2 : 1\le x \le 3, 1&lt;y&lt;2\} is neither open (since points along the left and right edges aren’t contained in any open balls), nor closed (since the complement is the outside of the rectangle, along with the top and bottom edges of the rectangle, and hence contains points which aren’t contained in any open ball)." />  </td>
+<td style="text-align: center;">  <img src="setG.jpeg" title="fig:" id="fig:setsFG" style="width:40.0%" alt="The set F= \{ (x,y) \in \mathbb{R}^2 : 1&lt;x&lt;3, 1&lt;y&lt;2\} is an open set, but the set G= \{ (x,y) \in \mathbb{R}^2 : 1\le x \le 3, 1&lt;y&lt;2\} is neither open (since points along the left and right edges aren’t contained in any open balls), nor closed (since the complement is the outside of the rectangle, along with the top and bottom edges of the rectangle, and hence contains points which aren’t contained in any open ball)." /></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -197,7 +205,7 @@
 </div>
 </section>
 <section id="sub:differentiablemapsfromrntor" class="level2" data-number="1.3">
-<h2 data-number="5.3"><span class="header-section-number">5.3</span> Differentiable maps <span class="math inline">\(\mathbb{R}^n\to \mathbb{R}\)</span></h2>
+<h2 data-number="0.3"><span class="header-section-number">0.3</span> Differentiable maps <span class="math inline">\(\mathbb{R}^n\to \mathbb{R}\)</span></h2>
 <p>We’re now ready to define what it means for a scalar field <span class="math inline">\(f(\underline{x}):\mathbb{R}^n \to \mathbb{R}\)</span> to be differentiable. Remember, a function of two variables <span class="math inline">\(f(x,y):D \to \mathbb{R}\)</span> for <span class="math inline">\(D\subseteq \mathbb{R}^2\)</span> was differentiable at a point <span class="math inline">\(\underline{x}_0=(x_0,y_0)\in D\)</span>, if <span class="math inline">\(\exists\; \delta &gt; 0\)</span> such that <span class="math inline">\(|\underline{x}- \underline{x}_0| &lt; \delta \implies \underline{x}\in D\)</span> and <span class="math display">\[f(x,y) - f(x_0,y_0) =  (x-x_0) \frac{\partial f}{\partial x}(x_0,y_0) + (y - y_0) \frac{\partial f}{\partial y}(x_0,y_0) + R(x,y), \quad \quad\quad \quad(\dagger)\]</span> such that <span class="math display">\[\lim_{\underline{x}\to \underline{x}_0 }\frac{R(x,y)}{|\underline{x}- \underline{x}_0|} = 0.\]</span></p>
 <p>We can now generalise this to <span class="math inline">\(\mathbb{R}^n\)</span> using vector notation.</p>
 <div id="def:differentiablescalarfield" class="definition">
@@ -242,7 +250,7 @@
 </div>
 </section>
 <section id="sub:continuous_differentiability" class="level2" data-number="1.4">
-<h2 data-number="5.4"><span class="header-section-number">5.4</span> Continuous Differentiability</h2>
+<h2 data-number="0.4"><span class="header-section-number">0.4</span> Continuous Differentiability</h2>
 <p>In fact there is a <u>theorem</u> that continuity of partial derivatives implies differentiability.</p>
 <div id="thm:continuousdifferentiability" class="theorem">
 <p> Let <span class="math inline">\(f:U \to \mathbb{R}\)</span> be a function on an open set <span class="math inline">\(U\subset \mathbb{R}^n\)</span>, and suppose <span class="math inline">\(\underline{a}\in U\)</span>. If all partial derivatives of <span class="math inline">\(f\)</span> exist and are continuous in a neighbourhood of <span class="math inline">\(\underline{a}\)</span>, then <span class="math inline">\(f\)</span> is differentiable at <span class="math inline">\(\underline{a}\)</span>.</p>
@@ -296,7 +304,7 @@
 </div>
 </section>
 <section id="sub:thechainrulerevisited" class="level2" data-number="1.5">
-<h2 data-number="5.5"><span class="header-section-number">5.5</span> The chain rule revisited</h2>
+<h2 data-number="0.5"><span class="header-section-number">0.5</span> The chain rule revisited</h2>
 <p>Now that we’ve defined differentiability for scalar fields, we can give a proof of the chain rule for such fields.</p>
 <div id="thm:chainrule" class="theorem">
 <p> If <span class="math inline">\(f(\underline{x}) : U \to \mathbb{R}\)</span> is differentiable with <span class="math inline">\(U\)</span> an open set in <span class="math inline">\(\mathbb{R}^n\)</span>, and if <span class="math inline">\(\underline{x}\)</span> is a function of <span class="math inline">\(u_1,u_2, \dots u_m\)</span> such that the partial derivatives <span class="math inline">\(\frac{\partial x_1}{\partial u_1},\frac{\partial x_1}{\partial u_2},\dots \frac{\partial x_2}{\partial u_1},\frac{\partial x_2}{\partial u_2},\dots \frac{\partial x_n}{\partial u_m}\)</span> exist (that is all the partial derivatives <span class="math inline">\(\frac{\partial x_i}{\partial u_j}\)</span> for <span class="math inline">\(1\le i \le n\)</span> and <span class="math inline">\(1\le j \le m\)</span> exist), and if <span class="math display">\[\begin{aligned}
@@ -334,7 +342,7 @@
 </div>
 </section>
 <section id="the-implicit-function-theorem" class="level2" data-number="1.6">
-<h2 data-number="5.6"><span class="header-section-number">5.6</span> The implicit function theorem</h2>
+<h2 data-number="0.6"><span class="header-section-number">0.6</span> The implicit function theorem</h2>
 <p>We first consider the implicit function theorem in the case of a scalar field on <span class="math inline">\(\mathbb{R}^2\)</span>.</p>
 <p>Recall: A <u>level set</u> <span class="math inline">\(S\)</span> of <span class="math inline">\(f: U \to \mathbb{R}\)</span>, where <span class="math inline">\(U\)</span> is an open subset of <span class="math inline">\(\mathbb{R}^n\)</span>, is the set of points <span class="math inline">\(\{ \underline{x}\in U: f(\underline{x}) = c \}\)</span> for some constant <span class="math inline">\(c\)</span>.</p>
 <p>For <span class="math inline">\(n=2\)</span>, the level set will usually be a curve, called a <u>level curve</u>.</p>
@@ -372,7 +380,7 @@
 </div>
 <p><strong>Terminology</strong>: <span class="math inline">\(y=g(x)\)</span> gives <span class="math inline">\(y\)</span> as an <u>explicit function</u> of <span class="math inline">\(x\)</span>; <span class="math inline">\(f(x,y) = 0\)</span> gives <span class="math inline">\(y\)</span> as an <u>implicit function</u> of <span class="math inline">\(x\)</span>. To go from explicit to implicit, just set <span class="math inline">\(f(x,y) = g(x) - y\)</span>.</p>
 <p><strong>Question</strong>: When is it possible to go the other way, from implicit to explicit?</p>
-<p><strong>Answer</strong>: Suppose the level curve <span class="math inline">\(f(x,y)=c\)</span> <u>can</u> be written as <span class="math inline">\(y=g(x)\)</span>. Then <span class="math display">\[f(x,g(x)) \;=\; c. \quad \quad\quad \quad\quad \quad(I)\]</span> Differentiating this, using the chain rule (LHS is a function of <span class="math inline">\(x\)</span> only) gives <span class="math display">\[\begin{aligned}
+<p>Suppose the level curve <span class="math inline">\(f(x,y)=c\)</span> <u>can</u> be written as <span class="math inline">\(y=g(x)\)</span>. Then <span class="math display">\[f(x,g(x)) \;=\; c. \quad \quad\quad \quad\quad \quad(I)\]</span> Differentiating this, using the chain rule (LHS is a function of <span class="math inline">\(x\)</span> only) gives <span class="math display">\[\begin{aligned}
 		\frac{d}{d x} f(x,g(x)) &amp;= \frac{\partial f}{\partial x} + \frac{d g}{d x}\frac{\partial f}{\partial y} \\
 		\text{but} \quad \quad\frac{d}{d x} f(x,g(x)) &amp;= \frac{d c}{d x} \;=\;0 \quad\text{(as $c$ is a constant)} \\
 		\Rightarrow\quad \quad\quad \quad\frac{d g}{d x} &amp;= -\frac{\frac{\partial f(x,g(x))}{\partial x}}{\frac{\partial f(x,g(x))}{\partial y}} \quad \quad\quad \quad(II)
@@ -390,7 +398,7 @@
 <li><p>(B) <span class="math display">\[\begin{aligned}
 			f(x,y) &amp;= x^2+y^2 \\
 			\Rightarrow\quad \quad\frac{\partial f}{\partial y} &amp;= 2y,
-		\end{aligned}\]</span> so if <span class="math inline">\(y_0 = 0\)</span> then <span class="math inline">\(\frac{\partial f}{\partial y}(x_0,y_0) =0\)</span>. We therefore can’t find a differentiable function <span class="math inline">\(g(x)\)</span> describing the level curves of <span class="math inline">\(f\)</span> in a neighbourhood of <span class="math inline">\(y=0\)</span>. Looking at Figure <a href="#fig:implicitcircles" data-reference-type="ref" data-reference="fig:implicitcircles">16</a>, we see that no single-valued function can describe the level curves of <span class="math inline">\(f\)</span> in a neighbourhood of <span class="math inline">\(y=0\)</span>.</p>
+		\end{aligned}\]</span> so if <span class="math inline">\(y_0 = 0\)</span> then <span class="math inline">\(\frac{\partial f}{\partial y}(x_0,y_0) =0\)</span>. We therefore can’t use the IFT to guarantee the existence of a differentiable function <span class="math inline">\(g(x)\)</span> describing the level curves of <span class="math inline">\(f\)</span> in a neighbourhood of <span class="math inline">\(y=0\)</span>. Looking at Figure <a href="#fig:implicitcircles" data-reference-type="ref" data-reference="fig:implicitcircles">16</a>, we see that no single-valued function can describe the level curves of <span class="math inline">\(f\)</span> in a neighbourhood of <span class="math inline">\(y=0\)</span>.</p>
 <div class="center">
 <figure>
 <img src="implicitcircles.jpeg" id="fig:implicitcircles" style="width:50.0%" alt="" /><figcaption>In any neighbourhood of <span class="math inline">\(y=0\)</span>, we can’t describe the level curve of <span class="math inline">\(f(x,y) = x^2 + y^2\)</span> by a differentiable function <span class="math inline">\(g(x)\)</span>.</figcaption>
@@ -424,15 +432,15 @@
 		\end{aligned}\]</span></p>
 <p>At points <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(\frac{\partial f}{\partial y} =0\)</span> so <span class="math inline">\(g(x)\)</span> is not differentiable. However at these points <span class="math inline">\(\frac{\partial f}{\partial x} \ne 0\)</span>, so instead of writing <span class="math inline">\(y=g(x)\)</span> we could find an <span class="math inline">\(h(y)\)</span> such that <span class="math inline">\(x=h(y)\)</span>.</p>
 </div>
-<p>If there is a point <span class="math inline">\(Q\)</span> on a level curve <span class="math inline">\(f=c\)</span> at which <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=\underline{0}\)</span>, the value of <span class="math inline">\(c\)</span> is called a <u>critical</u> value (otherwise it is a <u>regular</u> value) and the level curve <u>cannot</u> be written either as <span class="math inline">\(y=g(x)\)</span> or as <span class="math inline">\(x=h(y)\)</span> in the neighbourhood of <span class="math inline">\(Q\)</span> (with g,h differentiable).</p>
+<p>If there is a point <span class="math inline">\(Q\)</span> on a level curve <span class="math inline">\(f=c\)</span> at which <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=\underline{0}\)</span> (this is a critical point), the value of <span class="math inline">\(c\)</span> is called a <u>critical</u> value (otherwise it is a <u>regular</u> value) and the level curve <u>cannot</u> be written either as <span class="math inline">\(y=g(x)\)</span> or as <span class="math inline">\(x=h(y)\)</span> in the neighbourhood of <span class="math inline">\(Q\)</span> (with g,h differentiable).</p>
 <div id="eg:criticalvalue" class="example">
-<p> <span class="math inline">\(f=x^3-y^2\)</span>, then <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f = 3x^2 \underline{e}_1 - 2y \underline{e}_2\)</span> so <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=\underline{0}\)</span> at <span class="math inline">\(\underline{x}= \underline{0}\)</span>, so <span class="math inline">\(c=0\)</span> is a critical value for <span class="math inline">\(f(x,y)=c\)</span>. <span class="math display">\[\begin{aligned}
-			f=0 \quad \quad\Leftrightarrow\quad \quad y&amp;= \pm \sqrt{x^3} \quad \quad\quad \quad\text{no unique function in neighbourhood of } \underline{0} \\
+<p> <span class="math inline">\(f=x^3-y^2+1\)</span>, then <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f = 3x^2 \underline{e}_1 - 2y \underline{e}_2\)</span> so <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=\underline{0}\)</span> at <span class="math inline">\(\underline{x}= \underline{0}\)</span>, so <span class="math inline">\(c=1\)</span> is a critical value for <span class="math inline">\(f(x,y)=c\)</span>. <span class="math display">\[\begin{aligned}
+			f=1 \quad \quad\Leftrightarrow\quad \quad y&amp;= \pm \sqrt{x^3} \quad \quad\quad \quad\text{no unique function in neighbourhood of } \underline{0} \\
 			x&amp;= y^{\frac{2}{3}} \quad \quad\quad \quad\text{not differentiable at } \underline{0}
 		\end{aligned}\]</span></p>
 <div class="center">
 <figure>
-<img src="criticalcurve.png" id="fig:criticalc" style="width:50.0%" alt="" /><figcaption>Level curves of the function <span class="math inline">\(f(x,y) = x^3 - y^2\)</span>.</figcaption>
+<img src="criticalcurve.png" id="fig:criticalc" style="width:50.0%" alt="" /><figcaption>Level curves of the function <span class="math inline">\(f(x,y) = x^3 - y^2+1\)</span>.</figcaption>
 </figure>
 </div>
 </div>
@@ -451,7 +459,7 @@
 		0\;=\; \frac{\partial}{\partial x}(f(x,y,g(x,y)) &amp;= \frac{\partial x}{\partial x} \frac{\partial f}{\partial x} + \frac{\partial y}{\partial x} \frac{\partial f}{\partial y} + \frac{\partial g}{\partial x} \frac{\partial f}{\partial z} \\
 		&amp;= \frac{\partial f}{\partial x} + \frac{\partial g}{\partial x} \frac{\partial f}{\partial z},
 	\end{aligned}\]</span> as <span class="math inline">\(\frac{\partial x}{\partial x}=1\)</span>, <span class="math inline">\(\frac{\partial y}{\partial x}=0\)</span> and <span class="math inline">\(z=g(x,y)\)</span>. Hence <span class="math display">\[\frac{\partial g}{\partial x} \;=\; - \frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial z}}\]</span> as required. The argument follows similarly for <span class="math inline">\(\frac{\partial g}{\partial y}\)</span>.</p>
-<p><strong>Recall</strong>: As we saw in Subsection 2.2, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> at <span class="math inline">\(\underline{x}_0 = (x_0,y_0,z_0)\)</span> is <u>normal</u> to the tangent plane of the surface <span class="math inline">\(z=g(x,y)\)</span> at <span class="math inline">\((x_0,y_0)\)</span>. So the normal line is given in parametric form by <span class="math display">\[\underline{x}(t) \;=\; \underline{x}_0 + t\underline{\nabla\mkern-2mu}\mkern 3mu f,\]</span> and the tangent plane is given by <span class="math display">\[(\underline{x}- \underline{x}_0) . \underline{\nabla\mkern-2mu}\mkern 3mu f \;=\; 0\]</span></p>
+<p><strong>Recall</strong>: As we saw in Subsection <a href="#sub:directionalderivatives" data-reference-type="ref" data-reference="sub:directionalderivatives">[sub:directionalderivatives]</a>, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> at <span class="math inline">\(\underline{x}_0 = (x_0,y_0,z_0)\)</span> is <u>normal</u> to the tangent plane of the surface <span class="math inline">\(z=g(x,y)\)</span> at <span class="math inline">\((x_0,y_0)\)</span>. So the normal line is given in parametric form by <span class="math display">\[\underline{x}(t) \;=\; \underline{x}_0 + t\underline{\nabla\mkern-2mu}\mkern 3mu f,\]</span> and the tangent plane is given by <span class="math display">\[(\underline{x}- \underline{x}_0) . \underline{\nabla\mkern-2mu}\mkern 3mu f \;=\; 0\]</span></p>
 <div id="eg:implicitfunctionsurface" class="example">
 <p> This example is taken from the 2011 exam, with notation slightly changed.</p>
 <p><u>Question</u>: Check if <span class="math inline">\(z\sin(\pi x) = \log(2z-y^2)\)</span> defines a function <span class="math inline">\(z=g(x,y)\)</span> around <span class="math inline">\(x=2\)</span>, <span class="math inline">\(y=-1\)</span>. Find the tangent plane and normal line to <span class="math inline">\(z=g(x,y)\)</span> at <span class="math inline">\((2,-1)\)</span>.</p>
@@ -491,17 +499,36 @@
 function doNumbering() {
 	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
 	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
-	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark';
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
 	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
 	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
 	var numberWithin = '1';
-
-	var counterOffset = '04';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
 	
 	function sanitiseSelector(selector) {
 		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
 		var sanitised = selector.replace(/\:/g,"\\\:");
 		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
 		return sanitised
 	}
 	
@@ -537,8 +564,9 @@ function doNumbering() {
 			var reqLevels = document.querySelectorAll(".level"+levelSpec);
 			for (var level of reqLevels) {
 				levelCount = level.getAttribute("data-number");
-				levelCount = levelCount+(".0".repeat(numberWithin-levelSpec));
-				levelCount = String(parseInt(levelCount)+parseInt(counterOffset));
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				console.log(counterOffset);
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
 				for (var counter of supportedEnvsArray) {
 					var envCount = 1;
 					var envs = level.querySelectorAll(counter.join(", "));
@@ -555,7 +583,9 @@ function doNumbering() {
 		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
 		figs = document.querySelectorAll("figure, .imageTable");
 		var fig_no = 1
+		console.log(figs);
 		for (var fig of figs) {
+			console.log(fig);
 			var cap
 			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
 			if (fig.nodeName == "FIGURE") {
@@ -576,9 +606,41 @@ function doNumbering() {
 		}
 	}
 	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
 	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
 	numberEnvs();
 	numberFigs();
+	numberGlobals();
 	labelLinks();
 }
 </script><script>
