@@ -34,9 +34,8 @@
 <ul>
 <li><a href="#the-three-big-theorems"><span class="toc-section-number">8.1</span> The three big theorems</a></li>
 <li><a href="#examples"><span class="toc-section-number">8.2</span> Examples</a></li>
-<li><a href="#subsec:conservation"><span class="toc-section-number">8.3</span> Conservation laws and the continuity equation</a></li>
+<li><a href="#subsec:conservation"><span class="toc-section-number">8.3</span> Conservation laws and the continuity equation (Non-Examinable)</a></li>
 <li><a href="#path-independence-of-line-integrals"><span class="toc-section-number">8.4</span> Path independence of line integrals</a></li>
-<li><a href="#sec:Jac"><span class="toc-section-number">8.5</span> Changing integration variables</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -112,7 +111,7 @@ I&amp;=\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot\underline{F}\,dV\\[2pt
 </div>
 </section>
 <section id="subsec:conservation" class="level2" data-number="1.3">
-<h2 data-number="8.3"><span class="header-section-number">8.3</span> Conservation laws and the continuity equation</h2>
+<h2 data-number="8.3"><span class="header-section-number">8.3</span> Conservation laws and the continuity equation (Non-Examinable)</h2>
 <p>This is an important application of the divergence theorem; it might also help you to get an intuition for the meaning of the surface integral <span class="math inline">\(\int_S \underline{F}\cdot d\underline{A}\)</span>, which is usually interpreted as the flux of some quantity <span class="math inline">\(\underline{F}\)</span> through the surface of interest, <span class="math inline">\(S\)</span>. Flux is the rate of flow per unit area, which is measured perpendicular to the face of the surface, so it is <span class="math inline">\(dA\)</span> multiplied by the unit normal vector <span class="math inline">\(\widehat{\underline{n}}\)</span> with which the dot product with <span class="math inline">\(\underline{F}\)</span> is taken. Typical fluxes of interest are the magnetic flux (<span class="math inline">\(\underline{F}=\underline{B}\)</span>), the electric flux (<span class="math inline">\(\underline{F}=\underline{E}\)</span>), and transport fluxes such as mass (<span class="math inline">\(\underline{F}=\rho\underline{v}\)</span>) (of fluid perhaps), heat or energy.</p>
 <p>To give a concrete example, let us consider a swarm of bees and suppose that at time <span class="math inline">\(t\)</span> and position <span class="math inline">\(\underline{x}\in\mathbb{R}^3\)</span> their density (number of bees per unit volume) is <span class="math inline">\(\rho (\underline{x},t)\)</span>, and that near that point they are flying with average velocity <span class="math inline">\(\underline{v}(\underline{x},t)\)</span>. Then the flux of bees is <span class="math inline">\(\underline{j} = \rho\underline{v}\)</span>, meaning that the number of bees per unit time passing through a small area <span class="math inline">\(\Delta A\)</span> with unit normal <span class="math inline">\(\widehat{\underline{n}}\)</span> is <span class="math inline">\(\underline{j}\cdot\widehat{\underline{n}}\,\Delta A\)</span>.</p>
 <div class="center">
@@ -193,9 +192,9 @@ d\underline{x}+\int_{C_{22}} \underline{F}\cdot d\underline{x}\\
 <p>Three-dimensional spaces are harder to visualise, but for example <span class="math inline">\(D=\mathbb{R}^3\)</span> is simply-connected, while if we drill out a cylinder around the <span class="math inline">\(z\)</span> axis to leave the set of points <span class="math display">\[D&#39;=\left\{(x,y,z)\in\mathbb{R}^3\,:~ x^2+y^2&gt;1\right\}\]</span> then <span class="math inline">\(D&#39;\)</span> is not simply connected. (Check that you can see why – can you identify a closed curve in <span class="math inline">\(D&#39;\)</span> which can’t be contracted to a point?)</p>
 <p>To summarise: if a vector field <span class="math inline">\(\underline{F}\)</span> satisfies <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F} = \underline{0}\)</span> in some simply-connected region <span class="math inline">\(D\)</span>, and if <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are two paths in <span class="math inline">\(D\)</span> joining points <span class="math inline">\(\underline{a}\)</span> and <span class="math inline">\(\underline{b}\)</span>, then <span class="math display">\[\int_{C_1}\underline{F}\cdot d\underline{x}=
 \int_{C_2}\underline{F}\cdot d\underline{x}\]</span> and the line integral depends only on the end points – it is <em>path independent</em> and the vector field <span class="math inline">\(\underline{F}\)</span> is conservative.</p>
-<section id="the-scalar-potential" class="level3 unnumbered">
-<h3 class="unnumbered">The scalar potential</h3>
-<p>A further observation: last term we saw that one way for <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}\)</span> to be zero in some region <span class="math inline">\(D\)</span> is for <span class="math inline">\(\underline{F}\)</span> to be the gradient of a scalar field there. A natural question is to ask whether it is possible to go the other way, and deduce from <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\)</span> that <span class="math inline">\(\underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> for some <span class="math inline">\(\phi\)</span>. If the region <span class="math inline">\(D\)</span> is simply connected, then the answer is yes. Suppose that <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\)</span> in <span class="math inline">\(D\)</span>, and define a scalar field <span class="math inline">\(\phi\)</span> by <span class="math display">\[\phi(\underline{x}) = \int_{\underline{x}_0}^{\underline{x}}\underline{F}\cdot d\underline{x}\]</span> where <span class="math inline">\(\underline{x}_0\)</span> is some (fixed) reference point in <span class="math inline">\(D\)</span>. By path independence, this is well-defined. But what is its gradient?</p>
+<section id="the-scalar-potential-non-examinable" class="level3 unnumbered">
+<h3 class="unnumbered">The scalar potential (Non-Examinable)</h3>
+<p>A further observation: in section <a href="#sec:del_acting_on_vector_fields" data-reference-type="ref" data-reference="sec:del_acting_on_vector_fields">[sec:del_acting_on_vector_fields]</a>, we saw that one way for <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}\)</span> to be zero in some region <span class="math inline">\(D\)</span> is for <span class="math inline">\(\underline{F}\)</span> to be the gradient of a scalar field there. A natural question is to ask whether it is possible to go the other way, and deduce from <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\)</span> that <span class="math inline">\(\underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> for some <span class="math inline">\(\phi\)</span>. If the region <span class="math inline">\(D\)</span> is simply connected, then the answer is yes. Suppose that <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\)</span> in <span class="math inline">\(D\)</span>, and define a scalar field <span class="math inline">\(\phi\)</span> by <span class="math display">\[\phi(\underline{x}) = \int_{\underline{x}_0}^{\underline{x}}\underline{F}\cdot d\underline{x}\]</span> where <span class="math inline">\(\underline{x}_0\)</span> is some (fixed) reference point in <span class="math inline">\(D\)</span>. By path independence, this is well-defined. But what is its gradient?</p>
 <p>We can prove this in a few different ways. One method (which is covered in the lectures), is just to calculate the partial derivatives directly. Consider the partial derivative of <span class="math inline">\(\phi\)</span> with respect to <span class="math inline">\(x\)</span>, <span class="math display">\[\frac{\partial \phi}{\partial x} = \lim_{h \to 0} \frac{\phi(\underline{x}+h\underline{e}_1) - \phi(\underline{x})}{h} = \lim_{h\to 0} \frac{\int_{\underline{x_0}}^{\underline{x}+ h\underline{e}_1}\underline{F}\cdot d\underline{x}- \int_{\underline{x_0}}^{\underline{x}}\underline{F}\cdot d\underline{x}}{h}.\]</span></p>
 <p>Since we have that <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times \underline{F} = 0\)</span> over a simply-connected region <span class="math inline">\(D\)</span>, then the line integral of <span class="math inline">\(\underline{F}\)</span> is path independent over <span class="math inline">\(D\)</span>. For the first of the two integrals in the expression above, let us therefore choose to integrate along a path that goes first from <span class="math inline">\(\underline{x}_0\)</span> to <span class="math inline">\(\underline{x}\)</span>, then from <span class="math inline">\(\underline{x}\)</span> to <span class="math inline">\(\underline{x}+ h\underline{e}_1\)</span> in a straight line, as shown in figure <a href="#fig:2path2" data-reference-type="ref" data-reference="fig:2path2">7</a> (where <span class="math inline">\(\underline{h}\)</span> is taken to be <span class="math inline">\(h\underline{e_1}\)</span>).</p>
 <div class="center">
@@ -205,14 +204,14 @@ C\)</span> from <span class="math inline">\(\underline{x}\)</span> to <span clas
 </figure>
 </div>
 <p>We can therefore compute the line integral of <span class="math inline">\(\underline{F}\)</span> from <span class="math inline">\(\underline{x}_0\)</span> to <span class="math inline">\(\underline{x}+h\underline{e}_1\)</span> as the sum of the line integrals along the two parts of this path, and hence <span class="math display">\[\frac{\partial \phi}{\partial x} = \lim_{h\to 0} \frac{\int_{\underline{x_0}}^{\underline{x}}\underline{F}\cdot d\underline{x}+ \int_{\underline{x}}^{\underline{x}+ h\underline{e}_1}\underline{F}\cdot d\underline{x}- \int_{\underline{x_0}}^{\underline{x}}\underline{F}\cdot d\underline{x}}{h} = \lim_{h\to 0} \frac{1}{h}\int_{\underline{x}}^{\underline{x}+ h\underline{e}_1}\underline{F}\cdot d\underline{x}\,.\]</span> If we parameterise this path as <span class="math inline">\(\underline{x}(t) = (x+th,y,z),\, 0\le t \le 1\)</span>, then we have <span class="math inline">\(\underline{F}(\underline{x}(t)) = \underline{F}(x+th,y,z)\)</span> and <span class="math inline">\(\frac{d \underline{x}}{dt} = (h,0,0)\)</span>, so <span class="math display">\[\int_{\underline{x}}^{\underline{x}+ h\underline{e}_1}\underline{F}\cdot d\underline{x}= \int_0^1 \underline{F}(x+th,y,z) \cdot h\underline{e}_1\, dt = h\int_0^1 F_1(x+th,y,z)\, dt,\]</span> where <span class="math inline">\(F_1\)</span> is the <span class="math inline">\(\underline{e}_1\)</span> component of <span class="math inline">\(\underline{F}\)</span>. Substituting this back in to our expression for <span class="math inline">\(\frac{\partial \phi}{\partial x}\)</span> gives <span class="math display">\[\frac{\partial \phi}{\partial x} =  \lim_{h\to 0} \int_0^1 F_1(x+th,y,z)\, dt.\]</span></p>
-<p>A nice way to evaluate this expression is using the mean value theorem for integrals, which in general states that <span class="math inline">\(\int_a^b G(x)\,dx=G(x^*)(b-a)\)</span> for some <span class="math inline">\(x^*\in[a,b]\)</span>. In this case, this says that there exists a <span class="math inline">\(t^* \in [0,1]\)</span> such that <span class="math inline">\(\int_0^1 F_1(x+th,y,z) = F_1(z+t^*h,y,z)\)</span>, and then taking the limit gives <span class="math inline">\(\frac{\partial \phi}{\partial x} = F_1(x,y,z)\)</span> by continuity.</p>
+<p>A nice way to evaluate this expression is using the mean value theorem for integrals, which in general states that <span class="math inline">\(\int_a^b G(x)\,dx=G(x^*)(b-a)\)</span> for some <span class="math inline">\(x^*\in[a,b]\)</span>. In this case, this says that there exists a <span class="math inline">\(t^* \in [0,1]\)</span> such that <span class="math inline">\(\int_0^1 F_1(x+th,y,z) = F_1(x+t^*h,y,z)\)</span>, and then taking the limit gives <span class="math inline">\(\frac{\partial \phi}{\partial x} = F_1(x,y,z)\)</span> by continuity.</p>
 <p>Alternatively, we can consider a Taylor expansion of <span class="math inline">\(F_1(x+th,y,z)\)</span>, and then we see that <span class="math display">\[\begin{aligned}
 		\frac{\partial \phi}{\partial x} &amp;=  \lim_{h\to 0} \int_0^1 (F_1(x,y,z) + th\frac{\partial}{\partial x}F_1(x,y,z) + \ldots) \, dt \\
 		&amp;=  \lim_{h\to 0} \left[ tF_1(x,y,z) + \frac{1}{2}t^2h\frac{\partial}{\partial x}F_1(x,y,z) + \ldots \right]_0^1 \\
 		&amp;= \lim_{h\to 0} \left(F_1(x,y,z) + \frac{1}{2}h\frac{\partial}{\partial x}F_1(x,y,z) + \ldots\right),
 	\end{aligned}\]</span> where all the terms contained within <span class="math inline">\(\ldots\)</span> are of order at least <span class="math inline">\(h^2\)</span>, and hence upon taking the limit we obtain <span class="math display">\[\frac{\partial \phi}{\partial x} = F_1(x,y,z).\]</span></p>
 <p>The partial derivatives with respect to <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> can be calculated following exactly the same procedure, and so we find <span class="math display">\[\underline{\nabla\mkern-2mu}\mkern 3mu \phi (\underline{x}) = F_1(x,y,z)\underline{e}_1 + F_2(x,y,z)\underline{e}_2 + F_3(x,y,z)\underline{e}_3 = \underline{F}(\underline{x}),\]</span> as required.</p>
-<p>Here’s an alternative (though similar) approach, which doesn’t require us to consider the different components separately, and has the bonus of showing that <span class="math inline">\(\phi\)</span> is fully differentiable in the sense seen last term. If we return to <a href="#fig:2path2" data-reference-type="ref" data-reference="fig:2path2">7</a>, then (similarly to before), for <span class="math inline">\(\underline{x}+\underline{h}\in D\)</span>, we can write: <span class="math display">\[\phi(\underline{x}+\underline{h})-\phi(\underline{x}) = \int_{\Delta C}\underline{F}\cdot
+<p>Here’s an alternative (though similar) approach, which doesn’t require us to consider the different components separately, and has the bonus of showing that <span class="math inline">\(\phi\)</span> is fully differentiable in the sense seen in section <a href="#sec:differentiabilityofscalarfields" data-reference-type="ref" data-reference="sec:differentiabilityofscalarfields">[sec:differentiabilityofscalarfields]</a>. If we return to <a href="#fig:2path2" data-reference-type="ref" data-reference="fig:2path2">7</a>, then (similarly to before), for <span class="math inline">\(\underline{x}+\underline{h}\in D\)</span>, we can write: <span class="math display">\[\phi(\underline{x}+\underline{h})-\phi(\underline{x}) = \int_{\Delta C}\underline{F}\cdot
 d\underline{x}\,.\]</span> Choosing the small increment to the path to be a straight line, we can parametrise <span class="math inline">\(\Delta C\)</span> as <span class="math inline">\(\underline{x}(t) =
 \underline{x} + \underline{h}\,t\)</span>, where <span class="math inline">\(0\le t\le 1\)</span>. Now <span class="math display">\[\int_{\Delta C}\underline{F}\cdot d\underline{x} =
 \int_0^1\underline{F}(\underline{x}+\underline{h}\,t)\cdot\underline{h}\,dt =
@@ -225,7 +224,10 @@ d\underline{x}\,.\]</span> Choosing the small increment to the path to be a stra
 <p>To conclude: if <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\)</span> in <span class="math inline">\(D\)</span> and <span class="math inline">\(D\)</span> is simply connected, then</p>
 <p><span class="math display">\[\boxed{\,\exists\,\phi~~\textrm{s.t.}~~\underline{F} =
 \underline{\nabla\mkern-2mu}\mkern 3mu \phi}\]</span> in <span class="math inline">\(D\)</span>. The function <span class="math inline">\(\phi\)</span> (or sometimes its negative) is called the <em>scalar potential</em>.</p>
-<p>One more question: starting with <span class="math inline">\(\underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span>, can we show path independence directly? The answer is again yes. This follows from the answer to exercise 68 on problem sheet 7, but for completeness the relevant calculation is repeated here. Let <span class="math inline">\(C\)</span> be any curve running from <span class="math inline">\(\underline{a}\)</span> to <span class="math inline">\(\underline{b}\)</span>, and <span class="math inline">\(t\mapsto \underline{x}(t)\)</span>, <span class="math inline">\(t=t_{\underline{a}}\dots t_{\underline{b}}\)</span> be any parametrisation of it, so that <span class="math inline">\(\underline{x}(t_{\underline{a}})=\underline{a}\)</span> and <span class="math inline">\(\underline{x}(t_{\underline{b}})=\underline{b}\)</span> . Then <span class="math display">\[\begin{aligned}
+</section>
+<section id="ssub:" class="level3 unnumbered">
+<h3 class="unnumbered">Path independence summary</h3>
+<p>One more question: starting with <span class="math inline">\(\underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span>, can we show path independence directly? The answer is again yes. This follows from the answer to exercise 76 on problem sheet 7, but for completeness the relevant calculation is repeated here. Let <span class="math inline">\(C\)</span> be any curve running from <span class="math inline">\(\underline{a}\)</span> to <span class="math inline">\(\underline{b}\)</span>, and <span class="math inline">\(t\mapsto \underline{x}(t)\)</span>, <span class="math inline">\(t=t_{\underline{a}}\dots t_{\underline{b}}\)</span> be any parametrisation of it, so that <span class="math inline">\(\underline{x}(t_{\underline{a}})=\underline{a}\)</span> and <span class="math inline">\(\underline{x}(t_{\underline{b}})=\underline{b}\)</span> . Then <span class="math display">\[\begin{aligned}
 \int_{C}\underline{F}\cdot
 d\underline{x}
 &amp;=\int_{t_{\underline{b}}}^{t_{\underline{a}}}\underline{\nabla\mkern-2mu}\mkern 3mu \phi(\underline{x}(t))\cdot
@@ -238,7 +240,7 @@ x_i}\frac{dx_i}{dt}\,dt
 &amp;=\phi(\underline{x}(t_{\underline{a}}))-\phi(\underline{x}(t_{\underline{b}}))
 \quad~~\,\mbox{(Fundamental Theorem of Calculus)}\\[4pt]
 &amp;=\phi(\underline{a})-\phi(\underline{b})\,.\end{aligned}\]</span> Since we have not specified <span class="math inline">\(C\)</span> beyond giving its end points <span class="math inline">\(\underline{a}\)</span> and <span class="math inline">\(\underline{b}\)</span>, the integral is path independent.</p>
-<p>Finally we can use our double ended arrows! In a simply connected region <span class="math inline">\(D\)</span>, <span class="math display">\[\boxed{\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\,\Leftrightarrow\,
+<p>Finally we can use our double ended arrows (though path independence implying the existence of the scalar field <span class="math inline">\(\phi\)</span> is only in the non-examinable section above)! In a simply connected region <span class="math inline">\(D\)</span>, <span class="math display">\[\boxed{\underline{\nabla\mkern-2mu}\mkern 3mu \times\underline{F}=\underline{0}\,\Leftrightarrow\,
 \textrm{path independence of }I\,\Leftrightarrow\,\exists\,\phi 
 \textrm{ s.t. }
 \underline{F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi.}\]</span></p>
@@ -281,170 +283,6 @@ x_i}\frac{dx_i}{dt}\,dt
 \frac{\partial u}{\partial y}\right) dA\]</span> which vanishes since the integrand on the RHS is zero by (CR2). Likewise the second integral is <span class="math display">\[\oint_C(v\,dx+u\,dy) = \int_A\left(\frac{\partial u}{\partial x} -
 \frac{\partial v}{\partial y}\right) dA\]</span> and this is also zero, by (CR1). Hence <span class="math inline">\(\oint_Cf(z)\,dz =0\)</span>, as stated by Cauchy.</p>
 </section>
-</section>
-<section id="sec:Jac" class="level2" data-number="1.5">
-<h2 data-number="8.5"><span class="header-section-number">8.5</span> Changing integration variables</h2>
-<p>Simply put, changing variables can make life easier. How and why a change of variables makes calculations easier can be seen by revisiting example <a href="#circeg" data-reference-type="ref" data-reference="circeg">[circeg]</a>, but this time, somewhat perversely, using Cartesian coordinates:</p>
-<div id="eg:polar" class="example">
-<p> Integrate <span class="math inline">\(f(x,y)=x^2+y^2\)</span> over the unit disc, using Cartesian coordinates.</p>
-<div class="center">
-<figure>
-<img src="circle.jpg" id="fig:circle" style="width:50.0%" alt="" /><figcaption> The region of integration is the area between two curves, which together make a circle.</figcaption>
-</figure>
-</div>
-<p>The equation of a unit circle is given implicitly by <span class="math inline">\(x^2+y^2=1\)</span>, but in order to perform our iterated integral (with respect to <span class="math inline">\(y\)</span> first) we must consider the upper and lower halves of the circle as individual curves given by <span class="math inline">\(y=\sqrt{1-x^2}\)</span> and <span class="math inline">\(y=-\sqrt{1-x^2}\)</span> respectively, with <span class="math inline">\(-1\le x\le 1\)</span>. <span class="math display">\[\begin{aligned}
-\int_{-1}^1\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}(x^2+y^2)\,dy\,dx
-&amp;=\int_{-1}^1
-\left[x^2y+{\textstyle\frac{1}{3}}y^3\right]_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}dx
-=\int_{-1}^{1}{\textstyle\frac{2}{3}}(1+2x^2)\sqrt{1-x^2}\,dx\\[2pt]
-&amp;\textrm{Using the substitution $x=\sin\theta$,
-$\sqrt{1-x^2}dx=\cos^2\theta\,d\theta$:}\\
-&amp;=\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}
-{\textstyle\frac{2}{3}}(\cos^2\theta+2\sin^2\theta\cos^2\theta)\,d\theta\\
-&amp;\textrm{Use trig double angle identities to simplify and get:}\\
-&amp;={\textstyle\frac{2}{3}}\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}
-({\textstyle\frac{3}{4}}+{\textstyle\frac{1}{2}}\cos 2\theta-{\textstyle\frac{1}{4}}\cos 4\theta)\,d\theta\\
-&amp;=
-\left[{\textstyle\frac{1}{2}}\theta
-+{\textstyle\frac{1}{6}}\sin 2\theta
--{\textstyle\frac{1}{24}}\sin 4\theta
-\right]_{-\frac{\pi}{2}}^{\frac{\pi}{2}}
-\,=\,{\textstyle\frac{1}{2}}\pi\,.\end{aligned}\]</span></p>
-<p>That was quite hard work, so let’s recap on how changing variables can simplify life. We’ll change to polar coordinates: <span class="math inline">\((x,y)\to(r,\theta)\)</span> where <span class="math inline">\(x=r\cos\theta\)</span>, <span class="math inline">\(y=r\sin\theta\)</span>. Our limits must also change to <span class="math inline">\(0\le r\le 1\)</span>, <span class="math inline">\(0\le\theta\le 2\pi\)</span>, and also <span class="math inline">\(dA=rdrd\theta\)</span>; we will see later why this is so. This form of <span class="math inline">\(dA\)</span> is very important and the extra <span class="math inline">\(r\)</span>, which may look out of place, is crucial. Therefore we can write: <span class="math display">\[\begin{aligned}
-\int_{-1}^1\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}(x^2+y^2)\,dy\,dx 
-&amp;=\int_0^{2\pi}\int_0^1 r^3 drd\theta\\[2pt]
-&amp;=\int_0^{2\pi} \left[{\textstyle\frac{1}{4}}r^4\right]_0^1d\theta
-=\left[{\textstyle\frac{1}{4}}\theta\right]_0^{2\pi} \,=\, {\textstyle\frac{1}{2}}\pi\,.\end{aligned}\]</span></p>
-</div>
-<p>The change of variables made our computation much simpler, but how do we change from one set of variables to another in general? A change of variables is a change of coordinate systems, and usually (though not always) the good choice is pretty obvious – e.g. if you are dealing with a circular area of integration, polar coordinates will probably be best. One further word of warning: if we start with two variables in the integration (e.g. <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>) then we need to keep two variables free after the coordinate change (e.g. <span class="math inline">\(r\)</span>, <span class="math inline">\(\theta\)</span>). So NEVER, when changing variables to make an integration easier, substitute actual values for the variables (so NEVER do this: <span class="math inline">\(r=3\)</span>)!!! The values are for the integration limits.</p>
-<p><strong>This small section is to give some intuition for what will follow:</strong></p>
-<p>We briefly look at the change from Cartesian coordinates to polar coordinates from a geometric point of view before giving the general method.</p>
-<div class="center">
-<figure>
-<img src="arc.jpg" id="fig:arc" style="width:50.0%" alt="" /><figcaption> A small area <span class="math inline">\(dA\)</span> in terms of polar coordinates, i.e. small changes in <span class="math inline">\(r\)</span> and <span class="math inline">\(\theta\)</span> instead of in <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</figcaption>
-</figure>
-</div>
-<p>If we start at the point <span class="math inline">\(B=(r,\theta)\)</span> on the diagram shown in figure <a href="#fig:arc" data-reference-type="ref" data-reference="fig:arc">10</a>, small increases in <span class="math inline">\(r\)</span> and <span class="math inline">\(\theta\)</span> will give us the region traced out by the points <span class="math inline">\(B=(r,\theta)\)</span>, <span class="math inline">\(C=(r+dr,\theta)\)</span>, <span class="math inline">\(D=(r+dr,\theta +d\theta)\)</span> and <span class="math inline">\(E=(r,\theta+d\theta)\)</span>. When <span class="math inline">\(d\theta\)</span> and <span class="math inline">\(dr\)</span> are very small we can approximate this by a rectangle, and its area <span class="math inline">\(dA\)</span> is approximately equal to the product of the lengths <span class="math inline">\(|BC|\)</span> and <span class="math inline">\(|BE|\)</span>. It is clear that <span class="math inline">\(|BC| = dr\)</span>, while <span class="math inline">\(|BE|\)</span> is approximately equal to the length of the corresponding circular arc, which can be obtained by considering it as a proportion of the full circumference, <span class="math inline">\(C=2\pi r\)</span>. The proportion is simply given by the ratio of the angle of the arc to that of the whole circle, so <span class="math inline">\(|BE|=2\pi r \frac{d\theta}{2\pi} = rd\theta\)</span> and the infinitesimal area is given by <span class="math display">\[\begin{equation} \label{eqn:arc}
-dA = |BC||BE| = rdrd\theta\,. \end{equation}\]</span> You can also see that this holds by calculating the area of the sector <span class="math inline">\(OCDO\)</span> and subtracting the area of <span class="math inline">\(OBEO\)</span>, and then neglecting higher order terms as they become negligible when <span class="math inline">\(dr\)</span> is small: <span class="math inline">\(dA=\frac{d\theta}{2\pi}(\pi (r+dr)^2-\pi r^2)\sim r dr d\theta\)</span>.</p>
-<p><strong>Now back to the general case:</strong></p>
-<p>In the above example the change of variables from <span class="math inline">\((x,y)\)</span> to <span class="math inline">\((r,\theta)\)</span> was (apart from the special point at the origin, which is exceptional enough to be ignored) a diffeomorphism from one set of coordinates to another. Consider a general diffeomorphism <span class="math inline">\(\underline{v}: U\to
-V=\underline{v}(U)\)</span>, with inverse <span class="math inline">\(\underline{w}\)</span>, and suppose that <span class="math inline">\(V\)</span>, with coordinates <span class="math inline">\((x,y)\)</span>, is an area over which we wish to integrate some scalar field <span class="math inline">\(f\)</span>: <span class="math inline">\(V\to\mathbb{R}\)</span>. The big picture is shown in figure <a href="#fig:diffeo" data-reference-type="ref" data-reference="fig:diffeo">12</a> (a), while figure <a href="#fig:diffeo" data-reference-type="ref" data-reference="fig:diffeo">12</a> (b) zooms in on a single infinitesimal area element in <span class="math inline">\(U\)</span> and its image in <span class="math inline">\(V\)</span>.</p>
-<table id="fig:diffeo" class="imageTable">
-<caption> On the left is a diffeomorphism, <span class="math inline">\(\underline{v}\)</span>, and its inverse, <span class="math inline">\(\underline{w}\)</span>, mapping to and from an area of integration <span class="math inline">\(V\)</span>. On the right are infinitesimal areas in the coordinate systems <span class="math inline">\((u,v)\in U\)</span> (lower) and <span class="math inline">\((x,y)\in V\)</span> (upper). Note that the transformation illustrated is rather special in that small squares in <span class="math inline">\(U\)</span> are mapped to small squares in <span class="math inline">\(V\)</span> – it is a <em>conformal</em> mapping. In general the image of a small square in <span class="math inline">\(U\)</span> would be a parallelogram in <span class="math inline">\(V\)</span>.</caption>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><img src="diffeo1.jpg" title="fig:" id="fig:diffeo" style="width:45.0%" alt=" On the left is a diffeomorphism, \underline{v}, and its inverse, \underline{w}, mapping to and from an area of integration V. On the right are infinitesimal areas in the coordinate systems (u,v)\in U (lower) and (x,y)\in V (upper). Note that the transformation illustrated is rather special in that small squares in U are mapped to small squares in V – it is a conformal mapping. In general the image of a small square in U would be a parallelogram in V." /></td>
-<td style="text-align: center;"><img src="diffeo2.jpg" title="fig:" id="fig:diffeo" style="width:45.0%" alt=" On the left is a diffeomorphism, \underline{v}, and its inverse, \underline{w}, mapping to and from an area of integration V. On the right are infinitesimal areas in the coordinate systems (u,v)\in U (lower) and (x,y)\in V (upper). Note that the transformation illustrated is rather special in that small squares in U are mapped to small squares in V – it is a conformal mapping. In general the image of a small square in U would be a parallelogram in V." /></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">(a)</td>
-<td style="text-align: center;">(b)</td>
-</tr>
-</tbody>
-</table>
-<p>The integral of <span class="math inline">\(f\)</span> over <span class="math inline">\(V\)</span> can be found as the limit of a Riemann sum using the initial integration variables <span class="math inline">\((x,y)\in V\)</span>, as in section <a href="#sub:fubini" data-reference-type="ref" data-reference="sub:fubini">[sub:fubini]</a>: <span class="math display">\[\begin{align}
-I 
-&amp;= \int_V f(x,y)\,dxdy\\
-% \label{eqn:genI}
-&amp;= \lim\limits_{N\to\infty}\sum\limits_{k=0}^N f(\underline{x}_k^*)\,\Delta A_k\\
-&amp;= \lim \limits_{\Delta x_{i},\,\Delta y_{j}\to 0}\sum\limits_{i,j}
-f(\underline{x}_{ij}^*)\, \Delta x_{i}\Delta y_{j}\,.\end{align}\]</span> where the choice of partition of <span class="math inline">\(V\)</span> is taken to be parallel to the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axes in <span class="math inline">\(V\)</span>, i.e. <span class="math inline">\(\Delta A_k = \Delta x_{i}\Delta y_{j}\)</span>.</p>
-<p>However, the value of the integral does not depend on the partition taken to compute it, so let us use another one, the image under <span class="math inline">\(\underline{u}\)</span> of a partition of <span class="math inline">\(U\)</span> parallel to the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> axes in <span class="math inline">\(U\)</span>. From the lower panel of figure <a href="#fig:diffeo" data-reference-type="ref" data-reference="fig:diffeo">12</a> (b), a typical area element from such a partition can be specified by its lower left, lower right, and upper left corners, which have position vectors <span class="math inline">\((u,v)\)</span>, <span class="math inline">\((u+du,v)\)</span>, and <span class="math inline">\((u,v+dv)\)</span> respectively.</p>
-<p>These three corners are mapped to the points <span class="math inline">\(\underline{v}(u,v)\)</span>, <span class="math inline">\(\underline{v}(u+du,v)\)</span>, and <span class="math inline">\(\underline{v}(u,v+dv)\)</span> in <span class="math inline">\(V\)</span> by the diffeomorphism <span class="math inline">\(\underline{v}\)</span>, which define the in general skewed area element <span class="math inline">\(dA_k\)</span> in <span class="math inline">\(V\)</span>. As this area element is small we can treat it as an approximate parallelogram and compute its area via the cross product of vectors along two neighbouring sides (temporarily embedding the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane into <span class="math inline">\(\mathbb{R}^3\)</span> in order to define the cross product). Thus <span class="math display">\[\begin{aligned}
-\Delta A_k &amp;\approx  \Vert
-(\underline{v}(u+du,v)-\underline{v}(u,v))
-\times (\underline{v}(u,v+du)-\underline{v}(u,v))
-\Vert\quad\mbox{(area of parallelogram)}\\
-&amp;\approx  
-\Vert du \frac{\partial \underline{v}}{\partial u}
-\times dv \frac{\partial \underline{v}}{\partial v}\Vert
-\qquad\qquad\qquad\,\mbox{(from the definition of the
-partial derivatives)}\\
-&amp;= |\,
-\left|\begin{array}{ccc}
-\underline{e_1}&amp;\underline{e_2}&amp;\underline{e_3}\\[2pt]
-\frac{\partial v_1}{\partial u}&amp;\frac{\partial v_2}{\partial u}&amp;0\\[4pt]
-\frac{\partial v_1}{\partial v}&amp;\frac{\partial v_2}{\partial v}&amp;0
-\end{array}\right|\,| ~du\,dv
-\qquad\mbox{(definition of cross product)}\\[3pt]
-&amp;=
-|\,
-\left| \begin{array}{cc}
-\frac{\partial v_1}{\partial u}&amp;\frac{\partial v_2}{\partial u}\\[3pt]
-\frac{\partial v_1}{\partial v}&amp;\frac{\partial v_2}{\partial v}
-\end{array}\right|\,| ~du\,dv
-\qquad\qquad\mbox{(expanding out the determinant)}\\[3pt]
-&amp;=
-|\,\left| \begin{array}{cc}
-\frac{\partial v_1}{\partial u}&amp;\frac{\partial v_1}{\partial v}\\[3pt]
-\frac{\partial v_2}{\partial u}&amp;\frac{\partial v_2}{\partial v}
-\end{array}\right|\,| ~du\,dv
-\qquad\qquad\mbox{(rearranging using properties of $2\times 2$ determinants)}
-\\[2pt]
-&amp;= |J(\underline{v})|\,du\,dv \,,\end{aligned}\]</span> where <span class="math inline">\(J(\underline{v})\)</span> is the Jacobian matrix of the transformation <span class="math inline">\(\underline{v}\)</span>. Now that we have calculated the area element under the diffeomorphism we can recalculate the integral using a Riemann sum with our new partition, with <span class="math inline">\(\Delta A_{k} =
-|J(\underline{v})|\,du\,dv\)</span> :<br />
-<span class="math display">\[\begin{aligned}
-I &amp;=
-\lim\limits_{N\to\infty}\sum\limits_{k=0}^N 
-f(\underline{v}(u_k^*,v_k^*))\,\Delta A_k\\
-&amp;= 
-\lim\limits_{du_{i}dv_{j}\to 0}
-\sum\limits_{i,j}f(\underline{v}(u_k^*,v_k^*))\,|J(\underline{v})|\,du_idv_j\\
-&amp;=
-\int_{U}f(\underline{v}(u,v))\,|J(\underline{v})|\,du\,dv\,.\end{aligned}\]</span> Note that <span class="math inline">\(U=\underline{w}(V)\)</span> is the area of integration in the new coordinate system, and that the limits of integration must be altered accordingly.</p>
-<p>Let’s use this result to check the form of <span class="math inline">\(dA\)</span> used in example <a href="#circeg" data-reference-type="ref" data-reference="circeg">[circeg]</a>. In this case our ‘<span class="math inline">\(V\)</span>’ coordinates were <span class="math inline">\((x,y)\)</span> and our ‘<span class="math inline">\(U\)</span>’ ones were <span class="math inline">\((r,\theta)\)</span> with <span class="math inline">\(x=r\cos\theta\)</span>, <span class="math inline">\(y=r\sin\theta\)</span>, and so <span class="math display">\[\begin{aligned}
-dA_{new} &amp;= |J(\underline{v})| \,dr\,d\theta  \\[2pt]
-&amp;= 
-% drd\theta \,
-|\,\left|
-\begin{array}{cc}
-\frac{\partial x}{\partial r}&amp;\frac{\partial x}{\partial
-\theta}\\[3pt]
-\frac{\partial y}{\partial r}&amp;\frac{\partial
-y}{\partial\theta}\end{array}\right|\,| ~dr\,d\theta\\[2pt]
-&amp;=|\, \left|\begin{array}{cc}\cos\theta &amp; -r\sin\theta\\
-\sin\theta &amp;r\cos\theta \end{array}\right| \,| ~dr\,d\theta\\
-&amp;=r\,dr\,d\theta \,.\end{aligned}\]</span> This is the formula quoted in example <a href="#circeg" data-reference-type="ref" data-reference="circeg">[circeg]</a> and agrees with equation <span class="math inline">\(\eqref{eqn:arc}\)</span>. The Jacobian allows us to convert complicated integrals into easier ones by means of a variable change.</p>
-<p>In summary:<br />
-<span class="math display">\[\boxed{dA=dxdy = |J|\,du\,dv}\]</span></p>
-<p>Changing variables for volume (triple) integrals is very similar to double integrals. Again we assume that there is a diffeomorphism <span class="math inline">\(\underline{U}\)</span> which maps the volume between the two coordinate systems <span class="math inline">\((W_1, W_2, W_3)\)</span> and <span class="math inline">\((U_1, U_2, U_3)\)</span>, and an inverse <span class="math inline">\(\underline{W}\)</span> which maps in the other direction, from <span class="math inline">\((U_1, U_2, U_3)\)</span> to <span class="math inline">\((W_1, W_2, W_3)\)</span>.</p>
-<p>Then, much as before, <span class="math display">\[\int_V f(\underline{W})\,dW_1\,dW_2\,dW_3 =
-\int_{\underline{U}(V)}f(\underline{W}(\underline{U}))\,|J(\underline{W})|\,dU_1\,dU_2\,dU_3\,,\]</span> where <span class="math inline">\(|J(\underline{W})|\)</span> is the magnitude of Jacobian, and <span class="math inline">\(J\)</span>, the Jacobian matrix or differential, is now the determinant of a 3-by-3 matrix of partial derivatives: <span class="math display">\[|J(\underline{W})| = |\left|\begin{array}{ccc}
-\frac{\partial W_1}{\partial U_1}&amp;\frac{\partial W_1}{\partial
-U_2}&amp;\frac{\partial W_1}{\partial U_3}\\[3pt]
-\frac{\partial W_2}{\partial U_1}&amp;\frac{\partial W_2}{\partial
-U_2}&amp;\frac{\partial W_2}{\partial U_3}\\[3pt]
-\frac{\partial W_3}{\partial U_1}&amp;\frac{\partial W_3}{\partial
-U_2}&amp;\frac{\partial W_3}{\partial U_3}\\
-\end{array}\right||\,.\]</span></p>
-<p>For example, for the usual Cartesian <span class="math inline">\(\longrightarrow\)</span> Spherical Polars coordinate change, take <span class="math inline">\(\underline{W}(r,\theta,\phi) = (x,y,z) = (r\sin\theta\cos\phi, r\sin\theta\sin\phi,
-r\cos\theta)\)</span> and <span class="math inline">\(\underline{U} = (r, \theta, \phi)\)</span>. As can be calculated (exercise!), the magnitude of the Jacobian of this mapping is <span class="math inline">\(|J| = r^2\sin\theta\)</span>.</p>
-<p>Just to re-iterate, this is a change of variables in all three dimensions (and NOT a parametrisation of a surface), so we need all three coordinates. We only fix <span class="math inline">\(r\)</span> to specific values in, for example, the limits of an integration.</p>
-<div class="example">
-<p>Let us use the coordinate change to re-evaluate the volume of a sphere of radius <span class="math inline">\(a\)</span>, found before in bonus example <a href="#spherevol" data-reference-type="ref" data-reference="spherevol">[spherevol]</a>: <span class="math display">\[\begin{aligned}
-\int_V dV&amp;=\int_0^{2\pi}\int_0^{\pi}\int_0^a
-r^2\sin\theta\,dr\,d\theta\,d\phi\\[2pt]
-&amp;=\int_0^{2\pi}\int_0^{\pi} \frac{a^3}{3}\sin\theta\,d\theta\,d\phi\\[2pt]
-&amp;=\int_0^{2\pi}\frac{2a^3}{3}\,d\phi
-=\frac{4\pi a^3}{3}\,.\end{aligned}\]</span> This agrees with our previous calculation but the steps were fewer and easier!</p>
-</div>
-<p>One last example:</p>
-<div class="example">
-<p>Integrate <span class="math inline">\(f(x,y)=x^2+y^2\)</span> over the square shown in figure <a href="#fig:sqr" data-reference-type="ref" data-reference="fig:sqr">13</a>.</p>
-<div class="center">
-<figure>
-<img src="sqr.jpg" id="fig:sqr" style="width:50.0%" alt="" /><figcaption> The area of integration, a square with sides of length <span class="math inline">\(\sqrt{2}\)</span>, shown with old coordinates <span class="math inline">\((x,y)\)</span> and new ones <span class="math inline">\((u,v)\)</span>.</figcaption>
-</figure>
-</div>
-<p>Doing this in Cartesian coordinates <span class="math inline">\((x,y)\)</span> is possible, but would involve splitting the integral into two and having limits which are functions, for example <span class="math display">\[I = \int_0^1\int_{y=-x}^{y=x} (x^2+y^2)\,dy\,dx +
-\int_1^2\int_{y=x-2}^{y=-x+2}(x^2+y^2)\,dy\,dx\textrm{.}\]</span> If we instead use coordinates <span class="math inline">\((u,v)\)</span>, which are given by taking the axes starting at the origin, along the sides of the square labelled <span class="math inline">\(u=0\)</span>, <span class="math inline">\(v=0\)</span>, we get a transformation <span class="math inline">\(x+y=u\)</span>, <span class="math inline">\(x-y=v\)</span>. This gives us <span class="math inline">\(x=\frac{1}{2}(u+v)\)</span> and <span class="math inline">\(y=\frac{1}{2}(u-v)\)</span>, which we can use to find the absolute value of the Jacobian: <span class="math display">\[|J| \,=\, |\,\left|\begin{array}{cc}\frac{\partial x}{\partial u} &amp;
-\frac{\partial x}{\partial v}\\[3pt]
-\frac{\partial y}{\partial u}&amp;\frac{\partial y}{\partial v}
-\end{array}\right|\,| \,=\, |-\frac{1}{2}|\,=\,\frac{1}{2}\,.\]</span> So now we have the easier integral <span class="math display">\[I \,=\, 
-\int_0^2\int_0^2 \frac{1}{2}(u^2+v^2)\frac{1}{2}\,du\,dv \,=\,
-\int_0^2\int_0^2 \frac{1}{2}u^2\,du\,dv \,=\,
-\frac{8}{3}\,.\]</span> Note this illustrates the need to take the absolute value of the Jacobian when changing variables – clearly the integral must be positive since it is the integral of an everywhere-positive function, while our answer would have been negative if we had used <span class="math inline">\(J\)</span> instead of <span class="math inline">\(|J|\)</span> in the above.</p>
-</div>
 </section>
 </section>
 <section class="footnotes" role="doc-endnotes">
