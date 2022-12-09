@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2022-23, Michaelmas: Topic 8 Solutions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2022-23, Michaelmas: Topic 8 Solutions</h1>
+</header>
+<p><span> </span></p>
+<div class="problem">
+<p>For a simple closed curve <span class="math inline">\(C\)</span> in the <span class="math inline">\((x,y)-\)</span>plane, show by Green’s theorem that the area enclosed is <span class="math inline">\(A\,=\,\frac{1}{2}\,\oint_C\,(x dy - y dx)\, .\)</span> (Note, ‘simple’ means that <span class="math inline">\(C\)</span> does not cross itself, which means that it encloses a well-defined area <span class="math inline">\(A\)</span>.)</p>
+</div>
+<div class="solution">
+<p>Area is given by <span class="math inline">\(A = \int_S dA\)</span>, where <span class="math inline">\(S\)</span> is the surface enclosed by the simple curve <span class="math inline">\(C\)</span> in the <span class="math inline">\((x,y)\)</span> plane. Green’s theorem states: <span class="math display">\[\oint_C Pdx+Qdy=\iint_S\left(
+\frac{\partial Q}{\partial x}- \frac{\partial P}{\partial y} \right)
+dA\]</span> In this case, the RHS of the formula given in the question is matched if we take <span class="math inline">\(P=-{\textstyle\frac{1}{2}}y\)</span> and <span class="math inline">\(Q={\textstyle\frac{1}{2}}x\)</span>; it is then easy to check that <span class="math inline">\(\frac{\partial Q}{\partial x}- \frac{\partial P}{\partial y}=1\)</span> and so the result is indeed equal to the area. (Note, many other choices of <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> would also give the area.)</p>
+</div>
+<div class="problem">
+<p>Evaluate <span class="math inline">\(\oint\,{\bf F}\cdot {\bf dx}\,\)</span> around the circle <span class="math inline">\(x^2\,+\,y^2\,+2x\,=\,0\)</span>, where <span class="math inline">\({\bf F}\,=\,y {\bf e_1}\,-\,x {\bf e_2}\)</span>, both directly and by using Green’s theorem in the plane.</p>
+</div>
+<div class="solution">
+<p><span class="math display">\[\oint\,{\bf F}\cdot {\bf dx}\,
+=\oint\,(F_1\,dx+F_2\,dy)
+=\oint\,(y\,dx-x\,dy)\]</span> Using Green’s theorem in the plane this is <span class="math display">\[\iint_A\left(-\frac{\partial x}{\partial x}-\frac{\partial y}{\partial
+y}\right)dx\,dy=-2\iint_Adx\,dy=-2A\]</span> where <span class="math inline">\(A\)</span> is the area inside the circle <span class="math inline">\(x^2+y^2+2x=0\)</span>, or <span class="math inline">\((x+1)^2+y^2=1\)</span>. Since this has radius <span class="math inline">\(1\)</span>, the area is <span class="math inline">\(\pi\)</span> and so <span class="math inline">\(\oint\,{\bf F}\cdot {\bf dx}\,=-2\pi\)</span> .<br />
+Alternatively, the circle can be parametrised as <span class="math inline">\({\bf x}\,(t)=(\cos(t)-1)\,{\bf e_1}+\sin(t)\,{\bf e_2}\)</span> . Then <span class="math inline">\(\frac{d{\bf x}\,(t)}{dt}=
+-\sin(t)\,{\bf e_1}+\cos(t)\,{\bf e_2}\)</span> so <span class="math display">\[\begin{aligned}
+\oint\,{\bf F}\cdot {\bf dx}\,&amp;=\int_0^{2\pi}
+(\sin(t)\,{\bf e_1}-(\cos(t)-1)\,{\bf e_2})\cdot(-\sin(t)\,{\bf e_1}+\cos(t)\,{\bf e_2})\,dt
+\\
+&amp; =
+\int_0^{2\pi}\bigl(-\sin^2(t)-\cos^2(t)+\cos(t)\bigr)\,dt = -2\pi\,.\end{aligned}\]</span></p>
+</div>
+<div class="problem">
+<p>Evaluate <span class="math inline">\(\oint_C\, 2x dy - 3y dx\)</span> around the square with vertices at <span class="math inline">\((x,y)=(0,2)\)</span>, <span class="math inline">\((2,0)\)</span>, <span class="math inline">\((-2,0)\)</span> and <span class="math inline">\((0,-2)\)</span>.</p>
+</div>
+<div class="solution">
+<p>We could equivalently embed the whole problem in three dimensions and use Stokes’ theorem. The required integral can be written as <span class="math display">\[\oint_C\,\mathbf{F}\cdot d{\bf x}\,\]</span> where <span class="math inline">\(\mathbf{F}=-3y{\bf e_1}+2x{\bf e_2}\)</span> and <span class="math inline">\(C\)</span> is the given contour, thought of as lying in the <span class="math inline">\(z=0\)</span> plane. By Stokes, and noting that the unit normal to the planar surface spanning <span class="math inline">\(C\)</span> is <span class="math inline">\({\bf e_3}\)</span>, this is equal to <span class="math inline">\(\iint_A
+(\underline{\nabla\mkern-2mu}\mkern 3mu \times\mathbf{F})\cdot {\bf e_3}\,dA\)</span>, and since <span class="math inline">\((\underline{\nabla\mkern-2mu}\mkern 3mu \times\mathbf{F})_3=5\)</span> this reduces to the previous calculation.</p>
+<p>Finally, it is possible (and a good exercise) to do the contour integral directly. The contour can be split into four straight lines as shown in Figure <a href="#fig:labelledsquare" data-reference-type="ref" data-reference="fig:labelledsquare">1</a>.</p>
+<div class="center">
+<figure>
+<img src="LabelledSquare.png" id="fig:labelledsquare" style="width:50.0%" alt="" /><figcaption>A square contour in the plane.</figcaption>
+</figure>
+</div>
+<p>On <strong>A</strong>, write points as <span class="math inline">\((t,2-t)\)</span> with <span class="math inline">\(t\)</span> running from <span class="math inline">\(2\)</span> to <span class="math inline">\(0\)</span>; then <span class="math inline">\(dx=dt\)</span>, <span class="math inline">\(dy=-dt\)</span>, and <span class="math display">\[\int_{\mathbf{A}} -3y\,dx+2x\,dy
+=\int_2^0\left(-3(2-t)-2t\right)dt
+=\left[-6t+{\textstyle\frac{1}{2}}t^2\right]_2^0 = 12-2 = 10\,.\]</span> On <strong>B</strong>, write points as <span class="math inline">\((t,2+t)\)</span> with <span class="math inline">\(t\)</span> running from <span class="math inline">\(0\)</span> to <span class="math inline">\(-2\)</span>; then <span class="math inline">\(dx=dy=dt\)</span> and <span class="math display">\[\int_C -3y\,dx+2x\,dy
+=\int_0^{-2}\left(-3(2+t)+2t\right)dt
+=\left[-6t-{\textstyle\frac{1}{2}}t^2\right]_0^{-2} = 12-2 = 10\,.\]</span> On <strong>C</strong>, write points as <span class="math inline">\((t,-2-t)\)</span> with <span class="math inline">\(t\)</span> running from <span class="math inline">\(-2\)</span> to <span class="math inline">\(0\)</span>; then <span class="math inline">\(dx=dt\)</span>, <span class="math inline">\(dy=-dt\)</span>, and <span class="math display">\[\int_C -3y\,dx+2x\,dy
+=\int_{-2}^0\left(-3(-2-t)-2t\right)dt
+=\left[6t+{\textstyle\frac{1}{2}}t^2\right]_{-2}^0 = 12-2 = 10\,.\]</span> On <strong>D</strong>, write points as <span class="math inline">\((t,-2+t)\)</span> with <span class="math inline">\(t\)</span> running from <span class="math inline">\(0\)</span> to <span class="math inline">\(2\)</span>; then <span class="math inline">\(dx=dy=dt\)</span> and <span class="math display">\[\int_C -3y\,dx+2x\,dy
+=\int_0^{2}\left(-3(-2+t)+2t\right)dt
+=\left[6t-{\textstyle\frac{1}{2}}t^2\right]_0^{2} = 12-2 = 10\,.\]</span> Adding them all up gives <span class="math inline">\(40\)</span>, as before. Other parametrisations could have been used; for the particular ones taken here, you could also have written the parameter as <span class="math inline">\(x\)</span> instead of <span class="math inline">\(t\)</span>, but be extra careful with the signs! (And <em>check</em> that you agree with the calculation given here…)</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\underline{v}}\)</span> be the radial vector field <span class="math inline">\({\underline{v}}({\underline{x}})={\underline{x}}\)</span> .<br />
+</p>
+<ol>
+<li><p>Compute <span class="math inline">\(l_1=\int_{C_1}{\underline{v}}\cdot d{\underline{x}}\)</span> , where <span class="math inline">\(C_1\)</span> is the straight-line contour from the origin to the point <span class="math inline">\((2,0,0)\)</span> .</p></li>
+<li><p>Compute <span class="math inline">\(l_2=\int_{C_2}{\underline{v}}\cdot d{\underline{x}}\)</span> , where <span class="math inline">\(C_2\)</span> is the semi-circular contour from the origin to the point <span class="math inline">\((2,0,0)\)</span> defined by <span class="math inline">\(0\le x\le 2\)</span>, <span class="math inline">\(y=+\sqrt{1-(x{-}1)^2}\)</span> , <span class="math inline">\(z=0\)</span>. <span>[It may help to start by sketching <span class="math inline">\(C_2\)</span> , and then to parameterize it as <span class="math inline">\({\underline{x}}(t)=
+(1-\cos t,\sin t,0)\)</span> with <span class="math inline">\(0\le t\le\pi\)</span>. ]</span></p></li>
+<li><p>You should have found that <span class="math inline">\(l_1=l_2\)</span>. Explain this result using Stokes’ theorem.</p></li>
+</ol>
+</div>
+<div class="solution">
+<ol>
+<li><p>Parameterizing <span class="math inline">\(C_1\)</span> by the distance <span class="math inline">\(x\)</span> from the origin, at the point <span class="math inline">\({\underline{x}}(x)=x\,{\underline{e}}_1\)</span> on <span class="math inline">\(C_1\)</span> we have <span class="math inline">\({\underline{v}}=x\,{\underline{e}}_x\)</span> and <span class="math inline">\(d{\underline{x}}={\underline{e}}_1\,dx\)</span> , and so <span class="math display">\[l_1=\int_0^2\!x\,d x=2\,.\]</span></p></li>
+<li><p>Parameterizing <span class="math inline">\(C_2\)</span> by the angle <span class="math inline">\(t\)</span>, <span class="math inline">\({\underline{v}}({\underline{x}}(t))=(1-\cos t,\sin t,0)\)</span> while <span class="math inline">\(d{\underline{x}}(t)=(\sin t,\cos t,0)\,dt\)</span>, so <span class="math inline">\({\underline{v}}\cdot d{\underline{x}}=\sin t\,dt\)</span> and <span class="math display">\[l_2=\int_0^\pi \sin t\,dt=2\,.\]</span></p></li>
+<li><p>As predicted in the question, <span class="math inline">\(l_1=l_2\)</span>. To explain this using Stokes’ theorem, note first that if <span class="math inline">\({\underline{v}}({\underline{x}})={\underline{x}}\)</span> then <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\underline{v}}={\underline{0}}\)</span> (see question 15(b)). Now let <span class="math inline">\(C_3\)</span> be the closed contour which runs from the origin to <span class="math inline">\((2,0,0)\)</span> along <span class="math inline">\(C_1\)</span>, then returns to the origin by taking <span class="math inline">\(C_2\)</span> in the reverse direction. Then <span class="math inline">\(\int_{C_3}{\underline{v}}\cdot d{\underline{x}}=l_1-l_2\)</span>. But by Stokes’ theorem, <span class="math inline">\(\int_{C_3}{\underline{v}}\cdot  d{\underline{x}}=
+\int_{S_3}(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\underline{v}})\cdot d{\underline{A}}=0\)</span>, where <span class="math inline">\(S_3\)</span> is a surface spanning <span class="math inline">\(C_3\)</span>. Hence <span class="math inline">\(l_1-l_2=0\)</span>, or <span class="math inline">\(l_1=l_2\)</span>, as required.</p></li>
+</ol>
+</div>
+<div class="problem">
+<p>Integrate <span class="math inline">\({\rm curl}\,{\bf F}\)</span>, where <span class="math inline">\({\bf F}\,=\, 3y {\bf e_1}- xz {\bf e_2}+ y z^2 {\bf e_3}\)</span>, over the portion <span class="math inline">\(S\)</span> of the surface <span class="math inline">\(2z\,=\, x^2 + y^2\)</span> below the plane <span class="math inline">\(z=2\)</span>, both directly and by using Stokes’ theorem. Take the area elements of <span class="math inline">\(S\)</span> to point outwards, so that their <span class="math inline">\(z\)</span> components are negative.</p>
+</div>
+<div class="solution">
+<p>The geometrical setup is illustrated in Figure <a href="#fig:parabaloid1" data-reference-type="ref" data-reference="fig:parabaloid1">2</a>.</p>
+<div class="center">
+<figure>
+<img src="parabaloid1.png" id="fig:parabaloid1" style="width:50.0%" alt="" /><figcaption>The intersection of the parabaloid <span class="math inline">\(2z\,=\, x^2 + y^2\)</span> and the plane <span class="math inline">\(z=2\)</span></figcaption>
+</figure>
+</div>
+<p>First proceed directly. Calculate <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=(z^2+x){\bf e_1}
+-(3+z){\bf e_3}\)</span> . Now consider the surface of the paraboloid <span class="math inline">\(2z=x^2+y^2\)</span>, The surface is the zero level set of <span class="math inline">\(f=x^2+y^2-2z\)</span>, so a normal vector to it is <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=2x {\bf e_1}+2y{\bf e_2}-2{\bf e_3}\)</span>, and <span class="math display">\[d{\bf A}=-\frac{\underline{\nabla\mkern-2mu}\mkern 3mu f}{{\bf e_3}\cdot\underline{\nabla\mkern-2mu}\mkern 3mu f}\,dxdy =
+\left(x{\bf e_1}+y{\bf e_2}-{\bf e_3}\right)dxdy.\]</span> Note the minus sign – this comes from the choice to take the ‘outward’ normal to be pointing <em>out</em> of the paraboloid, which (as should be clear from the plot) means its <span class="math inline">\(z\)</span> component is negative, leading to the minus sign in the formula for <span class="math inline">\(d{\bf A}\)</span>.</p>
+<p>Hence <span class="math display">\[\begin{aligned}
+\int_S \underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\cdot d{\bf A}
+&amp;=
+\iint_D\bigl((z^2+x){\bf e_1}
+-(3+z){\bf e_3}\bigr)\cdot\bigl(x{\bf e_1}+y{\bf e_2}-{\bf e_3}\bigr)\,dxdy\\
+&amp;=
+\iint_D \bigl( (z^2+x)x +3+z\bigr)\,dxdy \\
+&amp;=
+\iint_D \bigl( ({\textstyle\frac{1}{4}}(x^2+y^2)^2+x)x +3+{\textstyle\frac{1}{2}}(x^2+y^2)\bigr)\,dxdy\end{aligned}\]</span> where <span class="math inline">\(D\)</span> is the projection of <span class="math inline">\(S\)</span> onto the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane (a circle of radius 2) and the fact that <span class="math inline">\(z={\textstyle\frac{1}{2}}(x^2+y^2)\)</span> was used in the last line to write the integral in terms of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> alone.</p>
+<p>To calculate this integral, change to polar coordinates <span class="math inline">\(x=r\cos\theta\)</span>, <span class="math inline">\(y=r\sin\theta\)</span> . Then <span class="math inline">\(dxdy=rdrd\theta\)</span>, and <span class="math display">\[\int_S\left(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\right)\cdot d{\bf A}=
+\int_0^{2\pi}d\theta\int_0^2rdr\left({\textstyle\frac{1}{4}}r^5\cos\theta +
+r^2\cos^2\theta + 3 +{\textstyle\frac{1}{2}}r^2\right)\]</span> giving <span class="math inline">\(\int_S\left(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\right)\cdot d{\bf A}=
+\int_0^{2\pi}\left(\frac{2^5}{7}\cos\theta +
+4\cos^2\theta+8\right)d\theta = 20\pi\)</span> .</p>
+<p>Alternatively, we can use Stokes’ theorem to say that <span class="math inline">\(\int_S\left(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\right)\cdot d{\bf A}=\oint_C{\bf F}\cdot d{\bf x}\,\)</span> where <span class="math inline">\(C\)</span> is the boundary of <span class="math inline">\(S\)</span>, a circle of radius <span class="math inline">\(2\)</span> described by <span class="math display">\[x^2+y^2=4\,,\quad z=2\,.\]</span> Note that since our normal is pointing <em>down</em> (i.e. in the negative-<span class="math inline">\(z\)</span> direction), <span class="math inline">\(C\)</span> should be traversed <em>clockwise</em> in the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane. To get this right, write <span class="math inline">\(C\)</span> in parametric form as <span class="math inline">\(x=2\cos t\)</span>, <span class="math inline">\(y=-2\sin t\)</span>, <span class="math inline">\(z=2\)</span> with <span class="math inline">\(t\)</span> running from <span class="math inline">\(0\)</span> to <span class="math inline">\(2\pi\)</span>. Then <span class="math display">\[\begin{aligned}
+\oint_C{\bf F}\cdot d{\bf x}\,
+&amp;=\int_0^{2\pi}
+\bigl( -6\sin t\,{\bf e_1}- 4\cos t\,{\bf e_2}-8\sin t\,{\bf e_3}\bigr)\cdot
+\bigl(-2\sin t\,{\bf e_1}-2\cos t\,{\bf e_2}\bigr)\,dt \\
+&amp;=\int_0^{2\pi}
+\bigl( 12\sin^2 t +8\cos^2t\bigr)\,dt \,=\, 20\pi,\end{aligned}\]</span> as before.</p>
+<p><em>Note:</em> It is also possible to integrate the curl of <span class="math inline">\({\bf F}\)</span> over the flat disk <span class="math inline">\(S&#39;=\{x^2+y^2\le 4, z=2\}\)</span> which also has <span class="math inline">\(C\)</span> as its boundary. For this disk, picking the normal to again point downwards, <span class="math inline">\(d{\bf A}=-{\bf e_3}\,dxdy\)</span> everywhere, and so <span class="math display">\[\begin{aligned}
+\int_{S&#39;}\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\cdot d{\bf A}&amp;=
+\iint_{x^2+y^2\le 2}\bigl((4{+}x){\bf e_1}-5{\bf e_3}\bigr)\cdot
+\bigl(-{\bf e_3}\,dxdy\bigr)\\
+&amp;=\iint_{x^2+y^2\le 2}5\,dxdy \,=\, 20\pi\,.\end{aligned}\]</span> Observe that this is the same answer as for the surface integral over <span class="math inline">\(S\)</span>. This has to be the case since both are equal to the the line integral round <span class="math inline">\(C\)</span>, but can you see a direct argument for it? (Hint: consider using the divergence theorem.)</p>
+</div>
+<div class="problem">
+<p>The paraboloid of equation <span class="math inline">\(z=x^2+y^2\)</span> intersects the plane <span class="math inline">\(z=y\)</span> in a curve <span class="math inline">\(C\)</span>. Calculate <span class="math inline">\(\oint_C\, {\bf v} \cdot {\bf dx}\,\)</span> for <span class="math inline">\({\bf v}=2z {{\bf e_1}}+x {{\bf e_2}} + y {{\bf e_3}}\)</span> using Stokes’ theorem. Check your answer by evaluating the line integral directly.</p>
+</div>
+<div class="solution">
+<p>First, a picture of the situation is shown below in Figure <a href="#fig:parabaloid2" data-reference-type="ref" data-reference="fig:parabaloid2">3</a>.</p>
+<div class="center">
+<figure>
+<img src="parabaloid2.png" id="fig:parabaloid2" style="width:50.0%" alt="" /><figcaption>The intersection of the parabaloid <span class="math inline">\(z = x^2 + y^2\)</span> and the plane <span class="math inline">\(z=y\)</span>.</figcaption>
+</figure>
+</div>
+<p>On <span class="math inline">\(C\)</span>, we have <span class="math inline">\(z=x^2+y^2\)</span> and <span class="math inline">\(z=y\)</span>. Hence <span class="math inline">\(x^2+y^2=y\)</span>, or <span class="math inline">\(x^2+(y-{\textstyle\frac{1}{2}})^2={\textstyle\frac{1}{4}}\)</span> . Stokes’ theorem says that <span class="math display">\[\oint_C\, {\bf v} \cdot d{\bf x}\,= \int_S\left(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf v}\right)\cdot d{\bf A}\]</span> where <span class="math inline">\(S\)</span> is any surface bounded by <span class="math inline">\(C\)</span>, and <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf v}=\text{(calculate)}={\bf e_1}+2{\bf e_2}+{\bf e_3}=(1,2,1)\)</span>. There are then two ways to proceed.</p>
+<p>1) (Harder) Take <span class="math inline">\(S\)</span> to be the portion <span class="math inline">\(S\)</span> of the paraboloid <span class="math inline">\(z=x^2+y^2\)</span> that lies inside <span class="math inline">\(C\)</span>. Using method 1 from lectures, we can parametrise the paraboloid by <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, setting <span class="math inline">\({\bf x}\,(x,y)=x\,{\bf e_1}+y\,{\bf e_2}+(x^2+y^2)\,{\bf e_3}\)</span> , so <span class="math inline">\(\frac{\partial {\bf x}\,}{\partial x}={\bf e_1}+2x\,{\bf e_3}\)</span> and <span class="math inline">\(\frac{\partial {\bf x}\,}{\partial y}={\bf e_2}+2y\,{\bf e_3}\)</span> . Hence <span class="math display">\[d{\bf A}=({\bf e_1}+2x\,{\bf e_3})\times ({\bf e_2}+2y\,{\bf e_3})\,dxdy =
+( -2x\,{\bf e_1}-2y\,{\bf e_2}+{\bf e_3})\,dxdy\,.\]</span> Equivalently, we can use method 2 and define the paraboloid implicitly as the level set <span class="math inline">\(f(x,y,z)=0\)</span> where <span class="math inline">\(f(x,y,z)=z-x^2-y^2\)</span>, so <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f =
+-2x\,{\bf e_1}-2y\,{\bf e_2}+{\bf e_3}\)</span> and <span class="math display">\[d{\bf A}=\frac{\underline{\nabla\mkern-2mu}\mkern 3mu f}{{\bf e_3}\cdot\underline{\nabla\mkern-2mu}\mkern 3mu f}\,dxdy=
+( -2x\,{\bf e_1}-2y\,{\bf e_2}+{\bf e_3})\,dxdy\]</span> which is the same as the formula found using method 1.</p>
+<p>Either way, we have <span class="math display">\[\left(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf v}\right)\cdot d{\bf A}=
+({\bf e_1}+2{\bf e_2}+{\bf e_3})\cdot( -2x\,{\bf e_1}-2y\,{\bf e_2}+{\bf e_3})\,dxdy = (-2x-4y+1)\,dxdy\]</span> and this must be integrated over <span class="math inline">\(D\)</span>, the projection of <span class="math inline">\(S\)</span> onto the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane. Setting <span class="math inline">\(Y=y-{\textstyle\frac{1}{2}}\)</span> , <span class="math inline">\(4y=4Y+2\)</span> and the integral is <span class="math display">\[\iint_{x^2+Y^2\le \frac{1}{4}}
+\left(-1-2x-4Y\right)dxdY=-\frac{\pi}{4}\,.\]</span> (Note, the integrals of <span class="math inline">\(-2x\)</span> and <span class="math inline">\(-4Y\)</span> vanish by symmetry.)</p>
+<p>2) (Easier) Take <span class="math inline">\(S\)</span> to be the part of the plane <span class="math inline">\(z=y\)</span> encircled by <span class="math inline">\(C\)</span>, a (tilted) flat disk. On this disk the unit normal is <span class="math inline">\(\widehat{\bf n}=\frac{1}{\sqrt{2}}(-{\bf e_2}+{\bf e_3})\)</span> and the area elements are <span class="math inline">\(d{\bf A}=\widehat{\bf n}\,dx\,\sqrt{2}dy=(-{\bf e_2}+{\bf e_3})\,dxdy=(0,-1,1)dxdy\)</span>. Then the area integral is <span class="math display">\[\iint_D(1,2,1)\cdot (0,-1,1)\,dxdy =
+-\iint_D\,dxdy=-\frac{\pi}{4}\]</span> since the area of <span class="math inline">\(D\)</span>, a disk of radius <span class="math inline">\({\textstyle\frac{1}{2}}\)</span>, is <span class="math inline">\(\frac{\pi}{4}\)</span>.</p>
+<p>Note, the methods chosen here to evaluate the surface integrals are not compulsory. For example, the level set method could also be used for the second case.</p>
+<p>As a check, we can do the line integral directly. Given the characterisation of <span class="math inline">\(C\)</span> found above, it can be parametrised as <span class="math inline">\({\bf x}\,(t)=
+{\textstyle\frac{1}{2}}\cos t\,{\bf e_1}+{\textstyle\frac{1}{2}}(1+\sin t)\,{\bf e_2}+{\textstyle\frac{1}{2}}(1+\sin t)\,{\bf e_3}\)</span> with <span class="math inline">\(0\le t\le 2\pi\)</span>. Then <span class="math inline">\(\frac{d{\bf x}\,}{dt}=-{\textstyle\frac{1}{2}}\sin t\,{\bf e_1}+{\textstyle\frac{1}{2}}\cos t\,{\bf e_2}+{\textstyle\frac{1}{2}}\cos
+t\,{\bf e_3}\)</span> while <span class="math inline">\({\bf v}({\bf x}\,(t))=(1+\sin t)\,{\bf e_1}+{\textstyle\frac{1}{2}}\cos
+t\,{\bf e_2}+{\textstyle\frac{1}{2}}(1+\sin t)\,{\bf e_3}\)</span> , and so <span class="math display">\[\begin{aligned}
+&amp;\oint_C\, {\bf v} \cdot d{\bf x}\,\\
+&amp;~~= 
+{\textstyle\frac{1}{4}}\!\int_0^{2\pi}\! \bigl((2{+}2\sin t)\,{\bf e_1}+\cos
+t\,{\bf e_2}+(1{+}\sin t)\,{\bf e_3}\bigr)\cdot \bigl(-\sin
+t\,{\bf e_1}+\cos t\,{\bf e_2}+\cos t\,{\bf e_3}\bigr)dt \\
+&amp;~~={\textstyle\frac{1}{4}}\!\int_0^{2\pi}\! \bigl(
+-2\sin t -2\sin^2t+\cos^2t+\cos t+\cos t\sin t\bigr)dt\,=\,
+-\frac{\pi}{4}\end{aligned}\]</span> as before.</p>
+</div>
+<div class="problem">
+<p>For an open surface <span class="math inline">\(S\)</span> with boundary <span class="math inline">\(C\)</span>, show that <span class="math inline">\(2\int_S\,{\bf u}\cdot d{\bf A}=\oint_C\, ( {\bf u}\times{\bf x}\,)\cdot d{\bf x}\,\,,\)</span> where <span class="math inline">\({\bf u}\)</span> is a fixed vector.</p>
+</div>
+<div class="solution">
+<p>By Stokes’ theorem, the RHS is equal to <span class="math inline">\(\int_S\underline{\nabla\mkern-2mu}\mkern 3mu \times({\bf u}\times{\bf x}\,)\cdot d{\bf A}\)</span>. In addition, <span class="math display">\[(\underline{\nabla\mkern-2mu}\mkern 3mu \times({\bf u}\times{\bf x}\,))_i=\varepsilon_{ijk}\partial_j\varepsilon_{klm}u_lx_m
+=\varepsilon_{ijk}\varepsilon_{klm}u_l\delta_{jm}=
+(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})u_l\delta_{jm}=2u_i\]</span> so <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times({\bf u}\times{\bf x}\,)=2{\bf u}\)</span>, and, integrating, the LHS of the given formula is matched.</p>
+</div>
+<div class="problem">
+<p>Verify Stokes’ theorem for the upper hemispherical surface <span class="math inline">\(S\)</span>: <span class="math inline">\(z=\sqrt{1-x^2-y^2}\)</span>, <span class="math inline">\(z\ge 0\)</span>, with <span class="math inline">\({\bf F}\)</span> equal to the radial vector field, i.e. <span class="math inline">\({\bf F}(x,y,z)\,=\,x{\bf e_1}+ y{\bf e_2}+
+z{\bf e_3}\)</span>.</p>
+</div>
+<div class="solution">
+<p>The surface is bounded by the circle <span class="math inline">\(C\)</span>: <span class="math inline">\(x^2+y^2=1\)</span>, <span class="math inline">\(z=0\)</span>. Parametrising this by <span class="math inline">\(x(t)=\cos t\)</span>, <span class="math inline">\(y(t)=\sin t\)</span>, <span class="math inline">\(z(t)=0\)</span>, <span class="math inline">\(\frac{d{\bf x}\,}{dt}=-\sin
+t\,{\bf e_1}+\cos t\,{\bf e_2}\)</span> and so<br />
+(a) <span class="math inline">\(\oint_C{\bf F}\cdot d{\bf x}\,=\int_0^{2\pi}\left(\cos t\times(-\sin t)+\sin
+t\times\cos t\right)dt =0\)</span>;<br />
+(b) <span class="math inline">\((\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})_i=\varepsilon_{ijk}{\textstyle\frac{\partial}{\partial
+x_j}}x_k=\varepsilon_{ijk}\delta_{jk}=0\)</span>.<br />
+Hence <span class="math inline">\(\oint_C{\bf F}\cdot d{\bf x}\,=0=\int_S(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})\cdot d{\bf A}\)</span> , as required.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\bf F}\,=\, y e^z\, {\bf e_1}+ x e^z\, {\bf e_2}+ xy e^z\, {\bf e_3}\)</span>. Show that the integral of <span class="math inline">\({\bf F}\)</span> around a regular closed curve <span class="math inline">\(C\)</span> that is the boundary of a surface <span class="math inline">\(S\)</span> is zero.</p>
+</div>
+<div class="solution">
+<p>This one is easy! Simply compute <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=\mathbf{0}\)</span> (where some details of this calculation should be given) and then the result follows by Stokes’ theorem.</p>
+</div>
+<div class="problem">
+<p>By applying Stokes’ theorem to the vector field <span class="math inline">\({\bf G}=|{\bf x}\,|^2 {\bf a}\)</span> (with <span class="math inline">\({\bf a}\)</span> a constant vector), or otherwise, show that <span class="math inline">\(\int_S {\bf x}\,\times d{\bf A}=- \frac{1}{2}\oint_C |{\bf x}\,|^2\, d{\bf x}\,\)</span>, where <span class="math inline">\(S\)</span> is the area bounded by the closed curve <span class="math inline">\(C\)</span>.</p>
+</div>
+<div class="solution">
+<p>Note first that <span class="math inline">\((\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf G})_i=\varepsilon_{ijk}{\textstyle\frac{\partial}{\partial
+x_j}}(x_lx_la_k)=\varepsilon_{ijk}2x_l\delta_{jl}a_k =
+2\varepsilon_{ijk}x_ja_k\)</span>. Using Stokes’ theorem for <span class="math inline">\({\bf G}\)</span>, <span class="math inline">\(\oint_C{\bf G}\cdot d{\bf x}\,= \int_S\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf G}\cdot d{\bf A}\)</span> , i.e. <span class="math display">\[\oint_C|{\bf x}\,|^2a_kdx_k=\int_S2\varepsilon_{ijk}x_ja_kdA_i
+\quad
+\mbox{or}
+\quad
+a_k\oint_C|{\bf x}\,|^2dx_k=-a_k\int_S2\varepsilon_{kji}x_jdA_i\]</span> (note the minus sign from the swap of indices on the second <span class="math inline">\(\varepsilon\)</span>). Since this is true for all (constant) <span class="math inline">\(a_k\)</span>, we deduce <span class="math display">\[\oint_C|{\bf x}\,|^2dx_k=-\int_S2\varepsilon_{kji}x_jdA_i\]</span> from which the result follows immediately.<br />
+<em>Aside:</em> Here we are dealing with the line integral of a scalar, which strictly speaking didn’t get defined yet. For curve <span class="math inline">\(C\)</span> parametrised by <span class="math inline">\({\bf x}\,(t)\)</span>, <span class="math inline">\(t_0\le t\le t_1\)</span>, and a scalar field <span class="math inline">\(f({\bf x}\,)\)</span>, it is simply the vector-valued integral <span class="math display">\[\int_C f({\bf x}\,)d{\bf x}\,=\int_{t_0}^{t_1}f({\bf x}\,(t)){\textstyle\frac{d{\bf x}\,(t)}{dt}}\,dt\,.\]</span> (But beware, some authors use the same words for the scalar-valued quantity <span class="math inline">\(\int_C
+f({\bf x}\,)\,ds=\int_{t_0}^{t_1}f({\bf x}\,(t))\,|{\textstyle\frac{d{\bf x}\,(t)}{dt}}|\,dt\)</span>.)</p>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section B): Evaluate the line integral <span class="math inline">\(I=\int_C {\bf F}\cdot {d{\bf x}\,}\)</span> where <span class="math inline">\({\bf F}({ {\bf x}\,})=2y {\bf e_1}+z {\bf e_2}+3y {\bf e_3}\)</span> and the path <span class="math inline">\(C\)</span> is the intersection of the surface of equation <span class="math inline">\(x^2+y^2+z^2=4z\)</span> and the surface of equation <span class="math inline">\(z=x+2\)</span>, taken in a clockwise direction to an observer at the origin. A picture of the path is required, as well as full justifications of the theoretical results you might use.</p>
+</div>
+<div class="solution">
+<p>The first surface is <span class="math inline">\(x^2+y^2+(z-2)^2=4\)</span>, i.e. a sphere of radius <span class="math inline">\(2\)</span> centred at <span class="math inline">\((0,0,2)\)</span>. The <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates of its intersection <span class="math inline">\(C\)</span> with the plane <span class="math inline">\(z=x+2\)</span> therefore satisfy <span class="math inline">\(2x^2+y^2=4\)</span>. Note, this is an ellipse with semi-major and semi-minor axes <span class="math inline">\(2\)</span> and <span class="math inline">\(\sqrt{2}\)</span>, as it is the projection of the circular curve <span class="math inline">\(C\)</span>, lying in 3 dimensions, onto the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane. A cutaway picture of the intersection is shown below in Figure <a href="#fig:sphereandplane" data-reference-type="ref" data-reference="fig:sphereandplane">4</a></p>
+<div class="center">
+<figure>
+<img src="SphereAndPlane.png" id="fig:sphereandplane" style="width:50.0%" alt="" /><figcaption>The in tersection of the sphere <span class="math inline">\(x^2 + y^2 + (z-2)^2 = 4\)</span> with the plane <span class="math inline">\(z=x+2\)</span>.</figcaption>
+</figure>
+</div>
+<p>To calculate the line integral directly, we can parametrise <span class="math inline">\(C\)</span> by <span class="math inline">\(x(t)=\sqrt{2}\cos t\)</span>, <span class="math inline">\(y(t)=2\sin t\)</span>, <span class="math inline">\(z(t)=2+\sqrt{2}\cos t\)</span>, so <span class="math inline">\({\textstyle\frac{d{\bf x}\,}{dt}}=-\sqrt{2}\sin t\,{\bf e_1}+2\cos t\,{\bf e_2}-\sqrt{2}\sin t\,{\bf e_3}\)</span>. (Note, clockwise round <span class="math inline">\(C\)</span> when viewed from the origin is the same as anticlockwise when viewed from above, so this parametrisation goes round <span class="math inline">\(C\)</span> in the correct direction.) Thus <span class="math display">\[\begin{aligned}
+&amp;\oint_C{\bf F}\cdot d{\bf x}\,\\
+&amp;~= \int_0^{2\pi}\!{\bf F}({\bf x}\,(t))\cdot\frac{d{\bf x}\,(t)}{dt}\,dt\\
+&amp;~=\int_0^{2\pi}\!
+(4\sin t\,{\bf e_1}+(2{+}\sqrt{2}\cos t)\,{\bf e_2}+
+6\sin t\,{\bf e_3})\cdot(-\sqrt{2}\sin t\,{\bf e_1}+2\cos
+t\,{\bf e_2}-\sqrt{2}\sin t\,{\bf e_3})\,dt\\
+&amp;~=\int_0^{2\pi}\!
+(-4\sqrt{2}\sin^2t + 4\cos t +2\sqrt{2}\cos^2t
+-6\sqrt{2}\sin^2t)\,dt\\
+&amp;~= -4\sqrt{2}\,\pi+2\sqrt{2}\,\pi-6\sqrt{2}\,\pi = -8\sqrt{2}\,\pi\,,\end{aligned}\]</span> using <span class="math inline">\(\int_0^{2\pi}\sin^2t\,dt =
+\int_0^{2\pi}\cos^2t\,dt =\pi\)</span> and <span class="math inline">\(\int_0^{2\pi}\cos t\,dt =0\)</span> to get to the last line.</p>
+<p>Alternatively, we can use Stokes. The simplest surface spanning <span class="math inline">\(C\)</span> is the disk in the plane <span class="math inline">\(z=x+2\)</span>, which we’ll call <span class="math inline">\(D\)</span>. This is a level set of <span class="math inline">\(f=z-x\)</span>, so <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=(-1,0,1)\)</span> while <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=(2,0,-2)\)</span>. Putting the pieces together, and letting <span class="math inline">\(E\)</span> be the elliptical projection of <span class="math inline">\(D\)</span> into the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane, <span class="math display">\[\begin{aligned}
+\oint_C{\bf F}\cdot d{\bf x}\,
+&amp;= \int_D\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\cdot d{\bf A}\\
+&amp;= \iint_E\frac{(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})\cdot\underline{\nabla\mkern-2mu}\mkern 3mu f}{{\bf e_3}\cdot\underline{\nabla\mkern-2mu}\mkern 3mu 
+f}\,dxdy \\
+&amp;= \iint_E(-4)\,dxdy\,=\,-4\times\mbox{(area~of~$E$)} \,=\,
+-8\sqrt{2}\,\pi\,,\end{aligned}\]</span> since the area of an ellipse with semi-major and semi-minor axes <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is equal to <span class="math inline">\(\pi ab\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question 2012 (Section B) Q9(a)(ii): Use Stokes’ theorem to calculate the line integral <span class="math inline">\(\oint_Cydx+zdy+xdz\)</span>, where C is the intersection of the surfaces <span class="math inline">\(x^2 + y^2 + z^2 = a^2\)</span> and <span class="math inline">\(x + y + z = 0\)</span> and is orientated anticlockwise when viewed from above.<br />
+<em>Suggestion:</em> Instead of one of the two standard methods for surface integrals, just use <span class="math inline">\(d\mathbf{A}=\frac{\underline{\nabla\mkern-2mu}\mkern 3mu f}{|\underline{\nabla\mkern-2mu}\mkern 3mu f|}dA\)</span> and think about how the surfaces intersect.</p>
+</div>
+<div class="solution">
+<p>By Stokes, with <span class="math inline">\({\bf F}=(y,z,x)\)</span> and <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=(-1,-1,-1)\)</span>, <span class="math display">\[\oint_Cydx+zdy+xdz = \int_S\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\cdot d{\bf A}\]</span> Pick <span class="math inline">\(S\)</span> to lie in the plane <span class="math inline">\(f=x+y+z=0\)</span>; then <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f/|\underline{\nabla\mkern-2mu}\mkern 3mu 
+f|=(1/\sqrt{3},1/\sqrt{3},1/\sqrt{3})\)</span> and hence <span class="math display">\[\int_S\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\cdot d{\bf A}=
+\int_S(-\sqrt{3})\,dA=-\sqrt{3}\,\pi a^2\]</span> since the plane cuts through the centre of the sphere, so <span class="math inline">\(C\)</span> is a great circle with radius <span class="math inline">\(a\)</span>, enclosing a planar area <span class="math inline">\(\pi a^2\)</span>.</p>
+</div>
+<div class="problem">
+<p>Consider the vector field <span class="math inline">\({\bf F}\;=\;y \ {\bf e_1}\,+\, (z-x)\ {\bf e_2}\,+\,(x^3+y) \ {\bf e_3}\)</span>. Evaluate <span class="math inline">\(\int_S\, (\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})\cdot {\bf dA}\,\)</span> explicitly, where<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(S\)</span> is the disk <span class="math inline">\(x^2 + y^2 \le 4\)</span>, <span class="math inline">\(z=1\)</span>,</p></li>
+<li><p><span class="math inline">\(S\)</span> is the surface of a paraboloid <span class="math inline">\(x^2 + y^2 = 5 - z\)</span> above the plane <span class="math inline">\(z=1\)</span>.</p></li>
+</ul>
+<p>Verify that each of these agrees with Stokes’ theorem by considering the integral of <span class="math inline">\({\bf F}\)</span> around each bounding contour.</p>
+</div>
+<div class="solution">
+<p>Calculating, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=-3x^2\,{\bf e_2}-2\,{\bf e_3}\)</span>. Then<br />
+</p>
+<ul>
+<li><p>On the given disk, <span class="math inline">\(d{\bf A}={\bf e_3}\,dxdy\)</span> so <span class="math display">\[\int_S\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\cdot d{\bf A}=\iint_{x^2+y^2\le 4}(-2)\,dxdy=-8\pi\]</span> as the disk has radius <span class="math inline">\(2\)</span> and hence area <span class="math inline">\(4\pi\)</span>.<br />
+Now consider the line integral round the boundary <span class="math inline">\(C\)</span> of the disk, parametrising it as <span class="math inline">\({\bf x}\,(t)=2\cos t\,{\bf e_1}+2\sin t\,{\bf e_2}+{\bf e_3}\)</span>, <span class="math inline">\(0\le t\le 2\pi\)</span>. Then <span class="math inline">\(\frac{d{\bf x}\,}{dt}=-2\sin t\,{\bf e_1}+2\cos t\,{\bf e_2}\)</span>, and <span class="math display">\[\oint_C{\bf F}\cdot d{\bf x}\,=\int_0^{2\pi}\left(
+-4\sin^2t+2(1-2\cos t)\cos t
+\right)dt=-8\pi\,.\]</span></p></li>
+<li><p>On the paraboloid, <span class="math inline">\(f\equiv x^2+y^2+z=5\)</span>, so using method 2 and describing the surface <span class="math inline">\(S\)</span> as a level set of <span class="math inline">\(f\)</span> with a projection <span class="math inline">\(A\)</span> onto the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane, and computing <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu f=2x\,{\bf e_1}+2y\,{\bf e_2}+{\bf e_3}\)</span>, <span class="math display">\[\begin{aligned}
+\int_S\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}\cdot d{\bf A}&amp;=
+\iint_A\frac{(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})\cdot\underline{\nabla\mkern-2mu}\mkern 3mu f}{{\bf e_3}\cdot\underline{\nabla\mkern-2mu}\mkern 3mu 
+f}\,dxdy\\[2pt]
+&amp;=
+\iint_A
+\bigl(-3x^2\,{\bf e_2}-2\,{\bf e_3}\bigr)\cdot\bigl(2x\,{\bf e_1}+2y\,{\bf e_2}+{\bf e_3}\bigr)\,dxdy\\[2pt]
+&amp;=
+\iint_A
+\bigl(-6x^2y-2\bigr)\,dxdy\,.\end{aligned}\]</span> Now <span class="math inline">\(A\)</span> is a disk of radius <span class="math inline">\(2\)</span> centred on the origin (see the plot below: on <span class="math inline">\(C\)</span>, the boundary of <span class="math inline">\(S\)</span>, we have <span class="math inline">\(x^2+y^2=5-z\)</span> and <span class="math inline">\(z=1\)</span>, implying <span class="math inline">\(x^2+y^2=4\)</span>), giving us <span class="math display">\[\iint_{x^2+y^2\le 4} \bigl(-6x^2y-2\bigr)\,dxdy 
+=\iint_{x^2+y^2\le 4} \bigl(-2\bigr)\,dxdy =-8\pi\]</span> (the integral of <span class="math inline">\(-6x^2y\)</span> vanishing by symmetry). Alternatively we can switch to polar coordinates and compute <span class="math display">\[\begin{aligned}
+\int_0^{2\pi}\!d\theta\!\int_0^2\!rdr\left(-6r^3\cos^2\theta\sin\theta-2\right)
+&amp; = \int_0^2\!rdr\left[2r^3\cos^3\theta-2\theta\right]_0^{2\pi} \\
+&amp; = \int_0^2\!rdr\left(-4\pi\right) 
+ = -4\pi\left[{\textstyle\frac{1}{2}}r^2\right]_0^2 =-8\pi\,.\end{aligned}\]</span> Note that this surface has the same boundary as the disk in part (i), so the line integral calculation is the same as before.<br />
+</p>
+<div class="center">
+<figure>
+<img src="parabaloid3.png" id="fig:label" style="width:50.0%" alt="" /><figcaption>The intersection of the parabaloid <span class="math inline">\(x^2 + y^2 = 5 - z\)</span> and the plane <span class="math inline">\(z=1\)</span>.</figcaption>
+</figure>
+</div></li>
+</ul>
+</div>
+<div class="problem">
+<p>Evaluate the line integral <span class="math display">\[\int_{P_1}^{P_2}\; \,yz\,dx +\, xz\,dy+\, (xy + z^2)\,dz\]</span> from <span class="math inline">\(P_1\)</span> with co-ordinates (1,0,0) to <span class="math inline">\(P_2\)</span> at (1,0,1) explicitly,<br />
+</p>
+<ul>
+<li><p>along a straight line in the <span class="math inline">\(z\)</span>–direction, and</p></li>
+<li><p>along a helical path parametrised by <span class="math inline">\({\bf x}\,(t)= {{\bf e_1}}\,\cos t+ {{\bf e_2}}\,\sin t+{{\bf e_3}}\,t/{2\pi}\,,\)</span> where <span class="math inline">\(t\)</span> varies along the path.</p></li>
+</ul>
+<p>Compare these two results – does this suggest that there might be a general formula for the integral from <span class="math inline">\(P_1 =(1,0,0)\)</span> to any point <span class="math inline">\(P\)</span> with coordinates <span class="math inline">\((x,y,z)\)</span>? Check your answer when <span class="math inline">\(P = P_2\)</span>.</p>
+</div>
+<div class="solution">
+<p>Call the straight path <span class="math inline">\(C_1\)</span>. On this path <span class="math inline">\(y=0\)</span> and <span class="math inline">\(x=1\)</span>, so <span class="math inline">\(dx=dy=0\)</span> and <span class="math display">\[\int_{C_1}(yz\,dx+xz\,dy+(xy+z^2)\,dz)=\int_0^1z^2\,dz={\textstyle\frac{1}{3}}\,.\]</span> Call the helical path <span class="math inline">\(C_2\)</span>. On <span class="math inline">\(C_2\)</span> we have <span class="math inline">\(x=\cos t\)</span>, <span class="math inline">\(y=\sin t\)</span> so <span class="math inline">\(dx=-\sin t\,dt\)</span> and <span class="math inline">\(dy=\cos t\,dt\)</span> , while <span class="math inline">\(z={\textstyle\frac{t}{2\pi}}\)</span> so <span class="math inline">\(dz={\textstyle\frac{1}{2\pi}}\,dt\)</span> . Hence <span class="math display">\[\begin{aligned}
+\int_{C_2}(yz\,dx+xz\,dy+(xy+z^2)\,dz)
+&amp;={\textstyle\frac{1}{2\pi}}\!\int_0^{2\pi}\!\left(
+-t\sin^2 t +t\cos^2 t + \cos t\sin t+{\textstyle\frac{t^2}{4\pi^2}}
+\right)dt\\
+&amp;={\textstyle\frac{1}{2\pi}}\!\int_0^{2\pi}\!\left(
+t\cos 2t + {\textstyle\frac{1}{2}}\sin 2t+{\textstyle\frac{t^2}{4\pi^2}}
+\right)dt\\
+&amp;={\textstyle\frac{1}{2\pi}}\!\int_0^{2\pi}\!
+{\textstyle\frac{t^2}{4\pi^2}}\,dt
+={\textstyle\frac{1}{8\pi^3}}\left[
+{\textstyle\frac{1}{3}}t^3 \right]_0^{2\pi}
+= {\textstyle\frac{1}{3}}\,.\end{aligned}\]</span> (If you are averse to integrating by parts to get from the second line to the third, note that <span class="math inline">\(\int_0^{2\pi}t\cos 2t\,dt =\int_0^{2\pi}(2\pi-t)\cos 2t\,dt\)</span> by symmetry, so both must be equal to half their sum, which is clearly zero.)</p>
+<p>These two results are the same! This suggests (but does not prove) that we might be computing the line integral of a conservative field. To check, compute <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=\mbox{(compute)}=\mathbf{0}\)</span>. This means we must have <span class="math inline">\({\bf F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> for some scalar field <span class="math inline">\(\phi\)</span>. To find <span class="math inline">\(\phi\)</span>, set <span class="math inline">\({\bf F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> and work component by component: <span class="math display">\[F_1=\frac{\partial\phi}{\partial x} ~\Rightarrow~
+yz=\frac{\partial\phi}{\partial x} ~\Rightarrow~
+\phi(x,y,z)=xyz+f(y,z)\,.\]</span> Then <span class="math display">\[F_2=\frac{\partial\phi}{\partial y} ~\Rightarrow~
+xz=xz+\frac{\partial f}{\partial y} ~\Rightarrow~
+\frac{\partial f}{\partial y}=0 ~\Rightarrow~
+f(y,z)=g(z)\,.\]</span> Finally <span class="math display">\[F_3=\frac{\partial\phi}{\partial z} ~\Rightarrow~
+xy+z^2=xy+\frac{\partial g}{\partial z} ~\Rightarrow~
+\frac{\partial g}{\partial z}=z^2 ~\Rightarrow~
+g(z)={\textstyle\frac{1}{3}}z^3+c\,.\]</span> Thus <span class="math inline">\(\phi(x,y,z)=xyz+{\textstyle\frac{1}{3}}z^3+c\)</span>, and the line integral of <span class="math inline">\({\bf F}\)</span> from <span class="math inline">\((1,0,0)\)</span> to any point <span class="math inline">\((x,y,z)\)</span> is equal to <span class="math inline">\(\phi(x,y,z)-\phi(1,0,0)=xyz+{\textstyle\frac{1}{3}}z^3\)</span> . If <span class="math inline">\((x,y,z)=P_2=(1,0,1)\)</span> this is equal to <span class="math inline">\({\textstyle\frac{1}{3}}\)</span>, agreeing with the previous results.</p>
+</div>
+<div class="problem">
+<p>State a necessary and sufficient condition for a vector field <span class="math inline">\({\bf F}\)</span> to be expressible in the form <span class="math inline">\({\bf F}\;=\;  \underline{\nabla\mkern-2mu}\mkern 3mu \, \phi\)</span> in some simply-connected region. The scalar field <span class="math inline">\(\phi\)</span> is called a <em>scalar potential</em>, though sometimes the opposite sign is used.</p>
+<p>Determine whether the following vector fields are expressible in this form</p>
+<p>(i)<span class="math inline">\(\quad ({\bf a} \cdot { {\bf x}\,}\,) \,{ {\bf x}\,} \,\)</span>, (ii)<span class="math inline">\(\quad ({\bf a} \cdot { {\bf x}\,}\,) \,{\bf a}\,\)</span>, (iii)<span class="math inline">\(\quad ({\bf a} \cdot { {\bf a}}\,) \,{\bf x}\,\,\)</span>, (iv)<span class="math inline">\(\quad {\bf a} \times{ {\bf x}\,}\,\)</span>, (v)<span class="math inline">\(\quad {\bf a} \times\left( {\bf a} \times{ {\bf x}\,}\, \right)\)</span> ,</p>
+<p>and find the vector fields, <span class="math inline">\({\bf F}\)</span>, for which the corresponding potentials are</p>
+<p>(a)<span class="math inline">\(\quad  {\textstyle\frac{1}{2}}({\bf a} \cdot { {\bf x}\,}\,)^2\,\)</span>, (b)<span class="math inline">\(\quad \frac{1}{2}a^2 |{\bf x}\,|^2  -\frac{1}{2}({\bf a} \cdot {
+{\bf x}\,}\,)^2\)</span>.</p>
+<p>Here <span class="math inline">\({\bf a}\)</span> is a constant non-zero vector, and <span class="math inline">\(a^2=|{\bf a}|^2\)</span>.</p>
+</div>
+<div class="solution">
+<p>The necessary and sufficient condition is <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=\mathbf{0}\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\({\bf F}=({\bf a}\cdot{\bf x}\,){\bf x}\,\)</span> : <span class="math display">\[\!\!\!
+(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})_i
+=\varepsilon_{ijk}\frac{\partial}{\partial x_j} (a_lx_lx_k)
+=\varepsilon_{ijk}a_l(\delta_{jl}x_k+x_l\delta_{jk})
+=\varepsilon_{ijk}a_jx_k=({\bf a}\times{\bf x}\,)_i\neq 0\]</span> so <span class="math inline">\({\bf F}\neq\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span>.</p></li>
+<li><p><span class="math inline">\({\bf F}=({\bf a}\cdot{\bf x}\,){\bf a}\)</span> : <span class="math display">\[\!\!\!
+(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})_i
+=\varepsilon_{ijk}\frac{\partial}{\partial x_j} (a_lx_la_k)
+=\varepsilon_{ijk}a_l\delta_{jl}a_k
+=\varepsilon_{ijk}a_ja_k=0\]</span> so <span class="math inline">\({\bf F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> for some <span class="math inline">\(\phi\)</span>.</p></li>
+<li><p><span class="math inline">\({\bf F}=({\bf a}\cdot{\bf a}){\bf x}\,\)</span> : <span class="math display">\[\!\!\!
+(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})_i
+=\varepsilon_{ijk}\frac{\partial}{\partial x_j} (a_la_lx_k)
+=\varepsilon_{ijk}a_la_l\delta_{jk}
+=\varepsilon_{ijj}a_la_l=0\]</span> so <span class="math inline">\({\bf F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> for some <span class="math inline">\(\phi\)</span>.</p></li>
+<li><p><span class="math inline">\({\bf F}={\bf a}\times{\bf x}\,\)</span> : <span class="math display">\[\!\!\!
+(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F})_i
+=\varepsilon_{ijk}\frac{\partial}{\partial x_j}
+(\varepsilon_{klm}a_lx_m)
+=\varepsilon_{ijk}\varepsilon_{klm}a_l\delta_{jm}
+=(\delta_{il}\delta_{jm}- \delta_{im}\delta_{jl}) a_l\delta_{jm} 
+=2a_i\neq 0\]</span> so <span class="math inline">\({\bf F}\neq\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span>.</p></li>
+<li><p><span class="math inline">\({\bf F}={\bf a}\times({\bf a}\times{\bf x}\,)\)</span> : <span class="math display">\[\begin{aligned}
+({\bf a}\times({\bf a}\times{\bf x}\,))_i
+&amp;=\varepsilon_{ijk}a_j\varepsilon_{klm}a_lx_m
+=(\delta_{il}\delta_{jm}- \delta_{im}\delta_{jl})a_ja_lx_m
+=a_ja_ix_j-a_ja_jx_i\\[2pt]
+&amp;=(({\bf a}\cdot{\bf x}\,){\bf a}-({\bf a}\cdot{\bf a}){\bf x}\,)_i\end{aligned}\]</span> so <span class="math inline">\({\bf a}\times({\bf a}\times{\bf x}\,)=({\bf a}\cdot{\bf x}\,){\bf a}-({\bf a}\cdot{\bf a}){\bf x}\,\)</span>, and <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=\mathbf{0}\)</span> by (ii) and (iii); hence <span class="math inline">\({\bf F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> for some <span class="math inline">\(\phi\)</span>.</p></li>
+</ul>
+<p>For the second part:</p>
+<ul>
+<li><p><span class="math inline">\(\phi={\textstyle\frac{1}{2}}({\bf a}\cdot{\bf x}\,)^2={\textstyle\frac{1}{2}}(a_jx_ja_kx_k)\)</span> so <span class="math display">\[F_i={\textstyle\frac{1}{2}}a_ja_k\frac{\partial}{\partial x_i}(x_jx_k)
+={\textstyle\frac{1}{2}}a_ja_k(\delta_{ij}x_k+x_j\delta_{ik})
+={\textstyle\frac{1}{2}}(a_ia_kx_k +a_ja_ix_j) = (({\bf a}\cdot{\bf x}\,){\bf a})_i\,.\]</span> Hence <span class="math inline">\({\bf F}=({\bf a}\cdot{\bf x}\,){\bf a}\)</span> .</p></li>
+<li><p><span class="math inline">\(\phi=\frac{1}{2}a^2 |{\bf x}\,|^2  -\frac{1}{2}({\bf a} \cdot {
+{\bf x}\,}\,)^2\)</span> : we have <span class="math inline">\((\underline{\nabla\mkern-2mu}\mkern 3mu ({\textstyle\frac{1}{2}}a^2|{\bf x}\,|^2))_i = {\textstyle\frac{1}{2}}a^2\frac{\partial}{\partial
+x_i}(x_jx_j)=a^2x_i\)</span> and combining this with the result from part (a), <span class="math inline">\({\bf F}=a^2{\bf x}\,-({\bf a}\cdot{\bf x}\,){\bf a}\)</span> .</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section B):<br />
+</p>
+<ul>
+<li><p>State the conditions for the line integral <span class="math inline">\(\int_c {\bf F}
+\cdot {d{\bf x}\,}\)</span> from <span class="math inline">\({ {\bf x}\,}_0\)</span> to <span class="math inline">\({ {\bf x}\,}_1\)</span> to be independent of the path connecting these two points.</p></li>
+<li><p>Determine the value of the line integral <span class="math inline">\(\int_c {\bf F}\cdot
+{d{\bf x}\,}\)</span> where <span class="math display">\[{\bf F}= (e^{-y} - ze^{-x})\,{\bf e_1}+ (e^{-z}- xe^{-y})\,{\bf e_2}+(e^{-x}-
+ye^{-z})\,{\bf e_3},\]</span> and <span class="math inline">\(C\)</span> is the path <span class="math display">\[x= \frac{1}{\ln 2} \ln (1+p),\quad
+y={\rm sin} \frac{\pi p}{2},\quad
+z=\frac{1-e^p}{1-e}\,,\]</span> with the parameter <span class="math inline">\(p\)</span> in the range <span class="math inline">\(0 \le p \le 1\)</span>, from <span class="math inline">\((0,0,0)\)</span> to <span class="math inline">\((1,1,1)\)</span>.</p></li>
+</ul>
+</div>
+<div class="solution">
+<ul>
+<li><p>The necessary and sufficient condition for the integral not to depend of the path is that <span class="math inline">\({\bf F}=\underline{\nabla\mkern-2mu}\mkern 3mu \phi\)</span> for some <span class="math inline">\(\phi\)</span>, or, equivalently, that <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=\mathbf{0}\)</span> (assuming that the region under consideration is simply connected).</p></li>
+<li><p>We have <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \times{\bf F}=\mbox{(calculate)}=\mathbf{0}\)</span>. Hence we can swap the given <span class="math inline">\(C\)</span> for any other path joining <span class="math inline">\((0,0,0)\)</span> to <span class="math inline">\((1,1,1)\)</span> without changing the answer. Simplest is to take the straight line <span class="math inline">\({\bf x}\,(t)=(t,t,t)\)</span> with <span class="math inline">\(0\le t\le 1\)</span> , so <span class="math inline">\(\frac{d{\bf x}\,}{dt}=(1,1,1)\)</span> . Thus <span class="math display">\[I=3\int_0^1\left(e^{-t}-te^{-t}\right)dt
+=3\int_0^1\frac{d}{dt}\left(te^{-t}\right)dt
+=3\left[te^{-t}\right]_0^1=\frac{3}{e}\,.\]</span> Alternatively, we can figure out <span class="math inline">\(\phi(x,y,z)\)</span>. We need <span class="math display">\[\frac{\partial\phi}{\partial x}=F_1=e^{-y}-ze^{-x}
+\Rightarrow \phi(x,y,z)=xe^{-y}+ze^{-x}+f(y,z)\]</span> and then <span class="math display">\[\frac{\partial\phi}{\partial y}
+= -xe^{-y}+\frac{\partial f}{\partial y}
+=F_2=e^{-z}-xe^{-y}
+\Rightarrow 
+f(y,z)=ye^{-z}+g(z)\]</span> and finally <span class="math display">\[\frac{\partial\phi}{\partial z}
+= e^{-x}-ye^{-z}+\frac{\partial g}{\partial z}
+=F_3=e^{-x}-ye^{-x}
+\Rightarrow 
+g(z)=\mbox{const}=A\,,~\mbox{say}.\]</span> Hence <span class="math inline">\(\phi(x,y,z)=
+% xe^{-y}+ze^{-x}+f(y,z)+g(z)=
+xe^{-y}+ze^{-x}+ye^{-z}+A\)</span> and <span class="math display">\[\int_C{\bf F}\cdot d{\bf x}\,=\phi(1,1,1)-\phi(0,0,0)=
+(e^{-1}{+}e^{-1}{+}e^{-1}{+}A) - (0{+}A)=\frac{3}{e}\]</span> as before.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\({\bf F}= x\,{\bf e_1}+ y\,{\bf e_2}\)</span>, calculate <span class="math inline">\(\int_S{\bf F}\cdot {\bf dA}\,\)</span>, where <span class="math inline">\(S\)</span> is the part of the surface <span class="math inline">\(z= 9 - x^2 - y^2\)</span> that is above the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane, by applying the divergence theorem to the volume bounded by the surface and the piece it cuts out of the <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> plane.<br />
+<span><em>Hint:</em></span> what is <span class="math inline">\({\bf F}\cdot {\bf dA}\,\)</span> <span><em>on</em></span> the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane?</p>
+</div>
+<div class="solution">
+<p>The normal vector to the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane is <span class="math inline">\({\bf e_3}\)</span>, so <span class="math inline">\({\bf F}\cdot d{\bf A}=0\)</span> there. Hence the surface integral side of the divergence theorem, when applied to the volume <span class="math inline">\(V\)</span> mentioned in the question, comes only from the integral over the part <span class="math inline">\(S\)</span> of the paraboloid above the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span> plane, which is exactly what the question asks us to calculate. Hence the desired surface integral is equal to the volume integral of <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf F}= 2\)</span>. Thus <span class="math display">\[\begin{aligned}
+\int_S{\bf F}\cdot d{\bf A}
+=\int_{\partial V}{\bf F}\cdot d{\bf A}
+&amp;=\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf F}\,dV
+\quad\mbox{by~the~divergence~theorem} \\
+&amp;= 2\int_0^9 \Bigl(\iint_{x^2+y^2\le 9-z}\!\!dxdy\Bigr)\,dz\\
+&amp;= 2\int_0^9 \pi(9-z)\, dz\\
+&amp;= 2\pi\left[9z -{\textstyle\frac{1}{2}}z^2\right]_0^9 = 81\pi\,.\end{aligned}\]</span></p>
+</div>
+<div class="problem">
+<p>Evaluate each of the integrals below as <span><strong>either</strong></span> a volume integral <span><strong>or</strong></span> a surface integral, whichever is easier:</p>
+<ul>
+<li><p><span class="math inline">\(\int_S {\bf x}\,\cdot{\bf dA}\,\)</span> over the whole surface of a cylinder bounded by <span class="math inline">\(x^2 + y^2 = R^2\)</span>, <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=L\)</span>. Note that <span class="math inline">\({\bf x}\,\)</span> means <span class="math inline">\(x\,{\bf e_1}+ y\,{\bf e_2}+ z\,{\bf e_3}\)</span>.</p></li>
+<li><p><span class="math inline">\(\int_S{\bf F}\cdot{\bf dA}\,\)</span>, where <span class="math inline">\({\bf F}= x \cos^2 y\,{\bf e_1}+xz\,{\bf e_2}+z \sin^2 y\,{\bf e_3}\)</span> , over the surface of a sphere with centre at the origin and radius <span class="math inline">\(\pi\)</span>.</p></li>
+<li><p><span class="math inline">\(\int_V \underline{\nabla\mkern-2mu}\mkern 3mu \cdot {\bf F}\,dV\)</span>, where <span class="math inline">\({\bf F}=\sqrt{x^2{+}y^2} (x\,{\bf e_1}+ y\,{\bf e_2})\)</span>, over the three-dimensional volume <span class="math inline">\(x^2 + y^2 \le R^2\)</span>, <span class="math inline">\(0 \le z \le L\)</span>.</p></li>
+</ul>
+</div>
+<div class="solution">
+<ul>
+<li><p><span class="math inline">\(\int_S{\bf x}\,\cdot d{\bf A}
+=\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf x}\,\,dV=\int_V3\,dV=3\times\mbox{(volume~of~$V$)}=3\pi
+R^2L\)</span> .</p></li>
+<li><p>Note, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf F}=\cos^2y+\sin^2y=1\)</span>, so <span class="math inline">\(\int_S{\bf F}\cdot{\bf dA}\,= \int_VdV={\textstyle\frac{4}{3}}\pi^4\)</span>.</p></li>
+<li><p>This time, convert to a surface integral. Since <span class="math inline">\({\bf F}\)</span> has no <span class="math inline">\(z\)</span> component, the ends of the cylinder don’t contribute. Furthermore, on the curved surface <span class="math inline">\(S\)</span> of the cylinder, the unit normal is <span class="math inline">\(\widehat{{\bf n}}=(x{\bf e_1}+y{\bf e_2})/\sqrt{x^2+y^2}\)</span> (and is parallel to <span class="math inline">\({\bf F}\)</span>). Hence on this surface <span class="math inline">\({\bf F}\cdot d{\bf A}=x^2+y^2=R^2\)</span> and <span class="math inline">\(\int_V \underline{\nabla\mkern-2mu}\mkern 3mu \cdot {\bf F}\,dV 
+=\int_{\partial V}{\bf F}\cdot d{\bf A}
+=\int_{S}{\bf F}\cdot d{\bf A}= R^2\int_S dA=R^2\times\mbox{(area~of~$S$)}
+=2\pi R^3L\)</span> .</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Suppose the vector field <span class="math inline">\({\bf F}\)</span> is everywhere tangent to the closed surface <span class="math inline">\(S\)</span>, which encloses the volume <span class="math inline">\(V\)</span>. Prove that <span class="math display">\[\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot {\bf F}\, dV=0\,.\]</span></p>
+</div>
+<div class="solution">
+<p>By the divergence theorem, <span class="math inline">\(\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot {\bf F}\, dV=\int_S{\bf F}\cdot d{\bf A}
+=\int_S{\bf F}\cdot\widehat{{\bf n}}\,dA=0\)</span>, since to be tangent to <span class="math inline">\(S\)</span>, <span class="math inline">\({\bf F}\)</span> must be orthogonal to <span class="math inline">\(\widehat{{\bf n}}\)</span>, the unit normal to <span class="math inline">\(S\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question June 2003 (Section A): Evaluate <span class="math inline">\(\int_S \,{\bf B}({ {\bf x}\,}) \cdot {\bf dA}\,\)</span>, where <span class="math display">\[{\bf B}({\bf x}\,)=(8x+\alpha \, y-z)\,{\bf e_1}+
+(x+2y+\beta\,z)\,{\bf e_2}+(\gamma \,x+y-z)\,{\bf e_3}\]</span> and <span class="math inline">\(S\)</span> is the surface of the sphere having centre at <span class="math inline">\((\alpha, \beta,
+\gamma)\)</span> and radius <span class="math inline">\(\gamma\)</span>, where <span class="math inline">\(\alpha, \beta \in \mathbb{R}\)</span>, and <span class="math inline">\(\gamma\)</span> is an arbitrary positive real number.</p>
+</div>
+<div class="solution">
+<p>Calculating, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf B}=8+2-1=9\)</span>, so by the divergence theorem <span class="math display">\[\int_S{\bf B}\cdot d{\bf A}=\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf B}\,dV=9\int_VdV
+= 9\times\mbox{(volume~of~$V$)}=12\pi\gamma^3.\]</span></p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(A\)</span> be the interior of the circle of unit radius centred on the origin. Evaluate <span class="math inline">\(\iint_A \, \exp(x^2 + y^2)\, dx\, dy\)</span> by making a change of variables to polar co-ordinates.</p>
+</div>
+<div class="solution">
+<p><span class="math display">\[\begin{aligned}
+\iint_A \, \exp(x^2 + y^2)\, dx\, dy
+&amp;=\int_0^{2\pi}(\int_0^1e^{r^2}r\,dr)\,d\theta
+=\int_0^{2\pi}\left[{\textstyle\frac{1}{2}}e^{r^2}\right]_0^1 d\theta\\
+&amp;=\int_0^{2\pi}\left({\textstyle\frac{1}{2}}(e-1)\right) d\theta
+=(e-1)\pi\,.\end{aligned}\]</span> (Or, do the <span class="math inline">\(\theta\)</span> integral first.)</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(A\)</span> be the region <span class="math inline">\(0 \le y \le x\)</span> and <span class="math inline">\(0 \le x \le 1\)</span>. Evaluate <span class="math inline">\(\int_A \, ( x + y)\,dx\, dy\)</span> by making the change of variables <span class="math inline">\(x= u + v\)</span>, <span class="math inline">\(y = u - v\)</span>. Check your answer by evaluating the integral directly.</p>
+</div>
+<div class="solution">
+<p>First find the Jacobian: <span class="math display">\[J({\underline{U}})=
+\begin{vmatrix}
+\,\frac{\partial x}{\partial u} &amp;
+\frac{\partial x}{\partial v}\, \\[3pt]
+\,\frac{\partial y}{\partial u} &amp;
+\frac{\partial y}{\partial v}\,
+\end{vmatrix}
+=\begin{vmatrix}
+\,1 &amp; ~1\,\\[3pt]
+\,1 &amp; -1\,
+\end{vmatrix}
+=-2\,.\]</span> Then <span class="math display">\[I
+=\int_A(x+y)\,dxdy
+=\int_U 2u\,|J|\,dudv
+=4\int_U u\,dudv\]</span> where <span class="math inline">\(U\)</span> is the area of integration in the new coordinates, which is bounded by a triangle in the <span class="math inline">\(u\)</span>,<span class="math inline">\(v\)</span> plane with edges <span class="math inline">\(y=x\Rightarrow v=0\)</span>, <span class="math inline">\(x=1\Rightarrow u+v=1\)</span>, <span class="math inline">\(y=0\Rightarrow u=v\)</span>. This leads to <span class="math display">\[I
+=4\int_0^{1/2}\!\left(\int_v^{1-v}u\,du\right)dv
+=4\int_0^{1/2}\!\left[{\textstyle\frac{1}{2}}u^2\right]_v^{1-v}dv
+=4\int_0^{1/2}\!\left({\textstyle\frac{1}{2}}-v\right)dv
+={\textstyle\frac{1}{2}}\,.\]</span> Alternatively the integral can be done directly: <span class="math display">\[I=\int_0^1\!\!\int_y^1\!(x+y)\,dxdy
+=\int_0^1\!\!\left[{\textstyle\frac{1}{2}}x^2{+}xy\right]_y^1dy
+=\int_0^1\!({\textstyle\frac{1}{2}}+y-{\textstyle\frac{1}{2}}y^2-y^2)\,dy
+={\textstyle\frac{1}{2}}+{\textstyle\frac{1}{2}}-{\textstyle\frac{1}{6}}-{\textstyle\frac{1}{3}}
+={\textstyle\frac{1}{2}}\]</span> which agrees!</p>
+</div>
+<div class="problem">
+<p>The expressions below are called Green’s first and second identities. Derive them from the divergence theorem with <span class="math inline">\({\bf F}= f\underline{\nabla\mkern-2mu}\mkern 3mu g\)</span> or <span class="math inline">\(g\underline{\nabla\mkern-2mu}\mkern 3mu f\)</span> as appropriate, where <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are differentiable functions: <span class="math display">\[\begin{aligned}
+\int_V\,( f \underline{\nabla\mkern-2mu}\mkern 3mu ^2 g+\underline{\nabla\mkern-2mu}\mkern 3mu f \cdot \underline{\nabla\mkern-2mu}\mkern 3mu g)\, dV&amp;=
+\int_S\,
+(f \underline{\nabla\mkern-2mu}\mkern 3mu g)\cdot {\bf dA}\,\,, \\[2pt]
+\int_V\,( f \underline{\nabla\mkern-2mu}\mkern 3mu ^2 g-g \underline{\nabla\mkern-2mu}\mkern 3mu ^2 f )\, dV &amp;= \int_S\,
+(f \underline{\nabla\mkern-2mu}\mkern 3mu g- g \underline{\nabla\mkern-2mu}\mkern 3mu f) \cdot {\bf dA}\,\,. \end{aligned}\]</span> where the volume <span class="math inline">\(V\)</span> is that enclosed by the closed surface <span class="math inline">\(S\)</span>.</p>
+</div>
+<div class="solution">
+<p>First apply the divergence theorem to <span class="math inline">\(f\underline{\nabla\mkern-2mu}\mkern 3mu g\)</span> as follows: <span class="math display">\[\begin{aligned}
+\int_S(f\underline{\nabla\mkern-2mu}\mkern 3mu g)\cdot d{\bf A}
+&amp;=\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot(f\underline{\nabla\mkern-2mu}\mkern 3mu g)\,dV \\
+&amp;=\int_V\left( \underline{\nabla\mkern-2mu}\mkern 3mu f\cdot\underline{\nabla\mkern-2mu}\mkern 3mu g + f\underline{\nabla\mkern-2mu}\mkern 3mu \cdot\underline{\nabla\mkern-2mu}\mkern 3mu g \right)dV \\
+&amp;=\int_V\left( \underline{\nabla\mkern-2mu}\mkern 3mu f\cdot\underline{\nabla\mkern-2mu}\mkern 3mu g + f\underline{\nabla\mkern-2mu}\mkern 3mu ^2g
+\right)dV\quad\mbox{as~required.} \end{aligned}\]</span> Swapping <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, we also have <span class="math display">\[\int_S(g\underline{\nabla\mkern-2mu}\mkern 3mu f)\cdot d{\bf A}
+=\int_V\left( \underline{\nabla\mkern-2mu}\mkern 3mu g\cdot\underline{\nabla\mkern-2mu}\mkern 3mu f + g\underline{\nabla\mkern-2mu}\mkern 3mu ^2f
+\right)dV,\qquad\qquad\quad~\,\]</span> and subtracting this from the first result gives us the second identity.</p>
+</div>
+<div class="problem">
+<p>A gas holder has the form of a vertical cylinder of radius <span class="math inline">\(R\)</span> and height <span class="math inline">\(H\)</span> with hemispherical top also of radius <span class="math inline">\(R\)</span>. The density, <span class="math inline">\(\rho\)</span>, (i.e. the mass per unit volume) of the gas inside varies with height <span class="math inline">\(z\)</span> above the base according to the relation <span class="math inline">\(\rho = C \exp(-z)\)</span>, where <span class="math inline">\(C\)</span> is a constant. Calculate the total mass of gas in the holder, taking care to define any coordinate system used and the range of the corresponding variables.<br />
+Use this result to find the integral of the field <span class="math display">\[{\bf F}\,=\,B\ z\ e^{-y}\,{\bf e_1}\,+\,
+C\ y\ e^{-z}\,{\bf e_2}\]</span> over the curved surface of the gas holder.<br />
+<span><em>Hint</em></span>: it may help to note first what the integral over the base of the holder is.</p>
+</div>
+<div class="solution">
+<p>For the first part we need the mass in the gas holder, which given that <span class="math inline">\(\rho\)</span> is the density is equal to <span class="math inline">\(M_{\rm total}=\int_V\rho\,dV\)</span>. Split this integral into two parts, the first over the cylinder and the second over the hemispherical top. A convenient choice of coordinates is to put the origin at the centre of the circular base, which will therefore be in the plane <span class="math inline">\(z=0\)</span>. Then <span class="math display">\[\begin{aligned}
+M_{\rm cylinder}
+&amp;=\int_0^H\int_{x^2+y^2\le R^2}\!\!Ce^{-z}\,dxdydz\\
+&amp;=\int_0^H\pi R^2\,Ce^{-z}\,dz\\
+&amp;=\pi CR^2\left[-e^{-z}\right]_0^H 
+=\pi CR^2\left(1-e^{-H}\right)\,.\end{aligned}\]</span> For the top, we have <span class="math inline">\(x^2+y^2+(z-H)^2=R^2\)</span>, since it is centred at <span class="math inline">\((0,0,H)\)</span>. Setting <span class="math inline">\(w=z-H\)</span> the required integral is <span class="math display">\[\begin{aligned}
+M_{\rm top}
+&amp;=\int_0^{R}\int_{x^2+y^2\le R^2-w^2}\!\!Ce^{-(w+H)}\,dxdydw\\
+&amp;=\int_0^R\pi (R^2-w^2)\,Ce^{-w-H}\,dw\\
+&amp;=\pi Ce^{-H}\!\int_0^R(R^2-w^2)\,e^{-w}\,dw\,.\end{aligned}\]</span> Now <span class="math inline">\(\int_0^RR^2e^{-w}\,dw=R^2\left[-e^{-w}\right]_0^R=R^2(1-e^{-R})\)</span>, while <span class="math display">\[\begin{aligned}
+		\int_0^Rw^2e^{-w}\,dw &amp;=
+		\left[-w^2e^{-w}\right]_0^R+\int_0^R2we^{-w}dw \\
+		&amp;=
+		-R^2e^{-R}+
+		\left[-2we^{-w}\right]_0^R+\int_0^R2e^{-w}dw \\
+		&amp;=
+		-R^2e^{-R}-2Re^{-R}+2-2e^{-R}.
+	\end{aligned}\]</span> Adding up the bits, <span class="math display">\[M_{\rm top} = \pi Ce^{-H}\bigl(R^2-2+2Re^{-R}+2e^{-R}\bigr)\]</span> and so the total mass is <span class="math display">\[M_{\rm total}=M_{\rm cylinder} + M_{\rm top}
+=\pi CR^2+2\pi Ce^{-H}
+\bigl( Re^{-R}+e^{-R}-1\bigr)\,.\]</span> (Not the most edifying calculation in the world!)</p>
+<p>For the second part, we need the integral over the curved surface, which we will call <span class="math inline">\(S\)</span>. This is the boundary <span class="math inline">\(\partial V\)</span> of <span class="math inline">\(V\)</span> less the flat bit on the bottom. However, as suggested by the hint, we can notice that <span class="math inline">\({\bf F}\cdot\widehat{{\bf n}}=0\)</span> on this flat bit (since <span class="math inline">\(\widehat{{\bf n}}=-{\bf e_3}\)</span> there). Hence <span class="math display">\[\int_S{\bf F}\cdot d{\bf A}=
+\int_S{\bf F}\cdot\widehat{{\bf n}}\,dA=
+\int_{\partial V}{\bf F}\cdot\widehat{{\bf n}}\,dA=
+\int_{\partial V}{\bf F}\cdot d{\bf A}=
+\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf F}\,dV\]</span> using the divergence theorem, and putting in rather more steps than strictly needed. Now <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf F}=Ce^{-z}\)</span>, which is exactly the function <span class="math inline">\(\rho\)</span> we took the trouble to integrate over <span class="math inline">\(V\)</span> in the first part. Hence <span class="math display">\[\int_S{\bf F}\cdot d{\bf A}=\pi CR^2+2\pi Ce^{-H}
+\bigl( Re^{-R}+e^{-R}-1\bigr)\,.\]</span></p>
+</div>
+<div class="problem">
+<p>Exam question June 2001 (Section B): In electrostatic theory, Gauss’ law states that the flux of an electrostatic (vector) field <span class="math inline">\({\bf E} ({\bf x}\,)\)</span> over some closed surface <span class="math inline">\(S\)</span> is equal to the enclosed charge <span class="math inline">\(q\)</span> divided by a constant <span class="math inline">\(\epsilon_0\)</span> : <span class="math display">\[\int_S {\bf E} ({ {\bf x}\,})\cdot{\bf dA}\,=  \frac{q}{\epsilon_0}\,.\]</span> If the electrostatic field is given by <span class="math inline">\({\bf E}(x,y)=\alpha x {\bf e_1}+
+\beta y {\bf e_2}\)</span>, use Gauss’ law to find the total charge in the compact region bounded by the surface S consisting of <span class="math inline">\(S_1\)</span>, the curved portion of the half-cylinder <span class="math inline">\(z=(R^2-y^2)^{1/2}\)</span> of length <span class="math inline">\(H\)</span>; <span class="math inline">\(S_2\)</span> and <span class="math inline">\(S_3\)</span> the two semi-circular plane end pieces; and <span class="math inline">\(S_4\)</span>, the rectangular portion of the <span class="math inline">\((x,y)\)</span>-plane. (In equations, the relevant bounded region may be described by <span class="math inline">\(z^2+y^2 \le R^2, z \ge 0, -\frac{H}{2} \le x \le \frac{H}{2}\)</span>). Express your result in terms of <span class="math inline">\(\alpha, \beta, R\)</span> and <span class="math inline">\(H\)</span>.</p>
+</div>
+<div class="solution">
+<p>Since the surface is closed we can use the divergence theorem to switch from a surface to a volume integral. First calculate <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf E}=\alpha+\beta\)</span> ; then, letting <span class="math inline">\(V\)</span> denote the region enclosed by <span class="math inline">\(S\)</span>, <span class="math display">\[\begin{aligned}
+\int_S{\bf E}\cdot d{\bf A}&amp;=\int_V(\alpha+\beta)\,dV\\
+&amp;= (\alpha+\beta)\times\mbox{(volume~of~the~half~cylinder)}\\
+&amp;= {\textstyle\frac{1}{2}}(\alpha+\beta)\pi R^2H.\end{aligned}\]</span> Hence the total charge enclosed is <span class="math inline">\(q={\textstyle\frac{1}{2}}\epsilon_0(\alpha+\beta)\pi
+R^2H\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question June 2002 (Section A): In electrostatic theory, Gauss’ law states that the flux of an electrostatic field <span class="math inline">\({\bf E} ({ {\bf x}\,})\)</span> over a closed surface <span class="math inline">\(S\)</span> is given by the ratio of the enclosed charge <span class="math inline">\(q\)</span> and a constant <span class="math inline">\(\epsilon_0\)</span>. Calculate the electric charge enclosed in the ellipsoid of equation <span class="math inline">\(x^2+\frac{1}{2}y^2+z^2=1\)</span> in the presence of<br />
+</p>
+<ul>
+<li><p>an electrostatic field <span class="math inline">\({\bf E} ({ {\bf x}\,})= y z {\bf e_1}+x z {\bf e_2}
++x y {\bf e_3}\)</span> ,</p></li>
+<li><p>an electrostatic field <span class="math inline">\({\bf E} ({ {\bf x}\,})=x {\bf e_1}+ y {\bf e_2}+ z
+{\bf e_3}\)</span> .</p></li>
+</ul>
+</div>
+<div class="solution">
+<p>In both parts, the best tactic to replace <span class="math inline">\(\int_S{\bf E}\cdot d{\bf A}\)</span> by <span class="math inline">\(\int_V\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf E}\,dV\)</span>, quoting the divergence theorem.</p>
+<ul>
+<li><p>In this case, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf E}=0\)</span>, so the enclosed electric charge is zero.</p></li>
+<li><p>This time, <span class="math inline">\(\underline{\nabla\mkern-2mu}\mkern 3mu \cdot{\bf E}=3\)</span>, so the enclosed electric charge is equal to <span class="math inline">\(3\)</span> times the volume of the ellipsoid, multiplied by <span class="math inline">\(\epsilon_0\)</span>. The given ellipsoid is a unit sphere (which has volume <span class="math inline">\({\textstyle\frac{4}{3}}\pi\)</span>), expanded by a factor of <span class="math inline">\(\sqrt{2}\)</span> in the <span class="math inline">\(y\)</span> direction. Hence its volume is <span class="math inline">\(\sqrt{2}\times{\textstyle\frac{4}{3}}\,\pi\)</span>, and the charge enclosed is <span class="math inline">\(4\sqrt{2}\,\pi\,\epsilon_0\)</span>. (Alternatively, one can grind through the volume integral explicitly.)</p></li>
+</ul>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '82';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
