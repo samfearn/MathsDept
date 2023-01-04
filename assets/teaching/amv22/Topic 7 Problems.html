@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMV 2022-23, Michaelmas: Topic 7 Solutions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AMV 2022-23, Michaelmas: Topic 7 Solutions</h1>
+</header>
+<p><span> </span></p>
+<div class="problem">
+<p>Let <span class="math inline">\(A\)</span> be the region bounded by the positive <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>-axes and the line <span class="math inline">\(3x + 4y =10\)</span>. Compute <span class="math inline">\(\iint_A\, (x^2 + y^2)\, dx\,dy\)</span> , taking the integrals in both orders and checking that your answers agree.</p>
+</div>
+<div class="problem">
+<p>In the following integrals sketch the integration regions and then evaluate the integrals. Next interchange the order of integrations and re-evaluate.</p>
+<ul>
+<li><p><span class="math inline">\(\qquad \int_0^1\,(\int_x^1\, xy\, dy)\,dx\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad \int_0^{\pi/2}\,(\int_0^{\cos \theta} \cos \theta\, dr)
+\,d\theta\)</span>,</p></li>
+<li><p><span class="math inline">\(\qquad \int_0^1\,(\int_1^{2-y}\,  (x+y)^2\,dx)\, dy\)</span>.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Exam question 2010 (Section A) Q4: Calculate the double integral <span class="math display">\[\iint_A (|x|+|y|)\,dx\,dy.\]</span> where A is the region defined by <span class="math inline">\(|x|+|y|\le 1\)</span>.</p>
+</div>
+<div class="problem">
+<p>Exam question 2011 (Section A) Q4: Change the order of integration in the double integral <span class="math display">\[\int_0^2\int_x^{2x} f(x,y)\,dy\,dx\,.\]</span></p>
+</div>
+<div class="problem">
+<p>Exam question May 2017 (Section A): A solid cylinder <span class="math inline">\(C\)</span> of radius <span class="math inline">\(1\)</span> and height <span class="math inline">\(1\)</span> is defined by <span class="math display">\[C=\{(x,y,z)\in\mathbb{R}^3: x^2+y^2\le 1,~ 0\le z\le 1\}\,.\]</span> Show that the paraboloid <span class="math inline">\(P =\{(x,y,z)\in\mathbb{R}^3:z=x^2+y^2\}\)</span> cuts <span class="math inline">\(C\)</span> into two pieces of equal volume.</p>
+</div>
+<div class="problem">
+<p>Compute the iterated integral <span class="math display">\[\int_0^1\int_0^1\frac{x^2-y^2}{(x^2+y^2)^2}\,dy\,dx\,.\]</span> Now reverse the order of integrations and re-evaluate. Why doesn’t your answer contradict Fubini’s theorem? (Hints: for the first integral, with respect to <span class="math inline">\(y\)</span>, it might help to aim at something that can be integrated by parts using <span class="math inline">\(\frac{d}{dy}\bigl(\frac{1}{x^2{+}y^2}\bigr)
+=-\frac{2y}{(x^2{+}y^2)^2}\)</span> ; and in answering to the last part of the question, the fact that <span class="math inline">\(\int_0^1\bigl|\frac{x^2-y^2}{(x^2+y^2)^2}\bigr|\,dy\ge
+\int_0^x\frac{x^2-y^2}{(x^2+y^2)^2}\,dy\,\)</span> could be useful.)</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(B\)</span> be the region bounded by the five planes <span class="math inline">\(x=0\)</span>, <span class="math inline">\(y=0\)</span>, <span class="math inline">\(z=0\)</span>, <span class="math inline">\(x+y=1\)</span>, and <span class="math inline">\(z=x+y\)</span>.<br />
+</p>
+<ul>
+<li><p>Find the volume of <span class="math inline">\(B\)</span>.</p></li>
+<li><p>Evaluate <span class="math inline">\(\int_B\, x\, dV\)</span> .</p></li>
+<li><p>Evaluate <span class="math inline">\(\int_B\, y\,dV\)</span> .</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>A function <span class="math inline">\(f(x,y)\)</span> is defined by <span class="math display">\[f(x,y) =
+\begin{cases}
+\phantom{-}1&amp;\mbox{if~$-1&lt;x{-}y&lt;0$} \\
+-1&amp;\mbox{if~$0&lt;x{-}y&lt;1$}\\
+\phantom{-}0&amp;\mbox{otherwise\,.}
+\end{cases}\]</span> Compute <span class="math inline">\(\int_0^{\infty}\left(\int_{-\infty}^{\infty}f(x,y)\,dx\right) dy\)</span> and also <span class="math inline">\(\int_{-\infty}^{\infty}\left(\int_0^{\infty}f(x,y)\,dy\right) dx\)</span> (for the second case it might help to draw a picture). Comment on your two answers – does this contradict Fubini’s theorem?</p>
+</div>
+<div class="problem">
+<p>A function <span class="math inline">\(f(x,y)\)</span> is defined by <span class="math display">\[f(x,y) =
+	\begin{cases}
+	\phantom{-}2^{2(n+1)}&amp;\text{if } 2^{-(n+1)}&lt;x&lt;2^{-n},\quad 2^{-(n+1)}&lt;y&lt;2^{-n}\\
+	-2^{2n+3}&amp;\text{if } 2^{-(n+1)}&lt;x&lt;2^{-n},\quad 2^{-(n+2)}&lt;y&lt;2^{-(n+1)}\\
+	\phantom{-}0&amp;\mbox{otherwise\,,}
+	\end{cases}\]</span> for <span class="math inline">\(n\in\mathbb{Z}_{\ge 0} = \{0,1,2,\ldots\}\)</span>.</p>
+<p>Compute <span class="math inline">\(\int_0^1\int_0^1 f(x,y)\,dx\,dy\)</span>, and <span class="math inline">\(\int_0^1\int_0^1 f(x,y)\, dy\,dx\)</span>. Does this contradict Fubini’s theorem?</p>
+</div>
+<div class="problem">
+<p>Write the line integral <span class="math display">\[\int_C xdx+ydy+(xz-y)dz\]</span> in the form <span class="math inline">\(\int_C\mathbf{v}\cdot d\mathbf{x}\)</span> for a suitable vector field <span class="math inline">\(\mathbf{v}(\mathbf{x})\)</span>, and compute its value when <span class="math inline">\(C\)</span> is the curve given by <span class="math inline">\({\bf x}(t) = t^2\, {\bf e_1}+ 2t\,{\bf e_2}+
+4t^3\,  {\bf e_3}\)</span> with <span class="math inline">\(0 \le t \le 1\)</span>.</p>
+</div>
+<div class="problem">
+<p>Evaluate <span class="math inline">\(\int_{\sigma}\, {\bf F}\cdot d{\bf x}\,\)</span>, where <span class="math inline">\({\bf F}\,=\,y\,  {\bf e_1}+ 2x\,  {\bf e_2}+y\, {\bf e_3}\)</span> and the path <span class="math inline">\(\sigma\)</span> is given by <span class="math inline">\({{\bf x}\,}(t) = t\, {\bf e_1}+ t^2\,  {\bf e_2}+
+t^3\,  {\bf e_3}\)</span>, <span class="math inline">\(0 \le t \le 1\)</span>.</p>
+</div>
+<div id="straightline" class="problem">
+<p> Let <span class="math inline">\({\underline{A}}({\underline{x}})\)</span> be the vector field <span class="math inline">\({\underline{A}}(x,y,z)=x\,{\underline{e}}_1+y\,{\underline{e}}_2+z\,{\underline{e}}_3\)</span> .<br />
+</p>
+<ol>
+<li><p>Compute the line integral <span class="math inline">\(\int_{C}{\underline{A}}\cdot d{\underline{x}}\)</span> where <span class="math inline">\(C\)</span> is the straight line from the origin to the point <span class="math inline">\((1,1,1)\)</span>.</p></li>
+<li><p>Show (by finding <span class="math inline">\(f\)</span>) that the vector field <span class="math inline">\({\underline{A}}\)</span> from part (a) is equal to <span class="math inline">\(\nabla f({\underline{x}})\)</span> for some scalar field <span class="math inline">\(f\)</span>, and that your answer to part (a) is equal to <span class="math inline">\(f(1,1,1)-f(0,0,0)\)</span>.</p></li>
+</ol>
+</div>
+<div id="genstraightline" class="problem">
+<p> Show that the result from question <a href="#straightline" data-reference-type="ref" data-reference="straightline">[straightline]</a> applies in general: if the vector field <span class="math inline">\({\underline{v}}({\underline{x}})\)</span> in <span class="math inline">\(\mathbb{R}^n\)</span> is the gradient of a scalar field <span class="math inline">\(f({\underline{x}})\)</span>, so that <span class="math inline">\({\underline{v}}=\nabla f\)</span>, and if <span class="math inline">\(C\)</span> is a curve in <span class="math inline">\(\mathbb{R}^n\)</span> running from <span class="math inline">\({\underline{x}}={\underline{a}}\)</span> to <span class="math inline">\({\underline{x}}={\underline{b}}\)</span>, then <span class="math inline">\(\int_C {\underline{v}}\cdot d{\underline{x}} = f({\underline{b}})-f({\underline{a}})\)</span>. (Hint: use the chain rule.)</p>
+</div>
+<div class="problem">
+<p>Use the result from question <a href="#genstraightline" data-reference-type="ref" data-reference="genstraightline">[genstraightline]</a> to evaluate <span class="math inline">\(\int_C \, 2xyz dx\,+\,x^2 z dy\,+\, x^2 y dz\)</span>, where <span class="math inline">\(C\)</span> is any regular curve connecting (1,1,1) to (1,2,4).</p>
+</div>
+<div class="problem">
+<p>Compute the surface integral, <span class="math inline">\(\int_S\mathbf{F}\cdot d\mathbf{A}\)</span>, of the vector field <span class="math inline">\(\mathbf{F}=(3x^2,-2yx,8)\)</span> over the surface given by the plane <span class="math inline">\(z=2x-y\)</span> with <span class="math inline">\(0\le x\le 2\)</span>, <span class="math inline">\(0\le y\le 2\)</span>,</p>
+<ul>
+<li><p>using method 2 from lectures,</p></li>
+<li><p>using method 1 from lectures.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\bf F}(x,y,z)=(z,x,y)\)</span>, and <span class="math inline">\(S\)</span> be the part of the surface of the sphere <span class="math inline">\(x^2+y^2+(z-1)^2=r^2\)</span> above the plane <span class="math inline">\(z=0\)</span>. Assume that <span class="math inline">\(r&gt;1\)</span> so that the boundary <span class="math inline">\(C\)</span> of <span class="math inline">\(S\)</span>, where <span class="math inline">\(S\)</span> intersects the plane <span class="math inline">\(z=0\)</span>, is non-empty.</p>
+<ul>
+<li><p>Compute the line integral <span class="math inline">\(\oint_C{\bf F}\cdot d{\bf x}\,\)</span>.</p></li>
+<li><p>By parameterising the surface <span class="math inline">\(S\)</span> with spherical coordinates centred on the point <span class="math inline">\((0,0,1)\)</span>, compute the surface integral of the curl of <span class="math inline">\({\bf F}\)</span>,  <span class="math inline">\(\int_S\nabla\times\mathbf{F}\cdot d{\bf A}\)</span>.</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\underline{A}}({\underline{x}})\)</span> be the vector field <span class="math inline">\({\underline{A}}(x,y,z)=z\,{\underline{e}}_1+x\,{\underline{e}}_2+y\,{\underline{e}}_3\)</span>, <span class="math inline">\(C\)</span> be the circle in the <span class="math inline">\(x,y\)</span>-plane of radius <span class="math inline">\(r\)</span> centred on the origin, and <span class="math inline">\(S\)</span> the disk in the <span class="math inline">\(x,y\)</span>-plane whose boundary is <span class="math inline">\(C\)</span>.</p>
+<ul>
+<li><p>Compute the line integral <span class="math inline">\(\oint_{C}{\underline{A}}\cdot d{\underline{x}}\)</span>.</p></li>
+<li><p>Compute the surface integral of the curl of <span class="math inline">\({\underline{A}}\)</span>,  <span class="math inline">\(\int_S\left( \nabla\times\mathbf{A} \right)\cdot d{\bf A}\)</span> .</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\underline{A}}({\underline{x}})\)</span> be the vector field <span class="math inline">\({\underline{A}}(x,y,z)=z\,{\underline{e}}_1+x\,{\underline{e}}_2+y\,{\underline{e}}_3\)</span>, <span class="math inline">\(C\)</span> be the <span class="math inline">\(a\)</span> by <span class="math inline">\(a\)</span> square <span class="math inline">\({\underline{a}}{\underline{b}}{\underline{c}}{\underline{d}}\)</span> in the <span class="math inline">\(y,z\)</span>-plane with vertices <span class="math inline">\({\underline{a}}={\underline{0}}\)</span>, <span class="math inline">\({\underline{b}}=a\,{\underline{e}}_2\)</span>, <span class="math inline">\({\underline{c}}=a\,{\underline{e}}_2+a\,{\underline{e}}_3\)</span>  and <span class="math inline">\({\underline{d}}=a\,{\underline{e}}_3\)</span> , and <span class="math inline">\(S\)</span> be the region of the <span class="math inline">\(y,z\)</span>-plane bounded by <span class="math inline">\(C\)</span>.</p>
+<ul>
+<li><p>Compute the line integral <span class="math inline">\(\oint_{C}{\underline{A}}\cdot d{\underline{x}}\)</span> .</p></li>
+<li><p>Compute the surface integral of the curl of <span class="math inline">\({\underline{A}}\)</span>,  <span class="math inline">\(\int_S\left( \nabla\times\mathbf{A} \right)\cdot d{\bf A}\)</span> .</p></li>
+</ul>
+</div>
+<div class="problem">
+<p>Based on exam question May 2015 (Section A) Q5 (which didn’t contain part (b)) :</p>
+<ul>
+<li><p>Calculate <span class="math inline">\(\int_V \left( \underline{\nabla\mkern-2mu}\mkern 3mu \cdot \underline{U} \right) dV\)</span> where <span class="math inline">\(V\)</span> is the solid cube with faces <span class="math inline">\(x=\pm 1\)</span>, <span class="math inline">\(y=\pm 1\)</span> and <span class="math inline">\(z=\pm 1\)</span> and <span class="math display">\[\underline{U}(x,y,z)=(\,x\,y^2,y\,x^2,z\,) \,.\]</span></p></li>
+<li><p>Calculate <span class="math inline">\(\int_S \underline{U}\cdot d\underline{A}\)</span>, where <span class="math inline">\(S\)</span> is the surface of <span class="math inline">\(V\)</span>.</p></li>
+</ul>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark;;; .corollary';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '63';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
