@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Department of Mathematical Sciences, Durham University The notes for this term were originally written by Dr. Sophy Darwin and are based on a previous course developed by Rob de Jeu, Sophy Darwin, Fredrik Strömberg, and Emilie Dufresne Please send questions, comments or corrections to s.m.fearn@durham.ac.uk" />
+  <title>MATH3401 Error-correcting Codes Epiphany term 2022/23</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><span>MATH3401</span><br />
+<span>Error-correcting Codes</span><br />
+<span>Epiphany term 2022/23</span></h1>
+<p class="author">Sam Fearn<br />
+<span>Department of Mathematical Sciences, Durham University</span><br />
+<span>The notes for this term were originally written by Dr. Sophy Darwin</span><br />
+<span>and are based on a previous course developed by</span><br />
+Rob de Jeu, Sophy Darwin, Fredrik Strömberg, and Emilie Dufresne<br />
+<span>Please send questions, comments or corrections to</span><br />
+<code>s.m.fearn@durham.ac.uk</code></p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#basic-coding-theory"><span class="toc-section-number">1</span> Basic Coding Theory</a>
+<ul>
+<li><a href="#first-definitions"><span class="toc-section-number">1.1</span> First Definitions</a></li>
+<li><a href="#nearest-neighbour-decoding"><span class="toc-section-number">1.2</span> Nearest-Neighbour Decoding</a></li>
+<li><a href="#probabilities"><span class="toc-section-number">1.3</span> Probabilities</a></li>
+<li><a href="#bounds-on-codes"><span class="toc-section-number">1.4</span> Bounds on Codes</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="basic-coding-theory" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Basic Coding Theory</h1>
+<p>Error-correcting codes use very abstract mathematics in very concrete applications. If we try to communicate information over some “channel” (e.g., by radio transmission, by storing data on tape and retrieving it later, or by writing music on a CD and playing it later) then there is usually a chance that some errors occur: what comes out of the channel is not identical to what went in. Various strategies have been developed to help with this, one of which is the theory of error-correcting codes. Using such a code, one hopes to decode any information in such a way that the errors that occurred in transmission are corrected and the original information is retrieved.</p>
+<p>This is the basic situation:</p>
+<p><span class="math inline">\(\boxed{SENDER} \overset{\rm message}{\longrightarrow\longrightarrow} \boxed{ENCODER} \overset{\rm codeword}{\longrightarrow\longrightarrow} \boxed{CHANNEL} \overset{\text{ received}}{\overset{\text{ word}}{\longrightarrow\longrightarrow}} 
+\boxed{DECODER} \overset{\text{ decoded}}{\overset{\text{ message}}{\longrightarrow\longrightarrow}} \boxed{USER}\)</span></p>
+<p>And here is an example of what might happen:</p>
+<p><span class="math inline">\(\boxed{\substack{\text{Yes} \\ \text{ or No}}} \overset{\rm Yes}{\longrightarrow\longrightarrow}\; \boxed{\substack{\text{Yes } \rightarrow 000 \\ \text{No } \rightarrow 111}} \overset{000}{\longrightarrow\longrightarrow}\; \boxed{\substack{NOISE \\ \hookrightarrow 100}} \overset{100}{\longrightarrow\longrightarrow} \boxed{100 \sim 000 \rightarrow Yes} \overset{\text{Yes}}{\longrightarrow\longrightarrow} \boxed{USER}\)</span></p>
+<p>The decoder does two things: first (<span class="math inline">\(\sim\)</span>) it makes a good guess as to what codeword was sent, and then (<span class="math inline">\(\rightarrow\)</span>) converts this back to a message. We shall be mostly concerned with the <span class="math inline">\(\sim\)</span> process, and how to encode so that <span class="math inline">\(\sim\)</span> works well.</p>
+<p>There is no very good name for <span class="math inline">\(\sim\)</span> . It is often called “decoding", but this should really include <span class="math inline">\(\rightarrow\)</span> as well. We can also call it “error-correction", but this is not quite right either, as we can never be <span><em>sure</em></span> we have found the original codeword - only that we <span><em>probably</em></span> have.</p>
+<section id="first-definitions" class="level2" data-number="1.1">
+<h2 data-number="1.1"><span class="header-section-number">1.1</span> First Definitions</h2>
+<div class="definition">
+<p>An <span><strong>alphabet</strong></span> is a finite set of symbols. If <span class="math inline">\(A\)</span> is an alphabet, then <span class="math inline">\(A^n\)</span> is the set of all lists of <span class="math inline">\(n\)</span> symbols from <span class="math inline">\(A\)</span>. (So <span class="math inline">\(|A^n| = |A|^n\)</span>.) We call these lists <span><strong>words</strong></span> of <span><strong>length</strong></span> <span class="math inline">\(n\)</span>. A <span><strong>code</strong></span> <span class="math inline">\(C\)</span> of <span><strong>block length</strong></span> <span class="math inline">\(n\)</span> on alphabet <span class="math inline">\(A\)</span> is a subset of <span class="math inline">\(A^n\)</span>. A <span><strong>codeword</strong></span> is an element of the code.</p>
+</div>
+<div class="exampleqed">
+<p>If the alphabet <span class="math inline">\(A= \{0,1\}\)</span>, then <span class="math inline">\(A^3 = \{000, 001, 010, 011, 100, 101, 110, 111\}\)</span>. Above, we used <span class="math inline">\(C_1 = \{000, 111\} \subseteq A^3\)</span>.</p>
+<p>Now suppose <span class="math inline">\(C_2 = \{000,110, 101, 011\} \subseteq A^3\)</span>. We might have: <span class="math inline">\(\overset{000}{\longrightarrow\longrightarrow}
+\boxed{\substack{NOISE \\ 001\hookleftarrow }}
+\stackrel{001}{\longrightarrow\longrightarrow}
+\boxed{001 \sim \left\{\begin{matrix}
+0 0 0  \\1 0 1 \\0 1 1 
+\end{matrix} \right\} \;\;? }
+\overset{???}{\longrightarrow\longrightarrow}\;\)</span></p>
+<p>We detect an error, but it is not clear how to correct it.</p>
+</div>
+<div class="definition">
+<p>If <span class="math inline">\(|A|=2\)</span> then <span class="math inline">\(C\)</span> is a <span><strong>binary</strong></span> code. If <span class="math inline">\(|A|=3\)</span> then <span class="math inline">\(C\)</span> is a <span><strong>ternary</strong></span> code. If <span class="math inline">\(|A|=q\)</span> then <span class="math inline">\(C\)</span> is a <span class="math inline">\(q\)</span><span><strong>-ary</strong></span> code. (We usually use <span class="math inline">\(A = \{0,1,2,\ldots ,q-1\}\)</span>.)</p>
+</div>
+<div class="definition">
+<p>For some alphabet <span class="math inline">\(A\)</span>, let <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> be words in <span class="math inline">\(A^n\)</span>. The <span><strong>Hamming distance</strong></span> between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, written <span class="math inline">\(d(x, y)\)</span>, is the number of places in which <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> differ. So <span class="math inline">\(d(x,y)\)</span> is also the (minimum) number of changes of a symbol needed to turn <span class="math inline">\(x\)</span> into <span class="math inline">\(y\)</span>. If <span class="math inline">\(x\)</span> was transmitted, but <span class="math inline">\(y\)</span> is received, then <span class="math inline">\(d(x,y)\)</span> <span><strong>symbol-errors</strong></span> have occurred.</p>
+</div>
+<div class="exampleqed">
+<p>If <span class="math inline">\(x=0102\)</span> and <span class="math inline">\(y=2111\)</span> in <span class="math inline">\(\{0,1,2\}^4\)</span>, then <span class="math inline">\(d(x,y) = 3.\)</span></p>
+</div>
+<p>Formally <span class="math inline">\(d\)</span> is a function, <span class="math inline">\(d:A^n \times A^n \longrightarrow \{0,1,2,\ldots\}\)</span>. We call it a distance because in certain important ways it behaves like ordinary Euclidean distance, measured between two points in <span class="math inline">\({{\mathbb R}}^n\)</span>. In fact, because of properties ii), iii) and iv) of the following proposition, <span class="math inline">\(d\)</span> qualifies as a ‘metric’.</p>
+<div class="proposition">
+<p>For words <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of length <span class="math inline">\(n\)</span>, the Hamming distance <span class="math inline">\(d(x,y)\)</span> satisfies:</p>
+<ul>
+<li><p><span class="math inline">\(0 \leq d(x,y) \leq n\)</span></p></li>
+<li><p><span class="math inline">\(d(x,y)= 0 \Leftrightarrow x=y\)</span></p></li>
+<li><p><span class="math inline">\(d(x,y) = d(y, x)\)</span></p></li>
+<li><p><span class="math inline">\(d(x,y) \leq d(x,z) + d(z,y)\)</span></p></li>
+</ul>
+</div>
+<div class="proof">
+<p>The first three are obvious. For iv), the triangle inequality, we use the second meaning of <span class="math inline">\(d(x,y)\)</span>: the RHS is</p>
+<p>the number of changes required to turn <span class="math inline">\(x\)</span> into <span class="math inline">\(z\)</span></p>
+<p><span class="math inline">\(\;\;+\;\;\)</span></p>
+<p>the number of changes required to turn <span class="math inline">\(z\)</span> into <span class="math inline">\(y\)</span>.</p>
+<p>All these changes would certainly change <span class="math inline">\(x\)</span> into <span class="math inline">\(y\)</span>, so the RHS must be at least the minimum number of changes to do so, which is <span class="math inline">\(d(x,y)\)</span>.</p>
+</div>
+<div class="definition">
+<p>For a code <span class="math inline">\(C\)</span>, its <span><strong>minimum distance</strong></span> <span class="math inline">\(d(C)\)</span> is min<span class="math inline">\(\{d(x,y)\;|\;x\in C, y \in C, x \neq y\}\)</span>. So <span class="math inline">\(d(C) \in \{1,2,3,\ldots\}\)</span> A code of block length <span class="math inline">\(n\)</span> with <span class="math inline">\(M\)</span> codewords and minimum distance <span class="math inline">\(d\)</span> is called an <span class="math inline">\((n, M, d)\)</span> code (or sometimes an <span class="math inline">\((n, M)\)</span> code).</p>
+</div>
+<p>We sometimes also refer to a <span class="math inline">\(q\)</span>-ary <span class="math inline">\((n,M,d)\)</span> code as an <span class="math inline">\((n,M,d)_q\)</span> code.</p>
+<div class="exampleqed">
+<p>C=<span class="math inline">\(\{0001, 2200,0031\} \subseteq\{0, 1, 2, \ldots,6\}^4\)</span> is a 7-ary (4,3,1) code.</p>
+</div>
+<div class="definition">
+<p>If <span class="math inline">\(C \subseteq A^n\)</span> is a code, and <span class="math inline">\(x\)</span> is a word in <span class="math inline">\(A^n\)</span>, then a <span><strong>nearest neighbour</strong></span> of <span class="math inline">\(x\)</span> is a codeword <span class="math inline">\(c \in C\)</span> such that <span class="math inline">\(d(x,c) =\)</span> min<span class="math inline">\(\{d(x,y)\; | \; y \in C\}\)</span>. A word may have several nearest neighbours. A codeword’s nearest neighbour is itself.</p>
+</div>
+<div class="exampleqed">
+<p>If <span class="math inline">\(C = \{000,111,110,011\} \subseteq \{0,1\}^3\)</span>, and <span class="math inline">\(x= 100\)</span>, then <span class="math inline">\(d(x,000) =1\)</span>, <span class="math inline">\(d(x,111) =2\)</span>, <span class="math inline">\(d(x,110)= 1\)</span>, <span class="math inline">\(d(x,011) =3\)</span>. So <span class="math inline">\(x\)</span> has two nearest neighbours, 000 and 110.</p>
+</div>
+</section>
+<section id="nearest-neighbour-decoding" class="level2" data-number="1.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> Nearest-Neighbour Decoding</h2>
+<p>In this course, we shall be using <span><strong>nearest-neighbour decoding</strong></span>: if a word <span class="math inline">\(x\)</span> is received, we shall decode it to a nearest neighbour of <span class="math inline">\(x\)</span> in our code <span class="math inline">\(C\)</span>. This can always be done by finding <span class="math inline">\(d(x,c)\)</span> for every <span class="math inline">\(c \in C\)</span>, though soon we’ll have better methods.</p>
+<div class="exampleqed">
+<p>Let <span class="math inline">\(C_1\)</span> be our original (3,2,3) code, <span class="math inline">\(C= \{000,111\} \subseteq \{0,1\}^3\)</span>. Then we would decode 000, 100, 010, and 001 to 000. We would decode 111, 110, 101, and 011 to 111.</p>
+</div>
+<div class="exampleqed">
+<p>Let <span class="math inline">\(C_2\)</span> be the (2,2,2) code <span class="math inline">\(C_2 = \{00,11\} \subseteq \{0,1\}^2\)</span>. Then clearly we would decode 00 to 00, and 11 to 11. But 01 and 10 each have two nearest neighbours, both 00 and 11.</p>
+</div>
+<p>So we can deal with <span class="math inline">\(C_2\)</span> in two different ways:</p>
+<ul>
+<li><p>We decide which nearest neighbour to use, for example <span class="math inline">\(01\)</span> to <span class="math inline">\(00\)</span>, <span class="math inline">\(10\)</span> to <span class="math inline">\(11\)</span>. Or perhaps both <span class="math inline">\(01\)</span> and 10 go to 00. Both of these are nearest-neighbour decoding. (Later, our algorithm for finding a nearest neighbour may decide this for us.)</p></li>
+<li><p>“Incomplete decoding": we do not decode 10 and 01 at all. Possibly we ask for retransmission.</p></li>
+</ul>
+<p><span><strong>Notation:</strong></span> The “floor function" <span class="math inline">\(\lfloor x
+\rfloor\)</span> means the largest integer <span class="math inline">\(\leq x\)</span>. So <span class="math inline">\(\lfloor 3.7 \rfloor = 3\)</span>, <span class="math inline">\(\lfloor 6 \rfloor =6\)</span>, <span class="math inline">\(\lfloor -1/2 \rfloor = -1\)</span>.</p>
+<div id="prop:correctdetect" class="proposition">
+<p> For a code with minimum distance <span class="math inline">\(d\)</span>, if a word has:</p>
+<ul>
+<li><p><span class="math inline">\(\leq d-1\)</span> symbol-errors, we will detect that it has some errors.</p></li>
+<li><p><span class="math inline">\(\leq \lfloor \frac{d-1}{2} \rfloor\)</span> symbol-errors, nearest-neighbour decoding will correct them.</p></li>
+</ul>
+</div>
+<p>Notice that, even with more symbol-errors than this, we <span><em>may</em></span> be able to detect or correct. But this is our guaranteed minimum performance.</p>
+<div class="proof">
+<p>Suppose codeword <span class="math inline">\(c\)</span> is sent, but <span class="math inline">\(t &gt;0\)</span> symbol-errors occur, and and word <span class="math inline">\(x\)</span> is received. So <span class="math inline">\(d(c,x) = t\)</span>.</p>
+<ul>
+<li><p>If <span class="math inline">\(c&#39;\)</span> is another codeword, we know <span class="math inline">\(d(c,c&#39;) \geq d\)</span>. So if <span class="math inline">\(0 &lt; t = d(c,x)\leq d-1\)</span>, then <span class="math inline">\(x\)</span> is not a codeword. We notice this, so we detect that symbol-errors have occurred (though we cannot be sure which symbols have been affected).</p></li>
+<li><p>We must show that, if <span class="math inline">\(t \leq \lfloor \frac{d-1}{2} \rfloor\)</span>, then <span class="math inline">\(c\)</span> is the <span><em>unique</em></span> nearest neighbour of <span class="math inline">\(x\)</span>; that is, if <span class="math inline">\(c&#39;\)</span> is any other codeword, then <span class="math inline">\(d(x,c) &lt; d(x,c&#39;)\)</span>. Suppose not. Then <span class="math inline">\(d(x,c&#39;) \leq d(x,c) \leq\lfloor \frac{d-1}{2} \rfloor\)</span>. But then by the triangle inequality we have <span class="math display">\[d(c,c&#39;) \leq d(c,x) + d(x,c&#39;) \leq2 \left\lfloor \frac{d-1}{2} \right\rfloor \leq d-1.\]</span> This contradicts that <span class="math inline">\(d\)</span> was minimum distance.</p></li>
+</ul>
+</div>
+<p>Draw your own pictures for these proofs: For i), you need a circle of radius <span class="math inline">\(d - 1\)</span> centred on <span class="math inline">\(c\)</span>. For ii), draw the “suppose" part: a triangle with vertices <span class="math inline">\(c\)</span>, <span class="math inline">\(x\)</span>, and <span class="math inline">\(c&#39;\)</span>.</p>
+<p>Informally, we often say the code <span class="math inline">\(C\)</span> “detects" or “corrects" so many symbol-errors, when we really mean that our decoding procedure, used with this code, detects or corrects them.</p>
+<div class="exampleqed">
+<p>Let <span class="math inline">\(C\)</span> have <span class="math inline">\(d = 5\)</span>. Then <span class="math inline">\(\lfloor \frac{d-1}{2}\rfloor = 2\)</span>, and so this code can detect up to 4 symbol errors and correct up to 2 symbol errors.</p>
+</div>
+<div class="exampleqed">
+<p>The code <span class="math inline">\(C_2 = \{00,11\} \subseteq \{0,1\}^2\)</span> has <span class="math inline">\(d=2\)</span>. So it detects up to 2 - 1 = 1 symbol-errors, but corrects <span class="math inline">\(\lfloor \frac{2-1}{2}\rfloor = 0\)</span>, as we found.</p>
+<p>The code <span class="math inline">\(C_1 = \{000,111\} \subseteq \{0,1\}^3\)</span> has <span class="math inline">\(d=3\)</span>. So it detects up to 3 - 1 = 2 symbol-errors, but corrects <span class="math inline">\(\lfloor \frac{3-1}{2}\rfloor = 1\)</span>. Suppose that <span class="math inline">\(c=000\)</span> is sent, but we receive <span class="math inline">\(x= 101\)</span>, so we have 2 symbol-errors. Then we detect that symbol-errors have occurred, because <span class="math inline">\(x\)</span> is not a codeword. But nearest-neighbour decoding gives 111, so we fail to correct them.</p>
+</div>
+</section>
+<section id="probabilities" class="level2" data-number="1.3">
+<h2 data-number="1.3"><span class="header-section-number">1.3</span> Probabilities</h2>
+<p>So far we have tacitly assumed that a codeword is more likely to suffer a small number of symbol-errors, than a larger number. This is why Proposition <a href="#prop:correctdetect" data-reference-type="ref" data-reference="prop:correctdetect">[prop:correctdetect]</a>, which talks about being able to detect or correct symbol-errors <span><em>up to</em></span> a certain number, is useful. Now we must make our assumptions explicit, and calculate the probabilities of different outcomes. We start by defining a certain kind of channel, in which all symbol-errors are equally likely.</p>
+<div id="def:symmetricchannel" class="definition">
+<p> A <span><strong><span class="math inline">\(q\)</span>-ary symmetric channel with symbol-error probability <span class="math inline">\(p\)</span></strong></span> is a channel for a <span class="math inline">\(q\)</span>-ary alphabet <span class="math inline">\(A\)</span> such that:</p>
+<ul>
+<li><p>For any <span class="math inline">\(a \in A\)</span>, the chance that it is changed in the channel is <span class="math inline">\(p\)</span>.</p></li>
+<li><p>For any <span class="math inline">\(a, b \in A, a\neq b\)</span>, the chance that <span class="math inline">\(a\)</span> is changed to <span class="math inline">\(b\)</span> in the channel, written <span class="math inline">\(P(b\; {\rm received}\;|\; a \;{\rm sent})\)</span>, is <span class="math inline">\(\frac{p}{q-1}\)</span>.</p></li>
+</ul>
+</div>
+<p>Symmetric channels are easy to work with, but many real-life channels are not strictly symmetric. Part ii) of the definition says that <span class="math inline">\(p\)</span>, the chance of change, is split equally among all <span class="math inline">\(q-1\)</span> other symbols: each wrong symbol is equally likely. So the symbol 6 would be equally likely to become 5, 0, or 9. But in fact 5 and 7 are more likely if someone is typing, 0 if copying by hand, and 9 if arranging plastic numbers on the fridge!</p>
+<p>Part i) says that the chance of change is not affected by which symbol is sent, or its position in the codeword, or which other symbols are nearby, or whether other symbols are changed. So for example, in a symmetric channel, 12234 is equally likely to become 12334 or 12134. In fact, if someone tries to remember or copy 12234, 12334 (repeating the wrong symbol) is much more likely than 12134. Similarly, with two symbol-errors occurring, in a symmetric channel 12234 is equally likely to become 12243 or 14233. But for human error, 12243 (swapping two adjacent symbols) is the more likely.</p>
+<p>(For many types of mechanical channel, also, 12234 is more likely to become 12243 than 14233, but this is because the physical cause of a symbol-error (a scratch on a CD, or a surge of electricity, for example) is likely also to affect adjacent symbols. So symbol-errors in the last two positions is more likely than symbol-errors in the second position and the last. There are ways to adapt nearest-neighbour decoding to help with the fact that, in real life, symbol-errors may tend to come in “bursts".)</p>
+<p>In the language of probability, i) implies that in a symmetric channel, symbol-errors in different positions are <span><em>independent</em></span> events. This makes for easy calculations.</p>
+<div id="prop:receivedgivensentprobability" class="proposition">
+<p> Let <span class="math inline">\(c\)</span> be a codeword in a <span class="math inline">\(q\)</span>-ary code of block-length <span class="math inline">\(n\)</span>, sent over a <span class="math inline">\(q\)</span>-ary symmetric channel with symbol-error probability <span class="math inline">\(p\)</span>. Then <span class="math display">\[P( x \;{\rm received} \;| \;  c \;{\rm sent}) = \left( \frac{p}{q-1}\right)^t(1-p)^{n-t},\;\; {\rm where}\;\; t = d(c,x).\]</span></p>
+</div>
+<div class="proof">
+<p>First we note that, from the definition of of a symmetric channel, the chance of a symbol remaining correct is <span class="math inline">\(1-p\)</span>.</p>
+<p>To change <span class="math inline">\(c\)</span> to <span class="math inline">\(x\)</span>, the channel must make the “right" change in each of the “right" <span class="math inline">\(t\)</span> positions. From Definition <a href="#def:symmetricchannel" data-reference-type="ref" data-reference="def:symmetricchannel">[def:symmetricchannel]</a>, the chance of each of these events is <span class="math inline">\(\frac{p}{q-1}\)</span>. Since they are independent, the chance of all of them occurring is <span class="math inline">\(\left( \frac{p}{q-1}\right)^t\)</span>. But the symbols in the other <span class="math inline">\(n-t\)</span> positions must remain correct, and the chance of this is <span class="math inline">\((1-p)^{n-t}\)</span>. Again using independence, we multiply to get the result.</p>
+</div>
+<p>In the case <span class="math inline">\(t =0\)</span>, we have <span class="math inline">\(x=c\)</span>. So the chance of <span class="math inline">\(c\)</span> being correctly received is <span class="math inline">\((1-p)^n\)</span>.</p>
+<div class="exampleqed">
+<p>Using the code <span class="math inline">\(C_2 = \{000,111\} \subseteq \{0,1\}^3\)</span>, so <span class="math inline">\(q=2\)</span>, suppose 000 is sent. Then the chance of receiving 001 is <span class="math inline">\(p(1-p)^2\)</span>. There is the same chance of receiving 010. In fact, we can complete the following table:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(t=d(000,x)\)</span></td>
+<td style="text-align: center;">chance 000</td>
+<td style="text-align: center;">chance if <span class="math inline">\(p=0.01\)</span></td>
+<td style="text-align: center;">n-n decodes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">received as <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">correctly?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">000</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\((1-p)^3\)</span></td>
+<td style="text-align: center;">0.970299</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">100</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">010</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(p(1-p)^2\)</span></td>
+<td style="text-align: center;">0.009801</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">001</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">110</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">101</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(p^2(1-p)\)</span></td>
+<td style="text-align: center;">0.000099</td>
+<td style="text-align: center;">no</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">011</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">111</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(p^3\)</span></td>
+<td style="text-align: center;">0.000001</td>
+<td style="text-align: center;">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that nearest-neighbour decoding corrects 000, 100, 010, and 001 all to 000. So, if <span class="math inline">\(p=.01\)</span>, then the chance of success is: <span class="math display">\[\begin{aligned}
+P(\text{we decode back to 000}) &amp; = &amp; P(\text{we receive 000, 001, 010, or 100})\\
+ &amp; = &amp;  0.99^3 + 3 \times 0.01 \times 0.99^2 =  0.999702\\ \end{aligned}\]</span> We can also see in the table that because <span class="math inline">\(p&lt; 1-p\)</span>, smaller <span class="math inline">\(d(000,x)\)</span> gives a larger chance. A closer <span class="math inline">\(x\)</span> is more likely to be received. More generally, we have:</p>
+<p><span id="cor:receivedwordlikelyneighbour" label="cor:receivedwordlikelyneighbour">[cor:receivedwordlikelyneighbour]</span> If <span class="math inline">\(p &lt; (q-1)/q\)</span> then <span class="math inline">\(P(x \;{\rm received}\;|\;c \;\rm{sent})\)</span> increases as <span class="math inline">\(d(x,c)\)</span> decreases.</p>
+<p>Before we prove this, consider a channel so noisy that all information is lost: whatever symbol is sent, there is an equal chance, <span class="math inline">\(1/q\)</span>, of each symbol being received. In a ‘random’ channel like this, the chance that a symbol is changed is <span class="math inline">\((q-1)/q\)</span>. So the corollary is considering channels which are better than random.</p>
+<div class="proof">
+<p>If <span class="math inline">\(p &lt; (q-1)/q\)</span> then it is easy to show that <span class="math inline">\(1-p &gt;1/q\)</span> (the chance that a symbol remains unchanged is more than random), and also that <span class="math inline">\(p/(q-1)&lt;1/q\)</span> (the chance that a specified wrong symbol is received is less than random). Putting these together, we have <span class="math inline">\((1-p) &gt; p/(q-1)\)</span> (so the most likely symbol to be received is the correct one) and it follow that <span class="math inline">\((1-p)^{n-t}\left( \frac{p}{q-1}\right)^t\)</span> is larger for smaller <span class="math inline">\(t\)</span>.</p>
+</div>
+<div class="exampleqed">
+<p>For the (3,3,3) code <span class="math inline">\(C=\{ 111, 202, 020 \} \subseteq \{0, 1, 2\}^3\)</span>, there are more words to consider. Suppose we send codeword <span class="math inline">\(c=111\)</span> through a ternary symmetric channel with symbol-error probability <span class="math inline">\(p\)</span>. The following table shows the probability of different <span class="math inline">\(d(x,c)\)</span>, when <span class="math inline">\(p=1/4\)</span> and when <span class="math inline">\(p= 1/2\)</span>, calculated using Proposition <a href="#prop:receivedgivensentprobability" data-reference-type="ref" data-reference="prop:receivedgivensentprobability">[prop:receivedgivensentprobability]</a>:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span><span class="math inline">\(p= 1/4\)</span></span></th>
+<th style="text-align: center;"><span><span class="math inline">\(p= 1/2\)</span></span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(t=\)</span></td>
+<td style="text-align: center;">ex.s of</td>
+<td style="text-align: center;"># of</td>
+<td style="text-align: center;">for each such <span class="math inline">\(x\)</span>,</td>
+<td style="text-align: center;">prob. of</td>
+<td style="text-align: center;">for each such <span class="math inline">\(x\)</span>,</td>
+<td style="text-align: center;">prob. of</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(d(x,c)\)</span></td>
+<td style="text-align: center;">such <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">such <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">prob. received</td>
+<td style="text-align: center;">this <span class="math inline">\(t\)</span></td>
+<td style="text-align: center;">prob. received</td>
+<td style="text-align: center;">this <span class="math inline">\(t\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">111</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(\left(1-\frac{1}{4}\right)^3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{27}{64}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\left(1-\frac{1}{2}\right)^3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{8}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(= \frac{27}{64}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(= \frac{1}{8}\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">110</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">112</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><span class="math inline">\(\left(1-\frac{1}{4}\right)^2 \cdot\frac{1/4}{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{27}{64}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\left(1-\frac{1}{2}\right)^2 \cdot\frac{1/2}{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{3}{8}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">101</td>
+<td style="text-align: center;">= <span class="math inline">\(\binom{3}{1} \times 2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(= \frac{9}{128}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(= \frac{1}{16}\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">⋮</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">102</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;"><span class="math inline">\(\left(1-\frac{1}{4}\right) \left(\frac{1/4}{2}\right)^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{9}{64}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\left(1-\frac{1}{2}\right) \left(\frac{1/2}{2}\right)^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{3}{8}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">122</td>
+<td style="text-align: center;">= <span class="math inline">\(\binom{3}{2}\times 2^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(= \frac{3}{256}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(= \frac{1}{32}\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">⋮</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">000</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">002</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="math inline">\(\left(\frac{1/4}{2}\right)^3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{64}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\left(\frac{1/2}{2}\right)^3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{8}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">⋮</td>
+<td style="text-align: center;"><span class="math inline">\(=\binom{3}{3}\times 2^3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(= \frac{1}{512}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(= \frac{1}{64}\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">222</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>Both <span class="math inline">\(p=1/4\)</span> and <span class="math inline">\(p=1/2\)</span> are quite large, but we have <span class="math inline">\(p&lt; (3-1)/3\)</span>, so Corollary <a href="#cor:receivedwordlikelyneighbour" data-reference-type="ref" data-reference="cor:receivedwordlikelyneighbour">[cor:receivedwordlikelyneighbour]</a> applies, and we can see the probabilities increase as we go up the fourth or sixth column.</p>
+<p>As <span class="math inline">\(d(C)\)</span> is 3 , <span class="math inline">\(C\)</span> can correct one symbol-error and detect two. A word with <span class="math inline">\(\geq 2\)</span> symbol-errors may have the the wrong nearest neighbour (102 has nearest neighbour 202), or it may have several nearest neighbours (100 has all three codeword as nearest neighbours).</p>
+<p>So suppose now we only decode when the nearest neighbour is unique. Then for <span class="math inline">\(d(x,c) =0\)</span> or 1 we will always decode correctly. For <span class="math inline">\(d(x,c) =2\)</span> or 3 we will sometimes decode incorrectly (e.g.102 to 202), and sometime not at all (e.g. 100). So, <span class="math inline">\(P(x \;{\rm correctly  \; decoded}) = P( d(x,c) = 0 \;{\rm or}\; 1)\)</span>. Thus, for <span class="math inline">\(p=1/4\)</span>, <span class="math inline">\(P(x \;{\rm correctly  \; decoded})  = \frac{27}{64} +\frac{27}{64} = \frac{27}{32}\)</span>, and for <span class="math inline">\(p=1/2\)</span> this is <span class="math inline">\(\frac{1}{8} +  \frac{3}{8} = \frac{1}{2}\)</span>.</p>
+<p>How does this compare to using the trivial (1, 3, 1) code <span class="math inline">\(C_0 = \{0,1,2\}\)</span>? Here we simply send one symbol and the chance of it being received correctly is <span class="math inline">\(1-p\)</span>. For <span class="math inline">\(p=1/4\)</span>, <span class="math inline">\(\frac{27}{32} &gt; \frac{3}{4}\)</span>, so <span class="math inline">\(C\)</span> with nearest-neighbour decoding is a little more reliable than <span class="math inline">\(C_0\)</span>. But for <span class="math inline">\(p= 1/2\)</span> we gain nothing.</p>
+</div>
+<p>Both Proposition <a href="#prop:receivedgivensentprobability" data-reference-type="ref" data-reference="prop:receivedgivensentprobability">[prop:receivedgivensentprobability]</a> and Corollary <a href="#cor:receivedwordlikelyneighbour" data-reference-type="ref" data-reference="cor:receivedwordlikelyneighbour">[cor:receivedwordlikelyneighbour]</a> are from the sender’s point of view: they assume we know which codeword <span class="math inline">\(c\)</span> was sent, and tell us about <span class="math inline">\(P(x \;{\rm received}\;|\;c \;\rm{sent})\)</span> for different possible <span class="math inline">\(x\)</span>s. But the receivers know only that word <span class="math inline">\(x\)</span> has arrived. What <span><em>they</em></span> want to know is, which word is most likely to have been sent? They must compare, for all codewords <span class="math inline">\(c\)</span>, <span class="math inline">\(P(c \;{\rm sent}\;|\;x \;{\rm received})\)</span>. The following proposition, closely related to Cor. 1.4, may seem obvious. To prove it, we use Bayes’ theorem, which allows us to ‘reverse’ the conditional probabilities.</p>
+<div id="prop:nearestneighbourslikely" class="proposition">
+<p>Suppose that a <span class="math inline">\(q\)</span>-ary <span class="math inline">\((n,M,d)\)</span> code <span class="math inline">\(C\)</span> is sent over a <span class="math inline">\(q\)</span>-ary symmetric channel with symbol-error probability <span class="math inline">\(p\)</span>, where <span class="math inline">\(p &lt; (q-1)/q\)</span>, and each codeword <span class="math inline">\(c \in C\)</span> is equally likely to be sent. Then for any word <span class="math inline">\(x\)</span> received, <span class="math inline">\(P(c \;{\rm sent}\;|\;x \;{\rm received})\)</span> increases as <span class="math inline">\(d(x,c)\)</span> decreases.</p>
+</div>
+<div class="proof">
+<p><span class="math display">\[\begin{aligned}
+			P(c \;{\rm sent}\;|\;x \;{\rm received})
+			&amp; = \frac{P(c \;{\rm sent \; and }\;x \;{\rm received})}{P(x \;{\rm received})}\\
+			&amp; = \frac{P(c \; {\rm sent})P(x \;{\rm received}\;|\;c \;{\rm sent})}{P(x \;{\rm received})}\\
+			&amp;= \frac{P(x \;{\rm received}\;|\;c \;{\rm sent})}{M \cdot P(x \;{\rm received})},
+		\end{aligned}\]</span> since we assumed that for any <span class="math inline">\(c \in C\)</span>, <span class="math inline">\(P(c \; {\rm sent})= 1/M\)</span>.</p>
+<p>Also, by the law of total probability (also known as the partition theorem), if <span class="math inline">\(C= \{c_1, c_2, \ldots,c_M\}\)</span>, then <span class="math inline">\(P(x \;{\rm received}) = 
+ \sum_{i=1}^M P(c_i \; {\rm sent})P(x \;{\rm received}\;|\;c_i \;{\rm sent})\)</span>. This is independent of the <span class="math inline">\(c\)</span> which was sent, since we sum over all possible sent codewords.</p>
+<p>Now the receiver knows <span class="math inline">\(x\)</span>, and is considering different possible <span class="math inline">\(c\)</span>’s. But in <span class="math display">\[P(c \;{\rm sent}\;|\;x \;{\rm received}) = \frac{P(x \;{\rm received}\;|\;c \;{\rm sent})}{M \cdot P(x \;{\rm received})},\]</span> the denominator is independent of <span class="math inline">\(c\)</span>. Hence <span class="math inline">\(P(c \;{\rm sent}\;|\;x \;{\rm received})\)</span> increases as <span class="math inline">\(P(x \;{\rm received}\;|\;c \;{\rm sent})\)</span> increases; that is, by Cor. 1.4, as <span class="math inline">\(d(x,c)\)</span> decreases.</p>
+</div>
+<p>So the nearest neighbours of <span class="math inline">\(x\)</span> are indeed the most likely codewords to have been sent. If we have the conditions described in Proposition <a href="#prop:nearestneighbourslikely" data-reference-type="ref" data-reference="prop:nearestneighbourslikely">[prop:nearestneighbourslikely]</a>, we are justified in using nearest-neighbour decoding.</p>
+<p>(The assumption that each codeword is equally likely to be sent is important. If this were not the case, it would obviously affect our conclusions. This is like the well-known problem in medical testing for rare diseases, when a false positive may be more likely than an actual case.)</p>
+</section>
+<section id="bounds-on-codes" class="level2" data-number="1.4">
+<h2 data-number="1.4"><span class="header-section-number">1.4</span> Bounds on Codes</h2>
+<p>What makes a good <span class="math inline">\((n,M,d)\)</span> code? Small <span class="math inline">\(n\)</span> will make transmission faster. Large <span class="math inline">\(M\)</span> will provide many words, to convey many different messages. Large <span class="math inline">\(d\)</span> will allow us to detect and correct more symbol-errors, and so make communication more reliable. But these parameters are related, so we have to make trade-offs. The following is known as the <span><strong>Singleton Bound</strong></span>.</p>
+<div class="proposition">
+<p>For a <span class="math inline">\(q\)</span>-ary (n,M,d) code, we have <span class="math inline">\(M\leq q^{n-d+1}\)</span>.</p>
+</div>
+<p>Thus, for fixed <span class="math inline">\(q\)</span>, small <span class="math inline">\(n\)</span> and large <span class="math inline">\(d\)</span> will make <span class="math inline">\(M\)</span> small. This makes sense intuitively: small <span class="math inline">\(n\)</span> makes the space of possible words small, and large <span class="math inline">\(d\)</span> makes the codewords far apart. So we can’t fit in very many of them! The proof involves a ‘projection’ map which simply ‘forgets’ the last <span class="math inline">\(d-1\)</span> symbols of the codeword. (You draw the picture.)</p>
+<div class="proof">
+<p>Let <span class="math inline">\(C \subseteq A^n\)</span>, where <span class="math inline">\(|A|=q\)</span>. For <span class="math inline">\(d=1\)</span> the proposition is trivial. For <span class="math inline">\(d&gt;1\)</span>, define a map <span class="math inline">\(f:A^n \rightarrow A^{n-d+1}\)</span> by <span class="math inline">\(f(a_1a_2\ldots a_n) =  a_1a_2\ldots a_{n-d+1}\)</span>. Clearly <span class="math inline">\(f\)</span> is not injective on <span class="math inline">\(A^n\)</span>: if two words <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> differ only in the last position, then <span class="math inline">\(f(x) = f(y)\)</span>. But if <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are distinct codewords in <span class="math inline">\(C\)</span>, they must differ in <span class="math inline">\(\geq d\)</span> positions. So <span class="math inline">\(f\)</span> cannot ‘forget’ all these differences, so <span class="math inline">\(f(x) \neq f(y)\)</span>. Thus <span class="math inline">\(f\)</span> is injective on <span class="math inline">\(C\)</span>, and it follows that <span class="math inline">\(|f(C)| = |C|\)</span>. But <span class="math inline">\(f(C) \subseteq A^{n-d+1}\)</span>, so <span class="math display">\[M =|C|= |f(C)|\leq |A^{n-d+1}| = q^{n-d+1}\]</span> as required.</p>
+</div>
+<p>A code which saturates the Singleton bound is known as <em>Maximum Distance Separable</em> or MDS.</p>
+<div id="eg:MDSbinaryrepatition" class="exampleqed">
+<p> Let <span class="math inline">\(C_n\)</span> be the ‘binary repetition code’ of block length <span class="math inline">\(n\)</span>, <span class="math display">\[C_n := \{ \overbrace{00\ldots0}^n, \overbrace{11\ldots1}^n \} \subset \{0,1\}^n.\]</span></p>
+<p><span class="math inline">\(C_n\)</span> is a <span class="math inline">\((n,2,n)_2\)</span> code, and since <span class="math inline">\(2 = 2^{n-n+1}\)</span>, <span class="math inline">\(C_n\)</span> is an MDS code.</p>
+</div>
+<div class="definition">
+<p>Let <span class="math inline">\(A\)</span> be an alphabet, <span class="math inline">\(|A| = q\)</span>. Let <span class="math inline">\(n\geq 1\)</span> and <span class="math inline">\(0 \leq t \leq n\)</span> be integers, and <span class="math inline">\(x\)</span> a word in <span class="math inline">\(A^n\)</span>. Then</p>
+<ul>
+<li><p>The <span><strong>sphere of radius <span class="math inline">\(t\)</span> around <span class="math inline">\(x\)</span></strong></span> is <span class="math inline">\(S(x,t) = \{y \in A^n \;|\; d(y,x) \leq t \}\)</span>.</p></li>
+<li><p>A code <span class="math inline">\(C \subseteq A^n\)</span> is <span><strong>perfect</strong></span> if there is some <span class="math inline">\(t\)</span> such that <span class="math inline">\(A^n\)</span> is the disjoint union of all the <span class="math inline">\(S(c,t)\)</span> as <span class="math inline">\(c\)</span> runs through <span class="math inline">\(C\)</span>.</p></li>
+</ul>
+</div>
+<p>Because of the ‘ <span class="math inline">\(\leq\)</span>’, <span class="math inline">\(S(c,t)\)</span> is like a solid ball around <span class="math inline">\(c\)</span>, not just the surface of a sphere. (Of course, we use the Hamming distance, not ordinary Euclidean distance.) In a perfect code, the <span class="math inline">\(S(c,t)\)</span> partition <span class="math inline">\(A^n\)</span>. Thus any word <span class="math inline">\(x \in A^n\)</span> is in exactly one <span class="math inline">\(S(c,t)\)</span>, and that <span class="math inline">\(c\)</span> is <span class="math inline">\(x\)</span>’s unique nearest neighbour.</p>
+<div class="exampleqed">
+<p>For <span class="math inline">\(C_1 = \{000, 111\} \subseteq  \{0,1\}^3\)</span>, we have <span class="math inline">\(S(000,1) = \{ 000, 100, 010, 001\}\)</span> and <span class="math inline">\(S(111,1) = \{ 111, 011, 101, 110\}\)</span>. These are disjoint, and <span class="math inline">\(S(000,1) \cup S(111,1) =  \{0,1\}^3\)</span>. So <span class="math inline">\(C_1\)</span> is perfect. (You should draw a picture, with the words of <span class="math inline">\(A^n\)</span> labelling the vertices of a cube in the obvious way. Or even better, make a model.)</p>
+</div>
+<div class="exampleqed">
+<p>Let <span class="math inline">\(C_2 = \{ 111, 020, 202\} \subseteq  \{0,1,2\}^3\)</span>. Then, for example, <span class="math inline">\(S(111,1) = \{111, 110, 112, 101, 121, 011, 211\}\)</span>. Is <span class="math inline">\(C_2\)</span> perfect? No, because for all <span class="math inline">\(c \in C\)</span>, we have <span class="math inline">\(d(c,012) = 2\)</span>. So 012 is not in any <span class="math inline">\(S(c,1)\)</span>, but is in every <span class="math inline">\(S(c,2)\)</span>. Thus for <span class="math inline">\(t = 0\)</span> or 1 the <span class="math inline">\(S(c,t)\)</span> do not cover all of <span class="math inline">\(\{0,1,2\}^3\)</span>, and for <span class="math inline">\(t= 2\)</span> or 3 they are not disjoint.</p>
+</div>
+<p>To decide whether a code is perfect or not, we may not need to consider the actual codewords. We can look first at the sizes of spheres in the space. As we would expect, the size of a sphere in <span class="math inline">\(A^n\)</span> depends only on its ‘radius’, <span class="math inline">\(t\)</span>, not on its centre.</p>
+<div class="lemma">
+<p>If <span class="math inline">\(|A| = q\)</span>, <span class="math inline">\(n\geq 1\)</span>, and <span class="math inline">\(x \in A^n\)</span>, then <span class="math display">\[|S(x,t)| 
+%%   =  1+ n(q-1) + \binom{n}{2}(q-1)^2 + \cdots + \binom{n}{t}(q-1)^t 
+= \sum_{k=0}^t\binom{n}{k} (q-1)^k.\]</span></p>
+</div>
+<div class="proof">
+<p>How many <span class="math inline">\(y \in A^n\)</span> have <span class="math inline">\(d(x,y) = k\)</span>? To make such a <span class="math inline">\(y\)</span> from <span class="math inline">\(x\)</span>, we must first choose <span class="math inline">\(k\)</span> positions to change: <span class="math inline">\(\binom{n}{k}\)</span> ways to do this. Then for each chosen position, we choose one of the <span class="math inline">\(q-1\)</span> other symbols: <span class="math inline">\((q-1)^k\)</span> ways. So there are <span class="math inline">\(\binom{n}{k}(q-1)^k\)</span> such <span class="math inline">\(y\)</span>. Now we build up the sphere in layers, by letting <span class="math inline">\(k\)</span> go from 0 to <span class="math inline">\(t\)</span>.</p>
+</div>
+<div class="exampleqed">
+<p>For the code <span class="math inline">\(C_2\)</span> above, we have, <span class="math inline">\(q=3\)</span>, <span class="math inline">\(n=3\)</span>. So <span class="math inline">\(|S(x, 1)| = \binom{3}{0} + \binom{3}{1}(3-1) = 1+6 = 7\)</span> , as we saw, and <span class="math inline">\(|S(x, 2)| = \binom{3}{0} + \binom{3}{1}(3-1) + \binom{3}{2}(3-1)^2 = 1+6+12 = 19\)</span>. Since <span class="math inline">\(|\{0,1,2\}^3|=27\)</span>, and neither 7 nor 19 divides 27, clearly this space cannot be partitioned by spheres of either size. Three spheres containing 7 words each cannot fill the space, and three containing 19 must overlap, just as we saw by considering the word 012.</p>
+<p>Of course, <span class="math inline">\(|S(x, 3)|=27\)</span>, and <span class="math inline">\(|S(x, 0)|\)</span> is always 1, and these do divide 27. But to use these spheres to make a perfect code, we would have to have, respectively, just one codeword, or <span class="math inline">\(C = A^n\)</span>. These ‘trivial’ codes are no use to us.</p>
+</div>
+<p>We can use spheres to give us another bound on the size of a code. This is known as the <span><strong>Hamming Bound</strong></span> or the <span><strong>Sphere-packing Bound</strong></span>:</p>
+<div class="proposition">
+<p>A <span class="math inline">\(q\)</span>-ary <span class="math inline">\((n,M,d)\)</span> code satisfies: <span class="math display">\[M \cdot \sum_{k=0}^t\binom{n}{k} (q-1)^k  \leq q^n, \;\; {\rm where} \; t = \left\lfloor\frac{d-1}{2}\right\rfloor.\]</span></p>
+</div>
+<p>Notice that we are relating the radius of the sphere to the minimum distance of the code; in fact, we must have <span class="math inline">\(d = 2t+1\)</span> or <span class="math inline">\(2t+2\)</span>. The first part of the proof is really the same as that of the second part of Proposition <a href="#prop:correctdetect" data-reference-type="ref" data-reference="prop:correctdetect">[prop:correctdetect]</a>. The notation is different, but the picture is the same.</p>
+<div class="proof">
+<p>Let the code be <span class="math inline">\(C \subseteq A^n\)</span>. First we must show that the <span class="math inline">\(S(c,t)\)</span> for codewords <span class="math inline">\(c \in C\)</span> are disjoint. Suppose not, so there is some <span class="math inline">\(x \in A^n\)</span> such that <span class="math inline">\(x \in S(c_1,t)\)</span> and <span class="math inline">\(x \in S(c_2,t)\)</span>, where <span class="math inline">\(c_1 \neq c_2\)</span>. This means that <span class="math inline">\(d(x,c_1)\)</span> and <span class="math inline">\(d(x,c_2)\)</span> are both <span class="math inline">\(\leq t\)</span>. So by the triangle inequality we have <span class="math inline">\(d(c_1,c_2) \leq d(x,c_1) +d(x,c_2) \leq 2t\)</span>. But this contradicts <span class="math inline">\(d(c_1,c_2) \geq d(C) \geq 2t+1\)</span>.</p>
+<p>Now <span class="math display">\[\bigcup_{c \in C} S(c,t) \subseteq A^n, \;\; {\rm so}\;\; \left|\bigcup_{c \in C} S(c,t)\right| \leq q^n.\]</span> But since the <span class="math inline">\(S(c,t)\)</span> are disjoint, we have <span class="math display">\[\left|\bigcup_{c \in C} S(c,t)\right| = \sum_{c \in C} |S(c,t)| = M|S(c,t)|.\]</span> Thus <span class="math inline">\(M|S(c,t)|\leq q^n\)</span>, which by Lemma 1.7 proves the proposition.</p>
+</div>
+<p>We have equality in the Hamming Bound if and only if the code is perfect; in this case the spheres <span class="math inline">\(S(c,t)\)</span>, which are as large as they can be without overlapping, will fill <span class="math inline">\(A^n\)</span>. Thus for a perfect code, <span class="math inline">\(M\)</span> must divide <span class="math inline">\(q^n\)</span>, and so must <span class="math inline">\(|S(c,t)| = \sum_{k=0}^t\binom{n}{k} (q-1)^k\)</span> for some <span class="math inline">\(t\)</span>. We used this idea in the example above. It is also not hard to show that a perfect code must have <span class="math inline">\(d\)</span> odd (see Q16).</p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+		egs = document.querySelectorAll(".example, .exampleqed");
+		var eg_no = problemCounter;
+		for (var eg of egs) {
+			eg.setAttribute("data-number",eg_no);
+			eg_no +=1
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
