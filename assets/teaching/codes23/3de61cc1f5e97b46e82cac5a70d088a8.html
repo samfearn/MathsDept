@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Codes III: Topic 1 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Codes III: Topic 1 Solutions
+</h1>
+</header>
+<p>******The following questions are concerned with Chapter 1 of the notes - Basic Coding Theory.******</p>
+<div class="problem">
+<p>Let <span class="math inline">\(C = \{00101, 11011, 10100, 10010\} \subseteq \{0,1\}^5\)</span>. Find <span class="math inline">\(d(C)\)</span>. Give examples of words that do or do not have a unique nearest neighbour in <span class="math inline">\(C\)</span>.</p>
+</div>
+<div class="solution">
+<p>We find that Hamming distances between distinct codewords are 2 or 4. So <span class="math inline">\(d(C) = 2\)</span>. If the codewords are <span class="math inline">\(c_1, c_2, c_3, c_4\)</span> in order, and <span class="math inline">\(w_1 = 10101\)</span>, then <span class="math inline">\(d(c_1, w_1) = 1 = d(c_3, w_1)\)</span>, so <span class="math inline">\(w_1\)</span> does not have a unique nearest neighbour. But if <span class="math inline">\(w_2= 11111\)</span>, then <span class="math inline">\(d(c_2, w_2) = 1\)</span> but <span class="math inline">\(d(c_i, w_1) = 3\)</span> for all the other codewords, so <span class="math inline">\(c_2\)</span> is <span class="math inline">\(w_2\)</span>’s unique nearest neighbour.</p>
+</div>
+<div class="problem">
+<p>Consider the words GOTHS, HARES, HATES, MARES, MARKS, MATES, MATHS, MATEY, MITES, MOTHS, MYTHS, and RITES. Let these be the codewords of the <span class="math inline">\((n, M_1, d_1)\)</span> code <span class="math inline">\(C_1 \subseteq \{ A,B, \ldots Z\}^5\)</span>. a) For each of the words PARKS, GOALS and DATES, find its nearest neighbour(s) in <span class="math inline">\(C_1\)</span>. b) Find <span class="math inline">\(n\)</span>, <span class="math inline">\(M_1\)</span> and <span class="math inline">\(d_1\)</span>. Now find a <span class="math inline">\((n, M_2, d_2)\)</span> code <span class="math inline">\(C_2 \subseteq C_1\)</span> such that <span class="math inline">\(d(C_2) =2\)</span> and <span class="math inline">\(|M_2|\geq 6\)</span>. c) Find three codewords <span class="math inline">\(x, y\)</span>, and <span class="math inline">\(z\)</span> in <span class="math inline">\(C_1\)</span> such that <span class="math inline">\(d(x,y) = d(x,z) + d(z,y)\)</span>. d) Find three codewords <span class="math inline">\(x, y\)</span>, and <span class="math inline">\(z\)</span> in <span class="math inline">\(C_1\)</span> such that <span class="math inline">\(d(x,y) &lt; d(x,z) + d(z,y)\)</span>.</p>
+</div>
+<div class="solution">
+<p>Don’t work out 72 Hamming distances! For b), try drawing a graph with a vertex for each codeword, joined by an edge if and only if <span class="math inline">\(d(c_1, c_2) =1\)</span> . a) PARKS has n-n MARKS; their Hamming distance is 1. GOALS has n-n GOTHS; their Hamming distance is 2. DATES has 2 n-ns, HATES and MATES, at Hamming distance 1. b) <span class="math inline">\(n=5, \; M_1=12, \; D_1 = 1\)</span>. There are many options for <span class="math inline">\(C_2\)</span>, for example <span class="math inline">\(C_2 =\{\)</span> MATES, RITES, HARES, MARKS, MYTHS, GOTHS <span class="math inline">\(\}\)</span> or <span class="math inline">\(C_2 =\{\)</span> MATHS, GOTHS, MATEY, MITES, HATES, MARKS <span class="math inline">\(\}\)</span> c) For example: <span class="math inline">\(x=\)</span> RITES, <span class="math inline">\(y=\)</span> MATES, <span class="math inline">\(z=\)</span> MITES, giving <span class="math inline">\(2 = 1+1\)</span>. d) <span class="math inline">\(x=\)</span> MOTHS, <span class="math inline">\(y=\)</span> MYTHS, <span class="math inline">\(z=\)</span> MATHS, giving <span class="math inline">\(1 &lt;1+1\)</span></p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C = \{01010, 10101, 11000, 11111\} \subseteq \{0,1\}^5\)</span>. Find <span class="math inline">\(d(C)\)</span>. How many errors can <span class="math inline">\(C\)</span> detect? and how many can it correct?</p>
+</div>
+<div class="solution">
+<p>By checking <span class="math inline">\(\binom{4}{2} = 6\)</span> distances, <span class="math inline">\(d(C) = 2\)</span>. So the code can detect a single symbol error, but not reliably correct any.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C = \{01234, 12340, 23401, 34012, 40123\} \subseteq \{0,1,2, 3, 4\}^5\)</span>. Find <span class="math inline">\(d(C)\)</span>. How many errors can <span class="math inline">\(C\)</span> detect? and how many can it correct?</p>
+</div>
+<div class="solution">
+<p>Clearly <span class="math inline">\(d(C) = 5\)</span>, so <span class="math inline">\(C\)</span> detects up to 4 symbol-errors, and corrects up to 2.</p>
+</div>
+<div class="problem">
+<p>For fixed <span class="math inline">\(n \geq 1\)</span>, how many binary <span class="math inline">\((n, 2, n)\)</span> codes are there?</p>
+</div>
+<div class="solution">
+<p>Since the minimum difference <span class="math inline">\(d(C) = n\)</span>, the block length, the two words in the code must differ at every position; for example, with <span class="math inline">\(n=5\)</span>, one code is <span class="math inline">\(C = \{11010, 00101\}\)</span>. There are <span class="math inline">\(2^n\)</span> options for the first codeword, and then the second is fixed. But a code is a set, so the order doesn’t matter: <span class="math inline">\(C=\{ 00101, 11010\}\)</span> is the same code. So divide by 2; there are <span class="math inline">\(2^{n-1}\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C\)</span> be an <span class="math inline">\((n, M,d)\)</span> code with <span class="math inline">\(n\geq d \geq 2\)</span> a) Fix <span class="math inline">\(j\)</span> with <span class="math inline">\(1 \leq j \leq n\)</span> and form <span class="math inline">\(C_1\)</span> by deleting the <span class="math inline">\(j\)</span>th entry from each word in <span class="math inline">\(C\)</span>. Show that <span class="math inline">\(C_1\)</span> is a <span class="math inline">\((n-1, M,d)\)</span> or <span class="math inline">\((n-1, M,d-1)\)</span> code. b) Form <span class="math inline">\(C_2\)</span> by deleting the last <span class="math inline">\(m\)</span> entries of each word in <span class="math inline">\(C\)</span>. What can we say about the parameters of <span class="math inline">\(C_2\)</span> if <span class="math inline">\(m &lt; d\)</span>? How about if <span class="math inline">\(m \geq d\)</span>?</p>
+</div>
+<div class="solution">
+<p>a) Since we are forgetting the <span class="math inline">\(j\)</span>-th entry of each word of <span class="math inline">\(C\)</span> the resulting words will have <span class="math inline">\(n-1\)</span> symbols, so the block length of <span class="math inline">\(C_1\)</span> is <span class="math inline">\(n-1\)</span>. In order to see that <span class="math inline">\(C_1\)</span> also has <span class="math inline">\(M\)</span> code words we have to check that any two distinct words <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of <span class="math inline">\(C\)</span> give words in <span class="math inline">\(C_1\)</span> that are distinct as well. But <span class="math inline">\(d(x,y) \geq d(C) = d \geq 2\)</span> so that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> differ in at least one position other than the <span class="math inline">\(j\)</span>-th and the resulting words in <span class="math inline">\(C_1\)</span> will still be distinct. Finally, if <span class="math inline">\(x_1\)</span> denotes the word in <span class="math inline">\(C_1\)</span> obtained from <span class="math inline">\(x\)</span> in <span class="math inline">\(C\)</span>, then <span class="math inline">\(d( x_1, y_1) = d(x,y)\)</span> if <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have the same symbol in the <span class="math inline">\(j\)</span>-th position, and <span class="math inline">\(d( x_1, y_1) = d(x,y)-1\)</span> if <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do not have the same symbol in the <span class="math inline">\(j\)</span>-th position. Now <span class="math inline">\(d=d(C)\)</span> is the minimum value that <span class="math inline">\(d(x,y)\)</span> can attain, and <span class="math inline">\(d(C_1)\)</span> is the minimum value that <span class="math inline">\(d( x_1,  y_1)\)</span> can attain, when <span class="math inline">\(x\neq y\)</span> are in <span class="math inline">\(C\)</span>. So <span class="math inline">\(d(C_1)\)</span> could either be the same as <span class="math inline">\(d(C)\)</span>, or go down by 1. Therefore <span class="math inline">\(d(C_1) = d\)</span> or <span class="math inline">\(d-1\)</span>.</p>
+<p>[Both possibilities can occur. If <span class="math inline">\(C = \{ 000, 110) \}\)</span>, which is a <span class="math inline">\((3,2,2)\)</span> code, then <span class="math inline">\(d(C_1) = 2\)</span> if <span class="math inline">\(j=3\)</span> but <span class="math inline">\(d(C_1) = 1\)</span> if <span class="math inline">\(j=1\)</span> or 2.]</p>
+<p>b) <span class="math inline">\(C_2\)</span> has block length <span class="math inline">\(n-m\)</span>. Any two codewords of <span class="math inline">\(C\)</span> differ in at least <span class="math inline">\(d\)</span> places, so removing <span class="math inline">\(m&lt;d\)</span> places does not remove all differences; the two shortened codewords remain distinct. So <span class="math inline">\(|C_2| = |C| = M\)</span>. (If, instead, <span class="math inline">\(m\)</span> were <span class="math inline">\(\geq d\)</span>, then two words might become identical, so <span class="math inline">\(|C&#39;|\)</span> could be <span class="math inline">\(\leq M\)</span>.) We remove up to <span class="math inline">\(m\)</span> differences from any pair of words. So, if <span class="math inline">\(m&lt;d\)</span>, then <span class="math inline">\(d-m \leq d(C_2) \leq d\)</span>. However, if <span class="math inline">\(m\geq d\)</span>, and two close codewords became identical, the minimum distance could actually go up. For example, let <span class="math inline">\(C=\{ 00000, 11111, 11122\} \subseteq \{0,1,2\}^5\)</span>, so <span class="math inline">\(d(C) = 2\)</span>. Taking <span class="math inline">\(m = 2\)</span> and deleting the last two positions gives <span class="math inline">\(C_2 = \{000,111\}\)</span>, with <span class="math inline">\(d(C_2) = 3\)</span>.</p>
+</div>
+<div class="problem">
+<p>A binary code with block length 4 is transmitted over a channel such that <span class="math inline">\(P(1\; {\rm received}\;|\; 0 \;{\rm sent}) = 0.1\)</span> and <span class="math inline">\(P(0 \;{\rm received}\;|\; 1\; {\rm sent}) = 0.05\)</span>. Is this channel symmetric? If 0001 is sent what is the chance that 0110 is received?</p>
+</div>
+<div class="solution">
+<p>This channel is not symmetric because the chance of changing a 0 into 1 is different from the chance of changing a 1 into 0. The chance that a 0 sent is received as 0 is <span class="math inline">\(0.9\)</span> and that the chance that a 1 sent is received as 1 is <span class="math inline">\(0.95\)</span>. If <span class="math inline">\((0,0,0,1)\)</span> is transmitted, then the first 0 must remain unchanged, the next two 0’s must be changed, and the 1 must also be changed. So the chance of this happening is <span class="math inline">\((0.9)\times (0.1)^2 \times (0.05) =  0.00045\)</span>.</p>
+</div>
+<div class="problem">
+<p>Consider the code <span class="math inline">\(C = \{c_1, c_2, c_3\} =\{ 000000, 110000, 111111\} \subseteq \{0,1\}^6\)</span>, and the words <span class="math inline">\(w_1 = 010100\)</span>, <span class="math inline">\(w_2 = 111100, w_3 = 110100, w_4 = 111110\)</span>. a) Perform nearest neighbour decoding for each <span class="math inline">\(w_i\)</span>. When is there no unique nearest neighbour? b) <span class="math inline">\(C\)</span> is sent over a binary symmetric channel with symbol-error probability <span class="math inline">\(p\)</span>. For each <span class="math inline">\(1 \leq i \leq 3\)</span> and <span class="math inline">\(1 \leq j\leq 4\)</span>, find <span class="math inline">\(P(w_j \;{\rm received}\;| \;c_i\; {\rm sent})\)</span>.</p>
+</div>
+<div class="solution">
+<p>a) We write <span class="math inline">\(d(x,c)\)</span>, where <span class="math inline">\(c\)</span> is in <span class="math inline">\(C\)</span> and <span class="math inline">\(x\)</span> runs through the four given words, in a table. <span class="math display">\[\begin{array}{|c|ccc|}
+\hline
+  &amp;   (0,0,0,0,0,0) &amp; (1,1,0,0,0,0)&amp;  (1,1,1,1,1,1) \\
+  \hline
+  (0,1,0,1,0,0) &amp; 2 &amp; 2 &amp; 4 \\
+  (1,1,1,1,0,0) &amp; 4 &amp; 2 &amp; 2 \\
+  (1,1,0,1,0,0) &amp; 3 &amp; 1 &amp; 3 \\
+  (1,1,1,1,1,0) &amp; 5 &amp; 3 &amp; 1 \\
+  \hline
+\end{array}\]</span></p>
+<p>From the rows it is then clear that there is no unique nearest neighbour in the first two cases, and there is a unique nearest neighbour in the last two cases. So <span class="math inline">\((1,1,0,1,0,0)\)</span> decodes to its unique nearest neighbour <span class="math inline">\((1,1,0,0,0,0)\)</span> and <span class="math inline">\((1,1,1,1,1,0)\)</span> decodes to its unique nearest neighbour <span class="math inline">\((1,1,1,1,1,1)\)</span>. For the first two words we have a choice. We can decode <span class="math inline">\((0,1,0,1,0,0)\)</span> as either <span class="math inline">\((0,0,0,0,0,0)\)</span> or as <span class="math inline">\((1,1,0,0,0,0)\)</span>, and we can decode <span class="math inline">\((1,1,1,1,0,0)\)</span> as either <span class="math inline">\((1,1,0,0,0,0)\)</span> or as <span class="math inline">\((1,1,1,1,1,1)\)</span>. b)The following table gives the chance that <span class="math inline">\(x_i\)</span> (in first column) is received when <span class="math inline">\(c_j\)</span> (in top row) was sent: <span class="math display">\[\begin{array}{|c|ccc|}
+\hline
+       &amp; 000000 &amp; 110000 &amp; 111111 \\
+\hline 
+ 010100 &amp; p^2(1-p)^4 &amp; p^2(1-p)^4 &amp; p^4(1-p)^2 \\
+ 111100 &amp; p^4(1-p)^2 &amp; p^2(1-p)^4 &amp; p^2(1-p)^4 \\
+ 110100 &amp; p^3(1-p)^3 &amp; p(1-p)^5   &amp; p^3(1-p)^3 \\
+ 111110 &amp; p^5(1-p)   &amp; p^3(1-p)^3 &amp; p(1-p)^5   \\
+\hline
+\end{array}\]</span></p>
+</div>
+<div class="problem">
+<p>For the binary code <span class="math inline">\(C = \{0000,1000,1111\}\)</span>, the codeword 1111 is transmitted over a binary symmetric channel with symbol-error probability <span class="math inline">\(p= 0.1\)</span>. We decode a received word to its unique nearest neighbour if it has one; otherwise we do not decode. What is the chance that the received word is decoded correctly? Incorrectly?</p>
+</div>
+<div class="solution">
+<p>This is a long but straight-forward task. Make a table showing the distance from every possible received word <span class="math inline">\(y\)</span> (in first column) to each codeword <span class="math inline">\(c\)</span> (in top row). It is then easy to see which received word has which unique nearest neighbour, or none. Next find the chance of receiving each word <span class="math inline">\(y\)</span> if in fact 1111 had been sent. And finally we added up the probabilities. If <span class="math inline">\(p = 0.1\)</span>, chance of decoding correctly (to 1111) is <span class="math inline">\((1-p)^4 + 4 (1-p)^3p = 0.9477\)</span>. Chance of decoding incorrectly is <span class="math inline">\(3(1-p)^2 p^2 + 4 (1-p)p^3 +p^4 = 0.028\)</span> Chance of not decoding at all is <span class="math inline">\(3(1-p)^2p^2  = 0.0243\)</span>.</p>
+</div>
+<div class="problem">
+<p>Consider the binary code <span class="math inline">\(C = \{000,111\}\)</span>. Suppose the codewords are transmitted over a binary symmetric channel with symbol-error probability <span class="math inline">\(p\)</span>. Consider the following strategies: (i) Complete decoding using nearest neighbour decoding. (ii) Accepting a received word if it is in <span class="math inline">\(C\)</span> but asking for retransmission otherwise. For each strategy find the chance that, when we send 000, it is decoded correctly, perhaps after several transmissions. If <span class="math inline">\(p=0.1\)</span>, which method is more reliable? Should we therefore use this method?</p>
+</div>
+<div class="solution">
+<p>Note that <span class="math inline">\(C\)</span> is perfect, and that <span class="math inline">\((0,0,0)\)</span>, <span class="math inline">\((1,0,0)\)</span>, <span class="math inline">\((0,1,0)\)</span> and <span class="math inline">\((0,0,1)\)</span> have <span class="math inline">\((0,0,0)\)</span> as unique nearest neighbour, and that <span class="math inline">\((1,1,1)\)</span>, <span class="math inline">\((0,1,1)\)</span>, <span class="math inline">\((1,0,1)\)</span> and <span class="math inline">\((1,1,0)\)</span> have <span class="math inline">\((1,1,1)\)</span> as unique nearest neighbour. For method (i) we decode the received word correctly if it has <span class="math inline">\((0,0,0)\)</span> as nearest neighbour, i.e., has either zero or one 1’s in it. The chance for this is <span class="math inline">\((1-p)^3\)</span> (for receiving <span class="math inline">\((0,0,0,)\)</span>) and <span class="math inline">\(p(1-p)^2\)</span> for each of the words with one 1 in it. In total this gives <span class="math inline">\((1-p)^3 + 3 p (1-p)^2\)</span> as the chance of decoding correctly. Since we always decode (i.e., the decoding is complete) it goes wrong in all other cases, so the chance of decoding incorrectly is <span class="math inline">\(1 -(1-p)^3 - 3 p (1-p)^2\)</span>. For (ii) it helps to draw a tree diagram. We decode correctly if we receive <span class="math inline">\((0,0,0)\)</span> directly, or we receive a non-code word and ask for retransmission <span class="math inline">\(n\)</span> times (<span class="math inline">\(n \geq 1\)</span>) in a row, and then receive <span class="math inline">\((0,0,0)\)</span> the <span class="math inline">\((n+1)\)</span>st time. The chance <span class="math inline">\(s\)</span> of having to ask for retransmission when we receive a word is the chance of receiving anything but <span class="math inline">\((0,0,0)\)</span> and <span class="math inline">\((1,1,1)\)</span>, i.e., <span class="math inline">\(1-(1-p)^3-p^3\)</span>. [Note that <span class="math inline">\(s\)</span> is also equal to <span class="math inline">\(3p(1-p)^2 + 3p^2(1-p)\)</span>, the chance of receiving one of the six non-code words.] So the chance of decoding correctly is <span class="math inline">\((1-p)^3+s(1-p)^3+s^2(1-p)^3+\cdots = (1-p)^3/(1-s)\)</span> since <span class="math inline">\(0 &lt; s &lt; 1\)</span>. Similarly we decode incorrectly only if the first time that we receive a codeword that codeword is <span class="math inline">\((1,1,1)\)</span>. This has chance <span class="math inline">\(p^3+sp^3+s^2p^3+\cdots = p^3/(1-s)\)</span> ,a geometric sum. Putting <span class="math inline">\(p= 0.1\)</span> gives the chance of correct decoding at 0.972 for (i), 0.9986 for (ii). So (ii) is more reliable - but also slower and more costly.</p>
+</div>
+<div class="problem">
+<p>The ternary code <span class="math inline">\(C = \{01,02,20\}\)</span> is transmitted over a ternary symmetric channel with error probability <span class="math inline">\(p= 0.02\)</span>. We decode received words as the nearest neighbour if that is unique, and ask for retransmission otherwise. a) If 02 is sent, what is the chance that it is received as a word in the code? b) If 01 is sent, what is the chance that we ask for retransmission? (Hint for part b): first find which received words do not have a unique nearest neighbour.)</p>
+</div>
+<div class="solution">
+<p>a) If <span class="math inline">\((0,2)\)</span> is sent then the chance that it is received as <span class="math inline">\((0,2)\)</span> is <span class="math inline">\((1-p)^2\)</span>, the chance that it is received as <span class="math inline">\((0,1)\)</span> is <span class="math inline">\((1-p)p/2\)</span> (because a <span><em>specific</em></span> error must occur in the second position, and the chance of that is <span class="math inline">\(p/2\)</span> since the code is ternary), and the chance that it is received as <span class="math inline">\((2,0)\)</span> is <span class="math inline">\((p/2)^2\)</span> (because now a specific error must occur in both positions). So the chance that the received word is any of the three code words is the sum <span class="math inline">\((1-p)^2 + (1-p)p/2 + (p/2)^2 = 0.9703\)</span>.</p>
+<p>b) We only ask for retransmission when we receive a word that does not have a unique nearest neighbour in <span class="math inline">\(C\)</span>, so we have to find those words first. There are nine possible received words (the elements of <span class="math inline">\(\{0,1,2\}^2\)</span>), and checking which ones do have a unique nearest neighbour and which do not shows that <span class="math inline">\((0,1)\)</span> is the unique nearest neighbour of <span class="math inline">\((0,1)\)</span> and <span class="math inline">\((1,1)\)</span>; <span class="math inline">\((0,2)\)</span> is the unique nearest neighbour of <span class="math inline">\((0,2)\)</span> and <span class="math inline">\((1,2)\)</span>; <span class="math inline">\((2,0)\)</span> is the unique nearest neighbour of <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((2,0)\)</span>; and that the remaining words <span class="math inline">\((0,0)\)</span>, <span class="math inline">\((2,1)\)</span> and <span class="math inline">\((2,2)\)</span> do not have a unique nearest neighbour in <span class="math inline">\(C\)</span>. If <span class="math inline">\((0,1)\)</span> is sent then the chance that <span class="math inline">\((0,0)\)</span> is received is <span class="math inline">\((1-p)p/2\)</span>; the chance that <span class="math inline">\((2,1)\)</span> is received is also <span class="math inline">\((1-p)p/2\)</span>; and the chance that <span class="math inline">\((2,2)\)</span> is received is <span class="math inline">\((p/2)^2\)</span>. So the chance that any of those three words is received (so that we ask for retransmission) equals <span class="math inline">\((1-p)p+(p/2)^2 =  0.0197\)</span>.</p>
+</div>
+<div class="problem">
+<p>Consider the codes <span class="math inline">\(C_1 =\{0,1,2\}\)</span> and <span class="math inline">\(C_2 = \{000,111,222\} \subseteq \{0,1,2\}^3\)</span>, which are sent over a ternary symmetric channel with symbol-error probability <span class="math inline">\(p\)</span>. a) Find the minimum distances for <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>. How many errors can <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> detect or correct? b) For <span class="math inline">\(C_1\)</span> the codeword 0 is sent. What is the chance that the received word is decoded correctly under nearest neighbour decoding? c) For <span class="math inline">\(C_2\)</span> the codeword 000 is sent. Determine the chance that the received word is decoded correctly if we do incomplete nearest neighbour decoding, where we only decode a received word <span class="math inline">\(x\)</span> if <span class="math inline">\(d(x, c) \leq 1\)</span> for some <span class="math inline">\(c \in C_2\)</span> and do not do anything otherwise. What is the chance that we do not decode the received word at all? d) Again, for <span class="math inline">\(C_2\)</span> the codeword 000 is sent, but now we accept only codewords as received words, and ask for retransmission otherwise. What is the chance that we receive a codeword the first time? What is the chance that we eventually decode the received word correctly, perhaps after several transmissions? e) Now take <span class="math inline">\(p =0.1\)</span> and compare the chance of failure for parts b), c) and d), where failure means that we decode either incorrectly or not at all, even after several transmissions.</p>
+</div>
+<div class="solution">
+<p>a) <span class="math inline">\(d(C_1) = 1\)</span>, so <span class="math inline">\(C_1\)</span> detects 0 errors, corrects 0 errors. <span class="math inline">\(d(C_2) = 3\)</span>, so <span class="math inline">\(C_2\)</span> detects 2 errors, corrects 1 error. b) <span class="math inline">\(C_1\)</span> is only decoded correctly if received correctly, so <span class="math inline">\(1-p\)</span>. c) We decode correctly if we receive 000 (chance <span class="math inline">\((1-p)^3\)</span>), but also if we receive 001 (chance <span class="math inline">\(\frac{p}{2}(1-p)^2\)</span>) and there are six such words, with one symbol error. So the chance of correct decoding is <span class="math inline">\((1-p)^3 + 3(1-p)^2\)</span>. We do not decode at all if and only if the received word contains a 0, a 1, and a 2. There are six such words and each has chance <span class="math inline">\((\frac{p}{2})^2(1-p)\)</span>, so in all the chance of not decoding is <span class="math inline">\(\frac{3}{2}p^2(1-p)\)</span>. d) The chance of receiving 111 is <span class="math inline">\((\frac{p}{2})^3\)</span>, and the same for 222. So the chance of receiving a codeword is <span class="math inline">\((1-p)^3 +\frac{p^3}{4}\)</span>. So the chance of asking for retransmission, because we did not receive a codeword, is <span class="math inline">\(r = 1- \left((1-p)^3 +\frac{p^3}{4}\right)\)</span>. By drawing a tree diagram, we can see that the chance of eventual success is <span class="math display">\[(1-p)^3 [1+ r + r^2 + \cdots] = \frac{(1-p)^3}{1-r} 
+= \frac{(1-p)^3}{(1-p)^3 +\frac{p^3}{4}}.\]</span> We know the geometric sum converges because <span class="math inline">\(r &lt; 1\)</span>. e)For <span class="math inline">\(p=0.1\)</span> the chance of <span><em>failure</em></span> is: b) <span class="math inline">\(0.1\)</span> c ) <span class="math inline">\(0.028\)</span> d) <span class="math inline">\(0.000343\)</span>. So the retransmission method is the most reliable, but also the slowest and most expensive.</p>
+</div>
+<div class="problem">
+<p>Let the code <span class="math inline">\(C = \{00000, 11111, 22222, 33333\} \subseteq\{0, 1, 2, 3\}^5\)</span> be transmitted over a symmetric 4-ary channel with symbol-error probability <span class="math inline">\(p = 0.1\)</span>. We assume that each codeword is equally likely to be sent. a) Find the nearest neighbours of <span class="math inline">\(w_0 = 00123\)</span> and <span class="math inline">\(w_1 = 00111\)</span>. b) If <span class="math inline">\(c_0 = 00000\)</span> and <span class="math inline">\(c_1 = 11111\)</span>, find <span class="math inline">\({\mathbb P}(w_j \;{\rm received}\;| \;c_i\; {\rm sent})\)</span> for <span class="math inline">\(0 \leq i, j \leq 1\)</span>. c) Find <span class="math inline">\({\mathbb P}(w_j \;{\rm received})\)</span> for <span class="math inline">\(j = 0,1\)</span>. d) Find <span class="math inline">\({\mathbb P}(c_i\; {\rm sent}\;| \;w_j \;{\rm received})\)</span> for <span class="math inline">\(0 \leq i, j \leq 1\)</span>. e) Comment on the following statement: “If 00000 is sent, we are as likely to receive 00111 as 00123. So if we decode 00123 to 00000, we should also decode 00111 to 00000." f) Do <span class="math inline">\({\mathbb P}(00000\; {\rm sent}\;| \;00111 \;{\rm received})\)</span> and <span class="math inline">\({\mathbb P}(11111\; {\rm sent}\;| \;00111 \;{\rm received})\)</span> add up to 1? Should they?</p>
+</div>
+<div class="solution">
+<p>a) Since we have <span class="math inline">\(d(w_0,00000)=3\)</span>, and <span class="math inline">\(d(w_0,c)&gt;3\ \forall c\in C,\ c\ne 00000\)</span>, the nearest neighbour of 00123 is 00000. Similarly, since we have <span class="math inline">\(d(w_1,11111)=2\)</span>, and <span class="math inline">\(d(w_1,c)&gt;2\ \forall c\in C,\ c\ne 11111\)</span>, the nearest neighbour of 00111 is 11111.</p>
+<p>b) To 3 s.f, <span class="math display">\[\begin{aligned}
+ {\mathbb P}(00123\;{\rm rec}\;|\;00000 \;{\rm sent})
+&amp; = &amp; \left(\frac{p}{3}\right)^3(1-p)^2  = 3 \times 10^{-5} \\
+{\mathbb P}(00123\;{\rm rec}\;|\;11111 \;{\rm sent})
+&amp; = &amp; \left(\frac{p}{3}\right)^4(1-p)^1  = 1.11 \times 10^{-6} \\
+ {\mathbb P}(00111\;{\rm rec}\;|\;00000 \;{\rm sent})
+&amp; = &amp; \left(\frac{p}{3}\right)^3(1-p)^2  = 3 \times 10^{-5} \\
+{\mathbb P}(00111\;{\rm rec}\;|\;11111 \;{\rm sent})
+&amp; = &amp; \left(\frac{p}{3}\right)^2(1-p)^3  = 8.1 \times 10^{-4} \end{aligned}\]</span> c) Note first that <span class="math display">\[{\mathbb P}(00123\;{\rm rec}\;|\;11111 \;{\rm sent}) ={\mathbb P}(00123\;{\rm rec}\;|\;22222 \;{\rm sent}) = {\mathbb P}(00123\;{\rm rec}\;|\;33333 \;{\rm sent}),\]</span> and that <span class="math display">\[{\mathbb P}(00111\;{\rm rec}\;|\;22222 \;{\rm sent}) = {\mathbb P}(00111\;{\rm rec}\;|\;33333 \;{\rm sent}) = \left(\frac{p}{3}\right)^5 =4.12 \times 10^{-8}.\]</span> Then, <span class="math display">\[\begin{aligned}
+ {\mathbb P}(00123\;{\rm rec})&amp; = &amp;
+ \sum_{i=0}^3 {\mathbb P}(c_i \; {\rm sent}){\mathbb P}(00123\;{\rm rec}\;|\;c_i \;{\rm sent})\\
+ &amp; = &amp; \frac{1}{4}\sum_{i=0}^3 {\mathbb P}(00123\;{\rm rec}\;|\;c_i \;{\rm sent})\\
+ &amp;= &amp; \frac{1}{4}\left[\left(\frac{p}{3}\right)^3(1-p)^2 +
+      3\left(\frac{p}{3}\right)^4(1-p)^1 \right]\\
+ &amp; = &amp; 8.33 \times 10^{-6}\\
+ \end{aligned}\]</span> and similarly, <span class="math display">\[\begin{aligned}
+ {\mathbb P}(00111\;{\rm rec})
+ &amp;= &amp; \frac{1}{4}\left[\left(\frac{p}{3}\right)^3(1-p)^2 + \left(\frac{p}{3}\right)^2(1-p)^3 +
+      2\left(\frac{p}{3}\right)^5\right]\\
+ &amp; = &amp; 2.10 \times 10^{-4}\\
+ \end{aligned}\]</span> d) <span class="math display">\[\begin{aligned}
+ {\mathbb P}(00000 \; {\rm sent}\;|\;00123\;{\rm rec}) 
+&amp;=&amp; \frac{{\mathbb P}(00000 \;{\rm sent}){\mathbb P}(00123\;{\rm rec}\;|\;00000 \;{\rm sent})}
+{{\mathbb P}(00123\;{\rm rec})}\\ 
+&amp;=&amp; \frac{\frac{1}{4} \times 3 \times 10^{-5}}{8.33 \times 10^{-6}} = 0.900
+ \end{aligned}\]</span> and similarly <span class="math display">\[\begin{aligned}
+ {\mathbb P}(11111 \; {\rm sent}\;|\;00123\;{\rm rec}) 
+&amp;=&amp; \frac{\frac{1}{4} \times 1.11 \times 10^{-6}}{8.33 \times 10^{-6}} = 0.0333,\\
+  {\mathbb P}(00000 \; {\rm sent}\;|\;00111\;{\rm rec}) 
+&amp;=&amp; \frac{\frac{1}{4} \times 3\times 10^{-5}}{2.10 \times 10^{-4}} = 0.0357,\\
+ {\mathbb P}(11111 \; {\rm sent}\;|\;00111\;{\rm rec}) 
+&amp;=&amp; \frac{\frac{1}{4} \times 8.1\times 10^{-4}}{2.10 \times 10^{-4}} = 0.964,
+ \end{aligned}\]</span></p>
+<p>e) “If 00000 is sent, we are as likely to receive 00111 as 00123." is correct. But “So if we decode 00123 to 00000, we should also decode 00111 to 00000." is wrong. To decode 00111, we compare <span class="math inline">\({\mathbb P}(00000 \; {\rm sent}\;|\;00111\;{\rm rec})\)</span> to <span class="math inline">\({\mathbb P}(11111 \; {\rm sent}\;|\;00111\;{\rm rec})\)</span>. Since the second is larger, 11111 is more likely to have been sent. The underlying reason is that 00111 is more likely overall to be received than 00123. So the equal likelihood of receiving 00111 or 00123 if 00000 was sent, makes a smaller fraction of the total. f) If you calculate to at least 5 decimal places, <span class="math inline">\({\mathbb P}(00000\; {\rm sent}\;| \;00111 \;{\rm rec})\)</span> and <span class="math inline">\({\mathbb P}(11111\; {\rm sent}\;| \;00111 \;{\rm rec})\)</span> add up to just less than 1. This is because of the very small possibilities that, if 00111 was received, either 22222 or 33333 was sent.</p>
+</div>
+<div class="problem">
+<p>Consider words of length 3 made using the alphabet <span class="math inline">\(A =\{0, 1, \ldots, q-1\}\)</span> where <span class="math inline">\(q \geq 3\)</span>. Describe <span class="math inline">\(S(000, r)\)</span> for <span class="math inline">\(r= 0, 1\)</span> and 2. How many elements are there in each? Do those sets look like spheres if we identify the elements in <span class="math inline">\(A\)</span> with <span class="math inline">\(0, 1, \ldots, q-1\)</span> in <span class="math inline">\({\mathbb R}\)</span>, and view all words in <span class="math inline">\({\mathbb R}^3\)</span> ?</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\(S((0,0,0),0)=\{(0,0,0)\}\)</span>. <span class="math inline">\(S((0,0,0),1)\)</span> is all words containing at least 2 zeros. There are <span class="math inline">\(1+3(q-1)\)</span> of these. <span class="math inline">\(S((0,0,0),2)\)</span> is all words containing at least 1 zero. There are <span class="math inline">\(1+3(q-1)+3(q-1)^2\)</span> of these. (You can use Lemma 1.7.) <span class="math inline">\(S((0,0,0),3) = A^3\)</span>. If we see these words as vectors within <span class="math inline">\({\bf R}^3\)</span>, then <span class="math inline">\(S((0,0,0),0)\)</span> is the origin, <span class="math inline">\(S((0,0,0),1)\)</span> is integer points on all three axes, from 0 to <span class="math inline">\(q-1\)</span>, and <span class="math inline">\(((0,0,0),2)\)</span> is integer points within three squares of size <span class="math inline">\((q-1) \times (q-1)\)</span>, contained within the <span class="math inline">\(xy\)</span>, <span class="math inline">\(yz\)</span> and <span class="math inline">\(zx\)</span> planes respectively, and intersecting in pairs along their edges (the axes). (A picture, or model, would help!) These do not look anything like ‘ordinary’ spheres, because the Hamming distance is so different from Euclidean distance.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C\)</span> be a ternary (4, 9, 3)-code. Show that <span class="math inline">\(C\)</span> is perfect.</p>
+</div>
+<div class="solution">
+<p><span class="math inline">\(C\)</span> lives in <span class="math inline">\(\{0,1,2\}^4\)</span>, which contains <span class="math inline">\(3^4 = 81\)</span> words, and <span class="math inline">\(|C| = 9\)</span>. Since <span class="math inline">\(d=3\)</span> we know that spheres of radius 1 round codewords are disjoint, and by Lemma 1.7, <span class="math inline">\(|S(c,1)| = 1 + 4(3-1)^1 = 9\)</span>. But then these 9 spheres together cover <span class="math inline">\(9 \times 9 = 81\)</span> words, so the whole space, as required.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C\)</span> be an <span class="math inline">\((n, M,2t)\)</span> code with <span class="math inline">\(M &gt; 1\)</span>. (In other words, <span class="math inline">\(d(C)\)</span> is even). a) Given code words <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> such that <span class="math inline">\(d(x, y) = 2t\)</span>, find a word <span class="math inline">\(z\)</span> not in the code such that <span class="math inline">\(d(x, z) =d(y, z) =t\)</span>. b) Can <span class="math inline">\(z\)</span> be in some <span class="math inline">\(S(u, r)\)</span> with <span class="math inline">\(u\)</span> in the code and <span class="math inline">\(r &lt; t\)</span>? c) Conclude that <span class="math inline">\(C\)</span> cannot be a perfect code.</p>
+</div>
+<div class="solution">
+<p>a) You can make <span class="math inline">\(z\)</span> as follows. Find the <span class="math inline">\(2t\)</span> places where <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> differ. Now start with <span class="math inline">\(x\)</span>, and in the first <span class="math inline">\(t\)</span> of these places, change it to match <span class="math inline">\(y\)</span>. b) No. If <span class="math inline">\(z\)</span> were to lie in some such <span class="math inline">\(S(u,r)\)</span> then <span class="math inline">\(d(u,z) \leq r &lt; t\)</span> so that by the triangle inequality <span class="math inline">\(d(u,x) \leq d(u,z) + d(z,x) &lt; 2t = d(C)\)</span>, a contradiction. c) So, for <span class="math inline">\(r &lt;t\)</span> <span class="math inline">\(z\)</span> is not in any <span class="math inline">\(S(c,r)\)</span>, <span class="math inline">\(c \in C\)</span>. But for <span class="math inline">\(r \geq t\)</span>, <span class="math inline">\(z\)</span> is in both <span class="math inline">\(S(x,r)\)</span> and <span class="math inline">\(S(y,r)\)</span>. So for no value of <span class="math inline">\(r\)</span> can the spheres <span class="math inline">\(S(c,r)\)</span> partition <span class="math inline">\(A^n\)</span>.</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '0';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
