@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Codes III: Topic 4 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Codes III: Topic 4 Problems</h1>
+</header>
+<p>******The following questions are concerned with Chapter 4 of the notes - Codes as Kernels.******</p>
+<div class="problem">
+<p>Let <span class="math inline">\(C \subseteq {\mathbb F}_5^6\)</span> have generator-matrix <span class="math inline">\(G =\left(\begin{matrix} 
+1 &amp; 4 &amp; 2 &amp; 0 &amp; 3 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 4 &amp; 2 \\
+      \end{matrix}\right)\)</span>. Find a basis for its dual code <span class="math inline">\(C^\perp\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C \subseteq {\mathbb F}_7^6\)</span> have generator-matrix <span class="math inline">\(G =\left(\begin{matrix} 
+2 &amp; 1 &amp; 2 &amp; 1 &amp; 1 &amp; 2 \\
+3 &amp; 0 &amp; 6 &amp; 0 &amp; 3 &amp; 4 \\
+0 &amp; 1 &amp; 5 &amp; 5 &amp; 0 &amp; 1 \\
+      \end{matrix}\right)\)</span>. Find a generator-matrix for <span class="math inline">\(C^\perp\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C = \subseteq {\mathbb F}_3^5\)</span> have generator-matrix <span class="math inline">\(G =\left(\begin{matrix} 
+ 0 &amp; 1 &amp; 2 &amp; 2 &amp; 0\\
+ 1 &amp; 1 &amp; 0 &amp; 2 &amp; 0\\
+ 2 &amp; 0 &amp; 1 &amp; 2 &amp; 1\\
+      \end{matrix}\right)\)</span>. Using the <span class="math inline">\(G \leftrightarrow H\)</span> algorithm, find a generator-matrix for <span class="math inline">\(C^\perp\)</span>. Could you have used Proposition 4.5? Would you have got the same answer?</p>
+</div>
+<div class="problem">
+<p>Prove the following (which we might call Proposition 4.5 a): If <span class="math inline">\(C \subseteq {\mathbb F}_q^n\)</span> has generator-matrix <span class="math inline">\(G = (A\;|\;I_k)\)</span>, then it has a check-matrix <span class="math inline">\(H =( I_{n-k} |\; -A^t)\)</span>. (<span> <em>Hint:</em></span> Consider the code <span class="math inline">\(C&#39;\)</span> which has generator-matrix <span class="math inline">\(H =( I_{n-k} |\; -A^t)\)</span>, and use Propositions 4.5 and 4.7.)</p>
+</div>
+<div class="problem">
+<p>A code is a subspace of a vector space. The first example of this you ever met was lines through the origin in <span class="math inline">\({\mathbb R}^2\)</span>, which can be written as <span class="math inline">\(ax+by = 0\)</span>. Later you learned that such a line could also be given as any multiple of some vector, <span class="math inline">\(\lambda \binom{c}{d}\)</span>. a) Explain how these two ways correspond to specifying a code using either a generator- or a check-matrix. b) Give two ways to specify a line through <span class="math inline">\((0,0,0)\)</span> in <span class="math inline">\({\mathbb R}^3\)</span>, and explain how these also correspond to generator and check-matrices. c) What about planes in <span class="math inline">\({\mathbb R}^3\)</span>?</p>
+</div>
+<div class="problem">
+<p>In each case, find a check-matrix and then a generator-matrix for the code. a) <span class="math inline">\(C = \{ (x_1, x_2, x_3, x_4)\in {\mathbb F}_2^4\;|\; x_1 + x_2 + x_4 = 0, \; x_3 + x_4 = 0 \}\)</span> b) <span class="math inline">\(C = \{ (x_1, x_2, x_3, x_4, x_5)\in {\mathbb F}_7^5\;|\; x_1 + x_2 + x_3 +x_4 +x_5= 0, \; x_1 + 2x_2 + 3x_3 +4x_4 +5x_5= 0 \}\)</span> c) <span class="math inline">\(C = \{ (x_1, x_2, x_3, x_4, x_5)\in {\mathbb F}_5^5\;|\; x_1 +  x_3 = 0, \; x_2 + x_4 = 0,\; 2x_1 + 3x_2  +x_5= 0\}\)</span></p>
+</div>
+<div class="problem">
+<p>Until 2007, an ISBN (International Standard Book Number) was ten digits <span class="math inline">\(x_1 \dots x_{10}\)</span>, with <span class="math inline">\(0 \leq x_i \leq 9\)</span> for <span class="math inline">\(1\leq i\leq 9\)</span>, and <span class="math inline">\(0 \leq x_{10} \leq 10\)</span>, but writing <span class="math inline">\(X\)</span> for 10. It was also required that <span class="math inline">\(x_1 + 2x_2 + \cdots + 10x_{10} \equiv 0\)</span> mod 11. We can regard the ISBN numbers as a code <span class="math inline">\(C_{ISBN} \subseteq {\mathbb F}_{11}^{10}\)</span>. a) Why is <span class="math inline">\(C_{ISBN}\)</span> not a linear code? b) By thinking about codewords (that is, ISBN numbers) show that <span class="math inline">\(d(C_{ISBN}) \leq 2\)</span>, and then show that <span class="math inline">\(d(C_{ISBN}) \neq 1\)</span>. c) If instead we allow <span class="math inline">\(0 \leq x_i \leq 10\)</span> for <span class="math inline">\(1\leq i\leq 10\)</span>, we have a linear code <span class="math inline">\(C \subseteq {\mathbb F}_{11}^{10}\)</span>. Write down its check-matrix, and show using Theorem 4.11 that <span class="math inline">\(d(C) = 2\)</span>. d) One particularly common human error is to swap two adjacent digits. This is an error of weight two. Show that, nonetheless, for <span class="math inline">\(C\)</span> (or <span class="math inline">\(C_{ISBN}\)</span>) this error will be detected. What about swapping non-adjacent digits?</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C = \subseteq {\mathbb F}_2^5\)</span> have check-matrix <span class="math inline">\(H =\left(\begin{matrix} 
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0\\
+ 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+ 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+      \end{matrix}\right)\)</span>. Make a syndrome look-up table for <span class="math inline">\(C\)</span>, and decode the received words <span class="math inline">\({\bf y}_1 =(1,0,0,1,1)\)</span> and <span class="math inline">\({\bf y}_2 = (0,1,1,1,0)\)</span>. Show how a different syndrome look-up table could decode <span class="math inline">\({\bf y}_2\)</span> differently. Why could this not happen for <span class="math inline">\({\bf y}_1\)</span>?</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C= \{{\bf x}\in {\mathbb F}_5^4 \; | \;{\bf x}H^t = 0\}\)</span>, where <span class="math inline">\(H= \left(\begin{matrix} 
+ 1 &amp; 0 &amp; 2 &amp; 3\\
+ 0 &amp; 1 &amp; 3 &amp; 1\\
+ \end{matrix}\right)\)</span>. For non-binary codes, the syndrome look-up table can get quite long. We can shorten it by grouping together multiples of the same vector, in both columns. For example, for <span class="math inline">\(\lambda \in {\mathbb F}_5, \; \lambda \neq 0\)</span>, and this <span class="math inline">\(H\)</span>, any <span class="math inline">\({\bf x}= \lambda(1,0,0,0)\)</span> has syndrome <span class="math inline">\(S({\bf x}) = \lambda(1,0)\)</span>. a) Make a shortened syndrome look-up table for <span class="math inline">\(C\)</span>, and decode the received words <span class="math inline">\({\bf y}_1 = (1,2,3,4)\)</span>, <span class="math inline">\({\bf y}_2 = (3,1,2,0)\)</span>, and <span class="math inline">\({\bf y}_3 = (2,3,4,1)\)</span>. b) A normal look-up table has <span class="math inline">\(q^{n-k}\)</span> rows. How many rows in this kind of shortened table?</p>
+</div>
+<div class="problem">
+<p>Show that syndrome decoding is nearest-neighbour decoding. (Do this by contradiction - similar to the proof for array decoding)</p>
+</div>
+<div class="problem">
+<p>Suppose that matrix <span class="math inline">\(A\)</span> is in <span class="math inline">\(M_{m,n}({\mathbb F}_q)\)</span>. How can we check whether some set of <span class="math inline">\(d\)</span> columns of <span class="math inline">\(A\)</span> is linearly dependent? In general, we could write them as <span><em>rows</em></span> in a <span class="math inline">\(d \times m\)</span> matrix, and row-reduce. But for some values of <span class="math inline">\(d\)</span> there are other ways. How can we check when: a) <span class="math inline">\(d=1\)</span> b) <span class="math inline">\(d=2\)</span> c) <span class="math inline">\(d=m\)</span> d) <span class="math inline">\(d &gt; m\)</span> ?</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(H = \left(\begin{matrix} 
+3 &amp; 4 &amp; 1 \\
+1 &amp; 4 &amp; 2 \\
+      \end{matrix}\right)\)</span>. Find the minimum distance of the codes:a) <span class="math inline">\(C_5 = \{{\bf x}\in {\mathbb F}_5^3 \;|\; {\bf x}H^t = {\bf 0} \}\)</span> b) <span class="math inline">\(C_7 = \{{\bf x}\in {\mathbb F}_7^3 \;|\; {\bf x}H^t = {\bf 0} \}\)</span></p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(H = \left(\begin{matrix} 
+1 &amp; 0 &amp; 4 &amp; 1 \\
+2 &amp; 3 &amp; 0 &amp; 1 \\
+0 &amp; 4 &amp; 3 &amp; 2 \\      \end{matrix}\right)\)</span>. Find the minimum distance of the codes:a) <span class="math inline">\(C_5 = \{{\bf x}\in {\mathbb F}_5^4 \;|\; {\bf x}H^t = {\bf 0} \}\)</span> b) <span class="math inline">\(C_7 = \{{\bf x}\in {\mathbb F}_7^4 \;|\; {\bf x}H^t = {\bf 0} \}\)</span></p>
+</div>
+<div class="problem">
+<p>Using Theorem 4.11, find yet another proof that <span class="math inline">\(d \leq n-k+1\)</span> (the Singleton bound for linear codes). (<span><em>Hint</em></span>: Although the theorem is also true for acting check-matrices, it helps to consider a proper check-matrix.)</p>
+</div>
+<div class="problem">
+<p>Students sometimes confuse the way to find <span class="math inline">\(d(C)\)</span> from a check-matrix (see Theorem. 4.11) with the definition of the rank of a matrix. How are these ideas similar and different? Find two (or more) matrices <span class="math inline">\(H_1, H_2, \ldots\)</span> which have the same rank, but the codes <span class="math inline">\(C_i = \{{\bf x}\in {\mathbb F}_q^n \;|\; {\bf x}H_i^t = {\bf 0} \}\)</span>, for which they are check-matrices, have different <span class="math inline">\(d(C_i)\)</span>. (<span><em>Hint:</em></span> There are small examples - e.g. in <span class="math inline">\(M_{2,3}({\mathbb F}_2)\)</span>)</p>
+</div>
+<div class="problem">
+<p>Suppose code <span class="math inline">\(C\)</span> has generator-matrix <span class="math inline">\(G\in M_{k,n}({\mathbb F}_q)\)</span> and check-matrix <span class="math inline">\(H \in M_{n-k,n}({\mathbb F}_q)\)</span>. If <span class="math inline">\(C\)</span> is monomially equivalent to <span class="math inline">\(C&#39;\)</span> we know we can make a generator-matrix <span class="math inline">\(G&#39;\)</span> for <span class="math inline">\(C&#39;\)</span> by permuting and multiplying columns of <span class="math inline">\(G\)</span>. Can we make a check-matrix <span class="math inline">\(H&#39;\)</span> for <span class="math inline">\(C&#39;\)</span> in a similar way?</p>
+<p>Adapting the notation of Q40, let us say that for a matrix <span class="math inline">\(A \in M_{k,n}({\mathbb F}_q)\)</span>, <span class="math inline">\(\pi_{s(i,j)}(A)\)</span> is <span class="math inline">\(A\)</span> with columns <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> swapped, and <span class="math inline">\(\pi_{m(i,\mu)}(A)\)</span> is <span class="math inline">\(A\)</span> with column <span class="math inline">\(i\)</span> multiplied by non-zero <span class="math inline">\(\mu \in {\mathbb F}_q\)</span>. Then if <span class="math inline">\(C_s\)</span> has generator-matrix <span class="math inline">\(\pi_{s(i,j)}(G)\)</span>,and <span class="math inline">\(C_m\)</span> has generator-matrix <span class="math inline">\(\pi_{m(i, \mu)}(G)\)</span>, both these codes are monomially equivalent to <span class="math inline">\(C\)</span>. In terms of <span class="math inline">\(\pi_{s(i,j)}\)</span> and <span class="math inline">\(\pi_{m(i,\mu)}\)</span>, find a check-matrix for <span class="math inline">\(C_s\)</span> and for <span class="math inline">\(C_m\)</span>. For each code, justify your answer by showing that any row of the generator matrix is orthogonal to any row of the check matrix.</p>
+</div>
+<div class="problem">
+<p>Consider the code <span class="math inline">\(C&#39; \subseteq {\mathbb F}_{11}^{10}\)</span>, <span class="math inline">\(C&#39; = \{ {\bf x}\in {\mathbb F}_{11}^{10} \;|\; x_1 + x_2  \cdots + x_{10} = 0\}\)</span>. Show that <span class="math inline">\(C&#39;\)</span> is equivalent to the code <span class="math inline">\(C\)</span> of Q50 in two ways: a) For any word <span class="math inline">\({\bf c}=(c_1, \ldots, c_{10}) \in C\)</span> apply suitable changes to make a word <span class="math inline">\({\bf c}&#39; \in C&#39;\)</span>. This shows that <span class="math inline">\(C\)</span> is equivalent to a subset of <span class="math inline">\(C&#39;\)</span>. Now do the same in reverse. b) Consider check matrices, and see Q59. c) If <span class="math inline">\(C\)</span> and <span class="math inline">\(C&#39;\)</span> are equivalent, and <span class="math inline">\(C&#39;\)</span> seems simpler, why did we use <span class="math inline">\(C\)</span> for books?</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '43';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
