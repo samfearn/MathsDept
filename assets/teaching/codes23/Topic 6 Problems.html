@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Codes III: Topic 6 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Codes III: Topic 6 Problems</h1>
+</header>
+<p>****The following questions are concerned with Chapter 6: Polynomials and Codes.****</p>
+<div class="problem">
+<p>a) Show in general (and by contradiction) that if in a ring <span class="math inline">\(R\)</span> we have <span class="math inline">\(a \neq 0, b\neq 0\)</span>, but <span class="math inline">\(ab=0\)</span>, then there is no <span class="math inline">\(a^{-1}\)</span> or <span class="math inline">\(b^{-1}\)</span> in <span class="math inline">\(R\)</span>. b) Use <span class="math inline">\(R = {\mathbb F}_2[x]/(x^3 + x^2 + x + 1)\)</span> to provide an example of this: for each (nontrivial) factor of <span class="math inline">\(x^3 + x^2 + x + 1\)</span>, find all its multiples in <span class="math inline">\(R\)</span>, to show that none of them is 1. (You are finding two rows of the multiplication table for <span class="math inline">\(R\)</span>.)</p>
+</div>
+<div class="problem">
+<p>Which elements of <span class="math inline">\({\mathbb F}_5\)</span> are primitive? Which elements of <span class="math inline">\({\mathbb F}_7\)</span> are primitive?</p>
+</div>
+<div class="problem">
+<p>Working in <span class="math inline">\({\mathbb F}_7\)</span>, express each non-zero element as a power of 3. If <span class="math inline">\(a= 3^i\)</span> then what is <span class="math inline">\(a^{-1}\)</span>, in terms of <span class="math inline">\(i\)</span>? Now find a primitive element of <span class="math inline">\({\mathbb F}_{11}\)</span>, and answer the corresponding question.</p>
+</div>
+<div class="problem">
+<p>In <span class="math inline">\({\mathbb F}_7\)</span>, for which <span class="math inline">\(1 \le i \le 6\)</span> is <span class="math inline">\(3^i\)</span> a primitive element? In <span class="math inline">\({\mathbb F}_{11}\)</span>, for which <span class="math inline">\(1 \le i \le 10\)</span> is <span class="math inline">\(2^i\)</span> a primitive element? Can you generalise this idea? If <span class="math inline">\(a\)</span> is a primitive element in <span class="math inline">\({\mathbb F}_p\)</span>, for which <span class="math inline">\(1 \le i \le p-1\)</span> is <span class="math inline">\(a^i\)</span> a primitive element?</p>
+</div>
+<div class="problem">
+<p>In lectures we used the field <span class="math inline">\({\mathbb F}_8 = {\mathbb F}_2[x]/(x^3 + x + 1)\)</span>. What happens if, instead, we divide <span class="math inline">\({\mathbb F}_2[x]\)</span> out by other <span class="math inline">\(f(x)\)</span> of degree 3 over <span class="math inline">\({\mathbb F}_2\)</span>? By considering polynomials of smaller degree, show that <span class="math inline">\(x^3 + x + 1\)</span> and <span class="math inline">\(x^3 + x^2 +1\)</span> are irreducible, but <span class="math inline">\(x^3 + x^2 +x + 1\)</span> is reducible, and show how it factors. (It follows that <span class="math inline">\({\mathbb F}_2[x]/(x^3 + x^2 + 1)\)</span> is also the field <span class="math inline">\({\mathbb F}_8\)</span> (see Q83) but <span class="math inline">\({\mathbb F}_2[x]/(x^3 + x^2 + x + 1)\)</span> is a ring (see Q78).)</p>
+</div>
+<div class="problem">
+<p>a) Find all the powers of <span class="math inline">\(x\)</span> in <span class="math inline">\({\mathbb F}_8 = {\mathbb F}_2[x]/(x^3 + x^2 + 1)\)</span>. That is, make a table giving each <span class="math inline">\(x^i,\; 0 \leq i\leq 7\)</span>, in the form <span class="math inline">\(a_2 x^2 + a_1 x + a_0\)</span>. b) Use your table to find <span class="math inline">\(x^4 + x^5\)</span> in the form <span class="math inline">\(x^i\)</span>, and <span class="math inline">\((x^2 + x + 1)( x^2 + x)\)</span> in the form <span class="math inline">\(a_2 x^2 + a_1 x + a_0\)</span>.</p>
+</div>
+<div class="problem">
+<p>Consider <span class="math inline">\({\mathbb F}_3[x]/(x^2+1)\)</span>. Show that in this version of <span class="math inline">\({\mathbb F}_9\)</span>, <span class="math inline">\(x\)</span> is not a primitive element, but <span class="math inline">\(x+1\)</span> is a primitive element. (Thus, we say that <span class="math inline">\(x^2+1\)</span> is not a primitive polynomial over <span class="math inline">\({\mathbb F}_3\)</span>.)</p>
+</div>
+<div class="problem">
+<p>By considering possible roots, show that <span class="math inline">\(x^3 + 2x + 1\)</span> is irreducible in <span class="math inline">\({\mathbb F}_3[x]\)</span>. Use Proposition 6.9 to show that <span class="math inline">\({\mathbb F}_3[x]/(x^3 + 2x + 1)\)</span> is a field <span class="math inline">\({\mathbb F}_q\)</span>, and find <span class="math inline">\(q\)</span>. By writing each <span class="math inline">\(x^i,\; 0 \leq i\leq 13\)</span>, in the form <span class="math inline">\(a_2 x^2 + a_1 x + a_0\)</span>, show that <span class="math inline">\(x^3 + 2x + 1\)</span> is a primitive polynomial over <span class="math inline">\({\mathbb F}_3\)</span>. Why do we <span><em>not</em></span> need to calculate the <span class="math inline">\(x^i,\;14 \leq i\leq 26\)</span>, to know this?</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(a\)</span> be a primitive element in the field <span class="math inline">\({\mathbb F}_q\)</span>, where the prime power <span class="math inline">\(q = p^r\)</span>. a) For which <span class="math inline">\(1 \le i \le q-1\)</span> is <span class="math inline">\(a^i\)</span> a primitive element? (See Q81; explain if you can. For a formal proof, you need Lagrange’s Theorem - the order of a subgroup divides the order of the group.) b) Show that if <span><em>every</em></span> <span class="math inline">\(a \in {\mathbb F}_q, a \ne 0, a \ne 1\)</span> is primitive, then <span class="math inline">\(p=2\)</span>. c) Show that the converse is not true: for some values of <span class="math inline">\(r\)</span>, <span class="math inline">\({\mathbb F}_{2^r}\)</span> has other non-primitive elements. d) Show that any irreducible polynomial of degree 3 or 5 in <span class="math inline">\({\mathbb F}_2[x]\)</span> is a primitive polynomial over <span class="math inline">\({\mathbb F}_2\)</span>.</p>
+</div>
+<div class="problem">
+<p>Using <span class="math inline">\({\mathbb F}_4 ={\mathbb F}_2[x]/(x^2+x+1)\)</span>, a) Construct a check-matrix, and then a generator-matrix for Ham<span class="math inline">\(_4(2)\)</span>. b) Decode the received word, <span class="math inline">\(y = (x, x, x+1, 1, x)\)</span>. c) Construct a generator-matrix and a check-matrix for the extended Hamming code H<span class="math inline">\(\widehat{\text {am}}_4(2)\)</span>. d) Show that for H<span class="math inline">\(\widehat{\text {am}}_4(2)\)</span>, some received words do not have a unique nearest neighbour.</p>
+</div>
+<div class="problem">
+<p>Using <span class="math inline">\({\mathbb F}_4 ={\mathbb F}_2[x]/(x^2+x+1)\)</span>, let <span class="math inline">\(C \subseteq {\mathbb F}_4^4\)</span> have check-matrix <span class="math inline">\(H = \left(\begin{matrix} 
+ 1 &amp; x+1 &amp; x &amp; 1\\
+ 0 &amp; x+1 &amp; 1 &amp; x\\
+      \end{matrix}\right)\)</span>. Find <span class="math inline">\(d(C)\)</span>.</p>
+</div>
+<div class="problem">
+<p>Using <span class="math inline">\({\mathbb F}_4 ={\mathbb F}_2[x]/(x^2+x+1)\)</span>, let <span class="math inline">\(C  = \langle(1,1)\rangle \subseteq {\mathbb F}_4^2\)</span>. a) Make a decoding array for <span class="math inline">\(C\)</span> and use it to decode <span class="math inline">\((x,0),\; (1,x),\; (x+1,x),\)</span> and <span class="math inline">\((0,1)\)</span>. b) <span class="math inline">\(C\)</span> is transmitted over a 4-ary symmetric channel with symbol-error probability <span class="math inline">\(p\)</span>. Find the chance that a received word is successfully decoded by your array. c) Now make a syndrome look-up table for <span class="math inline">\(C\)</span>, and decode the same words as in a). Does it decode them to the same codewords? If not, could you make a syndrome look-up table that <span><em>does</em></span> decode like the array?</p>
+</div>
+<div class="problem">
+<p>Using <span class="math inline">\({\mathbb F}_4 ={\mathbb F}_2[x]/(x^2+x+1)\)</span>, let <span class="math inline">\(C \subseteq {\mathbb F}_4^6\)</span> have check-matrix <span class="math inline">\(H = \left(\begin{matrix} 
+ 1 &amp; 0 &amp; 0 &amp; 1 &amp; x &amp; 0\\
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; x\\
+ 0 &amp; 0 &amp; 1 &amp; x &amp; 0 &amp; 1\\
+      \end{matrix}\right)\)</span>. a) Find <span class="math inline">\(d(C)\)</span>. b) How many rows would there be in a syndrome look-up table for <span class="math inline">\(C\)</span>? To cut the table shorter, let us only include syndromes <span class="math inline">\(S({\bf x})\)</span> with <span class="math inline">\(w({\bf x})\leq 1\)</span>. Also, we can condense several lines into one by using <span class="math inline">\(\lambda {\bf e}_j\)</span> as our <span class="math inline">\({\bf x}\)</span>’s, where <span class="math inline">\(\lambda\)</span> stands for any non-zero element of <span class="math inline">\({\mathbb F}_4\)</span>. c) Make a shortened table like this and use it to decode (if possible) the received words <span class="math inline">\((1,1,1,1,1,1)\)</span>,<span class="math inline">\((0,\,0,\,0,\,x,\, 1,\, x+1),(x,\,1,\,0,\,x+1,\,x,\,1)\)</span> <span class="math inline">\((0,\,x+1,\,0,\,x+1,\,x,\,1), (1,\,0,\,x,\,1,\, 0,\, x),(1,\,x,\,0,\,x+1,\,x,\,1)\)</span>. d) How many received words can we decode using this table?</p>
+</div>
+<div class="problem">
+<p>This question uses <span class="math inline">\({\mathbb F}_8 ={\mathbb F}_2[x]/(x^3+x+1)\)</span>. To help you do arithmetic in this field, first make or find the table expressing each <span class="math inline">\(x^i,\; 0 \leq i\leq 7\)</span>, in the form <span class="math inline">\(a_2 x^2 + a_1 x + a_0\)</span>. a) Let <span class="math inline">\(C = \langle \{ (x,\,x^2,\,x^2+x,\,x^2+1), (0,\,0,\,x^2,\,x), (x+1,\,x^2+x,\,0,\,x^2+1) \} \rangle \subseteq {\mathbb F}_8^4\)</span>. Find a generator- and a check-matrix for <span class="math inline">\(C\)</span>, and its parameters <span class="math inline">\([n, k, d]\)</span>. b) Use your generator-matrix to encode <span class="math inline">\((x^2,\, x^2+1)\)</span>, and to channel-decode <span class="math inline">\((x,\,x^2,\, x^2+x,\, x^2 + 1)\)</span>.</p>
+</div>
+<div class="problem">
+<p>This question uses <span class="math inline">\({\mathbb F}_9 ={\mathbb F}_3[x]/(x^2+x+2)\)</span>. To help you do arithmetic in this field, first make or find the table expressing each <span class="math inline">\(x^i,\; 0 \leq i\leq 8\)</span>, in the form <span class="math inline">\(a_1 x + a_0\)</span>. Let <span class="math inline">\(C = \langle \{ (0,\,x+1,\,2x+1,\,x,\,1), (1,\,0,\,0,\,2,\,x), (2,\,1,\,0,\,x+2,\,x) \} \rangle \subseteq {\mathbb F}_9^5\)</span>. Find a generator- and a check-matrix for <span class="math inline">\(C\)</span>, and its parameters <span class="math inline">\([n, k, d]\)</span>. (To find <span class="math inline">\(d\)</span>, it may help to re-write <span class="math inline">\(H\)</span> with entries <span class="math inline">\(x^i\)</span>.)</p>
+</div>
+<div class="problem">
+<p>Prove that for <span class="math inline">\(f(x)\)</span> in <span class="math inline">\({\bf R}_n = {\mathbb F}_q[x]/(x^n -1)\)</span>, its span <span class="math inline">\(\langle f(x) \rangle\)</span> is a cyclic code. (This is Proposition 6.14. Use Proposition 6.12 to prove it.)</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(g(x) \in {\bf R}_n = {\mathbb F}_q[x]/(x^n -1)\)</span> be monic, of degree <span class="math inline">\(r\)</span>, and be a factor of <span class="math inline">\(x^n -1\)</span>. a) By considering the check-polynomial <span class="math inline">\(h(x)\)</span>, show that any element of <span class="math inline">\(C = \langle g(x) \rangle\)</span> has degree <span class="math inline">\(\ge r\)</span>. b) Show that, with these conditions, <span class="math inline">\(g(x)\)</span> is the generator-polynomial of <span class="math inline">\(\langle g(x) \rangle\)</span>. c) Deduce that there is a 1-1 correspondence between monic factors of <span class="math inline">\(x^n -1\)</span> and cyclic codes in <span class="math inline">\({\bf R}_n\)</span>.</p>
+</div>
+<div class="problem">
+<p>Find all ternary cyclic codes of block-length 3. These can be regarded as both subrings (in fact, ideals) in the ring <span class="math inline">\({\bf R}_3 = {\mathbb F}_3[x]/(x^3 -1)\)</span> and subspaces of the vector space <span class="math inline">\({\mathbb F}_3^3\)</span>. So, first find the generator-polynomial of each, and then a generator-matrix for each. Two of the codes are trivial. For the two which are not trivial, find their parameters <span class="math inline">\([n, k, d]\)</span>. How are they related?</p>
+</div>
+<div class="problem">
+<p>a) By considering possible roots, factor <span class="math inline">\(x^3 -1\)</span> in the ring of polynomials <span class="math inline">\({\mathbb F}_7[x]\)</span>. b) Using these factors, find all the non-trivial 7-ary cyclic codes of block-length 3. (There are six of them). Give a generator-polynomial and a generator-matrix for each. c) Let <span class="math inline">\(C\)</span> be the one of these codes with generator-matrix <span class="math inline">\(G = \left(\begin{matrix} 
+ 3 &amp; 1 &amp; 0 \\
+ 0 &amp; 3 &amp; 1 \\
+      \end{matrix}\right)\)</span>. By finding <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> such that <span class="math inline">\(x_1(3,1,0) + x_2 (0,3,1) = (1,2,6)\)</span>, show that <span class="math inline">\((1,2,6) \in C\)</span>. (In effect, you are channel decoding.) In the same way, show that <span class="math inline">\((2,6,1)\)</span> and <span class="math inline">\((6,1,2)\)</span> (the cyclic shifts of <span class="math inline">\((1,2,6)\)</span>) are in <span class="math inline">\(C\)</span>, but <span class="math inline">\((1,6,2)\)</span> is not.</p>
+</div>
+<div class="problem">
+<p>Consider the code <span class="math inline">\(C\)</span> of Q96c. Write down its generator-polynomial <span class="math inline">\(g(x)\)</span> and its check-polynomial <span class="math inline">\(h(x)\)</span>. Use Proposition 6.20 to find out which of these polynomials are in <span class="math inline">\(C\)</span>: <span class="math inline">\(a(x) = 6x^2 + 2 x + 1, \; b(x) = 2 x^2 + 6x + 1\)</span>. Do your answers agree with Q96c?</p>
+</div>
+<div class="problem">
+<p>In lectures, we found all the ternary cyclic codes of length 4. The codes we found (see Example 54) come in dual pairs, <span class="math inline">\(C\)</span> and <span class="math inline">\(C^\perp\)</span>. Find these pairs, and show that they are duals, a) by considering their generator- and check-matrices, and using ideas from Chapter 4, b) by considering their generator- and check-polynomials and using Proposition 6.22. (Remember that a polynomial can generate a code even if it is not that code’s unique, official generator-polynomial.)</p>
+</div>
+<div class="problem">
+<p>a) In <span class="math inline">\({\mathbb F}_2[x]\)</span>, <span class="math inline">\(x^7-1 = (x^3 + x + 1)(x^4 + x^2 + x + 1)\)</span>. Let <span class="math inline">\(g(x) = (x^3 + x + 1) \in {\mathbb F}_2[x]\)</span>, and write out the generator-matrix <span class="math inline">\(G_1\)</span> for the cyclic code <span class="math inline">\(C_1 = \langle g(x) \rangle \subseteq {\bf R}_7 = {\mathbb F}_3[x]/(x^7 -1)\)</span>. b) Using just 3 EROs, row-reduce <span class="math inline">\(G_1\)</span> to standard form <span class="math inline">\((A\;|\; I)\)</span>. Find a check matrix <span class="math inline">\(H_1\)</span> for <span class="math inline">\(C_1\)</span>, and explain why <span class="math inline">\(C_1\)</span> is a Ham<span class="math inline">\(_2(3)\)</span> code. c) Using Proposition 6.22 find a check-polynomial <span class="math inline">\(h_1(x)\)</span> for <span class="math inline">\(C_1\)</span>, and a generator-polynomial <span class="math inline">\(g_2(x)\)</span> for code <span class="math inline">\(C_2 = C_1 ^\perp\)</span>. Write out a generator-matrix <span class="math inline">\(G_2\)</span> for the cyclic code <span class="math inline">\(C_2\)</span>. d) But of course <span class="math inline">\(H_1\)</span> is also a generator-matrix for <span class="math inline">\(C_2\)</span>. Use just one ERO to change <span class="math inline">\(G_2\)</span> to <span class="math inline">\(H_1\)</span>.</p>
+</div>
+<div class="problem">
+<p>In <span class="math inline">\({\bf R}_n\)</span>, let <span class="math inline">\(g(x)\)</span> and <span class="math inline">\(h(x)\)</span> be monic, and <span class="math inline">\(g(x)h(x) = x^n -1\)</span>. Then we know by Q94b that <span class="math inline">\(g(x)\)</span> and <span class="math inline">\(h(x)\)</span> are the generator-polynomials for <span class="math inline">\(C_1 = \langle g(x) \rangle\)</span> and <span class="math inline">\(C_2 = \langle h(x) \rangle\)</span> respectively. a) Specify polynomials which generate <span class="math inline">\(C_1 ^\perp\)</span> and <span class="math inline">\(C_2 ^\perp\)</span> respectively. b) By considering generator-matrices for <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2 ^\perp\)</span>, show that these codes are equivalent. (So, we might say that <span class="math inline">\(C_1 = \langle g(x) \rangle\)</span> and <span class="math inline">\(C_2 = \langle h(x) \rangle\)</span> are “almost dual" to each other.) c) Conclude that in general, if <span class="math inline">\(g(x)\)</span> is monic and divides <span class="math inline">\(x^n -1\)</span>, then the codes <span class="math inline">\(\langle g(x) \rangle\)</span> and <span class="math inline">\(\langle \overline{g}(x) \rangle\)</span> are equivalent.</p>
+</div>
+<div class="problem">
+<p>We can construct the Golay codes as cyclic codes. In <span class="math inline">\({\mathbb F}_2[x]\)</span>, <span class="math inline">\(x^{23} -1\)</span> factors as <span class="math display">\[(x-1)(x^{11} + x^{10} + x^6 + x^5 + x^4 + x^2 + 1)(x^{11} + x^9 + x^7 + x^6 + x^5 + x + 1) = (x-1)g_1(x)g_2(x).\]</span> Use Q100 to show that <span class="math inline">\(\langle g_1(x) \rangle\)</span> and <span class="math inline">\(\langle g_2(x) \rangle\)</span>, cyclic codes in <span class="math inline">\(R_{23} = {\mathbb F}_2[x]/(x^{23} -1)\)</span>, are equivalent. In fact, they are both equivalent to the binary Golay code <span class="math inline">\(\mathcal{G}_{23}\)</span> of Section 5.3.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\bf a}= (1,0,4,7), {\bf b}= (1,2,3,4) \in {\mathbb F}_{11}^4\)</span>. Find the minimum distance and a basis for the Reed-Solomon code RS<span class="math inline">\(_3 ({\bf a},{\bf b}) \subseteq {\mathbb F}_{11}^4\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\bf a}= (0,1,2,3,4), {\bf b}= (1,1,1,1,1) \in {\mathbb F}_{7}^5\)</span>. Find a generator-matrix for each code RS<span class="math inline">\(_k ({\bf a},{\bf b}) \subseteq {\mathbb F}_7^5\)</span>, <span class="math inline">\(1 \le k \le 4\)</span>. Then find a check-matrix for each code.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\bf a}, {\bf b},\)</span> and <span class="math inline">\({\bf b}&#39;\)</span> be vectors in <span class="math inline">\({\mathbb F}_q^n\)</span>. Show that if RS<span class="math inline">\(_k ({\bf a},{\bf b})\)</span> and RS<span class="math inline">\(_k ({\bf a},{\bf b}&#39;)\)</span> are two Reed-Solomon codes, they are (monomially) equivalent. Deduce from this and Proposition 6.25 that [RS<span class="math inline">\(_k ({\bf a},{\bf b})]^\perp\)</span> and RS<span class="math inline">\(_{n-k} ({\bf a},{\bf b})\)</span> are equivalent.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\({\bf a}, {\bf a}&#39;,\)</span> and <span class="math inline">\({\bf b}\)</span> be vectors in <span class="math inline">\({\mathbb F}_q^n\)</span>, and RS<span class="math inline">\(_k ({\bf a},{\bf b})\)</span> and RS<span class="math inline">\(_k ({\bf a}&#39;,{\bf b})\)</span> be two Reed-Solomon codes. How could we pick <span class="math inline">\({\bf a}\)</span> and <span class="math inline">\({\bf a}&#39;\)</span> to make the codes (monomially) equivalent?</p>
+</div>
+<div class="problem">
+<p>Of course, there are Reed-Solomon codes over non-prime fields. But we have a clash of notation: in Section 6.2 we used <span class="math inline">\(x\)</span> as an element of <span class="math inline">\({\mathbb F}_q\)</span>, and now in 6.5 it is the variable for our polynomials <span class="math inline">\(f(x) \in {\bf P}_k\)</span>. So here is just one small, easy question: Let <span class="math inline">\({\bf a}= (1,x,x+1), {\bf b}= (1,1,1) \in {\mathbb F}_{4}^3\)</span>. Find a generator-matrix and then a check-matrix for RS<span class="math inline">\(_2 ({\bf a},{\bf b}) \subseteq {\mathbb F}_4^3\)</span>,</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '77';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

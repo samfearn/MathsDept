@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Department of Mathematical Sciences, Durham University The notes for this term were originally written by Dr. Sophy Darwin and are based on a previous course developed by Rob de Jeu, Sophy Darwin, Fredrik Strömberg, and Emilie Dufresne Please send questions, comments or corrections to s.m.fearn@durham.ac.uk" />
+  <title>MATH3401 Error-correcting Codes Epiphany term 2021/22</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><span>MATH3401</span><br />
+<span>Error-correcting Codes</span><br />
+<span>Epiphany term 2021/22</span></h1>
+<p class="author">Sam Fearn<br />
+<span>Department of Mathematical Sciences, Durham University</span><br />
+<span>The notes for this term were originally written by Dr. Sophy Darwin</span><br />
+<span>and are based on a previous course developed by</span><br />
+Rob de Jeu, Sophy Darwin, Fredrik Strömberg, and Emilie Dufresne<br />
+<span>Please send questions, comments or corrections to</span><br />
+<code>s.m.fearn@durham.ac.uk</code></p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#cha:polynomialsandcodes"><span class="toc-section-number">6</span> Polynomials and Codes</a>
+<ul>
+<li><a href="#sec:polynomialsoverfq"><span class="toc-section-number">6.1</span> Polynomials over <span class="math inline">\({\mathbb F}_q\)</span></a></li>
+<li><a href="#sec:nonprimefinitefields"><span class="toc-section-number">6.2</span> Non-prime Finite Fields</a></li>
+<li><a href="#sec:cycliccodes"><span class="toc-section-number">6.3</span> Cyclic Codes</a></li>
+<li><a href="#sec:cycliccodematrices"><span class="toc-section-number">6.4</span> Matrices for Cyclic Codes</a></li>
+<li><a href="#sec:RSCodes"><span class="toc-section-number">6.5</span> Reed-Solomon Codes</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="cha:polynomialsandcodes" class="level1" data-number="1">
+<h1 data-number="6"><span class="header-section-number">6</span> Polynomials and Codes</h1>
+<p>This final chapter brings together three ways we can use polynomials over finite fields to make linear codes.</p>
+<ul>
+<li><p>Many (but not all) of you saw in Algebra II how to construct non-prime finite fields from rings of polynomials. In these notes we shall summarise these ideas, and set up some small non-prime fields which we can actually use for making codes, using the techniques of earlier chapters.</p></li>
+<li><p>Alternatively, using almost the same process we can make cyclic codes instead of fields.</p></li>
+<li><p>Finally, using the polynomials in a very different way, we can make Reed-Solomon codes.</p></li>
+</ul>
+<section id="sec:polynomialsoverfq" class="level2" data-number="1.1">
+<h2 data-number="6.1"><span class="header-section-number">6.1</span> Polynomials over <span class="math inline">\({\mathbb F}_q\)</span></h2>
+<p>Just as we have the familiar polynomials with coefficients in <span class="math inline">\({\mathbb Z}\)</span>, we can also make polynomials with coefficients in <span class="math inline">\({\mathbb F}_q\)</span>.</p>
+<div id="def:ringpolynomialsfq" class="definition">
+<p> The <span><strong>ring of polynomials over <span class="math inline">\({\mathbb F}_q\)</span></strong></span> is <span class="math display">\[{\mathbb F}_q[x] = \{ f(x) = a_0 + a_1 x + \ldots + a_d x^d \;|\; d \geq 0, a_i \in {\mathbb F}_q \}.\]</span></p>
+</div>
+<p>Then if <span class="math inline">\(a_d \neq 0\)</span>, we say <span class="math inline">\(d\)</span> is the degree of <span class="math inline">\(f(x)\)</span>, and we can add and multiply as usual, but always reducing the coefficients mod <span class="math inline">\(q\)</span>.</p>
+<div class="exampleqed">
+<p>In <span class="math inline">\({\mathbb F}_5[x]\)</span>, let <span class="math inline">\(p(x) = 4x+3\)</span> and <span class="math inline">\(q(x) =  3x^2 + 2x + 1\)</span>. Then <span class="math inline">\(p(x) +q(x) = 3x^2 + x + 4\)</span> and <span class="math inline">\(p(x)q(x) = 2x^3 + 2x^2 + 3\)</span>.</p>
+</div>
+<p>But if we are looking for more finite fields, this does not seem to help much: <span class="math inline">\({\mathbb F}_q[x]\)</span> is infinite, and it is a ring not a field, because most <span class="math inline">\(f(x)\)</span> have no multiplicative inverse.</p>
+<p>We can make <span class="math inline">\({\mathbb F}_q[x]\)</span> finite simply by restricting degree.</p>
+<div id="def:polynomialsfixeddegree" class="definition">
+<p> Let <span class="math display">\[{\mathbb F}_q[x]_{&lt;k} = \{ f(x) = a_0 + a_1 x + \ldots + a_d x^d \;|\; 0 \leq d &lt; k, a_i \in {\mathbb F}_q\},\]</span> which, as we can always add a few terms with zero coefficients, is the same as <span class="math display">\[{\mathbb F}_q[x]_{&lt;k} = \{ f(x) = a_0 + a_1 x + \ldots + a_{k-1} x^{k-1} \;|\;  a_i \in {\mathbb F}_q\}.\]</span></p>
+</div>
+<p>But then <span class="math inline">\({\mathbb F}_q[x]_{&lt;k}\)</span> is not even a ring, as it is not closed under multiplication. It is, however, closed under addition, and under multiplication by a scalar from <span class="math inline">\({\mathbb F}_q\)</span>. In fact, it is a vector space, of dimension <span class="math inline">\(k\)</span> over <span class="math inline">\({\mathbb F}_q\)</span>. It is isomorphic to <span class="math inline">\({\mathbb F}_q^k\)</span> by the obvious map <span class="math inline">\(\phi(f(x)) = ( a_0, \ldots, a_{k-1})\)</span>. In section 6.5 we’ll use this vector space of polynomials to construct Reed-Solomon codes.</p>
+<p>To make more finite fields, we need a different approach. Recall that <span class="math inline">\({\mathbb Z}\)</span> is also an infinite ring, but in Chapter 2 we made <span class="math inline">\({\mathbb Z}/n\)</span> by regarding <span class="math inline">\(n\)</span> as zero, and identifying any <span class="math inline">\(m \in {\mathbb Z}\)</span> with its remainder mod <span class="math inline">\(n\)</span>. Then <span class="math inline">\({\mathbb Z}/n\)</span> is always finite, and may be either a ring (e.g. <span class="math inline">\({\mathbb Z}/6\)</span>) or a field (e.g. <span class="math inline">\({\mathbb Z}/5\)</span>). Similarly, we shall now make <span class="math inline">\({\mathbb F}_q[x]/(f(x))\)</span>,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> by regarding <span class="math inline">\(f(x)\)</span> as zero, and replacing any <span class="math inline">\(g(x)\)</span> with <span class="math inline">\(r(x)\)</span>, where <span class="math inline">\(g(x) = q(x)f(x) + r(x)\)</span>, and <span class="math inline">\(\deg(r(x))&lt; \deg(f(x))\)</span>.</p>
+<p>In <span class="math inline">\({\mathbb Z}/n\)</span> the elements were really equivalence classes, <span class="math inline">\(\overline{r} = \{r+qn \;|\; q \in {\mathbb Z}\}\)</span>. Similarly, in <span class="math inline">\({\mathbb F}_q[x]/(f(x))\)</span> we have elements <span class="math inline">\(\overline{r(x)} = \{ r(x) + q(x)f(x)\;| \;q(x) \in {\mathbb F}_q[x]\}\)</span>. Again, we shall drop the overline, for convenience.</p>
+<p>Suppose that deg<span class="math inline">\((f(x)) = d\)</span>. Then as <span class="math inline">\(0 \leq \text{deg}(r(x)) &lt; d\)</span> we know that <span class="math inline">\(|\; {\mathbb F}_q[x]/(f(x))\;| = q^d\)</span>. Let us now investigate the smallest possible cases, with <span class="math inline">\(q=2, d=2\)</span>.</p>
+<div class="exampleqed">
+<p>Consider <span class="math inline">\({\mathbb F}_2[x]/(f(x))\)</span>, where deg<span class="math inline">\((f(x)) =2\)</span>. Then <span class="math inline">\({\mathbb F}_2[x]/(f(x)) = \{0,1,x,x+1\}\)</span>, and its addition table is: <span class="math display">\[\begin{array}{c|cccc}
++ &amp; 0 &amp; 1  &amp; x  &amp; x+1 \\
+\hline 
+0 &amp; 0 &amp; 1 &amp; x  &amp; x+1 \\
+1 &amp; 1 &amp; 0 &amp; x+1 &amp; x  \\
+x &amp; x &amp; x+1 &amp; 1  &amp; 1 \\
+x+1 &amp; x+1 &amp; x &amp; 1 &amp; 0 \\
+\end{array}\]</span> But for its multiplication table, we have to know <span class="math inline">\(f(x)\)</span>. In <span class="math inline">\({\mathbb F}_2[x]/(x^2 +1)\)</span>, we have <span class="math inline">\(x^2 + 1 = 0\)</span>, so <span class="math inline">\(x^2 = 1\)</span>. Also, <span class="math inline">\((x+1)^2 = x^2 + 2x +1 =0\)</span>, and <span class="math inline">\(x(x+1) = x^2 + x = x+ 1\)</span>. So we have: <span class="math display">\[\begin{array}{c|ccc}
+\times  &amp; 1  &amp; x  &amp; x+1 \\
+\hline 
+ 1 &amp; 1 &amp; x  &amp; x+1 \\
+x &amp; x &amp; 1 &amp; x+1 \\
+x+1 &amp; x+1 &amp; x+1 &amp; 0 \\
+\end{array}\]</span> Since <span class="math inline">\(x+1\)</span> has no multiplicative inverse, <span class="math inline">\({\mathbb F}_2[x]/(x^2 +1)\)</span> is a ring but not a field.</p>
+<p>However, in <span class="math inline">\({\mathbb F}_2[x]/(x^2 + x +1)\)</span>, we have <span class="math inline">\(x^2 + x +1 = 0\)</span>, so <span class="math inline">\(x^2 = x+1\)</span>. Then <span class="math inline">\(x(x+1) =x^2+x = x+1 + x = 1\)</span>, and <span class="math inline">\((x+1)^2 = x^2 + 1 = x+1 +1 = x\)</span>. We get: <span class="math display">\[\begin{array}{c|ccc}
+\times  &amp; 1  &amp; x  &amp; x+1 \\
+\hline 
+ 1 &amp; 1 &amp; x  &amp; x+1 \\
+x &amp; x &amp; x+ 1 &amp; 1 \\
+x+1 &amp; x+1 &amp; 1 &amp; x \\
+\end{array}\]</span> So this is a field, with 4 elements. We call it <span class="math inline">\({\mathbb F}_4\)</span>. The difference is that, over <span class="math inline">\({\mathbb F}_2\)</span>, <span class="math inline">\(x^2 +1\)</span> factors as <span class="math inline">\((x+1)(x+1)\)</span>, so <span class="math inline">\((x+1)\)</span> is a zero-divisor and has no inverse. (See Q78) But <span class="math inline">\(x^2 + x +1\)</span> does not factor over <span class="math inline">\({\mathbb F}_2\)</span>.</p>
+</div>
+<div class="definition">
+<p>Let <span class="math inline">\(f(x)\)</span> be a polynomial in <span class="math inline">\({\mathbb F}_q[x]\)</span>, of degree <span class="math inline">\(d\)</span>. Then if <span class="math inline">\(f(x) = p(x) q(x)\)</span>, with both <span class="math inline">\(p(x)\)</span> and <span class="math inline">\(q(x)\)</span> of degree <span class="math inline">\(&lt; d\)</span>, we say <span class="math inline">\(f(x)\)</span> is <span><strong>reducible</strong></span>. Otherwise it is <span><strong>irreducible</strong></span>.</p>
+</div>
+<p>Although we shall not prove it formally, the following proposition is suggested by the examples above.</p>
+<div class="proposition">
+<p>Let <span class="math inline">\({\mathbb F}_q\)</span> be a field, and <span class="math inline">\(f(x)\)</span> a polynomial in <span class="math inline">\({\mathbb F}_q[x]\)</span>. If <span class="math inline">\(f(x)\)</span> is irreducible in <span class="math inline">\({\mathbb F}_q[x]\)</span>, then <span class="math inline">\({\mathbb F}_q[x]/(f(x))\)</span> is a field; otherwise it is a ring.</p>
+</div>
+<p>In Section <a href="#sec:nonprimefinitefields" data-reference-type="ref" data-reference="sec:nonprimefinitefields">1.2</a> we shall use irreducible <span class="math inline">\(f(x)\)</span> to make new finite fields; in <a href="#sec:cycliccodes" data-reference-type="ref" data-reference="sec:cycliccodes">1.3</a> we shall use certain particular reducible <span class="math inline">\(f(x)\)</span> to make cyclic codes.</p>
+</section>
+<section id="sec:nonprimefinitefields" class="level2" data-number="1.2">
+<h2 data-number="6.2"><span class="header-section-number">6.2</span> Non-prime Finite Fields</h2>
+<p>We shall now construct <span class="math inline">\({\mathbb F}_9\)</span> and <span class="math inline">\({\mathbb F}_8\)</span>, in much the same way as we did <span class="math inline">\({\mathbb F}_4\)</span>. But to help us in choosing <span class="math inline">\(f(x)\)</span>, and to be able to do arithmetic without large tables, we need a couple more ideas.</p>
+<div class="definition">
+<p>A polynomial <span class="math inline">\(f(x) = a_d x^d   + \cdots + a_1 x + a_0\)</span> is <span><strong>monic</strong></span> if <span class="math inline">\(a_d = 1\)</span>.</p>
+</div>
+<div class="proposition">
+<p>If <span class="math inline">\(f(x) = \lambda m(x) \in {\mathbb F}_q[x]\)</span>, with <span class="math inline">\(\lambda  \in {\mathbb F}_q\)</span>, then <span class="math inline">\({\mathbb F}_q[x]/(f(x)) = {\mathbb F}_q[x]/(m(x))\)</span>.</p>
+</div>
+<div class="proof">
+<p>In <span class="math inline">\({\mathbb F}_q[x]\)</span>, we have <span class="math inline">\(g(x) = q(x)f(x) + r(x)\)</span> if and only if <span class="math inline">\(g(x) = (\lambda q(x))m(x) + r(x)\)</span>. Thus in both <span class="math inline">\({\mathbb F}_q[x]/(f(x))\)</span> and <span class="math inline">\({\mathbb F}_q[x]/(m(x))\)</span>, <span class="math inline">\(g(x)\)</span> is represented by the same remainder <span class="math inline">\(r(x)\)</span>.</p>
+</div>
+<p>It follows that we need only consider monic polynomials as possible <span class="math inline">\(f(x)\)</span>.</p>
+<div class="definition">
+<p>In a finite field <span class="math inline">\({\mathbb F}_q\)</span>, an element is <span><strong>primitive</strong></span> if its powers give us all of <span class="math inline">\({\mathbb F}_q \backslash \{0\}\)</span>.</p>
+</div>
+<div class="exampleqed">
+<p>In <span class="math inline">\({\mathbb F}_7\)</span>, powers of 3 are <span class="math inline">\(1,\;3,\;9=2,\;6,\;18=4,\;12=5,\; 15=1\)</span>. But powers of 2 are <span class="math inline">\(1,\;2,\;4,\;8 =1\)</span>. So 3 is primitive in <span class="math inline">\({\mathbb F}_7\)</span>, but 2 is not.</p>
+</div>
+<p>It is a fact, which we shall not prove, that every finite field has at least one primitive element. (See also Q81 and Q86.)</p>
+<p>We are now ready to construct <span class="math inline">\({\mathbb F}_9\)</span>. Since <span class="math inline">\(9 = 3^2\)</span>, we need <span class="math inline">\({\mathbb F}_3[x]/(f(x))\)</span>, where <span class="math inline">\(f(x) = a_2 x^2 + a_1 x + a_0\)</span> is of degree 2, monic, and irreducible. Thus <span class="math inline">\(a_2 = 1\)</span>, and <span class="math inline">\(a_0 \neq 0\)</span> (or <span class="math inline">\(f(x)\)</span> would have a factor <span class="math inline">\(x\)</span>). Of the six remaining possibilities, we can find which are reducible by calculating in <span class="math inline">\({\mathbb F}_3[x]\)</span>: <span class="math display">\[\begin{aligned}
+(x+1)(x+1) &amp; = &amp; x^2 + 2x + 1 ,\\
+(x+1)(x+2) &amp; = &amp; x^2 + 3x + 2 = x^2 + 2 ,\\
+(x+2)(x+2) &amp; = &amp; x^2 + 4x + 4  = x^2 + x+ 1 .\\\end{aligned}\]</span> It follows that <span class="math inline">\(x^2 + 1, x^2 + x + 2\)</span>, and <span class="math inline">\(x^2 + 2x + 2\)</span> are irreducible in <span class="math inline">\({\mathbb F}_3[x]\)</span>; we shall use <span class="math inline">\(f(x) = x^2 + x + 2\)</span>. Adding in <span class="math inline">\({\mathbb F}_3[x]/(x^2 + x+ 2)\)</span> is easy; we just reduce coefficients mod 3. For multiplication, instead of making a full <span class="math inline">\(8 \times 8\)</span> table, we need only calculate the powers of <span class="math inline">\(x\)</span>. To do this, note first that since <span class="math inline">\(x^2 + x+ 2 = 0\)</span>, we have <span class="math inline">\(x^2 = -x-2 = 2x + 1\)</span>. Then <span class="math display">\[x^3  =  x(2x+1) = 2x^2 + x = 2 (2x+1) + x =  5x+2  = 2x+2.\]</span> We can calculate <span class="math inline">\(x^4\)</span> as either <span class="math inline">\((x^2)^2 = (2x+1)^2\)</span> or as <span class="math inline">\(x \cdot x^3 = x(2x+2)\)</span>; either way we get 2. Then the rest is easy: <span class="math inline">\(x^i = 2 x^{i-4}\)</span>, and we have the following table:</p>
+<p><span class="math display">\[\begin{array}{c||c|c|c|c|c|c|c|c|c}
+i  &amp; 0  &amp; 1  &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp; 8 \\
+\hline 
+ x^i &amp; 1 &amp; x &amp; 2x+1  &amp; 2x+2 &amp; 2 &amp; 2x &amp; x+2 &amp; x+1 &amp; 1 \\
+\end{array}\]</span></p>
+<p>Note that we do indeed have every non-zero element of <span class="math inline">\({\mathbb F}_3[x]/(x^2 + x+ 2)\)</span>, so <span class="math inline">\(x\)</span> is primitive in <span class="math inline">\({\mathbb F}_3[x]/(x^2 + x+ 2)\)</span>; if it were not, we would have got back to 1 too soon (see Q84) It is also clear that, for higher powers of <span class="math inline">\(x, x^i = x^{i-8}\)</span>.</p>
+<p>For <span class="math inline">\({\mathbb F}_8\)</span>, similarly, we want <span class="math inline">\({\mathbb F}_2[x]/(x^3 + a_2 x^2 + a_1 x+ 1)\)</span> but should not use the reducible <span class="math inline">\(x^3 + 1 = (x+ 1) (x^2 + x+ 1)\)</span> or <span class="math inline">\(x^3 + x^2 + x+ 1 = (x+1)(x^2+1)\)</span>. We choose <span class="math inline">\(f(x)= x^3 + x + 1\)</span> and so <span class="math inline">\(x^3 = x+ 1\)</span>, and the table is <span class="math display">\[\begin{array}{c||c|c|c|c|c|c|c|c|c}
+i  &amp; 0  &amp; 1  &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7  \\
+\hline 
+ x^i &amp; 1 &amp; x &amp; x^2  &amp; x+1 &amp; x^2+x &amp; x^2+x+1 &amp; x^2+1 &amp; 1 \\
+\end{array}\]</span></p>
+<p>We see that for higher powers of <span class="math inline">\(x, x^i = x^{i-7}\)</span>, and that again <span class="math inline">\(x\)</span> is primitive in <span class="math inline">\({{\mathbb F}_2[x]/(x^3+x+1)}\)</span>.</p>
+<div class="definition">
+<p>If <span class="math inline">\(x\)</span> is primitive in <span class="math inline">\({\mathbb F}_q[x]/(f(x))\)</span> we say that <span class="math inline">\(f(x)\)</span> is a <span><strong>primitive polynomial</strong></span> over <span class="math inline">\({\mathbb F}_q\)</span>.</p>
+</div>
+<p>For doing arithmetic in <span class="math inline">\({\mathbb F}_q\)</span>, it is very useful that every non-zero element can be written both as <span class="math inline">\(x^i\)</span> and as <span class="math inline">\(a_{r-1} x^{r-1} + \cdots + a_0\)</span>. Powers of <span class="math inline">\(x\)</span> are easy to multiply, and can be reduced mod <span class="math inline">\(q-1\)</span>. The short polynomials are easy to add, and then we reduce the coefficients mod <span class="math inline">\(p\)</span>. And we can use our table of powers to convert easily between the two.</p>
+<div class="exampleqed">
+<p>In <span class="math inline">\({\mathbb F}_8 = {\mathbb F}_2[x]/(x^3  +  x+ 1)\)</span> as above, <span class="math display">\[\begin{aligned}
+x^3 + x^4 &amp; = &amp; (x+1)+(x^2 + x) = x^2+1 = x^6 \\
+(x+1)(x^2+x+1) &amp; = &amp; x^3 \cdot x^5= x^8 = x^7 \cdot x^1 = x \\
+(x+1)^{-1} &amp; = &amp; (x^3)^{-1} = x^4= x^2 +x, \;\text{since}\; x^3 \cdot x^4 = x^7 = 1 \end{aligned}\]</span></p>
+</div>
+<p>We now <span><em>leave behind</em></span> our rule (Ch. 2) that <span class="math inline">\(q\)</span> is always prime. We can then generalize the two constructions above in the following proposition (although we will not formally prove it):</p>
+<div class="proposition">
+<p>Let <span class="math inline">\(q = p^r\)</span>, where <span class="math inline">\(p\)</span> is prime, and <span class="math inline">\(r\geq  2\)</span> an integer, and let <span class="math inline">\(f(x) \in {\mathbb F}_p[x]\)</span> be monic, irreducible, and of degree <span class="math inline">\(r\)</span>. Then <span class="math inline">\({\mathbb F}_p[x]/(f(x))\)</span> is a field, <span class="math inline">\({\mathbb F}_q\)</span>.</p>
+</div>
+<p>Choosing a different such <span class="math inline">\(f(x)\)</span> will give a field where multiplication looks different, but in fact the two fields will be isomorphic. For convenience, we choose a primitive <span class="math inline">\(f(x)\)</span>.</p>
+<p>Now that we can do arithmetic, we can make vector spaces and codes over these new <span class="math inline">\({\mathbb F}_q\)</span>. Q87-92 give you a chance to try out all the usual methods with these new fields.</p>
+</section>
+<section id="sec:cycliccodes" class="level2" data-number="1.3">
+<h2 data-number="6.3"><span class="header-section-number">6.3</span> Cyclic Codes</h2>
+
+<p>A cyclic code <span class="math inline">\(C\subseteq{\mathbb F}_q^n\)</span> is a linear code such that any cyclic shift of a codeword is also a codeword. This can be understood in terms of the permutation automorphism group of <span class="math inline">\(C\)</span>, as saying the the group generated by the cyclic permutation of all <span class="math inline">\(n\)</span> positions is a subgroup of the permutation automorphism group, <span class="math inline">\(\langle (1,\,2,\,\ldots,\,n) \rangle = \{(1,\,2,\,\ldots,\,n)^i\ |\ 1\le i\le n\} \subseteq \operatorname{PAut}(C)\)</span> (those of you who studied Algebra II may recognise this as isomorphic the cyclic group of order <span class="math inline">\(n\)</span>, <span class="math inline">\(C_n = \langle g \ |\ g^n=e \rangle = \{e, g, g^2, \ldots g^{n-1} \}\)</span>).</p>
+<div class="definition">
+<p>A code <span class="math inline">\(C\)</span> is <span><strong>cyclic</strong></span> if it is linear and <span class="math display">\[(a_0, a_1,a_2, \ldots, a_{n-1}) \in C \Longleftrightarrow (a_{n-1},a_0, a_1, \ldots, a_{n-2}) \in C.\]</span></p>
+</div>
+<p>Note that we now index the positions from 0 to <span class="math inline">\(n-1\)</span>, rather than 1 to <span class="math inline">\(n\)</span>.</p>
+<div class="exampleqed">
+<p>The code <span class="math inline">\(C = \{ (0,0,0,0), (0,1,0,1), (1,0,1,0), (1,1,1,1)\} \subseteq {\mathbb F}_2^n\)</span> is cyclic.</p>
+</div>
+<p>So, some of the codes we used in previous chapters were cyclic. But we shall now find a different way to think about cyclic codes, using polynomials over <span class="math inline">\({\mathbb F}_q\)</span>. (As we know, <span class="math inline">\(q\)</span> can now be any prime power. But for our examples we shall stick to <span class="math inline">\(q\)</span> prime - and small!)</p>
+<p>Consider <span class="math inline">\({\mathbb F}_q/(x^n -1)\)</span>. Its elements are polynomials <span class="math inline">\(a_0 + a_1x + \cdots + a_{n-1} x^ {n-1}\)</span>. Over any <span class="math inline">\({\mathbb F}_q\)</span>, <span class="math inline">\(x^n - 1 = (x-1)(x^{n-1} + \cdots + x + 1)\)</span>, so <span class="math inline">\(x^n-1\)</span> is reducible. Thus <span class="math inline">\({\mathbb F}_q/(x^n -1)\)</span> is a ring, not a field.</p>
+<p><span><strong>Notation</strong></span>: When it is clear what field we are using, we shall write simply <span class="math inline">\({\bf R}_n\)</span> for <span class="math inline">\({\mathbb F}_q/(x^n -1)\)</span>. Note that this is <span class="math inline">\({\bf R}\)</span> for ring, not <span class="math inline">\({\mathbb R}\)</span> for the real numbers.</p>
+<p>There is an obvious correspondence between polynomials in <span class="math inline">\({\bf R}_n\)</span> and vectors in <span class="math inline">\({\mathbb F}_q^n\)</span>: <span class="math display">\[a(x) = a_0 + a_1x + \cdots + a_{n-1} x^ {n-1} \longleftrightarrow  
+{\bf a}= (a_0, a_1,a_2, \ldots, a_{n-1}).\]</span> We also have:</p>
+<div id="lem:cyclicshiftmultiply" class="lemma">
+<p> If <span class="math inline">\(a(x)\longleftrightarrow {\bf a}\)</span> as above, then <span class="math inline">\(x \cdot a(x) \longleftrightarrow (a_{n-1}, a_0, a_1,  \ldots, a_{n-2}),\)</span> a cyclic shift of <span class="math inline">\({\bf a}\)</span>.</p>
+</div>
+<div class="proof">
+<p>In <span class="math inline">\({\bf R}_n\)</span> we have <span class="math inline">\(x^n - 1 =0\)</span>, so <span class="math inline">\(x^n = 1\)</span>. Then <span class="math display">\[x \cdot a(x) = a_0 x+ a_1 x^2 + \cdots + a_{n-1} x^n = a_{n-1} + a_0 x+ a_1 x^2 + \cdots + a_{n-2}x^{n-1}.\]</span></p>
+</div>
+<p>From now on we shall think of words (and in particular codewords) as <span><em>both</em></span> vectors in <span class="math inline">\({\mathbb F}_q^n\)</span>, <span><em>and</em></span> polynomials in <span class="math inline">\({\bf R}_n\)</span> over <span class="math inline">\({\mathbb F}_q\)</span>.</p>
+<div class="proposition">
+<p>A code <span class="math inline">\(C \subseteq {\bf R}_n\)</span> is cyclic if and only if:</p>
+<ul>
+<li><p><span class="math inline">\(a(x), b(x) \in C \Longrightarrow a(x) + b(x) \in C,\)</span></p></li>
+<li><p><span class="math inline">\(a(x)\in C\)</span> and <span class="math inline">\(r(x) \in {\bf R}_n\)</span> <span class="math inline">\(\Longrightarrow r(x)a(x) \in C,\)</span></p></li>
+</ul>
+</div>
+<p>This looks very like the definition of a linear code: we check closure for adding and for multiplying. But now we are multiplying not just by a scalar <span class="math inline">\(\lambda\)</span> from <span class="math inline">\({\mathbb F}_q\)</span>; we are multiplying by any other polynomial in <span class="math inline">\({\bf R}_n\)</span>. This was not an option in <span class="math inline">\({\mathbb F}_q^n\)</span>. (You might also recognise that this proposition says that C is cyclic if and only if it is an <span><em>ideal</em></span> in the ring <span class="math inline">\({\bf R}_n\)</span>.)</p>
+<div class="proof">
+<p><span class="math inline">\(\Longrightarrow\)</span>: Suppose <span class="math inline">\(C\)</span> is cyclic. Then <span class="math inline">\(C\)</span> is linear so i) holds. For ii): Since any cyclic shift of <span class="math inline">\({\bf a}\in C\)</span> is also in <span class="math inline">\(C\)</span>, we know by Lemma <a href="#lem:cyclicshiftmultiply" data-reference-type="ref" data-reference="lem:cyclicshiftmultiply">[lem:cyclicshiftmultiply]</a> that for the corresponding <span class="math inline">\(a(x) \in C\)</span> in <span class="math inline">\({\bf R}_n\)</span>, <span class="math inline">\(x\cdot a(x)\)</span> is also in <span class="math inline">\(C\)</span>. But then also <span class="math inline">\(x^m \cdot a(x) \in C\)</span> for any <span class="math inline">\(m\)</span>. So if <span class="math inline">\(r(x) = r_0 + r_1 x + \cdots + r_{n-1}x^{n-1}\)</span>, then <span class="math inline">\(r(x)\cdot a(x) = r_0 a(x) + r_1 x \cdot a(x) + \cdots + r_{n-1}x^{n-1} \cdot a(x)\)</span> is also in <span class="math inline">\(C\)</span> (as <span class="math inline">\(C\)</span> is linear).</p>
+<p><span class="math inline">\(\Longleftarrow\)</span>: By i), and ii) with <span class="math inline">\(r(x)\)</span> a scalar <span class="math inline">\(r_o \in {\mathbb F}_q\)</span>, we know <span class="math inline">\(C\)</span> is linear. By Lemma <a href="#lem:cyclicshiftmultiply" data-reference-type="ref" data-reference="lem:cyclicshiftmultiply">[lem:cyclicshiftmultiply]</a>, any cyclic shift of <span class="math inline">\({\bf a}\in C\)</span> corresponds to <span class="math inline">\(x^m \cdot a(x)\)</span>; by ii) with <span class="math inline">\(r(x) = x^m\)</span> this is also in <span class="math inline">\(C\)</span>.</p>
+</div>
+<p>We can adapt the ‘span’ notation for cyclic codes:</p>
+<div class="definition">
+<p>For <span class="math inline">\(f(x) \in {\bf R}_n\)</span>, <span class="math inline">\(\langle f(x)\rangle = \{a(x)f(x) \;|\; a(x) \in {\bf R}_n \}\)</span>, the code <span><strong>generated by</strong></span> <span class="math inline">\(f(x)\)</span>.</p>
+</div>
+<div class="proposition">
+<p>For any <span class="math inline">\(f(x) \in {\bf R}_n\)</span>, <span class="math inline">\(\langle f(x)\rangle\)</span> is a cyclic code.</p>
+</div>
+<div class="proof">
+<p>It is very easy to check properties i) and ii) of Proposition 6.5.</p>
+</div>
+<div class="exampleqed">
+<p>Let us take <span class="math inline">\(x^2 +1\)</span> in <span class="math inline">\({\bf R}_3 = {\mathbb F}_2[x]/(x^3-1)\)</span>, and calculate all its multiples. We have to reduce the powers mod 3 (because <span class="math inline">\(x^3 = 1\)</span>), and also reduce coefficients mod 2. (Note that once we have the multiples of <span class="math inline">\(1, x\)</span>, and <span class="math inline">\(x^2\)</span>, we could instead get the others by adding.) <span class="math display">\[\begin{array}{c|l l}
+r(x) &amp; r(x) \cdot (x^2 + 1) \\
+\hline 
+0 &amp; 0        &amp; \\
+1 &amp; x^2 + 1  &amp; \\
+x &amp; x^3 + x &amp; = x+ 1 \\
+x+1&amp; x^3 + x^2 + x + 1 &amp; = x^2 + x \\
+x^2 &amp; x^4 + x^2 &amp; = x^2 + x \\
+x^2 + 1 &amp; x^4 + 2x^2 + 1 &amp; = x + 1 \\
+x^2 + x &amp; x^4 + x^3 + x^2 + x  &amp; = x^2 + 1 \\
+x^2 + x+ 1 &amp; x^4 + x^3 + 2x^2 + x+ 1 &amp; = 0
+\end{array}\]</span></p>
+<p>So <span class="math display">\[\begin{aligned}
+\langle f(x)\rangle &amp; = &amp;\{ 0,1+x, 1+x^2, x+x^2\} \subseteq {\bf R}_3 \\
+&amp; \longleftrightarrow &amp; \{(0,0,0),(1,1,0),(1,0,1),(0,1,1)\} \subseteq {\mathbb F}_2^3\end{aligned}\]</span></p>
+</div>
+<p>It turns out that any cyclic code can be made like this.</p>
+<div id="thm:cycliccodegenerator" class="theorem">
+<p> Let <span class="math inline">\(C\)</span> be a cyclic code in <span class="math inline">\({\bf R}_n\)</span> over <span class="math inline">\({\mathbb F}_q\)</span>, <span class="math inline">\({\mathbb C}\neq \{0\}\)</span>. Then:</p>
+<ul>
+<li><p>there is a unique polynomial <span class="math inline">\(g(x)\)</span>, which is the monic polynomial of smallest degree in <span class="math inline">\(C\)</span>.</p></li>
+<li><p><span class="math inline">\(C = \langle g(x) \rangle\)</span>.</p></li>
+<li><p><span class="math inline">\(g(x)\)</span> is a factor of <span class="math inline">\(x^n-1\)</span>.</p></li>
+</ul>
+</div>
+<div class="proof">
+<p>First note that if <span class="math inline">\(C\)</span> contains a polynomial <span class="math inline">\(r(x)\)</span> of degree <span class="math inline">\(d \geq 0\)</span>, then since <span class="math inline">\(C\)</span> is linear it must also contain a <span><em>monic</em></span> polynomial of degree <span class="math inline">\(d\)</span>, because we can always just multiply <span class="math inline">\(r(x)\)</span> by the right <span class="math inline">\(\lambda \in {\mathbb F}_q\)</span>.</p>
+<ul>
+<li><p>Clearly there is a monic polynomial of smallest degree. Suppose there are two such, <span class="math inline">\(g(x)\)</span> and <span class="math inline">\(h(x)\)</span>. Then let <span class="math inline">\(r(x) = g(x)- h(x) \in C\)</span>. Since the terms of highest degree will cancel, <span class="math inline">\(r(x)\)</span> has smaller degree. So we have a contradiction.</p></li>
+</ul>
+<p>Having proved i) it also follows that if <span class="math inline">\(r(x) \in C\)</span> has degree less than that of <span class="math inline">\(g(x)\)</span>, then <span class="math inline">\(r(x)\)</span> must in fact be 0 (which is regarded as having degree <span class="math inline">\(-\infty\)</span>, but is not monic). We use this idea in many proofs.</p>
+<ul>
+<li><p>Clearly <span class="math inline">\(\langle g(x) \rangle \subseteq C\)</span>. Now suppose <span class="math inline">\(a(x) \in C\)</span>. In <span class="math inline">\({\mathbb F}_q[x]\)</span>, we can always write <span class="math inline">\(a(x) = q(x)g(x) + r(x)\)</span>, where deg<span class="math inline">\((r(x)) \leq\)</span> deg<span class="math inline">\((g(x))\)</span>. But then, in <span class="math inline">\({\mathbb F}_q[x]\)</span> and in <span class="math inline">\({\bf R}_n\)</span> also, <span class="math inline">\(r(x) = a(x) - q(x)g(x)\)</span>, so <span class="math inline">\(r(x) \in C\)</span>, so <span class="math inline">\(r(x) = 0\)</span>, and <span class="math inline">\(a(x) = q(x)g(x) \in \langle g(x) \rangle\)</span>.</p></li>
+<li><p>In <span class="math inline">\({\mathbb F}_q[x]\)</span> , we can write <span class="math inline">\(x^n-1 = q(x)g(x) + r(x)\)</span>, where deg<span class="math inline">\((r(x)) &lt;\)</span> deg<span class="math inline">\((g(x))\)</span>. But in <span class="math inline">\({\bf R}_n\)</span>, <span class="math inline">\(x^n -1 = 0\)</span>, so <span class="math inline">\(r(x) = -q(x)g(x) \in \langle g(x) \rangle \subseteq C\)</span>. So again <span class="math inline">\(r(x) = 0\)</span>, and <span class="math inline">\(x^n-1 = q(x)g(x)\)</span>.</p></li>
+</ul>
+</div>
+<div class="definition">
+<p>In a cyclic code <span class="math inline">\(C\)</span>, the monic polynomial of least degree is the <span><strong>generator-polynomial</strong></span> of <span class="math inline">\(C\)</span>.</p>
+</div>
+<div class="exampleqed">
+<p>In the example above, <span class="math inline">\(C = \langle x^2 + 1 \rangle \subseteq {\bf R}_3\)</span>. But also, by Theorem <a href="#thm:cycliccodegenerator" data-reference-type="ref" data-reference="thm:cycliccodegenerator">[thm:cycliccodegenerator]</a> part ii), <span class="math inline">\(C = \langle x + 1 \rangle\)</span>. Although <span class="math inline">\(x^2 + 1\)</span> also generates <span class="math inline">\(C\)</span>, <span class="math inline">\(x+1\)</span> is <span class="math inline">\(C\)</span>’s generator-polynomial.</p>
+</div>
+<p>Theorem <a href="#thm:cycliccodegenerator" data-reference-type="ref" data-reference="thm:cycliccodegenerator">[thm:cycliccodegenerator]</a> part ii) says that every cyclic code is generated by a single polynomial. (In terms of ring theory, it is not just an ideal, but a<span> <em>principal</em></span> ideal.) Part i) says that this generator-polynomial is unique.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Part iii) says that every cyclic code’s generator-polynomial is a factor of <span class="math inline">\(x^n-1\)</span>. In fact, the converse is also true: every monic factor <span class="math inline">\(g(x)\)</span> of <span class="math inline">\(x^n-1\)</span> is the unique generator-polynomial of the cyclic code <span class="math inline">\(\langle g(x)\rangle\)</span>. (see Q94) It follows that distinct factors generate distinct codes. So we have a way to actually find all the cyclic codes in <span class="math inline">\({\bf R}_n\)</span>: take each (monic) divisor of <span class="math inline">\(x^n-1\)</span> in turn in as the generator-polynomial <span class="math inline">\(g(x)\)</span>.</p>
+<div class="exampleqed">
+<p>To find all binary cyclic codes of block-length 3, we consider <span class="math inline">\({\bf R}_3 = {\mathbb F}_2[x]/(x^3-1)\)</span>. In <span class="math inline">\({\mathbb F}_2[x], \; x^3 - 1 = (x+1)(x^2 + x + 1)\)</span>, and <span class="math inline">\(x^2 + x + 1\)</span> is irreducible. So we have four divisors, and four codes, but there is not much work to do: we have already worked out <span class="math inline">\(\langle x + 1 \rangle\)</span>, and for <span class="math inline">\(\langle x^2 + x + 1 \rangle\)</span> notice that <span class="math inline">\(x(x^2 + x + 1) =x^2 + x + 1\)</span>.</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">generator</th>
+<th style="text-align: center;">code in <span class="math inline">\({\bf R}_3\)</span></th>
+<th style="text-align: center;">code in <span class="math inline">\({\mathbb F}_2^3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">all of <span class="math inline">\({\bf R}_3\)</span></td>
+<td style="text-align: center;">all of <span class="math inline">\({\mathbb F}_2^3\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(x+1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{ 0,1+x, 1+x^2, x+x^2\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{(0,0,0),(1,1,0),(1,0,1),(0,1,1)\}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(x^2 + x+ 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{ 0, 1 + x + x^2 \}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{(0,0,0), (1,1,1)\}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(x^3-1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{0\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{(0,0,0)\}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You will recognise our very first code, yet again.</p>
+</div>
+</section>
+<section id="sec:cycliccodematrices" class="level2" data-number="1.4">
+<h2 data-number="6.4"><span class="header-section-number">6.4</span> Matrices for Cyclic Codes</h2>
+<p>Since our cyclic codes live in <span class="math inline">\({\mathbb F}_q^n\)</span> as well as in <span class="math inline">\({\bf R}_n\)</span>, we should be able to find generator- and check-matrices for them.</p>
+<div id="prop:cycliccodegeneratormatrix" class="proposition">
+<p> If <span class="math inline">\(C\)</span> is a cyclic code with generator-polynomial <span class="math inline">\(g(x) = g_0 + g_1x + \cdots + g_rx^r\)</span>, then dim<span class="math inline">\((C) = n-r\)</span>, and <span class="math inline">\(C\)</span> has generator-matrix <span class="math display">\[G  =\left(\begin{matrix}
+g_0 &amp; g_1 &amp; \cdots &amp; g_r &amp; &amp;  &amp;  &amp;\\
+ &amp; g_0 &amp; g_1 &amp; \cdots &amp; g_r &amp;  &amp; 0 &amp;\\
+&amp;  &amp; g_0 &amp; g_1 &amp; \cdots &amp; g_r &amp;    \\
+&amp; 0&amp;  &amp; \ddots  &amp; \ddots &amp;   &amp; \ddots&amp; \\
+ &amp; &amp; &amp; &amp; g_0 &amp; g_1 &amp; \cdots &amp; g_r \\
+\end{matrix}\right) \in M_{n-r, n}({\mathbb F}_q).\]</span></p>
+</div>
+<div class="proof">
+<p>We need to show that the rows of <span class="math inline">\(G\)</span> are a basis for <span class="math inline">\(C\)</span>. For linear independence, we note first that, as factors of <span class="math inline">\(x^n-1\)</span>, any generator-polynomial must have <span class="math inline">\(g_0 \neq 0\)</span>. Also, although <span class="math inline">\(G\)</span> is not in RREF, it is in echelon form, and the echelon of non-zero <span class="math inline">\(g_0\)</span>s ensures that the rows are linearly independent.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>We must also show that the rows of <span class="math inline">\(G\)</span> (in <span class="math inline">\({\mathbb F}_q^n\)</span>) generate every codeword in <span class="math inline">\(C\)</span>. In <span class="math inline">\({\bf R}_n\)</span>, they correspond to the polynomials <span class="math inline">\(g(x), xg(x), \ldots, x^{n-r-1}g(x)\)</span>. Now suppose <span class="math inline">\(a(x) \in C \subseteq {\bf R}_n\)</span>. In the proof of Theorem <a href="#thm:cycliccodegenerator" data-reference-type="ref" data-reference="thm:cycliccodegenerator">[thm:cycliccodegenerator]</a> ii) we showed that, in <span class="math inline">\({\mathbb F}_q[x]\)</span>, <span class="math inline">\(a(x) = q(x)g(x)\)</span>, which is a linear combination of just such <span class="math inline">\(x^ig(x)\)</span>. We only need to check that the degrees work out. Since deg<span class="math inline">\((a(x)) \leq n-1\)</span>, and deg<span class="math inline">\((g(x)) =r\)</span>, we must have deg<span class="math inline">\((q(x)) \leq n-r-1\)</span>. Thus <span class="math inline">\(a(x) = q(x)g(x) = q_0 g(x) + q_1xg(x) + \cdots + q_{n-r-1}x^{n-r-1}g(x)\)</span>, and this is exactly a linear combination of rows of <span class="math inline">\(G\)</span>, as required.</p>
+</div>
+<div class="exampleqed">
+<p>Let us find generator-matrices for all ternary cyclic codes of block-length 4, in <span class="math inline">\({\bf R}_4 = {\mathbb F}_3[x]/(x^4-1)\)</span>. First we must factor <span class="math inline">\(x^4-1\)</span> into irreducible polynomials: <span class="math inline">\(x^4 -1 = (x^2 -1)(x^2 +1) = (x-1)(x+1)(x^2 +1)\)</span>. There are <span class="math inline">\(2^3=8\)</span> products of these factors.</p>
+<p><span class="math inline">\(C_1\)</span> with generator polynomial <span class="math inline">\(g_1(x)=1\)</span> and generator matrix <span class="math inline">\(G_1=\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+ \end{pmatrix}\)</span>.</p>
+<p><span class="math inline">\(C_2\)</span> with generator polynomial <span class="math inline">\(g_2(x)=x+1\)</span> and generator matrix <span class="math inline">\(G_2=\begin{pmatrix}
+1 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 1 \\
+  \end{pmatrix}\)</span>.</p>
+<p><span class="math inline">\(C_3\)</span> with generator polynomial <span class="math inline">\(g_3(x)=x^2+1\)</span> and generator matrix <span class="math inline">\(G_3=\begin{pmatrix}
+1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 1 \\
+    \end{pmatrix}\)</span>.</p>
+<p><span class="math inline">\(C_4\)</span> with generator polynomial <span class="math inline">\(g_4(x)=(x+1)(x^2+1)=x^3+x^2+x+1\)</span> and generator matrix <span class="math inline">\(G_4=\begin{pmatrix}
+1 &amp; 1 &amp; 1 &amp; 1 \\
+    \end{pmatrix}\)</span>.</p>
+<p><span class="math inline">\(C_5\)</span> with generator polynomial <span class="math inline">\(g_5(x)=x^4-1=0\)</span> and generator matrix <span class="math inline">\(G_5=\begin{pmatrix}
+0 &amp; 0 &amp; 0 &amp; 0 \\
+    \end{pmatrix}\)</span>.</p>
+<p><span class="math inline">\(C_6\)</span> with generator polynomial <span class="math inline">\(g_6(x)=x-1\)</span> and generator matrix <span class="math inline">\(G_6=\begin{pmatrix}
+-1 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; -1 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; -1 &amp; 1 \\
+    \end{pmatrix}\)</span>.</p>
+<p><span class="math inline">\(C_7\)</span> with generator polynomial <span class="math inline">\(g_7(x)=(x-1)(x+1)=x^2-1\)</span> and generator matrix <span class="math inline">\(G_7=\begin{pmatrix}
+-1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 0 &amp; 1 \\
+    \end{pmatrix}\)</span>.</p>
+<p><span class="math inline">\(C_8\)</span> with generator polynomial <span class="math inline">\(g_8(x)=(x-1)(x^2+1)=x^3-x^2+x-1\)</span> and generator matrix <span class="math inline">\(G_7=\begin{pmatrix}
+-1 &amp; 1 &amp; -1 &amp; 1 \\
+    \end{pmatrix}\)</span>.</p>
+</div>
+<p>Codes <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_5\)</span> are trivial, and in fact they are dual to each other. (See also Q95.)</p>
+<p>To find check-matrices for the other six codes, we can easily row-reduce the generator-matrix to a standard form and then use Proposition 4.5. Alternatively, using Theorem <a href="#thm:cycliccodegenerator" data-reference-type="ref" data-reference="thm:cycliccodegenerator">[thm:cycliccodegenerator]</a> iii) we can define a check-polynomial for a code, and then make a check-matrix using that:</p>
+<div class="definition">
+<p>Let the cyclic <span class="math inline">\([n,k]\)</span>-code <span class="math inline">\(C \subseteq {\bf R}_n\)</span> have generator-polynomial <span class="math inline">\(g(x)\)</span>, and <span class="math inline">\(g(x)h(x) = x^n-1\)</span> in <span class="math inline">\({\mathbb F}_q[x]\)</span>. Then <span class="math inline">\(h(x)\)</span> is the <span><strong>check-polynomial</strong></span> of <span class="math inline">\(C\)</span>.</p>
+</div>
+<div class="lemma">
+<p>The check-polynomial <span class="math inline">\(h(x)\)</span> of a cyclic <span class="math inline">\([n,k]\)</span>-code is monic, of degree <span class="math inline">\(k\)</span>.</p>
+</div>
+<div class="proof">
+<p>Since <span class="math inline">\(x^n-1 = g(x)h(x)\)</span> and <span class="math inline">\(g(x)\)</span> is monic, <span class="math inline">\(h(x)\)</span> must be monic also. By Proposition <a href="#prop:cycliccodegeneratormatrix" data-reference-type="ref" data-reference="prop:cycliccodegeneratormatrix">[prop:cycliccodegeneratormatrix]</a>, if deg<span class="math inline">\((g(x)) = r\)</span>, then <span class="math inline">\(k=n-r\)</span>. But deg<span class="math inline">\((g(x)) +\)</span> deg<span class="math inline">\((h(x)) = n\)</span>, so deg<span class="math inline">\((h(x)) = k\)</span>.</p>
+</div>
+<p>Just as the generator-polynomial generates a cyclic code in <span class="math inline">\({\bf R}_n\)</span>, so the check-polynomial can be used to check whether a polynomial is in the code or not.</p>
+<div class="proposition">
+<p>Let <span class="math inline">\(C\)</span> be a cyclic code in <span class="math inline">\({\bf R}_n\)</span>, with check-polynomial <span class="math inline">\(h(x)\)</span>. Then <span class="math inline">\(c(x) \in C\)</span> if and only if <span class="math inline">\(c(x)h(x)= 0\)</span>, the zero-polynomial.</p>
+</div>
+<div class="proof">
+<p>First, let <span class="math inline">\(g(x)\)</span> be the generator-polynomial for <span class="math inline">\(C\)</span>, so <span class="math inline">\(g(x)h(x) = 0\)</span> in <span class="math inline">\({\bf R}_n\)</span>.</p>
+<p><span class="math inline">\(\Longrightarrow\)</span> If <span class="math inline">\(c(x) \in C\)</span>, then <span class="math inline">\(c(x) = a(x)g(x)\)</span> for some <span class="math inline">\(a(x) \in {\bf R}_n\)</span>. But then <span class="math inline">\(c(x)h(x) = a(x)g(x)h(x) =  a(x) \cdot 0 = 0\)</span>.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span> We know that in <span class="math inline">\({\mathbb F}_q[x]\)</span>, any <span class="math inline">\(c(x) = q(x)g(x) +r(x)\)</span>, with deg<span class="math inline">\((r(x)) &lt;\)</span> deg <span class="math inline">\((g(x)) = n-k\)</span>. Then if in <span class="math inline">\({\bf R}_n\)</span> we have <span class="math inline">\(c(x)h(x) = 0\)</span>, we know <span class="math inline">\(q(x)g(x)h(x) + r(x)h(x) =0\)</span>. But since <span class="math inline">\(g(x)h(x) = x^n-1 = 0\)</span>, it follows that <span class="math inline">\(r(x)h(x) =0\)</span> in <span class="math inline">\({\bf R}_n\)</span>. In <span class="math inline">\({\mathbb F}_q[x]\)</span>, this tells us only that <span class="math inline">\(r(x)h(x)\)</span> is a multiple of <span class="math inline">\(x^n-1\)</span>. But deg(<span class="math inline">\(r(x)h(x)) &lt; (n - k) + k = n\)</span>, so <span class="math inline">\(r(x)h(x)\)</span> is in fact 0 in <span class="math inline">\({\mathbb F}_q[x]\)</span>. Since this ring has no zero-divisors,<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> and <span class="math inline">\(h(x) \neq 0\)</span>, we do have <span class="math inline">\(r(x) =0\)</span>. So <span class="math inline">\(c(x) = a(x)g(x)\)</span> as required.</p>
+</div>
+<p>Suppose now that we make a matrix <span class="math inline">\(H\)</span> from <span class="math inline">\(h(x)\)</span> just as we made a generator-matrix <span class="math inline">\(G\)</span> for <span class="math inline">\(C\)</span> from <span class="math inline">\(g(x)\)</span>. Is <span class="math inline">\(H\)</span> a check-matrix for <span class="math inline">\(C\)</span>? If it is, then <span class="math inline">\(H\)</span> is also a generator-matrix for the dual code <span class="math inline">\(C^{\perp}\)</span>, and so <span class="math inline">\(h(x)\)</span> is the generator-polynomial for <span class="math inline">\(C^{\perp}\)</span>. Unfortunately, the truth is <span><strong>not</strong></span> quite that simple!</p>
+<div class="definition">
+<p>Let <span class="math inline">\(h(x) = h_0 + h_1x + \cdots + h_kx^k\)</span>. Then the <span><strong>reciprocal polynomial</strong></span> of <span class="math inline">\(h(x)\)</span> is <span class="math inline">\(\overline{h}(x) = h_k + h_{k-1}x + \cdots + h_0x^k\)</span>.</p>
+</div>
+<p>Can we say that <span class="math inline">\(\overline{h}(x) = x^k h(x^{-1})\)</span>? In <span class="math inline">\({\mathbb F}_q[x]\)</span>, there is no <span class="math inline">\(x^{-1}\)</span>. But in <span class="math inline">\({\bf R}_n\)</span>, since <span class="math inline">\(x^n = 1\)</span>, we can write <span class="math inline">\(x^{-1}\)</span> for <span class="math inline">\(x^{n-1}\)</span>, so this equation is valid.</p>
+<p>It turns out that if, instead of <span class="math inline">\(h(x)\)</span>, we use the reciprocal polynomial <span class="math inline">\(\overline{h}(x)\)</span> to make a matrix, we do indeed get a check-matrix for <span class="math inline">\(C\)</span> (and so a generator-matrix for <span class="math inline">\(C^{\perp}\)</span>).</p>
+<div class="proposition">
+<p>Let <span class="math inline">\(C\)</span> be a cyclic <span class="math inline">\([n,k]\)</span> code with check-polynomial <span class="math inline">\(h(x) = h_0 + h_1x + \cdots + h_kx^k\)</span>. Then</p>
+<ul>
+<li><p><span class="math inline">\(C\)</span> has check-matrix <span class="math display">\[H  =\left(\begin{matrix}
+h_k &amp; h_{k-1} &amp; \cdots &amp; h_0 &amp; &amp;  &amp;  &amp;\\
+ &amp; h_k &amp; h_{k-1} &amp; \cdots &amp; h_0 &amp; &amp; 0 &amp;\\
+ &amp; &amp; h_k &amp; h_{k-1} &amp; \cdots &amp; h_0 &amp; &amp; \\
+&amp; 0&amp;  &amp; \ddots  &amp; \ddots &amp;   &amp; \ddots&amp; \\
+ &amp; &amp; &amp; &amp; h_k &amp; h_{k-1} &amp; \cdots &amp; h_0\\
+\end{matrix}\right) \in M_{n-k, n}({\mathbb F}_q).\]</span></p></li>
+<li><p>The dual code <span class="math inline">\(C^{\perp}\)</span> is cyclic and generated by the reciprocal polynomial <span class="math inline">\(\overline{h}(x)\)</span>.</p></li>
+</ul>
+</div>
+<p>Part ii) almost says that <span class="math inline">\(\overline{h}(x)\)</span> is the generator-polynomial for <span class="math inline">\(C^{\perp}\)</span>, but strictly speaking <span class="math inline">\(\overline{h}(x)\)</span> might not be monic, so we would take <span class="math inline">\(h_0^{-1}\overline{h}(x)\)</span> instead.</p>
+<div class="proof">
+<ul>
+<li><p>We shall show that <span class="math inline">\(H\)</span> is a generator-matrix for <span class="math inline">\(C^{\perp}\)</span>. As <span class="math inline">\(h(x)\)</span> is monic, <span class="math inline">\(h_k = 1\)</span>, and so again the echelon form shows that the rows are independent, so they generate a code of dimension <span class="math inline">\(n-k\)</span>. This is the dimension of <span class="math inline">\(C^{\perp}\)</span>, so it will be enough to show that the rows of <span class="math inline">\(H\)</span> are in <span class="math inline">\(C^{\perp}\)</span>.</p>
+<p>Consider any codeword <span class="math inline">\(c(x) = c_0 + c_1 x + \cdots + c_{n-1}x^{n-1} \longleftrightarrow {\bf c}= (c_0, c_1, \ldots, c_{n-1})\)</span> in <span class="math inline">\(C\)</span>. Since <span class="math inline">\(h(x)\)</span> is the check-polynomial, we have <span class="math display">\[c(x)h(x) = (c_0 + c_1 x + \cdots + c_{n-1}x^{n-1})(h_0 + h_1x + \cdots + h_kx^k) = 0.\]</span> So all its coefficients must be 0, including:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">coeff of <span class="math inline">\(x^k\)</span></td>
+<td style="text-align: center;">:</td>
+<td style="text-align: left;"><span class="math inline">\(c_0 h_k + c_1 h_{k-1} + \cdots + c_k h_0\)</span></td>
+<td style="text-align: center;">=</td>
+<td style="text-align: left;"><span class="math inline">\({\bf c}\cdot\)</span> row 1 of <span class="math inline">\(H\)</span>,</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">coeff of <span class="math inline">\(x^{k+1}\)</span></td>
+<td style="text-align: center;">:</td>
+<td style="text-align: left;"><span class="math inline">\(c_1 h_k + c_2 h_{k-1} + \cdots + c_{k+1} h_0\)</span></td>
+<td style="text-align: center;">=</td>
+<td style="text-align: left;"><span class="math inline">\({\bf c}\cdot\)</span> row 2 of <span class="math inline">\(H\)</span>,</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">⋮</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">⋮</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">⋮</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">coeff of <span class="math inline">\(x^{n-1}\)</span></td>
+<td style="text-align: center;">:</td>
+<td style="text-align: left;"><span class="math inline">\(c_{n-k-1} h_k  + c_{n-k}h_{k-1}\cdots + c_{n-1} h_0\)</span></td>
+<td style="text-align: center;">=</td>
+<td style="text-align: left;"><span class="math inline">\({\bf c}\cdot\)</span> row <span class="math inline">\(n-k\)</span> of <span class="math inline">\(H\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Thus every row of <span class="math inline">\(H\)</span> is orthogonal to any <span class="math inline">\({\bf c}\)</span> in <span class="math inline">\(C\)</span>, as required.</p></li>
+<li><p>First, we check that <span class="math inline">\(\overline{h}(x)\)</span> is a factor of <span class="math inline">\(x^n - 1\)</span>. Since <span class="math inline">\(h(x)g(x) = x^n - 1\)</span>, we also know that <span class="math inline">\(h(x^{-1})g(x^{-1}) = x^{-n} - 1\)</span>. Multiplying both side by <span class="math inline">\(x^n\)</span>, we get <span class="math display">\[\begin{aligned}
+ x^k h(x^{-1})x^{n-k}g(x^{-1}) &amp; = &amp; x^n(x^{-n} - 1), \text{ so}\\
+ \overline{h}(x)x^{n-k}g(x^{-1}) &amp; = &amp; 1-x^n,\end{aligned}\]</span> and <span class="math inline">\(\overline{h}(x)\)</span> is a factor of <span class="math inline">\(x^n - 1\)</span> as required. Now if <span class="math inline">\(\overline{h}(x)\)</span> is monic then (by the remarks following Theorem <a href="#thm:cycliccodegenerator" data-reference-type="ref" data-reference="thm:cycliccodegenerator">[thm:cycliccodegenerator]</a> iii) it is the generator-polynomial of <span class="math inline">\(\langle \overline{h}(x) \rangle\)</span>, so by Proposition <a href="#prop:cycliccodegeneratormatrix" data-reference-type="ref" data-reference="prop:cycliccodegeneratormatrix">[prop:cycliccodegeneratormatrix]</a> <span class="math inline">\(\langle \overline{h}(x) \rangle\)</span> has generator-matrix <span class="math inline">\(H\)</span>, which by i) is the check-matrix for <span class="math inline">\(C\)</span>. Thus <span class="math inline">\(\langle \overline{h}(x) \rangle= C^\perp\)</span>. If <span class="math inline">\(\overline{h}(x)\)</span> is not monic then <span class="math inline">\(h_0^{-1}\overline{h}(x)\)</span> is the generator-polynomial of <span class="math inline">\(\langle \overline{h}(x) \rangle\)</span>, which by Proposition <a href="#prop:cycliccodegeneratormatrix" data-reference-type="ref" data-reference="prop:cycliccodegeneratormatrix">[prop:cycliccodegeneratormatrix]</a> has generator-matrix <span class="math inline">\(h_0^{-1}H\)</span>. But multiplying by <span class="math inline">\(h_0\)</span> is a row-operation, so <span class="math inline">\(H\)</span> is also a generator-matrix, and again <span class="math inline">\(\langle \overline{h}(x) \rangle= C^\perp\)</span>.</p></li>
+</ul>
+</div>
+</section>
+<section id="sec:RSCodes" class="level2" data-number="1.5">
+<h2 data-number="6.5"><span class="header-section-number">6.5</span> Reed-Solomon Codes</h2>
+<p>Recall from Section <a href="#sec:polynomialsoverfq" data-reference-type="ref" data-reference="sec:polynomialsoverfq">6.1</a> the vector space of polynomials of degree less than <span class="math inline">\(k\)</span> over the field <span class="math inline">\({\mathbb F}_q\)</span>: <span class="math display">\[{\mathbb F}_q[x]_{&lt;k} = \{ f(x) = a_0 + a_1 x + \ldots + a_{k-1} x^{k-1} \;|\;  a_i \in {\mathbb F}_q\}.\]</span> <span><strong>Notation:</strong></span> When it is clear what field we are using we can write simply <span class="math inline">\({\bf P}_k\)</span> for <span class="math inline">\({\mathbb F}_q[x]_{&lt;k}\)</span>.</p>
+<p>We shall construct the Reed-Solomon codes (RS Codes) as the image of a new kind of map from this space to <span class="math inline">\({\mathbb F}_q^n\)</span>. We shall find parameters for these codes using familiar facts about the roots of polynomials, and show that their duals are also RS codes. (There are interesting algorithms for decoding RS codes, but we shall not have time to discuss these.)</p>
+<div class="definition">
+<p>Let <span class="math inline">\(q \geq n \geq k \geq 0\)</span>, and choose two vectors <span class="math inline">\({\bf a}= (a_1, \ldots, a_n), {\bf b}= (b_1, \ldots, b_n) \in {\mathbb F}_q^n\)</span>, with the <span class="math inline">\(a_j\)</span> all distinct and the <span class="math inline">\(b_j\)</span> all non-zero. For <span class="math inline">\(f(x) \in {\bf P}_k\)</span>, let <span class="math inline">\(\varphi_{{\bf a}, {\bf b}}\,(f(x)) = (b_1 f(a_1), \ldots, b_nf(a_n))\)</span>. Then the <span><strong>Reed-Solomon Code</strong></span> RS<span class="math inline">\(_k ({\bf a},{\bf b})\)</span> is the image of the linear map <span class="math inline">\(\varphi_{{\bf a}, {\bf b}}:{\bf P}_k \longrightarrow {\mathbb F}_q^n\)</span></p>
+</div>
+<div class="exampleqed">
+<p>Take <span class="math inline">\(q=7, n=5, k=3\)</span>, and let <span class="math inline">\({\bf a}= (0,1,6,2,3), {\bf b}= (5,4,3,2,1) \in {\mathbb F}_7^5\)</span>. Then RS<span class="math inline">\(_3 ({\bf a},{\bf b})\)</span> is the image of the map <span class="math display">\[\varphi_{{\bf a},{\bf b}}:{\bf P}_3 \longrightarrow {\mathbb F}_7^5,\;\;\; \text{where}\;\;\; \varphi_{{\bf a},{\bf b}}(f(x)) = (5f(0),\; 4f(1),\; 3f(6),\;2f(2),\; 1f(3)).\]</span> For example, some codewords of RS<span class="math inline">\(_3 ({\bf a},{\bf b})\)</span> are: <span class="math display">\[\begin{aligned}
+\varphi_{{\bf a},{\bf b}}\,(1)&amp; = &amp;(5 \times 1,\; 4 \times 1,\;3 \times 1,\;2 \times 1,\;1 \times 1) = (5,4,3,2,1)\\
+\varphi_{{\bf a},{\bf b}}\,(x)&amp; = &amp;(5 \times 0,\; 4 \times 1,\;3 \times 6,\;2\times 2,\;1 \times 3) = (0,4,4,4,3)\\
+\varphi_{{\bf a},{\bf b}}\,(x^2)&amp; = &amp;(5 \times 0^2, 4 \times 1^2,3 \times 6^2,2\times 2^2,1 \times 3^2) = (0,4,3,1,2)\end{aligned}\]</span></p>
+</div>
+<p>These codewords were not picked at random - in fact, since <span class="math inline">\(\{1,x,x^2\}\)</span> is a basis for <span class="math inline">\({\bf P}_3\)</span>, they must form a spanning set for the image RS<span class="math inline">\(_3 ({\bf a},{\bf b})\)</span>. In fact, we can show that they form a basis.</p>
+<div id="prop:RSCodesParams" class="proposition">
+<p> i) <span>RS</span><span class="math inline">\(_k ({\bf a},{\bf b})\)</span> is an <span class="math inline">\([n,\,k,\,n-k+1]\)</span> code. ii) A generator matrix for <span>RS</span><span class="math inline">\(_k ({\bf a},{\bf b})\)</span> is <span class="math display">\[G = ( b_j a_j^i) = 
+ \left(\begin{matrix}
+b_1 a_1^0 &amp; b_2a_2^0  &amp; \cdots &amp; b_na_n^0 \\
+ b_1 a_1^1 &amp; b_2a_2^1  &amp; \cdots &amp; b_na_n^1 \\
+ \vdots &amp;              &amp; \ddots &amp; \vdots  \\
+ b_1 a_1^{k-1} &amp; b_2a_2^{k-1}  &amp; \cdots &amp; b_na_n^{k-1} \\
+\end{matrix}\right)
+= \left(\begin{matrix}
+  - &amp;  \varphi_{{\bf a},{\bf b}}\,(1) &amp; -\\
+ - &amp;  \varphi_{{\bf a},{\bf b}}\,(x) &amp; -\\
+  &amp; \vdots &amp;               \\
+ - &amp;  \varphi_{{\bf a},{\bf b}}\,(x^{k-1}) &amp; -\\
+\end{matrix}\right),\]</span> where <span class="math inline">\(0\leq i \leq k-1\)</span> and <span class="math inline">\(1 \leq j \leq n\)</span>.</p>
+</div>
+<div class="proof">
+<p>i) Clearly the block length is <span class="math inline">\(n\)</span>. We know that <span class="math inline">\(|{\bf P}_k| = q^k\)</span>, so to show that the dim(RS<span class="math inline">\(_k ({\bf a},{\bf b}))\)</span> is <span class="math inline">\(k\)</span> we need only show that <span class="math inline">\(\varphi_{{\bf a},{\bf b}}\)</span> is injective - that is, that ker<span class="math inline">\((\varphi_{{\bf a},{\bf b}}) = 0\)</span>, the zero-polynomial in <span class="math inline">\({\bf P}_k\)</span>. So suppose <span class="math inline">\(\varphi_{{\bf a}, {\bf b}}\,(f(x)) = (b_1 f(a_1), \ldots, b_nf(a_n)) = {\bf 0} \in {\mathbb F}_q^n\)</span>. Then since all <span class="math inline">\(b_j \neq 0\)</span>, we must have all <span class="math inline">\(f(a_j) =0\)</span>. So <span class="math inline">\(f(x)\)</span> has <span class="math inline">\(n\)</span> distinct roots in <span class="math inline">\({\mathbb F}_q\)</span>. But as deg<span class="math inline">\((f(x)) &lt; k\leq n\)</span>, this means that <span class="math inline">\(f(x) = 0 \in {\bf P}_k\)</span>, as required.</p>
+<p>To find <span class="math inline">\(d({\text RS}_k ({\bf a},{\bf b})\)</span>), we consider the weight of a codeword <span class="math inline">\(\varphi_{{\bf a}, {\bf b}}\,(f(x))\)</span>. This has zeros exactly where <span class="math inline">\(f(a_j) = 0\)</span>. Since deg<span class="math inline">\((f(x)) \leq k-1\)</span>, <span class="math inline">\(f(x)\)</span> has <span class="math inline">\(\leq k-1\)</span> roots, so <span class="math inline">\(\varphi_{{\bf a}, {\bf b}}\,(f(x))\)</span> has <span class="math inline">\(\leq k-1\)</span> zeros, so <span class="math inline">\(w(\varphi_{{\bf a}, {\bf b}}\,(f(x))) \geq n-(k-1)\)</span>. But by the Singleton bound <span class="math inline">\(d \leq n-k+1\)</span>, so we must have equality, and RS<span class="math inline">\(_k ({\bf a},{\bf b})\)</span> is MDS.</p>
+<p>ii) Since <span class="math inline">\(\varphi_{{\bf a},{\bf b}}\)</span> is linear and injective, and <span class="math inline">\(\{1,x,\ldots, x^{k-1}\}\)</span> is a basis for <span class="math inline">\({\bf P}_k\)</span>, <span class="math inline">\(\{\varphi_{{\bf a},{\bf b}}(1),\varphi_{{\bf a},{\bf b}}(x),\ldots,\varphi_{{\bf a},{\bf b}} (x^{k-1})\}\)</span> is a basis for RS<span class="math inline">\(_k ({\bf a},{\bf b})\)</span>.</p>
+</div>
+<div class="exampleqed">
+<p>By Proposition <a href="#prop:RSCodesParams" data-reference-type="ref" data-reference="prop:RSCodesParams">[prop:RSCodesParams]</a>, RS<span class="math inline">\(_3 ({\bf a},{\bf b})\)</span> in the example above is a <span class="math inline">\([5,3,3]\)</span>-code, with generator-matrix <span class="math inline">\(G = \left(\begin{matrix}
+5&amp;4 &amp;3 &amp;2 &amp;1 \\
+0&amp;4 &amp;4 &amp;4 &amp;3 \\
+0&amp;4 &amp;3 &amp;1 &amp;2 \\ 
+\end{matrix}\right)\)</span>.</p>
+<p>This <span class="math inline">\(G\)</span> is an ordinary generator-matrix, as in Chapter 3. We can encode using the map <span class="math inline">\(f_G:{\mathbb F}_7^3 \longrightarrow {\mathbb F}_7^5\)</span>, which sends <span class="math inline">\({\bf x}\)</span> to <span class="math inline">\({\bf x}G\)</span>. But how does <span class="math inline">\(f_G\)</span> relate to <span class="math inline">\(\varphi_{{\bf a},{\bf b}}\)</span>? I claim that <span class="math inline">\(\varphi_{{\bf a},{\bf b}}\)</span> is the same as first simply taking the coefficients <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> of <span class="math inline">\(f(x)\)</span>, and then doing <span class="math inline">\(f_G\)</span> (you may like to draw yourself a diagram of the various maps). That is, for any <span class="math inline">\(f(x) = A + Bx+ Cx^2 \in {\bf P}_3\)</span>,</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><span class="math inline">\(\varphi_{{\bf a},{\bf b}}\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="math inline">\({\bf P}_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\longrightarrow\)</span></td>
+<td style="text-align: left;"><span class="math inline">\({\mathbb F}_7^5\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><span class="math inline">\(f(x)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mapsto\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((5f(0), 4f(1), 3f(6),2f(2), 1f(3))\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>is the same as</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><span>take coeffs</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(f_G\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="math inline">\({\bf P}_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\longrightarrow\)</span></td>
+<td style="text-align: center;"><span class="math inline">\({\mathbb F}_7^3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\longrightarrow\)</span></td>
+<td style="text-align: left;"><span class="math inline">\({\mathbb F}_7^5\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><span class="math inline">\(A + Bx+ Cx^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mapsto\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((A,B,C)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mapsto\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((A,B,C)G\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>This works because <span class="math inline">\(\varphi_{{\bf a},{\bf b}}\)</span> is a linear map, so <span class="math display">\[\varphi_{{\bf a},{\bf b}}(A + Bx+ Cx^2) = A\varphi_{{\bf a},{\bf b}}(1)+ B\varphi_{{\bf a},{\bf b}}(x)+C\varphi_{{\bf a},{\bf b}}(x^2) = (A,B,C)\left(\begin{matrix}
+  - &amp;  \varphi_{{\bf a},{\bf b}}\,(1) &amp; -\\
+ - &amp;  \varphi_{{\bf a},{\bf b}}\,(x) &amp; -\\
+ 
+ - &amp;  \varphi_{{\bf a},{\bf b}}\,(x^2) &amp; -\\
+\end{matrix}\right);\]</span> explicitly, we have : <span class="math display">\[\begin{aligned}
+&amp; &amp; (A,B,C) \left(\begin{matrix}
+5&amp;4 &amp;3 &amp;2 &amp;1 \\
+0&amp;4 &amp;4 &amp;4 &amp;3 \\
+0&amp;4 &amp;3 &amp;1 &amp;2 \\ 
+\end{matrix}\right) \\
+&amp; = &amp;
+(5A+0B+0C,\; 4A+4B+4C, \;3A+4B+C,\; 2A+4B+1C,\; 1A+3B+2C)\\
+&amp; =&amp; (5(A+0+0), 4(A+B+C), 3(A+B6+C6^2), 2(A+B2+C2^2), 1(A+B3+C3^2))\\
+&amp; = &amp; (5f(0),\; 4f(1),\; 3f(6),\;2f(2),\; 1f(3))\end{aligned}\]</span></p>
+</div>
+<p>If we fix <span class="math inline">\(q\)</span>, <span class="math inline">\(n\)</span>, <span class="math inline">\({\bf a}\)</span> and <span class="math inline">\({\bf b}\)</span>, but let <span class="math inline">\(k\)</span> run from 0 to <span class="math inline">\(n\)</span>, then we get a nested family of RS codes: <span class="math display">\[{\bf 0}  =  \text{RS}_0 ({\bf a},{\bf b}) \subset \text {RS}_1 ({\bf a},{\bf b}) \subset \ldots \subset \text{RS}_k ({\bf a},{\bf b}) \subset \ldots \subset \rm{RS}_{n-1} ({\bf a},{\bf b}) \subset \text{RS}_n ({\bf a},{\bf b}) = {\mathbb F}_q^n\]</span></p>
+<p>To get each generator-matrix, we add the row <span class="math inline">\(\varphi_{{\bf a},{\bf b}}(x^{k-1})\)</span> to the previous one. This process starts with the matrix for RS<span class="math inline">\(_1 ({\bf a},{\bf b})\)</span>, which is just <span class="math inline">\(\varphi_{{\bf a},{\bf b}}(1) =(b_1, \ldots, b_n) = {\bf b}\)</span>.</p>
+<div class="exampleqed">
+<p>Take <span class="math inline">\(q=7, n=5, {\bf a}= (0,1,6,2,3), {\bf b}= (5,4,3,2,1)\)</span> as above. Then if <span class="math inline">\(G_k\)</span> is the generator matrix for <span class="math inline">\(C_k = \text{RS}_k ({\bf a},{\bf b})\)</span>, we have:</p>
+<p><span class="math display">\[G_1 = \left(\begin{matrix}
+5&amp;4 &amp;3 &amp;2 &amp;1 \\
+\end{matrix}\right),\;\; G_2 = \left(\begin{matrix}
+5&amp;4 &amp;3 &amp;2 &amp;1 \\
+0&amp;4 &amp;4 &amp;4 &amp;3 \\
+\end{matrix}\right),\]</span> <span class="math display">\[G_3 = \left(\begin{matrix}
+5&amp;4 &amp;3 &amp;2 &amp;1 \\
+0&amp;4 &amp;4 &amp;4 &amp;3 \\
+0&amp;4 &amp;3 &amp;1 &amp;2 \\ 
+\end{matrix}\right),\;\; G_4 = \left(\begin{matrix}
+5&amp;4 &amp;3 &amp;2 &amp;1 \\
+0&amp;4 &amp;4 &amp;4 &amp;3 \\
+0&amp;4 &amp;3 &amp;1 &amp;2 \\ 
+0&amp;4 &amp;4 &amp;2 &amp;6 \\
+\end{matrix}\right).\]</span></p>
+</div>
+<p>Is the dual of an RS code also an RS code? That is, given RS<span class="math inline">\(_k ({\bf a},{\bf b})\)</span> can we find <span class="math inline">\({\bf a}&#39;\)</span> and <span class="math inline">\({\bf b}&#39;\)</span> such that [RS<span class="math inline">\(_k ({\bf a},{\bf b})]^\perp =\)</span> RS<span class="math inline">\(_{n-k} ({\bf a}&#39;,{\bf b}&#39;)\)</span>? The answer is yes, and moreover <span class="math inline">\({\bf a}&#39; ={\bf a}\)</span>. In general <span class="math inline">\({\bf b}&#39;\)</span> is different from <span class="math inline">\({\bf b}\)</span>, so we shall call it <span class="math inline">\({\bf c}\)</span>, but the same <span class="math inline">\({\bf c}\)</span> works for any <span class="math inline">\(k\)</span>.</p>
+<div id="prop:RSDual" class="proposition">
+<p> For any two vectors <span class="math inline">\({\bf a}= (a_1, \ldots, a_n), {\bf b}= (b_1, \ldots, b_n) \in {\mathbb F}_q^n\)</span>, with the <span class="math inline">\(a_j\)</span> all distinct and the <span class="math inline">\(b_j\)</span> all non-zero, i) there is some <span class="math inline">\({\bf c}= (c_1, \ldots, c_n)\)</span> with all <span class="math inline">\(c_j \neq 0\)</span>, such that, for all <span class="math inline">\(1 \leq k \leq n-1\)</span>,<span class="math display">\[[\text{RS}_k ({\bf a},{\bf b})]^\perp = \text{RS}_{n-k} ({\bf a},{\bf c}).\]</span> ii) <span class="math inline">\({\bf c}\)</span> can be found as the <span class="math inline">\(1 \times n\)</span> check-matrix for <span>RS</span><span class="math inline">\(_{n-1} ({\bf a},{\bf b})\)</span>.</p>
+</div>
+<p>This proposition says that, once we have found <span class="math inline">\({\bf c}\)</span>, we can write down generator-matrices for all the [RS<span class="math inline">\(_k ({\bf a},{\bf b})]^\perp, 0 \leq k \leq n\)</span>. (These dual codes are also nested, but in the opposite order...) The matrices are of course also check-matrices for the original RS<span class="math inline">\(_k ({\bf a},{\bf b})\)</span> codes.</p>
+<div class="exampleqed">
+<p>Let us use Proposition <a href="#prop:RSDual" data-reference-type="ref" data-reference="prop:RSDual">[prop:RSDual]</a> to find the dual code for our code <span class="math inline">\(C_3\)</span> = RS<span class="math inline">\(_3 ({\bf a},{\bf b})\)</span> in the examples above. We use the <span class="math inline">\(G \longleftrightarrow H\)</span> algorithm to find the check-matrix for <span class="math inline">\(C_4\)</span>. The RREF of <span class="math inline">\(G_4\)</span> is <span class="math inline">\(\left(\begin{matrix}
+1&amp;0 &amp;0 &amp;0 &amp;5 \\
+0&amp;1 &amp;0 &amp;0 &amp;2 \\
+0&amp;0 &amp;1 &amp;0 &amp;2 \\ 
+0&amp;0 &amp;0 &amp;1 &amp;2 \\
+\end{matrix}\right)\)</span>, of form <span class="math inline">\((I|A)\)</span>, so the check matrix is <span class="math inline">\((2,5,5,5,1)\)</span>, and this is our vector <span class="math inline">\({\bf c}\)</span>. So then [RS<span class="math inline">\(_3 ({\bf a},{\bf b})]^\perp =\)</span> RS<span class="math inline">\(_2({\bf a}, {\bf c})\)</span> has generator-matrix <span class="math display">\[\left(\begin{matrix}
+  - &amp;  \varphi_{{\bf a},{\bf c}}\,(1) &amp; -\\
+ - &amp;  \varphi_{{\bf a},{\bf c}}\,(x) &amp; -\\
+\end{matrix}\right) = 
+\left(\begin{matrix}
+ 2 \times 1,\; 5 \times 1,\;5 \times 1,\;5 \times 1,\;1 \times 1 \\
+ 2 \times 0,\; 5 \times 1,\;5 \times 6,\;5 \times 2,\;1 \times 3\\
+\end{matrix}\right)
+= \left(\begin{matrix}
+ 2 ,\; 5,\;5,\;5 ,\;1 \\
+ 0,\; 5,\;2,\;3,\; 3\\
+\end{matrix}\right).\]</span></p>
+</div>
+<div class="proof">
+<p> We consider first the case <span class="math inline">\(k= n-1\)</span>. Let <span class="math inline">\({\bf c}\)</span> be the <span class="math inline">\(1 \times n\)</span> check-matrix for RS<span class="math inline">\(_{n-1} ({\bf a},{\bf b})\)</span>. We must show that [RS<span class="math inline">\(_{n-1} ({\bf a},{\bf b})]^\perp =\)</span> RS<span class="math inline">\(_1({\bf a}, {\bf c})\)</span>. First, RS<span class="math inline">\(_1({\bf a}, {\bf c})\)</span> is defined only if all <span class="math inline">\(c_j \neq 0\)</span>. But this is true: by Proposition <a href="#prop:RSCodesParams" data-reference-type="ref" data-reference="prop:RSCodesParams">[prop:RSCodesParams]</a>, <span class="math inline">\(d({\rm RS}_k ({\bf a},{\bf b})) = n -(n-1) +1 = 2\)</span>. So <span class="math inline">\({\bf c}\)</span>, which is the check-matrix for this code, has no zero columns. Thus RS<span class="math inline">\(_1({\bf a}, {\bf c})\)</span> exists; both it and [RS<span class="math inline">\(_{n-1} ({\bf a},{\bf b})]^\perp\)</span> have <span class="math inline">\({\bf c}\)</span> as generator-matrix, so they must be the same code.</p>
+<p>Note also that for any <span class="math inline">\(f(x) \in {\bf P}_{n-1}\)</span>, since <span class="math inline">\(\varphi_{{\bf a},{\bf b}}(f(x)) \in {\rm RS}_{n-1} ({\bf a},{\bf b})\)</span>, and <span class="math inline">\({\bf c}\)</span> is the check-matrix for RS<span class="math inline">\(_{n-1} ({\bf a},{\bf b})\)</span>, we have <span class="math display">\[\sum_{j=1}^n b_jc_jf(a_j) = (b_1 f(a_1), \ldots, b_nf(a_n))\cdot(c_1, c_2, \ldots,c_n)=\varphi_{{\bf a},{\bf b}}(f(x)) \cdot {\bf c}= 0\]</span> Now we consider RS<span class="math inline">\(_k ({\bf a},{\bf b})\)</span> for any <span class="math inline">\(1 \leq k\leq n-1\)</span>. Since dim([RS<span class="math inline">\(_k ({\bf a},{\bf b})]^\perp) = n-k =\)</span> dim(RS<span class="math inline">\(_{n-k} ({\bf a},{\bf c})\)</span>), it is enough to show that RS<span class="math inline">\(_{n-k} ({\bf a},{\bf c}) \subseteq\)</span> [RS<span class="math inline">\(_k ({\bf a},{\bf b})]^\perp\)</span>. That is, we must show that any codeword <span class="math inline">\(\varphi_{{\bf a},{\bf c}}(g(x)) \in {\rm RS}_{n-k} ({\bf a},{\bf c})\)</span> is orthogonal to every <span class="math inline">\(\varphi_{{\bf a},{\bf b}}(f(x)) \in {\rm RS}_k ({\bf a},{\bf b})\)</span>. So we consider <span class="math display">\[\varphi_{{\bf a},{\bf c}}(g(x)) \cdot \varphi_{{\bf a},{\bf b}}(f(x))  = (c_1 g(a_1), \ldots, c_ng(a_n)) \cdot(b_1 f(a_1), \ldots, b_nf(a_n)) = \sum_{j=1}^n c_jb_jg(a_j)f(a_j).\]</span> Now <span class="math inline">\(f(x) \in {\bf P}_k\)</span> has degree <span class="math inline">\(\leq k-1\)</span>, and <span class="math inline">\(g(x) \in {\bf P}_{n-k}\)</span> has degree <span class="math inline">\(\leq n-k-1\)</span>. So the polynomial <span class="math inline">\(fg(x) = f(x)g(x)\)</span> has degree <span class="math inline">\(\leq (k-1) + (n-k-1) = n-2\)</span>, so <span class="math inline">\(fg(x) \in {\bf P}_{n-1}\)</span>. So by the note above, <span class="math inline">\(\sum_{j=1}^n b_jc_jfg(a_j) = 0\)</span> as required.</p>
+</div>
+<p>Finally, for certain choices of <span class="math inline">\({\bf a},{\bf b}\in{\mathbb F}_q^n\)</span>, <span class="math inline">\(\text{RS}_k({\bf a},{\bf b})\)</span> is also a cyclic code.</p>
+<div id="prop:RScyclic" class="proposition">
+<p> Given a primitive <span class="math inline">\(n\)</span><sup>th</sup> root of unity <span class="math inline">\(\alpha\in{\mathbb F}_q\)</span> and an integer <span class="math inline">\(m\)</span>, let <span class="math display">\[\underline{\alpha}^{(m)} = \left( (\alpha^0)^m, (\alpha^1)^m, (\alpha^2)^m,\ldots, (\alpha^{n-1})^m \right)\in {\mathbb F}_q^n.\]</span> Then for <span class="math inline">\(0\le k \le n\)</span>, <span class="math inline">\({\rm{RS}}_k(\underline{\alpha}^{(1)},\underline{\alpha}^{(m)})\)</span> is cyclic.</p>
+</div>
+<div class="proof">
+<p> Note that cyclically permuting the positions of <span class="math inline">\(\underline{\alpha}^{(m)}\)</span> gives <span class="math display">\[\begin{aligned}
+		\left((\alpha^{n-1})^m, (\alpha^0)^m, (\alpha^1)^m, \ldots, (\alpha^{n-2})^m \right) &amp;= \alpha^{-m} \left( (\alpha^0)^m, (\alpha^1)^m, (\alpha^2)^m,\ldots, (\alpha^{n-1})^m \right) \\
+		&amp;= \alpha^{-m} \underline{\alpha}^{(m)},
+	\end{aligned}\]</span> so the cyclic permutation is equivalent to multiplying by some scalar <span class="math inline">\(\alpha^{-m}\in{\mathbb F}_q\)</span>. Now by Proposition <a href="#prop:RSCodesParams" data-reference-type="ref" data-reference="prop:RSCodesParams">[prop:RSCodesParams]</a>, for <span class="math inline">\(1\le i \le k\)</span>, <span class="math inline">\(1\le j\le n\)</span> the <span class="math inline">\((i,j)\)</span><sup>th</sup> element of a generator matrix of <span class="math inline">\(\text{RS}_k(\underline{\alpha}^{(1)},\underline{\alpha}^{(m)})\)</span> is <span class="math inline">\((\alpha^j)^m(\alpha^j)^i = (\alpha^j)^{m+i}\)</span>. The rows of this generator matrix are therefore <span class="math inline">\(\underline{\alpha}^{(m+i)}\)</span> for <span class="math inline">\(1\le i \le k\)</span>.</p>
+<p>Since cyclically permuting these rows is equivalent to multiplying by a scalar in <span class="math inline">\({\mathbb F}_q\)</span>, then the span of the rows of the generator matrix include all cyclic permutations of the rows of the generator matrix. Therefore, by linearity, the cyclic permutation of any <span class="math inline">\({\bf c}\in \text{RS}_k(\underline{\alpha}^{(1)},\underline{\alpha}^{(m)})\)</span> is also an element of the code.</p>
+</div>
+<div id="eg:cyclicRS" class="exampleqed">
+<p> Let us consider an example of a cyclic Reed-Solomon code in <span class="math inline">\({\mathbb F}_5^4\)</span>. We first note that <span class="math inline">\(2^1=2,\,2^2=4,\,2^3=3,\,2^4=1\)</span>, so 2 is a primitive 4<sup>th</sup> root of unity in <span class="math inline">\({\mathbb F}_5\)</span>. Then <span class="math inline">\(\underline{\alpha}^{(m)} = \left( 1^m, 2^m, 4^m, 3^m \right)\)</span>. Let us consider the code <span class="math inline">\(\text{RS}_2(\underline{\alpha}^{(1)},\underline{\alpha}^{(2)})\)</span>. Since <span class="math inline">\(\underline{\alpha}^{(1)} = \left( 1, 2, 4, 3 \right)\)</span>, and <span class="math inline">\(\underline{\alpha}^{(2)} = \left( 1, 4, 1, 4 \right)\)</span>, then by Proposition <a href="#prop:RSCodesParams" data-reference-type="ref" data-reference="prop:RSCodesParams">[prop:RSCodesParams]</a>, a generator matrix for <span class="math inline">\(\text{RS}_2(\underline{\alpha}^{(1)},\underline{\alpha}^{(2)})\)</span> is given by <span class="math display">\[G = \begin{pmatrix}
+		1 &amp; 4 &amp; 1 &amp; 4 \\
+		1 &amp; 3 &amp; 4 &amp; 2
+	\end{pmatrix}.\]</span></p>
+<p>By performing elementary row operations, we find another generator matrix for this code is <span class="math display">\[G&#39; = \begin{pmatrix}
+		3 &amp; 1 &amp; 1 &amp; 0 \\
+		0 &amp; 3 &amp; 1 &amp; 1
+	\end{pmatrix},\]</span> since <span class="math inline">\((1,4,1,4) = (2,4)G&#39;\)</span>, and <span class="math inline">\((1,3,4,2) = (2,2)G&#39;\)</span>. This is the generator matrix for the cyclic code with generator polynomial <span class="math inline">\(g(x)=(x-1)(x-3)\)</span>, which is a monic divisor of <span class="math inline">\(x^4-1\)</span>, and hence <span class="math inline">\(\text{RS}_2(\underline{\alpha}^{(1)},\underline{\alpha}^{(2)})\)</span> is a cyclic code by Theorem <a href="#thm:cycliccodegenerator" data-reference-type="ref" data-reference="thm:cycliccodegenerator">[thm:cycliccodegenerator]</a>.</p>
+</div>
+</section>
+</section>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Why the extra brackets round <span class="math inline">\(f(x)\)</span>, which we did not put round <span class="math inline">\(n\)</span>? One reason is that, in LaTeX, <span class="math inline">\({\mathbb F}_q[x]/x^2 + x+ 1\)</span> is not as clear as it can be on a board: are we dividing out just by the <span class="math inline">\(x^2\)</span>? Another reason, for those of you who did Algebra II, is that <span class="math inline">\((f(x))\)</span> is the notation for the <span><em>ideal</em></span> <span class="math inline">\(\{q(x)f(x)\;| \;q(x) \in F_q[x]\}\)</span>, and in fact that is exactly what we are dividing out by (regarding as 0).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>In contrast, a code usually has many different generator-<span><em>matrices</em></span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>If <span class="math inline">\(\Sigma \lambda_i\text{row}_i =0\)</span>, then we must have <span class="math inline">\(\lambda_1 = 0\)</span>, so <span class="math inline">\(\lambda_2 = 0\)</span>, ... .<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>It is an <span><em>integral domain</em></span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>the “obvious map <span class="math inline">\(\phi\)</span>" from Section <a href="#sec:polynomialsoverfq" data-reference-type="ref" data-reference="sec:polynomialsoverfq">6.1</a>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '5';
+	var subcounterOffset = '';
+	var problemCounter = '46';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+		var allLevels = document.querySelectorAll('[class^="level"]');
+		console.log(allLevels);
+		for (var level of allLevels) {
+			levelCount = level.getAttribute("data-number");
+			levelCount = String(parseFloat(levelCount)+(counterOffset));
+			level.setAttribute("data-number",levelCount);
+		} 
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+		egs = document.querySelectorAll(".example, .exampleqed");
+		var eg_no = problemCounter;
+		for (var eg of egs) {
+			eg.setAttribute("data-number",eg_no);
+			eg_no +=1
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
