@@ -252,92 +252,7 @@
 <div class="problem">
 <p>Consider the code <span class="math inline">\(C&#39; \subseteq {\mathbb F}_{11}^{10}\)</span>, <span class="math inline">\(C&#39; = \{ {\bf x}\in {\mathbb F}_{11}^{10} \;|\; x_1 + x_2  \cdots + x_{10} = 0\}\)</span>. Show that <span class="math inline">\(C&#39;\)</span> is equivalent to the code <span class="math inline">\(C\)</span> of Q50 in two ways: a) For any word <span class="math inline">\({\bf c}=(c_1, \ldots, c_{10}) \in C\)</span> apply suitable changes to make a word <span class="math inline">\({\bf c}&#39; \in C&#39;\)</span>. This shows that <span class="math inline">\(C\)</span> is equivalent to a subset of <span class="math inline">\(C&#39;\)</span>. Now do the same in reverse. b) Consider check matrices, and see Q59. c) If <span class="math inline">\(C\)</span> and <span class="math inline">\(C&#39;\)</span> are equivalent, and <span class="math inline">\(C&#39;\)</span> seems simpler, why did we use <span class="math inline">\(C\)</span> for books?</p>
 </div>
-<p>******The following questions are concerned with Chapter 5 of the notes - Perfect Codes.******</p>
-<div class="problem">
-<p>Let <span class="math inline">\(C_1 = \langle (0,1,1,1)\rangle\)</span>, and <span class="math inline">\(C_2 = \langle (0,1,1,1,), (1,0,1,2,)\rangle\)</span>, both codes in <span class="math inline">\({\mathbb F}_3^4\)</span>. Find parameters <span class="math inline">\([n,k,d]\)</span> for each code, and find <span class="math inline">\(|S({\bf x},1)|\)</span> for <span class="math inline">\({\bf x}\in {\mathbb F}_3^4\)</span>. Show that <span class="math inline">\(|C_1|\)</span>, <span class="math inline">\(|C_2|\)</span> and <span class="math inline">\(|S({\bf x},1)|\)</span> all divide <span class="math inline">\(|{\mathbb F}_3^4|\)</span>, but only one of the codes is perfect.</p>
-</div>
-<div class="problem">
-<p>For <span class="math inline">\({\bf x}\in {\mathbb F}_q^n\)</span>, find <span class="math inline">\(|S({\bf x},t)|\)</span> for <span class="math inline">\(t=0\)</span> and <span class="math inline">\(t=n\)</span>. Show that there is a perfect code for each value of <span class="math inline">\(t\)</span>, and give parameters <span class="math inline">\((n,M,d)\)</span> if possible. Are these “trivial" codes linear? Explain why they are not useful.</p>
-</div>
-<div class="problem">
-<p>A binary repetition code is <span class="math inline">\(C_n = \{(0, \ldots,0),(1, \ldots,1)\} \subset {\mathbb F}_2^n\)</span>. If <span class="math inline">\(n = 2t+1\)</span> is odd, show that <span class="math inline">\(C_n\)</span> is perfect. (<span><em>Hint</em></span>: Use well-known properties of Pascal’s triangle.)</p>
-</div>
-<div class="problem">
-<p>Let Ham<span class="math inline">\(_2(3)\)</span> have the standard check-matrix described in the lecture. Use the algorithm to decode the received words <span class="math inline">\({\bf y}_1 =(0,0,1,0,0,1,0)\)</span> and <span class="math inline">\({\bf y}_2 =(1,0,1,0,1,0,1)\)</span>.</p>
-</div>
-<div class="problem">
-<p>Construct check-matrices for these two Hamming codes: (In each case, write out a couple of the <span class="math inline">\(L_{\bf v}\)</span> sets, but you do not have to list them all.) a) Ham<span class="math inline">\(_5(2)\)</span> b) Ham<span class="math inline">\(_3(3)\)</span></p>
-</div>
-<div class="problem">
-<p>Let <span class="math inline">\(C\)</span> be the Ham<span class="math inline">\(_7(2)\)</span> code with check-matrix <span class="math inline">\(H =\left(\begin{matrix} 
- 1 &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\
- 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
-      \end{matrix}\right)\)</span>. Decode the received words <span class="math inline">\({\bf y}_1 = (1,0,2,0,3,0,4,0)\)</span> and <span class="math inline">\({\bf y}_2 = (0,6,0,5,0,4,0,3)\)</span>.</p>
-</div>
-<div class="problem">
-<p>Show that Ham<span class="math inline">\(_q(r)\)</span> is perfect.</p>
-</div>
-<div class="problem">
-<p>Explain why the decoding algorithm for <span class="math inline">\(q\)</span>-ary Hamming codes works.</p>
-</div>
-<div class="problem">
-<p>Let <span class="math inline">\(C  \subseteq {\mathbb F}_5^5\)</span> have check-matrix <span class="math inline">\(H =\left(\begin{matrix} 
- 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
- 0 &amp; 1 &amp; 1 &amp; 2 &amp; 3\\
-      \end{matrix}\right)\)</span>. Show that <span class="math inline">\(C\)</span> is not a Hamming code. Nonetheless, try to use the Hamming decoding algorithm to decode received words <span class="math inline">\({\bf y}_1 = (3,3,1,0,4)\)</span> and <span class="math inline">\({\bf y}_2 = (1,2,1,0,0)\)</span>. Why does the algorithm only sometimes work? When it doesn’t, can you still use the syndrome to find a nearest neighbour in the code for that word? Explain.</p>
-</div>
-<div class="problem">
-<p>Let <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> in <span class="math inline">\({\mathbb F}_3^5\)</span> have generator-matrices <span class="math inline">\(G_1 =\left(\begin{matrix} 
- 1&amp; 1 &amp; 0 &amp; 0 &amp; 0\\
-  0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
-      \end{matrix}\right)\)</span> and <span class="math inline">\(G_2 =\left(\begin{matrix} 
- 1 &amp; 2 &amp; 0 &amp; 0 &amp; 0\\
-  0 &amp; 0 &amp; 1 &amp; 2 &amp; 2\\
-      \end{matrix}\right)\)</span>. Show that these codes are (monomially) equivalent. Write down generator matrices for the extended codes <span class="math inline">\(\widehat{C_1}\)</span> and <span class="math inline">\(\widehat{C_2}\)</span>, and show that these codes have different <span class="math inline">\(d(\widehat{C_i})\)</span>, and so are not equivalent. (You could find check-matrices and use Theorem 4.11., or you could just think about possible weights of codewords.)</p>
-</div>
-<div class="problem">
-<p>Let <span class="math inline">\(C  \subseteq {\mathbb F}_5^5\)</span> have generator-matrix <span class="math inline">\(G =\left(\begin{matrix} 
- 2 &amp; 1 &amp; 1 &amp; 0 &amp; 0\\
-  3 &amp; 2 &amp; 0 &amp; 1 &amp; 1\\
-      \end{matrix}\right)\)</span>. By finding their minimum distances, show that the codes <span class="math inline">\(C^{\{5\}}\)</span> and <span class="math inline">\(C^{\{3\}}\)</span> are not equivalent.</p>
-</div>
-<div class="problem">
-<p>Let <span class="math inline">\(C \subseteq {\mathbb F}_3^4\)</span> have check-matrix <span class="math inline">\(H = \left(\begin{matrix}
-  1 &amp; 0 &amp; 1 &amp; 1 \\
-  0 &amp; 1 &amp; 1 &amp; 2\\
- \end{matrix}\right)\)</span>. a) Find a generator-matrix <span class="math inline">\(G\)</span> for <span class="math inline">\(C\)</span>, and check- and generator-matrices <span class="math inline">\(\widehat{H}\)</span> and <span class="math inline">\(\widehat{G}\)</span> for the extended code <span class="math inline">\(\widehat{C}\)</span>. b) Now puncture <span class="math inline">\(\widehat{C}\)</span> at each position in turn, to give generator-matrices <span class="math inline">\(G_{p1},\; G_{p2},\; G_{p3},\; G_{p4},\; G_{p5}\)</span> for codes <span class="math inline">\(C_{p1},\; C_{p2},\; C_{p3},\; C_{p4},\; C_{p5}\)</span>. c) Which of the six codes <span class="math inline">\(C,\; C_{p1},\; \ldots,\; C_{p5}\)</span> have the same minimum distance? Which are equivalent? Which are actually the same code? There are many ways to do all this, and you may find different matrices. But you should get the same answers for c). It might save you work to use a <span class="math inline">\(\widehat{G}\)</span> in form <span class="math inline">\(( A|I)\)</span> or <span class="math inline">\((I|A)\)</span>.</p>
-</div>
-<div class="problem">
-<p>Can we “extend" and “puncture" over <span class="math inline">\({\mathbb R}\)</span>? Let <span class="math inline">\(C\)</span> be the line <span class="math inline">\(y=2x\)</span> in <span class="math inline">\({\mathbb R}^2\)</span>. a) Find <span class="math inline">\(H\)</span> and <span class="math inline">\(G\)</span> such that <span class="math inline">\(C = \{{\bf x}\in {\mathbb R}^2 \;|\; {\bf x}H^t = 0\} = \{\lambda G\;|\; \lambda \in {\mathbb R}\}\)</span>. b) Now, in <span class="math inline">\({\mathbb R}^3\)</span>, consider the intersection of the plane <span class="math inline">\(y = 2x\)</span> with the plane <span class="math inline">\(x+y+z = 0\)</span>. Find a check-matrix <span class="math inline">\(\widehat{H}\)</span> and a generator-matrix <span class="math inline">\(\widehat{G}\)</span> for this line <span class="math inline">\(\widehat{C}\)</span>. c) Puncturing <span class="math inline">\(\widehat{C}\)</span> in each position gives three different lines, back in <span class="math inline">\({\mathbb R}^2\)</span> again. Specify them; in geometric terms, how are they related to <span class="math inline">\(\widehat{C}\)</span>?</p>
-</div>
-<div class="problem">
-<p>a) Show that a binary <span class="math inline">\([90,k,5]\)</span>-code, if it exists, could be perfect, and that if it is perfect, <span class="math inline">\(k  = 78\)</span>. The rest of this questions shows, by contradiction, that there is no such code. b) Show that, in <span class="math inline">\({\mathbb F}_2^r\)</span>, exactly half the vectors have odd weight, half even. (<span><em>Hint:</em></span> pair them up...) c) Suppose that a binary <span class="math inline">\([90,78,5]\)</span>-code exists. Then the columns of its check-matrix <span class="math inline">\(H\)</span> are <span class="math inline">\({\bf h}_1, \ldots, {\bf h}_{90}\)</span>, in <span class="math inline">\({\mathbb F}_2^{12}\)</span>. Now consider the following vectors in <span class="math inline">\({\mathbb F}_2^{12}\)</span>: <span class="math inline">\({\bf 0}\)</span>; the <span class="math inline">\({\bf h}_i\)</span>, <span class="math inline">\(1 \leq i \leq 90\)</span>; the <span class="math inline">\({\bf h}_i+{\bf h}_j\)</span>, <span class="math inline">\(1 \leq i  &lt;j \leq 90\)</span>. Show that all of these vectors are distinct. d) Let the set <span class="math inline">\(X = \{{\bf 0}\} \cup \{{\bf h}_i \;|\; 1 \leq i \leq 90\} \cup \{{\bf h}_i+{\bf h}_j\;|\; 1 \leq i  &lt;j \leq 90\}\)</span>. Show that <span class="math inline">\(X = {\mathbb F}_2^{12}\)</span>. e) Now let <span class="math inline">\(m\)</span> be the number of odd-weight columns of <span class="math inline">\(H\)</span>. In terms of <span class="math inline">\(m\)</span>, how many vectors in <span class="math inline">\(X\)</span> have odd weight? Use b) to reach a contradiction.</p>
-</div>
-<div class="problem">
-<p>Prove Lemma 5.12.</p>
-</div>
-<div class="problem">
-<p>Let <span class="math inline">\({\mathcal G}_{12}\)</span> be the ternary code with generator-matrix <span class="math display">\[G = [I_6 \;|\;A] =\left(\begin{matrix}
-1&amp; &amp; &amp; &amp; &amp; &amp;0&amp;1&amp;1&amp;1&amp;1&amp;1\\
- &amp;1&amp; &amp; &amp;0&amp; &amp;1&amp;0&amp;1&amp;2&amp;2&amp;1\\
- &amp; &amp;1&amp; &amp; &amp; &amp;1&amp;1&amp;0&amp;1&amp;2&amp;2\\
- &amp; &amp; &amp;1&amp; &amp; &amp;1&amp;2&amp;1&amp;0&amp;1&amp;2\\
- &amp;0&amp; &amp; &amp;1&amp; &amp;1&amp;2&amp;2&amp;1&amp;0&amp;1\\
- &amp; &amp; &amp; &amp; &amp;1&amp;1&amp;1&amp;2&amp;2&amp;1&amp;0\\
-\end{matrix}\right).\]</span> We write <span class="math inline">\({\bf a}_1, {\bf a}_2, \ldots ,{\bf a}_6\)</span> for the rows of <span class="math inline">\(A\)</span>. a) Show that <span class="math inline">\({\mathcal G}_{12}^ \perp ={\mathcal G}_{12}\)</span>, explaining briefly why we do not need to calculate 21 separate dot products. It follows that <span class="math inline">\({\mathcal G}_{12}\)</span> also has a generator matrix <span class="math inline">\([B \;|\; I_6]\)</span>; how do the rows of <span class="math inline">\(B\)</span> relate to the <span class="math inline">\({\bf a}_i\)</span>? b) Find the values of <span class="math inline">\(w({\bf a}_i + {\bf a}_j)\)</span> and <span class="math inline">\(w({\bf a}_i - {\bf a}_j)\)</span> for <span class="math inline">\(1 \le i&lt;j \le 6\)</span>. (Again, there are only a few cases to consider.) c) Show that if <span class="math inline">\({\bf c}\in {\mathcal G}_{12}, {\bf c}\neq {\bf 0}\)</span>, then <span class="math inline">\(w({\bf c}) \ge 6\)</span>. Do this by contradiction, writing <span class="math inline">\({\bf c}= ({\bf l}, {\bf r})\)</span>. d) To make <span class="math inline">\({\mathcal G}_{11}\)</span>, we puncture the code <span class="math inline">\({\mathcal G}_{12}\)</span> by removing the last column of <span class="math inline">\(G\)</span>. Show that <span class="math inline">\({\mathcal G}_{11}\)</span> is an <span class="math inline">\([11,6,5]\)</span> code.</p>
-</div>
-<div class="problem">
-<p>Constructing new objects in maths often combines deduction (it must be like this) with convenient choices (try one like this) and checking (does it work?). We shall construct a check-matrix <span class="math inline">\(H\)</span> for <span class="math inline">\({\mathcal G}_{11}\)</span> as follows:</p>
-<p>We can certainly choose to have <span class="math inline">\(H\)</span> in RREF, and (by choosing the right code from the equivalence class) we can assume <span class="math inline">\(H = [I_5\;|\;A]\)</span>. This time we work with <span><em>columns</em></span>, not rows: the columns of <span class="math inline">\(I_5\)</span> are <span class="math inline">\({\bf e}_1, \ldots, {\bf e}_5\)</span>; let the columns of <span class="math inline">\(A\)</span> be <span class="math inline">\({\bf a}_1, \ldots, {\bf a}_6\)</span>. By Theorem 4.11. we need to make <span class="math inline">\(A\)</span> so that no four columns of of <span class="math inline">\(H\)</span> are linearly dependent. This requirement tells us a lot about the <span class="math inline">\({\bf a}_i\)</span>. a) Show that all <span class="math inline">\(w({\bf a}_i) \ge 4\)</span>. b) Show that all <span class="math inline">\(w({\bf a}_i + {\bf a}_j)\)</span> and all <span class="math inline">\(w({\bf a}_i - {\bf a}_j)\)</span> must be <span class="math inline">\(\ge 3\)</span>. c) Suppose <span class="math inline">\(w({\bf a}_i) =  w({\bf a}_j) = 5\)</span>. Show that <span class="math inline">\(w({\bf a}_i + {\bf a}_j) +w({\bf a}_i - {\bf a}_j) = 5\)</span>. Deduce that we can have at most one <span class="math inline">\({\bf a}_i\)</span> of weight 5 in <span class="math inline">\(A\)</span>. d) Similarly, show that if <span class="math inline">\({\bf a}_i\)</span> and <span class="math inline">\({\bf a}_j\)</span> each have just one 0, these 0s must be in different rows.</p>
-<p>Using c) and d), we choose to have our weight 5 column be all 1s, and place the columns in a convenient order, taking <span class="math display">\[H = [I_5 \;|\;A] =\left(\begin{matrix}
-1&amp; &amp; &amp; &amp; &amp;  1&amp;*&amp;*&amp;*&amp;*&amp;0\\
- &amp;1&amp; &amp;0&amp; &amp;  1&amp;*&amp;*&amp;*&amp;0&amp;*\\
- &amp; &amp;1&amp; &amp; &amp;  1&amp;*&amp;*&amp;0&amp;*&amp;*\\
- &amp;0&amp; &amp;1&amp; &amp;  1&amp;*&amp;0&amp;*&amp;*&amp;*\\
- &amp; &amp; &amp; &amp;1&amp;  1&amp;0&amp;*&amp;*&amp;*&amp;*\\
-\end{matrix}\right),\]</span> where each * is either 1 or 2. e) Use b) and <span class="math inline">\({\bf a}_1\)</span> to show that each <span class="math inline">\({\bf a}_j , 2 \le j \le 6\)</span>, must have two 1s and two 2s. f) For <span class="math inline">\(2 \le j \le 6\)</span>, <span class="math inline">\({\bf a}_i\)</span> and <span class="math inline">\({\bf a}_j\)</span> will differ in at least two positions, because of their 0s. Show that they must differ in at least one other position, and match in at least one other position. g) Using e) and f), and working column by column, complete the matrix <span class="math inline">\(A\)</span>.</p>
-<p>Do we know that the matrix H we have constructed gives a code with <span class="math inline">\(d = 5\)</span>? h) Find a linearly dependent set of 5 columns. i) Any linearly dependent set of 4 columns would involve <span class="math inline">\(n_e\)</span> columns from <span class="math inline">\(I\)</span>, and <span class="math inline">\(n_a\)</span> columns from <span class="math inline">\(A\)</span>, with <span class="math inline">\(n_e+ n_a = 4\)</span>. Which values of <span class="math inline">\(n_a\)</span> have we ruled out? How much more checking would we need to do?</p>
-</div>
+
 <p>****The following questions are concerned with Chapter 6: Polynomials and Codes.****</p>
 <div class="problem">
 <p>a) Show in general (and by contradiction) that if in a ring <span class="math inline">\(R\)</span> we have <span class="math inline">\(a \neq 0, b\neq 0\)</span>, but <span class="math inline">\(ab=0\)</span>, then there is no <span class="math inline">\(a^{-1}\)</span> or <span class="math inline">\(b^{-1}\)</span> in <span class="math inline">\(R\)</span>. b) Use <span class="math inline">\(R = {\mathbb F}_2[x]/(x^3 + x^2 + x + 1)\)</span> to provide an example of this: for each (nontrivial) factor of <span class="math inline">\(x^3 + x^2 + x + 1\)</span>, find all its multiples in <span class="math inline">\(R\)</span>, to show that none of them is 1. (You are finding two rows of the multiplication table for <span class="math inline">\(R\)</span>.)</p>
@@ -551,6 +466,9 @@ function doNumbering() {
 		var partNo = 0;
 		for (var probsol of probsols) {
 			if (probsol.className == "problem"){
+				if (prob_no==60){
+					prob_no=77;
+				}
 				prob_no +=1;
 				partNo = 0;
 				probsol.setAttribute("data-number",prob_no);
