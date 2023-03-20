@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Codes III: Topic 4 Problems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Codes III: Topic 4 Problems</h1>
+</header>
+<p>******The following questions are concerned with Chapter 4 of the notes - Codes as Kernels.******</p>
+<div class="problem">
+<p>Let <span class="math inline">\(C \subseteq {\mathbb F}_5^6\)</span> have generator-matrix <span class="math inline">\(G =\left(\begin{matrix} 
+1 &amp; 4 &amp; 2 &amp; 0 &amp; 3 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 4 &amp; 2 \\
+      \end{matrix}\right)\)</span>. Find a basis for its dual code <span class="math inline">\(C^\perp\)</span>.</p>
+</div>
+<div class="solution">
+<p>Using the algorithm, we note that <span class="math inline">\(G\)</span> has a leading 1 in columns 1 and 4, so our basis is <span class="math inline">\(\{ {\bf v}_2, {\bf v}_3, {\bf v}_5, {\bf v}_6 \}\)</span>. We construct these vectors in two stages, *:<span class="math display">\[{\bf v}_2 = ( \;\;, 1, 0, \;\;,0,0)\;\;\;{\bf v}_3 = ( \;\;, 0,1, \;\;,0,0)\;\;\;{\bf v}_5 = ( \;\;, 0,0, \;\;,1,0)\;\;\;{\bf v}_6 = ( \;\;, 0,0, \;\;,0,1)\]</span> Then step **: <span class="math display">\[{\bf v}_2 = ( 1, 1, 0,0,0,0)\;\;\;{\bf v}_3 = (3, 0,1,0,0,0)\;\;\;{\bf v}_5 = (2, 0,0,1,1,0)\;\;\;{\bf v}_6 = (4, 0,0,3,0,1).\]</span></p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C \subseteq {\mathbb F}_7^6\)</span> have generator-matrix <span class="math inline">\(G =\left(\begin{matrix} 
+2 &amp; 1 &amp; 2 &amp; 1 &amp; 1 &amp; 2 \\
+3 &amp; 0 &amp; 6 &amp; 0 &amp; 3 &amp; 4 \\
+0 &amp; 1 &amp; 5 &amp; 5 &amp; 0 &amp; 1 \\
+      \end{matrix}\right)\)</span>. Find a generator-matrix for <span class="math inline">\(C^\perp\)</span>.</p>
+</div>
+<div class="solution">
+<p>Row-reduce <span class="math inline">\(G\)</span> to <span class="math inline">\(\left(\begin{matrix} 
+1  &amp; 0 &amp; 2 &amp; 0 &amp; 1 &amp; 6 \\
+0 &amp; 1 &amp; 5 &amp;0 &amp; 4 &amp; 3 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 2 &amp; 1 \\
+      \end{matrix}\right)\)</span>. Then for the algorithm <span class="math inline">\(L = \{1,2,4\}\)</span>, so we make vectors <span class="math inline">\({\bf v}_3, {\bf v}_5, {\bf v}_6\)</span> as above, and put them as rows in the matrix <span class="math inline">\(H = \left(\begin{matrix} 
+5 &amp; 2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+6 &amp; 3 &amp; 0 &amp;5 &amp; 1 &amp; 0 \\
+1 &amp; 4 &amp; 0 &amp; 6 &amp; 0 &amp; 1 \\
+      \end{matrix}\right)\)</span></p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C \subseteq {\mathbb F}_3^5\)</span> have generator-matrix <span class="math inline">\(G =\left(\begin{matrix} 
+ 0 &amp; 1 &amp; 2 &amp; 2 &amp; 0\\
+ 1 &amp; 1 &amp; 0 &amp; 2 &amp; 0\\
+ 2 &amp; 0 &amp; 1 &amp; 2 &amp; 1\\
+      \end{matrix}\right)\)</span>. Using the <span class="math inline">\(G \leftrightarrow H\)</span> algorithm, find a generator-matrix for <span class="math inline">\(C^\perp\)</span>. Could you have used Proposition 4.5? Would you have got the same answer?</p>
+</div>
+<div class="solution">
+<p>To use the <span class="math inline">\(G \leftrightarrow H\)</span> algorithm, we first need to put <span class="math inline">\(G\)</span> into RREF. Row reducing gives <span class="math display">\[\begin{aligned}
+	&amp;\begin{pmatrix}
+		0 &amp; 1 &amp; 2 &amp; 2 &amp; 0 \\
+		1 &amp; 1 &amp; 0 &amp; 2 &amp; 0 \\
+		2 &amp; 0 &amp; 1 &amp; 2 &amp; 1 
+	\end{pmatrix} \overset{P_{12}}{\longrightarrow}
+	\begin{pmatrix}
+		1 &amp; 1 &amp; 0 &amp; 2 &amp; 0 \\
+		0 &amp; 1 &amp; 2 &amp; 2 &amp; 0 \\
+		2 &amp; 0 &amp; 1 &amp; 2 &amp; 1
+	\end{pmatrix} \overset{A_{13}(1)}{\longrightarrow}
+	\begin{pmatrix}
+		1 &amp; 1 &amp; 0 &amp; 2 &amp; 0 \\
+		0 &amp; 1 &amp; 2 &amp; 2 &amp; 0 \\
+		0 &amp; 1 &amp; 1 &amp; 1 &amp; 1
+	\end{pmatrix} \\
+	\underset{A_{23}(2)}{\overset{A_{21}(2)}{\longrightarrow}}
+	&amp;\begin{pmatrix}
+		1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+		0 &amp; 1 &amp; 2 &amp; 2 &amp; 0 \\
+		0 &amp; 0 &amp; 2 &amp; 2 &amp; 1
+	\end{pmatrix} \overset{M_3(2)}{\longrightarrow}
+	\begin{pmatrix}
+		1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+		0 &amp; 1 &amp; 2 &amp; 2 &amp; 0 \\
+		0 &amp; 0 &amp; 1 &amp; 1 &amp; 2
+	\end{pmatrix}
+	\underset{A_{32}(1)}{\overset{A_{31}(2)}{\longrightarrow}}
+	\begin{pmatrix}
+		1 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\
+		0 &amp; 1 &amp; 0 &amp; 0 &amp; 2 \\
+		0 &amp; 0 &amp; 1 &amp; 1 &amp; 2
+	\end{pmatrix} = H&#39;,
+\end{aligned}\]</span> which is a check-matrix for <span class="math inline">\(C^{\perp}\)</span>. We now apply the algorithm to find a generator matrix for <span class="math inline">\(C^{\perp}\)</span>. We have <span class="math inline">\(L=\{1,2,3\}\)</span>, so we need vectors <span class="math inline">\(\vec{v}_4, \vec{v}_5\)</span>. Following the algorithm, these are given by <span class="math display">\[\begin{aligned}
+	{\bf v}_4 &amp;= (1,0,2,1,0) \\
+	{\bf v}_5 &amp;= (2,1,1,0,1),
+\end{aligned}\]</span> and so a generator matrix for <span class="math inline">\(C^{\perp}\)</span> is <span class="math display">\[G&#39; = \begin{pmatrix}
+	1 &amp; 0 &amp; 2 &amp; 1 &amp; 0 \\
+	2 &amp; 1 &amp; 1 &amp; 0 &amp; 1
+\end{pmatrix}.\]</span></p>
+<p>Since <span class="math inline">\(H&#39;\)</span> is in standard form, <span class="math inline">\(H&#39; = (I\ |\ A)\)</span>, by Proposition 4.5 a generator matrix is also given by <span class="math inline">\((-A^t\ |\ I)\)</span>. This gives the same generator matrix <span class="math inline">\(G&#39;\)</span> as found above.</p>
+</div>
+<div class="problem">
+<p>Prove the following (which we might call Proposition 4.5 a): If <span class="math inline">\(C \subseteq {\mathbb F}_q^n\)</span> has generator-matrix <span class="math inline">\(G = (A\;|\;I_k)\)</span>, then it has a check-matrix <span class="math inline">\(H =( I_{n-k} |\; -A^t)\)</span>. (<span> <em>Hint:</em></span> Consider the code <span class="math inline">\(C&#39;\)</span> which has generator-matrix <span class="math inline">\(H =( I_{n-k} |\; -A^t)\)</span>, and use Propositions 4.5 and 4.7.)</p>
+</div>
+<div class="solution">
+<p>By Proposition 4.5, if <span class="math inline">\(C&#39;\)</span> has generator-matrix <span class="math inline">\(H =( I_{n-k} |\; -A^t)\)</span>, then <span class="math inline">\((C&#39;)^\perp\)</span> has generator-matrix <span class="math inline">\(( -(-A^t)^t \; | \; I_{n-(n-k)}) = (A\;|\;I_k)\)</span>. So in fact <span class="math inline">\((C&#39;)^\perp = C\)</span>, so <span class="math inline">\(C&#39; =C^\perp\)</span>. Then by Proposition 4.7, the generator-matrix for <span class="math inline">\(C^\perp\)</span> is a check-matrix for <span class="math inline">\(C\)</span>.</p>
+</div>
+<div class="problem">
+<p>A code is a subspace of a vector space. The first example of this you ever met was lines through the origin in <span class="math inline">\({\mathbb R}^2\)</span>, which can be written as <span class="math inline">\(ax+by = 0\)</span>. Later you learned that such a line could also be given as any multiple of some vector, <span class="math inline">\(\lambda \binom{c}{d}\)</span>. a) Explain how these two ways correspond to specifying a code using either a generator- or a check-matrix. b) Give two ways to specify a line through <span class="math inline">\((0,0,0)\)</span> in <span class="math inline">\({\mathbb R}^3\)</span>, and explain how these also correspond to generator and check-matrices. c) What about planes in <span class="math inline">\({\mathbb R}^3\)</span>?</p>
+</div>
+<div class="solution">
+<p>a) The line <span class="math inline">\(ax + by = 0\)</span> is <span class="math inline">\(\left\{{\bf x}\in{\mathbb R}^2\ |\ {\bf x}H^t = {\bf 0}\right\}\)</span>, with <span class="math inline">\(H = \begin{pmatrix}a &amp; b\end{pmatrix}\)</span>. The line <span class="math inline">\(\lambda\binom{c}{d}\)</span> is <span class="math inline">\(\left\{{\bf x}G\ |\ {\bf x}\in {\mathbb R}\right\}\)</span>, with <span class="math inline">\(G = \begin{pmatrix}c &amp; d\end{pmatrix}\)</span>.</p>
+<p>b) A line in <span class="math inline">\({\mathbb R}^3\)</span> through the origin in direction <span class="math inline">\((d,e,f)\)</span> is <span class="math inline">\(\left\{{\bf x}G\ |\ {\bf x}\in {\mathbb R}\right\}\)</span>, with <span class="math inline">\(G = \begin{pmatrix}d &amp; e &amp; f\end{pmatrix}\)</span>. This can also be written as <span class="math inline">\(\frac{x}{d}=\frac{y}{e}=\frac{z}{f}\)</span>, so we have <span class="math inline">\(fx-dz=0\)</span> and <span class="math inline">\(fy-ez=0\)</span> (each of these defines a plane, and the line is the intersection of these two planes). So the line is also <span class="math inline">\(\left\{{\bf x}\in{\mathbb R}^3\ |\ {\bf x}H^t = {\bf 0}\right\}\)</span>, with <span class="math display">\[H = \begin{pmatrix}
+	f &amp; 0 &amp; -d \\
+	0 &amp; f &amp; -e
+	\end{pmatrix}.\]</span></p>
+<p>c) A plane in <span class="math inline">\({\mathbb R}^3\)</span> through <span class="math inline">\({\bf 0}\)</span> can be written as <span class="math inline">\(ax + by + cz = 0\)</span>, so it is <span class="math inline">\(\{ {\bf x}\in {\mathbb R}^3\ |\ {\bf x}H^t = {\bf 0} \}\)</span>, with <span class="math inline">\(H = \begin{pmatrix}a &amp; b &amp; c\end{pmatrix}\)</span>. It is also the span of two linearly independent vectors in the plane. For the plane above we could choose <span class="math inline">\({\bf v}_1 = (c, 0, -a)\)</span> and <span class="math inline">\({\bf v}_2 = (0, c, -b)\)</span>, and then the plane is <span class="math inline">\(\{ {\bf x}G\ |\ {\bf x}\in {\mathbb R}^3\}\)</span>, with <span class="math display">\[G = \begin{pmatrix}
+	c &amp; 0 &amp; -a \\
+	0 &amp; c &amp; -b
+	\end{pmatrix}.\]</span></p>
+</div>
+<div class="problem">
+<p>In each case, find a check-matrix and then a generator-matrix for the code. a) <span class="math inline">\(C = \{ (x_1, x_2, x_3, x_4)\in {\mathbb F}_2^4\;|\; x_1 + x_2 + x_4 = 0, \; x_3 + x_4 = 0 \}\)</span> b) <span class="math inline">\(C = \{ (x_1, x_2, x_3, x_4, x_5)\in {\mathbb F}_7^5\;|\; x_1 + x_2 + x_3 +x_4 +x_5= 0, \; x_1 + 2x_2 + 3x_3 +4x_4 +5x_5= 0 \}\)</span> c) <span class="math inline">\(C = \{ (x_1, x_2, x_3, x_4, x_5)\in {\mathbb F}_5^5\;|\; x_1 +  x_3 = 0, \; x_2 + x_4 = 0,\; 2x_1 + 3x_2  +x_5= 0\}\)</span></p>
+</div>
+<div class="solution">
+<p>In each case, we write down an “acting check-matrix" <span class="math inline">\(A\)</span> such that <span class="math inline">\(C= \{{\bf x}\in {\mathbb F}_q^n \; | \;{\bf x}A^t = 0\}\)</span>. We row-reduce it to RREF to be sure we have a check-matrix <span class="math inline">\(H\)</span>, and can then use the <span class="math inline">\(G \leftrightarrow H\)</span> algorithm to find a generator-matrix <span class="math inline">\(G\)</span>. Note that in all three cases, it turns out that <span class="math inline">\(A\)</span> did have linearly independent rows, and so was in fact also a check-matrix for <span class="math inline">\(C\)</span>. a) <span class="math inline">\(A =\left(\begin{matrix} 
+ 1 &amp; 1 &amp; 0 &amp; 1\\
+ 0 &amp; 0 &amp; 1  &amp; 1\\
+      \end{matrix}\right) = H\)</span> (already in RREF). Then put vectors <span class="math inline">\({\bf v}_2\)</span> and <span class="math inline">\({\bf v}_4\)</span> into <span class="math inline">\(G =\left(\begin{matrix} 
+ 1 &amp; 1 &amp; 0 &amp; 0\\
+ 1 &amp; 0 &amp; 1  &amp; 1\\
+      \end{matrix}\right)\)</span>. b) <span class="math inline">\(A =\left(\begin{matrix} 
+ 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5\\
+      \end{matrix}\right)\)</span> and <span class="math inline">\(H =\left(\begin{matrix} 
+ 1 &amp; 0 &amp; 6 &amp; 5 &amp; 4 \\
+ 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4\\
+      \end{matrix}\right)\)</span>. Using Proposition 4.5, <span class="math inline">\(G =\left(\begin{matrix} 
+ 1 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\
+ 2 &amp; 4 &amp; 0 &amp; 1 &amp; 0\\
+ 3 &amp; 3 &amp; 0 &amp; 0 &amp; 1\\
+      \end{matrix}\right)\)</span>. c) <span class="math inline">\(A =\left(\begin{matrix} 
+ 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+ 2 &amp; 3 &amp; 0 &amp; 0 &amp; 1\\
+      \end{matrix}\right) = (B \; | \; I_3)\)</span>. So by Proposition 4.5 in reverse, <span class="math inline">\(G = (I_2 \; |  -B^t) =\left(\begin{matrix} 
+ 1 &amp; 0 &amp; 4 &amp; 0 &amp; 3 \\
+ 0 &amp; 1 &amp; 0 &amp; 4 &amp; 2 \\
+      \end{matrix}\right)\)</span>.</p>
+</div>
+<div class="problem">
+<p>Until 2007, an ISBN (International Standard Book Number) was ten digits <span class="math inline">\(x_1 \dots x_{10}\)</span>, with <span class="math inline">\(0 \leq x_i \leq 9\)</span> for <span class="math inline">\(1\leq i\leq 9\)</span>, and <span class="math inline">\(0 \leq x_{10} \leq 10\)</span>, but writing <span class="math inline">\(X\)</span> for 10. It was also required that <span class="math inline">\(x_1 + 2x_2 + \cdots + 10x_{10} \equiv 0\)</span> mod 11. We can regard the ISBN numbers as a code <span class="math inline">\(C_{ISBN} \subseteq {\mathbb F}_{11}^{10}\)</span>. a) Why is <span class="math inline">\(C_{ISBN}\)</span> not a linear code? b) By thinking about codewords (that is, ISBN numbers) show that <span class="math inline">\(d(C_{ISBN}) \leq 2\)</span>, and then show that <span class="math inline">\(d(C_{ISBN}) \neq 1\)</span>. c) If instead we allow <span class="math inline">\(0 \leq x_i \leq 10\)</span> for <span class="math inline">\(1\leq i\leq 10\)</span>, we have a linear code <span class="math inline">\(C \subseteq {\mathbb F}_{11}^{10}\)</span>. Write down its check-matrix, and show using Theorem 4.11 that <span class="math inline">\(d(C) = 2\)</span>. d) One particularly common human error is to swap two adjacent digits. This is an error of weight two. Show that, nonetheless, for <span class="math inline">\(C\)</span> (or <span class="math inline">\(C_{ISBN}\)</span>) this error will be detected. What about swapping non-adjacent digits?</p>
+</div>
+<div class="solution">
+<p>a) For example , we have <span class="math inline">\({\bf c}= (2,9,0,0,0,0,0,0,0,0) \in C_{ISBN}\)</span> but <span class="math inline">\(5{\bf c}= (X,1,0,0,0,0,0,0,0,0) \ne C_{ISBN}\)</span>. (The problem is the restriction “<span class="math inline">\(0 \leq x_i \leq 9\)</span> for <span class="math inline">\(1\leq i\leq 9\)</span>".) b) We know <span class="math inline">\(d(C)\)</span> is the minimum weight of a codeword, and above we have <span class="math inline">\(w({\bf c}) = 2\)</span>. Suppose we had <span class="math inline">\({\bf c}&#39;\)</span> with <span class="math inline">\(w({\bf c}&#39;) = 1\)</span>. Then <span class="math inline">\({\bf c}&#39;\)</span> has <span class="math inline">\(x_j \neq 0\)</span> but <span class="math inline">\(x_i= 0\)</span> for <span class="math inline">\(i \neq j\)</span>. So the equation gives <span class="math inline">\(jx_j = 0\)</span>, which is impossible because 11 is prime. c) <span class="math inline">\(H = (1 \; 2 \;3 \;4 \;5 \;6\; 7 \;8 \;9 \;X)\)</span>. No zero columns, but any two columns are linearly dependent (eg <span class="math inline">\(3+8 = 0\)</span>), so <span class="math inline">\(d(C)= 2\)</span>. d) Suppose <span class="math inline">\({\bf c}= (c_1, \ldots, c_j,c_{j+1}, \ldots, c_{10})\)</span> is received as <span class="math inline">\({\bf y}= (c_1, \ldots, c_{j+1},c_j, \ldots, c_{10})\)</span>, with <span class="math inline">\(c_j \neq c_{j+1}\)</span>. Then the error-vector is <span class="math inline">\({\bf e}= {\bf y}- {\bf c}= (0, \ldots, c_{j+1}-c_j, c_j-c_{j+1},\ldots,0 )\)</span>. So <span class="math inline">\({\bf y}H^t = {\bf e}H^t = j(c_{j+1}-c_j) + (j+1)( c_j-c_{j+1})= c_j-c_{j+1} \neq 0\)</span>. So <span class="math inline">\(S({\bf y})\neq 0\)</span>, and the swap is detected. This also works for non-adjacent digits.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C = \subseteq {\mathbb F}_2^5\)</span> have check-matrix <span class="math inline">\(H =\left(\begin{matrix} 
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0\\
+ 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+ 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+      \end{matrix}\right)\)</span>. Make a syndrome look-up table for <span class="math inline">\(C\)</span>, and decode the received words <span class="math inline">\({\bf y}_1 =(1,0,0,1,1)\)</span> and <span class="math inline">\({\bf y}_2 = (0,1,1,1,0)\)</span>. Show how a different syndrome look-up table could decode <span class="math inline">\({\bf y}_2\)</span> differently. Why could this not happen for <span class="math inline">\({\bf y}_1\)</span>?</p>
+</div>
+<div class="solution">
+<p>We could make the table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Syndrome <span class="math inline">\(S({\bf x})\)</span></th>
+<th style="text-align: center;">Error-vector <span class="math inline">\({\bf x}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((0,0,0)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,0,0,0,0)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((0,1,1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((1,0,0,0,0)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((1,0,1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,1,0,0,0)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((1,1,0)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,0,1,0,0)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((1,0,0)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,0,0,1,0)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((0,0,1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,0,0,0,1)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((0,1,0)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((1,0,0,0,1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((1,1,1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((1,0,0,1,0)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>To decode <span class="math inline">\({\bf y}_1\)</span>, we calculate <span class="math inline">\(S({\bf y}_1)=(1,1,0)\)</span>. Using the above lookup table we should then decode <span class="math inline">\({\bf y}_1\)</span> as <span class="math inline">\({\bf y}_1 - (0,0,1,0,0) = (1,0,1,1,1) = {\bf c}_1\)</span>. Similarly, we have <span class="math inline">\(S({\bf y}_2)=(1,1,1)\)</span> and so should decode <span class="math inline">\({\bf y}_2\)</span> as <span class="math inline">\({\bf y}_2 - (1,0,0,1,0) = (1,1,1,0,0) = {\bf c}_2\)</span>.</p>
+<p>An alternate syndrome lookup table would be to replace the last two rows with</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((0,1,0)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,0,1,1,0)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((1,1,1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,0,1,0,1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>This would not affect <span class="math inline">\({\bf y}_1\)</span>, as it is only distance 1 away from <span class="math inline">\({\bf c}_1\)</span>, which is its unique nearest neighbour. However, using the alternate table we would decode <span class="math inline">\({\bf y}_2\)</span> as <span class="math inline">\({\bf y}_2 - (0,0,1,0,1) = (0,1,0,1,1) = {\bf c}_3\)</span>. Both <span class="math inline">\({\bf c}_2\)</span> and <span class="math inline">\({\bf c}_3\)</span> are nearest neighbours of <span class="math inline">\({\bf y}_2\)</span>. By looking at <span class="math inline">\(H\)</span> we can see that <span class="math inline">\(d(C)=3\)</span> using Theorem 4.11, so we know that <span class="math inline">\(C\)</span> can detect 2 errors, but can only uniquely correct 1 error.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(C= \{{\bf x}\in {\mathbb F}_5^4 \; | \;{\bf x}H^t = 0\}\)</span>, where <span class="math inline">\(H= \left(\begin{matrix} 
+ 1 &amp; 0 &amp; 2 &amp; 3\\
+ 0 &amp; 1 &amp; 3 &amp; 1\\
+ \end{matrix}\right)\)</span>. a) Make a shortened syndrome look-up table for <span class="math inline">\(C\)</span>, and decode the received words <span class="math inline">\({\bf y}_1 = (1,2,3,4)\)</span>, <span class="math inline">\({\bf y}_2 = (3,1,2,0)\)</span>, and <span class="math inline">\({\bf y}_3 = (2,4,3,1)\)</span>. b) A normal look-up table has <span class="math inline">\(q^{n-k}\)</span> rows. How many rows in this kind of shortened table?</p>
+</div>
+<div class="solution">
+<p>a)</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Syndrome <span class="math inline">\(S({\bf x})\)</span></th>
+<th style="text-align: center;">Error-vector <span class="math inline">\({\bf x}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((0,0)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,0,0,0)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\lambda(1,0)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda(1,0,0,0)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\lambda(0,1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda(0,0,1,0)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\lambda(2,3)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda(0,0,1,0)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\lambda(3,1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda(0,0,0,1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\lambda(1,1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda(1,1,0,0)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\lambda(1,3)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda(1,3,0,0)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(S(y_1) = y_1 H^t = (4,0) = 4(1,0).\)</span> So we assume the error was <span class="math inline">\(4(1,0,0,0)\)</span>, and decode to <span class="math inline">\((1,2,3,4)-(4,0,0,0) = (2,2,3,4)\)</span>.<span class="math inline">\(S(y_2)  = (2,2) = 2(1,1).\)</span> So we decode to <span class="math inline">\((3,1,2,0)-2(1,1,0,0) = (1,4,2,0)\)</span>. <span class="math inline">\(S(y_3)  = (1,4) = 3(2,3).\)</span> So we decode to <span class="math inline">\((2,4,3,1)-3(0,0,1,0) = (2,4,0,1)\)</span>. b) We still have the zero syndrome. But all the <span class="math inline">\(q^{n-k}\)</span> other syndromes are grouped into sets of <span class="math inline">\(q-1\)</span> multiples. So we get <span class="math inline">\(\frac{q^{n-k}-1}{(q-1)} + 1\)</span>. For this code, it’s <span class="math inline">\(\frac{5^2 -1}{5-1} +1 = 7\)</span> rows.</p>
+</div>
+<div class="problem">
+<p>Show that syndrome decoding is nearest-neighbour decoding. (Do this by contradiction - similar to the proof for array decoding)</p>
+</div>
+<div class="solution">
+<p>We receive <span class="math inline">\({\bf y}\)</span>, use the syndrome look-up table to find <span class="math inline">\({\bf x}\)</span> such that <span class="math inline">\(S({\bf x}) - S({\bf y})\)</span>, and decode to <span class="math inline">\({\bf c}= {\bf y}-{\bf x}\)</span>. Now suppose (for a contradiction) that <span class="math inline">\({\bf y}\)</span> has a nearer neighbour <span class="math inline">\({\bf c}&#39;\)</span>, so <span class="math inline">\(d({\bf y},{\bf c}&#39;) &lt; d({\bf y},{\bf c})\)</span>. In other words, <span class="math inline">\({\bf y}\)</span> also <span class="math inline">\(= {\bf c}&#39; + {\bf x}&#39;\)</span>, and <span class="math inline">\(w({\bf x}&#39;) &lt; w({\bf x})\)</span>. Now <span class="math inline">\(S({\bf x}&#39;) = S({\bf y}) = S({\bf x})\)</span>, but in making the table, <span class="math inline">\({\bf x}&#39;\)</span> would have been considered before <span class="math inline">\({\bf x}\)</span>, so the table has the line <span class="math inline">\(S({\bf x}&#39;)\;|\; {\bf x}&#39;\)</span>, not <span class="math inline">\(S({\bf x})\;|\; {\bf x}\)</span>. So in fact we would have decoded to <span class="math inline">\({\bf c}&#39; = {\bf y}-{\bf x}&#39;\)</span>.</p>
+</div>
+<div class="problem">
+<p>Suppose that matrix <span class="math inline">\(A\)</span> is in <span class="math inline">\(M_{m,n}({\mathbb F}_q)\)</span>. How can we check whether some set of <span class="math inline">\(d\)</span> columns of <span class="math inline">\(A\)</span> is linearly dependent? In general, we could write them as <span><em>rows</em></span> in a <span class="math inline">\(d \times m\)</span> matrix, and row-reduce. But for some values of <span class="math inline">\(d\)</span> there are other ways. How can we check when: a) <span class="math inline">\(d=1\)</span> b) <span class="math inline">\(d=2\)</span> c) <span class="math inline">\(d=m\)</span> d) <span class="math inline">\(d &gt; m\)</span> ?</p>
+</div>
+<div class="solution">
+<p>a) <span class="math inline">\(d=1\)</span>: A single column can only form a dependent set if it is an all-zero column. b) <span class="math inline">\(d=2\)</span>: Two columns are dependent if and only if one is a multiple of another. c) <span class="math inline">\(d=m\)</span>: make a square matrix of the columns. They are dependent if and only if the determinant is 0. d) <span class="math inline">\(d &gt; m\)</span>: More that <span class="math inline">\(m\)</span> columns of length <span class="math inline">\(m\)</span> must be dependent.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(H = \left(\begin{matrix} 
+3 &amp; 4 &amp; 1 \\
+1 &amp; 4 &amp; 2 \\
+      \end{matrix}\right)\)</span>. Find the minimum distance of the codes:a) <span class="math inline">\(C_5 = \{{\bf x}\in {\mathbb F}_5^3 \;|\; {\bf x}H^t = {\bf 0} \}\)</span> b) <span class="math inline">\(C_7 = \{{\bf x}\in {\mathbb F}_7^3 \;|\; {\bf x}H^t = {\bf 0} \}\)</span></p>
+</div>
+<div class="solution">
+<p>By Q54 a) <span class="math inline">\(d \neq 1\)</span>, and by d) <span class="math inline">\(d \leq 3\)</span>. Over <span class="math inline">\({\mathbb F}_5\)</span> we have <span class="math inline">\(2\binom{3}{1}=\binom{1}{2}\)</span>, so <span class="math inline">\(d(C_5) = 2\)</span>. But over <span class="math inline">\({\mathbb F}_7\)</span> no pair of columns are multiples, so <span class="math inline">\(d(C_7) = 3\)</span>.</p>
+</div>
+<div class="problem">
+<p>Let <span class="math inline">\(H = \left(\begin{matrix} 
+1 &amp; 0 &amp; 4 &amp; 1 \\
+2 &amp; 3 &amp; 0 &amp; 1 \\
+0 &amp; 4 &amp; 3 &amp; 2 \\      \end{matrix}\right)\)</span>. Find the minimum distance of the codes:a) <span class="math inline">\(C_5 = \{{\bf x}\in {\mathbb F}_5^4 \;|\; {\bf x}H^t = {\bf 0} \}\)</span> b) <span class="math inline">\(C_7 = \{{\bf x}\in {\mathbb F}_7^4 \;|\; {\bf x}H^t = {\bf 0} \}\)</span></p>
+</div>
+<div class="solution">
+<p>We know <span class="math inline">\(d \leq n-k+1 =4\)</span>. No all-zero column, so <span class="math inline">\(d \neq 1\)</span>. By the positions of the zeros, no column is a multiple of another, so <span class="math inline">\(d \neq 2\)</span>. So the only question is whether <span class="math inline">\(d=3\)</span> or <span class="math inline">\(d=4\)</span>. We can decide this by finding <span class="math inline">\(3\times 3\)</span> determinants; to do parts a) and b) together, I won’t reduce by 5 or 7 until the end. Expanding by the top row, <span class="math inline">\(\left| \begin{matrix}1&amp;0&amp;4 \\
+                      2&amp;3&amp;0 \\
+                      0&amp;4&amp;3
+ \end{matrix}\right| = 1\times 3\times 3 + 4\times 2\times 4 = 41\)</span>, which is <span class="math inline">\(1 \in {\mathbb F}_5, 6 \in {\mathbb F}_7\)</span>. So over both fields, these columns are independent. Expanding by the top row, <span class="math inline">\(\left| \begin{matrix}1&amp;0&amp;1 \\
+                      2&amp;3&amp;1 \\
+                      0&amp;4&amp;2
+ \end{matrix}\right| = 1\times(6-4) + 1\times 8 = 10\)</span>, which is <span class="math inline">\(0 \in {\mathbb F}_5, 3 \in {\mathbb F}_7\)</span>. So over <span class="math inline">\({\mathbb F}_5\)</span>, these columns are dependent, so <span class="math inline">\(d(C_5) = 3\)</span>. But for <span class="math inline">\({\mathbb F}_7\)</span> they are independent so we have to go on. Expanding by the middle row, <span class="math inline">\(\left| \begin{matrix}1&amp;4&amp;1 \\
+                      2&amp;0&amp;1 \\
+                      0&amp;3&amp;2
+ \end{matrix}\right| = -2\times(8-3) + -1\times 3 = -13 = 1 \in {\mathbb F}_7\)</span>; and expanding by the top row, <span class="math inline">\(\left| \begin{matrix}0&amp;4&amp;1 \\
+                      3&amp;0&amp;1 \\
+                      4&amp;3&amp;2
+ \end{matrix}\right| = -4\times(6-4) + 1\times 9 = 1 \in {\mathbb F}_7\)</span>. So no set of three columns is dependent over <span class="math inline">\({\mathbb F}_7\)</span>, and we have <span class="math inline">\(d(C_7)=4\)</span>.</p>
+</div>
+<div class="problem">
+<p>Using Theorem 4.11, find yet another proof that <span class="math inline">\(d \leq n-k+1\)</span> (the Singleton bound for linear codes). (<span><em>Hint</em></span>: Although the theorem is also true for acting check-matrices, it helps to consider a proper check-matrix.)</p>
+</div>
+<div class="solution">
+<p>A check matrix has <span class="math inline">\(n-k\)</span> rows, so its columns are elements of <span class="math inline">\(\mathbb{F}_q^{n-k}\)</span>. The largest possible set of linearly independent vectors in this space is of size <span class="math inline">\(n-k\)</span>, so any <span class="math inline">\(n-k+1\)</span> columns must be linearly dependent. So by Theorem 4.11 we have <span class="math inline">\(d\le n-k+1\)</span>.</p>
+</div>
+<div class="problem">
+<p>Students sometimes confuse the way to find <span class="math inline">\(d(C)\)</span> from a check-matrix (see Theorem 4.11) with the definition of the rank of a matrix. How are these ideas similar and different? Find two (or more) matrices <span class="math inline">\(H_1, H_2, \ldots\)</span> which have the same rank, but the codes <span class="math inline">\(C_i = \{{\bf x}\in {\mathbb F}_q^n \;|\; {\bf x}H_i^t = {\bf 0} \}\)</span>, for which they are check-matrices, have different <span class="math inline">\(d(C_i)\)</span>. (<span><em>Hint:</em></span> There are small examples - e.g. in <span class="math inline">\(M_{2,3}({\mathbb F}_2)\)</span>)</p>
+</div>
+<div class="solution">
+<p>The <em>rank</em> of a matrix is the largest set of linearly independent columns of a matrix. The minimum distance <span class="math inline">\(d\)</span> is the smallest number of linearly dependent columns of the check-matrix (using Theorem 4.11). As examples of check-matrices with the same rank but whose associated codes have different minimum distances, consider <span class="math display">\[\begin{aligned}
+	H_1 &amp;= \begin{pmatrix}
+		1 &amp; 0 &amp; 0 \\
+		0 &amp; 1 &amp; 0
+	\end{pmatrix},\quad d(C_1) = 1 \\
+	H_2 &amp;= \begin{pmatrix}
+		1 &amp; 0 &amp; 1 \\
+		0 &amp; 1 &amp; 0
+	\end{pmatrix},\quad d(C_2) = 2 \\
+	H_3 &amp;= \begin{pmatrix}
+		1 &amp; 0 &amp; 1 \\
+		0 &amp; 1 &amp; 1
+	\end{pmatrix},\quad d(C_3) = 3,
+\end{aligned}\]</span> all of which have rank 2.</p>
+</div>
+<div class="problem">
+<p>Suppose code <span class="math inline">\(C\)</span> has generator-matrix <span class="math inline">\(G\in M_{k,n}({\mathbb F}_q)\)</span> and check-matrix <span class="math inline">\(H \in M_{n-k,n}({\mathbb F}_q)\)</span>. If <span class="math inline">\(C\)</span> is monomially equivalent to <span class="math inline">\(C&#39;\)</span> we know we can make a generator-matrix <span class="math inline">\(G&#39;\)</span> for <span class="math inline">\(C&#39;\)</span> by permuting and multiplying columns of <span class="math inline">\(G\)</span>. Can we make a check-matrix <span class="math inline">\(H&#39;\)</span> for <span class="math inline">\(C&#39;\)</span> in a similar way?</p>
+<p>Adapting the notation of Q40, let us say that for a matrix <span class="math inline">\(A \in M_{k,n}({\mathbb F}_q)\)</span>, <span class="math inline">\(\pi_{s(i,j)}(A)\)</span> is <span class="math inline">\(A\)</span> with columns <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> swapped, and <span class="math inline">\(\pi_{m(i,\mu)}(A)\)</span> is <span class="math inline">\(A\)</span> with column <span class="math inline">\(i\)</span> multiplied by non-zero <span class="math inline">\(\mu \in {\mathbb F}_q\)</span>. Then if <span class="math inline">\(C_s\)</span> has generator-matrix <span class="math inline">\(\pi_{s(i,j)}(G)\)</span>,and <span class="math inline">\(C_m\)</span> has generator-matrix <span class="math inline">\(\pi_{m(i, \mu)}(G)\)</span>, both these codes are monomially equivalent to <span class="math inline">\(C\)</span>. In terms of <span class="math inline">\(\pi_{s(i,j)}\)</span> and <span class="math inline">\(\pi_{m(i,\mu)}\)</span>, find a check-matrix for <span class="math inline">\(C_s\)</span> and for <span class="math inline">\(C_m\)</span>. For each code, justify your answer by showing that any row of the generator matrix is orthogonal to any row of the check matrix.</p>
+</div>
+<div class="solution">
+<p>The check matrix for <span class="math inline">\(C_s\)</span> is <span class="math inline">\(\pi_{s(i,j)}(H)\)</span>, and for <span class="math inline">\(C_m\)</span> is <span class="math inline">\(\pi_{m(i, \mu^{-1})}(G)\)</span>. Suppose that <span class="math inline">\({\bf g}= ( x_1, \ldots, x_i, \ldots,x_j,\ldots x_n)\)</span> is a row of <span class="math inline">\(G\)</span> , and <span class="math inline">\({\bf h}= (y_1,\ldots,y_i, \ldots,y_j,\ldots y_n)\)</span> is a row of <span class="math inline">\(H\)</span>. Then we know that <span class="math inline">\({\bf g}\cdot{\bf h}= x_1y_x + \cdots + x_iy_i+ \cdots + x_jy_j+ \cdots +x_ny_n = 0\)</span>. Now, considering <span class="math inline">\(C_s\)</span>, the dot product of the the corresponding rows in <span class="math inline">\(\pi_{s(i,j)}(G)\)</span> and <span class="math inline">\(\pi_{s(i,j)}(H)\)</span> is <span class="math inline">\(\pi_{s(i,j)}{\bf g}\cdot \pi_{s(i,j)}{\bf h}= x_1y_x + \cdots + x_jy_j+ \cdots + x_iy_i+ \cdots +x_ny_n = 0\)</span>. Similarly, for <span class="math inline">\(C_m\)</span> we get <span class="math inline">\(\pi_{m(i,\mu)}{\bf g}\cdot \pi_{m(i,\mu^{-1})}{\bf h}= x_1y_x + \cdots + \mu x_i\mu^{-1}y_i+ \cdots + x_ny_n = 0\)</span>. We conclude that <span class="math inline">\(H\)</span> needs the <span><em>same</em></span> permutations of columns as <span class="math inline">\(G\)</span>, but <span><em>inverse</em></span> multiplications of columns. We can also write a check-matrix version of Proposition 3.9: If two check-matrices are related by permuting or multiplying columns, then the two codes are equivalent.</p>
+</div>
+<div class="problem">
+<p>Consider the code <span class="math inline">\(C&#39; \subseteq {\mathbb F}_{11}^{10}\)</span>, <span class="math inline">\(C&#39; = \{ {\bf x}\in {\mathbb F}_{11}^{10} \;|\; x_1 + x_2  \cdots + x_{10} = 0\}\)</span>. Show that <span class="math inline">\(C&#39;\)</span> is equivalent to the code <span class="math inline">\(C\)</span> of Q50 in two ways: a) For any word <span class="math inline">\({\bf c}=(c_1, \ldots, c_{10}) \in C\)</span> apply suitable changes to make a word <span class="math inline">\({\bf c}&#39; \in C&#39;\)</span>. This shows that <span class="math inline">\(C\)</span> is equivalent to a subset of <span class="math inline">\(C&#39;\)</span>. Now do the same in reverse. b) Consider check matrices, and see Q59. c) If <span class="math inline">\(C\)</span> and <span class="math inline">\(C&#39;\)</span> are equivalent, and <span class="math inline">\(C&#39;\)</span> seems simpler, why did we use <span class="math inline">\(C\)</span> for books?</p>
+</div>
+<div class="solution">
+<p>a) Since <span class="math inline">\({\bf c}\in C\)</span>, we know that <span class="math inline">\(c_1 + 2c_2 + \cdots + 10c_{10} =0\)</span>. Then if <span class="math inline">\({\bf c}&#39; = (c_1, 2c_2 , \ldots + 10c_{10})\)</span>, clearly it is in <span class="math inline">\(C&#39;\)</span>. In reverse, if <span class="math inline">\((u_1, u_2, \ldots, u_n) \in C&#39;\)</span>, then <span class="math inline">\((u_1, 6u_2, 4u_3, \ldots, i^{-1}u_i, \ldots 10u_{10}) \in C\)</span>. b) C has check-matrix <span class="math inline">\((1\;2\;3\;4\;5\;6\;7\;8\;9\;10)\)</span>; <span class="math inline">\(C&#39;\)</span> has <span class="math inline">\((1\;1\;1\;1\;1\;1\;1\;1\;1\;1)\)</span>. Clearly we can multiply the (very short) columns of one to get the other. d) One common human error is to swap adjacent digits; <span class="math inline">\(C\)</span> detects swapped digits, <span class="math inline">\(C&#39;\)</span> does not.</p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '43';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
