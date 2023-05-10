@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>A0RevisionExercises Solutions 23</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<ol>
+<li><ol>
+<li><p>Use index notation to prove that <span class="math inline">\(\mathbf{\nabla}\times (f\mathbf{v}) = (\mathbf{\nabla}f)\times \mathbf{v} + f\mathbf{\nabla}\times\mathbf{v}.\)</span> <span class="math display">\[\begin{aligned}
+        [\mathbf{\nabla}\times (f\mathbf{v})]_i &amp;= \epsilon_{ijk}\frac{\partial}{\partial x_j}(fv_k) \\
+        &amp;= \epsilon_{ijk} \left( \frac{\partial f}{\partial x_j}v_k + f\frac{\partial v_k}{\partial x_j} \right) \\
+        &amp;= \epsilon_{ijk} \frac{\partial f}{\partial x_j}v_k + f\epsilon_{ijk}\frac{\partial}{\partial x_j}v_k \\
+        &amp;= [(\mathbf{\nabla}f)\times \mathbf{v}]_i + f[\mathbf{\nabla}\times\mathbf{v}]_i.
+    \end{aligned}\]</span> Since this holds for an arbitrary <span class="math inline">\(i\)</span><sup>th</sup> component, the required vector statement holds.</p></li>
+<li><p>We have <span class="math display">\[\begin{aligned}
+    I&amp;=\int_0^1\left[ 3x^2y^2\right]_{-x}^{x+1}dx\\
+    &amp;=3\int_0^1\left(x^2(x+1)^2-x^4\right)dx\\
+    &amp;=3\int_0^1\left(2x^3+x^2\right)dx\\
+    &amp;=3\left[{\textstyle\frac{1}{2}}x^4+{\textstyle\frac{1}{3}}x^3\right]_0^1 = {\textstyle\frac{5}{2}}\,.
+    \end{aligned}\]</span></p>
+<p>The reverse order requires the integration region to be split into three bits, perhaps with the help of a diagram; partial credit if this is done right. We have <span class="math display">\[\begin{aligned}
+    I&amp;=\int_{-1}^0\int_{-y}^1 6x^2y\,dx\,dy 
+     +\int_0^1 \int_0^1 6x^2y\,dx\,dy
+     +\int_1^2 \int_{y-1}^1 6x^2y\,dx\,dy \\[2pt]
+    &amp;=
+    \int_{-1}^0
+    \left[2x^3y\right]_{-y}^1dy +
+    \int_{0}^1
+    \left[2x^3y\right]_0^1dy +
+    \int_{1}^2
+    \left[2x^3y\right]_{y-1}^1dy \\[2pt]
+    &amp;=
+    \int_{-1}^0
+    \left(2y+2y^4\right)dy +
+    \int_{0}^1
+    \left(2y\right)dy +
+    \int_{1}^2
+    \left(2y-2(y-1)^3y\right)dy \\[2pt]
+    &amp;=
+    \left[y^2+{\textstyle\frac{2}{5}}y^5\right]_{-1}^0 +
+    \left[y^2\right]_0^1 +
+    \left[2y^2-{\textstyle\frac{2}{5}}y^5+{\textstyle\frac{3}{2}}y^4-2y^3\right]_1^2\\[5pt]
+    &amp;=
+    (-1+{\textstyle\frac{2}{5}})+1+
+    (8-{\textstyle\frac{2}{5}}32+{\textstyle\frac{3}{2}}16-16-2+{\textstyle\frac{2}{5}}-{\textstyle\frac{3}{2}}+2) =
+    {\textstyle\frac{5}{2}}
+    \end{aligned}\]</span></p>
+<p>The relevant theorem is Fubini’s.</p></li>
+<li><ul>
+<li><p>Since <span class="math display">\[|x|:=\left\{\begin{matrix} x&amp;\,\,{\rm if}\,\,x&gt;0\\ -x&amp;\,\,{\rm if}\,\,x\le 0\end{matrix}\right.,\]</span> we may write <span class="math inline">\(|x|=x\Theta(x)-x\Theta(-x)\)</span>, with <span class="math inline">\(\Theta(x)\)</span> the unit step (Heaviside) function. Then, using Leibnitz’s rule (i.e. product rule for derivation) and the result that the distributional derivative of the unit step function is the delta distribution, we get <span class="math display">\[\begin{aligned}
+    |x|^\prime&amp;=\Theta(x)+x\delta(x)-\Theta(-x)-x\frac{d}{dx}\Theta(-x)\\
+    &amp;=\Theta(x)+x\delta(x)-\Theta(-x)+x\underbrace{\frac{d}{d(-x)}\Theta(-x)}_{\delta(-x)}\\
+    &amp;=\Theta(x)-\Theta(-x)=\Theta(x)-[\,1-\Theta(x)\,]=2\Theta(x)-1.
+    \end{aligned}\]</span></p></li>
+<li><p>First note that since <span class="math inline">\(e^x\)</span> is a smooth function, <span class="math inline">\(e^x\delta\)</span> is a distribution (recall formula (2.11) in the lecture notes, Unit 2). Its derivative may be calculated as follows. Let <span class="math inline">\(\psi \in {\cal D}(\mathbb{R})\)</span>, then <span class="math display">\[(e^x\delta)^\prime[\psi]=-\int_{\mathbb{R}}\,e^x\,\delta(x)\,\psi^\prime(x)\,dx=-\psi^\prime(0)\]</span> by the sifting property. On the other hand, <span class="math display">\[-\psi^\prime(0)=-\int_{\mathbb{R}}\,\delta(x)\,\psi^\prime(x)\,dx=\int_{\mathbb{R}}\,\delta^\prime(x)\,\psi(x)\,dx=\delta^\prime(x)[\psi],\]</span> so that, symbolically, <span class="math inline">\((e^x\delta)^\prime=\delta^\prime\)</span>.</p></li>
+</ul></li>
+</ol></li>
+<li><ol>
+<li><p>Suppose the level curve <span class="math inline">\(f(x,y)=c\)</span> can be written as <span class="math inline">\(y=g(x)\)</span>. Then <span class="math display">\[f(x,g(x)) = c. \quad\quad\quad\quad (I)\]</span> Differentiating by chain rule (LHS is now a function of x only) <span class="math display">\[\begin{aligned}
+        \frac{d}{dx}f(x,g(x)) &amp;= \frac{\partial f}{\partial x} + \frac{dg}{dx}\frac{\partial f}{\partial y} = \frac{dc}{dx} = 0 \quad\quad (\text{as }c\text{ is a constant}) \\
+        \implies \quad\quad \frac{dg}{dx} &amp;= -\frac{\frac{\partial f(x,g(x))}{\partial x}}{\frac{\partial f(x,g(x))}{\partial y}}, \quad\quad\quad\quad (II)
+    \end{aligned}\]</span> with <span class="math inline">\(\frac{\partial f(x,g(x))}{\partial y}\ne 0\)</span>.</p></li>
+<li><p>The <strong>Implicit Function Theorem</strong> states that if <span class="math inline">\(f(x,y):U \to \mathbb{R}\)</span> is differentiable and if <span class="math inline">\((x_0,y_0)\)</span> is a point in <span class="math inline">\(U\)</span> on the level curve <span class="math inline">\(f(x,y)=c\)</span> at which <span class="math inline">\(\frac{\partial f}{\partial y}\ne 0\)</span>, then a differentiable function <span class="math inline">\(g(x)\)</span> of <span class="math inline">\(x\)</span> exists in a neighbourhood of <span class="math inline">\(x_0\)</span> satisfying <span class="math inline">\((I)\)</span> and <span class="math inline">\((II)\)</span> of part a), with <span class="math inline">\(g(x_0)=y_0\)</span>.</p></li>
+<li><p>We have <span class="math display">\[\begin{aligned}
+        \frac{\partial f}{\partial y} &amp;= \frac{\partial}{\partial y}(2x^3 + 3y^2 + 6xy) \\
+        &amp;= 6y + 6x
+     \end{aligned}\]</span> So <span class="math inline">\(\frac{\partial f}{\partial y} = 0 \iff y=-x\)</span>. So it is not possible to write the curve <span class="math inline">\(f(x,y)=c\)</span> in the form <span class="math inline">\(y=g(x)\)</span> at points <span class="math inline">\((x_0,y_0)\)</span> with <span class="math inline">\(y_0=-x_0\)</span>.</p>
+<p>To find which values of <span class="math inline">\(c\)</span> these problems occur at, evaluate: <span class="math display">\[\begin{aligned}
+        c = f(x_0,y_0) &amp;= 2x_0^3 + 3(-x_0)^2 + 6x_0(-x_0) \\
+        &amp;= x_0^2(2x_0-3),
+     \end{aligned}\]</span> which for <span class="math inline">\(x\in\mathbb{R}\)</span> can give any real value for <span class="math inline">\(c\)</span>.</p></li>
+<li><p>Similarly for <span class="math inline">\(x=h(y)\)</span> need <span class="math inline">\(\frac{\partial f}{\partial x} \ne 0\)</span>. We have <span class="math display">\[\frac{\partial f}{\partial x} = 6x^2+6y,\]</span> so <span class="math inline">\(\frac{\partial f}{\partial x} = 0 \iff y=-x^2\)</span>. So trouble at points <span class="math inline">\((x_0,y_0)\)</span> with <span class="math inline">\(y_0 = -x_0^2\)</span>.</p></li>
+<li><p>Points where we can neither write <span class="math inline">\(y=g(x)\)</span> nor as <span class="math inline">\(x=h(y)\)</span> simultaneously satisfy both <span class="math inline">\(y=-x\)</span> and <span class="math inline">\(y=-x^2\)</span>, and are just critical points. These conditions are both satisfied when <span class="math inline">\(x_0 = x_0^2\)</span>, which has solutions <span class="math inline">\(x_0=0\)</span> and <span class="math inline">\(x_0=1\)</span>. So we have two points where we can neither write <span class="math inline">\(y=g(x)\)</span> nor as <span class="math inline">\(x=h(y)\)</span>, namely <span class="math inline">\((x_0,y_0)=(0,0)\)</span> and <span class="math inline">\((x_0,y_0)=(1,-1)\)</span>. These lie on the curves <span class="math inline">\(f(x,y)=0\)</span> and <span class="math inline">\(f(x,y)=-1\)</span> respectively (this last part is not required for full marks).</p></li>
+</ol></li>
+<li><ol>
+<li><p>Stokes’ theorem: for a three-dimensional vector field <span class="math inline">\(\mathbf{v}(\mathbf{x})\)</span> and surface <span class="math inline">\(S\)</span> spanning a closed curve <span class="math inline">\(C\)</span>, <span class="math display">\[\int_S(\nabla\times\mathbf{v})\cdot d\mathbf{A}=\oint_C\mathbf{v}\cdot
+    d\mathbf{x}\,.\]</span> If <span class="math inline">\(C\)</span> spans a surface <span class="math inline">\(S\)</span> on which <span class="math inline">\(\nabla\times\mathbf{v}=\mathbf{0}\)</span> then the LHS of the above equation is zero, which gives us the desired result.</p></li>
+<li><p>If <span class="math inline">\(r(t)=1\)</span> we have <span class="math inline">\(\mathbf{x}(t) = \cos(t)\,\mathbf{e}_1 + \sin(t)\,\mathbf{e}_2\)</span> , <span class="math inline">\(d\mathbf{x}/dt=-\sin(t)\,\mathbf{e}_1 + \cos(t)\,\mathbf{e}_2\)</span> , <span class="math inline">\(\mathbf{v}(\mathbf{x}(t))=
+    \sin(t)\,\mathbf{e}_1 - \cos(t)\,\mathbf{e}_2+\mathbf{e}_3\)</span> and so <span class="math inline">\(\mathbf{v}(\mathbf{x}(t))\cdot d\mathbf{x}/dt = -1\)</span> . Hence in this case <span class="math inline">\(I=-2\pi\)</span>.</p>
+<p>For the general case, compute <span class="math display">\[\nabla\times\mathbf{v}=\left(\frac{x^2-y^2}{(x^2+y^2)^2}+\frac{y^2-x^2}{(x^2+y^2)^2}
+    \right)\mathbf{e}_3,\]</span> which is zero provided <span class="math inline">\(x^2+y^2\neq 0\)</span>.</p>
+<p>Since the general curve <span class="math inline">\(C\)</span> satisfying the given conditions and the special case just considered form the boundary of a surface on which the curl of <span class="math inline">\(\mathbf{v}\)</span> is zero everywhere (in particular, avoiding the <span class="math inline">\(z\)</span>-axis, where the curl is undefined), the answer is unchanged: <span class="math inline">\(I=-2\pi\)</span>.</p></li>
+<li><p>The divergence theorem: <span class="math display">\[\int_S\mathbf{F}\cdot
+    d\mathbf{A}=\int_V\nabla\cdot\mathbf{F}\,dV\,.\]</span></p>
+<p>The sections of <span class="math inline">\(V\)</span> at height <span class="math inline">\(z\)</span> are quarter-circles of radius<span class="math inline">\(^2\)</span> <span class="math inline">\(z\)</span> and hence area <span class="math inline">\(\pi z/4\)</span>; the volume of <span class="math inline">\(V\)</span> is therefore <span class="math display">\[\mbox{vol}(V)
+    = \int_0^3\pi z/4\,dz =\left[{\textstyle\frac{\pi}{8}}z^2\right]_0^3 =
+    {\textstyle\frac{9\pi}{8}}\,.\]</span></p>
+<p>Now let <span class="math inline">\(S\)</span> be the <em>whole</em> surface of <span class="math inline">\(V\)</span>. By the divergence theorem and noting that <span class="math inline">\(\nabla\cdot\mathbf{F}=6\)</span>, <span class="math display">\[\int_S\mathbf{F}\cdot
+    d\mathbf{A}=\int_V\nabla\cdot\mathbf{F}\,dV =
+    6\,\mbox{vol}(V)=\frac{27\pi}{4}\,.\]</span> But the question wants the integral over <span class="math inline">\(S_c\)</span>, so must subtract the area integrals over the top surface <span class="math inline">\(S_{xy}\)</span> parallel to the <span class="math inline">\(x\)</span>-<span class="math inline">\(y\)</span> plane, and also the vertical sides <span class="math inline">\(S_{xz}\)</span> and <span class="math inline">\(S_{yz}\)</span> parallel to the <span class="math inline">\(x\)</span>-<span class="math inline">\(z\)</span> and <span class="math inline">\(y\)</span>-<span class="math inline">\(z\)</span> planes respectively.<br />
+On <span class="math inline">\(S_{xy}\)</span>, <span class="math inline">\(\widehat{\mathbf{n}}=\mathbf{e}_3\)</span> and so <span class="math inline">\(\mathbf{F}\cdot\widehat{\mathbf{n}}= 3z = 9\)</span>, and <span class="math inline">\(\int_{S_{xy}}\mathbf{F}\cdot
+    d\mathbf{A}=9 \times\mbox{area}(S_{xy})\)</span> ;<br />
+On <span class="math inline">\(S_{xz}\)</span>, <span class="math inline">\(\widehat{\mathbf{n}}=-\mathbf{e}_2\)</span> and so <span class="math inline">\(\mathbf{F}\cdot\widehat{\mathbf{n}}= -2\)</span>, and <span class="math inline">\(\int_{S_{xz}}\mathbf{F}\cdot
+    d\mathbf{A}=-2 \times\mbox{area}(S_{xz})\)</span> ;<br />
+On <span class="math inline">\(S_{yz}\)</span>, <span class="math inline">\(\widehat{\mathbf{n}}=-\mathbf{e}_1\)</span> and so <span class="math inline">\(\mathbf{F}\cdot\widehat{\mathbf{n}}= 0\)</span>, and <span class="math inline">\(\int_{S_{xz}}\mathbf{F}\cdot
+    d\mathbf{A}=0\)</span> .</p>
+<p><span class="math inline">\(S_{xy}\)</span> is a quarter-circle of radius <span class="math inline">\(\sqrt{3}\)</span> and so <span class="math inline">\(\mbox{area}(S_{xy})= 3\pi/4\)</span>;<br />
+<span class="math inline">\(S_{xz}\)</span> is the area between the curve <span class="math inline">\(z=x^2\)</span> and <span class="math inline">\(z=3\)</span> between <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=\sqrt{3}\)</span>, and so <span class="math display">\[\mbox{area}(S_{xz})=\int_0^{\sqrt{3}}3-x^2\,dx= 
+    \left[ 3x-{\textstyle\frac{1}{3}}x^3\right]_0^{\sqrt{3}} =
+    3\sqrt{3}-\sqrt{3}=2\sqrt{3}\,.\]</span> Putting everything together, <span class="math display">\[\begin{aligned}
+    \int_{S_c}\mathbf{F}\cdot d\mathbf{A} &amp;=
+    \int_S\mathbf{F}\cdot d\mathbf{A} -
+    \int_{S_{xy}}\mathbf{F}\cdot d\mathbf{A} -
+    \int_{S_{xz}}\mathbf{F}\cdot d\mathbf{A} -
+    \int_{S_{yz}}\mathbf{F}\cdot d\mathbf{A} \\
+    &amp;=27\pi/4 - 27\pi/4 + 4\sqrt{3} - 0 = 4\sqrt{3}\,.
+    \end{aligned}\]</span> (Partial credit would be given for partial progress.)</p></li>
+</ol></li>
+<li><ul>
+<li><p><span class="math inline">\(L\)</span> is of the form <span class="math inline">\(L=-t\frac{d^2}{dt^2}+t^4\frac{d}{dt}\)</span>, with <span class="math inline">\(p_0(t)=-t, p_1(t)=t^4\)</span>. Since <span class="math inline">\(p_0^\prime(t)=-1\neq p_1(t)\)</span>, this differential operator is not of Sturm-Liouville type.</p></li>
+<li><p>Let us construct a new differential operator <span class="math inline">\({\cal L}:=\rho L\)</span> where <span class="math display">\[\rho(x)=\frac{1}{p_0(t)}\exp(\,\int \frac{p_1(t)}{p_0(t)}dt\,)=-\frac{1}{t}\,\exp(-\int t^3\,dt)=-\frac{1}{t}\exp(-\frac{t^4}{4}).\]</span> So we have the new IVP for <span class="math inline">\(1&lt;t&lt;100\)</span>, <span class="math display">\[{\cal L}x=e^{-t^4/4}x^{\prime\prime}-t^3\,e^{-t^4/4}x^\prime=-t^{-1}e^{-t^4/4}\,f(t),\qquad x(1)=0,\,\,x^\prime(1)=0,\]</span> with source term <span class="math inline">\(g(t)=-t^{-1}e^{-t^4/4}\,f(t)\)</span>. We may write <span class="math inline">\({\cal L}=\frac{d}{dt}\left( e^{-t^4/4} \frac{d}{dt}\,\right)\)</span>, and recognise that this operator is indeed formally self-adjoint. To check whether or not the IVP is self-adjoint, we consider the boundary terms in Green’s formula for formally self-adjoint operators (i.e. with <span class="math inline">\(p_0^\prime(t)=p_1(t)\)</span>). Green’s formula (see formula (3.52) in the lecture notes, Unit 3) in this case is given by <span class="math display">\[\langle {\cal L} x, y\rangle -\langle x, {\cal L} y\rangle=\left[ \overline{p_0}(y\overline{x^\prime}-y^\prime\overline{x})\right]_1^{100}\]</span> for every <span class="math inline">\(x, y \in {\cal C}^2([1,100])\)</span>. Noting that <span class="math inline">\(p_0(t)\)</span> is real-valued, the boundary terms are <span class="math display">\[\begin{aligned}
+&amp;\left [\,p_0(t)\,[y(t)\overline{x}^\prime(t)-y^\prime(t)\overline{x}(t)\,]\,\right ]_1^{100}=p_0(100)\,[y(100)\overline{x}^\prime(100)-y^\prime(100)\overline{x}(100)\,]\\
+&amp;-p_0(1)\,\,[y(1)\overline{x}^\prime(1)-y^\prime(1)\overline{x}(1)\,].\end{aligned}\]</span> However, the initial conditions are <span class="math inline">\(\overline{x}(1)=0\)</span> and <span class="math inline">\(\overline{x}^\prime(1)=0\)</span>, so in order for the boundary terms to vanish, we require <span class="math inline">\(y^\prime(100)=y(100)=0\)</span>, in other words, we require final conditions to vanish. So the IVP is NOT self-adjoint.</p></li>
+</ul></li>
+<li><p>Let us call <span class="math inline">\(P\)</span> the point of coordinates <span class="math inline">\(((x_0)_1, (x_0)_2)\)</span> and <span class="math inline">\(Q\)</span> the point of coordinates <span class="math inline">\((x_1,x_2)\)</span>. The method of images, given the symmetries of the domain, dictates to take the point <span class="math inline">\(P_1(\frac{a^2}{|\boldsymbol{x_0}|^2}(x_0)_1,\frac{a^2}{|\boldsymbol{x_0}|^2}(x_0)_2)=P_1(\frac{a^2}{r_0}, \theta_0)\)</span>, which is the inverse of point <span class="math inline">\(P((x_0)_1,(x_0)_2)=P(r_0,\theta_0)\)</span> with respect to the circle of radius <span class="math inline">\(a\)</span>, the point <span class="math inline">\(P_2((x_0)_1,-(x_0)_2)=P_2(r_0,-\theta_0)\)</span> which is the reflection of <span class="math inline">\(P\)</span> in the boundary of <span class="math inline">\(D_a\)</span> along the <span class="math inline">\(x\)</span>-axis, and finally the point <span class="math inline">\(P_3(\frac{a^2}{|\boldsymbol{x_0}|}(x_0)_1,-\frac{a^2}{|\boldsymbol{x_0}|}(x_0)_2)=P_3(\frac{a^2}{r_0}, -\theta_0)\)</span>, which is the inverse of point <span class="math inline">\(P_2\)</span> w.r.t. the circle of radius <span class="math inline">\(a\)</span> (see Figure).</p>
+<p><img src="halfdisk.jpeg" id="fig:halfdisk" alt="image" /> <span id="fig:halfdisk" label="fig:halfdisk">[fig:halfdisk]</span></p>
+<p>The Green’s function is therefore <span class="math display">\[\begin{aligned}
+G(\boldsymbol{x},\boldsymbol{x_0})&amp;=\frac{1}{2\pi}\,\left\{ \ln |QP|-\ln |QP_1|-\ln |QP_2|+\ln |QP_3|\,\right\}\\
+&amp;=\frac{1}{2\pi}\,\ln\,\frac{|QP|\,|QP_3|}{|QP_1|\,|QP_2|},\end{aligned}\]</span> where <span class="math display">\[\begin{aligned}
+|QP|&amp;=(x_1-(x_0)_1)^2+(x_2-(x_0)_2)^2)^{1/2}=(r^2+r_0^2-2rr_0\cos(\theta-\theta_0))^{1/2},\\
+|QP_1|&amp;=(x_1-\frac{a^2}{|\boldsymbol{x_0}|}(x_0)_1)^2+(x_2-\frac{a^2}{|\boldsymbol{x_0}|}(x_0)_2)^2)^{1/2}\\
+&amp;=\frac{1}{r_0}(a^4+r^2r_0^2-2a^2rr_0\cos(\theta-\theta_0))^{1/2},\\
+|QP_2|&amp;=(x_1-(x_0)_1)^2+(x_2+(x_0)_2)^2)^{1/2}=(r^2+r_0^2-2rr_0\cos(\theta+\theta_0))^{1/2},\\
+|QP_3|&amp;=(x_1-\frac{a^2}{|\boldsymbol{x_0}|}(x_0)_1)^2+(x_2+\frac{a^2}{|\boldsymbol{x_0}|}(x_0)_2)^2)^{1/2}\\
+&amp;=\frac{1}{r_0}(a^4+r^2r_0^2-2a^2rr_0\cos(\theta+\theta_0))^{1/2},\end{aligned}\]</span> and <span class="math display">\[\frac{1}{2\pi}\ln |QP|=G_0(\boldsymbol{x},\boldsymbol{x_0}).\]</span></p>
+<p>When <span class="math inline">\(r=a\)</span>, i.e. for points on the boundary consisting of the semi-circle of radius <span class="math inline">\(a\)</span>, we have <span class="math inline">\(|QP_1|=\frac{a}{r_0}|QP|\)</span> and <span class="math inline">\(|QP_3|=\frac{a}{r_0}|QP_2|\)</span>, hence <span class="math inline">\(G(\boldsymbol{x},\boldsymbol{x_0})=\frac{1}{2\pi}\ln 1=0\)</span>. When <span class="math inline">\((r,\theta)=(r, 0)\)</span> or <span class="math inline">\((r,\theta)=(r, \pi)\)</span> with <span class="math inline">\(r \in [0,a)\)</span>, i.e. for points on the boundary <span class="math inline">\([-a,a]\)</span>, <span class="math inline">\(G(\boldsymbol{x},\boldsymbol{x_0})=0\)</span> as well since <span class="math inline">\(|QP|=|QP_2|\)</span> and <span class="math inline">\(|QP_1|=|QP_3|\)</span>.</p></li>
+<li><ul>
+<li><p>We set <span class="math inline">\(x=e^t\)</span> so that <span class="math inline">\(\dfrac{dt}{dx}=e^{-t}\)</span> and hence, by the chain rule, <span class="math display">\[u^\prime(x):=\frac{d}{dx}u(x)=\frac{dt}{dx}\frac{d}{dt}u(x(t))=e^{-t}\dot{u},\]</span> and <span class="math display">\[u^{\prime\prime}(x)=\frac{d}{dx}\left(e^{-t}\dot{u}\right)=e^{-t}\left( -e^{-t}\dot{u}+e^{-t}\ddot{u}\right)=(\ddot{u}-\dot{u})e^{-2t}.\]</span> We then solve the differential equation with constant coefficients <span class="math display">\[\begin{equation} \label{EulerCauchy}
+\ddot{u}+2\dot{u}+(1+\alpha)u=0 \end{equation}\]</span> by letting <span class="math inline">\(u=e^{\mu t}\)</span> so that the characteristic equation is <span class="math inline">\(\mu^2+2\mu+(1+\alpha)=0\)</span>. Its solutions are <span class="math inline">\(\mu=-1\pm \sqrt{-\alpha}=-1\pm i\sqrt{\alpha}\)</span> with <span class="math inline">\(\alpha\)</span> a given positive constant. So the general solution of <span class="math inline">\(\eqref{EulerCauchy}\)</span> is <span class="math display">\[u(x(t))=A\,e^{(-1+i\sqrt{\alpha})t}+B\,e^{(-1-i\sqrt{\alpha})t}, \quad A, B\,\,{\rm constant}%=e^{-t}\,\left( [A+B]\,\cos(\sqrt{\alpha}t)+i[A-B]\,\sin(\sqrt{\alpha}t)\,\right)\]</span> i.e. <span class="math display">\[u(x)=\frac{1}{x}\left\{ A\, e^{i\sqrt{\alpha} \,\ln x}+B\,e^{-i\sqrt{\alpha} \,\ln x}\,\right\}.\]</span></p></li>
+<li><p>The differential equation <span class="math inline">\(-(x^3u^\prime(x))^\prime=\lambda xu\)</span> may be rewritten as <span class="math display">\[x^2u^{\prime\prime}+3xu^\prime+\lambda u=0,\]</span> noting that <span class="math inline">\(x=0\)</span> is not in the domain <span class="math inline">\([1,e]\)</span>. This equation is of the same form as the differential equation given in part (a), with <span class="math inline">\(\lambda=1+\alpha\)</span>. We seek pairs of eigenvalues and eigenfunctions <span class="math inline">\((\lambda_n, u_n)\)</span> satisfying <span class="math display">\[-x^2u_n^{\prime\prime}-3xu_n^\prime=\lambda_n u_n,\quad u_n(1)=0, u_n(e)=0.\]</span> From part (a) we know that the eigenfunctions are of the form <span class="math display">\[u_n(x)=\frac{1}{x}\left\{ A_n\, e^{i\sqrt{\lambda_n -1} \,\ln x}+B_n\,e^{-i\sqrt{\lambda_n-1} \,\ln x}\,\right\}, \qquad A_n, B_n\,\,{\rm constants}.\]</span> Implementing the boundary conditions leads to <span class="math display">\[u_n(1)=0 \Rightarrow A_n+B_n=0,\qquad u_n(e)=0 \Rightarrow e^{-1}\,(A_ne^{i\sqrt{\lambda_n-1}}+B_ne^{-i\sqrt{\lambda_n-1}}\,)=0,\]</span> that is <span class="math inline">\(0=A_n\sin \sqrt{\lambda_n-1}\)</span> since <span class="math inline">\(B_n=-A_n\)</span>. However, <span class="math inline">\(A_n=0\)</span> corresponds to the trivial solution, so we must take <span class="math inline">\(\sqrt{\lambda_n-1}=n\pi, n \in \mathbb{N}\)</span>. In other words, <span class="math inline">\(\lambda_n=n^2\pi^2+1, \,n\in \mathbb{N}\)</span>. The corresponding eigenfunctions are proportional to <span class="math display">\[u_n(x)=\frac{1}{x}\,\sin (n\pi\,\ln x).\]</span> Let us check that these eigenfunctions are indeed orthogonal to each other. Looking back, the original differential equation considered part (b), namely <span class="math inline">\(-(x^3u^\prime(x))^\prime=\lambda xu\)</span>, may be written as <span class="math display">\[{\cal L}u(x)+\lambda x u(x)=0,\quad {\cal L}=x^3d^2_x+3x^2d_x,\]</span> which is a Sturm-Liouville equation with weight <span class="math inline">\(\omega(x)=x\)</span>. Hence the appropriate inner product should be <span class="math inline">\(\langle \cdot, \cdot \rangle_{w=x}\)</span>. So let us calculate <span class="math display">\[{\cal I}_{mn}:=\langle \frac{1}{x}\,\sin (m\pi\,\ln x),  \frac{1}{x}\,\sin (n\pi\,\ln x)\,\rangle_{w=x}=\int_1^e\, \frac{1}{x^2}\,\sin (m\pi\,\ln x)\,\sin (n\pi\,\ln x)\,x\,dx\]</span> by setting <span class="math inline">\(y=\ln x\)</span>. We have <span class="math display">\[\begin{aligned}
+{\cal I}_{mn}&amp;=\int_0^1\,\sin (m\pi y)\,\sin (n\pi y)\,dy
+=\frac{1}{2}\int_0^1\,\left\{ \cos ((m-n)\pi y)-\cos ((m+n)\pi y)\,\right\}\,dy\\
+&amp;=0\end{aligned}\]</span> provided <span class="math inline">\(m\neq n\)</span>. If <span class="math inline">\(m=n\)</span>, we have <span class="math inline">\({\cal I}_{mm}=\frac{1}{2}\)</span>, and the normalised eigenfunctions are therefore <span class="math display">\[\widehat{u_n}(x)=\frac{\sqrt{2}}{x}\,\sin (n\pi \ln x).\]</span></p></li>
+<li><p>Note that the equation to solve is <span class="math inline">\({\cal L}u(x)=x,\)</span> with <span class="math inline">\({\cal L}\)</span> as before. We expand <span class="math inline">\(u(x)\)</span> as an expansion in the eigenfunctions <span class="math inline">\(\widehat{u}_n(x)\)</span> obtained in part (b), i.e. we write <span class="math display">\[u(x)=\sum_{n=1}^\infty c_n \widehat{u_n}(x)%= \sum_{n=1}^\infty \langle \widehat{u_n}, u\rangle_{w=x}\,\widehat{u_n}(x)\]</span> and therefore, <span class="math display">\[{\cal L}u(x)=\sum_{n=1}^\infty  c_n\,{\cal L}\widehat{u_n}(x)=-\sum_{n=1}^\infty  c_n\,\lambda_n\,x\,\widehat{u_n}(x)\stackrel{(1)}{=}x.\]</span> Since <span class="math inline">\(\langle \widehat{u_m},  \widehat{u_n}\rangle_{w=x}=\delta_{mn}\)</span>, taking the inner product of both sides of equality (1) with <span class="math inline">\(\widehat{u_m}(x)\)</span> yields <span class="math display">\[-c_m\,\lambda_m=\langle \widehat{u_m}, 1\rangle_{w=x}.\]</span> But <span class="math display">\[\langle \widehat{u_m}, 1\rangle_{w=x}=\int_1^e\,\frac{\sqrt{2}}{x}\,\sin (m\pi \ln x)\cdot 1\cdot x \,dx\stackrel{y=\ln x}{=}\sqrt{2}\int_0^1\,\sin (m\pi y)\,e^y\,dy\]</span> Integrating by parts twice gives <span class="math display">\[\sqrt{2}\int_0^1\,\sin (m\pi y)\,e^y\,dy=\frac{\sqrt{2}m\pi(1-e(-1)^m)}{1+m^2\pi^2},\]</span> so that the solution to the inhomogeneous BVP is <span class="math display">\[u(x)=2\sum_{n=1}^\infty\,\frac{n\pi(e(-1)^n-1)}{(1+n^2\pi^2)^2}\,\frac{1}{x}\,\sin (n\pi \ln x).\]</span></p></li>
+<li><p>The Green’s function for this BVP is obtained by expanding the solution in the basis of eigenfunctions, so we have <span class="math display">\[\begin{aligned}
+u(x)&amp;=\sum_{n=1}^\infty c_n\,\widehat{u_n}(x)=-\sum_{n=1}^\infty\,\frac{\langle \widehat{u_n}, 1\rangle_{w}}{\lambda_n}\,\widehat{u_n}(x)\\
+&amp;=\int_1^e\,\underbrace{-\sum_{n=1}^\infty\,\frac{\widehat{u_n}(\xi)\widehat{u_n}(x)}{\lambda_n}}_{:=G(x,\xi)}\,\xi\,d\xi,\end{aligned}\]</span> so the Green’s function is <span class="math display">\[G(x,\xi)=-2\sum_{n=1}^\infty\,\frac{\sin (n\pi \ln x)\,\sin (n\pi \ln \xi)}{x \xi (1+n^2\pi^2)}.\]</span></p></li>
+</ul></li>
+</ol>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

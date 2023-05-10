@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>A0RevisionExercises</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#sec:michaelmas_epiphany_revision_exercises">AMV II Revision Exercises</a></li>
+</ul>
+</nav>
+<section id="sec:michaelmas_epiphany_revision_exercises" class="level1 unnumbered">
+<h1 class="unnumbered">AMV II Revision Exercises</h1>
+<ol>
+<li><ol>
+<li><p>For <span class="math inline">\(f\)</span> a scalar field in <span class="math inline">\(\mathbb{R}^3\)</span> and <span class="math inline">\({\bf v}\)</span> a vector field in <span class="math inline">\(\mathbb{R}^3\)</span>, use index notation to prove that <span class="math display">\[{\bf \nabla}\times(f{\bf v} ) \;=\; ({\bf \nabla}f)\times {\bf v}  + f{\bf \nabla}\times{\bf v}\]</span></p></li>
+<li><p>Compute the double integral <span class="math display">\[\int_0^1\int_{-x}^{x+1}6\,x^2y\,dy\,dx\]</span> Now reverse the order of integration and recompute the integral.<br />
+Name the theorem which states that your two answers should agree.</p></li>
+<li><p>Find the generalised derivative of (i) <span class="math inline">\(|x|\)</span> and (ii) <span class="math inline">\(e^x\delta(x)\)</span> (full work out required).</p></li>
+<li><p>Consider the distribution <span class="math display">\[\delta^{[N]}_{{\rm sum}}:=\sum_{n=-N}^N \delta_{2\pi n}\]</span> for some <span class="math inline">\(N \in \mathbb{N}\)</span>.</p>
+<ul>
+<li><p>Draw a picture representing <span class="math inline">\(\delta^{[N]}_{{\rm sum}}\)</span> and give a brief explanation of what it might represent.</p></li>
+<li><p>Calculate the Fourier transform of <span class="math inline">\(\delta^{[N]}_{{\rm sum}}\)</span>.</p></li>
+<li><p>Find a simple polynomial solution to the generalised equation <span class="math display">\[\delta^{[1]}_{{\rm sum}}(x)\,p(x)=0.\]</span></p></li>
+</ul></li>
+</ol></li>
+<li><ol>
+<li><p><span id="parta" label="parta">[parta]</span> Suppose the level curve defined by <span class="math inline">\(f(x,y)=c\)</span> can be written as the function <span class="math inline">\(y=g(x)\)</span>, where <span class="math inline">\(f(x,y)\)</span> is differentiable. Derive an expression for <span class="math inline">\(dg/dx\)</span> in terms of the partial derivatives of <span class="math inline">\(f(x,y)\)</span>.</p></li>
+<li><p>Name and state clearly the theorem that guarantees that the level curve from part (a) can indeed be written as a function <span class="math inline">\(y=g(x)\)</span>.</p></li>
+<li><p><span id="partc" label="partc">[partc]</span> Consider the function <span class="math display">\[f(x,y) \;=\; 2 x^3 + 3 y ^2 + 6 x y\]</span> Determine whether or not the curve <span class="math inline">\(f(x,y) = c\)</span> can be written in the form <span class="math inline">\(y=g(x)\)</span>, and if not, state clearly the points <span class="math inline">\((x_0,y_0)\)</span> and corresponding values of <span class="math inline">\(c\)</span> where problems occur.</p></li>
+<li><p>Using <span class="math inline">\(f(x,y)\)</span> as given in part (c), determine whether or not the curve <span class="math inline">\(f(x,y) = c\)</span> can be written in the form <span class="math inline">\(x=h(y)\)</span>, and if not, state clearly the points <span class="math inline">\((x_0,y_0)\)</span> where problems occur.</p></li>
+<li><p>Using <span class="math inline">\(f(x,y)\)</span> as given in part (c), are there any points where the curve <span class="math inline">\(f(x,y) = c\)</span> can neither be written as <span class="math inline">\(y=g(x)\)</span> nor as <span class="math inline">\(x=h(y)\)</span>?</p></li>
+</ol></li>
+<li><ol>
+<li><p>State Stokes’ theorem, and use it to prove that if <span class="math inline">\({\bf v}({\bf x})\)</span> is a vector field in <span class="math inline">\(\mathbb{R}^3\)</span>, and <span class="math inline">\(C\)</span> is a closed curve in <span class="math inline">\(\mathbb{R}^3\)</span> bounding a surface <span class="math inline">\(S\)</span> on which <span class="math inline">\(\nabla\times{\bf v}={\bf 0}\)</span>, then <span class="math inline">\(\oint_C{\bf v}\cdot d{\bf x}=0\)</span>.</p></li>
+<li><p>Now let <span class="math inline">\({\bf v}({\bf x})\)</span> be given by <span class="math display">\[{\bf v}(x,y,z)=\frac{y}{x^2+y^2}\,{\bf e}_1
+-\frac{x}{x^2+y^2}\,{\bf e}_2\,+z\,{\bf e}_3.\]</span> Use the result from part 3.1 to evaluate <span class="math display">\[I=\oint_C{\bf v}\cdot d{\bf x}\]</span> where <span class="math inline">\(C\)</span> is the curve <span class="math display">\[t\mapsto {\bf x}(t) = r(t)\cos(t)\,{\bf e}_1
++ r(t)\sin(t)\,{\bf e}_2 +{\bf e}_3\,\qquad 0\le t\le 2\pi\]</span> and <span class="math inline">\(r(t)\)</span> is <em>any</em> continuous (and continously-differentiable) function satisfiying <span class="math inline">\(r(t)&gt;0\)</span> for <span class="math inline">\(0\le t\le 2\pi\)</span> and <span class="math inline">\(r(0)=r(2\pi)\)</span>. (Hint: evaluate the integral for <span class="math inline">\(r(t)=1\)</span>, and then consider the difference between this and the general case.)</p></li>
+<li><p>State the divergence theorem.<br />
+Let <span class="math inline">\(V\)</span> be the part of the region between the paraboloid <span class="math inline">\(z=x^2+y^2\)</span> and the plane <span class="math inline">\(z=3\)</span> with positive <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates, that is the set of points <span class="math display">\[V=\{(x,y,z):~x\ge 0,y\ge 0, x^2+y^2\le z\le 3\}\,.\]</span> Find the volume of <span class="math inline">\(V\)</span>, and then use the divergence theorem to compute <span class="math display">\[\int_{S_c}\mathbf{F}\cdot d\mathbf{A}\]</span> where <span class="math inline">\(\mathbf{F}(x,y,z) = x\,\mathbf{e}_1 + (2y{+}2)\,\mathbf{e}_2 +
+3z\,\mathbf{e}_3\)</span> and <span class="math inline">\(S_c\)</span> is the <em>curved</em> surface of <span class="math inline">\(V\)</span>, that is the set of points <span class="math display">\[S_c=\{(x,y,z):~z=x^2+y^2, x\ge 0,y\ge 0,z\le 3\}\,.\]</span></p></li>
+</ol></li>
+<li><ol>
+<li><p>Consider the following IVP for <span class="math inline">\(1&lt;t&lt;100\)</span> and <span class="math inline">\(f\)</span> a smooth function of <span class="math inline">\(t\)</span>, <span class="math display">\[-tx^{\prime\prime}+t^4x^\prime=f(t),\qquad x(1)=0, \,x^\prime(1)=0.\]</span></p>
+<ol>
+<li><p>Rewrite the ODE above as <span class="math inline">\(Lx=f(t)\)</span>. Is <span class="math inline">\(L\)</span> formally self-adjoint? Justify your answer.</p></li>
+<li><p>If the answer to part (a) is yes, is the IVP self-adjoint? If the answer to part (a) is no, transform the operator <span class="math inline">\(L\)</span> into a Sturm-Liouville operator <span class="math inline">\({\cal L}\)</span> and then decide whether the new IVP <span class="math inline">\({\cal L}x=g(x)\)</span> for the modified source term <span class="math inline">\(g\)</span> and the same initial conditions <span class="math inline">\(x(1)=0, \,x^\prime(1)=0\)</span> is self-adjoint or not. Justify all your steps.</p></li>
+</ol></li>
+<li><p>Suppose you are given four functions, each depending on time <span class="math inline">\(x^0=t\)</span> and on three space coordinates <span class="math inline">\(x^i, i\in \{1,2,3\}\)</span>, which are the components of the vector <span class="math inline">\({\bf x}\)</span>. Denote these functions by <span class="math inline">\(h^{0}(x^0, {\bf x}), h^{i}(x^0, {\bf x})\)</span> and suppose that they obey the constraint <span class="math display">\[\frac{\partial}{\partial x^0}\,h^{0}(x^0, {\bf x})+\sum_{i=1}^3\,\frac{\partial}{\partial x^i}\,h^{i}(x^0,{\bf x})=0.\]</span></p>
+<ol>
+<li><p>Calculate the time Fourier transform of this constraint.</p></li>
+<li><p>Each function <span class="math inline">\(h^{i}(x^0, {\bf x})\)</span> satisfies a four-dimensional wave equation <span class="math display">\[\Box\, h^{i}(x^0, {\bf x})=-T^{i}(x^0,{\bf x}),\]</span> where <span class="math inline">\(\Box\)</span> is the d’Alembertian operator and <span class="math inline">\((-T^i)\)</span> is a source term. Given appropriate initial conditions, the solution may be written as <span class="math display">\[h^{i}(x^0, {\bf x})=\int_{\mathbb{R}^4}\,\frac{1}{|{\bf x}-\boldsymbol{\xi}|}\,\delta(\,|{\bf x}-\boldsymbol{\xi}|-(x^0-\xi^0)\,)\,\Theta(x^0-\xi^0)\,T^{i}(\xi^0, \boldsymbol{\xi})\,d\boldsymbol{\xi}\,d\xi^0.\]</span></p>
+<ul>
+<li><p>Why can one replace <span class="math inline">\(\delta(\,|{\bf x}-\boldsymbol{\xi}|-(x^0-\xi^0)\,)\,\Theta(x^0-\xi^0)\)</span> by just <span class="math inline">\(\delta(\,|{\bf x}-\boldsymbol{\xi}|-(x^0-\xi^0)\,)\)</span> in the integral above?</p></li>
+<li><p>Rewrite <span class="math inline">\(h^{i}(x^0, {\bf x})\)</span> as a 3-dimensional integral, using part (a) and potentially other properties you should quote.</p></li>
+</ul></li>
+</ol></li>
+</ol></li>
+<li><ol>
+<li><p>Find the general solution of the Cauchy-Euler equation <span class="math display">\[x^2u^{\prime\prime}(x)+3xu^\prime(x)+(1+\alpha)u(x)=0\]</span> where <span class="math inline">\(\alpha\)</span> is a given positive constant.</p></li>
+<li><p>Use part (a) to determine the eigenvalues <span class="math inline">\(\lambda_n\)</span> and eigenfunctions <span class="math inline">\(u_n\)</span> of the self-adjoint BVP <span class="math display">\[-(x^3u^\prime(x))^\prime=\lambda xu,\qquad u(1)=0,\,u(e)=0.\]</span></p></li>
+<li><p>Obtain the eigenfunction expansion for the solution of the inhomogeneous problem <span class="math display">\[(x^3u^\prime(x))^\prime=x,\qquad u(1)=0,\,u(e)=0.\]</span> Give the coefficients explicitly, i.e. compute the integrals.</p></li>
+<li><p>Give an expression for the Green’s function of this BVP in terms of the eigenfunctions calculated above.</p></li>
+</ol></li>
+</ol>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
