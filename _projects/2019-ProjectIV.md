@@ -5,6 +5,7 @@ module: Project IV
 description: Games, Codes, Lattices and Moonshine. 
 img: /assets/img/golay_egan.gif
 current: false
+hidden: true
 academicYear: 2019/20
 ---
 Description

@@ -3,7 +3,7 @@ layout: page
 title: STACKing Codes - Automated Assessment in Higher Mathematics 
 description: We will learn how to use modern automated assessment tools to prepare materials for courses in higher mathematics.
 img: /assets/img/STACK-logo.png
-current: true
+current: false
 hidden: false
 module: Project III
 academicYear: 2022/23
