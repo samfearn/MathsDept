@@ -14,7 +14,7 @@ profile:
 news: true
 social: true
 ---
-I'm an Assistant Professor (Teaching) in the Department of Mathematical Sciences at Durham University and a member of the Centre for Particle Theory. I currently have a focus on formative assessment in higher mathematics, and in particular on the role computer-aided assessment can play in this. 
+I'm an Associate Professor (Teaching) in the Department of Mathematical Sciences at Durham University and a member of the Education and Pedagogy group. My primary focus is on formative assessment in higher mathematics, and in particular on the role computer-aided assessment can play in this. 
 
 Before accepting this position, I worked in the Durham maths department as a Teaching Fellow. I studied for my Ph.D. at Durham under the supervision of [Anne Taormina] and completed this in 2018 with a thesis entitled 'Supersymmetric Sigma Models And Their Indices'.
 
