@@ -1,0 +1,140 @@
+<!DOCTYPE html><html prefix="dcterms: http://purl.org/dc/terms/">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.10 Summary: Differentiation</title>
+<!--Generated on Sat Dec 24 13:36:59 2022 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://samfearn.github.io/latexml.min.css">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<section id="S3.SS10" class="ltx_subsection">
+<h2 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.10 </span>Summary: Differentiation</h2>
+
+<div id="S3.SS10.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You should have a good understanding of the definition of the derivative,
+the general Leibnitz rule, L’Hôpital’s rule, local and global extreme values and how to find them, the Mean Value Theorem (MVT) and the equivalent Rolle’s theorem, the inverse function rule and partial derivatives.
+Here are some key points:</p>
+</div>
+<div id="S3.SS10.p2" class="ltx_para ltx_noindent">
+<ul id="S3.I1" class="ltx_itemize">
+<li id="S3.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">derivative</span> of <math id="S3.I1.i1.p1.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> at <math id="S3.I1.i1.p1.m2" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math> is (if it exists)
+<math id="S3.I1.i1.p1.m3" class="ltx_Math" alttext="f^{\prime}(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mo>lim</mo><mrow><mi>h</mi><mo>→</mo><mn>0</mn></mrow></msub><mo>⁡</mo><mfrac><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>a</mi><mo>+</mo><mi>h</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>-</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mi>h</mi></mfrac></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S3.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">Leibniz rule</span> is <math id="S3.I1.i2.p1.m1" class="ltx_Math" alttext="(fg)^{\prime}=f^{\prime}g+fg^{\prime}" display="inline"><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mi>g</mi></mrow><mo stretchy="false">)</mo></mrow><mo>′</mo></msup><mo>=</mo><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mi>g</mi></mrow><mo>+</mo><mrow><mi>f</mi><mo>⁢</mo><msup><mi>g</mi><mo>′</mo></msup></mrow></mrow></mrow></math> and extends in an obvious way to products of more than two functions, e.g. <math id="S3.I1.i2.p1.m2" class="ltx_Math" alttext="(fgh)^{\prime}=f^{\prime}gh+fg^{\prime}h+fgh^{\prime}" display="inline"><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mi>g</mi><mo>⁢</mo><mi>h</mi></mrow><mo stretchy="false">)</mo></mrow><mo>′</mo></msup><mo>=</mo><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mi>g</mi><mo>⁢</mo><mi>h</mi></mrow><mo>+</mo><mrow><mi>f</mi><mo>⁢</mo><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mi>h</mi></mrow><mo>+</mo><mrow><mi>f</mi><mo>⁢</mo><mi>g</mi><mo>⁢</mo><msup><mi>h</mi><mo>′</mo></msup></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S3.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">general Leibniz rule</span> gives an efficient way to calculate higher order derivatives of a product of two functions, specifically
+<math id="S3.I1.i3.p1.m1" class="ltx_Math" alttext="D^{n}(fg)=\sum_{k=0}^{n}\left(\begin{array}[]{c}n\\
+k\end{array}\right)(D^{k}f)(D^{n-k}g)" display="inline"><mrow><mrow><msup><mi>D</mi><mi>n</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mi>g</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msubsup><mo largeop="true" symmetric="true">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><mrow><mrow><mo>(</mo><mtable rowspacing="0pt"><mtr><mtd columnalign="center"><mi>n</mi></mtd></mtr><mtr><mtd columnalign="center"><mi>k</mi></mtd></mtr></mtable><mo>)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>D</mi><mi>k</mi></msup><mo>⁢</mo><mi>f</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>D</mi><mrow><mi>n</mi><mo>-</mo><mi>k</mi></mrow></msup><mo>⁢</mo><mi>g</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S3.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">chain rule</span> tells us how to differentiate a function of a function,
+<math id="S3.I1.i4.p1.m1" class="ltx_Math" alttext="(f\circ g)^{\prime}(x)=f^{\prime}(g(x))g^{\prime}(x)" display="inline"><mrow><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>∘</mo><mi>g</mi></mrow><mo stretchy="false">)</mo></mrow><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S3.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">It may be possible to evaluate an indeterminate limit <math id="S3.I1.i5.p1.m1" class="ltx_Math" alttext="0/0" display="inline"><mrow><mn>0</mn><mo>/</mo><mn>0</mn></mrow></math> or
+<math id="S3.I1.i5.p1.m2" class="ltx_Math" alttext="\infty/\infty" display="inline"><mrow><mi mathvariant="normal">∞</mi><mo>/</mo><mi mathvariant="normal">∞</mi></mrow></math> by <span class="ltx_text ltx_font_italic">L’Hôpital’s rule</span>
+<math id="S3.I1.i5.p1.m3" class="ltx_Math" alttext="\lim_{x\to a}f(x)/g(x)=\lim_{x\to a}f^{\prime}(x)/g^{\prime}(x)" display="inline"><mrow><mrow><msub><mo>lim</mo><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></msub><mo>⁡</mo><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mi>g</mi></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><msub><mo>lim</mo><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></msub><mo>⁡</mo><mrow><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><msup><mi>g</mi><mo>′</mo></msup></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S3.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">extreme value theorem</span> states that continuous functions on closed intervals always attain upper and lower bounds (<span class="ltx_text ltx_font_italic">global maxima and minima</span>).
+</p>
+</div>
+</li>
+<li id="S3.I1.i7" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A <span class="ltx_text ltx_font_italic">monotonically increasing/decreasing</span> function <math id="S3.I1.i7.p1.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> on an interval is a function
+which never decreases/increases as <math id="S3.I1.i7.p1.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> increases on that interval. <span class="ltx_text ltx_font_italic">Strictly monotonic</span> excludes the possibility that the function may be constant on some subinterval.</p>
+</div>
+</li>
+<li id="S3.I1.i8" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A function <math id="S3.I1.i8.p1.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> has a <span class="ltx_text ltx_font_italic">local maximum/minimum</span> at <math id="S3.I1.i8.p1.m2" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math> if <math id="S3.I1.i8.p1.m3" class="ltx_Math" alttext="f(a)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> is a
+global maximum/minimum on some open interval containing <math id="S3.I1.i8.p1.m4" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.</p>
+</div>
+</li>
+<li id="S3.I1.i9" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i9.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If <math id="S3.I1.i9.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is differentiable and has a local max/min at <math id="S3.I1.i9.p1.m2" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math> then
+it has a <span class="ltx_text ltx_font_italic">stationary point</span> at <math id="S3.I1.i9.p1.m3" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math>, i.e. <math id="S3.I1.i9.p1.m4" class="ltx_Math" alttext="f^{\prime}(a)=0" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>. You can test whether a stationary point is a local max or local min or neither with the <span class="ltx_text ltx_font_italic">first derivative test</span>, or often with the <span class="ltx_text ltx_font_italic">second derivative test</span>.</p>
+</div>
+</li>
+<li id="S3.I1.i10" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i10.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">All <span class="ltx_text ltx_font_italic">extreme values</span> (maxima and minima) of a function on an interval will be at <span class="ltx_text ltx_font_italic">critical points</span> (stationary points or points where the function is not differentiable) or at
+the <span class="ltx_text ltx_font_italic">endpoints</span> of the interval. If you are looking for the global extreme values, just evaluate the function at all those points – no need to identify whether each point is a local max or min.</p>
+</div>
+</li>
+<li id="S3.I1.i11" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i11.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If <math id="S3.I1.i11.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is continuous on <math id="S3.I1.i11.p1.m2" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math> and differentiable on <math id="S3.I1.i11.p1.m3" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> then the
+<span class="ltx_text ltx_font_italic">Mean Value Theorem (MVT)</span> says that <math id="S3.I1.i11.p1.m4" class="ltx_Math" alttext="\exists c\in(a,b)" display="inline"><mrow><mrow><mo>∃</mo><mi>c</mi></mrow><mo>∈</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> s.t. <math id="S3.I1.i11.p1.m5" class="ltx_Math" alttext="f^{\prime}(c)" display="inline"><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+equals the gradient of the straight line from <math id="S3.I1.i11.p1.m6" class="ltx_Math" alttext="(a,f(a))" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> to <math id="S3.I1.i11.p1.m7" class="ltx_Math" alttext="(b,f(b))" display="inline"><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math>.
+Rolle’s theorem is the MVT in the case where <math id="S3.I1.i11.p1.m8" class="ltx_Math" alttext="f(a)=f(b)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> so <math id="S3.I1.i11.p1.m9" class="ltx_Math" alttext="f^{\prime}(c)=0" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>.</p>
+</div>
+</li>
+<li id="S3.I1.i12" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i12.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If <math id="S3.I1.i12.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is continuous on <math id="S3.I1.i12.p1.m2" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math> and differentiable on <math id="S3.I1.i12.p1.m3" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> with
+<math id="S3.I1.i12.p1.m4" class="ltx_Math" alttext="f^{\prime}(x)\neq 0" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math> on <math id="S3.I1.i12.p1.m5" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> then the <span class="ltx_text ltx_font_italic">inverse function rule</span> tells that
+the derivative of <math id="S3.I1.i12.p1.m6" class="ltx_Math" alttext="f^{-1}" display="inline"><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> exists on <math id="S3.I1.i12.p1.m7" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> and tells us how to relate it to
+the derivative of <math id="S3.I1.i12.p1.m8" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>. Letting <math id="S3.I1.i12.p1.m9" class="ltx_Math" alttext="g=f^{-1}" display="inline"><mrow><mi>g</mi><mo>=</mo><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></math> we have
+<math id="S3.I1.i12.p1.m10" class="ltx_Math" alttext="g^{\prime}(x)=1/f^{\prime}(g(x))" display="inline"><mrow><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mn>1</mn><mo>/</mo><msup><mi>f</mi><mo>′</mo></msup></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S3.I1.i13" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i13.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If we have a function of more than one variable we can define <span class="ltx_text ltx_font_italic">partial
+derivatives</span> with respect to one of the variables as the ordinary derivative when we treat all the other variables as constants. E.g. for <math id="S3.I1.i13.p1.m1" class="ltx_Math" alttext="f(x,y)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> we have
+the partial derivative of <math id="S3.I1.i13.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> wrt. <math id="S3.I1.i13.p1.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> at <math id="S3.I1.i13.p1.m4" class="ltx_Math" alttext="(x,y)" display="inline"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></math>:
+<math id="S3.I1.i13.p1.m5" class="ltx_Math" alttext="f_{x}=\frac{\partial f}{\partial x}=\lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}{h}" display="inline"><mrow><msub><mi>f</mi><mi>x</mi></msub><mo>=</mo><mfrac><mrow><mo>∂</mo><mo>⁡</mo><mi>f</mi></mrow><mrow><mo>∂</mo><mo>⁡</mo><mi>x</mi></mrow></mfrac><mo>=</mo><mrow><msub><mo>lim</mo><mrow><mi>h</mi><mo>→</mo><mn>0</mn></mrow></msub><mo>⁡</mo><mfrac><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mi>h</mi></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>-</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mi>h</mi></mfrac></mrow></mrow></math> etc.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+</section><div class="ltx_rdf" about="" property="dcterms:language" content="en-GB"></div>
+<div class="ltx_rdf" about="" property="dcterms:title" content="allnotes"></div>
+
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Sat Dec 24 13:36:59 2022 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

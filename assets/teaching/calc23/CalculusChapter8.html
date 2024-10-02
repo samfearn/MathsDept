@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Original notes produced by Paul Sutcliffe" />
+  <title>Calculus I Michaelmas Term</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Calculus I<br />
+Michaelmas Term</p></h1>
+<p class="author">Sam Fearn<br />
+Original notes produced by Paul Sutcliffe</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#taylor-series"><span class="toc-section-number">8</span> Taylor series</a>
+<ul>
+<li><a href="#taylors-theorem"><span class="toc-section-number">8.1</span> Taylor’s theorem</a></li>
+<li><a href="#taylor-polynomials"><span class="toc-section-number">8.2</span> Taylor polynomials</a></li>
+<li><a href="#lagrange-form-for-the-remainder"><span class="toc-section-number">8.3</span> Lagrange form for the remainder</a></li>
+<li><a href="#calculating-limits-using-taylor-series"><span class="toc-section-number">8.4</span> Calculating limits using Taylor series</a></li>
+<li><a href="#summary-taylor-series"><span class="toc-section-number">8.5</span> Summary: Taylor Series</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="taylor-series" class="level1" data-number="1">
+<h1 data-number="8"><span class="header-section-number">8</span> Taylor series</h1>
+<section id="taylors-theorem" class="level2" data-number="1.1">
+<h2 data-number="8.1"><span class="header-section-number">8.1</span> Taylor’s theorem</h2>
+<p><span><strong>Taylor’s theorem</strong></span> states that if <span class="math inline">\(f(x)\)</span> has <span class="math inline">\(n+1\)</span> continuous derivatives in an open interval <span class="math inline">\(I\)</span> that contains the point <span class="math inline">\(x=a,\)</span> then <span class="math inline">\(\forall\ x\in I\)</span> <span class="math display">\[f(x)=\bigg(\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k\bigg) \ + R_n(x)\]</span> <span class="math display">\[\mbox{where \ } 
+R_n(x)=\frac{1}{n!}\int_a^x(x-t)^nf^{(n+1)}(t)\,dt
+\quad \mbox{is called the {\bf remainder}.}\]</span>  </p>
+<p>Proof:</p>
+<p>Fix <span class="math inline">\(x\in I\)</span> then <span class="math inline">\(\int_a^xf&#39;(t)\,dt=f(x)-f(a),\)</span>  so <span class="math display">\[f(x)=f(a)+\int_a^xf&#39;(t)\,dt.\]</span> If we think of the integrand in the above as  <span class="math inline">\(f&#39;(t)\cdot 1\)</span>  then we can perform an integration by parts where we choose the constant of integration to be <span class="math inline">\(-x\)</span> so that <span class="math inline">\(\int 1\,dt =(t-x).\)</span> This gives <span class="math display">\[\begin{aligned}
+f(x)&amp;=&amp;f(a)+\bigg[f&#39;(t)(t-x)\bigg]_a^x-\int_a^xf&#39;&#39;(t)(t-x)\, dt\\
+&amp;=&amp;f(a)+f&#39;(a)(x-a)+\int_a^xf&#39;&#39;(t)(x-t)\, dt.\\\end{aligned}\]</span> Note that this proves the theorem for <span class="math inline">\(n=1.\)</span> To prove the theorem for <span class="math inline">\(n=2\)</span> we perform another integration by parts on this equation, <span class="math display">\[\begin{aligned}
+f(x)&amp;=&amp;f(a)+f&#39;(a)(x-a)+\int_a^xf&#39;&#39;(t)(x-t)\, dt\\
+&amp;=&amp;f(a)+f&#39;(a)(x-a)-\bigg[f&#39;&#39;(t)\frac{(x-t)^2}{2}\bigg]_a^x
++\int_a^xf&#39;&#39;&#39;(t)\frac{(x-t)^2}{2}\, dt\\
+&amp;=&amp;f(a)+f&#39;(a)(x-a)+\frac{f&#39;&#39;(a)}{2}(x-a)^2+\int_a^xf&#39;&#39;&#39;(t)\frac{(x-t)^2}{2}.\\\end{aligned}\]</span> This proves the theorem for <span class="math inline">\(n=2.\)</span> Continuing in this way the theorem follows after performing an integration by parts a total of <span class="math inline">\(n\)</span> times. More formally, this can be written in the form of a proof by induction.</p>
+</section>
+<section id="taylor-polynomials" class="level2" data-number="1.2">
+<h2 data-number="8.2"><span class="header-section-number">8.2</span> Taylor polynomials</h2>
+<p>The combination <span class="math inline">\(P_n(x)=f(x)-R_n(x)\)</span> is a polynomial in <span class="math inline">\(x\)</span> of degree <span class="math inline">\(n\)</span> called <span><strong>the <span class="math inline">\(n^{th}\)</span> order Taylor polynomial of <span class="math inline">\(f(x)\)</span> about <span class="math inline">\(x=a\)</span></strong></span> <span class="math display">\[P_n(x)=f(a)+f&#39;(a)(x-a)+\frac{f&#39;&#39;(a)}{2!}(x-a)^2+...
++\frac{f^{(n)}(a)}{n!}(x-a)^n.\]</span> If the term ‘about <span class="math inline">\(x=a\)</span>’ is not included when referring to the <span class="math inline">\(n^{th}\)</span> order Taylor polynomial of <span class="math inline">\(f(x)\)</span>, then by default this is taken to mean the choice <span class="math inline">\(a=0,\)</span> as this is the most common case.<br />
+The Taylor polynomial <span class="math inline">\(P_n(x)\)</span> is an approximation to the function <span class="math inline">\(f(x).\)</span> Generically, it is a good approximation if <span class="math inline">\(x\)</span> is close to <span class="math inline">\(a\)</span> and the approximation improves with increasing order <span class="math inline">\(n.\)</span> The remainder provides an exact expression for the error in the approximation.<br />
+Eg. Calculate the <span class="math inline">\(n^{th}\)</span> order Taylor polynomial of <span class="math inline">\(e^x.\)</span></p>
+<p><span class="math inline">\(f(x)=e^x,\ f&#39;(x)=e^x, \ ... \ ,f^{(k)}(x)=e^x\)</span>  so <span class="math inline">\(f^{(k)}(0)=1\)</span> giving <span class="math display">\[P_n(x)=1+x+\frac{x^2}{2!}+...+\frac{x^n}{n!}
+=\sum_{k=0}^n\frac{x^k}{k!}.\]</span> Figure <a href="#fig-taylorexp" data-reference-type="ref" data-reference="fig-taylorexp">1</a> shows the graph of <span class="math inline">\(e^x\)</span> and its Taylor polynomials of order 0 to 3.</p>
+<div class="center">
+<figure>
+<img src="new_taylorexp.png" id="fig-taylorexp" style="width:8cm" alt="" /><figcaption>The function <span class="math inline">\(e^x\)</span> (red) and its associated Taylor polynomials <span class="math inline">\(P_0(x),P_1(x),P_2(x),P_3(x)\)</span> of order 0 (orange), 1 (green), 2 (blue) and 3 (pink).</figcaption>
+</figure>
+</div>
+<p>If <span class="math inline">\(f(x)\)</span> is infinitely differentiable on an open interval <span class="math inline">\(I\)</span> that contains the point <span class="math inline">\(x=a\)</span> and in addition for each <span class="math inline">\(x\in I\)</span> we have that <span class="math inline">\(\lim_{n\rightarrow\infty}R_n(x)=0,\)</span> then we say that <span class="math inline">\(f(x)\)</span> can be expanded as a <span><strong>Taylor series</strong></span> about <span class="math inline">\(x=a\)</span> and we write <span class="math display">\[f(x)=\sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!}(x-a)^k.\]</span> </p>
+<p>Infinite series and discussions/tests concerning their convergence are covered in the Analysis I course.<br />
+Note that the <span class="math inline">\(n^{th}\)</span> order Taylor polynomial is obtained by taking just the first <span class="math inline">\((n+1)\)</span> terms of the Taylor series (where we count terms even if they happen to be zero).<br />
+Eg. From our earlier calculation we have that the Taylor series of <span class="math inline">\(e^x\)</span> is <span class="math display">\[e^x=\sum_{k=0}^\infty\frac{x^k}{k!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\]</span> where <span class="math inline">\(\cdots\)</span> denotes an infinite number of terms with increasing powers of <span class="math inline">\(x.\)</span><br />
+Note that if we set <span class="math inline">\(x=1\)</span> in the above Taylor series then we obtain a formula for Euler’s number <span class="math display">\[e=\sum_{k=0}^\infty\frac{1}{k!}=1+\frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\cdots\]</span><br />
+Eg. Calculate the Taylor series of <span class="math inline">\(\sin x.\)</span></p>
+<p><span class="math inline">\(f(x)=\sin x, \ f(0)=0, \quad
+f&#39;(x)=\cos x, \ f&#39;(0)=1, \quad\)</span></p>
+<p><span class="math inline">\(f&#39;&#39;(x)=-\sin x, \ f&#39;&#39;(0)=0, \quad
+f&#39;&#39;&#39;(x)=-\cos x, \ f&#39;&#39;&#39;(0)=-1, \quad\)</span></p>
+<p><span class="math inline">\(f^{(4)}(x)=\sin x\)</span> so now the pattern repeats and we see that for all non-negative integers <span class="math inline">\(k\)</span> we have that <span class="math inline">\(f^{2k}(0)=0\)</span> and <span class="math inline">\(f^{2k+1}(0)=(-1)^k.\)</span></p>
+<p>The Taylor series of <span class="math inline">\(\sin x\)</span> is therefore given by <span class="math display">\[\sin x=\sum_{k=0}^\infty\frac{(-1)^k}{(2k+1)!}x^{2k+1}=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots\]</span> Observe that only odd powers of <span class="math inline">\(x\)</span> appear in the Taylor series of <span class="math inline">\(\sin x\)</span> as this is an odd function.<br />
+A similar calculation (exercise) yields the Taylor series of <span class="math inline">\(\cos x\)</span> <span class="math display">\[\cos x=\sum_{k=0}^\infty\frac{(-1)^k}{(2k)!}x^{2k}=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\cdots\]</span> in which only even powers of <span class="math inline">\(x\)</span> appear, as <span class="math inline">\(\cos x\)</span> is an even function.<br />
+To calculate the Taylor series of <span class="math inline">\(\sinh x\)</span> observe that for all non-negative integer <span class="math inline">\(k\)</span> we have that <span class="math inline">\(f(x)=\sinh x\)</span> satisfies <span class="math display">\[f^{(k)}(x)=\begin{cases}
+\sinh x &amp; \text{if $k$ \ is even}\\
+\cosh x &amp; \text{if $k$ \ is odd}\\
+\end{cases}\]</span> thus <span class="math inline">\(f^{(2k)}(0)=0\)</span> and <span class="math inline">\(f^{(2k+1)}(0)=1\)</span> giving <span class="math display">\[\sinh x=\sum_{k=0}^\infty\frac{1}{(2k+1)!}x^{2k+1}=x+\frac{x^3}{3!}+\frac{x^5}{5!}+\frac{x^7}{7!}+\cdots\]</span> </p>
+<p>A similar calculation (exercise) yields the Taylor series of <span class="math inline">\(\cosh x\)</span> <span class="math display">\[\cosh x=\sum_{k=0}^\infty\frac{1}{(2k)!}x^{2k}=1+\frac{x^2}{2!}+\frac{x^4}{4!}+\frac{x^6}{6!}+\cdots\]</span> </p>
+<p>These two results can also be obtained directly from the Taylor series of <span class="math inline">\(e^x\)</span> by noting that <span class="math inline">\(\cosh x\)</span> and <span class="math inline">\(\sinh x\)</span> are the even and odd parts of <span class="math inline">\(e^x.\)</span><br />
+As <span class="math inline">\(\log x\)</span> is not defined at <span class="math inline">\(x=0\)</span> it does not make sense to consider the Taylor series of <span class="math inline">\(\log x\)</span> about <span class="math inline">\(x=0.\)</span> Instead we consider the Taylor series of <span class="math inline">\(\log x\)</span> about <span class="math inline">\(x=1.\)</span></p>
+<p><span class="math inline">\(f(x)=\log x,\ f(1)=0, \quad f&#39;(x)=\frac{1}{x},\ f&#39;(1)=1, \quad\)</span></p>
+<p><span class="math inline">\(f&#39;&#39;(x)=-\frac{1}{x^2},\ f&#39;&#39;(1)=-1, \quad f&#39;&#39;&#39;(x)=\frac{2}{x^3},\ f&#39;&#39;&#39;(1)=2, 
+\quad\)</span></p>
+<p><span class="math inline">\(f^{(4)}(x)=-\frac{3\cdot 2}{x^4},\ f^{(4)}(1)=-3\cdot 2\)</span> and in general for <span class="math inline">\(k\)</span> a positive integer <span class="math inline">\(f^{(k)}(x)=(-1)^{k-1}\frac{(k-1)!}{x^k},\  f^{(k)}(1)=(-1)^{k-1}{(k-1)!}\)</span></p>
+<p>Thus the Taylor series of <span class="math inline">\(\log x\)</span> about <span class="math inline">\(x=1\)</span> is <span class="math display">\[\log x=\sum_{k=1}^\infty \frac{(-1)^{k-1}(k-1)!}{k!}(x-1)^k
+=\sum_{k=1}^\infty \frac{(-1)^{k-1}}{k}(x-1)^k\]</span> This result is more often expressed in terms of the variable <span class="math inline">\(X=x-1,\)</span> when it becomes <span class="math inline">\(\log (1+X)=\sum_{k=1}^\infty \frac{(-1)^{k-1}}{k}X^k.\)</span></p>
+<p>If we now rename the variable <span class="math inline">\(X\)</span> as <span class="math inline">\(x\)</span> we get <span class="math display">\[\log (1+x)=\sum_{k=1}^\infty \frac{(-1)^{k-1}}{k}x^k
+=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots\]</span> This result is not valid at <span class="math inline">\(x=-1,\)</span> and this is to be expected because the logarithm is not defined when its argument is zero. A careful examination of the requirement <span class="math inline">\(\lim_{n\rightarrow\infty}R_n(x)=0\)</span> reveals that <span class="math inline">\(x\)</span> must satisfy <span class="math inline">\(-1&lt;x\le 1\)</span> for the above Taylor series to be valid (ie. for the series to converge).<br />
+</p>
+</section>
+<section id="lagrange-form-for-the-remainder" class="level2" data-number="1.3">
+<h2 data-number="8.3"><span class="header-section-number">8.3</span> Lagrange form for the remainder</h2>
+<p>There is a more convenient expression for the remainder term in Taylor’s theorem. The <span><strong>Lagrange form for the remainder</strong></span> is <span class="math display">\[R_n(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1},\quad\quad
+\mbox{for some \ } c\in(a,x).\]</span> </p>
+<p>To prove this expression for the remainder we will first need to prove the following lemma:<br />
+<span><em>Lemma</em></span></p>
+<p>Let <span class="math inline">\(h(t)\)</span> be differentiable <span class="math inline">\(n+1\)</span> times on <span class="math inline">\([a,x]\)</span> with <span class="math inline">\(h^{(k)}(a)=0\)</span>  for <span class="math inline">\(0\le k\le n\)</span> and <span class="math inline">\(h(x)=0.\)</span> Then <span class="math inline">\(\exists\ c\in(a,x)\)</span> s.t. <span class="math inline">\(h^{(n+1)}(c)=0.\)</span><br />
+Proof:</p>
+<p><span class="math inline">\(h(a)=0=h(x)\)</span>  so by Rolle’s theorem <span class="math inline">\(\exists\ c_1\in(a,x)\)</span> s.t. <span class="math inline">\(h&#39;(c_1)=0.\)</span></p>
+<p><span class="math inline">\(h&#39;(a)=0=h&#39;(c_1)\)</span>  so by Rolle’s theorem <span class="math inline">\(\exists\ c_2\in(a,c_1)\)</span> s.t. <span class="math inline">\(h&#39;&#39;(c_1)=0.\)</span></p>
+<p>Repeating this argument a total of <span class="math inline">\(n\)</span> times we arrive at</p>
+<p><span class="math inline">\(h^{(n)}(a)=0=h^{(n)}(c_n)\)</span>  so by Rolle’s theorem <span class="math inline">\(\exists\ c_{n+1}\in(a,c_n)\)</span> s.t. <span class="math inline">\(h^{(n+1)}(c_{n+1})=0.\)</span></p>
+<p>This proves the lemma with <span class="math inline">\(c=c_{n+1}\in (a,x).\)</span><br />
+Proof of the Lagrange form of the remainder:</p>
+<p>Consider the function <span class="math display">\[h(t)=(f(t)-P_n(t))(x-a)^{n+1}-(f(x)-P_n(x))(t-a)^{n+1}.\]</span> By construction <span class="math inline">\(h(x)=0.\)</span></p>
+<p>Also <span class="math inline">\(\frac{d^k}{dt^k}(t-a)^{n+1}\)</span> is zero when evaluated at <span class="math inline">\(t=a\)</span> for <span class="math inline">\(0\le k\le n.\)</span> Furthermore, by definition of the Taylor polynomial <span class="math inline">\(P_n(t)\)</span> we have that <span class="math inline">\(f^{(k)}(a)=P_n^{(k)}(a)\)</span> for <span class="math inline">\(0\le k\le n.\)</span></p>
+<p>Hence <span class="math inline">\(h^{(n)}(a)=0\)</span> for <span class="math inline">\(0\le k\le n.\)</span></p>
+<p><span class="math inline">\(h(t)\)</span> therefore satisfies the conditions of the lemma and we have that</p>
+<p><span class="math inline">\(\exists\ c\in(a,x)\)</span> s.t. <span class="math inline">\(h^{(n+1)}(c)=0.\)</span></p>
+<p>As <span class="math inline">\(P_n(t)\)</span> is a polynomial of degree <span class="math inline">\(n\)</span> then <span class="math inline">\(P_n^{(n+1)}(t)=0.\)</span></p>
+<p>Also, <span class="math inline">\(\frac{d^{n+1}}{dt^{n+1}}(t-a)^{n+1}=(n+1)!\)</span> hence <span class="math display">\[0=h^{(n+1)}(c)=(x-a)^{n+1}f^{(n+1)}(c)-(n+1)!(f(x)-P_n(x))\]</span> Rearranging this expression gives the required result <span class="math display">\[f(x)=P_n(x)+\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}.\]</span><br />
+One use of the Lagrange form of the remainder is to provide an upper bound on the error of a Taylor polynomial approximation to a function.</p>
+<p>Suppose that <span class="math inline">\(|f^{(n+1)}(t)|\le M, \quad \forall \ t\)</span> in the closed interval between <span class="math inline">\(a\)</span> and <span class="math inline">\(x.\)</span></p>
+<p>Then <span class="math inline">\(|R_n(x)|\le \frac{M|x-a|^{n+1}}{(n+1)!}\)</span>  provides a bound on the error.<br />
+Eg. Show that the error in approximating <span class="math inline">\(e^{x}\)</span> by its <span class="math inline">\(6^{th}\)</span> order Taylor polynomial is always less than <span class="math inline">\(0.0006\)</span> throughout the interval <span class="math inline">\([0,1].\)</span><br />
+In this example <span class="math inline">\(f(x)=e^x\)</span> and <span class="math inline">\(n=6\)</span> so we first require an upper bound on <span class="math inline">\(|f^{(7)}(t)|=|e^t|\)</span> for <span class="math inline">\(t\in[0,1].\)</span> As <span class="math inline">\(e^t\)</span> is monotonic increasing and positive then <span class="math inline">\(|e^t|\le e^1=e&lt;3.\)</span> Thus, in the above notation, we may take <span class="math inline">\(M=3.\)</span></p>
+<p>As <span class="math inline">\(a=0\)</span> we now have that <span class="math inline">\(|R_6(x)|&lt; \frac{3|x|^{7}}{7!}\le  \frac{3}{7!}\)</span> for <span class="math inline">\(x\in[0,1].\)</span></p>
+<p>Evaluating <span class="math inline">\(\frac{3}{7!}=\frac{1}{1680}&lt;0.0006\)</span> and the required result has been shown.<br />
+</p>
+</section>
+<section id="calculating-limits-using-taylor-series" class="level2" data-number="1.4">
+<h2 data-number="8.4"><span class="header-section-number">8.4</span> Calculating limits using Taylor series</h2>
+<p><span><strong>* Only use this method in assignments/exam questions when told to do so **</strong></span><br />
+<span><strong>Defn:</strong></span> Let <span class="math inline">\(n\)</span> be a positive integer.</p>
+<p>We say that <span class="math inline">\(f(x)=o(x^n)\)</span> (as <span class="math inline">\(x\rightarrow 0\)</span>) if <span class="math inline">\(\lim_{x\rightarrow 0}\frac{f(x)}{x^n}=0.\)</span></p>
+<p> </p>
+<p>In particular, if <span class="math inline">\(\alpha\)</span> is any non-zero constant then <span class="math inline">\(\alpha x^m=o(x^n)\)</span> iff <span class="math inline">\(m&gt;n.\)</span><br />
+Egs. <span class="math inline">\(3x^4=o(x^3),\  3x^4=o(x^2),\ 3x^8-x^6=o(x^5), \ o(x^8)+o(x^5)=o(x^5).\)</span><br />
+If we know that a Taylor series is valid in a suitable open interval, then it may be useful in calculating certain limits.</p>
+<p>It can be shown that the Taylor series we have already seen for <span class="math inline">\(\sin x\)</span> and <span class="math inline">\(\cos x\)</span> are valid for all <span class="math inline">\(x\in\mathbb{R}\)</span>. Although we have not proved this result you may assume that it is true and use it in calculating limits. As examples, we shall now calculate the two important trigonometric limits that we saw earlier.<br />
+Eg. Use Taylor series to calculate <span class="math inline">\(\lim_{x\rightarrow 0}\frac{\sin x}{x}.\)</span></p>
+<p>From the Taylor series of <span class="math inline">\(\sin x\)</span> we have that <span class="math inline">\(\sin x=x-\frac{x^3}{3!}+o(x^4).\)</span> Hence <span class="math display">\[\lim_{x\rightarrow 0}\frac{\sin x}{x}=
+\lim_{x\rightarrow 0}\frac{x-\frac{x^3}{3!}+o(x^4)}{x}=
+\lim_{x\rightarrow 0}({1-\frac{x^2}{3!}+o(x^3)})=
+\lim_{x\rightarrow 0}({1+o(x)})=1.\]</span> </p>
+<p>Eg. Use Taylor series to calculate <span class="math inline">\(\lim_{x\rightarrow 0}\frac{1-\cos x}{x}.\)</span></p>
+<p>From the Taylor series of <span class="math inline">\(\cos x\)</span> we have that <span class="math inline">\(\cos x=1-\frac{x^2}{2}+o(x^3).\)</span> Hence <span class="math display">\[\lim_{x\rightarrow 0}\frac{1-\cos x}{x}=
+\lim_{x\rightarrow 0}\frac{1-1+\frac{x^2}{2}+o(x^3)}{x}
+=\lim_{x\rightarrow 0}\frac{\frac{x^2}{2}+o(x^3)}{x}
+=\lim_{x\rightarrow 0}\bigg(\frac{x}{2}+o(x^2)\bigg)=0.\]</span></p>
+</section>
+<section id="summary-taylor-series" class="level2" data-number="1.5">
+<h2 data-number="8.5"><span class="header-section-number">8.5</span> Summary: Taylor Series</h2>
+<p>You should know how to calculate Taylor polynomials <span class="math inline">\(P_n(x)\)</span> and what the integral form and Lagrange form of the remainder <span class="math inline">\(R_n(x)\)</span> are, as well as how to estimate the maximum error in using a Taylor polynomial as an approximation of a function. Here are some key points:</p>
+<ul>
+<li><p>The <span><em>Taylor polynomial</em></span> of degree <span class="math inline">\(n\)</span> about <span class="math inline">\(x=a\)</span> for a function <span class="math inline">\(f\)</span> is the degree <span class="math inline">\(n\)</span> polynomial in <span class="math inline">\((x-a)\)</span>, <span class="math inline">\(P_n(x) = \sum_{k=0}^n \frac{f^{(k)}(a)}{k!} (x-a)^k\)</span>. At the point <span class="math inline">\(x=a\)</span>, <span class="math inline">\(P_n\)</span> and its first <span class="math inline">\(n\)</span> derivatives will agree with <span class="math inline">\(f\)</span> and its first <span class="math inline">\(n\)</span> derivatives. In this sense the Taylor polynomial tries to approximate <span class="math inline">\(f\)</span> close to <span class="math inline">\(x=a\)</span>. Note that if we don’t explicitly state “about <span class="math inline">\(x=a\)</span>” then it is assumed we are working about <span class="math inline">\(x=0\)</span>.</p></li>
+<li><p><span><em>Taylor’s theorem</em></span> states that <span class="math inline">\(f(x) = P_n(x) + R_n(x)\)</span> where <span class="math inline">\(R_n(x) = \frac{1}{n!} \int_a^x (x-t)^n f^{(n+1)}(t) dt\)</span> is the <span><em>remainder</em></span>.</p></li>
+<li><p>The <span><em>Lagrange form of the remainder</em></span> says that <span class="math inline">\(R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}\)</span> for some (unknown) <span class="math inline">\(c\)</span> between <span class="math inline">\(a\)</span> and <span class="math inline">\(x\)</span>. (Note the similarity to the next term in the Taylor polynomial.) This can often be used to place an upper bound on <span><em>the error</em></span> <span class="math inline">\(|R_n(x)|\)</span> in using <span class="math inline">\(P_n(x)\)</span> as an approximation of <span class="math inline">\(f(x)\)</span>.</p></li>
+<li><p>The <span><em>Taylor series</em></span> about <span class="math inline">\(x=a\)</span> is <span class="math inline">\(\lim_{n \to \infty} P_n(x)\)</span>. If <span class="math inline">\(\lim_{n \to \infty} R_n(x) = 0\)</span> (i.e. the error vanishes in this limit) for all <span class="math inline">\(x\)</span> in some interval containing <span class="math inline">\(a\)</span> we say that the Taylor series converges to <span class="math inline">\(f(x)\)</span> on that interval. In such cases <span class="math inline">\(P_n(x)\)</span> approximates <span class="math inline">\(f(x)\)</span> as well as we want on that interval by taking <span class="math inline">\(n\)</span> large enough.</p></li>
+<li><p>You should be familiar with the form of the Taylor series (about <span class="math inline">\(x=0\)</span>) for <span class="math inline">\(e^x\)</span>, <span class="math inline">\(\sinh x\)</span>, <span class="math inline">\(\cosh x\)</span>, <span class="math inline">\(\sin x\)</span>, <span class="math inline">\(\cos x\)</span> and <span class="math inline">\(\log(1+x)\)</span>. The Taylor series for <span class="math inline">\(\log(1+x)\)</span> converges to <span class="math inline">\(\log(1+x)\)</span> for <span class="math inline">\(x \in (-1, 1]\)</span>. The other ones converge to their functions <span class="math inline">\(\forall x \in \mathbb{R}\)</span>.</p></li>
+<li><p>We can find Taylor polynomials of degree <span class="math inline">\(n\)</span> for sums of products of functions by taking sums of products of Taylor polynomials of degree <span class="math inline">\(n\)</span> (and ignoring any terms with degree higher than <span class="math inline">\(n\)</span> which arise from products). We can also use substitution, e.g. to find the Taylor polynomial of degree <span class="math inline">\(n\)</span> for <span class="math inline">\(e^{\sin x}\)</span> replace <span class="math inline">\(x\)</span> in the Taylor polynomial of degree <span class="math inline">\(n\)</span> for <span class="math inline">\(e^x\)</span> with the Taylor polynomial of degree <span class="math inline">\(n\)</span> for <span class="math inline">\(\sin x\)</span> (and again ignore all powers higher than <span class="math inline">\(n\)</span>). It is sometimes possible to divide by Taylor series using <span class="math inline">\(1/(1-x) = 1 + x + x^2 + x^3 + \cdots\)</span> for <span class="math inline">\(x \in (-1,1)\)</span> and appropriate substitution.</p></li>
+<li><p>We can evaluate limits as <span class="math inline">\(x \to a\)</span> by replacing functions with their Taylor polynomials of sufficiently high order about <span class="math inline">\(x=a\)</span> provided the Taylor series converge to the functions on some interval containing <span class="math inline">\(a\)</span>. This is because in such cases the higher order terms (higher powers of <span class="math inline">\((x-a)\)</span>) will vanish in the limit <span class="math inline">\(x \to a\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

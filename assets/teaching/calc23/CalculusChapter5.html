@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Original notes produced by Paul Sutcliffe" />
+  <title>Calculus I Michaelmas Term</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Calculus I<br />
+Michaelmas Term</p></h1>
+<p class="author">Sam Fearn<br />
+Original notes produced by Paul Sutcliffe</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#double-integrals"><span class="toc-section-number">5</span> Double integrals</a>
+<ul>
+<li><a href="#rectangular-regions"><span class="toc-section-number">5.1</span> Rectangular regions</a></li>
+<li><a href="#beyond-rectangular-regions"><span class="toc-section-number">5.2</span> Beyond rectangular regions</a></li>
+<li><a href="#integration-using-polar-coordinates"><span class="toc-section-number">5.3</span> Integration using polar coordinates</a></li>
+<li><a href="#change-of-variables-and-the-jacobian"><span class="toc-section-number">5.4</span> Change of variables and the Jacobian</a></li>
+<li><a href="#the-gaussian-integral"><span class="toc-section-number">5.5</span> The Gaussian integral</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="double-integrals" class="level1" data-number="1">
+<h1 data-number="5"><span class="header-section-number">5</span> Double integrals</h1>
+<section id="rectangular-regions" class="level2" data-number="1.1">
+<h2 data-number="5.1"><span class="header-section-number">5.1</span> Rectangular regions</h2>
+<p>Recall that for a function <span class="math inline">\(f(x)\)</span> the definite integral <span class="math inline">\(\int_a^b f(x)\,dx\)</span> is the signed area under the curve <span class="math inline">\(y=f(x)\)</span> between <span class="math inline">\(x=a\)</span> and <span class="math inline">\(x=b\)</span>. This interpretation of the definite integral can be generalized for a function of two variables to a volume under a surface.</p>
+<p>Given a function <span class="math inline">\(f(x,y)\)</span> and a region <span class="math inline">\(D\)</span> in the <span class="math inline">\((x,y)\)</span> plane, the double integral <span class="math display">\[\iint\limits_D f(x,y)\, dxdy\]</span> is the signed volume of the region between the surface <span class="math inline">\(z=f(x,y)\)</span> and the region <span class="math inline">\(D\)</span> in the <span class="math inline">\(z=0\)</span> plane (see Figure <a href="#fig-doubleintegral" data-reference-type="ref" data-reference="fig-doubleintegral">2</a>).</p>
+<div class="center">
+<p><img src="double_integral1.jpg" title="fig:" id="fig-doubleintegral" style="width:6cm" alt="The double integral is the signed volume of the region between the surface z=f(x,y) and the region D in the z=0 plane. It is obtained as the limit of a Riemann sum of cuboid volumes." /> <img src="double_integral3.jpg" title="fig:" id="fig-doubleintegral" style="width:6.7cm" alt="The double integral is the signed volume of the region between the surface z=f(x,y) and the region D in the z=0 plane. It is obtained as the limit of a Riemann sum of cuboid volumes." /></p>
+</div>
+<p>In a similar manner to our earlier construction of the definite integral, in terms of the limit of a Riemann sum of areas of rectangles, we can define the double integral as the limit of a Riemann sum of volumes of cuboids.</p>
+<p>For simplicity, consider the case of a rectangular region <span class="math inline">\(D=[a_0,a_1]\times[b_0,b_1].\)</span> We construct a subdivision <span class="math inline">\(S\)</span> of <span class="math inline">\(D\)</span> by defining the points of a two-dimensional lattice as <span class="math inline">\(a_0=x_0&lt;x_1&lt;\ldots&lt;x_n=a_1\)</span> and <span class="math inline">\(b_0=y_0&lt;y_1&lt;\ldots&lt;y_m=b_1.\)</span> The edge lengths of the lattice are equal to <span class="math inline">\(dx_i=x_i-x_{i-1}\)</span> for <span class="math inline">\(i=1,\dots,n\)</span> and <span class="math inline">\(dy_j=y_j-y_{j-1}\)</span> for <span class="math inline">\(j=1,\dots,m.\)</span> The norm of the subdivision <span class="math inline">\(|S|\)</span> is given by the maximum of all the <span class="math inline">\(dx_i\)</span> and <span class="math inline">\(dy_j.\)</span></p>
+<p>We introduce sample points <span class="math inline">\((p_i,q_j)\in[x_{i-1},x_i]\times[y_{j-1},y_j]\)</span> inside each rectangle of the lattice. The area of the rectangle is <span class="math inline">\(dx_idy_j\)</span> and we associate to this rectangle a cuboid of height <span class="math inline">\(f(p_i,q_j).\)</span> The volume of all the cuboids is the Riemann sum <span class="math display">\[{\cal R}=\sum_{i=1}^n\sum_{j=1}^m f(p_i,q_j) dx_idy_j\]</span> and the double integral is the limit <span class="math display">\[\iint\limits_D f(x,y)\, dxdy=\lim_{|S|\to 0} {\cal R}.\]</span></p>
+<p>In the special case that <span class="math inline">\(f(x,y)\)</span> is a constant, say <span class="math inline">\(f(x,y)=c\)</span>, then</p>
+<p><span class="math inline">\(\iint\limits_D f(x,y)\, dxdy=c\times {\rm area}(D).\)</span></p>
+<p> </p>
+<p>For a rectangular region <span class="math inline">\(D=[a_0,a_1]\times[b_0,b_1]\)</span> a practical way to compute the double integral is to use the following iterated integral result (valid providing <span class="math inline">\(f\)</span> is continuous on <span class="math inline">\(D\)</span>) <span class="math display">\[\iint\limits_D f(x,y)\, dxdy=
+\int_{a_0}^{a_1}\bigg(\int_{b_0}^{b_1} f(x,y)\, dy\bigg)\, dx
+=\int_{b_0}^{b_1}\bigg(\int_{a_0}^{a_1} f(x,y)\, dx\bigg)\, dy.\]</span> Eg. Given the region <span class="math inline">\(D=[-2,1]\times[0,1]\)</span>, calculate <span class="math inline">\(\iint\limits_D (x^2+y^2) \,dxdy.\)</span></p>
+<p><span class="math display">\[\iint\limits_D (x^2+y^2) \,dxdy=
+\int_{-2}^1\bigg(\int_0^1 (x^2+y^2)\,dy\bigg)\,dx
+=\int_{-2}^1\bigg(\bigg[yx^2+\frac{1}{3}y^3\bigg]_{y=0}^{y=1}
+\bigg)\,dx\]</span> <span class="math display">\[=\int_{-2}^1(x^2+\frac{1}{3})\,dx=\bigg[\frac{x^3}{3}+\frac{x}{3}\bigg]_{-2}^1
+=\frac{1}{3}(1+1+8+2)=4.\]</span> As an exercise, check that the same result is obtained if the integration is performed in the other order.</p>
+</section>
+<section id="beyond-rectangular-regions" class="level2" data-number="1.2">
+<h2 data-number="5.2"><span class="header-section-number">5.2</span> Beyond rectangular regions</h2>
+<p>To compute double integrals beyond rectangular regions we need to consider the following definition.<br />
+<span><strong>Defn:</strong></span> A region <span class="math inline">\(D\)</span> of the plane is called <span class="math inline">\({\bf y-simple}\)</span> if every line that is parallel to the <span class="math inline">\(y\)</span>-axis and intersects <span class="math inline">\(D\)</span>, does so in a single line segment (or a single point if this is on the boundary of <span class="math inline">\(D\)</span>).<br />
+</p>
+<div class="center">
+<figure>
+<img src="new_ysimple.png" id="fig-ysimple" style="width:7cm" alt="" /><figcaption>A <span class="math inline">\(y\)</span>-simple region.</figcaption>
+</figure>
+</div>
+<p>See Figure <a href="#fig-ysimple" data-reference-type="ref" data-reference="fig-ysimple">3</a> for an example of a <span class="math inline">\(y\)</span>-simple region. The boundaries of this region are given by the curves <span class="math inline">\(y=\phi_1(x)\)</span> and <span class="math inline">\(y=\phi_2(x)\)</span> for <span class="math inline">\(a_0\le x\le a_1.\)</span><br />
+The double integral can be calculated as an iterated integral by integrating over <span class="math inline">\(y\)</span> first <span class="math display">\[\iint\limits_D f(x,y) \,dxdy=
+\int_{a_0}^{a_1}\bigg(\int_{\phi_1(x)}^{\phi_2(x)} f(x,y)\,dy\bigg)\,dx.\]</span></p>
+<p>Eg. Sketch the region <span class="math inline">\(D\)</span> that lies between the curves <span class="math inline">\(y=x\)</span> and <span class="math inline">\(y=x^2\)</span> for <span class="math inline">\(0\le x\le 1\)</span> and calculate <span class="math inline">\(\iint\limits_D 6xy \,dxdy.\)</span></p>
+<div class="center">
+<figure>
+<img src="new_region1.png" id="fig-region1" style="width:6cm" alt="" /><figcaption>A sketch of the region <span class="math inline">\(D\)</span> in the example.</figcaption>
+</figure>
+</div>
+<p>As the region <span class="math inline">\(D\)</span> is <span class="math inline">\(y\)</span>-simple then <span class="math display">\[\iint\limits_D 6xy \,dxdy
+=\int_0^1\bigg(\int_{x^2}^x 6xy\,dy\bigg)\,dx
+=\int_0^1\bigg[3xy^2\bigg]_{y=x^2}^{y=x}\,dx
+=3\int_0^1(x^3-x^5)\,dx\]</span> <span class="math display">\[=3\bigg[\frac{x^4}{4}-\frac{x^6}{6}\bigg]_0^1
+=3\bigg(\frac{1}{4}-\frac{1}{6}\bigg)=\frac{1}{4}.\]</span>  </p>
+<p>There is a similar definition of an <span class="math inline">\(x\)</span>-simple region.<br />
+<span><strong>Defn:</strong></span> A region <span class="math inline">\(D\)</span> of the plane is called <span class="math inline">\({\bf x-simple}\)</span> if every line that is parallel to the <span class="math inline">\(x\)</span>-axis and intersects <span class="math inline">\(D\)</span>, does so in a single line segment (or a single point if this is on the boundary of <span class="math inline">\(D\)</span>).<br />
+Figure <a href="#fig-xsimple" data-reference-type="ref" data-reference="fig-xsimple">5</a> shows an example of an <span class="math inline">\(x\)</span>-simple region that is not <span class="math inline">\(y\)</span>-simple.</p>
+<div class="center">
+<figure>
+<img src="new_xsimple.png" id="fig-xsimple" style="width:6cm" alt="" /><figcaption>A region that is <span class="math inline">\(x\)</span>-simple but is not <span class="math inline">\(y\)</span>-simple.</figcaption>
+</figure>
+</div>
+<p>The boundaries of this region are the curves <span class="math inline">\(x=\psi_1(y)\)</span> and <span class="math inline">\(x=\psi_2(y)\)</span> for <span class="math inline">\(b_0\le y\le b_1.\)</span></p>
+<p>The double integral can be calculated as an iterated integral by integrating over <span class="math inline">\(x\)</span> first <span class="math display">\[\iint\limits_D f(x,y) \,dxdy=
+\int_{b_0}^{b_1}\bigg(\int_{\psi_1(y)}^{\psi_2(y)} f(x,y)\,dx\bigg)\,dy.\]</span></p>
+<p> </p>
+<p>A region can be both <span class="math inline">\(x\)</span>-simple and <span class="math inline">\(y\)</span>-simple, in which case the double integral can be calculated as an iterated integral by integrating over <span class="math inline">\(x\)</span> first or <span class="math inline">\(y\)</span> first. The region in the previous example is <span class="math inline">\(x\)</span>-simple, so we can recalculate this double integral using this property.<br />
+Same Eg. <span class="math inline">\(D\)</span> is the region between the curves <span class="math inline">\(y=x\)</span> and <span class="math inline">\(y=x^2\)</span> for <span class="math inline">\(0\le x\le 1\)</span>. Use the fact that this region is <span class="math inline">\(x\)</span>-simple to calculate <span class="math inline">\(\iint\limits_D 6xy \,dxdy.\)</span><br />
+The boundaries of <span class="math inline">\(D\)</span> are given by the curves <span class="math inline">\(x=y\)</span> and <span class="math inline">\(x=\sqrt{y}\)</span> for <span class="math inline">\(0\le y\le 1\)</span>. Note from Figure <a href="#fig-region1" data-reference-type="ref" data-reference="fig-region1">4</a> that moving along a line (that passes through <span class="math inline">\(D\)</span>) parallel to the <span class="math inline">\(x\)</span>-axis with <span class="math inline">\(x\)</span> increasing, intersects the curve <span class="math inline">\(x=y\)</span> before it intersects the curve <span class="math inline">\(x=\sqrt{y}.\)</span> Thus <span class="math inline">\(y\)</span> is the lower limit in the <span class="math inline">\(x\)</span> integration and <span class="math inline">\(\sqrt{y}\)</span> is the upper limit. <span class="math display">\[\iint\limits_D 6xy \,dxdy
+=\int_0^1\bigg(
+\int_y^{\sqrt{y}} 6xy\,dx\bigg)\,dy
+=\int_0^1\bigg[3x^2y\bigg]_{x=y}^{x=\sqrt{y}}\,dy
+=3\int_0^1(y^2-y^3)\,dy\]</span> <span class="math display">\[=3\bigg[\frac{y^3}{3}-\frac{y^4}{4}\bigg]_0^1
+=3\bigg(\frac{1}{3}-\frac{1}{4}\bigg)=\frac{1}{4}.\]</span></p>
+<p> </p>
+<p>Sometimes a region may be both <span class="math inline">\(x\)</span>-simple and <span class="math inline">\(y\)</span>-simple but we can only perform the integration explicitly for one of the ordering choices ie. either integrating over <span class="math inline">\(x\)</span> first or <span class="math inline">\(y\)</span> first.<br />
+Eg. The boundaries of <span class="math inline">\(D\)</span> are given by the curves <span class="math inline">\(y=x\)</span> and <span class="math inline">\(y=\sqrt{x}\)</span> for <span class="math inline">\(0\le x\le 1\)</span>.</p>
+<p>Calculate <span class="math inline">\(\iint\limits_D \frac{e^y}{y} \,dxdy\)</span>.</p>
+<p>If we use the fact that <span class="math inline">\(D\)</span> is <span class="math inline">\(y\)</span>-simple then we have <span class="math display">\[\iint\limits_D \frac{e^y}{y} \,dxdy
+=\int_0^1\bigg(
+\int_x^{\sqrt{x}}\frac{e^y}{y}\,dy\bigg)\,dx,\]</span> but we can’t do the integration. However, if we use the fact that <span class="math inline">\(D\)</span> is <span class="math inline">\(x\)</span>-simple and the bounding curves are <span class="math inline">\(x=y\)</span> and <span class="math inline">\(x=y^2\)</span> then <span class="math display">\[\iint\limits_D \frac{e^y}{y} \,dxdy
+=\int_0^1\bigg(\int_{y^2}^{y}\frac{e^y}{y}\,dx\bigg)\,dy
+=\int_0^1\bigg[\frac{xe^y}{y}\bigg]_{x=y^2}^{x=y}\,dy
+=\int_0^1(e^y-ye^y)\,dy\]</span> <span class="math display">\[=[e^y]_0^1-[ye^y]_0^1+\int_0^1e^y\,dy
+=e-2.\]</span></p>
+</section>
+<section id="integration-using-polar-coordinates" class="level2" data-number="1.3">
+<h2 data-number="5.3"><span class="header-section-number">5.3</span> Integration using polar coordinates</h2>
+<p>Sometimes it may be useful to describe the region of integration <span class="math inline">\(D\)</span> in terms of polar coordinates <span class="math inline">\(r\)</span> and <span class="math inline">\(\theta\)</span>, where <span class="math inline">\(x=r\cos\theta\)</span> and <span class="math inline">\(y=r\sin\theta.\)</span> To convert a double integral into polar coordinates we need to know what to do with the area element <span class="math inline">\(dA=dxdy.\)</span> Recall that this area element came from the definition of the integral in terms of a division of <span class="math inline">\(D\)</span> into small rectangles. The area of a small rectangle with side lengths <span class="math inline">\(dx\)</span> and <span class="math inline">\(dy\)</span> is <span class="math inline">\(dA=dx dy\)</span> which is the area element in the infinitesimal limit.<br />
+We therefore need to know the area <span class="math inline">\(dA\)</span> of a small region obtained by taking the point with polar cooridnates <span class="math inline">\((r,\theta)\)</span> and extending <span class="math inline">\(r\)</span> by <span class="math inline">\(dr\)</span> and <span class="math inline">\(\theta\)</span> by <span class="math inline">\(d\theta\)</span>, as shown in Figure <a href="#fig-polar" data-reference-type="ref" data-reference="fig-polar">6</a>. We see that the area is approximately a rectangle with area <span class="math inline">\(dA\approx r d\theta  dr\)</span> and this approximation improves as the area decreases. In the infinitesimal limit that defines the integral the result is <span class="math inline">\(dA=dxdy=rd\theta dr.\)</span><br />
+We now know how to convert a double integral to polar coordinates, we replace <span class="math inline">\(dxdy\)</span> with <span class="math inline">\(rd\theta dr.\)</span> Note the crucial factor of <span class="math inline">\(r\)</span> here. We can then calculate the double integral as an iterated integral if the region <span class="math inline">\(D\)</span> is <span class="math inline">\(\theta\)</span>-simple or <span class="math inline">\(r\)</span>-simple (with the obvious definitions of these terms).</p>
+<div class="center">
+<figure>
+<img src="new_polar.png" id="fig-polar" style="width:9cm" alt="" /><figcaption>The area element in polar coordinates.</figcaption>
+</figure>
+</div>
+<p>Eg. Let <span class="math inline">\(D\)</span> be the region between the curves <span class="math inline">\(x^2+y^2=1\)</span> and <span class="math inline">\(x^2+y^2=4\)</span> satisfying <span class="math inline">\(x\ge 0\)</span> and <span class="math inline">\(y\ge 0.\)</span> Calculate <span class="math inline">\(\iint\limits_D xy \,dxdy.\)</span><br />
+In polar coordinates the region <span class="math inline">\(D\)</span> is given by <span class="math inline">\(1\le r\le 2\)</span> and <span class="math inline">\(0\le\theta\le \frac{\pi}{2}.\)</span></p>
+<p>The area element is <span class="math inline">\(dxdy=rd\theta dr\)</span> and the integrand is <span class="math inline">\(xy=r^2\cos\theta\sin\theta.\)</span> <span class="math display">\[\iint\limits_D xy \,dxdy=
+\iint\limits_D r^2\sin\theta\cos\theta \,rdrd\theta
+=\int_1^2\bigg(\int_0^{\pi/2} r^3\sin\theta\cos\theta\,d\theta\bigg)dr\]</span> <span class="math display">\[=\int_1^2\bigg(
+\int_0^{\pi/2}\frac{1}{2}\sin(2\theta)\,d\theta\bigg)r^3\,dr
+=\int_1^2\bigg[-\frac{1}{4}\cos(2\theta)\bigg]_{\theta=0}^{\theta=\pi/2}
+r^3\,dr
+=\int_1^2\frac{1}{2}r^3\,dr\]</span> <span class="math display">\[=\bigg[\frac{1}{8}r^4\bigg]_1^2=\frac{15}{8}.\]</span> As an exercise, you can check that you obtain the same result if you perform the calculation without changing to polar coordinates.</p>
+</section>
+<section id="change-of-variables-and-the-jacobian" class="level2" data-number="1.4">
+<h2 data-number="5.4"><span class="header-section-number">5.4</span> Change of variables and the Jacobian</h2>
+<p>Using polar coordinates <span class="math inline">\(r,\theta\)</span> rather than Cartesian coordiantes <span class="math inline">\(x,y\)</span> is a particular example of a change of variables. In general we might want to change variables from <span class="math inline">\(x,y\)</span> to new variables <span class="math inline">\(u,v\)</span> given by relations of the form <span class="math inline">\(x=g(u,v)\)</span> and <span class="math inline">\(y=h(u,v)\)</span> for some functions <span class="math inline">\(g\)</span> and <span class="math inline">\(h.\)</span> Not only do we need to know what the integration region <span class="math inline">\(D\)</span> looks like in the new variables, but we also need the area element <span class="math inline">\(dxdy\)</span> in the new variables. The following definition plays the central role in this issue.<br />
+<span><strong>Defn.</strong></span> The <span><strong>Jacobian</strong></span> of the transformation from the variables <span class="math inline">\(x,y\)</span> to <span class="math inline">\(u,v\)</span> is <span class="math display">\[J=\frac{\partial(x,y)}{\partial(u,v)}
+=\left| \begin{array}{ccc}
+\frac{\partial x}{\partial u}&amp; &amp;
+\frac{\partial x}{\partial v}\\
+ &amp; \\
+\frac{\partial y}{\partial u}&amp; &amp;
+\frac{\partial y}{\partial v}\\
+\end{array}
+\right|\]</span> ie. it is the determinant of the <span class="math inline">\(2\times 2\)</span> matrix of partial derivatives.<br />
+To obtain the area element <span class="math inline">\(dxdy\)</span> in terms of the new variables we first compute the Jacobian <span class="math inline">\(J\)</span> and then use the result that <span class="math display">\[dxdy=|J|dudv\]</span> where <span class="math inline">\(|J|\)</span> is the absolute value of the Jacobian.<br />
+As an example, we can rederive the area element in polar coordinates. We have <span class="math inline">\(x=r\cos\theta\)</span> and <span class="math inline">\(y=r\sin\theta,\)</span> so in this case <span class="math inline">\(r,\theta\)</span> are the new variables, playing the role of <span class="math inline">\(u,v\)</span> in the general setting. <span class="math display">\[J=\frac{\partial(x,y)}{\partial(r,\theta)}
+=\left| \begin{array}{ccc}
+\frac{\partial x}{\partial r}&amp; &amp;
+\frac{\partial x}{\partial \theta}\\
+ &amp; \\
+\frac{\partial y}{\partial r}&amp; &amp;
+\frac{\partial y}{\partial \theta}\\
+\end{array}
+\right|
+=\left| \begin{array}{ccc}
+\cos\theta &amp; &amp; -r\sin\theta\\
+&amp; \\
+\sin\theta &amp; &amp; r\cos\theta\\
+\end{array}
+\right|
+=r\cos^2\theta+r\sin^2\theta=r\]</span> giving <span class="math inline">\(dxdy=|J|drd\theta=rdrd\theta\)</span> as before.<br />
+Eg. Let <span class="math inline">\(D\)</span> be the square in the <span class="math inline">\((x,y)\)</span> plane with vertices <span class="math inline">\((0,0),(1,1),(2,0),(1,-1).\)</span> Calculate <span class="math inline">\(\iint\limits_D (x+y) \,dxdy\)</span> by making the change of variables <span class="math inline">\(x=u+v\)</span> and <span class="math inline">\(y=u-v.\)</span><br />
+First we need to determine the region <span class="math inline">\(D\)</span> in terms of the variables <span class="math inline">\([u,v].\)</span> Using <span class="math inline">\(u=(x+y)/2\)</span> and <span class="math inline">\(v=(x-y)/2\)</span> we find that the vertices map to the <span class="math inline">\([u,v]\)</span> coordinates <span class="math inline">\([0,0],[1,0],[1,1],[0,1].\)</span> The edges of the square lie along the lines <span class="math inline">\(y=x,\ y=-x,\ y=2-x,\ y=x-2\)</span> which map to the lines <span class="math inline">\(v=0,\ u=0,\ u=1,\ v=1.\)</span> Therefore in the <span class="math inline">\([u,v]\)</span> plane <span class="math inline">\(D\)</span> is again a square, with the vertices given above.</p>
+<div class="center">
+<figure>
+<img src="trans.png" id="fig-square" style="width:9cm" alt="" /><figcaption>A square in the <span class="math inline">\((x,y)\)</span> plane is transformed into a square in the <span class="math inline">\([u,v]\)</span> plane.</figcaption>
+</figure>
+</div>
+<p>The Jacobian of the transformation is <span class="math display">\[J=\frac{\partial(x,y)}{\partial(u,v)}
+=\left| \begin{array}{ccc}
+\frac{\partial x}{\partial u}&amp; &amp;
+\frac{\partial x}{\partial v}\\
+ &amp; \\
+\frac{\partial y}{\partial u}&amp; &amp;
+\frac{\partial y}{\partial v}\\
+\end{array}
+\right|
+=\left| \begin{array}{ccc}
+1 &amp; &amp; 1\\
+&amp; \\
+1 &amp; &amp; -1\\ 
+\end{array}
+\right|
+=-2.\]</span> Thus <span class="math inline">\(dxdy=|J|dudv=2dudv.\)</span></p>
+<p>Finally, the integrand is <span class="math inline">\(x+y=2u.\)</span> Putting all this together we get <span class="math display">\[\iint\limits_D (x+y) \,dxdy
+=\iint\limits_D 4u \,dudv
+=\int_0^1\bigg(\int_0^1 4u\,dv\bigg)\,du\]</span> <span class="math display">\[=\int_0^1\bigg[4uv\bigg]_{v=0}^{v=1}\,du=\int_0^1 4u\,du
+=\bigg[2u^2\bigg]_0^1=2.\]</span></p>
+</section>
+<section id="the-gaussian-integral" class="level2" data-number="1.5">
+<h2 data-number="5.5"><span class="header-section-number">5.5</span> The Gaussian integral</h2>
+<p>An important integral that appears in a wide range of mathematical contexts is the Gaussian integral <span class="math display">\[\int_{-\infty}^\infty e^{-ax^2}\,dx=\sqrt{\frac{\pi}{a}}\]</span> where <span class="math inline">\(a\)</span> is a positive constant.<br />
+We can derive this result using a trick that involves calculating a double integral, as follows. We define <span class="math inline">\(I\)</span> to be the required integral <span class="math display">\[I=\int_{-\infty}^\infty e^{-ax^2}\,dx\]</span> and observe that <span class="math display">\[I^2=\bigg(\int_{-\infty}^\infty e^{-ax^2}\,dx\bigg)
+\bigg(\int_{-\infty}^\infty e^{-ay^2}\,dy\bigg)
+=\iint\limits_{\mathbb{R}^2}
+e^{-a(x^2+y^2)}\,dxdy.\]</span> We now use polar coordinates to evaluate this double integral <span class="math display">\[I^2=\iint\limits_{\mathbb{R}^2}
+e^{-ar^2}r\,drd\theta
+=\int_0^\infty\bigg(\int_0^{2\pi}r e^{-ar^2}\,d\theta\bigg)\,dr
+=2\pi\int_0^\infty re^{-ar^2}\,dr\]</span> <span class="math display">\[=-2\pi\bigg[\frac{e^{-ar^2}}{2a}\bigg]_0^\infty
+=\frac{\pi}{a}.\]</span> Hence <span class="math inline">\(I=\sqrt{\pi/a}\)</span>, which is the required result.</p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title> Calculus I: Background Material Michaelmas Term </title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"> Calculus I: Background Material Michaelmas Term </h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#notation"><span class="toc-section-number">1</span> Notation</a></li>
+<li><a href="#graphs-and-transformations"><span class="toc-section-number">2</span> Graphs and transformations</a></li>
+<li><a href="#rational-functions"><span class="toc-section-number">3</span> Rational functions</a></li>
+<li><a href="#exponential-and-logarithm-functions"><span class="toc-section-number">4</span> Exponential and logarithm functions</a></li>
+<li><a href="#trigonometric-functions"><span class="toc-section-number">5</span> Trigonometric functions</a></li>
+<li><a href="#hyperbolic-functions"><span class="toc-section-number">6</span> Hyperbolic functions</a></li>
+<li><a href="#rules-of-differentiation"><span class="toc-section-number">7</span> Rules of differentiation</a></li>
+<li><a href="#standard-integrals"><span class="toc-section-number">8</span> Standard integrals</a></li>
+<li><a href="#integration-by-parts"><span class="toc-section-number">9</span> Integration by parts</a></li>
+<li><a href="#integration-by-substitution"><span class="toc-section-number">10</span> Integration by substitution</a></li>
+<li><a href="#integration-of-rational-functions"><span class="toc-section-number">11</span> Integration of rational functions</a></li>
+</ul>
+</nav>
+<p>These brief notes review some background material that is assumed knowledge at the start of the course. Please have a glance through this material to check that you are familiar with all the ideas.</p>
+<section id="notation" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Notation</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Symbol</th>
+<th style="text-align: center;">Denotes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\forall\)</span></td>
+<td style="text-align: center;">for every</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\exists\)</span></td>
+<td style="text-align: center;">there exists</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">s.t.</td>
+<td style="text-align: center;">such that</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">iff</td>
+<td style="text-align: center;">if and only if</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>The set of real numbers is denoted by <span class="math inline">\(\mathbb{R}.\)</span></p>
+<p>Open interval, <span class="math inline">\((a,b)=\{x\in\mathbb{R}:a&lt;x&lt;b\}.\)</span></p>
+<p>Closed interval, <span class="math inline">\([a,b]=\{x\in\mathbb{R}:a\le x \le b\}.\)</span></p>
+<p>Half-open interval, <span class="math inline">\((a,b]=\{x\in\mathbb{R}:a&lt;x \le b\},\)</span> etc.</p>
+<p>Semi-infinite interval, <span class="math inline">\((a,\infty)=\{x\in\mathbb{R}:x&gt;a\},\)</span> etc.</p>
+<p><span class="math inline">\(\mathbb{R}\)</span> is the same as the interval <span class="math inline">\((-\infty,\infty).\)</span></p>
+<p>For two sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> then <span class="math inline">\(A\cup B\)</span> is the union, <span class="math inline">\(A\cap B\)</span> is the intersection and <span class="math inline">\(A\backslash B\)</span> is the set difference, namely, the set of all elements in <span class="math inline">\(A\)</span> that are not in <span class="math inline">\(B.\)</span></p>
+<figure>
+<img src="Images/sets.png" style="width:10cm" alt="Set theory notation." /><figcaption aria-hidden="true">Set theory notation.</figcaption>
+</figure>
+</section>
+<section id="graphs-and-transformations" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Graphs and transformations</h1>
+<p>The graph of a function <span class="math inline">\(f:\mathbb{R}\mapsto \mathbb{R}\)</span> can be shifted, reflected and rescaled by applying some simple transformations to the function and its argument, as follows:</p>
+<p><span class="math inline">\(\bullet\)</span> <span><strong>translation</strong></span>:</p>
+<p><span class="math inline">\(f(x)+a\)</span> shifts the graph of <span class="math inline">\(f(x)\)</span> up by an amount <span class="math inline">\(a\)</span>.</p>
+<p><span class="math inline">\(f(x+b)\)</span> shifts the graph of <span class="math inline">\(f(x)\)</span> to the left by an amount <span class="math inline">\(b\)</span>.</p>
+<p><span class="math inline">\(\bullet\)</span> <span><strong>reflection</strong></span>:</p>
+<p><span class="math inline">\(-f(x)\)</span> reflects the graph of <span class="math inline">\(f(x)\)</span> about the <span class="math inline">\(x\)</span>-axis.</p>
+<p><span class="math inline">\(f(-x)\)</span> reflects the graph of <span class="math inline">\(f(x)\)</span> about the <span class="math inline">\(y\)</span>-axis.</p>
+<figure>
+<img src="Images/new_reflection.png" style="width:4cm" alt="Graph of f(x)=x^2-2x+2 (red), together with -f(x) (green), and f(-x) (blue). " /><figcaption aria-hidden="true">Graph of <span class="math inline">\(f(x)=x^2-2x+2\)</span> (red), together with <span class="math inline">\(-f(x)\)</span> (green), and <span class="math inline">\(f(-x)\)</span> (blue). </figcaption>
+</figure>
+<p><span class="math inline">\(|f(x)|\)</span> reflects the portions of the graph of <span class="math inline">\(f(x)\)</span> that are below the <span class="math inline">\(x\)</span>-axis about the <span class="math inline">\(x\)</span>-axis.</p>
+<p><span class="math inline">\(\bullet\)</span> <span><strong>scaling</strong></span>:</p>
+<p><span class="math inline">\(\lambda f(x)\)</span> is a vertical stretch of the graph of <span class="math inline">\(f(x)\)</span> if <span class="math inline">\(\lambda&gt;1\)</span> and a vertical contraction if <span class="math inline">\(0&lt;\lambda&lt;1.\)</span></p>
+<p><span class="math inline">\(f(\mu x)\)</span> is a horizontal contraction of the graph of <span class="math inline">\(f(x)\)</span> if <span class="math inline">\(\mu&gt;1\)</span> and a horizontal stretch if <span class="math inline">\(0&lt;\mu&lt;1.\)</span></p>
+<figure>
+<img src="Images/new_rescale.png" style="width:5cm" alt="Graph of f(x)=\sin x (red), together with 2f(x) (green), and f(2x) (blue). " /><figcaption aria-hidden="true">Graph of <span class="math inline">\(f(x)=\sin x\)</span> (red), together with <span class="math inline">\(2f(x)\)</span> (green), and <span class="math inline">\(f(2x)\)</span> (blue). </figcaption>
+</figure>
+<p> </p>
+<p>Combining these transformations in turn is a way to create graphs from the graph of a simpler starting function. As an example, the figure shows how to obtain the graph of the function <span class="math inline">\(f(x)=2+2|(x-1)^2-1|\)</span> over <span class="math inline">\([-1,3]\)</span> by starting from the function <span class="math inline">\(g(x)=x^2.\)</span></p>
+<p>  <img src="Images/new_tr1.png" title="fig:" style="width:3cm" alt="Graphs of x^2,\
+(x-1)^2,\ (x-1)^2-1,\ |(x-1)^2-1|,\ 
+2|(x-1)^2-1|,\ 2+2|(x-1)^2-1|. " /> <img src="Images/new_tr2.png" title="fig:" style="width:3cm" alt="Graphs of x^2,\
+(x-1)^2,\ (x-1)^2-1,\ |(x-1)^2-1|,\ 
+2|(x-1)^2-1|,\ 2+2|(x-1)^2-1|. " /> <img src="Images/new_tr3.png" title="fig:" style="width:3cm" alt="Graphs of x^2,\
+(x-1)^2,\ (x-1)^2-1,\ |(x-1)^2-1|,\ 
+2|(x-1)^2-1|,\ 2+2|(x-1)^2-1|. " /> <img src="Images/new_tr4.png" title="fig:" style="width:3cm" alt="Graphs of x^2,\
+(x-1)^2,\ (x-1)^2-1,\ |(x-1)^2-1|,\ 
+2|(x-1)^2-1|,\ 2+2|(x-1)^2-1|. " /> <img src="Images/new_tr5.png" title="fig:" style="width:3cm" alt="Graphs of x^2,\
+(x-1)^2,\ (x-1)^2-1,\ |(x-1)^2-1|,\ 
+2|(x-1)^2-1|,\ 2+2|(x-1)^2-1|. " /> <img src="Images/new_tr6.png" title="fig:" style="width:3cm" alt="Graphs of x^2,\
+(x-1)^2,\ (x-1)^2-1,\ |(x-1)^2-1|,\ 
+2|(x-1)^2-1|,\ 2+2|(x-1)^2-1|. " /></p>
+<p>Here are some tips for graphing the reciprocal <span class="math inline">\(1/f(x)\)</span> from the graph of <span class="math inline">\(f(x).\)</span></p>
+<p>If <span class="math inline">\(f(x)\)</span> is increasing (decreasing) then <span class="math inline">\(1/f(x)\)</span> is decreasing (increasing).</p>
+<p>The graphs of <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(1/f(x)\)</span> intersect iff <span class="math inline">\(f(x)=\pm 1.\)</span></p>
+<figure>
+<img src="Images/new_reciprocal.png" style="width:7cm" alt="Graph of f(x)=1+x^2 (red), together with 1/f(x) (green). " /><figcaption aria-hidden="true">Graph of <span class="math inline">\(f(x)=1+x^2\)</span> (red), together with <span class="math inline">\(1/f(x)\)</span> (green). </figcaption>
+</figure>
+</section>
+<section id="rational-functions" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Rational functions</h1>
+<p>A <span><strong>rational function</strong></span> is a ratio of two polynomials <span class="math inline">\(f(x)=p(x)/q(x).\)</span></p>
+<p>The <span><strong>simplified form</strong></span> of a rational function is obtained by removing any common factors in the numerator and denominator. <span class="math display">\[\mbox{Eg.} \quad\quad f(x)=\frac{2x-4}{x^2-4}
+=\frac{2(x-2)}{(x+2)(x-2)}=\frac{2}{x+2}
+\quad \mbox{if} \ \ x\ne 2.\]</span> Note that we had to exclude the point <span class="math inline">\(x=2\)</span> in the last equality to avoid a division by zero.</p>
+<p>If, in simplified form, <span class="math inline">\(q(a)=0\)</span> then <span class="math inline">\(x=a\)</span> is a <span><strong>vertical asymptote</strong></span> of the graph of <span class="math inline">\(f,\)</span> which is a vertical line given by the equation <span class="math inline">\(x=a.\)</span></p>
+<figure>
+<img src="Images/new_asymptote1.png" id="fig-asymptote1" style="width:5cm" alt="Graph of f(x)=2x/(x^2-1) and the vertical asymptotes x=\pm 1." /><figcaption aria-hidden="true">Graph of <span class="math inline">\(f(x)=2x/(x^2-1)\)</span> and the vertical asymptotes <span class="math inline">\(x=\pm 1.\)</span></figcaption>
+</figure>
+<p>There can also be <span><strong>horizontal asymptotes</strong></span> though a correct treatment requires the concept of a limit, which we will study later in the course. Roughly, a horizontal asymptote involves considering the behaviour of the function when <span class="math inline">\(|x|\)</span> is large. For rational functions a horizontal asymptote exists only if the degree of the numerator is not larger than the degree of the denominator. In this case we can write <span class="math display">\[f(x)=\frac{p_0+p_1x+\ldots +p_nx^n}{q_0+q_1x+\ldots +q_nx^n}\]</span> and the horizontal asymptote is the line <span class="math inline">\(y=p_n/q_n.\)</span> In the example in the figure we have <span class="math inline">\(n=2\)</span> and <span class="math inline">\(p_2=0,\ q_2=1,\)</span> so the horizontal asymptote is the line <span class="math inline">\(y=0,\)</span> which the graph approaches when <span class="math inline">\(|x|\)</span> is large.</p>
+<figure>
+<img src="Images/new_asymptote2.png" id="fig-asymptote2" style="width:6cm" alt="Graph of f(x)=3x^2/(2x^2-50), showing the vertical asymptotes x=\pm 5 and the horizontal asymptote y=3/2." /><figcaption aria-hidden="true">Graph of <span class="math inline">\(f(x)=3x^2/(2x^2-50),\)</span> showing the vertical asymptotes <span class="math inline">\(x=\pm 5\)</span> and the horizontal asymptote <span class="math inline">\(y=3/2.\)</span></figcaption>
+</figure>
+<p>A rational function is called a <span><strong>proper</strong></span> rational function if the degree of the numerator is less than the degree of the denominator. A rational function can always be written as the sum of a polynomial and a proper rational function by performing long division.</p>
+<p>Eg. <span class="math inline">\(f(x)=(1+x^6)/(x^3-x^2)\)</span> is not a proper rational function. <span class="math display">\[\begin{aligned}
+&amp;\underline{\hskip 2cm x^3+x^2+x+1}\\
+x^3-x^2 \ \ |&amp; x^6+1\\
+&amp;\underline{x^6-x^5}\\
+&amp; \hskip 2cm x^5+1\\
+&amp;\hskip 2cm \underline{x^5-x^4}\\
+&amp; \hskip 4cm x^4+1\\
+&amp;\hskip 4cm \underline{x^4-x^3}\\
+&amp; \hskip 6cm x^3+1\\
+&amp;\hskip 6cm \underline{x^3-x^2}\\
+&amp; \hskip 8cm x^2+1\\\end{aligned}\]</span> This yields the required decomposition <span class="math display">\[\frac{1+x^6}{x^3-x^2}=x^3+x^2+x+1+\frac{x^2+1}{x^3-x^2}.\]</span></p>
+</section>
+<section id="exponential-and-logarithm-functions" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Exponential and logarithm functions</h1>
+<p>An <span><strong>exponential function</strong></span> is any function of the form <span class="math inline">\(f(x)=b^x\)</span> where <span class="math inline">\(b\)</span> (called the <span><strong>base</strong></span>) is a positive real number not equal to 1.</p>
+<p>For all values of the base the graph passes through the point <span class="math inline">\((0,1).\)</span> However, there are two types of behaviour:</p>
+<p><span class="math inline">\(\bullet\)</span> If <span class="math inline">\(b&gt;1\)</span> the graph is increasing and has a horizontal asymptote <span class="math inline">\(y=0\)</span> along the negative <span class="math inline">\(x\)</span>-axis.</p>
+<p><span class="math inline">\(\bullet\)</span> If <span class="math inline">\(0&lt;b&lt;1\)</span> the graph is decreasing and has a horizontal asymptote <span class="math inline">\(y=0\)</span> along the positive <span class="math inline">\(x\)</span>-axis.</p>
+<figure>
+<img src="Images/new_exp.png" style="width:6cm" alt="Graph of f(x)=2^x (red) and g(x)=(\frac{1}{2})^x=\frac{1}{2^x}=1/f(x) (green)." /><figcaption aria-hidden="true">Graph of <span class="math inline">\(f(x)=2^x\)</span> (red) and <span class="math inline">\(g(x)=(\frac{1}{2})^x=\frac{1}{2^x}=1/f(x)\)</span> (green).</figcaption>
+</figure>
+<p>Two important properties of exponential functions are <span class="math display">\[b^xb^y=b^{x+y} \quad \mbox{and} \quad (b^x)^y=b^{xy}.\]</span> There is a special value of the base (called the natural base) <span class="math inline">\(b=e=2.718...,\)</span> where <span class="math inline">\(e\)</span> is called Euler’s number and is transcendental (like <span class="math inline">\(\pi\)</span>) ie. it is not the root of a polynomial equation with rational coefficients. One way to calculate <span class="math inline">\(e\)</span> is via the sum <span class="math display">\[e=1+\frac{1}{1!}+\frac{1}{2!}
++\frac{1}{3!}
++\frac{1}{4!}
++\ldots\]</span> The function <span class="math inline">\(f(x)=e^x\)</span> is usually referred to as the exponential function.</p>
+<p>An exponential function <span class="math inline">\(f(x)=b^x\)</span> admits an inverse <span class="math inline">\(f^{-1}(x)\)</span>. To determine this write <span class="math inline">\(y=f^{-1}(x)\)</span> so that <span class="math inline">\(f(y)=x\)</span> ie. <span class="math inline">\(b^y=x.\)</span> This is the defining relation of a <span><strong>logarithm function</strong></span> <span class="math inline">\(g(x)=\log_b x=f^{-1}(x)\)</span> which is simply the name given to the inverse of an exponential function <span class="math inline">\(f(x)=b^x.\)</span> Explicitly, <span class="math inline">\(y=\log_b x\)</span> iff <span class="math inline">\(b^y=x.\)</span></p>
+<p><span><strong>Notation:</strong></span> I shall use the notation <span class="math inline">\(\log x\)</span> as the shorthand for the logarithm <span class="math inline">\(\log_e x,\)</span> which is known as the natural logarithm.</p>
+<p><span><em>Warning:</em></span> This notation is not universal as some people use <span class="math inline">\(\ln x\)</span> to denote the natural logarithm and instead use <span class="math inline">\(\log x\)</span> to denote <span class="math inline">\(\log_{10} x.\)</span></p>
+<p>A logarithm grows very slowly for <span class="math inline">\(x\)</span> large and positive (more slowly than a linear function) and has a vertical asymptote at <span class="math inline">\(x=0\)</span> (see the figure).</p>
+<figure>
+<img src="Images/new_log.png" id="fig-log" style="width:6cm" alt="The natural logarithm \log x and the vertical asymptote at x=0." /><figcaption aria-hidden="true">The natural logarithm <span class="math inline">\(\log x\)</span> and the vertical asymptote at <span class="math inline">\(x=0.\)</span></figcaption>
+</figure>
+<p>Some important properties of logarithms are:</p>
+<p><span class="math inline">\(\bullet\)</span> <span class="math inline">\(\log_b 1=0\)</span> from <span class="math inline">\(b^0=1\)</span>.</p>
+<p><span class="math inline">\(\bullet\)</span> <span class="math inline">\(\log_b b^x =x\)</span> from the definition as the inverse of an exponential.</p>
+<p><span class="math inline">\(\bullet\)</span> <span class="math inline">\(\log_b(\alpha\beta)=\log_b\alpha+\log_b\beta\)</span> from <span class="math inline">\(b^\alpha b^\beta=b^{\alpha+\beta}\)</span>.</p>
+<p><span class="math inline">\(\bullet\)</span> <span class="math inline">\(\log_b(\alpha/\beta)=\log_b\alpha-\log_b\beta\)</span> from <span class="math inline">\(b^\alpha/b^\beta=b^{\alpha-\beta}\)</span>.</p>
+<p><span class="math inline">\(\bullet\)</span> <span class="math inline">\(\log_b(x^r)=r\log_b x\)</span> from <span class="math inline">\((a^x)^r=a^{xr}\)</span>.</p>
+<p>There is an equivalent definition of the logarithm as an integral. For <span class="math inline">\(t\in(0,\infty)\)</span> we can define <span class="math display">\[\log t=\int_1^t \frac{1}{x}\,dx.\]</span></p>
+<figure>
+<img src="Images/new_logint.png" id="fig-logint" style="width:6cm" alt="The logarithm function in terms of areas under the curve y=\frac{1}{x}." /><figcaption aria-hidden="true">The logarithm function in terms of areas under the curve <span class="math inline">\(y=\frac{1}{x}\)</span>.</figcaption>
+</figure>
+<p>In the figure we illustrate the logarithm function in terms of areas under the curve <span class="math inline">\(y=\frac{1}{x}\)</span>. For <span class="math inline">\(t_1&gt;1\)</span> then <span class="math inline">\(\log t_1\)</span> is the area <span class="math inline">\(A_1\)</span> and for <span class="math inline">\(0&lt;t_2&lt;1\)</span> then <span class="math inline">\(\log t_2\)</span> is minus the area <span class="math inline">\(A_2.\)</span></p>
+<p>The indefinite integral <span class="math inline">\(\int \frac{1}{x}\,dx=\log x\)</span> is only valid for <span class="math inline">\(x&gt;0.\)</span> However, we can extend this relation for the indefinite integral to all <span class="math inline">\(x\ne 0\)</span> as <span class="math inline">\(\int \frac{1}{x}\,dx=\log|x|.\)</span> It is easy to prove this result by considering the derivative of <span class="math inline">\(\log(-x)\)</span> for <span class="math inline">\(x&lt;0.\)</span></p>
+<p>If <span class="math inline">\(n\)</span> is a positive integer then <span class="math inline">\(x^n\)</span> has the obvious definition of <span class="math inline">\(x\)</span> multiplied by itself <span class="math inline">\(n\)</span> times. Also, <span class="math inline">\(x^{-n}=1/x^n.\)</span></p>
+<p>We define <span class="math inline">\(x^\frac{1}{n}\)</span> as the inverse function of <span class="math inline">\(y^n\)</span> in the interval <span class="math inline">\((0,\infty),\)</span> which has <span class="math inline">\(x^\frac{1}{n}&gt;0\)</span> and <span class="math inline">\((x^\frac{1}{n})^n=x \ \ \ \forall \ x\in(0,\infty).\)</span></p>
+<p>If <span class="math inline">\(q\)</span> is an integer then we define <span class="math inline">\(x^\frac{q}{n}=(x^\frac{1}{n})^q\)</span> for <span class="math inline">\(x&gt;0.\)</span> From this definition we have that <span class="math display">\[x^\frac{q}{n}
+=\exp(\log(x^\frac{1}{n})^q)
+=\exp(q\log(x^\frac{1}{n}))
+=\exp(\frac{q}{n}n\log(x^\frac{1}{n}))
+=\exp(\frac{q}{n}\log(x^\frac{1}{n})^n)\]</span> <span class="math display">\[=\exp(\frac{q}{n}\log x).\]</span> Thus for any rational number <span class="math inline">\(r=q/n\)</span> we have that for <span class="math inline">\(x&gt;0\)</span> <span class="math display">\[x^r=\exp(r\log x).\]</span></p>
+<p>If <span class="math inline">\(a\)</span> is irrational (eg. <span class="math inline">\(a=\sqrt{2}\)</span>) then we take this formula as a definition of <span class="math inline">\(x^a,\)</span> <span class="math display">\[x^a=\exp(a\log x).\]</span></p>
+</section>
+<section id="trigonometric-functions" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Trigonometric functions</h1>
+<p><span><strong>Defn</strong></span>. A function <span class="math inline">\(f(x)\)</span> is <span><strong>periodic</strong></span> if <span class="math inline">\(\exists \ p&gt;0 \ \)</span> s.t. <span class="math inline">\(f(x+p)=f(x) \ \forall \ x.\)</span></p>
+<p>The smallest such value of <span class="math inline">\(p\)</span> is called the <span><strong>period</strong></span> of <span class="math inline">\(f.\)</span></p>
+<p>The simplest periodic functions are the trigonometric functions <span class="math inline">\(\sin x\)</span> and <span class="math inline">\(\cos x\)</span> with period <span class="math inline">\(2\pi.\)</span> The function <span class="math inline">\(\tan x=\sin x/\cos x\)</span> has period <span class="math inline">\(\pi\)</span>. with vertical asymptotes at <span class="math inline">\(x=(\frac{1}{2}+n)\pi.\)</span></p>
+<p><img src="Images/new_sin.png" title="fig:" id="fig-trig" style="width:4.5cm" alt="The trigonometric functions \sin x, \ \cos x and \tan x." />  <img src="Images/new_coss.png" title="fig:" id="fig-trig" style="width:4.5cm" alt="The trigonometric functions \sin x, \ \cos x and \tan x." />  <img src="Images/new_tan.png" title="fig:" id="fig-trig" style="width:4.5cm" alt="The trigonometric functions \sin x, \ \cos x and \tan x." /></p>
+<p>It is expected that you know the values of the trigonometric functions at the particular values of the argument shown in the table, plus those related by the symmetries apparent in the plots shown in the figure.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">radians</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\(\pi/6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\pi/4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\pi/3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\pi/2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">degrees</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">90</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\sin\)</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{\sqrt{2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\sqrt{3}}{{2}}\)</span></td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\cos\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\sqrt{3}}{{2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{\sqrt{2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{2}\)</span></td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+It is also expected that you know the important trigonometric identities:</p>
+<p><span class="math inline">\(\bullet\)</span> <span class="math inline">\(\sin^2 x+\cos^2 x=1.\)</span></p>
+<p><span class="math inline">\(\bullet\)</span> addition formulae,  <span class="math inline">\(\sin(x\pm y)=\sin x \cos y\pm \cos x\sin y\)</span>,  &amp;  <span class="math inline">\(\cos(x\pm y)=\cos x \cos y\mp \sin x \sin y\)</span></p>
+<p><span class="math inline">\(\bullet\)</span> double angle formulae,  <span class="math inline">\(\sin 2x=2\sin x\cos x,\)</span>  &amp;  <span class="math inline">\(\cos 2x=2\cos^2 x-1=1-2\sin^2 x\)</span></p>
+<p><span class="math inline">\(\bullet\)</span> half-angle formulae,  <span class="math inline">\(\sin^2 x=\frac{1}{2}-\frac{1}{2}\cos 2x\)</span>,  &amp;  <span class="math inline">\(\cos^2 x=\frac{1}{2}+\frac{1}{2}\cos 2x\)</span></p>
+<p>The reciprocals of the trigonometric functions have their own notation:</p>
+<p><span class="math inline">\(\mbox{csc}\ x=1/\sin x, \quad \mbox{sec}\ x=1/\cos x, \quad 
+\mbox{cot}\ x=1/\tan x=\cos x/\sin x.\)</span></p>
+<p>The above formulae lead to related formulae for these functions eg. <span class="math inline">\(\sec^2 x=1+\tan^2 x.\)</span></p>
+</section>
+<section id="hyperbolic-functions" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Hyperbolic functions</h1>
+<p><span>Hyperbolic functions</span> are defined in terms of the exponential function via <span class="math display">\[\sinh x=\frac{1}{2}(e^x-e^{-x}),\quad
+\cosh x=\frac{1}{2}(e^x+e^{-x}),\quad
+\tanh x=\sinh x/\cosh x.\]</span></p>
+<figure>
+<img src="Images/new_hyperbolic.png" style="width:6cm" alt="Graphs of the functions \sinh x (red),  \cosh x (green), and \tanh x (blue)." /><figcaption aria-hidden="true">Graphs of the functions <span class="math inline">\(\sinh x\)</span> (red),  <span class="math inline">\(\cosh x\)</span> (green), and <span class="math inline">\(\tanh x\)</span> (blue).</figcaption>
+</figure>
+<p>From the properties of the exponential function it is easy to show that some basic properties include</p>
+<p><span class="math inline">\(\bullet\)</span> <span class="math inline">\(\sinh 0=0\)</span> and <span class="math inline">\(\cosh 0=1.\)</span></p>
+<p><span class="math inline">\(\bullet\)</span> If <span class="math inline">\(x&gt;0\)</span> then <span class="math inline">\(0&lt;\sinh x&lt;\cosh x.\)</span></p>
+<p><span class="math inline">\(\bullet\)</span> Addition formulae,  <span class="math inline">\(\sinh(x\pm y)=\sinh x\cosh y\pm \cosh x\sinh y\)</span>,  &amp;  </p>
+<p><span class="math inline">\(\cosh(x\pm y)=\cosh x\cosh y\pm \sinh x\sinh y\)</span>.</p>
+<p><span class="math inline">\(\bullet\)</span> Double argument formulae,  <span class="math inline">\(\sinh(2x)=2\sinh x\cosh x\)</span>,  &amp;  <span class="math inline">\(\cosh(2x)=\sinh^2 x+ \cosh^2 x.\)</span></p>
+<p><span class="math inline">\(\bullet\)</span> <span class="math inline">\(\cosh^2 x -\sinh^2 x=1.\)</span></p>
+<p>The reciprocals of hyperbolic functions have their own notation:</p>
+<p><span class="math inline">\(\mbox{cosech}\,x={1}/{\sinh x}, \quad
+\mbox{sech}\,x={1}/{\cosh x}, \quad
+\mbox{coth}\,x={1}/{\tanh x}.\)</span></p>
+<p>The above formulae lead to related formulae for these functions eg. <span class="math inline">\(\mbox{sech}^2\, x=1-\tanh^2 x.\)</span></p>
+<p> </p>
+</section>
+<section id="rules-of-differentiation" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Rules of differentiation</h1>
+<p>You are expected to know the following rules of differentiation.</p>
+<p>If <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> are differentiable at <span class="math inline">\(x\)</span> then so are the following:</p>
+<p><span class="math inline">\(\bullet\)</span> <span><strong>sum rule:</strong></span></p>
+<p><span class="math inline">\(f(x)+g(x)\)</span> with derivative <span class="math inline">\(f&#39;(x)+g&#39;(x).\)</span></p>
+<p><span class="math inline">\(\bullet\)</span> <span><strong>product rule:</strong></span></p>
+<p><span class="math inline">\(f(x)g(x)\)</span> with derivative <span class="math inline">\(f&#39;(x)g(x)+f(x)g&#39;(x).\)</span></p>
+<p>and providing <span class="math inline">\(g(x)\ne 0\)</span> then so are the following:</p>
+<p><span class="math inline">\(\bullet\)</span> <span><strong>reciprocal rule:</strong></span></p>
+<p><span class="math inline">\(\frac{1}{g(x)}\)</span> with derivative <span class="math inline">\(-\frac{g&#39;(x)}{(g(x))^2}.\)</span></p>
+<p><span class="math inline">\(\bullet\)</span> <span><strong>quotient rule:</strong></span></p>
+<p><span class="math inline">\(\frac{f(x)}{g(x)}\)</span> with derivative <span class="math inline">\(\frac{f&#39;(x)g(x)-f(x)g&#39;(x)}{(g(x))^2}.\)</span></p>
+<p>Eg. Differentiate <span class="math inline">\(u(x)=(3x^2-1)/(x^4+3x+1)\)</span> <span class="math display">\[u&#39;(x)=\frac{(3x^2-1)&#39;(x^4+3x+1)-(3x^2-1)(x^4+3x+1)&#39;}{(x^4+3x+1)^2}\]</span> <span class="math display">\[=\frac{6x(x^4+3x+1)-(3x^2-1)(4x^3+3)}{(x^4+3x+1)^2}
+=\frac{6x^5+18x^2+6x-(12x^5+9x^2-4x^3-3)}{(x^4+3x+1)^2}\]</span> <span class="math display">\[=\frac{-6x^5+4x^3+9x^2+6x+3}{(x^4+3x+1)^2}.\]</span></p>
+</section>
+<section id="standard-integrals" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Standard integrals</h1>
+<p>A <span><strong>closed form expression</strong></span> is a function obtained from elementary functions by a finite sequence of elementary operations. <span class="math display">\[\mbox{Eg.} \quad \frac{e^{x^2}+\sin(1+x^2)}{x^4+e^{\cos x}} \quad
+\mbox{is a closed form expression}.\]</span> A basic problem in integration is given a closed form expression <span class="math inline">\(f(x)\)</span> can we find a closed form expression for its indefinite integral <span class="math inline">\(F(x)=\int f(x)\,dx\)</span>  ?</p>
+<p>In general this is not possible, for example, <span class="math inline">\(\int e^{-x^2}\,dx\)</span> does not have a closed form expression.</p>
+<p>The game is to try and reduce <span class="math inline">\(\int f(x)\,dx\)</span> to some standard integrals by using a number of rules of integration eg. integration by parts, substitution,...</p>
+<p>Some standard integrals that you are expected to know include <span class="math display">\[\begin{aligned}
+&amp;&amp;\int x^a\,dx=\frac{x^{a+1}}{a+1}\,+c, \quad \mbox{for constant $a\neq -1$}\\
+&amp;&amp;\int \frac{1}{x}\,dx=\log|x|\,+c\\
+&amp;&amp;\int e^x\,dx=e^x\,+c\\
+&amp;&amp;\int \sin x\,dx=-\cos x\,+c\\
+&amp;&amp;\int \cos x\,dx=\sin x\,+c\\
+&amp;&amp;\int \mbox{sec}^2 x\,dx=\tan x\,+c\\
+&amp;&amp;\int \mbox{cosec}^2 x\,dx=-\mbox{cot} x\,+c\\
+&amp;&amp;\int \frac{1}{1+x^2}\,dx=\tan^{-1}x\,+c\\
+&amp;&amp;\int \frac{1}{\sqrt{1-x^2}}\,dx=\sin^{-1}x\,+c\\
+&amp;&amp;\int \frac{1}{\sqrt{1+x^2}}\,dx=\mbox{sinh}^{-1}x\,+c\\\end{aligned}\]</span></p>
+</section>
+<section id="integration-by-parts" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Integration by parts</h1>
+<p><span class="math display">\[\int f(x)g&#39;(x)\,dx=f(x)g(x)-\int f&#39;(x)g(x)\,dx.\]</span> Eg.<span class="math display">\[\int x^2e^{3x}\,dx=\frac{1}{3}x^2e^{3x}-\int \frac{2}{3}xe^{3x}\,dx
+=\frac{1}{3}x^2e^{3x}-\frac{2}{9}xe^{3x}+\int \frac{2}{9}e^{3x}\,dx\]</span> <span class="math display">\[=\frac{1}{3}x^2e^{3x}-\frac{2}{9}xe^{3x}+\frac{2}{27}e^{3x}\,+c
+.\]</span> <span class="math display">\[\mbox{Eg.}\ \ 
+\int x\cos x\,dx=
+x\sin x-\int \sin x\,dx=x\sin x+\cos x\,+c.\hskip 5cm\]</span> <span class="math display">\[\mbox{Eg.}\ \ 
+\int \log x\,dx=\int (\log x) 1\,dx=
+(\log x)x-\int \frac{1}{x}x\,dx=x\log x-x+c=x(\log x-1)+c.\]</span> <span class="math display">\[\mbox{Eg.}\ \ 
+\int e^x\cos x\,dx=
+e^x\sin x-\int e^x\sin x\,dx=e^x\sin x+e^x\cos x-\int e^x\cos x\,dx.\]</span> <span class="math display">\[\mbox{Hence }\quad \int e^x\cos x\,dx
+=\frac{1}{2}e^x(\sin x+\cos x)\,+c.\hskip 7cm\]</span></p>
+</section>
+<section id="integration-by-substitution" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Integration by substitution</h1>
+<p>If  <span class="math inline">\(F(x)=\int f(x)\,dx\)</span>  then  <span class="math inline">\(F(u(x))=\int f(u(x))\,u&#39;(x)\,dx.\)</span></p>
+<p>In more compact notation, by making the substitution from <span class="math inline">\(x\)</span> to <span class="math inline">\(u(x)\)</span> we have <span class="math display">\[\int f(x)\, dx=\int f(u)\, du,\ \quad \mbox{where} \quad
+du=u&#39;(x)\, dx.\]</span> Eg. Calculate <span class="math inline">\(\int \frac{x}{2+3x^4}\,dx.\)</span></p>
+<p>Make the substitution <span class="math inline">\(u=\sqrt{\frac{3}{2}}x^2\)</span> then <span class="math inline">\(du=\sqrt{6}x\, dx\)</span> and <span class="math display">\[\int \frac{x}{2+3x^4}\,dx
+=\int \bigg(\frac{1}{\sqrt{6}}\bigg)\frac{1}{2+2u^2}\,du
+=\int \bigg(\frac{1}{2\sqrt{6}}\bigg)\frac{1}{1+u^2}\,du
+=\frac{1}{2\sqrt{6}}\tan^{-1}u\,+c\]</span> <span class="math display">\[=\frac{1}{2\sqrt{6}}\tan^{-1}(\sqrt{\frac{3}{2}}x^2)\,+c.\]</span> Eg. Calculate <span class="math inline">\(\int \tan x\,dx.\)</span></p>
+<p>Put <span class="math inline">\(u=\cos x\)</span> then <span class="math inline">\(du=-\sin x\, dx\)</span> and <span class="math display">\[\int \tan x\,dx
+=\int \frac{\sin x}{\cos x}\,dx
+=\int -\frac{1}{u}\,du=-\log |u|\,+c=-\log |\cos x|\,+c.\]</span></p>
+<p>Eg. Calculate <span class="math inline">\(\int_0^\frac{\pi}{2} \cos^3 x\,dx.\)</span></p>
+<p>Put <span class="math inline">\(u=\sin x\)</span> then <span class="math inline">\(du=\cos x\, dx.\)</span></p>
+<p>When <span class="math inline">\(x=0\)</span> then <span class="math inline">\(u=0\)</span> and when <span class="math inline">\(x=\pi/2\)</span> then <span class="math inline">\(u=1.\)</span> Therefore <span class="math display">\[\int_0^\frac{\pi}{2} \cos^3 x\,dx
+=\int_0^\frac{\pi}{2} \cos x(1-\sin^2x)\,dx
+=\int_0^1 (1-u^2)\,du=\bigg[u-\frac{1}{3}u^3\bigg]_0^1=1-\frac{1}{3}=\frac{2}{3}.\]</span> Eg. Calculate <span class="math inline">\(\int \frac{1}{(x^2+4)^2}\,dx.\)</span></p>
+<p>Put <span class="math inline">\(x=2\tan u\)</span> then <span class="math inline">\(dx=2\sec^2 u\, du\)</span> and <span class="math display">\[\int \frac{1}{(x^2+4)^2}\,dx
+=\int \frac{2\sec^2 u\, du}{(4\tan^2u+4)^2}
+=\int \frac{(\tan^2 u+1)\, du}{8(\tan^2u+1)^2}
+=\int \frac{du}{8(\tan^2u+1)}\]</span> <span class="math display">\[=\int \frac{1}{8}\cos^2u\,du
+=\int \frac{1}{16}(1+\cos 2u)\,du
+=\frac{1}{16}(u+\frac{1}{2}\sin 2u)
+=\frac{1}{16}(u+\sin u\cos u)\]</span> <span class="math display">\[=\frac{1}{16}\bigg(u+\frac{\tan u}{\sec^2u}\bigg)
+=\frac{1}{16}\bigg(u+\frac{\tan u}{1+\tan^2u}\bigg)
+=\frac{1}{16}\bigg(\tan^{-1}\frac{x}{2}+\frac{\frac{x}{2}}{1+\frac{x^2}{4}}\bigg)\]</span> <span class="math display">\[\mbox{Thus} \quad
+\int \frac{1}{(x^2+4)^2}\,dx
+=\frac{1}{16}\bigg(\tan^{-1}\frac{x}{2}+\frac{2x}{4+x^2}\bigg)\,+c.\]</span></p>
+<p>For a general function <span class="math inline">\(f(x)\)</span> the formula <span class="math display">\[\int \frac{f&#39;(x)}{f(x)}\, dx=\log |f(x)|\,+c\]</span> is a simple application of integration by substitution.</p>
+<p>Simply put <span class="math inline">\(u=f(x)\)</span> so that <span class="math inline">\(du=f&#39;(x)\,dx.\)</span> Then <span class="math display">\[\int \frac{f&#39;(x)}{f(x)}\, dx=\int \frac{1}{u}\,du
+=\log|u|\,+c=\log |f(x)|\,+c.\]</span> <span class="math display">\[\mbox{Eg.}\quad 
+\int \frac{x^3+1}{x^4+4x+7}\,dx=\frac{1}{4}\log|x^4+4x+7|\,+c.
+\hskip 6cm\]</span></p>
+</section>
+<section id="integration-of-rational-functions" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Integration of rational functions</h1>
+<p>Given a rational function, first of all decompose it into a polynomial and a proper rational function. As the integration of a polynomial is trivial we can now restrict attention to the integration of proper rational functions.</p>
+<p>Every proper rational function can be written as a sum of <span><strong>partial fractions</strong></span> which take the form <span class="math display">\[\frac{A}{(x-\alpha)^k} \quad \mbox{and} \quad 
+\frac{Bx+C}{(x^2+\beta x+\gamma)^l}\]</span> where the quadratic that appears in the above has no real roots.</p>
+<p>The number and type of partial fractions that appear depends on the factors in the denominator of the rational function.</p>
+<p>Each factor in the denominator of the form <span class="math inline">\((x-\alpha)^k\)</span> generates a partial fraction of the form <span class="math display">\[\frac{A_1}{(x-\alpha)}+
+\frac{A_2}{(x-\alpha)^2}+...+
+\frac{A_k}{(x-\alpha)^k}.\]</span> Each factor in the denominator of the form <span class="math inline">\((x^2+\beta x+\gamma)^l\)</span> generates a partial fraction of the form <span class="math display">\[\frac{B_1x+C_1}{(x^2+\beta x+\gamma)}+
+\frac{B_2x+C_2}{(x^2+\beta x+\gamma)^2}+...
++\frac{B_lx+C_l}{(x^2+\beta x+\gamma)^l}.\]</span> The coefficients <span class="math inline">\(A_k,B_l,C_l\)</span> can be found directly by comparison with the rational function either by the substitution of specific values of <span class="math inline">\(x\)</span> or by comparing coefficients of <span class="math inline">\(x\)</span>. The integration is then completed by integrating the partial fraction.</p>
+<p>Eg. Calculate <span class="math inline">\(\int \frac{2x}{x^2-x-2}\, dx.\)</span> <span class="math display">\[\frac{2x}{x^2-x-2}=\frac{2x}{(x-2)(x+1)}
+=\frac{a}{x-2}+\frac{b}{x+1}.\]</span> To determine <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> multiply the above by <span class="math inline">\((x-2)(x+1)\)</span> to give</p>
+<p><span class="math inline">\(2x=a(x+1)+b(x-2).\)</span> Putting <span class="math inline">\(x=2\)</span> yields <span class="math inline">\(4=3a\)</span> and putting <span class="math inline">\(x=-1\)</span> yields <span class="math inline">\(-2=-3b\)</span> hence <span class="math display">\[\frac{2x}{x^2-x-2}
+=\frac{\frac{4}{3}}{x-2}+\frac{\frac{2}{3}}{x+1}.\]</span> Integrating this expression gives the required integral <span class="math display">\[\int \frac{2x}{x^2-x-2}\, dx
+=\int\ \frac{\frac{4}{3}}{x-2}+\frac{\frac{2}{3}}{x+1}
+=\frac{4}{3}\log|x-2|+\frac{2}{3}\log|x+1|\,+c.\]</span>  </p>
+<p>Eg. Calculate <span class="math inline">\(\int \frac{2x^2+3}{x^3-2x^2+x}\, dx.\)</span> <span class="math display">\[\frac{2x^2+3}{x^3-2x^2+x}=
+\frac{2x^2+3}{x(x-1)^2}
+=\frac{a}{x}+\frac{b}{x-1}+\frac{c}{(x-1)^2}\]</span> As <span class="math inline">\(2x^2+3=a(x-1)^2+bx(x-1)+cx\)</span> then putting <span class="math inline">\(x=0\)</span> gives <span class="math inline">\(a=3,\)</span> while <span class="math inline">\(x=1\)</span> gives <span class="math inline">\(5=c.\)</span> Comparing coefficients of <span class="math inline">\(x^2\)</span> gives <span class="math inline">\(2=a+b\)</span> thus <span class="math inline">\(b=-1.\)</span> <span class="math display">\[\int \frac{2x^2+3}{x^3-2x^2+x}\, dx
+=\int \frac{3}{x}-\frac{1}{x-1}+\frac{5}{(x-1)^2}\, dx
+=3\log|x|-\log|x-1|-\frac{5}{x-1}\,+C.\]</span>  </p>
+<p>Eg. Calculate <span class="math inline">\(\int \frac{3x^4+x^3+20x^2+3x+31}{(x+1)(x^2+4)^2}\, dx.\)</span> <span class="math display">\[\frac{3x^4+x^3+20x^2+3x+31}{(x+1)(x^2+4)^2}
+=\frac{a}{x+1}+\frac{bx+c}{x^2+4}+\frac{dx+f}{(x^2+4)^2}\]</span> It is an exercise to show that <span class="math inline">\(a=2,\ b=1,\ c=0,\ d=0,\ f=-1.\)</span> <span class="math display">\[\int \frac{3x^4+x^3+20x^2+3x+31}{(x+1)(x^2+4)^2}\, dx
+=\int \frac{2}{x+1}+\frac{x}{x^2+4}-\frac{1}{(x^2+4)^2}\,dx\]</span> <span class="math display">\[=2\log|1+x|+\frac{1}{2}\log(x^2+4)
+-\frac{1}{8}\bigg(\frac{x}{x^2+4}\bigg)-\frac{1}{16}\tan^{-1}\frac{x}{2}
+\,+C.\]</span></p>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace("\:","\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = levelCount+(".0".repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img")
+				var img_id = img.getAttribute("id");
+				fig.setAttribute("id",img_id);
+				img.removeAttribute("id");
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Original notes produced by Paul Sutcliffe" />
+  <title>Calculus I Michaelmas Term</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Calculus I<br />
+Michaelmas Term</p></h1>
+<p class="author">Sam Fearn<br />
+Original notes produced by Paul Sutcliffe</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#integration"><span class="toc-section-number">4</span> Integration</a>
+<ul>
+<li><a href="#indefinite-and-definite-integrals"><span class="toc-section-number">4.1</span> Indefinite and definite integrals</a></li>
+<li><a href="#the-fundamental-theorem-of-calculus"><span class="toc-section-number">4.2</span> The fundamental theorem of calculus</a></li>
+<li><a href="#limits-with-logarithms-powers-and-exponentials"><span class="toc-section-number">4.3</span> Limits with logarithms, powers and exponentials</a></li>
+<li><a href="#integration-using-a-recurrence-relation"><span class="toc-section-number">4.4</span> Integration using a recurrence relation</a></li>
+<li><a href="#definite-integrals-using-even-and-odd-functions"><span class="toc-section-number">4.5</span> Definite integrals using even and odd functions</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="integration" class="level1" data-number="1">
+<h1 data-number="4"><span class="header-section-number">4</span> Integration</h1>
+<section id="indefinite-and-definite-integrals" class="level2" data-number="1.1">
+<h2 data-number="4.1"><span class="header-section-number">4.1</span> Indefinite and definite integrals</h2>
+<p><span><strong>Defn:</strong></span> A function <span class="math inline">\(F(x)\)</span> is called an <span><strong>indefinite integral</strong></span> or <span><strong>antiderivative</strong></span> of a function <span class="math inline">\(f(x)\)</span> in the interval <span class="math inline">\((a,b)\)</span> if <span class="math inline">\(F(x)\)</span> is differentiable with</p>
+<p><span class="math inline">\(F&#39;(x)=f(x)\)</span> throughout <span class="math inline">\((a,b).\)</span> We then write <span class="math inline">\(F(x)=\int f(x)\, dx.\)</span><br />
+Eg. <span class="math inline">\(\int \cos x\, dx=\sin x\)</span> in <span class="math inline">\(\mathbb{R}.\)</span><br />
+Eg. <span class="math inline">\(\int \frac{1}{x^2}\, dx=-\frac{1}{x}\)</span> in <span class="math inline">\(\mathbb{R}\backslash\{0\}.\)</span><br />
+Eg. <span class="math inline">\(\int \mbox{sgn} x\, dx=|x|\)</span> in <span class="math inline">\(\mathbb{R}\backslash\{0\}.\)</span><br />
+Note1: If <span class="math inline">\(F(x)\)</span> is an <span> indefinite integral</span> of <span class="math inline">\(f(x)\)</span> in <span class="math inline">\((a,b)\)</span> then so is <span class="math inline">\(F(x)+c\)</span> for any constant <span class="math inline">\(c.\)</span> In applications of integration it is important to include this arbitrary constant. We therefore write eg. <span class="math inline">\(\int \cos x\, dx=\sin x+c.\)</span><br />
+Note2: If <span class="math inline">\(F_1(x)\)</span> and <span class="math inline">\(F_2(x)\)</span> are both indefinite integrals of <span class="math inline">\(f(x)\)</span> in <span class="math inline">\((a,b)\)</span> then <span class="math inline">\(F_1(x)-F_2(x)=c\)</span> for some constant <span class="math inline">\(c.\)</span><br />
+<span><strong>Defn:</strong></span> We say that <span class="math inline">\(f(x)\)</span> is <span><strong>integrable in <span class="math inline">\((a,b)\)</span></strong></span> if it has an indefinite integral <span class="math inline">\(F(x)\)</span> in <span class="math inline">\((a,b)\)</span> that is continuous in <span class="math inline">\([a,b].\)</span><br />
+Eg. <span class="math inline">\(\cos x\)</span> is integrable in any finite interval <span class="math inline">\((a,b)\)</span> because <span class="math inline">\(\sin x\)</span> is continuous in <span class="math inline">\(\mathbb{R}.\)</span><br />
+Eg. <span class="math inline">\(\frac{1}{x^2}\)</span> is not integrable in <span class="math inline">\((0,1)\)</span> because its indefinite integral <span class="math inline">\(-\frac{1}{x}\)</span> is not continuous at <span class="math inline">\(x=0.\)</span><br />
+Eg. <span class="math inline">\(\mbox{sgn\,}x\)</span> is integrable in <span class="math inline">\((0,1)\)</span> because its indefinite integral <span class="math inline">\(|x|\)</span> is continuous in <span class="math inline">\([0,1].\)</span><br />
+<span><strong>Defn:</strong></span> A <span><strong>subdivision</strong></span> <span class="math inline">\(S\)</span> of <span class="math inline">\([a,b]\)</span> is a partition into a finite number of subintervals <span class="math display">\[[a,x_1],[x_1,x_2],...,[x_{n-1},b]\]</span> where <span class="math inline">\(a=x_0&lt;x_1&lt;x_2&lt;...&lt;x_n=b.\)</span> The <span><strong>norm</strong></span> <span class="math inline">\(|S|\)</span> of the subdivision is the maximum of the subinterval lengths <span class="math inline">\(|a-x_1|,|x_1-x_2|,..,|x_{n-1}-b|.\)</span> (Thus a small value of <span class="math inline">\(|S|\)</span> means that the interval <span class="math inline">\([a,b]\)</span> has been chopped up into small pieces.) The numbers <span class="math inline">\(z_1,z_2,...,z_n\)</span> form a set of <span><strong>sample points</strong></span> from <span class="math inline">\(S\)</span> if <span class="math inline">\(z_j\in [x_{j-1},x_j]\)</span> for <span class="math inline">\(j=1,..,n.\)</span><br />
+<span><strong>Defn:</strong></span> Suppose that <span class="math inline">\(f(x)\)</span> is a function defined for <span class="math inline">\(x\in[a,b].\)</span> The <span><strong>Riemann sum</strong></span> is <span class="math display">\[{\cal R}=\sum_{j=1}^n (x_j-x_{j-1})f(z_j).\]</span></p>
+<div class="center">
+<figure>
+<img src="riemann1.jpg" style="width:8cm" alt="" /><figcaption>An illustration of a Riemann sum.</figcaption>
+</figure>
+</div>
+<p>The Riemann sum is equal to the sum of the (signed) areas of rectangles of height <span class="math inline">\(f(z_j)\)</span> and width <span class="math inline">\(x_j-x_{j-1}.\)</span> Here signed means that the areas of rectangles below the <span class="math inline">\(x\)</span>-axis are counted negatively. If <span class="math inline">\(f(x)\)</span> is continuous in <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(|S|\)</span> is small then we expect <span class="math inline">\({\cal R}\)</span> to be a good approximation to the (signed) area under the graph of <span class="math inline">\(f(x)\)</span> above the interval <span class="math inline">\([a,b].\)</span> This turns out to be correct and the error in the approximation can be reduced to zero by taking the limit in which <span class="math inline">\(|S|\)</span> tends to zero. This leads to the definition of the <span><strong>definite integral</strong></span> as <span class="math display">\[\int_a^b f(x)\,dx=\lim_{|S|\rightarrow 0}{\cal R}\]</span> and it can be shown that this limit exists if <span class="math inline">\(f(x)\)</span> is continuous in <span class="math inline">\([a,b].\)</span></p>
+<div class="center">
+<figure>
+<img src="new_area.png" id="fig-area" style="width:6cm" alt="" /><figcaption>The definite integral is the signed area under the curve: <span class="math inline">\(\int_a^b f(x)\,dx=A_1-A_2+A_3.\)</span> </figcaption>
+</figure>
+</div>
+<p>By definition we set <span class="math inline">\(\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx\)</span> and therefore <span class="math inline">\(\int_a^a f(x)\,dx=0.\)</span></p>
+<p>There are a number of fairly obvious properties of the definite integral that are not too hard to prove. In the following let <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> both be integrable in <span class="math inline">\((a,b).\)</span><br />
+<span class="math inline">\((i)\)</span> <span>Linearity.</span> If <span class="math inline">\(\lambda,\mu\)</span> are any constants then <span class="math inline">\(\lambda f(x)+\mu g(x)\)</span> is integrable in <span class="math inline">\((a,b)\)</span> with <span class="math display">\[\int_a^b\bigg(
+\lambda f(x)+\mu g(x)\bigg)\,dx=
+\lambda \int_a^b f(x)\,dx+
+\mu \int_a^b g(x)\,dx.\]</span></p>
+<p> </p>
+<p><span class="math inline">\((ii)\)</span> If <span class="math inline">\(c\in[a,b]\)</span> then <span class="math inline">\(\int_a^b f(x)\,dx
+=
+\int_a^c f(x)\,dx + \int_c^b f(x)\,dx.\)</span><br />
+<span class="math inline">\((iii)\)</span> If <span class="math inline">\(f(x)\ge g(x) \ \forall \ x\in(a,b)\)</span> then <span class="math inline">\(\int_a^b f(x)\,dx\ge \int_a^b g(x)\,dx.\)</span><br />
+<span class="math inline">\((iv)\)</span> If <span class="math inline">\(m\le f(x)\le M \ \forall \ x\in[a,b]\)</span> then <span class="math display">\[m(b-a)\le \int_a^b f(x)\,dx\le M(b-a).\]</span></p>
+</section>
+<section id="the-fundamental-theorem-of-calculus" class="level2" data-number="1.2">
+<h2 data-number="4.2"><span class="header-section-number">4.2</span> The fundamental theorem of calculus</h2>
+<p>So far, we don’t have any connection between indefinite and definite integrals. This is provided by the following theorem:<br />
+<span><strong>The fundamental theorem of calculus</strong></span></p>
+<p>If <span class="math inline">\(f(x)\)</span> is continuous on <span class="math inline">\([a,b]\)</span> then the function <span class="math display">\[F(x)=\int_a^x f(t)\,dt\]</span> defined for <span class="math inline">\(x\in[a,b]\)</span> is continuous on <span class="math inline">\([a,b]\)</span> and differentiable on <span class="math inline">\((a,b)\)</span> and is an indefinite integral of <span class="math inline">\(f(x)\)</span> on <span class="math inline">\((a,b)\)</span> ie. <span class="math display">\[F&#39;(x)=\frac{d}{dx}\int_a^x f(t)\,dt=f(x)\]</span> throughout <span class="math inline">\((a,b).\)</span> Furthermore if <span class="math inline">\(\widetilde F(x)\)</span> is any indefinite integral of <span class="math inline">\(f(x)\)</span> on <span class="math inline">\([a,b]\)</span> then <span class="math display">\[\int_a^b f(t)\,dt=\widetilde F(b)-\widetilde F(a)
+=[\widetilde F(x)]^b_a.\]</span></p>
+<p> <br />
+We shall sketch the important points of the proof.</p>
+<p>For <span class="math inline">\(a\le x&lt;x+h&lt;b\)</span> we have that <span class="math display">\[F(x+h)-F(x)=\int_a^{x+h} f(t)\,dt-\int_a^{x} f(t)\,dt
+=\int_x^{x+h} f(t)\,dt\]</span> where we have used property <span class="math inline">\((ii).\)</span></p>
+<p>Let <span class="math inline">\(m(h)\)</span> and <span class="math inline">\(M(h)\)</span> denote the minimum and maximum values of <span class="math inline">\(f(x)\)</span> on the interval <span class="math inline">\([x,x+h].\)</span> Then by property <span class="math inline">\((iv)\)</span> we have that <span class="math display">\[m(h)h\le \int_x^{x+h} f(t)\,dt\le M(h)h.\]</span> Thus <span class="math display">\[m(h)\le\frac{F(x+h)-F(x)}{h}\le M(h).\]</span> Since <span class="math inline">\(f(x)\)</span> is continuous on <span class="math inline">\([x,x+h]\)</span> we have that <span class="math inline">\(\lim_{h\rightarrow 0^+}m(h)=\lim_{h\rightarrow 0^+}M(h)=f(x)\)</span> and so by the pinching theorem <span class="math display">\[\lim_{h\rightarrow 0^+}\frac{F(x+h)-F(x)}{h}=f(x).\]</span> A similar argument applies to the limit from below and together they give <span class="math display">\[F&#39;(x)=\lim_{h\rightarrow 0}\frac{F(x+h)-F(x)}{h}=f(x)\]</span> which proves that <span class="math inline">\(F(x)\)</span> is an indefinite integral of <span class="math inline">\(f(x).\)</span> The proof of the first part of the theorem is completed by showing that <span class="math inline">\(F(x)\)</span> is continuous from the right at <span class="math inline">\(x=a\)</span> and from the left at <span class="math inline">\(x=b.\)</span> Both these follow by a simple consideration of the limit of the relevant quotient. Finally, to prove the last part of the theorem the key observation is that any indefinite integral <span class="math inline">\(\widetilde F(x)\)</span> is related to <span class="math inline">\(F(x)\)</span> by the addition of a constant.<br />
+The fundamental theorem of calculus provides a simple rule for differentiating a definite integral with respect to its limits.</p>
+<p><span class="math display">\[Eg. \quad \quad \frac{d}{dx}\int_0^x\frac{1}{1+\sin^2t}\,dt=
+\frac{1}{1+\sin^2x}. \hskip 4cm\]</span></p>
+<p> </p>
+<p>We can combine this result with the chain rule if the limit is a more complicated expression <span class="math display">\[Eg. \quad \quad \frac{d}{dx}\int_0^{x^2}\frac{1}{1+e^t}\,dt=
+\frac{1}{1+e^{x^2}}\bigg(\frac{d}{dx}x^2\bigg)
+=\frac{2x}{1+e^{x^2}}. \hskip 4cm\]</span></p>
+</section>
+<section id="limits-with-logarithms-powers-and-exponentials" class="level2" data-number="1.3">
+<h2 data-number="4.3"><span class="header-section-number">4.3</span> Limits with logarithms, powers and exponentials</h2>
+<p>There are some important results concerning limits as <span class="math inline">\(x\rightarrow\infty\)</span> for the logarithm and exponential functions. To derive these results we begin with the following,<br />
+<span><strong>Lemma 1</strong></span>: <span class="math inline">\(\forall\ x\ge 0, \quad e^{x}\ge 1+x\)</span></p>
+<p>Proof: Consider <span class="math inline">\(f(x)=e^x-(1+x)\)</span> then <span class="math inline">\(f(0)=0\)</span> and <span class="math inline">\(f&#39;(x)=e^x-1\ge 0\)</span>.</p>
+<p>Hence <span class="math inline">\(f(x)\)</span> is monotonic increasing in <span class="math inline">\([0,\infty)\)</span> so <span class="math inline">\(f(x)\ge 0\)</span> for all <span class="math inline">\(x\ge 0.\)</span><br />
+<span><strong>Lemma 2</strong></span>: <span class="math inline">\(\forall\ x\ge 0, \mbox{ and for any positive integer } n, \quad e^{x}\ge \sum_{j=0}^n x^j/j!\)</span>.</p>
+<p>Note that the case <span class="math inline">\(n=1\)</span> corresponds to Lemma 1, and the proof for general <span class="math inline">\(n\)</span> is similar to the proof of Lemma 1.<br />
+<span><strong>Result 1: powers beat logs</strong></span></p>
+<p>For any constant <span class="math inline">\(a&gt;0\)</span> <span class="math display">\[\lim_{x\rightarrow\infty}\frac{\log x}{x^a}=0.\]</span> This result is encapsulated by the phrase <span><em>powers beat logs.</em></span><br />
+Proof: Put <span class="math inline">\(x=e^y\)</span> then <span class="math display">\[\lim_{x\to\infty}\frac{\log x}{x^a}=\lim_{y\to\infty}\frac{y}{e^{ay}}.\]</span> For <span class="math inline">\(y&gt;0\)</span> then by Lemma 2 with <span class="math inline">\(n=2\)</span> <span class="math display">\[0\le \frac{y}{e^{ay}}\le \frac{y}{1+ay+\frac{1}{2}a^2y^2}\le \frac{y}{\frac{1}{2}a^2y^2}=\frac{2}{a^2y}\]</span> As <span class="math inline">\(\lim_{y\to\infty}\frac{2}{a^2y}=0\)</span> then by the pinching theorem <span class="math display">\[\lim_{y\to\infty}\frac{y}{e^{ay}}=0=\lim_{x\to\infty}\frac{\log x}{x^a}.\]</span></p>
+<p><span><strong>Result 2: exponentials beat powers</strong></span></p>
+<p>For any constant <span class="math inline">\(a&gt;0\)</span> <span class="math display">\[\lim_{x\rightarrow\infty}\frac{x^a}{e^x}=0.\]</span> This result is encapsulated by the phrase <span><em>exponentials beat powers.</em></span><br />
+Proof: Let <span class="math inline">\(n\)</span> be the smallest integer such that <span class="math inline">\(n&gt;a.\)</span> By Lemma 2, for <span class="math inline">\(x&gt;0\)</span> we have that <span class="math display">\[0\le \frac{x^a}{e^x}\le \frac{x^a}{1+x+\ldots +x^n/n!}
+=\frac{x^{a-n}}{x^{-n}+x^{1-n}+\ldots 1/n!}\]</span> As <span class="math inline">\(a-n&lt;0\)</span> then <span class="math inline">\(\lim_{x\to\infty}\frac{x^{a-n}}{x^{-n}+x^{1-n}+\ldots 1/n!}=0\)</span>, hence by the pinching theorem <span class="math inline">\(\lim_{x\rightarrow\infty}\frac{x^a}{e^x}=0.\)</span><br />
+<span><strong>Result 3: the exponential as a limit</strong></span></p>
+<p>For any constant <span class="math inline">\(a\)</span> <span class="math display">\[\lim_{x\rightarrow\infty}\bigg(1+\frac{a}{x}\bigg)^x=e^a.\]</span> Proof (for the case <span class="math inline">\(a&gt;0\)</span>):</p>
+<p>Recall the definition of the derivative of a function <span class="math inline">\(f(x)\)</span> at <span class="math inline">\(x=b.\)</span> <span class="math display">\[f&#39;(b)=\lim_{h\rightarrow 0}\frac{f(b+h)-f(b)}{h}.\]</span> Apply this to <span class="math inline">\(f(x)=\log x\)</span> so that <span class="math inline">\(f&#39;(x)=\frac{1}{x}\)</span> and take <span class="math inline">\(b=1.\)</span> <span class="math display">\[1=\lim_{h\rightarrow 0}\frac{\log(1+h)-\log(1)}{h}
+=\lim_{h\rightarrow 0}\frac{\log(1+h)}{h}.\]</span> With the change of variable <span class="math inline">\(h=\frac{a}{x}\)</span> this becomes <span class="math display">\[1=\lim_{x\rightarrow \infty}\frac{\log(1+\frac{a}{x})}{\frac{a}{x}}
+\quad \mbox{ie.} \quad
+a=\lim_{x\rightarrow \infty}(x\log(1+\frac{a}{x})).\]</span> Since <span class="math inline">\(e^x\)</span> is continuous at <span class="math inline">\(a\)</span> we have that <span class="math display">\[e^a=\lim_{x\rightarrow \infty}\exp(x\log(1+\frac{a}{x}))
+=\lim_{x\rightarrow \infty}\bigg(1+\frac{a}{x}\bigg)^x
+.\]</span></p>
+</section>
+<section id="integration-using-a-recurrence-relation" class="level2" data-number="1.4">
+<h2 data-number="4.4"><span class="header-section-number">4.4</span> Integration using a recurrence relation</h2>
+<p>Eg. Calculate <span class="math inline">\(\int_0^1 x^3e^x\,dx.\)</span></p>
+<p>Define <span class="math inline">\(I_n=\int_0^1 x^ne^x\,dx\)</span>  for all integer <span class="math inline">\(n\ge 0.\)</span> <span class="math display">\[I_{n+1}=\int_0^1 x^{n+1}e^x\,dx=\bigg[x^{n+1}e^x\bigg]_0^1-\int_0^1 (n+1)x^ne^x\,dx
+ =e-(n+1)I_n.\]</span> The recurrence relation <span class="math inline">\(I_{n+1}=e-(n+1)I_n\)</span> can be used to calculate <span class="math inline">\(I_n\)</span> for any positive integer <span class="math inline">\(n\)</span> from the starting value <span class="math inline">\(I_0=\int_0^1 e^x\,dx=[e^x]_0^1=e-1.\)</span></p>
+<p><span class="math inline">\(I_1=e-I_0=e-(e-1)=1, \quad
+I_2=e-2I_1=e-2(1)=e-2, \quad\)</span></p>
+<p><span class="math inline">\(I_3=e-3I_2=e-3(e-2)=6-2e \quad\)</span> is the required integral.<br />
+ </p>
+<p>Eg. Calculate <span class="math inline">\(\int \tan^4 x\,dx.\)</span></p>
+<p>Define <span class="math inline">\(F_n(x)=\int \tan^n x\,dx\)</span>  for all integer <span class="math inline">\(n\ge 0.\)</span> <span class="math display">\[F_{n+2}(x)+F_n(x)=\int \tan^n x\,(1+\tan^2 x)\,dx
+=\int \tan^n x\,\mbox{sec}^2x\,dx\]</span> Put <span class="math inline">\(u=\tan x\)</span> then <span class="math inline">\(du=\mbox{sec}^2x\,dx\)</span> <span class="math display">\[F_{n+2}(x)+F_n(x)=
+\int u^n\,du=\frac{u^{n+1}}{n+1}=\frac{\tan^{n+1}x}{n+1}.\]</span> The recurrence relation <span class="math inline">\(F_{n+2}(x)=\frac{1}{n+1}\tan^{n+1}(x)-F_n(x)\)</span> can be used to calculate the required integral for <span class="math inline">\(n\)</span> even from the starting value <span class="math inline">\(F_0(x)=\int 1\,dx=x\)</span> and for <span class="math inline">\(n\)</span> odd from the starting value <span class="math inline">\(F_1(x)=-\log |\cos x|.\)</span></p>
+<p>In particular, <span class="math inline">\(F_2(x)=\tan x\,-x\)</span> and <span class="math inline">\(F_4(x)=\frac{1}{3}\tan^3x-\tan x\,+x\)</span> thus</p>
+<p><span class="math inline">\(\int \tan^4 x\,dx=\frac{1}{3}\tan^3x-\tan x\,+x\,+c.\)</span></p>
+</section>
+<section id="definite-integrals-using-even-and-odd-functions" class="level2" data-number="1.5">
+<h2 data-number="4.5"><span class="header-section-number">4.5</span> Definite integrals using even and odd functions</h2>
+<p>The definite integral of an odd function over a symmetric interval is zero.</p>
+<p>If <span class="math inline">\(f_{odd}(x)\)</span> is an integrable odd function on <span class="math inline">\([-a,a]\)</span> then <span class="math display">\[\int_{-a}^a f_{odd}(x)\,dx=0.\]</span> Proof: <span class="math display">\[\int_{-a}^a f_{odd}(x)\,dx=
+\int_{-a}^0 f_{odd}(u)\,du+\int_0^a f_{odd}(x)\,dx\]</span> <span class="math display">\[=-\int_{a}^0 f_{odd}(-x)\,dx+\int_0^a f_{odd}(x)\,dx
+=\int_0^a (f_{odd}(-x)+f_{odd}(x))\,dx=0.\]</span></p>
+<p> </p>
+<p>A similarly argument shows that if <span class="math inline">\(f_{even}(x)\)</span> is an integrable even function on <span class="math inline">\([-a,a]\)</span> then <span class="math display">\[\int_{-a}^a f_{even}(x)\,dx=2\int_{0}^a f_{even}(x)\,dx.\]</span><br />
+Recall that any function <span class="math inline">\(f(x)\)</span> can be decomposed as a sum of even and odd functions <span class="math inline">\(f(x)=f_{even}(x)+f_{odd}(x).\)</span> This can be a useful technique to calculate definite integrals over symmetric intervals as <span class="math display">\[\int_{-a}^a f(x)\,dx=
+\int_{-a}^a f_{even}(x)+f_{odd}(x)\,\,dx=
+2\int_{0}^a f_{even}(x)\,dx.\]</span>  </p>
+<p>Eg. Calculate <span class="math inline">\(\int_{-1}^{1} \frac{e^xx^4}{\cosh x}\,dx.\)</span></p>
+<p>For <span class="math inline">\(f(x)=\frac{e^xx^4}{\cosh x}\)</span> we have <span class="math inline">\(f_{even}(x)=\frac{1}{2}f(x)+\frac{1}{2}f(-x)
+=\frac{1}{2}\frac{x^4(e^x+e^{-x})}{\cosh x}
+=x^4.\)</span> Thus <span class="math display">\[\int_{-1}^{1} \frac{e^xx^4}{\cosh x}\,dx
+=2\int_0^1 x^4=2\bigg[\frac{1}{5}x^5\bigg]_0^1=\frac{2}{5}.\]</span>  </p>
+<p>Eg. Calculate <span class="math inline">\(\int_{-\frac{\pi}{4}}^{\frac{\pi}{4}} \frac{(1+2x)^3\cos x}{1+12x^2}
+\,dx.\)</span></p>
+<p>For <span class="math inline">\(f(x)= \frac{(1+2x)^3\cos x}{1+12x^2}\)</span> we have</p>
+<p><span class="math inline">\(f_{even}(x)=\frac{1}{2}f(x)+\frac{1}{2}f(-x)=
+\frac{(\cos x) \{(1+2x)^3+(1-2x)^3\}}{2(1+12x^2)}
+=\frac{(\cos x) (2+24x^2)}{2(1+12x^2)}
+=\cos x.\)</span> Thus <span class="math display">\[\int_{-\frac{\pi}{4}}^{\frac{\pi}{4}} \frac{(1+2x)^3\cos x}{1+12x^2}
+\,dx=
+2\int_0^{\frac{\pi}{4}}\cos x\,dx=2\bigg[\sin x\bigg]_0^{\frac{\pi}{4}}
+=2\frac{1}{\sqrt{2}}=\sqrt{2}.\]</span></p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

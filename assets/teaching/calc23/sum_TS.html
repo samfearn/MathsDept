@@ -1,0 +1,110 @@
+<!DOCTYPE html><html prefix="dcterms: http://purl.org/dc/terms/">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>8.5 Summary: Taylor Series</title>
+<!--Generated on Sat Dec 24 13:39:12 2022 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://samfearn.github.io/latexml.min.css">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<section id="S8.SS5" class="ltx_subsection">
+<h2 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">8.5 </span>Summary: Taylor Series</h2>
+
+<div id="S8.SS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You should know how to calculate Taylor polynomials <math id="S8.SS5.p1.m1" class="ltx_Math" alttext="P_{n}(x)" display="inline"><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> and what the integral
+form and Lagrange form of the remainder <math id="S8.SS5.p1.m2" class="ltx_Math" alttext="R_{n}(x)" display="inline"><mrow><msub><mi>R</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> are, as well as how to estimate the maximum error in using a Taylor polynomial as an approximation of a function.
+Here are some key points:</p>
+</div>
+<div id="S8.SS5.p2" class="ltx_para ltx_noindent">
+<ul id="S8.I1" class="ltx_itemize">
+<li id="S8.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S8.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">Taylor polynomial</span> of degree <math id="S8.I1.i1.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> about <math id="S8.I1.i1.p1.m2" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math> for a function <math id="S8.I1.i1.p1.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is the degree <math id="S8.I1.i1.p1.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>
+polynomial in <math id="S8.I1.i1.p1.m5" class="ltx_Math" alttext="(x-a)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>-</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></math>, <math id="S8.I1.i1.p1.m6" class="ltx_Math" alttext="P_{n}(x)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^{k}" display="inline"><mrow><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msubsup><mo largeop="true" symmetric="true">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><mrow><mfrac><mrow><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><mi>k</mi><mo>!</mo></mrow></mfrac><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>-</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mi>k</mi></msup></mrow></mrow></mrow></math>.
+At the point <math id="S8.I1.i1.p1.m7" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math>, <math id="S8.I1.i1.p1.m8" class="ltx_Math" alttext="P_{n}" display="inline"><msub><mi>P</mi><mi>n</mi></msub></math> and its first <math id="S8.I1.i1.p1.m9" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> derivatives will agree with <math id="S8.I1.i1.p1.m10" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>
+and its first <math id="S8.I1.i1.p1.m11" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> derivatives. In this sense the Taylor polynomial tries to
+approximate <math id="S8.I1.i1.p1.m12" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> close to <math id="S8.I1.i1.p1.m13" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math>. Note that if we don’t explicitly state
+“about <math id="S8.I1.i1.p1.m14" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math>” then it is assumed we are working about <math id="S8.I1.i1.p1.m15" class="ltx_Math" alttext="x=0" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>.</p>
+</div>
+</li>
+<li id="S8.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S8.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Taylor’s theorem</span> states that <math id="S8.I1.i2.p1.m1" class="ltx_Math" alttext="f(x)=P_{n}(x)+R_{n}(x)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><msub><mi>R</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> where
+<math id="S8.I1.i2.p1.m2" class="ltx_Math" alttext="R_{n}(x)=\frac{1}{n!}\int_{a}^{x}(x-t)^{n}f^{(n+1)}(t)dt" display="inline"><mrow><mrow><msub><mi>R</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mfrac><mn>1</mn><mrow><mi>n</mi><mo>!</mo></mrow></mfrac><mo>⁢</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mi>a</mi><mi>x</mi></msubsup><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>-</mo><mi>t</mi></mrow><mo stretchy="false">)</mo></mrow><mi>n</mi></msup><mo>⁢</mo><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>t</mi></mrow></mrow></mrow></mrow></mrow></math> is the <span class="ltx_text ltx_font_italic">remainder</span>.</p>
+</div>
+</li>
+<li id="S8.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S8.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">Lagrange form of the remainder</span> says that
+<math id="S8.I1.i3.p1.m1" class="ltx_Math" alttext="R_{n}(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}" display="inline"><mrow><mrow><msub><mi>R</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mfrac><mrow><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>!</mo></mrow></mfrac><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>-</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></mrow></math> for some (unknown) <math id="S8.I1.i3.p1.m2" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math> between
+<math id="S8.I1.i3.p1.m3" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and <math id="S8.I1.i3.p1.m4" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>. (Note the similarity to the next term in the Taylor polynomial.)
+This can often be used to place an upper bound on <span class="ltx_text ltx_font_italic">the error</span>
+<math id="S8.I1.i3.p1.m5" class="ltx_Math" alttext="|R_{n}(x)|" display="inline"><mrow><mo stretchy="false">|</mo><mrow><msub><mi>R</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow></math> in using <math id="S8.I1.i3.p1.m6" class="ltx_Math" alttext="P_{n}(x)" display="inline"><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> as an approximation of <math id="S8.I1.i3.p1.m7" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S8.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S8.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">Taylor series</span> about <math id="S8.I1.i4.p1.m1" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math> is <math id="S8.I1.i4.p1.m2" class="ltx_Math" alttext="\lim_{n\to\infty}P_{n}(x)" display="inline"><mrow><msub><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow></msub><mo>⁡</mo><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. If
+<math id="S8.I1.i4.p1.m3" class="ltx_Math" alttext="\lim_{n\to\infty}R_{n}(x)=0" display="inline"><mrow><mrow><msub><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow></msub><mo>⁡</mo><mrow><msub><mi>R</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> (i.e. the error vanishes in this limit) for all <math id="S8.I1.i4.p1.m4" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in some interval containing <math id="S8.I1.i4.p1.m5" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> we say
+that the Taylor series converges to <math id="S8.I1.i4.p1.m6" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> on that interval. In such cases
+<math id="S8.I1.i4.p1.m7" class="ltx_Math" alttext="P_{n}(x)" display="inline"><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> approximates <math id="S8.I1.i4.p1.m8" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> as well as we want on that interval by taking <math id="S8.I1.i4.p1.m9" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>
+large enough.</p>
+</div>
+</li>
+<li id="S8.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S8.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You should be familiar with the form of the Taylor series (about <math id="S8.I1.i5.p1.m1" class="ltx_Math" alttext="x=0" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>)
+for <math id="S8.I1.i5.p1.m2" class="ltx_Math" alttext="e^{x}" display="inline"><msup><mi>e</mi><mi>x</mi></msup></math>, <math id="S8.I1.i5.p1.m3" class="ltx_Math" alttext="\sinh x" display="inline"><mrow><mi>sinh</mi><mo>⁡</mo><mi>x</mi></mrow></math>, <math id="S8.I1.i5.p1.m4" class="ltx_Math" alttext="\cosh x" display="inline"><mrow><mi>cosh</mi><mo>⁡</mo><mi>x</mi></mrow></math>, <math id="S8.I1.i5.p1.m5" class="ltx_Math" alttext="\sin x" display="inline"><mrow><mi>sin</mi><mo>⁡</mo><mi>x</mi></mrow></math>, <math id="S8.I1.i5.p1.m6" class="ltx_Math" alttext="\cos x" display="inline"><mrow><mi>cos</mi><mo>⁡</mo><mi>x</mi></mrow></math> and <math id="S8.I1.i5.p1.m7" class="ltx_Math" alttext="\log(1+x)" display="inline"><mrow><mi>log</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>+</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>. The Taylor
+series for <math id="S8.I1.i5.p1.m8" class="ltx_Math" alttext="\log(1+x)" display="inline"><mrow><mi>log</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>+</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> converges to <math id="S8.I1.i5.p1.m9" class="ltx_Math" alttext="\log(1+x)" display="inline"><mrow><mi>log</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>+</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> for <math id="S8.I1.i5.p1.m10" class="ltx_Math" alttext="x\in(-1,1]" display="inline"><mrow><mi>x</mi><mo>∈</mo><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></math>. The
+other ones converge to their functions <math id="S8.I1.i5.p1.m11" class="ltx_Math" alttext="\forall x\in\mathbb{R}" display="inline"><mrow><mrow><mo>∀</mo><mi>x</mi></mrow><mo>∈</mo><mi>ℝ</mi></mrow></math>.</p>
+</div>
+</li>
+<li id="S8.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S8.I1.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can find Taylor polynomials of degree <math id="S8.I1.i6.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> for sums of products of functions by
+taking sums of products of Taylor polynomials of degree <math id="S8.I1.i6.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> (and ignoring any
+terms with degree higher than <math id="S8.I1.i6.p1.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> which arise from products). We can also use substitution, e.g. to find the Taylor polynomial of degree <math id="S8.I1.i6.p1.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> for
+<math id="S8.I1.i6.p1.m5" class="ltx_Math" alttext="e^{\sin x}" display="inline"><msup><mi>e</mi><mrow><mi>sin</mi><mo>⁡</mo><mi>x</mi></mrow></msup></math> replace <math id="S8.I1.i6.p1.m6" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in the Taylor polynomial of degree <math id="S8.I1.i6.p1.m7" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> for <math id="S8.I1.i6.p1.m8" class="ltx_Math" alttext="e^{x}" display="inline"><msup><mi>e</mi><mi>x</mi></msup></math> with
+the Taylor polynomial of degree <math id="S8.I1.i6.p1.m9" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> for <math id="S8.I1.i6.p1.m10" class="ltx_Math" alttext="\sin x" display="inline"><mrow><mi>sin</mi><mo>⁡</mo><mi>x</mi></mrow></math> (and again ignore all powers higher than <math id="S8.I1.i6.p1.m11" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>). It is sometimes possible to divide by Taylor series using
+<math id="S8.I1.i6.p1.m12" class="ltx_Math" alttext="1/(1-x)=1+x+x^{2}+x^{3}+\cdots" display="inline"><mrow><mrow><mn>1</mn><mo>/</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>-</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mn>1</mn><mo>+</mo><mi>x</mi><mo>+</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mi mathvariant="normal">⋯</mi></mrow></mrow></math> for <math id="S8.I1.i6.p1.m13" class="ltx_Math" alttext="x\in(-1,1)" display="inline"><mrow><mi>x</mi><mo>∈</mo><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math> and appropriate
+substitution.</p>
+</div>
+</li>
+<li id="S8.I1.i7" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S8.I1.i7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can evaluate limits as <math id="S8.I1.i7.p1.m1" class="ltx_Math" alttext="x\to a" display="inline"><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></math> by replacing functions with their
+Taylor polynomials of sufficiently high order about <math id="S8.I1.i7.p1.m2" class="ltx_Math" alttext="x=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow></math> provided the Taylor
+series converge to the functions on some interval containing <math id="S8.I1.i7.p1.m3" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>. This is
+because in such cases the higher order terms (higher powers of <math id="S8.I1.i7.p1.m4" class="ltx_Math" alttext="(x-a)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>-</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></math>) will
+vanish in the limit <math id="S8.I1.i7.p1.m5" class="ltx_Math" alttext="x\to a" display="inline"><mrow><mi>x</mi><mo>→</mo><mi>a</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+</section><div class="ltx_rdf" about="" property="dcterms:language" content="en-GB"></div>
+<div class="ltx_rdf" about="" property="dcterms:title" content="allnotes"></div>
+
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Sat Dec 24 13:39:12 2022 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

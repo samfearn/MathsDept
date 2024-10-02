@@ -1,0 +1,143 @@
+<!DOCTYPE html><html prefix="dcterms: http://purl.org/dc/terms/">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.6 Summary: Second order ODEs</title>
+<!--Generated on Sat Dec 24 13:38:49 2022 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://samfearn.github.io/latexml.min.css">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<section id="S7.SS6" class="ltx_subsection">
+<h2 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.6 </span>Summary: Second order ODEs</h2>
+
+<div id="S7.SS6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You should have a good understanding of how to solve linear constant-coefficient second order ODEs which can be written as
+<math id="S7.SS6.p1.m1" class="ltx_Math" alttext="\alpha_{2}y^{\prime\prime}+\alpha_{1}y^{\prime}+\alpha_{0}y=\phi(x)" display="inline"><mrow><mrow><mrow><msub><mi>α</mi><mn>2</mn></msub><mo>⁢</mo><msup><mi>y</mi><mo>′′</mo></msup></mrow><mo>+</mo><mrow><msub><mi>α</mi><mn>1</mn></msub><mo>⁢</mo><msup><mi>y</mi><mo>′</mo></msup></mrow><mo>+</mo><mrow><msub><mi>α</mi><mn>0</mn></msub><mo>⁢</mo><mi>y</mi></mrow></mrow><mo>=</mo><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Here are some key points:</p>
+</div>
+<div id="S7.SS6.p2" class="ltx_para ltx_noindent">
+<ul id="S7.I1" class="ltx_itemize">
+<li id="S7.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Second order ODEs will have two parameters (integration constants) in the general solution. These
+can be fixed with <span class="ltx_text ltx_font_italic">initial conditions</span> (fixing the value of <math id="S7.I1.i1.p1.m1" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> and <math id="S7.I1.i1.p1.m2" class="ltx_Math" alttext="y^{\prime}" display="inline"><msup><mi>y</mi><mo>′</mo></msup></math> at the
+same point) or <span class="ltx_text ltx_font_italic">boundary conditions</span> (fixing the value of <math id="S7.I1.i1.p1.m3" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> at two different
+points). Initial conditions will uniquely fix the integration constants.
+Boundary conditions will typically uniquely fix the integration constants but
+it is possible that there could be no solution or a one-parameter family of
+solutions – e.g. consider <math id="S7.I1.i1.p1.m4" class="ltx_Math" alttext="y^{\prime\prime}+y=0" display="inline"><mrow><mrow><msup><mi>y</mi><mo>′′</mo></msup><mo>+</mo><mi>y</mi></mrow><mo>=</mo><mn>0</mn></mrow></math> with <math id="S7.I1.i1.p1.m5" class="ltx_Math" alttext="y(0)=0" display="inline"><mrow><mrow><mi>y</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> (which gives
+<math id="S7.I1.i1.p1.m6" class="ltx_Math" alttext="y=A\sin x" display="inline"><mrow><mi>y</mi><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mi>sin</mi><mo>⁡</mo><mi>x</mi></mrow></mrow></mrow></math>) and the other boundary condition being <math id="S7.I1.i1.p1.m7" class="ltx_Math" alttext="y(\pi/2)=1" display="inline"><mrow><mrow><mi>y</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>π</mi><mo>/</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>1</mn></mrow></math> (1
+solution) or <math id="S7.I1.i1.p1.m8" class="ltx_Math" alttext="y(\pi)=1" display="inline"><mrow><mrow><mi>y</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>π</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>1</mn></mrow></math> (no solutions) or <math id="S7.I1.i1.p1.m9" class="ltx_Math" alttext="y(\pi)=0" display="inline"><mrow><mrow><mi>y</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>π</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> (one-parameter family
+of solutions).</p>
+</div>
+</li>
+<li id="S7.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If <math id="S7.I1.i2.p1.m1" class="ltx_Math" alttext="\phi" display="inline"><mi>ϕ</mi></math> is zero we have a <span class="ltx_text ltx_font_italic">homogeneous second order ODE</span>. We solve this by first solving the <span class="ltx_text ltx_font_italic">Characteristic Equation</span> (CE)
+<math id="S7.I1.i2.p1.m2" class="ltx_Math" alttext="\alpha_{2}\lambda^{2}+\alpha_{1}\lambda+\alpha_{0}=0" display="inline"><mrow><mrow><mrow><msub><mi>α</mi><mn>2</mn></msub><mo>⁢</mo><msup><mi>λ</mi><mn>2</mn></msup></mrow><mo>+</mo><mrow><msub><mi>α</mi><mn>1</mn></msub><mo>⁢</mo><mi>λ</mi></mrow><mo>+</mo><msub><mi>α</mi><mn>0</mn></msub></mrow><mo>=</mo><mn>0</mn></mrow></math>.</p>
+</div>
+</li>
+<li id="S7.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the CE has two real solutions <math id="S7.I1.i3.p1.m1" class="ltx_Math" alttext="\lambda_{1}\neq\lambda_{2}" display="inline"><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>≠</mo><msub><mi>λ</mi><mn>2</mn></msub></mrow></math> then the ODE
+has general solution <math id="S7.I1.i3.p1.m2" class="ltx_Math" alttext="y=Ae^{\lambda_{1}x}+Be^{\lambda_{2}x}" display="inline"><mrow><mi>y</mi><mo>=</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><msup><mi>e</mi><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>⁢</mo><mi>x</mi></mrow></msup></mrow><mo>+</mo><mrow><mi>B</mi><mo>⁢</mo><msup><mi>e</mi><mrow><msub><mi>λ</mi><mn>2</mn></msub><mo>⁢</mo><mi>x</mi></mrow></msup></mrow></mrow></mrow></math>.
+</p>
+</div>
+</li>
+<li id="S7.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the CE has only one solution <math id="S7.I1.i4.p1.m1" class="ltx_Math" alttext="\lambda_{1}" display="inline"><msub><mi>λ</mi><mn>1</mn></msub></math> (repeated roots) then the ODE
+has general solution <math id="S7.I1.i4.p1.m2" class="ltx_Math" alttext="y=Ae^{\lambda_{1}x}+Bxe^{\lambda_{1}x}" display="inline"><mrow><mi>y</mi><mo>=</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><msup><mi>e</mi><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>⁢</mo><mi>x</mi></mrow></msup></mrow><mo>+</mo><mrow><mi>B</mi><mo>⁢</mo><mi>x</mi><mo>⁢</mo><msup><mi>e</mi><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>⁢</mo><mi>x</mi></mrow></msup></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S7.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the CE has two complex solutions <math id="S7.I1.i5.p1.m1" class="ltx_Math" alttext="\alpha+i\beta" display="inline"><mrow><mi>α</mi><mo>+</mo><mrow><mi>i</mi><mo>⁢</mo><mi>β</mi></mrow></mrow></math> and
+<math id="S7.I1.i5.p1.m2" class="ltx_Math" alttext="\alpha-i\beta" display="inline"><mrow><mi>α</mi><mo>-</mo><mrow><mi>i</mi><mo>⁢</mo><mi>β</mi></mrow></mrow></math> then the ODE has general solution
+<math id="S7.I1.i5.p1.m3" class="ltx_Math" alttext="y=Ce^{(\alpha+i\beta)x}+De^{(\alpha-i\beta)x}=^{\alpha x}(A\cos(\beta x)+B\sin%
+(\beta x))" display="inline"><mrow><mi>y</mi><mo>=</mo><mrow><mrow><mi>C</mi><mo>⁢</mo><msup><mi>e</mi><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>α</mi><mo>+</mo><mrow><mi>i</mi><mo>⁢</mo><mi>β</mi></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>x</mi></mrow></msup></mrow><mo>+</mo><mrow><mi>D</mi><mo>⁢</mo><msup><mi>e</mi><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>α</mi><mo>-</mo><mrow><mi>i</mi><mo>⁢</mo><mi>β</mi></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>x</mi></mrow></msup></mrow></mrow><msup><mo>=</mo><mrow><mi>α</mi><mo>⁢</mo><mi>x</mi></mrow></msup><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>β</mi><mo>⁢</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>+</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>β</mi><mo>⁢</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S7.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In all case the general solution of the homogeneous ODE is of the form
+<math id="S7.I1.i6.p1.m1" class="ltx_Math" alttext="y(x)=Ay_{1}(x)+By_{2}(x)" display="inline"><mrow><mrow><mi>y</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><msub><mi>y</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mi>B</mi><mo>⁢</mo><msub><mi>y</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> where <math id="S7.I1.i6.p1.m2" class="ltx_Math" alttext="y_{1}(x)" display="inline"><mrow><msub><mi>y</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="S7.I1.i6.p1.m3" class="ltx_Math" alttext="y_{2}(x)" display="inline"><mrow><msub><mi>y</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> are two linearly
+independent solutions of the ODE.</p>
+</div>
+</li>
+<li id="S7.I1.i7" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The general solution to a linear ODE is <math id="S7.I1.i7.p1.m1" class="ltx_Math" alttext="y=y_{CF}+y_{PI}" display="inline"><mrow><mi>y</mi><mo>=</mo><mrow><msub><mi>y</mi><mrow><mi>C</mi><mo>⁢</mo><mi>F</mi></mrow></msub><mo>+</mo><msub><mi>y</mi><mrow><mi>P</mi><mo>⁢</mo><mi>I</mi></mrow></msub></mrow></mrow></math> where
+<math id="S7.I1.i7.p1.m2" class="ltx_Math" alttext="y_{PI}" display="inline"><msub><mi>y</mi><mrow><mi>P</mi><mo>⁢</mo><mi>I</mi></mrow></msub></math> is a <span class="ltx_text ltx_font_italic">particular integral</span> (PI) which is any solution of the ODE and
+<math id="S7.I1.i7.p1.m3" class="ltx_Math" alttext="y_{CF}" display="inline"><msub><mi>y</mi><mrow><mi>C</mi><mo>⁢</mo><mi>F</mi></mrow></msub></math> is the <span class="ltx_text ltx_font_italic">complementary function</span> (CF) which is the general solution of the
+homogeneous ODE formed by setting <math id="S7.I1.i7.p1.m4" class="ltx_Math" alttext="\phi" display="inline"><mi>ϕ</mi></math> to zero.</p>
+</div>
+</li>
+<li id="S7.I1.i8" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If <math id="S7.I1.i8.p1.m1" class="ltx_Math" alttext="\phi(x)" display="inline"><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is formed from sums of products of exponentials
+<math id="S7.I1.i8.p1.m2" class="ltx_Math" alttext="e^{\gamma x}" display="inline"><msup><mi>e</mi><mrow><mi>γ</mi><mo>⁢</mo><mi>x</mi></mrow></msup></math>, sines and cosines <math id="S7.I1.i8.p1.m3" class="ltx_Math" alttext="\sin(\gamma x)" display="inline"><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>γ</mi><mo>⁢</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="S7.I1.i8.p1.m4" class="ltx_Math" alttext="\cos(\gamma x)" display="inline"><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>γ</mi><mo>⁢</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, and
+polynomials we can find a PI using the <span class="ltx_text ltx_font_italic">method of undetermined coefficients</span>.
+To do this we use an ansatz for <math id="S7.I1.i8.p1.m5" class="ltx_Math" alttext="y_{PI}" display="inline"><msub><mi>y</mi><mrow><mi>P</mi><mo>⁢</mo><mi>I</mi></mrow></msub></math> which is of the same form as
+<math id="S7.I1.i8.p1.m6" class="ltx_Math" alttext="\phi(x)" display="inline"><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> with arbitrary coefficients for each term. Then substitute this ansatz
+into the ODE to solve for the coefficients. Note that if a term solves the
+homogeneous ODE we need to include an extra factor of <math id="S7.I1.i8.p1.m7" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> with that term, and
+another factor of <math id="S7.I1.i8.p1.m8" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> if that still solves the homogeneous ODE.</p>
+</div>
+</li>
+<li id="S7.I1.i9" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i9.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If we cannot use the method of undetermined coefficients, we can try the
+<span class="ltx_text ltx_font_italic">method of variation of parameters</span>. If <math id="S7.I1.i9.p1.m1" class="ltx_Math" alttext="y_{CF}=Ay_{1}+By_{2}" display="inline"><mrow><msub><mi>y</mi><mrow><mi>C</mi><mo>⁢</mo><mi>F</mi></mrow></msub><mo>=</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><msub><mi>y</mi><mn>1</mn></msub></mrow><mo>+</mo><mrow><mi>B</mi><mo>⁢</mo><msub><mi>y</mi><mn>2</mn></msub></mrow></mrow></mrow></math> we take
+<math id="S7.I1.i9.p1.m2" class="ltx_Math" alttext="y=u_{1}y_{1}+u_{2}y_{2}" display="inline"><mrow><mi>y</mi><mo>=</mo><mrow><mrow><msub><mi>u</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi>y</mi><mn>1</mn></msub></mrow><mo>+</mo><mrow><msub><mi>u</mi><mn>2</mn></msub><mo>⁢</mo><msub><mi>y</mi><mn>2</mn></msub></mrow></mrow></mrow></math> where <math id="S7.I1.i9.p1.m3" class="ltx_Math" alttext="u_{1}" display="inline"><msub><mi>u</mi><mn>1</mn></msub></math> and <math id="S7.I1.i9.p1.m4" class="ltx_Math" alttext="u_{2}" display="inline"><msub><mi>u</mi><mn>2</mn></msub></math> are functions of <math id="S7.I1.i9.p1.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and we impose
+the constraint <math id="S7.I1.i9.p1.m6" class="ltx_Math" alttext="u_{1}^{\prime}y_{1}+u_{2}^{\prime}y_{2}=0" display="inline"><mrow><mrow><mrow><msubsup><mi>u</mi><mn>1</mn><mo>′</mo></msubsup><mo>⁢</mo><msub><mi>y</mi><mn>1</mn></msub></mrow><mo>+</mo><mrow><msubsup><mi>u</mi><mn>2</mn><mo>′</mo></msubsup><mo>⁢</mo><msub><mi>y</mi><mn>2</mn></msub></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> so that <math id="S7.I1.i9.p1.m7" class="ltx_Math" alttext="y^{\prime}" display="inline"><msup><mi>y</mi><mo>′</mo></msup></math> does not depend on <math id="S7.I1.i9.p1.m8" class="ltx_Math" alttext="u_{1}^{\prime}" display="inline"><msubsup><mi>u</mi><mn>1</mn><mo>′</mo></msubsup></math>
+or <math id="S7.I1.i9.p1.m9" class="ltx_Math" alttext="u_{2}^{\prime}" display="inline"><msubsup><mi>u</mi><mn>2</mn><mo>′</mo></msubsup></math>. Substituting this into the ODE, all terms with <math id="S7.I1.i9.p1.m10" class="ltx_Math" alttext="u_{1}" display="inline"><msub><mi>u</mi><mn>1</mn></msub></math> and <math id="S7.I1.i9.p1.m11" class="ltx_Math" alttext="u_{2}" display="inline"><msub><mi>u</mi><mn>2</mn></msub></math> (not differentiated) cancel
+as they must since constant <math id="S7.I1.i9.p1.m12" class="ltx_Math" alttext="u_{1}" display="inline"><msub><mi>u</mi><mn>1</mn></msub></math> and <math id="S7.I1.i9.p1.m13" class="ltx_Math" alttext="u_{2}" display="inline"><msub><mi>u</mi><mn>2</mn></msub></math> would give a solution of the
+homogeneous ODE – the result is a second linear equation for <math id="S7.I1.i9.p1.m14" class="ltx_Math" alttext="u_{1}^{\prime}" display="inline"><msubsup><mi>u</mi><mn>1</mn><mo>′</mo></msubsup></math> and <math id="S7.I1.i9.p1.m15" class="ltx_Math" alttext="u_{2}^{\prime}" display="inline"><msubsup><mi>u</mi><mn>2</mn><mo>′</mo></msubsup></math>,
+<math id="S7.I1.i9.p1.m16" class="ltx_Math" alttext="\alpha_{2}(u_{1}^{\prime}y_{1}^{\prime}+u_{2}^{\prime}y_{2}^{\prime})=\phi" display="inline"><mrow><mrow><msub><mi>α</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><msubsup><mi>u</mi><mn>1</mn><mo>′</mo></msubsup><mo>⁢</mo><msubsup><mi>y</mi><mn>1</mn><mo>′</mo></msubsup></mrow><mo>+</mo><mrow><msubsup><mi>u</mi><mn>2</mn><mo>′</mo></msubsup><mo>⁢</mo><msubsup><mi>y</mi><mn>2</mn><mo>′</mo></msubsup></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>ϕ</mi></mrow></math>. Solve these two linear equation to
+find <math id="S7.I1.i9.p1.m17" class="ltx_Math" alttext="u_{1}^{\prime}" display="inline"><msubsup><mi>u</mi><mn>1</mn><mo>′</mo></msubsup></math> and <math id="S7.I1.i9.p1.m18" class="ltx_Math" alttext="u_{2}^{\prime}" display="inline"><msubsup><mi>u</mi><mn>2</mn><mo>′</mo></msubsup></math> and then integrate to find <math id="S7.I1.i9.p1.m19" class="ltx_Math" alttext="u_{1}" display="inline"><msub><mi>u</mi><mn>1</mn></msub></math> and <math id="S7.I1.i9.p1.m20" class="ltx_Math" alttext="u_{2}" display="inline"><msub><mi>u</mi><mn>2</mn></msub></math> (noting that
+the integration constants are exactly the parameters in <math id="S7.I1.i9.p1.m21" class="ltx_Math" alttext="y_{CF}" display="inline"><msub><mi>y</mi><mrow><mi>C</mi><mo>⁢</mo><mi>F</mi></mrow></msub></math>).</p>
+</div>
+</li>
+<li id="S7.I1.i10" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i10.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Two coupled first order linear ODEs for two variables give, by eliminating
+one of the variables, a linear second order ODE for one variable. This gives one
+method to solve coupled first order ODEs. (We can also go the other way by
+defining <math id="S7.I1.i10.p1.m1" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> as a linear combination of <math id="S7.I1.i10.p1.m2" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> and <math id="S7.I1.i10.p1.m3" class="ltx_Math" alttext="y^{\prime}" display="inline"><msup><mi>y</mi><mo>′</mo></msup></math> and using this to write a
+second order linear ODE for <math id="S7.I1.i10.p1.m4" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> as a first order linear ODE involving <math id="S7.I1.i10.p1.m5" class="ltx_Math" alttext="z^{\prime}" display="inline"><msup><mi>z</mi><mo>′</mo></msup></math>,
+<math id="S7.I1.i10.p1.m6" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> and <math id="S7.I1.i10.p1.m7" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>.)</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+</section><div class="ltx_rdf" about="" property="dcterms:language" content="en-GB"></div>
+<div class="ltx_rdf" about="" property="dcterms:title" content="allnotes"></div>
+
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Sat Dec 24 13:38:49 2022 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Original notes produced by Paul Sutcliffe" />
+  <title>Calculus I Michaelmas Term</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Calculus I<br />
+Michaelmas Term</p></h1>
+<p class="author">Sam Fearn<br />
+Original notes produced by Paul Sutcliffe</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#functions"><span class="toc-section-number">1</span> Functions</a>
+<ul>
+<li><a href="#functions-domain-and-range"><span class="toc-section-number">1.1</span> Functions, domain and range</a></li>
+<li><a href="#the-graph-of-a-function"><span class="toc-section-number">1.2</span> The graph of a function</a></li>
+<li><a href="#even-and-odd-functions"><span class="toc-section-number">1.3</span> Even and odd functions</a></li>
+<li><a href="#piecewise-functions"><span class="toc-section-number">1.4</span> Piecewise functions</a></li>
+<li><a href="#operations-with-functions"><span class="toc-section-number">1.5</span> Operations with functions</a></li>
+<li><a href="#inverse-functions"><span class="toc-section-number">1.6</span> Inverse functions</a></li>
+<li><a href="#summary-functions"><span class="toc-section-number">1.7</span> Summary: Functions</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="functions" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Functions</h1>
+<section id="functions-domain-and-range" class="level2" data-number="1.1">
+<h2 data-number="1.1"><span class="header-section-number">1.1</span> Functions, domain and range</h2>
+<p><span><strong>Defn:</strong></span> A <span><strong>function</strong></span> <span class="math inline">\(f\)</span> is a correspondence between two sets <span class="math inline">\(D\)</span> (called the <span><em>domain</em></span>) and <span class="math inline">\(C\)</span> (called the <span><em>codomain</em></span>), that assigns to each element of <span class="math inline">\(D\)</span> one and only one element of <span class="math inline">\(C\)</span>. The notation to indicate the domain and codomain is <span class="math inline">\(f:D\mapsto C\)</span>.<br />
+For <span class="math inline">\(x\in D\)</span> we write <span class="math inline">\(f(x)\)</span> to denote the assigned element in <span class="math inline">\(C\)</span>, and call this the value of <span class="math inline">\(f\)</span> at <span class="math inline">\(x,\)</span> or the image of <span class="math inline">\(x\)</span> under <span class="math inline">\(f,\)</span> where <span class="math inline">\(x\)</span> is called the argument of the function. Extending the above notation we write <span class="math display">\[f:D\mapsto C:x\mapsto f(x)\]</span> ie. ‘‘<span class="math inline">\(f\)</span> is a function from <span class="math inline">\(D\)</span> to <span class="math inline">\(C\)</span> that associates <span class="math inline">\(x\)</span> in <span class="math inline">\(D\)</span> to <span class="math inline">\(f(x)\)</span> in <span class="math inline">\(C\)</span>’’.<br />
+The set of all images is called the <span><strong>range</strong></span> of <span class="math inline">\(f\)</span> and our notation for the domain and range is <span class="math display">\[\mathop{\mathrm{Dom}}{f} \quad\quad \text{and} \quad\quad
+\mathop{\mathrm{Ran}}{f}=\{f(x):x\in \mathop{\mathrm{Dom}}{f}\}.\]</span></p>
+<div class="center">
+<figure>
+<img src="domain.png" style="width:7cm" alt="" /><figcaption>Illustration of the domain, codomain and range of a function.</figcaption>
+</figure>
+</div>
+<p>In (almost all of) this term of the module we shall only deal with real-valued functions of a real variable, meaning that our functions assign real numbers to real numbers ie. both the domain and codomain are subsets of <span class="math inline">\(\mathbb{R}.\)</span><br />
+There are various ways of representing a function, but perhaps the most familiar is through an explicit expression.<br />
+Eg. <span class="math inline">\(f:\mathbb{R}\rightarrow \mathbb{R}\)</span> given by <span class="math inline">\(f(x)=x^2, \ \forall x\in\mathbb{R}.\)</span></p>
+<p>In this case <span class="math inline">\(\mathop{\mathrm{Dom}}{f}=\mathbb{R}\)</span> and <span class="math inline">\(\mathop{\mathrm{Ran}}{f}=[0,\infty).\)</span></p>
+<p>We say that <span class="math inline">\(f\)</span> <span><em>maps</em></span> the real line onto <span class="math inline">\([0,\infty).\)</span><br />
+Eg. <span class="math inline">\(f(x)=\sqrt{2x+4}, \ x\in[0,6].\)</span> Here <span class="math inline">\(\mathop{\mathrm{Dom}}{f}=[0,6]\)</span> and <span class="math inline">\(\mathop{\mathrm{Ran}}{f}=[2,4].\)</span><br />
+If the domain of a function <span class="math inline">\(f\)</span> is not explicitly given, then it is taken to be the maximal set of real numbers <span class="math inline">\(x\)</span> for which <span class="math inline">\(f(x)\)</span> is a real number.<br />
+Eg. <span class="math inline">\(f(x)=\sqrt{2x+4}.\)</span> Here <span class="math inline">\(\mathop{\mathrm{Dom}}{f}=[-2,\infty)\)</span> and <span class="math inline">\(\mathop{\mathrm{Ran}}{f}=[0,\infty).\)</span><br />
+Eg. <span class="math inline">\(f(x)=1/(1-x).\)</span> Here <span class="math inline">\(\mathop{\mathrm{Dom}}{f}=\mathbb{R}\backslash\{1\}
+=(-\infty,1)\cup(1,\infty)\)</span> and <span class="math inline">\(\mathop{\mathrm{Ran}}{f}=\mathbb{R}\backslash\{0\}.\)</span><br />
+In addition to explicit expressions, a function <span class="math inline">\(f\)</span> may be represented by other means, for example, as a set of ordered pairs <span class="math inline">\((x,y),\)</span> where <span class="math inline">\(x\in \mathop{\mathrm{Dom}}{f}\)</span> and <span class="math inline">\(y\in \mathop{\mathrm{Ran}}{f}.\)</span><br />
+Note: <span class="math inline">\(y(x)\)</span> is another common notation for a function. The element <span class="math inline">\(x\)</span> in the domain is called the <span><strong>independent variable</strong></span> and the element <span class="math inline">\(y\)</span> in the range is called the <span><strong>dependent variable</strong></span>. This notation is often used if the function is defined by an equation in two variables, including differential equations (see later).<br />
+The function <span class="math inline">\(f(x)=x^2\)</span> is defined by the equation <span class="math inline">\(y=x^2,\)</span> as we have simply written <span class="math inline">\(y=f(x).\)</span> However, not all equations will define a function.<br />
+Eg. The equation <span class="math inline">\(y^2=x\)</span> does <span><em>not</em></span> define a non-trivial function <span class="math inline">\(y(x),\)</span> because for <span class="math inline">\(x&lt;0\)</span> there are no real solutions for <span class="math inline">\(y,\)</span> and for <span class="math inline">\(x&gt;0\)</span> there are two solutions for <span class="math inline">\(y,\)</span> whereas a function must assign only one element of the range for each element of the domain.<br />
+</p>
+</section>
+<section id="the-graph-of-a-function" class="level2" data-number="1.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> The graph of a function</h2>
+<p><span><strong>Defn:</strong></span> The <span><strong>graph</strong></span> of a function <span class="math inline">\(f\)</span> is the set of all points <span class="math inline">\((x,y)\)</span> in the <span class="math inline">\(xy\)</span>-plane with <span class="math inline">\(x\in \mbox{Dom}\,f\)</span> and <span class="math inline">\(y=f(x),\)</span> ie. <span class="math display">\[\mbox{graph f}=\{(x,y):x\in \mbox{Dom}\,f \ \mbox{and \ } y=f(x)\}.\]</span> The graph of a function over the interval <span class="math inline">\([a,b]\)</span> is the portion of the graph where the argument is restricted to this interval.<br />
+</p>
+<div class="center">
+<figure>
+<img src="new_cos.png" style="width:6cm" alt="" /><figcaption>The graph of <span class="math inline">\(f(x)=\cos x\)</span> over <span class="math inline">\([-2\pi,2\pi].\)</span></figcaption>
+</figure>
+</div>
+<p>Note: If you are asked to graph a function, but no interval is given, then try to choose an appropriate interval that includes all the interesting behaviour eg. turning points.<br />
+To indicate on a graph exactly which points are included we use a closed circle to denote an included point, so if it is at the end of a curve segment this denotes that this end is a closed interval. We use an open circle to denote an excluded point associated with an open interval.</p>
+<div class="center">
+<figure>
+<img src="new_open2.png" style="width:5cm" alt="" /><figcaption>A graph illustating the use of open (white) and closed (black) circles.</figcaption>
+</figure>
+</div>
+<p>The graph of a function is a curve in the plane, but not every curve is the graph of a function. The following simple test determines whether a curve is the graph of a function.<br />
+<span><strong>The vertical line test.</strong></span></p>
+<p>If any vertical line intersects the curve more than once then the curve is not the graph of a function, otherwise it is.<br />
+The proof is obvious, given the defining property of a function that only one element in the range is associated with an element in the domain.</p>
+<div class="center">
+<figure>
+<img src="new_vertical12.png" style="width:12cm" alt="" /><figcaption>The vertical line test applied to a cubic curve and a circle.</figcaption>
+</figure>
+</div>
+<p>In the figure the first curve is the graph of a function: in fact the cubic function <span class="math inline">\(f(x)=x^3-x^2-1.\)</span> The second curve is not the graph of a function as the vertical line shown intersects the curve twice. In fact the curve is given by the equation <span class="math inline">\(y^2=4-(x-1)^2\)</span> ie. the circle of radius 2 with centre <span class="math inline">\((x,y)=(1,0).\)</span> Note that even when a curve is not the graph of a function, some sections of the curve may be graphs of functions. For the above circle example the section given by <span class="math inline">\(y\ge 0\)</span> is the graph of the function <span class="math inline">\(f(x)=\sqrt{4-(x-1)^2}\)</span> with <span class="math inline">\(\mbox{Dom}\,f=[-1,3].\)</span></p>
+</section>
+<section id="even-and-odd-functions" class="level2" data-number="1.3">
+<h2 data-number="1.3"><span class="header-section-number">1.3</span> Even and odd functions</h2>
+<p><span><strong>Defn</strong></span>. A function <span class="math inline">\(f\)</span> is <span><strong>even</strong></span> if <span class="math inline">\(f(x)=f(-x)\ \forall \pm x\in \mbox{Dom\,}f.\)</span></p>
+<p><span><strong>Defn</strong></span>. A function <span class="math inline">\(f\)</span> is <span><strong>odd</strong></span> if <span class="math inline">\(f(x)=-f(-x)\ \forall \pm x\in \mbox{Dom\,}f.\)</span><br />
+The graph of an even function is symmetric under a reflection about the <span class="math inline">\(y\)</span>-axis.</p>
+<p>The graph of an odd function is symmetric under a rotation by <span class="math inline">\(180^\circ\)</span> about the origin (equivalent to a reflection in the <span class="math inline">\(y\)</span>-axis followed by a reflection in the <span class="math inline">\(x\)</span>-axis).</p>
+<div class="center">
+<figure>
+<img src="new_evenodd" style="width:9cm" alt="" /><figcaption>Graphs of the even function <span class="math inline">\(x^2\)</span> and the odd function <span class="math inline">\(x^3.\)</span> </figcaption>
+</figure>
+</div>
+<p>All functions <span class="math inline">\(f:\mathbb{R}\mapsto \mathbb{R}\)</span> can be written as the sum of an even and an odd function <span class="math display">\[f(x)=f_{even}(x)+f_{odd}(x),\]</span> <span class="math display">\[\ \mbox{where} \ \ 
+f_{even}(x)=\frac{1}{2}f(x)+\frac{1}{2}f(-x) \ \ \mbox{and} \ \ 
+f_{odd}(x)=\frac{1}{2}f(x)-\frac{1}{2}f(-x).\]</span> This decomposition is often useful, as is the ability to spot an even or odd function, as it can simplify some calculations, as we shall see in later sections.<br />
+Eg. <span class="math inline">\(f(x)=(1+x)\sin x\)</span> with <span class="math inline">\(f_{even}(x)=x\sin x\)</span> and <span class="math inline">\(f_{odd}(x)=\sin x.\)</span><br />
+Eg. <span class="math inline">\(f(x)=e^x\)</span> with <span class="math inline">\(f_{even}(x)=\frac{1}{2}(e^x+e^{-x})=\cosh x\)</span> and <span class="math inline">\(f_{odd}(x)=\frac{1}{2}(e^x-e^{-x})=\sinh x.\)</span></p>
+</section>
+<section id="piecewise-functions" class="level2" data-number="1.4">
+<h2 data-number="1.4"><span class="header-section-number">1.4</span> Piecewise functions</h2>
+<p>Some functions are defined <span><strong>piecewise</strong></span> ie. different expressions are given for different intervals in the domain.<br />
+</p>
+<p>Eg. The absolute value (or modulus) function <span class="math display">\[f(x)=|x|=
+\begin{cases}
+\ \ x &amp; \mbox{if\ } x\ge 0\\
+-x &amp; \mbox{if\ } x&lt;0.
+\end{cases}\]</span></p>
+<figure>
+<img src="new_modulus.png" style="width:50.0%" alt="" /><figcaption>The graph of <span class="math inline">\(|x|\)</span> over <span class="math inline">\([-1,1].\)</span></figcaption>
+</figure>
+<p>Eg. <span class="math display">\[f(x)=
+\begin{cases}
+\ \ x &amp; \mbox{if\ } 0\le x&lt;1\\
+x-1 &amp; \mbox{if\ } 1\le x\le 2.
+\end{cases}\]</span> In this example <span class="math inline">\(\mbox{Dom}\,f=[0,2]\)</span> but the function has a discontinuity at <span class="math inline">\(x=1\)</span> (more about this later).</p>
+<figure>
+<img src="new_piecewise.png" style="width:50.0%" alt="" /><figcaption>The graph of a piecewise function.</figcaption>
+</figure>
+<p>A <span><strong>step function</strong></span> is a piecewise function which is constant on each piece. An example is the Heaviside step function <span class="math inline">\(H(x)\)</span> defined by <span class="math display">\[H(x)=
+\begin{cases}
+0 &amp; \mbox{if\ } x&lt;0\\
+1 &amp; \mbox{if\ } x&gt;0.
+\end{cases}\]</span> Note that with this definition <span class="math inline">\(\mbox{Dom}\,H=\mathbb{R}\backslash\{0\}.\)</span> It is sometimes convenient to extend the domain to <span class="math inline">\(\mathbb{R}\)</span> by defining the value of <span class="math inline">\(H(0)\)</span> (some obvious candidates are <span class="math inline">\(0,\frac{1}{2},1\)</span>).</p>
+<figure>
+<img src="new_heaviside.png" style="width:70.0%" alt="" /><figcaption>The Heaviside step function.</figcaption>
+</figure>
+</section>
+<section id="operations-with-functions" class="level2" data-number="1.5">
+<h2 data-number="1.5"><span class="header-section-number">1.5</span> Operations with functions</h2>
+<p>Given two functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we can define the following:<br />
+<span class="math inline">\(\bullet\)</span> the <span><strong>sum</strong></span> is <span class="math inline">\((f+g)(x)=f(x)+g(x)\)</span>, with domain <span class="math inline">\(\mbox{Dom}\,f\cap\mbox{Dom}\,g.\)</span><br />
+<span class="math inline">\(\bullet\)</span> the <span><strong>difference</strong></span> is <span class="math inline">\((f-g)(x)=f(x)-g(x)\)</span>, with domain <span class="math inline">\(\mbox{Dom}\,f\cap\mbox{Dom}\,g.\)</span><br />
+<span class="math inline">\(\bullet\)</span> the <span><strong>product</strong></span> is <span class="math inline">\((fg)(x)=f(x)g(x)\)</span>, with domain <span class="math inline">\(\mbox{Dom}\,f\cap\mbox{Dom}\,g.\)</span><br />
+<span class="math inline">\(\bullet\)</span> the <span><strong>ratio</strong></span> is <span class="math inline">\(({f}/{g})(x)=f(x)/{g(x)}\)</span>, with domain <span class="math inline">\((\mbox{Dom}\,f\cap\mbox{Dom}\,g)\backslash\{x:g(x)=0\}.\)</span><br />
+<span class="math inline">\(\bullet\)</span> the <span><strong>composition</strong></span> is <span class="math inline">\((f\circ g)(x)=f(g(x))\)</span>, with domain <span class="math inline">\(\{x\in\mbox{Dom}\,g:g(x)\in\mbox{Dom}\,f\}.\)</span><br />
+Note that <span class="math inline">\(f\circ g\)</span> and <span class="math inline">\(g \circ f\)</span> are usually different functions.</p>
+<p>Eg. <span class="math inline">\(f(x)=\sin x, \ g(x)=x^2\)</span> then <span class="math inline">\((f\circ g)(x)=\sin(x^2)\)</span> but <span class="math inline">\((g\circ f)(x)=\sin^2x.\)</span><br />
+Note that the sum and difference, along with <span><strong>scalar multiplication</strong></span> <span class="math inline">\((cf)(x) = c \times f(x)\)</span> for any constant <span class="math inline">\(c\)</span> are special case of <span><strong>linear combinations</strong></span> of functions. The most general linear combination of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> is <span class="math inline">\((af + bg)(x) = a \times f(x) + b \times g(x)\)</span> for some constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, with domain <span class="math inline">\(\mbox{Dom}\,f\cap\mbox{Dom}\,g.\)</span>.</p>
+</section>
+<section id="inverse-functions" class="level2" data-number="1.6">
+<h2 data-number="1.6"><span class="header-section-number">1.6</span> Inverse functions</h2>
+<p><span><strong>Defn</strong></span>. A function <span class="math inline">\(f:D\mapsto C\)</span> is <span><strong>surjective</strong></span> (or onto) if <span class="math inline">\(\mbox{Ran}\,f=C,\)</span></p>
+<p>ie. if <span class="math inline">\(\forall\  y\in C \ \exists \ x\in D\)</span>  s.t.  <span class="math inline">\(f(x)=y.\)</span><br />
+Eg. <span class="math inline">\(f:\mathbb{R}\mapsto \mathbb{R}\)</span> given by <span class="math inline">\(f(x)=2x+1\)</span> is surjective.<br />
+Eg. <span class="math inline">\(f:\mathbb{R}\mapsto \mathbb{R}\)</span> given by <span class="math inline">\(f(x)=x^2\)</span> is not surjective, since any negative number in the codomain is not the image of an element in the domain.<br />
+<span><strong>Defn</strong></span>. A function <span class="math inline">\(f:D\mapsto C\)</span> is <span><strong>injective</strong></span> (or one-to-one) if <span class="math inline">\(\forall \ x_1,x_2\in D\)</span> with <span class="math inline">\(x_1\neq x_2\)</span> then <span class="math inline">\(f(x_1)\neq f(x_2).\)</span><br />
+Eg. <span class="math inline">\(f(x)=2x+1\)</span> is injective since <span class="math inline">\(f(x_1)=f(x_2)\)</span> implies <span class="math inline">\(x_1=x_2.\)</span><br />
+Eg. <span class="math inline">\(f(x)=x^2\)</span> is not injective since <span class="math inline">\(f(x)=f(-x)\)</span> and <span class="math inline">\(x\neq -x\)</span> if <span class="math inline">\(x\neq 0.\)</span><br />
+The following simple test can be applied to see if a function is injective from its graph.<br />
+<span><strong>The horizontal line test</strong></span>.</p>
+<p>If no horizontal line intersects the graph of <span class="math inline">\(f\)</span> more than once then <span class="math inline">\(f\)</span> is injective, otherwise it is not.<br />
+Eg. The function <span class="math inline">\(f(x)=x^3-3x\)</span> is surjective as <span class="math inline">\(\mbox{Ran}\,f=\mathbb{R}\)</span> but it is not injective as the horizontal line <span class="math inline">\(y=1\)</span> intersects the graph of <span class="math inline">\(f\)</span> at 3 points (see the figure).</p>
+<div class="center">
+<figure>
+<img src="new_horizontal.png" id="fig-horizontal" style="width:6cm" alt="" /><figcaption>Graph of <span class="math inline">\(f(x)=x^3-3x\)</span> and the horizontal line <span class="math inline">\(y=1.\)</span></figcaption>
+</figure>
+</div>
+<p><br />
+<span><strong>Defn</strong></span>. A function <span class="math inline">\(f:D\mapsto C\)</span> is <span><strong>bijective</strong></span> if it is both surjective and injective.<br />
+Eg. From above we have seen that the function <span class="math inline">\(f(x)=2x+1\)</span> is bijective.<br />
+<span><strong>Theorem of inverse functions</strong></span>.</p>
+<p>A bijective function <span class="math inline">\(f\)</span> admits a unique inverse, denoted <span class="math inline">\(f^{-1},\)</span> such that <span class="math display">\[(f^{-1}\circ f)(x)=x=(f \circ f^{-1})(x).\]</span> It is clear from the definition that <span class="math inline">\(\mbox{Dom}\,f^{-1}=\mbox{Ran}\,f\)</span> and <span class="math inline">\(\mbox{Ran}\,f^{-1}=\mbox{Dom}\,f.\)</span><br />
+As the inverse undoes the effect of the function an equivalent definition is <span class="math display">\[f(x)=y \quad \mbox{iff} \quad f^{-1}(y)=x.\]</span></p>
+<p>This second definition is the same as the fact that the graph of the inverse function <span class="math inline">\(f^{-1}\)</span> is given by reflecting the graph of <span class="math inline">\(f\)</span> in the line <span class="math inline">\(y = x\)</span>. However, note that in general the curve given by such a reflection is not the graph of a function – in particular it will not be single-valued if <span class="math inline">\(f\)</span> is not injective.<br />
+Eg. We have seen that <span class="math inline">\(f(x)=2x+1\)</span> is bijective, so lets find its inverse. To simplify notation first write <span class="math inline">\(y=f^{-1}(x).\)</span> Using the property <span class="math inline">\(x=f(f^{-1}(x)),\)</span> we have <span class="math inline">\(x=f(y)=2y+1\)</span> and hence <span class="math inline">\(y=\frac{1}{2}(x-1)=f^{-1}(x).\)</span><br />
+Note that given an injective function which is not surjective, we can make a bijective function by taking the codomain equal to the range (this automatically makes a function surjective), and then an inverse exists. This is essentially a harmless modification of the function since the function does not really care what its codomain is, the only requirement is that the range is a subset of the codomain.<br />
+Eg. We have seen that <span class="math inline">\(f(x)=x^2\)</span> is not an injective function if <span class="math inline">\(\mbox{Dom}\,f=\mathbb{R},\)</span> but it is injective if we take <span class="math inline">\(\mbox{Dom}\,f=[0,\infty).\)</span> With this choice we can take the codomain equal to <span class="math inline">\(\mbox{Ran}\,f=[0,\infty)\)</span> and <span class="math inline">\(f\)</span> is now a bijective function. The inverse is <span class="math inline">\(f^{-1}(x)=\sqrt{x}\)</span> with <span class="math inline">\(\mbox{Dom}\,f^{-1}=\mbox{Ran}\,f=[0,\infty).\)</span><br />
+Note that here we made the function injective by restricting its domain. While we can always do this, in general doing so loses information about the function since the original non-injective function would have given values for other inputs values. However, in special cases such as even functions or periodic functions, we can restrict the domain and have a simple description of how to generate the original function (say with domain <span class="math inline">\(\mathbb R\)</span>) from the function with the restricted domain. We used this above to find an inverse for <span class="math inline">\(f(x) = x^2\)</span> and this is also how we define an inverse for <span class="math inline">\(f(x) = \sin x\)</span> etc.<br />
+<span><em>Warning:</em></span> Don’t confuse the notation for the inverse with the same notation for the reciprocal.<br />
+</p>
+</section>
+<section id="summary-functions" class="level2" data-number="1.7">
+<h2 data-number="1.7"><span class="header-section-number">1.7</span> Summary: Functions</h2>
+<p>You should have a good and precise mathematical understanding of functions and various definitions, particularly focussing on real-valued functions of a single real variable. Here are some key points:</p>
+<ul>
+<li><p>A function <span class="math inline">\(f\)</span> is a mapping from its <span><em>domain</em></span>, <span class="math inline">\(\mbox{Dom}\, f\)</span>, to a <span><em>codomain</em></span>. Its <span><em>range</em></span>, <span class="math inline">\(\mbox{Ran}\, f\)</span>, is the image of <span class="math inline">\(\mbox{Dom}\, f\)</span>, i.e. the set of all values that <span class="math inline">\(f(x)\)</span> can actually take for <span class="math inline">\(x \in \mbox{Dom}\, f\)</span>.</p></li>
+<li><p>Functions are single-valued, i.e. <span class="math inline">\(f(x)\)</span> must have a unique value for all <span class="math inline">\(x \in \mbox{Dom}\, f\)</span>. This can be checked graphically by the <span><em>vertical line test</em></span>.</p></li>
+<li><p>Functions can be <span><em>even</em></span> – symmetric under reflection in the <span class="math inline">\(y\)</span>-axis.</p></li>
+<li><p>Functions can be <span><em>odd</em></span> – symmetric under rotation by <span class="math inline">\(180^\circ\)</span> around the origin, or equivalently by two reflections, in the <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>-axes (in either order).</p></li>
+<li><p>Typical functions are neither even nor odd, but can be uniquely written as a sum of an even and an odd function, i.e. <span class="math inline">\(f(x) = f_{even}(x) + f_{odd}(x)\)</span>. You should know how to define <span class="math inline">\(f_{even}\)</span> and <span class="math inline">\(f_{odd}\)</span> in terms of <span class="math inline">\(f\)</span>.</p></li>
+<li><p>We can define <span><em>piecewise</em></span> functions using different expressions for different parts of the domain. At boundaries of intervals we use filled or empty circles to indicate that a point is or is not included.</p></li>
+<li><p>You should be familiar with the operations on functions: <span><em>linear combinations</em></span>, <span><em>product</em></span>, <span><em>ratio</em></span> and <span><em>composition</em></span>, and know what the domain of the resulting functions is in terms of the domains of the original functions.</p></li>
+<li><p>You should know the conditions for the <span><em>inverse</em></span> of a function to exist. You should know the definitions of <span><em>surjective</em></span>, <span><em>injective</em></span> and <span><em>bijective</em></span>.</p></li>
+</ul>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tu</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<div class="center">
+<p><span><strong>Calculus I, Tutorial Problem Sheet, Week 5</strong> </span><br />
+</p>
+</div>
+<p> </p>
+<div class="center">
+<p><span><strong>Extreme values</strong></span></p>
+</div>
+<ol>
+<li><p>Find the global extreme values of <span class="math inline">\(f(x)=\frac{1}{3}x^3-3x+|x^2-4|\)</span> in <span class="math inline">\([-2,4].\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> Note that <span class="math inline">\(f(x)=\frac{x^3}{3}-3x+|x^2-4|\)</span> is differentiable everywhere except at <span class="math inline">\(x=\pm 2.\)</span></p>
+<p>For <span class="math inline">\(x\in(-2,2),\)</span>  <span class="math inline">\(f(x)=\frac{x^3}{3}-3x+4-x^2\)</span> with</p>
+<p><span class="math inline">\(f&#39;(x)=x^2-3-2x=(x-3)(x+1)=0\)</span>  iff <span class="math inline">\(x=-1.\)</span>   <span class="math inline">\(f(-1)=\frac{17}{3}.\)</span></p>
+<p>For <span class="math inline">\(x\in(2,4),\)</span> then <span class="math inline">\(f(x)=\frac{x^3}{3}-3x+x^2-4\)</span> with</p>
+<p><span class="math inline">\(f&#39;(x)=x^2-3+2x=(x+3)(x-1)\ne 0.\)</span></p>
+<p>Now <span class="math inline">\(f(2)=-\frac{10}{3},\ f(-2)=\frac{10}{3}, \ f(4)=\frac{64}{3}.\)</span></p>
+<p>The global maximum is <span class="math inline">\(\frac{64}{3}\)</span> and the global minimum is <span class="math inline">\(-\frac{10}{3}.\)</span></p>
+</dd>
+</dl></li>
+<li><p>Either find the global maximum or justify that it does not exist for of each of the following</p>
+<p>(a) <span class="math inline">\(f(x)=x^4-2x^2\)</span> in <span class="math inline">\([\frac{1}{3},\frac{4}{3}],\)</span> (b) <span class="math inline">\(f(x)=1-|1-x^2|\)</span> in <span class="math inline">\([0,\sqrt{2}],\)</span></p>
+<p>(c) <span class="math inline">\(f(x)=x/(x^2+1)\)</span> in <span class="math inline">\(x\ge 0,\)</span> (d) <span class="math inline">\(f(x)=x\cos(\frac{1}{x})/(x+1)\)</span> in <span class="math inline">\(x\ge 1.\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p>(a) <span class="math inline">\(f&#39;(x)=4x(x^2-1)=0\)</span> in <span class="math inline">\((\frac{1}{3},\frac{4}{3})\)</span> iff <span class="math inline">\(x=1.\)</span></p>
+<p><span class="math inline">\(f(1)=-1,\ f(\frac{1}{3})=-\frac{17}{81}, \ f(\frac{4}{3})=-\frac{32}{81}.\)</span> Global maximum is <span class="math inline">\(-\frac{17}{81}.\)</span><br />
+(b) <span class="math inline">\(f(x)=1-|1-x^2|\)</span> is differentiable in <span class="math inline">\((0,\sqrt{2})\)</span> except at <span class="math inline">\(x=1.\)</span></p>
+<p>For <span class="math inline">\(x\in(0,1), \  f(x)=1-(1-x^2)=x^2,\)</span> so <span class="math inline">\(f&#39;(x)=2x\ne 0.\)</span></p>
+<p>For <span class="math inline">\(x\in(1,\sqrt{2}), \  f(x)=1+(1-x^2)=2-x^2,\)</span> so <span class="math inline">\(f&#39;(x)=-2x\ne 0.\)</span></p>
+<p><span class="math inline">\(f(1)=1, \ f(0)=0, \ f(\sqrt{2})=0,\)</span>  hence the global maximum is <span class="math inline">\(1.\)</span><br />
+(c) For <span class="math inline">\(x&gt;0,\)</span>  <span class="math inline">\(f&#39;(x)=(1-x^2)/(1+x^2)^2=0\)</span> iff <span class="math inline">\(x=1.\)</span></p>
+<p><span class="math inline">\(f(1)=\frac{1}{2}, \ f(0)=0, \ \lim_{x\rightarrow \infty}f(x)=0,\)</span>  hence the global maximum is <span class="math inline">\(\frac{1}{2}.\)</span><br />
+(d) For <span class="math inline">\(x\ge 1,\)</span>  <span class="math inline">\(f&#39;(x)=\frac{\cos(\frac{1}{x})}{(1+x)^2}
++\frac{\sin(\frac{1}{x})}{x(1+x)}&gt;0,\)</span> thus <span class="math inline">\(f(x)\)</span> is increasing for <span class="math inline">\(x\ge 1.\)</span></p>
+<p>In fact <span class="math inline">\(\lim_{x\rightarrow\infty}f(x)=
+\lim_{x\rightarrow\infty}\{x\cos(\frac{1}{x})/(x+1)\}
+=\lim_{u\rightarrow 0}\frac{\cos u}{1+u}=\cos 0=1.\)</span></p>
+<p>There is no global maximum in <span class="math inline">\(x\ge 1.\)</span></p>
+</dd>
+</dl></li>
+<li><p>A group of Chilean miners are trapped underground at a depth of <span class="math inline">\(300\)</span> metres. A rescue team starts at the bottom of an abandoned mine shaft that is <span class="math inline">\(600\)</span> metres West of the trapped miners and has a depth of <span class="math inline">\(100\)</span> metres. The rescue team must dig a tunnel to the trapped miners that has an initial horizontal segment followed by a segment directly towards the trapped miners. At a depth of <span class="math inline">\(100\)</span> metres the rock is soft and it takes only <span class="math inline">\(5\)</span> minutes to dig one horizontal metre. However, at any depth below this, the rock is hard and it takes <span class="math inline">\(13\)</span> minutes to dig a distance of one metre.</p>
+<p>Calculate the minimal number of hours that it takes to tunnel to the trapped miners.</p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p>Use length units of metres and time units of minutes. Let the horizontal tunnel have a length <span class="math inline">\(600-x,\)</span> where <span class="math inline">\(x\in[0,600].\)</span> Then the distance from the end of the horizontal tunnel to the trapped miners is <span class="math inline">\(\sqrt{x^2+(200)^2}.\)</span> The time taken is <span class="math inline">\(T(x)=5(600-x)+13\sqrt{x^2+(200)^2}.\)</span></p>
+<p><span class="math inline">\(\frac{dT}{dx}=-5+\frac{13x}{\sqrt{x^2+(200)^2}},\)</span> therefore <span class="math inline">\(\frac{dT}{dx}=0\)</span> iff <span class="math inline">\(25(x^2+40000)=169x^2,\)</span> ie. <span class="math inline">\(10^6=144x^2\)</span> giving <span class="math inline">\(x=1000/12=250/3.\)</span> At this value <span class="math inline">\(T(250/3)=\frac{5}{3}(1800-250)+\frac{130}{3}(5)\sqrt{5^2+(12)^2}
+=\frac{5}{3}(1550+(130)13)
+=\frac{50}{3}(155+169)=\frac{50}{3}(324)=5400.\)</span></p>
+<p>Check the endpoints: <span class="math inline">\(T(0)=5600\)</span> and <span class="math inline">\(T(600)=2600\sqrt{10}&gt;5400.\)</span></p>
+<p>Thus the minimal time is <span class="math inline">\(T=5400\)</span> minutes ie. <span class="math inline">\(5400/60=90\)</span> hours.</p>
+</dd>
+</dl></li>
+</ol>
+<p> </p>
+<div class="center">
+<p><span><strong>Partial derivatives</strong></span></p>
+</div>
+<ol>
+<li><p>Given the function <span class="math inline">\(f(x,y)=\log(1+xy)\)</span> calculate <span class="math inline">\(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y},
+ \frac{\partial^2 f}{\partial x^2}, \frac{\partial^2 f}{\partial y^2},
+ \frac{\partial^2 f}{\partial x\partial y},\frac{\partial^2 f}{\partial y\partial x}.\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p><span class="math display">\[\frac{\partial f}{\partial x}=\frac{y}{1+xy}, \qquad
+\frac{\partial f}{\partial y}=\frac{x}{1+xy}, \qquad
+\frac{\partial^2 f}{\partial x^2}=\frac{-y^2}{(1+xy)^2}, \qquad
+\frac{\partial^2 f}{\partial y^2}=\frac{-x^2}{(1+xy)^2}\]</span></p>
+<p><span class="math display">\[\frac{\partial^2 f}{\partial x\partial y}
+   =\frac{\partial^2 f}{\partial y\partial x}=
+   \frac{1}{(1+xy)^2}\]</span></p>
+</dd>
+</dl></li>
+<li><p>Calculate <span class="math inline">\(f_x,f_y,f_{xx},f_{yy},f_{xy},f_{yx}\)</span> for the function <span class="math inline">\(f(x,y)=xe^{xy}\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p><span class="math inline">\(f_x=e^{xy}(1+xy), \qquad f_y=e^{xy}x^2, \qquad f_{xx}=e^{xy}(2y+xy^2), \qquad
+   f_{yy}=e^{xy}x^3,\)</span></p>
+<p><span class="math inline">\(f_{xy}=e^{xy}(2x+x^2y).\)</span></p>
+</dd>
+</dl></li>
+<li><p>Show that, for any constants <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, the function <span class="math inline">\(f(x,y)=A \cos x \sinh y +B \sin x \cosh y\)</span> satisfies the equation <span class="math inline">\(f_{xx}+f_{yy}=0.\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p><span class="math inline">\(f_x=-A \sin x \sinh y +B \cos x \cosh y, \qquad
+   f_{xx}=-A \cos x \sinh y -B \sin x \cosh y\)</span></p>
+<p><span class="math inline">\(f_y=A \cos x \cosh y +B \sin x \sinh y, \qquad
+   f_{yy}=A \cos x \sinh y +B \sin x \cosh y\)</span></p>
+<p>Therefore <span class="math inline">\(f_{xx}+f_{yy}=0.\)</span></p>
+</dd>
+</dl></li>
+</ol>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace("\:","\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = levelCount+(".0".repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img")
+				var img_id = img.getAttribute("id");
+				fig.setAttribute("id",img_id);
+				img.removeAttribute("id");
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
