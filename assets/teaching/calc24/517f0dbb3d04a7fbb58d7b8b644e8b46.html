@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tu</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<div class="center">
+<p><span><strong>Calculus I, Tutorial Problem Sheet, Week 9</strong> </span><br />
+</p>
+</div>
+<p> </p>
+<div class="center">
+<p><span><strong>Second order differential equations</strong></span></p>
+</div>
+<ol>
+<li><p>Solve the following boundary value problems for <span class="math inline">\(y(x)\)</span></p>
+<p>(a) <span class="math inline">\(y&#39;&#39;-5y&#39;+6y=0,\)</span> <span class="math inline">\(y(0)=1, \ y(1/2)=e.\)</span></p>
+<p>(b) <span class="math inline">\(y&#39;&#39;-2y&#39;+2y=0,\)</span> <span class="math inline">\(y(0)=3, \ y(\pi/2)=0.\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p>(a)  <span class="math inline">\((Char)\ \lambda^2-5\lambda+6=0=(\lambda-2)(\lambda-3), \quad 
+\lambda=2,3, \quad
+y=Ae^{2x}+Be^{3x}, \quad\)</span></p>
+<p><span class="math inline">\(y(0)=1=A+B,\quad 
+y(1/2)=e=Ae+Be^{3/2},\)</span> so <span class="math inline">\(1=A+B\sqrt{e},\)</span></p>
+<p>giving <span class="math inline">\(B=0, \ A=1, \quad
+y=e^{2x}.\)</span><br />
+(b)  <span class="math inline">\((Char)\ \lambda^2-2\lambda+2=0, \quad 
+\lambda=1\pm i, \quad
+y=e^x(A\cos x+B\sin x), \quad\)</span></p>
+<p><span class="math inline">\(y(0)=3=A,\quad 
+y(\pi/2)=0=e^{\pi/2}B,\)</span> so <span class="math inline">\(B=0,\)</span> giving <span class="math inline">\(y=3e^{x}\cos x.\)</span></p>
+</dd>
+</dl></li>
+<li><p>Solve the following initial value problems for <span class="math inline">\(y(x)\)</span></p>
+<p>(a) <span class="math inline">\(y&#39;&#39;-3y&#39;+2y=\cos x,\)</span> <span class="math inline">\(y(0)=0, \ y&#39;(0)=-1,\)</span></p>
+<p>(b) <span class="math inline">\(y&#39;&#39;+2y&#39;-3y=e^{-x}+e^{2x}\cos x,\)</span> <span class="math inline">\(y(0)=1, \ y&#39;(0)=1,\)</span></p>
+<p>(c) <span class="math inline">\(y&#39;&#39;-5y&#39;+4y=3e^{4x},\)</span> <span class="math inline">\(y(0)=0, \ y&#39;(0)=-1,\)</span></p>
+<p>(d) <span class="math inline">\(y&#39;&#39;+4y&#39;+4y=-2e^{-2x}+32e^{2x},\)</span> <span class="math inline">\(y(0)=-1, \ y&#39;(0)=2.\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p>(a) CF: <span class="math inline">\((Char)\ \lambda^2-3\lambda+2=0=(\lambda-1)(\lambda-2), \quad \lambda=1,2, \quad  y_{CF}=Ae^x+Be^{2x}.\)</span></p>
+<p>PI: <span class="math inline">\(y=c\cos x+d\sin x, \quad
+-c\cos x-d\sin x-3(-c\sin x+d\cos x)+2(c\cos x+d\sin x)=\cos x,\)</span></p>
+<p><span class="math inline">\(c-3d=1, \quad d=-3c, \quad c=\frac{1}{10}, \ d=-\frac{3}{10},
+\quad y_{PI}=\frac{1}{10}\cos x-\frac{3}{10}\sin x.\)</span></p>
+<p><span class="math inline">\(y=Ae^x+Be^{2x}+\frac{1}{10}\cos x-\frac{3}{10}\sin x,
+\quad 
+y(0)=0=A+B+\frac{1}{10}, \quad\)</span></p>
+<p><span class="math inline">\(y&#39;=Ae^x+2Be^{2x}-\frac{1}{10}\sin x-\frac{3}{10}\cos x, \quad
+y&#39;(0)=-1=A+2B-\frac{3}{10}, \quad
+A=\frac{1}{2},\ B=-\frac{3}{5},\)</span></p>
+<p><span class="math inline">\(y=\frac{1}{2}e^x-\frac{3}{5}e^{2x}+\frac{1}{10}\cos x-\frac{3}{10}\sin x.\)</span><br />
+(b) CF: <span class="math inline">\((Char)\ \lambda^2+2\lambda-3=0=(\lambda-1)(\lambda+3), \quad \lambda=1,-3, \quad  y_{CF}=Ae^x+Be^{-3x}.\)</span></p>
+<p>PI: <span class="math inline">\(y=ae^{-x}+e^{2x}(b\cos x+c\sin x),\)</span> gives</p>
+<p><span class="math inline">\(ae^{-x}+e^{2x}((3b+4c)\cos x+(3c-4b)\sin x)
+-2ae^{-x}+e^{2x}((4b+2c)\cos x+(4c-2b)\sin x)\)</span></p>
+<p><span class="math inline">\(-3ae^{-x}+e^{2x}(-3b\cos x-3c\sin x)=e^{-x}+e^{2x}\cos x,\)</span></p>
+<p><span class="math inline">\(a=-\frac{1}{4}, \ 6c+4b=1, \ 2c=3b, \ b=\frac{1}{13}, \ c=\frac{3}{26},
+\quad
+y_{PI}=-\frac{1}{4}e^{-x}+e^{2x}(\frac{1}{13}\cos x+\frac{3}{26}\sin x),\)</span></p>
+<p><span class="math inline">\(y=Ae^x+Be^{-3x}-\frac{1}{4}e^{-x}+e^{2x}(\frac{1}{13}\cos x+\frac{3}{26}\sin x),\)</span></p>
+<p><span class="math inline">\(y(0)=1=A+B-\frac{9}{52},\quad
+y&#39;(0)=1=A-3B+\frac{27}{52},
+\quad A=1, \ B=\frac{9}{52},\)</span></p>
+<p><span class="math inline">\(y=e^x+\frac{9}{52}e^{-3x}
+-\frac{1}{4}e^{-x}+e^{2x}(\frac{1}{13}\cos x+\frac{3}{26}\sin x).\)</span><br />
+(c) CF: <span class="math inline">\((Char)\ \lambda^2-5\lambda+4=0=(\lambda-1)(\lambda-4), \quad \lambda=1,4, \quad  y_{CF}=Ae^x+Be^{4x}.\)</span></p>
+<p>PI: <span class="math inline">\(y=axe^{4x}, \quad
+ae^{4x}(16x+8-5(4x+1)+4x)=3e^{4x}, \quad a=1, \quad
+y_{PI}=xe^{4x}.\)</span></p>
+<p><span class="math inline">\(y=Ae^x+Be^{4x}+xe^{4x}, \quad
+y(0)=0=A+B, \quad y&#39;(0)=-1=A+4B+1, \quad A=\frac{2}{3},\ B=-\frac{2}{3},\)</span></p>
+<p><span class="math inline">\(y=\frac{2}{3}e^x-\frac{2}{3}e^{4x}+xe^{4x}.\)</span><br />
+(d) CF: <span class="math inline">\((Char)\ \lambda^2+4\lambda+4=0=(\lambda+2)^2, \quad \lambda=-2, 
+\quad  y_{CF}=e^{-2x}(Ax+B).\)</span></p>
+<p>PI: <span class="math inline">\(y=ax^2e^{-2x}+be^{2x}, \quad
+ae^{-2x}(4x^2-8x+2-8x^2+8x+4x^2)+16be^{2x}=-2e^{-2x}+32e^{2x},\)</span></p>
+<p><span class="math inline">\(a=-1, \ b=2, \quad y_{PI}=-x^2e^{-2x}+2e^{2x}.\)</span></p>
+<p><span class="math inline">\(y=e^{-2x}(Ax+B)-x^2e^{-2x}+2e^{2x}, \quad\)</span></p>
+<p><span class="math inline">\(y(0)=-1=B+2, \ y&#39;(0)=2=A-2B+4, \ A=-8, B=-3.\)</span></p>
+<p><span class="math inline">\(y=e^{-2x}(-8x-3)-x^2e^{-2x}+2e^{2x}.\)</span></p>
+</dd>
+</dl></li>
+<li><p>Solve <span class="math inline">\(y&#39;&#39;+y=\tan x.\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p>CF: (CHAR) <span class="math inline">\(\lambda^2+1=0\)</span>, so <span class="math inline">\(\lambda=\pm i\)</span> giving <span class="math inline">\(y_{CF}=A\cos x+B\sin x.\)</span></p>
+<p>For PI use the method of variation of parameters with <span class="math inline">\(y_1=\cos x\)</span> and <span class="math inline">\(y_2=\sin x.\)</span></p>
+<p><span class="math inline">\(W(y_1,y_2)=y_1y_2&#39;-y_2y_1&#39;=\cos^2x+\sin^2x=1.\)</span></p>
+<p><span class="math inline">\(u_1=-\int \tan x \sin x\, dx=-\int \frac{\sin^2x}{\cos x}\,dx
+  =\int \frac{\cos^2x-1}{\cos x}\,dx 
+  =  \int \cos x -\sec x \,dx\)</span></p>
+<p><span class="math inline">\(=\sin x -\int \sec x \frac{(\sec x+\tan x)}{(\sec x+\tan x)}\,dx
+=\sin x-\int \frac{\sec^2 x+\sec x\tan x}{\sec x+\tan x}\,dx
+=\sin x-\log(\sec x+\tan x)\)</span></p>
+<p><span class="math inline">\(u_2=\int  \tan x \cos x\,dx=\int \sin x\,dx = -\cos x\)</span></p>
+<p><span class="math inline">\(y_{PI}=\cos x(\sin x-\log(\sec x+\tan x))-\sin x\cos x
+=-\cos x\,\log(\sec x+\tan x)\)</span></p>
+<p><span class="math inline">\(y=y_{CF}+y_{PI}=A\cos x+B\sin x
+-\cos x\,\log(\sec x+\tan x)\)</span></p>
+</dd>
+</dl></li>
+<li><p>Solve <span class="math inline">\(y&#39;&#39;-2y&#39;+y=e^x\log x.\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p>CF: (CHAR) <span class="math inline">\(\lambda^2-2\lambda +1=0=(\lambda-1)^2\)</span> giving <span class="math inline">\(\lambda=1\)</span> repeated <span class="math inline">\(y_{CF}=e^x(A+Bx)\)</span></p>
+<p>For PI use the method of variation of parameters with <span class="math inline">\(y_1=e^x\)</span> and <span class="math inline">\(y_2=xe^x\)</span></p>
+<p><span class="math inline">\(W(y_1,y_2)=y_1y_2&#39;-y_2y_1&#39;=e^{2x}.\)</span></p>
+<p><span class="math inline">\(u_1=-\int xe^x \bigg(\frac{e^x\log x}{e^{2x}}\bigg)\,dx=-\int (\log x)x\,dx
+  =-(\log x)\frac{x^2}{2}+\int \frac{1}{x}\frac{x^2}{2}\,dx\)</span></p>
+<p><span class="math inline">\(=-\frac{1}{2}(\log x){x^2}+\frac{1}{4}x^2\)</span></p>
+<p><span class="math inline">\(u_2=\int e^x \bigg(\frac{e^x\log x}{e^{2x}}\bigg)\,dx=
+  \int (\log x)\,dx=(\log x)x-\int \frac{1}{x} x\,dx=
+  (\log x)x-x.\)</span></p>
+<p><span class="math inline">\(y_{PI}=e^x\bigg(-\frac{1}{2}(\log x){x^2}+\frac{1}{4}x^2\bigg)
+  +xe^x((\log x)x-x)
+=x^2e^x(\frac{1}{2}\log x-\frac{3}{4})\)</span></p>
+<p><span class="math inline">\(y=y_{CF}+y_{PI}=e^x(A+Bx)
++x^2e^x(\frac{1}{2}\log x-\frac{3}{4})\)</span></p>
+</dd>
+</dl></li>
+<li><p>Solve the following pairs of first order differential equations for <span class="math inline">\(y(x),z(x)\)</span> by first finding a second order differential equation for <span class="math inline">\(y(x)\)</span></p>
+<p>(a) <span class="math inline">\(y&#39;=y+3z, \quad \ z&#39;=-3y+z,\)</span></p>
+<p>(b) <span class="math inline">\(y&#39;+6y-2z=e^x, \quad \ z&#39;+8y-4z=2e^x.\)</span></p>
+<dl>
+<dt>Solution:</dt>
+<dd><p> </p>
+<p>(a)</p>
+<p> <span class="math inline">\(z=\frac{1}{3}(y&#39;-y), \quad
+  \frac{1}{3}(y&#39;&#39;-y&#39;)=-3y+\frac{1}{3}(y&#39;-y),\)</span></p>
+<p><span class="math inline">\(y&#39;&#39;-2y&#39;+10y=0,\)</span></p>
+<p><span class="math inline">\((Char), \ \lambda^2-2\lambda+10=0,\quad \lambda=1\pm 3i,\)</span></p>
+<p><span class="math inline">\(y=e^x(A\cos(3x)+B\sin(3x)).\)</span></p>
+<p><span class="math inline">\(z=\frac{1}{3}(y&#39;-y)=e^x(B\cos(3x)-A\sin(3x)).\)</span><br />
+(b)</p>
+<p> <span class="math inline">\(z=\frac{1}{2}(y&#39;+6y-e^x), \quad
+\frac{1}{2}(y&#39;&#39;+6y&#39;-e^x)+8y-2(y&#39;+6y-e^x)=2e^x,\)</span></p>
+<p><span class="math inline">\(y&#39;&#39;+2y&#39;-8y=e^x,\)</span></p>
+<p><span class="math inline">\((Char), \ \lambda^2+2\lambda-8=0=(\lambda-2)(\lambda+4),\quad \lambda=2,-4,\)</span></p>
+<p><span class="math inline">\(y_{CF}=Ae^{2x}+Be^{-4x}.\)</span></p>
+<p><span class="math inline">\(y_{PI}=ae^{x}\)</span> gives <span class="math inline">\(-5ae^x=e^x\)</span> hence <span class="math inline">\(a=-\frac{1}{5}\)</span> so <span class="math inline">\(y_{PI}=-\frac{1}{5}e^x.\)</span></p>
+<p><span class="math inline">\(y=Ae^{2x}+Be^{-4x}-\frac{1}{5}e^x.\)</span></p>
+<p><span class="math inline">\(z=\frac{1}{2}(y&#39;+6y-e^x)=4Ae^{2x}+Be^{-4x}-\frac{6}{5}e^x.\)</span></p>
+</dd>
+</dl></li>
+</ol>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .proposition;;; .remark';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace("\:","\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = levelCount+(".0".repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img")
+				var img_id = img.getAttribute("id");
+				fig.setAttribute("id",img_id);
+				img.removeAttribute("id");
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	labelLinks();
+}
+</script><script>
+	var imageDir = ''
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

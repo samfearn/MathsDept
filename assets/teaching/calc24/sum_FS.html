@@ -1,0 +1,143 @@
+<!DOCTYPE html><html prefix="dcterms: http://purl.org/dc/terms/">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.6 Summary: Fourier Series</title>
+<!--Generated on Sat Dec 24 13:39:35 2022 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://samfearn.github.io/latexml.min.css">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<section id="S9.SS6" class="ltx_subsection">
+<h2 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.6 </span>Summary: Fourier Series</h2>
+
+<div id="S9.SS6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Fourier series attempt to represent periodic functions as linear combinations of sines and cosines.
+You should know how to calculate Fourier coefficients so you can construct
+Fourier series (or Fourier partial sums).
+You should understand the interpretation of Fourier series as
+(infinite-dimensional) vectors where the orthogonal basis functions are the
+sines and cosines, and the
+components are the Fourier coefficients.
+Here are some key points:</p>
+</div>
+<div id="S9.SS6.p2" class="ltx_para ltx_noindent">
+<ul id="S9.I1" class="ltx_itemize">
+<li id="S9.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If <math id="S9.I1.i1.p1.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is a function of period <math id="S9.I1.i1.p1.m2" class="ltx_Math" alttext="2L" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>L</mi></mrow></math>, its (full-range)
+<span class="ltx_text ltx_font_italic">Fourier series</span> is the infinite series
+<math id="S9.I1.i1.p1.m3" class="ltx_Math" alttext="\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos(n\pi x/L)+b_{n}\sin(n\pi x/%
+L)\right)" display="inline"><mrow><mfrac><msub><mi>a</mi><mn>0</mn></msub><mn>2</mn></mfrac><mo>+</mo><mrow><msubsup><mo largeop="true" symmetric="true">∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mi mathvariant="normal">∞</mi></msubsup><mrow><mo>(</mo><mrow><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>n</mi><mo>⁢</mo><mi>π</mi><mo>⁢</mo><mi>x</mi></mrow><mo>/</mo><mi>L</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>+</mo><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>n</mi><mo>⁢</mo><mi>π</mi><mo>⁢</mo><mi>x</mi></mrow><mo>/</mo><mi>L</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>)</mo></mrow></mrow></mrow></math>
+where the Fourier coefficients are given by
+<math id="S9.I1.i1.p1.m4" class="ltx_Math" alttext="a_{n}=\frac{1}{L}\int_{-L}^{L}\cos(n\pi x/L)f(x)dx" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mrow><mfrac><mn>1</mn><mi>L</mi></mfrac><mo>⁢</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mrow><mo>-</mo><mi>L</mi></mrow><mi>L</mi></msubsup><mrow><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>n</mi><mo>⁢</mo><mi>π</mi><mo>⁢</mo><mi>x</mi></mrow><mo>/</mo><mi>L</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></mrow></math> (including <math id="S9.I1.i1.p1.m5" class="ltx_Math" alttext="n=0" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow></math>) and
+<math id="S9.I1.i1.p1.m6" class="ltx_Math" alttext="b_{n}=\frac{1}{L}\int_{-L}^{L}\sin(n\pi x/L)f(x)dx" display="inline"><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>=</mo><mrow><mfrac><mn>1</mn><mi>L</mi></mfrac><mo>⁢</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mrow><mo>-</mo><mi>L</mi></mrow><mi>L</mi></msubsup><mrow><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>n</mi><mo>⁢</mo><mi>π</mi><mo>⁢</mo><mi>x</mi></mrow><mo>/</mo><mi>L</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></mrow></math>.
+This arises for the vector interpretation with scalar product of <math id="S9.I1.i1.p1.m7" class="ltx_Math" alttext="\phi(x)" display="inline"><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+and <math id="S9.I1.i1.p1.m8" class="ltx_Math" alttext="\psi(x)" display="inline"><mrow><mi>ψ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> being <math id="S9.I1.i1.p1.m9" class="ltx_Math" alttext="\frac{1}{L}\int_{-L}^{L}\phi\psi dx" display="inline"><mrow><mfrac><mn>1</mn><mi>L</mi></mfrac><mo>⁢</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mrow><mo>-</mo><mi>L</mi></mrow><mi>L</mi></msubsup><mrow><mi>ϕ</mi><mo>⁢</mo><mi>ψ</mi><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></math>, noting that the
+sines and cosines are orthonormal using this scalar product.</p>
+</div>
+</li>
+<li id="S9.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If we include only the first <math id="S9.I1.i2.p1.m1" class="ltx_Math" alttext="N" display="inline"><mi>N</mi></math> sines and cosines (i.e. have
+<math id="S9.I1.i2.p1.m2" class="ltx_Math" alttext="\sum_{n=1}^{N}" display="inline"><msubsup><mo largeop="true" symmetric="true">∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></msubsup></math> rather than <math id="S9.I1.i2.p1.m3" class="ltx_Math" alttext="\sum_{n=1}^{\infty}" display="inline"><msubsup><mo largeop="true" symmetric="true">∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mi mathvariant="normal">∞</mi></msubsup></math>) we have a
+<span class="ltx_text ltx_font_italic">Fourier partial sum</span>. The Fourier series is then given by the limit
+as <math id="S9.I1.i2.p1.m4" class="ltx_Math" alttext="N\to\infty" display="inline"><mrow><mi>N</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow></math>.</p>
+</div>
+</li>
+<li id="S9.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">An odd function has a <span class="ltx_text ltx_font_italic">sine Fourier series</span> (all <math id="S9.I1.i3.p1.m1" class="ltx_Math" alttext="a_{n}=0" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mn>0</mn></mrow></math>) while an even
+function has a <span class="ltx_text ltx_font_italic">cosine Fourier series</span> (all <math id="S9.I1.i3.p1.m2" class="ltx_Math" alttext="b_{n}=0" display="inline"><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>=</mo><mn>0</mn></mrow></math>).</p>
+</div>
+</li>
+<li id="S9.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Dirichlet’s theorem</span> says that if <math id="S9.I1.i4.p1.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is a periodic function with a
+finite number of extreme values and jump discontinuities in each period, and
+with <math id="S9.I1.i4.p1.m2" class="ltx_Math" alttext="|f(x)|" display="inline"><mrow><mo stretchy="false">|</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow></math> integrable over a period then the Fourier series converges (to
+some real number) for
+all <math id="S9.I1.i4.p1.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>. It converges to <math id="S9.I1.i4.p1.m4" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> at all points where <math id="S9.I1.i4.p1.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is continuous, and at
+jump discontinuities it converges to the midpoint of the jump.</p>
+</div>
+</li>
+<li id="S9.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">Gibbs phenomenon</span> is the fact that at a jump discontinuity the
+Fourier series overshoots at the upper end and undershoots at the lower end by
+approximately <math id="S9.I1.i5.p1.m1" class="ltx_Math" alttext="9\%" display="inline"><mrow><mn>9</mn><mo>%</mo></mrow></math> of the jump. This is visible in the Fourier partial sums
+with the peaks becoming both narrower and closer to the location of the jump as
+<math id="S9.I1.i5.p1.m2" class="ltx_Math" alttext="N\to\infty" display="inline"><mrow><mi>N</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow></math>, but not reducing in height.</p>
+</div>
+</li>
+<li id="S9.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Given any function <math id="S9.I1.i6.p1.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> on <math id="S9.I1.i6.p1.m2" class="ltx_Math" alttext="(-L,L]" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mi>L</mi></mrow><mo>,</mo><mi>L</mi><mo stretchy="false">]</mo></mrow></math> we can define its <span class="ltx_text ltx_font_italic">periodic
+extension</span> to be the function of period <math id="S9.I1.i6.p1.m3" class="ltx_Math" alttext="2L" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>L</mi></mrow></math> which equals <math id="S9.I1.i6.p1.m4" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> on <math id="S9.I1.i6.p1.m5" class="ltx_Math" alttext="(-L,L]" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mi>L</mi></mrow><mo>,</mo><mi>L</mi><mo stretchy="false">]</mo></mrow></math>.
+We can also define the <span class="ltx_text ltx_font_italic">odd periodic extension</span> of <math id="S9.I1.i6.p1.m6" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> on <math id="S9.I1.i6.p1.m7" class="ltx_Math" alttext="(0,L)" display="inline"><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>L</mi><mo stretchy="false">)</mo></mrow></math> to be
+the periodic extension of
+<math id="S9.I1.i6.p1.m8" class="ltx_Math" alttext="f_{o}(x)=\left\{\begin{array}[]{ll}f(x)&amp;\mathrm{if}x\in(0,L)\\
+0&amp;\mathrm{if}x\in\{0,L\}\\
+-f(-x)&amp;\mathrm{if}x\in(-L,0)\end{array}\right." display="inline"><mrow><mrow><msub><mi>f</mi><mi>o</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo>{</mo><mtable columnspacing="5pt" rowspacing="0pt"><mtr><mtd columnalign="left"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mi>if</mi><mo>⁢</mo><mi>x</mi></mrow><mo>∈</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>L</mi><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr><mtr><mtd columnalign="left"><mn>0</mn></mtd><mtd columnalign="left"><mrow><mrow><mi>if</mi><mo>⁢</mo><mi>x</mi></mrow><mo>∈</mo><mrow><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mi>L</mi><mo stretchy="false">}</mo></mrow></mrow></mtd></mtr><mtr><mtd columnalign="left"><mrow><mo>-</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mi>if</mi><mo>⁢</mo><mi>x</mi></mrow><mo>∈</mo><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mi>L</mi></mrow><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr></mtable><mi></mi></mrow></mrow></math>.
+Similarly the <span class="ltx_text ltx_font_italic">even periodic extension</span> is the periodic extension of
+<math id="S9.I1.i6.p1.m9" class="ltx_Math" alttext="f_{e}(x)=\left\{\begin{array}[]{ll}f(x)&amp;\mathrm{if}x\in[0,L]\\
+f(-x)&amp;\mathrm{if}x\in(-L,0)\end{array}\right." display="inline"><mrow><mrow><msub><mi>f</mi><mi>e</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo>{</mo><mtable columnspacing="5pt" rowspacing="0pt"><mtr><mtd columnalign="left"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mi>if</mi><mo>⁢</mo><mi>x</mi></mrow><mo>∈</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mi>L</mi><mo stretchy="false">]</mo></mrow></mrow></mtd></mtr><mtr><mtd columnalign="left"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mi>if</mi><mo>⁢</mo><mi>x</mi></mrow><mo>∈</mo><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mi>L</mi></mrow><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr></mtable><mi></mi></mrow></mrow></math>.
+We call the Fourier series for these odd/even periodic extensions
+<span class="ltx_text ltx_font_italic">half-range sine/cosine series</span>.</p>
+</div>
+</li>
+<li id="S9.I1.i7" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Parseval’s theorem</span> says that
+<math id="S9.I1.i7.p1.m1" class="ltx_Math" alttext="\frac{1}{L}\int_{-L}^{L}(f(x))^{2}dx=\frac{1}{2}a_{0}^{2}+\sum_{n=1}^{\infty}(%
+a_{n}^{2}+b_{n}^{2})" display="inline"><mrow><mrow><mfrac><mn>1</mn><mi>L</mi></mfrac><mo>⁢</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mrow><mo>-</mo><mi>L</mi></mrow><mi>L</mi></msubsup><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow><mo>=</mo><mrow><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>⁢</mo><msubsup><mi>a</mi><mn>0</mn><mn>2</mn></msubsup></mrow><mo>+</mo><mrow><msubsup><mo largeop="true" symmetric="true">∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mi mathvariant="normal">∞</mi></msubsup><mrow><mo stretchy="false">(</mo><mrow><msubsup><mi>a</mi><mi>n</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>b</mi><mi>n</mi><mn>2</mn></msubsup></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.
+It is the Fourier series
+equivalent of the fact that the magnitude squared of a vector is the sum of the
+squares of its components. Parseval’s theorem can be used to evaluate infinite
+series if we can realise the series in terms of squares of Fourier coefficients
+for some function and we can calculate the integral of the function squared.</p>
+</div>
+</li>
+<li id="S9.I1.i8" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can also evaluate infinite series if we have a Fourier series which we know converges to a specific value at some point – e.g. at a point where the function is continuous and Dirichlet’s theorem guarantees the Fourier series converges to the value of the function at that point.</p>
+</div>
+</li>
+<li id="S9.I1.i9" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i9.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Using the orthonormal basis functions <math id="S9.I1.i9.p1.m1" class="ltx_Math" alttext="e^{in\pi x/L}" display="inline"><msup><mi>e</mi><mrow><mrow><mi>i</mi><mo>⁢</mo><mi>n</mi><mo>⁢</mo><mi>π</mi><mo>⁢</mo><mi>x</mi></mrow><mo>/</mo><mi>L</mi></mrow></msup></math> with scalar product of <math id="S9.I1.i9.p1.m2" class="ltx_Math" alttext="\phi" display="inline"><mi>ϕ</mi></math> and <math id="S9.I1.i9.p1.m3" class="ltx_Math" alttext="\psi" display="inline"><mi>ψ</mi></math> defined by <math id="S9.I1.i9.p1.m4" class="ltx_Math" alttext="\frac{1}{2L}\int_{-L}^{L}\overline{\phi}\psi dx" display="inline"><mrow><mfrac><mn>1</mn><mrow><mn>2</mn><mo>⁢</mo><mi>L</mi></mrow></mfrac><mo>⁢</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mrow><mo>-</mo><mi>L</mi></mrow><mi>L</mi></msubsup><mrow><mover accent="true"><mi>ϕ</mi><mo>¯</mo></mover><mo>⁢</mo><mi>ψ</mi><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></math>, we can write the <span class="ltx_text ltx_font_italic">Fourier series in complex form</span>
+<math id="S9.I1.i9.p1.m5" class="ltx_Math" alttext="\sum_{-\infty}^{\infty}c_{n}e^{in\pi x/L}" display="inline"><mrow><msubsup><mo largeop="true" symmetric="true">∑</mo><mrow><mo>-</mo><mi mathvariant="normal">∞</mi></mrow><mi mathvariant="normal">∞</mi></msubsup><mrow><msub><mi>c</mi><mi>n</mi></msub><mo>⁢</mo><msup><mi>e</mi><mrow><mrow><mi>i</mi><mo>⁢</mo><mi>n</mi><mo>⁢</mo><mi>π</mi><mo>⁢</mo><mi>x</mi></mrow><mo>/</mo><mi>L</mi></mrow></msup></mrow></mrow></math>. The Fourier coefficients are
+given by <math id="S9.I1.i9.p1.m6" class="ltx_Math" alttext="c_{n}=\frac{1}{2L}\int_{-L}^{L}e^{-in\pi x/L}f(x)dx" display="inline"><mrow><msub><mi>c</mi><mi>n</mi></msub><mo>=</mo><mrow><mfrac><mn>1</mn><mrow><mn>2</mn><mo>⁢</mo><mi>L</mi></mrow></mfrac><mo>⁢</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mrow><mo>-</mo><mi>L</mi></mrow><mi>L</mi></msubsup><mrow><msup><mi>e</mi><mrow><mo>-</mo><mrow><mrow><mi>i</mi><mo>⁢</mo><mi>n</mi><mo>⁢</mo><mi>π</mi><mo>⁢</mo><mi>x</mi></mrow><mo>/</mo><mi>L</mi></mrow></mrow></msup><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></mrow></math>. If <math id="S9.I1.i9.p1.m7" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is
+a real-valued function then <math id="S9.I1.i9.p1.m8" class="ltx_Math" alttext="c_{-n}=\overline{c}_{n}" display="inline"><mrow><msub><mi>c</mi><mrow><mo>-</mo><mi>n</mi></mrow></msub><mo>=</mo><msub><mover accent="true"><mi>c</mi><mo>¯</mo></mover><mi>n</mi></msub></mrow></math>. Note that the complex form of the Fourier series is just a different way to express the usual real Fourier series using Euler’s formula <math id="S9.I1.i9.p1.m9" class="ltx_Math" alttext="e^{i\theta}=\cos\theta+i\sin\theta" display="inline"><mrow><msup><mi>e</mi><mrow><mi>i</mi><mo>⁢</mo><mi>θ</mi></mrow></msup><mo>=</mo><mrow><mrow><mi>cos</mi><mo>⁡</mo><mi>θ</mi></mrow><mo>+</mo><mrow><mi>i</mi><mo>⁢</mo><mrow><mi>sin</mi><mo>⁡</mo><mi>θ</mi></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+</section><div class="ltx_rdf" about="" property="dcterms:language" content="en-GB"></div>
+<div class="ltx_rdf" about="" property="dcterms:title" content="allnotes"></div>
+
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Sat Dec 24 13:39:35 2022 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

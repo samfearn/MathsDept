@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Original notes produced by Paul Sutcliffe" />
+  <title>Calculus I Michaelmas Term</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Calculus I<br />
+Michaelmas Term</p></h1>
+<p class="author">Sam Fearn<br />
+Original notes produced by Paul Sutcliffe</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#second-order-differential-equations"><span class="toc-section-number">7</span> Second order differential equations</a>
+<ul>
+<li><a href="#linear-constant-coefficient-homogeneous-odes"><span class="toc-section-number">7.1</span> Linear constant coefficient homogeneous ODEs</a></li>
+<li><a href="#the-method-of-undetermined-coefficients"><span class="toc-section-number">7.2</span> The method of undetermined coefficients</a></li>
+<li><a href="#initial-and-boundary-value-problems"><span class="toc-section-number">7.3</span> Initial and boundary value problems</a></li>
+<li><a href="#the-method-of-variation-of-parameters"><span class="toc-section-number">7.4</span> The method of variation of parameters</a></li>
+<li><a href="#systems-of-first-order-linear-odes"><span class="toc-section-number">7.5</span> Systems of first order linear ODEs</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="second-order-differential-equations" class="level1" data-number="1">
+<h1 data-number="7"><span class="header-section-number">7</span> Second order differential equations</h1>
+<section id="linear-constant-coefficient-homogeneous-odes" class="level2" data-number="1.1">
+<h2 data-number="7.1"><span class="header-section-number">7.1</span> Linear constant coefficient homogeneous ODEs</h2>
+<p>The general form of a second order linear constant coefficient ODE is <span class="math display">\[\alpha_2y&#39;&#39;+\alpha_1y&#39;+\alpha_0 y=\phi(x) \hskip 3cm (\dagger)\]</span> where <span class="math inline">\(\alpha_2\ne 0,\alpha_1,\alpha_0\)</span> are constants (the constant coefficients) and <span class="math inline">\(\phi(x)\)</span> is an arbitrary function of <span class="math inline">\(x.\)</span> The ODE is still second order and linear if these constants are replaced by functions of <span class="math inline">\(x,\)</span> but then the ODE is not so easy to solve.<br />
+We first restrict to the case <span class="math inline">\(\phi(x)=0\)</span>  ie. <span class="math display">\[\alpha_2y&#39;&#39;+\alpha_1y&#39;+\alpha_0 y=0
+\hskip 3cm (\dagger\dagger)\]</span> in which case the second order ODE is called <span><strong>homogeneous</strong></span>.<br />
+The first point to note is that if <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are any two solutions of the homogeneous ODE <span class="math inline">\((\dagger\dagger)\)</span> then so is any arbitrary linear combination</p>
+<p><span class="math inline">\(y=Ay_1+By_2,\)</span> where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are constants.</p>
+<p>Proof: <span class="math inline">\(y=Ay_1+By_2\)</span>  so  <span class="math inline">\(y&#39;=Ay&#39;_1+By&#39;_2\)</span>  and  <span class="math inline">\(y&#39;&#39;=Ay&#39;&#39;_1+By&#39;&#39;_2.\)</span>  Hence</p>
+<p><span class="math inline">\(\alpha_2y&#39;&#39;+\alpha_1y&#39;+\alpha_0 y=
+\alpha_2(Ay&#39;&#39;_1+By&#39;&#39;_2)+\alpha_1(Ay&#39;_1+By&#39;_2)+\alpha_0 (Ay_1+By_2)=\)</span></p>
+<p><span class="math inline">\(=A(\alpha_2y_1&#39;&#39;+\alpha_1y_1&#39;+\alpha_0 y_1)
++B(\alpha_2y_2&#39;&#39;+\alpha_1y_2&#39;+\alpha_0 y_2)=0+0=0.\)</span></p>
+<p>Note that the linearity of the ODE is crucial for this result.<br />
+The general solution of the ODE <span class="math inline">\((\dagger\dagger)\)</span> contains two arbitrary constants (because the ODE is second order). If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are any two independent particular solutions then the general solution is given by <span class="math inline">\(y=Ay_1+By_2,\)</span> with <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> the two arbitrary constants. The task is therefore to find two independent particular solutions.<br />
+To find a particular solution, look for one in the form <span class="math inline">\(y=e^{\lambda x}.\)</span></p>
+<p>Putting this into <span class="math inline">\((\dagger\dagger)\)</span> yields the <span><strong>characteristic</strong></span> (or <span><strong>auxiliary</strong></span>) <span><strong>equation</strong></span> <span class="math display">\[\alpha_2\lambda^2+\alpha_1\lambda+\alpha_0=0. \hskip 3cm (Char)\]</span> There are 3 cases to consider, depending upon the type of roots of <span class="math inline">\((Char)\)</span>.<br />
+<span><em>(i). Distinct real roots.</em></span></p>
+<p>If <span class="math inline">\((Char)\)</span> has real roots <span class="math inline">\(\lambda_1\ne\lambda_2\)</span> then <span class="math inline">\(y_1=e^{\lambda_1 x}\)</span> and <span class="math inline">\(y_2=e^{\lambda_2 x}\)</span> are the two required particular solutions and the general solution is <span class="math display">\[y=Ae^{\lambda_1 x}+Be^{\lambda_2 x}.\]</span>  </p>
+<p>Eg. Solve  <span class="math inline">\(y&#39;&#39;-y&#39;-2y=0.\)</span> Then <span class="math inline">\((Char)\)</span> is <span class="math inline">\(\lambda^2-\lambda-2=0=(\lambda-2)(\lambda+1)\)</span> with roots <span class="math inline">\(\lambda=2,-1.\)</span> The general solution is <span class="math inline">\(y=Ae^{2 x}+Be^{-x}.\)</span><br />
+<span><em>(ii). Repeated real root.</em></span></p>
+<p><span class="math inline">\((Char)\)</span> has a repeated real root if <span class="math inline">\(\alpha_1^2=4\alpha_0\alpha_2\)</span> ie. when <span class="math inline">\(\alpha_0=\frac{\alpha_1^2}{4\alpha_2}.\)</span></p>
+<p><span class="math inline">\((Char)\)</span> then reduces to <span class="math display">\[\alpha_2\lambda^2+\alpha_1\lambda+\frac{\alpha_1^2}{4\alpha_2}=0
+=\alpha_2\bigg(\lambda+\frac{\alpha_1}{2\alpha_2}\bigg)^2
+\quad \mbox{with } \ \lambda_1=-\frac{\alpha_1}{2\alpha_2} \
+\mbox{the real double root.}\]</span> Thus <span class="math inline">\((Char)\)</span> has produced only one solution <span class="math inline">\(y_1=e^{\lambda_1 x}.\)</span></p>
+<p>However, as we now show, <span class="math inline">\(y=xe^{\lambda_1 x}\)</span> is also a solution in this case.</p>
+<p>The original ODE <span class="math inline">\((\dagger\dagger)\)</span> now takes the form <span class="math display">\[\alpha_2y&#39;&#39;+\alpha_1y&#39;+\frac{\alpha_1^2}{4\alpha_2}y=0
+=\alpha_2(y&#39;&#39;-2\lambda_1y&#39;+\lambda_1^2y).\]</span> With <span class="math inline">\(y=xe^{\lambda_1 x}\)</span> we have <span class="math inline">\(y&#39;=e^{\lambda_1 x}+\lambda_1xe^{\lambda_1 x}\)</span> and <span class="math inline">\(y&#39;&#39;=2\lambda_1e^{\lambda_1 x}+\lambda_1^2xe^{\lambda_1 x}.\)</span> Hence <span class="math display">\[y&#39;&#39;-2\lambda_1y&#39;+\lambda_1^2y=2\lambda_1e^{\lambda_1 x}+\lambda_1^2xe^{\lambda_1 x}
+-2\lambda_1(e^{\lambda_1 x}+\lambda_1xe^{\lambda_1 x})
++\lambda_1^2xe^{\lambda_1 x}=0.\]</span>  </p>
+<p><span class="math inline">\(y_1=e^{\lambda_1 x}\)</span> and <span class="math inline">\(y_2=xe^{\lambda_1 x}\)</span> are the two required particular solutions and the general solution is <span class="math display">\[y=Ae^{\lambda_1 x}+Bxe^{\lambda_1 x}.\]</span>  </p>
+<p>Eg. Solve  <span class="math inline">\(2y&#39;&#39;-12y&#39;+18y=0.\)</span> Then <span class="math inline">\((Char)\)</span> is <span class="math inline">\(2\lambda^2-12\lambda+18=0=2(\lambda-3)^2\)</span> with double root <span class="math inline">\(\lambda=3\)</span> The general solution is <span class="math inline">\(y=Ae^{3 x}+Bxe^{3 x}.\)</span><br />
+<span><em>(iii). Complex roots.</em></span></p>
+<p>If the roots of <span class="math inline">\((Char)\)</span> are complex then they come in a complex conjugate pair ie. <span class="math inline">\(\lambda_1=\alpha+i\beta\)</span> and <span class="math inline">\(\lambda_2=\alpha-i\beta.\)</span> We therefore have the two solutions <span class="math inline">\(y_1=e^{\lambda_1x}=e^{\alpha x}e^{i\beta x}\)</span> and <span class="math inline">\(y_2=e^{\lambda_2x}=e^{\alpha x}e^{-i\beta x},\)</span> but these are not the solutions we are looking for, since they are complex and we want real solutions. However, we have seen that we can take any linear combination of these solutions (even with complex coefficients) and it will still be a solution. In particular the combinations <span class="math display">\[Y_1=\frac{1}{2}(y_1+y_2)=\frac{1}{2}e^{\alpha x}(e^{i\beta x}+e^{-i\beta x})=
+e^{\alpha x}\cos(\beta x)\]</span> <span class="math display">\[Y_2=\frac{1}{2i}(y_1-y_2)=\frac{1}{2i}e^{\alpha x}(e^{i\beta x}-e^{-i\beta x})=
+e^{\alpha x}\sin(\beta x)\]</span> are both real and provide the two particular solutions we want.</p>
+<p>The general solution is an arbitrary real linear combination of <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> ie. <span class="math display">\[y=Ae^{\alpha x}\cos(\beta x)+Be^{\alpha x}\sin(\beta x)
+=e^{\alpha x}(A\cos(\beta x)+B\sin(\beta x))\]</span> with <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> real. Recall that <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are both real and are the real and imaginary parts of the complex root of <span class="math inline">\((Char).\)</span><br />
+Eg. Solve  <span class="math inline">\(y&#39;&#39;-6y&#39;+10y=0.\)</span> Then <span class="math inline">\((Char)\)</span> is <span class="math inline">\(\lambda^2-6\lambda+10=0\)</span> with roots <span class="math display">\[\lambda=\frac{6\pm\sqrt{36-40}}{2}=\frac{6\pm 2i}{2}=3\pm i
+=\alpha\pm i\beta.\]</span> Hence <span class="math inline">\(\alpha=3\)</span> and <span class="math inline">\(\beta=1\)</span> and the general solution is <span class="math inline">\(y=e^{3x}(A\cos x+B\sin x).\)</span></p>
+</section>
+<section id="the-method-of-undetermined-coefficients" class="level2" data-number="1.2">
+<h2 data-number="7.2"><span class="header-section-number">7.2</span> The method of undetermined coefficients</h2>
+<p>We now return to the general inhomogeneous ODE <span class="math display">\[\alpha_2y&#39;&#39;+\alpha_1y&#39;+\alpha_0 y=\phi(x) \hskip 3cm (\dagger)\]</span> where <span class="math inline">\(\phi(x)\)</span> is a function that is not identically zero.<br />
+The general solution to <span class="math inline">\((\dagger)\)</span> is obtained as a sum of two parts <span class="math display">\[y=y_{CF}+y_{PI}\]</span> where <span class="math inline">\(y_{CF}\)</span> is called the <span><strong>complementary function</strong></span> and is the general solution of the homogeneous version of the ODE ie. <span class="math inline">\((\dagger\dagger)\)</span> which is obtained by removing the <span class="math inline">\(\phi(x)\)</span> term. This part of the solution contains the two arbitrary constants and we have already seen how to find this.</p>
+<p><span class="math inline">\(y_{PI}\)</span> is called the <span><strong>particular integral</strong></span> and is any particular solution of <span class="math inline">\((\dagger).\)</span> We haven’t yet seen any methods to find this. However, before we look at a method, let us first show that the combination <span class="math inline">\(y=y_{CF}+y_{PI}\)</span> is indeed a solution of <span class="math inline">\((\dagger).\)</span> We have that <span class="math inline">\(y&#39;=y&#39;_{CF}+y&#39;_{PI}\)</span> and <span class="math inline">\(y&#39;&#39;=y&#39;&#39;_{CF}+y&#39;&#39;_{PI}\)</span> so put these into the left hand side of <span class="math inline">\((\dagger)\)</span> to get <span class="math display">\[\alpha_2y&#39;&#39;+\alpha_1y&#39;+\alpha_0 y=
+\alpha_2(y&#39;&#39;_{CF}+y&#39;&#39;_{PI})+\alpha_1(y&#39;_{CF}+y&#39;_{PI})+\alpha_0(y_{CF}+y_{PI})\]</span> <span class="math display">\[=
+\underbrace{\alpha_2y&#39;&#39;_{CF}+\alpha_1y&#39;_{CF}+\alpha_0y_{CF}}_\text{$=0$ \ by \ $(\dagger\dagger)$}
++\underbrace{\alpha_2y&#39;&#39;_{PI}+\alpha_1y&#39;_{PI}+\alpha_0y_{PI}}_\text{$=\phi(x)$ \ by 
+$(\dagger)$}
+=\phi(x).\]</span> To find a particular integral we shall use the <span><strong>method of undetermined coefficients,</strong></span> which can be applied if <span class="math inline">\(\phi(x)\)</span> takes certain forms such as polynomials, exponentials or trigonometric functions, including sums and products of these. The idea is to try an appropriate form of the solution that contains some unknown constant coefficients which are then determined by explicit calculation and the requirement that the try yields a solution. The table below lists the kind of terms that can be dealt with if they appear in <span class="math inline">\(\phi(x)\)</span> (they can come with any constant coefficients in front) together with the form to try for <span class="math inline">\(y_{PI},\)</span> containing undetermined constant coefficients <span class="math inline">\(a_i.\)</span><br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Term in <span class="math inline">\(\phi(x)\)</span></th>
+<th style="text-align: left;">Form to try for <span class="math inline">\(y_{PI}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(e^{\gamma x}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(a_1e^{\gamma x}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(x^n\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(a_0+a_1x+...+a_nx^n\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\cos(\gamma x)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(a_1\cos(\gamma x)+a_2\sin(\gamma x)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\sin(\gamma x)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(a_1\cos(\gamma x)+a_2\sin(\gamma x)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+The motivation for the above is that the form of the try when differentiated zero, once or twice, should have a similar functional form to <span class="math inline">\(\phi(x),\)</span> as there is then a chance that the left hand side of <span class="math inline">\((\dagger)\)</span> could equal the right hand side. If <span class="math inline">\(\phi(x)\)</span> contains sums/products of the kind of terms above then try sums/products of the listed forms for the try.<br />
+<span><strong>Special case rule:</strong></span> If the suggested form of the try for <span class="math inline">\(y_{PI}\)</span> is contained in <span class="math inline">\(y_{CF}\)</span> then we know that this form wont work as the left hand side of <span class="math inline">\((\dagger)\)</span> will then be identically zero and so cant equal <span class="math inline">\(\phi(x).\)</span> In this case first multiply the suggested form of the try by <span class="math inline">\(x\)</span> to get the correct try. In some special cases this rule may need to be applied twice as <span class="math inline">\(x\)</span> times the suggested try may also be contained in <span class="math inline">\(y_{CF}.\)</span><br />
+<span><em>Eg</em></span>. Solve  <span class="math inline">\(y&#39;&#39;-y&#39;-2y=7-2x^2.\)</span></p>
+<p>From earlier we already know that <span class="math inline">\(y_{CF}=Ae^{2 x}+Be^{-x}.\)</span></p>
+<p>To find <span class="math inline">\(y_{PI}\)</span> we try the form <span class="math inline">\(y=a_0+a_1x+a_2x^2\)</span></p>
+<p>to simplify the notation for the calculation we have dropped the <span class="math inline">\(\,_{PI}\)</span> subscript here.</p>
+<p>Now <span class="math inline">\(y&#39;=a_1+2a_2x\)</span> and <span class="math inline">\(y&#39;&#39;=2a_2,\)</span> so putting these into the ODE gives <span class="math inline">\(2a_2-(a_1+2a_2x)-2(a_0+a_1x+a_2x^2)=7-2x^2\)</span></p>
+<p><span class="math inline">\(=2a_2-a_1-2a_0+x(-2a_2-2a_1)-2a_2x^2.\)</span></p>
+<p>Comparing coefficients of <span class="math inline">\(x^2,x^1,x^0\)</span> gives <span class="math inline">\(-2a_2=-2, \ (a_2=1), \ -2a_2-2a_1=0,\)</span>  <span class="math inline">\(\ (a_1=-1), \
+2a_2-a_1-2a_0=7, \ (a_0=-2).\)</span></p>
+<p>We have found <span class="math inline">\(y_{PI}=-2-x+x^2\)</span> and the general solution is <span class="math inline">\(y=y_{CF}+y_{PI}\)</span> ie.</p>
+<p><span class="math inline">\(y=Ae^{2 x}+Be^{-x}-2-x+x^2.\)</span><br />
+<span><em>Eg</em></span>. Solve  <span class="math inline">\(y&#39;&#39;+4y&#39;+4y=5e^{3x}.\)</span></p>
+<p>First find <span class="math inline">\(y_{CF}\)</span> by solving <span class="math inline">\(y&#39;&#39;+4y&#39;+4y=0.\)</span></p>
+<p><span class="math inline">\((Char)\)</span> is <span class="math inline">\(\lambda^2+4\lambda+4=0=(\lambda+2)^2\)</span> with <span class="math inline">\(\lambda=-2\)</span> repeated,</p>
+<p>hence <span class="math inline">\(y_{CF}=e^{-2x}(A+Bx).\)</span></p>
+<p>For <span class="math inline">\(y_{PI}\)</span> try <span class="math inline">\(y=a_1e^{3x}\)</span> so <span class="math inline">\(y&#39;=3a_1e^{3x}\)</span> and <span class="math inline">\(y&#39;&#39;=9a_1e^{3x}.\)</span> Put these into the ODE</p>
+<p><span class="math inline">\(9a_1e^{3x}+12a_1e^{3x}+4a_1e^{3x}=5e^{3x}=25a_1e^{3x}\)</span> so <span class="math inline">\(a_1=\frac{1}{5}\)</span> giving <span class="math inline">\(y_{PI}=\frac{1}{5}e^{3x}.\)</span></p>
+<p>The general solution is <span class="math inline">\(y=y_{CF}+y_{PI}\)</span> ie <span class="math inline">\(y=e^{-2x}(A+Bx)+\frac{1}{5}e^{3x}.\)</span><br />
+Eg. Solve  <span class="math inline">\(y&#39;&#39;-2y&#39;+2y=10\cos(2x).\)</span></p>
+<p>First find <span class="math inline">\(y_{CF}\)</span> by solving <span class="math inline">\(y&#39;&#39;-2y&#39;+2y=0.\)</span></p>
+<p><span class="math inline">\((Char)\)</span> is <span class="math inline">\(\lambda^2-2\lambda+2=0\)</span> with <span class="math inline">\(\lambda=1\pm i.\)</span> Hence <span class="math inline">\(y_{CF}=e^x(A\cos x+B\sin x).\)</span></p>
+<p>For <span class="math inline">\(y_{PI}\)</span> try <span class="math inline">\(y=a_1\cos(2x)+a_2\sin(2x)\)</span> so <span class="math inline">\(y&#39;=-2a_1\sin(2x)+2a_2\cos(2x)\)</span> and <span class="math inline">\(y&#39;&#39;=-4a_1\cos(2x)-4a_2\sin(2x).\)</span> Put these into the ODE <span class="math inline">\(y&#39;&#39;-2y&#39;+2y=
+-4a_1\cos(2x)-4a_2\sin(2x)-2(-2a_1\sin(2x)+2a_2\cos(2x))
++2(a_1\cos(2x)+a_2\sin(2x))=10\cos(2x)
+=
+(-2a_1-4a_2)\cos(2x)+(-2a_2+4a_1)\sin(2x).\)</span></p>
+<p>Comparing coefficients of <span class="math inline">\(\sin(2x)\)</span> and <span class="math inline">\(\cos(2x)\)</span> gives <span class="math inline">\(-2a_2+4a_1=0, \ (a_2=2a_1), \ -2a_1-4a_2=10, \ -10a_1=10, \ 
+(a_1=-1, \ a_2=-2).\)</span></p>
+<p>Thus <span class="math inline">\(y_{PI}=-\cos(2x)-2\sin(2x).\)</span></p>
+<p>The general solution is <span class="math inline">\(y=e^x(A\cos x+B\sin x)-\cos(2x)-2\sin(2x).\)</span><br />
+<span><em>Eg</em></span>. Solve  <span class="math inline">\(y&#39;&#39;-y&#39;-2y=6e^{-x}.\)</span></p>
+<p>From earlier we already know that <span class="math inline">\(y_{CF}=Ae^{2 x}+Be^{-x}.\)</span></p>
+<p>To find <span class="math inline">\(y_{PI}\)</span> we first think that we should try the form <span class="math inline">\(y=a_1e^{-x}\)</span> but note that this is contained in <span class="math inline">\(y_{CF}\)</span> so instead we try <span class="math inline">\(y=a_1xe^{-x}.\)</span> Then</p>
+<p><span class="math inline">\(y&#39;=a_1e^{-x}-a_1xe^{-x}\)</span> and <span class="math inline">\(y&#39;&#39;=-2a_1e^{-x}+a_1xe^{-x}.\)</span> Put into ODE</p>
+<p><span class="math inline">\(-2a_1e^{-x}+a_1xe^{-x}-(a_1e^{-x}-a_1xe^{-x})-2a_1xe^{-x}=6e^{-x}
+=-3a_1e^{-x}\)</span> so <span class="math inline">\(a_1=-2\)</span> and <span class="math inline">\(y_{PI}=-2xe^{-x}\)</span>.</p>
+<p>The general solution is <span class="math inline">\(y=Ae^{2 x}+Be^{-x}-2xe^{-x}.\)</span><br />
+Eg. Solve  <span class="math inline">\(y&#39;&#39;-y&#39;-2y=e^x(8\sin(3x)-14\cos(3x)).\)</span></p>
+<p>From earlier we already know that <span class="math inline">\(y_{CF}=Ae^{2 x}+Be^{-x}.\)</span></p>
+<p>For <span class="math inline">\(y_{PI}\)</span> try <span class="math inline">\(y=e^x(a_1\cos(3x)+a_2\sin(3x)).\)</span></p>
+<p>It is an exercise to show that <span class="math inline">\(a_1=1,\ a_2=-1.\)</span></p>
+<p>The general solution is then <span class="math inline">\(y=Ae^{2 x}+Be^{-x}
++e^x(\cos(3x)-\sin(3x)).\)</span><br />
+Eg. Solve  <span class="math inline">\(y&#39;&#39;-y&#39;-2y=-5+9x-2x^3+4\cos x+2\sin x.\)</span></p>
+<p>From earlier we already know that <span class="math inline">\(y_{CF}=Ae^{2 x}+Be^{-x}.\)</span></p>
+<p>For <span class="math inline">\(y_{PI}\)</span> try <span class="math inline">\(y=a_0+a_1x+a_2x^2+a_3x^3+a_4\cos x+a_5\sin x.\)</span></p>
+<p>It is an exercise to show that</p>
+<p><span class="math inline">\(a_0=1,\ a_1=0,\ a_2=-\frac{3}{2}, \
+a_3=1,\ a_4=-1,\ a_5=-1.\)</span></p>
+<p>The general solution is then <span class="math inline">\(y=Ae^{2 x}+Be^{-x}
++1-\frac{3}{2}x^2+x^3-\cos x-\sin x.\)</span><br />
+</p>
+</section>
+<section id="initial-and-boundary-value-problems" class="level2" data-number="1.3">
+<h2 data-number="7.3"><span class="header-section-number">7.3</span> Initial and boundary value problems</h2>
+<p>The values of the two arbitrary constants in the general solution of a second order ODE are fixed by specifying two extra requirements on the solution and/or its derivative.<br />
+An <span><strong>initial value problem</strong></span> (IVP) is when we require <span class="math inline">\(y(x_0)=y_0\)</span> and <span class="math inline">\(y&#39;(x_0)=\delta\)</span> for given constants <span class="math inline">\(x_0,y_0,\delta.\)</span> In this case the two constraints are given at the same value of the independent variable.<br />
+A <span><strong>boundary value problem</strong></span> (BVP) is when we require <span class="math inline">\(y(x_0)=y_0\)</span> and <span class="math inline">\(y(x_1)=y_1\)</span> for given constants <span class="math inline">\(x_0\ne x_1,y_0,y_1.\)</span> In this case the two constraints are given at two different values of the independent variable.<br />
+The way to solve an IVP or BVP is to first find the general solution of the ODE and then determine the values of the two constants in this solution so that the extra conditions are satisfied.<br />
+Eg. Solve the IVP <span class="math inline">\(y&#39;&#39;-y&#39;-2y=7-2x^2, \quad y(0)=5, \ y&#39;(0)=1.\)</span></p>
+<p>From earlier we already know that the general solution of the ODE is</p>
+<p><span class="math inline">\(y(x)=Ae^{2 x}+Be^{-x}-2-x+x^2.\)</span></p>
+<p>Therefore <span class="math inline">\(y(0)=A+B-2=5,\)</span> so  <span class="math inline">\(A+B=7.\)</span></p>
+<p>Now <span class="math inline">\(y&#39;(x)=2Ae^{2 x}-Be^{-x}-1+2x,\)</span> giving <span class="math inline">\(y&#39;(0)=2A-B-1=1,\)</span> so <span class="math inline">\(2A-B=2.\)</span></p>
+<p>The solution of these two equations for <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is <span class="math inline">\(A=3, \ B=4.\)</span></p>
+<p>Therefore the solution of the IVP is <span class="math inline">\(y=3e^{2 x}+4e^{-x}-2-x+x^2.\)</span><br />
+<span><em>Eg</em></span>. Solve the BVP <span class="math inline">\(4y&#39;&#39;+y=0, \quad y(0)=1, \ y(\pi)=2.\)</span></p>
+<p><span class="math inline">\((Char)\)</span> is <span class="math inline">\(4\lambda^2+1=0\)</span>  with roots <span class="math inline">\(\lambda=\pm \frac{i}{2}.\)</span></p>
+<p>The general solution is <span class="math inline">\(y=A\cos(\frac{x}{2})+B\sin(\frac{x}{2}).\)</span></p>
+<p><span class="math inline">\(y(0)=A=1\)</span> and <span class="math inline">\(y(\pi)=B=2.\)</span></p>
+<p>Hence the solution of the BVP is <span class="math inline">\(y=\cos(\frac{x}{2})+2\sin(\frac{x}{2}).\)</span><br />
+</p>
+</section>
+<section id="the-method-of-variation-of-parameters" class="level2" data-number="1.4">
+<h2 data-number="7.4"><span class="header-section-number">7.4</span> The method of variation of parameters</h2>
+<p>So far, the only method we have seen to construct a particular integral is the method of undetermined coefficients. As we have seen, this method only applies if the inhomogeneous term <span class="math inline">\(\phi\)</span> takes particular forms. In this section we consider a more general method to find a particular integral, known as the method of variation of parameters.<br />
+<span><strong>Defn.</strong></span> Given two differentiable functions, <span class="math inline">\(y_1(x),y_2(x),\)</span> we define the <span><strong>Wronskian</strong></span> to be <span class="math display">\[W(y_1,y_2)=\bigg|\begin{matrix} y_1 &amp; y_2 \\ y_1&#39; &amp; y_2&#39;\end{matrix}\bigg|
+=y_1y_2&#39;-y_2y_1&#39;.\]</span> It is obvious that if <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are linearly dependent then <span class="math inline">\(W(y_1,y_2)\)</span> is identically zero, that is, zero for all <span class="math inline">\(x.\)</span> Therefore, if <span class="math inline">\(W(y_1,y_2)\)</span> is not identically zero then this implies that <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are linearly independent.<br />
+The task at hand is to find a particular integral for the inhomogeneous ODE <span class="math inline">\((\dagger)\)</span>, <span class="math display">\[\alpha_2y&#39;&#39;+\alpha_1y&#39;+\alpha_0 y=\phi.\]</span> The starting point is to consider the two linearly independent solutions <span class="math inline">\(y_1,y_2\)</span> of the homogeneous version of the ODE <span class="math inline">\((\dagger\dagger)\)</span>. In other words <span class="math inline">\(y_{CF}=Ay_1+By_2.\)</span></p>
+<p>The method of variation of parameters is to look for a particular integral by replacing the constants in <span class="math inline">\(y_{CF}\)</span> by functions. Namely, a solution to <span class="math inline">\((\dagger)\)</span> is sought in the form <span class="math display">\[y=u_1y_1+u_2y_2\]</span> for functions <span class="math inline">\(u_1(x),u_2(x).\)</span> Given this form then <span class="math display">\[y&#39;=u_1&#39;y_1+u_2&#39;y_2+u_1y_1&#39;+u_2y_2&#39;.\]</span> The form we have chosen has two arbitrary functions and the ODE will only give one relation, hence we need to impose a second condition. This condition is chosen to be <span class="math display">\[u_1&#39;y_1+u_2&#39;y_2=0\]</span> so that the derivative now simplifies to <span class="math display">\[y&#39;=u_1y_1&#39;+u_2y_2&#39;.\]</span> Differentiating once more gives <span class="math display">\[y&#39;&#39;=u_1&#39;y_1&#39;+u_2&#39;y_2&#39;+u_1y_1&#39;&#39;+u_2y_2&#39;&#39;.\]</span> Putting these expressions into <span class="math inline">\((\dagger)\)</span> yields <span class="math display">\[\alpha_2(u_1&#39;y_1&#39;+u_2&#39;y_2&#39;+u_1y_1&#39;&#39;+u_2y_2&#39;&#39;)+\alpha_1(u_1y_1&#39;+u_2y_2&#39;)
++\alpha_0(u_1y_1+u_2y_2)=\phi.\]</span> Using the fact that both <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> solve <span class="math inline">\((\dagger\dagger)\)</span> simplifies the above equation to <span class="math display">\[\alpha_2(u_1&#39;y_1&#39;+u_2&#39;y_2&#39;)=\phi.\]</span> We now have two equations for the two unknown functions <span class="math inline">\(u_1&#39;,u_2&#39;\)</span> and this gives <span class="math display">\[u_1&#39;=-\frac{y_2\phi/\alpha_2}{W(y_1,y_2)},
+\qquad \qquad
+u_2&#39;=\frac{y_1\phi/\alpha_2}{W(y_1,y_2)},\]</span> which are solved by direct integration <span class="math display">\[u_1=-\int \frac{y_2\phi/\alpha_2}{W(y_1,y_2)}\,dx,
+\qquad \qquad
+u_2=\int\frac{y_1\phi/\alpha_2}{W(y_1,y_2)}\,dx.\]</span></p>
+<p>As a simple first example, we will apply the method of variation of parameters to find a particular integral that could also be found using the method of undetermined coefficients.<br />
+Eg. Solve <span class="math inline">\(y&#39;&#39;-y=e^{2x}.\)</span></p>
+<p>We have that <span class="math inline">\(y_{CF}=Ae^x+Be^{-x}\)</span> hence <span class="math inline">\(y_1=e^x\)</span> and <span class="math inline">\(y_2=e^{-x}.\)</span></p>
+<p><span class="math display">\[W(y_1,y_2)=\bigg|\begin{matrix} e^{x} &amp; e^{-x} \\ e^{x} &amp; -e^{-x}\end{matrix}\bigg|=-2.\]</span> Using the above formulae <span class="math display">\[u_1=-\int \frac{e^{-x}e^{2x}}{-2}\,dx=\int \frac{1}{2}e^x\,dx=\frac{1}{2}e^x.\]</span> <span class="math display">\[u_2=\int \frac{e^{x}e^{2x}}{-2}\,dx=\int \frac{-1}{2}e^{3x}\,dx=-\frac{1}{6}e^{3x}.\]</span> <span class="math display">\[y_{PI}=u_1y_1+u_2y_2=\frac{1}{2}e^{x}e^x-\frac{1}{6}e^{3x}e^{-x}=\frac{1}{3}e^{2x}.\]</span> <span class="math display">\[y=y_{CF}+y_{PI}=Ae^x+Be^{-x}+\frac{1}{3}e^{2x}.\]</span></p>
+<p>Note that if you don’t want to remember the formulae you can simply remember that the key step in the method is to remove the <span class="math inline">\(u_1&#39;,u_2&#39;\)</span> terms from <span class="math inline">\(y&#39;.\)</span></p>
+<p>Here is the same problem solved via this slightly longer way of proceeding.<br />
+<span class="math inline">\(y=u_1e^x+u_2e^{-x}\)</span> hence <span class="math inline">\(y&#39;=[u_1&#39;e^x+u_2&#39;e^{-x}]+u_1e^x-u_2e^{-x}\)</span><br />
+we set <span class="math inline">\([u_1&#39;e^x+u_2&#39;e^{-x}]=0\)</span> and differentiate <span class="math inline">\(y&#39;\)</span> again to get <span class="math inline">\(y&#39;&#39;=u_1&#39;e^x-u_2&#39;e^{-x}+u_1e^x+u_2e^{-x}.\)</span><br />
+Putting all the expressions into the ODE gives <span class="math inline">\(u_1&#39;e^x-u_2&#39;e^{-x}=e^{2x}.\)</span></p>
+<p>Adding and subtracting the two equations <span class="math inline">\(u_1&#39;e^x+u_2&#39;e^{-x}=0\)</span> and <span class="math inline">\(u_1&#39;e^x-u_2&#39;e^{-x}=e^{2x}\)</span>  yields</p>
+<p><span class="math inline">\(u_1&#39;=\frac{1}{2}e^x\)</span> and <span class="math inline">\(u_2&#39;=-\frac{1}{2}e^{3x}\)</span>, which are the same expressions as found above using the formulae.<br />
+Here is an example that needs the method of variation of parameters as the method of undetermined coefficients is inapplicable.<br />
+Eg. Solve <span class="math display">\[y&#39;&#39;-2y&#39;+y=\frac{e^x}{x^2+1}.\]</span> CF: (CHAR) <span class="math inline">\(\lambda^2-2\lambda+1=0=(\lambda-1)^2, \ y_{CF}=(A+Bx)e^x.\)</span><br />
+<span class="math inline">\(y_1=e^x, \ y_2=xe^x,\)</span> with <span class="math inline">\(W(y_1,y_2)=y_1y_2&#39;-y_2y_1&#39;=e^{2x}\)</span> <span class="math display">\[u_1=-\int \frac{e^x}{x^2+1}\frac{xe^x}{e^{2x}}\, dx
+=-\int \frac{x}{x^2+1}\,dx
+=-\frac{1}{2}\log(x^2+1)\]</span> <span class="math display">\[u_2=\int \frac{e^x}{x^2+1}\frac{e^x}{e^{2x}}\, dx
+=\int \frac{1}{x^2+1}\,dx
+=\tan^{-1}x\]</span> <span class="math inline">\(y_{PI}=-\frac{1}{2}e^x\log(x^2+1)+xe^x\tan^{-1}x\)</span><br />
+<span class="math inline">\(y=y_{CF}+y_{PI}=(A+Bx)e^x-\frac{1}{2}e^x\log(x^2+1)+xe^x\tan^{-1}x\)</span><br />
+</p>
+</section>
+<section id="systems-of-first-order-linear-odes" class="level2" data-number="1.5">
+<h2 data-number="7.5"><span class="header-section-number">7.5</span> Systems of first order linear ODEs</h2>
+<p>A system of <span class="math inline">\(n\)</span> coupled first order linear ODEs for <span class="math inline">\(n\)</span> dependent variables can be written as a single <span class="math inline">\(n^{th}\)</span> order linear ODE for a single dependent variable by eliminating the other dependent variables. An associated IVP is obtained if all the values of the dependent variables are specified at a single value of the independent variable.<br />
+Eg. Find the solution <span class="math inline">\(y(x),z(x)\)</span> of the pair of first order linear ODEs</p>
+<p> <span class="math inline">\(y&#39;=-y+z+x^2, \quad z&#39;=-8y+5z+8x^2-7x+1,\)</span>  </p>
+<p>satisfying the initial condition <span class="math inline">\(y(0)=2,\ z(0)=0.\)</span><br />
+We solve by first finding a second order ODE for <span class="math inline">\(y(x).\)</span></p>
+<p>From the first equation  <span class="math inline">\(z=y&#39;+y-x^2\)</span>  hence <span class="math inline">\(z&#39;=y&#39;&#39;+y&#39;-2x.\)</span></p>
+<p>Substituting these expressions into the second equation gives</p>
+<p><span class="math inline">\(y&#39;&#39;+y&#39;-2x=-8y+5(y&#39;+y-x^2)+8x^2-7x+1\)</span></p>
+<p>ie. the second order ODE <span class="math inline">\(y&#39;&#39;-4y&#39;+3y=3x^2-5x+1\)</span></p>
+<p>We can now solve this ODE using our earlier methods.</p>
+<p><span class="math inline">\((Char)\)</span> is <span class="math inline">\(\lambda^2-4\lambda+3=0=(\lambda-3)(\lambda-1)\)</span>  with roots  <span class="math inline">\(\lambda=1,3.\)</span> Hence <span class="math inline">\(y_{CF}=Ae^x+Be^{3x}\)</span></p>
+<p>For <span class="math inline">\(y_{PI}\)</span> try <span class="math inline">\(y=a_0+a_1x+a_2x^2\)</span> to give</p>
+<p><span class="math inline">\(y&#39;&#39;-4y&#39;+3y=2a_2-4(a_1+2a_2x)+3(a_0+a_1x+a_2x^2)=3a_2x^2+(3a_1-8a_2)x+2a_2-4a_1+3a_0=3x^2-5x+1\)</span></p>
+<p>Comparing coefficients gives the solution <span class="math inline">\(a_2=1, \ a_1=1, \ a_0=1.\)</span></p>
+<p>The general solution for <span class="math inline">\(y\)</span> is therefore <span class="math inline">\(y=Ae^x+Be^{3x}+x^2+x+1\)</span></p>
+<p>To obtain <span class="math inline">\(z\)</span> we use the earlier relation <span class="math inline">\(z=y&#39;+y-x^2=2Ae^x+4Be^{3x}+3x+2.\)</span></p>
+<p>We now have the general solution for both <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>.</p>
+<p>From the general solution  <span class="math inline">\(y(0)=A+B+1=2\)</span>  and <span class="math inline">\(z(0)=2A+4B+2=0\)</span> with solution <span class="math inline">\(A=3,\ B=-2.\)</span></p>
+<p>Hence the solution of the IVP is <span class="math inline">\(y=3e^x-2e^{3x}+x^2+x+1,\)</span> <span class="math inline">\(z=6e^x-8e^{3x}+3x+2.\)</span><br />
+</p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

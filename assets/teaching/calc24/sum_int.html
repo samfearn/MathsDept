@@ -1,0 +1,93 @@
+<!DOCTYPE html><html prefix="dcterms: http://purl.org/dc/terms/">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.6 Summary: Integration</title>
+<!--Generated on Sat Dec 24 13:37:28 2022 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://samfearn.github.io/latexml.min.css">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<section id="S4.SS6" class="ltx_subsection">
+<h2 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.6 </span>Summary: Integration</h2>
+
+<div id="S4.SS6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You should have a good understanding of the definitions of indefinite and definite integrals, and how they are related via the Fundamental Theorem of Calculus.
+You should also know how to use methods to calculate integrals such as integration by parts, recurrence relations and simplifications by considering even and odd (parts of) functions integrated over an interval symmetric about <math id="S4.SS6.p1.m1" class="ltx_Math" alttext="x=0" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>.
+Here are some key points:</p>
+</div>
+<div id="S4.SS6.p2" class="ltx_para ltx_noindent">
+<ul id="S4.I1" class="ltx_itemize">
+<li id="S4.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S4.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A function <math id="S4.I1.i1.p1.m1" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> is an <span class="ltx_text ltx_font_italic">indefinite integral</span> or <span class="ltx_text ltx_font_italic">antiderivative</span> of a function <math id="S4.I1.i1.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> if the derivative of <math id="S4.I1.i1.p1.m3" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> is <math id="S4.I1.i1.p1.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, i.e. if <math id="S4.I1.i1.p1.m5" class="ltx_Math" alttext="F^{\prime}(x)=f(x)" display="inline"><mrow><mrow><msup><mi>F</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. Note that for a given <math id="S4.I1.i1.p1.m6" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, <math id="S4.I1.i1.p1.m7" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> is not unique, but is fixed up to an <span class="ltx_text ltx_font_italic">integration constant</span>.</p>
+</div>
+</li>
+<li id="S4.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S4.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">definite integral</span> of <math id="S4.I1.i2.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> over an interval <math id="S4.I1.i2.p1.m2" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math> is the area under
+the graph of <math id="S4.I1.i2.p1.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> over this interval and can be defined as a limit of <span class="ltx_text ltx_font_italic">Riemann
+sums</span>. When this limit exists we say <math id="S4.I1.i2.p1.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is <span class="ltx_text ltx_font_italic">integrable</span> on <math id="S4.I1.i2.p1.m5" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math> (and if <math id="S4.I1.i2.p1.m6" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>
+is continuous on <math id="S4.I1.i2.p1.m7" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math> then it is integrable on <math id="S4.I1.i2.p1.m8" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>) and we denote
+the integral by <math id="S4.I1.i2.p1.m9" class="ltx_Math" alttext="\int_{a}^{b}f(x)dx" display="inline"><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>x</mi></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S4.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S4.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">Fundamental theorem of calculus</span> says that if we define
+<math id="S4.I1.i3.p1.m1" class="ltx_Math" alttext="F(x)=\int_{a}^{x}f(t)dt" display="inline"><mrow><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mi>a</mi><mi>x</mi></msubsup><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>t</mi></mrow></mrow></mrow></mrow></math> then <math id="S4.I1.i3.p1.m2" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> is an antiderivative of <math id="S4.I1.i3.p1.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, i.e. <math id="S4.I1.i3.p1.m4" class="ltx_Math" alttext="F^{\prime}(x)=\frac{d}{dx}\int_{a}^{x}f(t)dt=f(x)" display="inline"><mrow><mrow><msup><mi>F</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mfrac><mi>d</mi><mrow><mi>d</mi><mo>⁢</mo><mi>x</mi></mrow></mfrac><mo>⁢</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mi>a</mi><mi>x</mi></msubsup><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo rspace="0pt">𝑑</mo><mi>t</mi></mrow></mrow></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S4.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S4.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You should know the definition of <span class="ltx_text ltx_font_italic">even</span> and <span class="ltx_text ltx_font_italic">odd functions</span> and that any
+function <math id="S4.I1.i4.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> can be uniquely split into its even and odd parts <math id="S4.I1.i4.p1.m2" class="ltx_Math" alttext="f=f_{even}+f_{odd}" display="inline"><mrow><mi>f</mi><mo>=</mo><mrow><msub><mi>f</mi><mrow><mi>e</mi><mo>⁢</mo><mi>v</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><mi>n</mi></mrow></msub><mo>+</mo><msub><mi>f</mi><mrow><mi>o</mi><mo>⁢</mo><mi>d</mi><mo>⁢</mo><mi>d</mi></mrow></msub></mrow></mrow></math>. The integral of any odd function over <math id="S4.I1.i4.p1.m3" class="ltx_Math" alttext="[-a,a]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mo>-</mo><mi>a</mi></mrow><mo>,</mo><mi>a</mi><mo stretchy="false">]</mo></mrow></math> is zero and the
+integral of any even function over <math id="S4.I1.i4.p1.m4" class="ltx_Math" alttext="[-a,a]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mo>-</mo><mi>a</mi></mrow><mo>,</mo><mi>a</mi><mo stretchy="false">]</mo></mrow></math> is twice the integral of that
+function over <math id="S4.I1.i4.p1.m5" class="ltx_Math" alttext="[0,a]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mi>a</mi><mo stretchy="false">]</mo></mrow></math>.
+</p>
+</div>
+</li>
+<li id="S4.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S4.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Sometimes we have a family of definite or indefinite integrals
+parametrised by <math id="S4.I1.i5.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> which we can denote <math id="S4.I1.i5.p1.m2" class="ltx_Math" alttext="I_{n}" display="inline"><msub><mi>I</mi><mi>n</mi></msub></math>. If we can find a <span class="ltx_text ltx_font_italic">recurrence
+relation</span> relating the integrals for different values of <math id="S4.I1.i5.p1.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, we can use this to
+calculate <math id="S4.I1.i5.p1.m4" class="ltx_Math" alttext="I_{n}" display="inline"><msub><mi>I</mi><mi>n</mi></msub></math>. E.g. if we can determine <math id="S4.I1.i5.p1.m5" class="ltx_Math" alttext="I_{n+1}" display="inline"><msub><mi>I</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></math> in terms of <math id="S4.I1.i5.p1.m6" class="ltx_Math" alttext="I_{n}" display="inline"><msub><mi>I</mi><mi>n</mi></msub></math> and
+we can calculate <math id="S4.I1.i5.p1.m7" class="ltx_Math" alttext="I_{1}" display="inline"><msub><mi>I</mi><mn>1</mn></msub></math> then the recurrence relation determines <math id="S4.I1.i5.p1.m8" class="ltx_Math" alttext="I_{n}" display="inline"><msub><mi>I</mi><mi>n</mi></msub></math> for all
+<math id="S4.I1.i5.p1.m9" class="ltx_Math" alttext="n\in\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow></math>.</p>
+</div>
+</li>
+<li id="S4.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S4.I1.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">This section also contained some results for limits which are summarised
+as “<span class="ltx_text ltx_font_italic">exponentials beat powers beat logs</span>” as <math id="S4.I1.i6.p1.m1" class="ltx_Math" alttext="x\to\infty" display="inline"><mrow><mi>x</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow></math>. We also saw that
+<math id="S4.I1.i6.p1.m2" class="ltx_Math" alttext="\lim_{y\to\infty}\left(1+\frac{x}{y}\right)^{y}=e^{x}" display="inline"><mrow><mrow><msub><mo>lim</mo><mrow><mi>y</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow></msub><mo>⁡</mo><msup><mrow><mo>(</mo><mrow><mn>1</mn><mo>+</mo><mfrac><mi>x</mi><mi>y</mi></mfrac></mrow><mo>)</mo></mrow><mi>y</mi></msup></mrow><mo>=</mo><msup><mi>e</mi><mi>x</mi></msup></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+</section><div class="ltx_rdf" about="" property="dcterms:language" content="en-GB"></div>
+<div class="ltx_rdf" about="" property="dcterms:title" content="allnotes"></div>
+
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Sat Dec 24 13:37:28 2022 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

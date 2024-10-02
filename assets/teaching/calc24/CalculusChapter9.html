@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Original notes produced by Paul Sutcliffe" />
+  <title>Calculus I Michaelmas Term</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Calculus I<br />
+Michaelmas Term</p></h1>
+<p class="author">Sam Fearn<br />
+Original notes produced by Paul Sutcliffe</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#fourier-series"><span class="toc-section-number">9</span> Fourier series</a>
+<ul>
+<li><a href="#fourier-coefficients"><span class="toc-section-number">9.1</span> Fourier coefficients</a></li>
+<li><a href="#examples-of-fourier-series"><span class="toc-section-number">9.2</span> Examples of Fourier series</a></li>
+<li><a href="#parsevals-theorem"><span class="toc-section-number">9.3</span> Parseval’s theorem</a></li>
+<li><a href="#half-range-fourier-series"><span class="toc-section-number">9.4</span> Half range Fourier series</a></li>
+<li><a href="#fourier-series-in-complex-form"><span class="toc-section-number">9.5</span> Fourier series in complex form</a></li>
+<li><a href="#summary-fourier-series"><span class="toc-section-number">9.6</span> Summary: Fourier Series</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="fourier-series" class="level1" data-number="1">
+<h1 data-number="9"><span class="header-section-number">9</span> Fourier series</h1>
+<section id="fourier-coefficients" class="level2" data-number="1.1">
+<h2 data-number="9.1"><span class="header-section-number">9.1</span> Fourier coefficients</h2>
+<p>In our study of Taylor series and Taylor polynomials we have seen how to write and approximate functions in terms of polynomials. If the function we are interested in is periodic, then it is more appropriate to use trigonometric functions rather than polynomials. This is the topic of Fourier series, which are important in a wide range of areas and applications. In particular, they play a vital role in the solution of certain partial differential equations.<br />
+Consider a function <span class="math inline">\(f(x)\)</span> of period <span class="math inline">\(2L\)</span> which is given on the interval <span class="math inline">\((-L,L).\)</span> The functions <span class="math inline">\(\cos \frac{n\pi x}{L}\)</span> and <span class="math inline">\(\sin \frac{n\pi x}{L},\)</span> with <span class="math inline">\(n\)</span> any positive integer, are also periodic with period <span class="math inline">\(2L.\)</span> It therefore seems reasonable to try and write <span class="math inline">\(f(x)\)</span> in terms of these trigonometric functions. Note that a constant is trivially a periodic function (for any period) so we can also include a constant term. We therefore aim to write <span class="math display">\[f(x)=\frac{a_0}{2}+\sum_{n=1}^\infty \bigg(
+a_n \cos \frac{n\pi x}{L}
++b_n \sin \frac{n\pi x}{L}\bigg)
+\hskip 3cm (FS)\]</span> where <span class="math inline">\(a_0,a_n,b_n\)</span> are constants labelled by the positive integer <span class="math inline">\(n,\)</span> and are called the <span><strong>Fourier coefficients</strong></span> of <span class="math inline">\(f(x).\)</span> (It is just a convenient notation to call the constant term <span class="math inline">\(a_0/2.\)</span>). If these Fourier coefficients are such that this series converges then it is called the <span><strong>Fourier series</strong></span> of <span class="math inline">\(f(x).\)</span><br />
+Eg. The function <span class="math inline">\(f(x)=2\cos^2\frac{\pi x}{L}+3\sin\frac{\pi x}{L}\)</span> has period <span class="math inline">\(2L.\)</span></p>
+<p>Its Fourier series contains only a finite number of terms as</p>
+<p><span class="math inline">\(2\cos^2\frac{\pi x}{L}+3\sin\frac{\pi x}{L}
+=1+\cos\frac{2\pi x}{L}+3\sin\frac{\pi x}{L}.\)</span></p>
+<p>Therefore <span class="math inline">\(a_0=2,\ a_2=1,\ b_1=3,\)</span> and all the other Fourier coefficients are zero.</p>
+<p> </p>
+<p>In general an infinite number of Fourier coefficients may be non-zero and we need a method to determine these from the given function <span class="math inline">\(f(x).\)</span></p>
+<p>In order to derive formulae for the Fourier coefficients we first need to prove some identities for integrals of trigonometric functions.</p>
+<p>In the following let <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> be positive integers.<br />
+<span class="math display">\[\begin{aligned}
+&amp;(i)\quad\quad&amp; \int _{-L}^{L} \cos \frac{n\pi x}{L}\,dx =0.\\
+&amp;(ii)\quad\quad&amp; \int _{-L}^{L} \sin \frac{n\pi x}{L}\,dx =0.\\
+&amp;(iii)\quad\quad&amp; \int _{-L}^{L} \sin \frac{m\pi x}{L}\,\cos \frac{n\pi x}{L}\,dx =0.\\
+&amp;(iv)\quad\quad&amp; \frac{1}{L}\int _{-L}^{L} \cos \frac{m\pi x}{L}\,\cos \frac{n\pi x}{L}\,dx =\begin{cases}
+0&amp; \text{if \ $m\ne n$}\\
+1&amp; \text{if \ $m=n.$}\\
+\end{cases}\\
+&amp;(v)\quad\quad&amp; \frac{1}{L}\int _{-L}^{L} \sin \frac{m\pi x}{L}\,\sin \frac{n\pi x}{L}\,dx =\begin{cases}
+0&amp; \text{if \ $m\ne n$}\\
+1&amp; \text{if \ $m=n.$}\\
+\end{cases}\end{aligned}\]</span> The expression that occurs on the right hand side of the last two formulae arises so often that it is useful to introduce a shorthand notation for this. The Kronecker delta <span class="math inline">\(\delta_{mn}\)</span> is defined to be <span class="math display">\[\delta_{mn}=\begin{cases}
+0&amp; \text{if \ $m\ne n$}\\
+1&amp; \text{if \ $m=n.$}\\
+\end{cases}\]</span> So, for example, we may write <span class="math inline">\(\frac{1}{L}\int _{-L}^{L} \sin \frac{m\pi x}{L}\,\sin \frac{n\pi x}{L}\,dx =
+\delta_{mn}.\)</span><br />
+It is trivial to prove <span class="math inline">\((i):\)</span> <span class="math inline">\(\int _{-L}^{L} \cos \frac{n\pi x}{L}\,dx= 
+\bigg[\frac{L}{n\pi}\sin \frac{n\pi x}{L}\bigg]^L_{-L}=
+\frac{2L}{n\pi}\sin(n\pi)=0.\)</span></p>
+<p><span class="math inline">\((ii)\)</span> and <span class="math inline">\((iii)\)</span> are true by inspection, as they are both integrals of odd functions over a symmetric interval.</p>
+<p>We can prove <span class="math inline">\((iv)\)</span> and <span class="math inline">\((v)\)</span> by using <span class="math inline">\(\cos(x\pm y)=\cos x \cos y\mp \sin x \sin y.\)</span></p>
+<p>First assume <span class="math inline">\(m\ne n\)</span> then <span class="math display">\[\frac{1}{L}\int _{-L}^{L} \cos \frac{m\pi x}{L}\,\cos \frac{n\pi x}{L}\,dx 
+%$\cos \frac{m\pi x}{L}\,\cos \frac{n\pi x}{L}
+=\frac{1}{2L}\int _{-L}^{L} \bigg(\cos \frac{(m-n)\pi x}{L}+\cos \frac{(m+n)\pi x}{L}\bigg)\,dx\]</span> <span class="math display">\[=
+\frac{1}{2\pi}\bigg[\frac{1}{m-n}\sin\frac{(m-n)\pi x}{L}
++\frac{1}{m+n}\sin\frac{(m+n)\pi x}{L}\bigg]^L_{-L}
+=0.\]</span> Now if <span class="math inline">\(m=n\)</span> <span class="math display">\[\frac{1}{L}\int _{-L}^{L} \cos \frac{m\pi x}{L}\,\cos \frac{n\pi x}{L}\,dx 
+=\frac{1}{2L}\int _{-L}^{L}\bigg(1+\cos \frac{2n\pi x}{L}\bigg)\,dx
+%$$ $$
+=\frac{1}{2L}\bigg[x+\frac{L}{2n\pi}\sin \frac{2n\pi x}{L}\bigg]^L_{-L}
+=1.\]</span> This proves <span class="math inline">\((iv)\)</span> and a similar calculation (exercise) proves <span class="math inline">\((v).\)</span><br />
+We say that the set of functions <span class="math inline">\(\{1,\cos \frac{n\pi x}{L},
+\sin \frac{n\pi x}{L}\}\)</span> form an <span><strong>orthogonal set</strong></span> on <span class="math inline">\([-L,L]\)</span> because if <span class="math inline">\(\phi,\psi\)</span> are any two <span><em>different</em></span> functions from this set then <span class="math inline">\(\frac{1}{L}\int _{-L}^{L} \phi\psi\,dx=0.\)</span><br />
+We now use the identities <span class="math inline">\((i),..,(v)\)</span> to derive expressions for the Fourier coefficients in <span class="math inline">\((FS).\)</span></p>
+<p>First of all, by integrating <span class="math inline">\((FS)\)</span> we have <span class="math display">\[\frac{1}{L}\int _{-L}^{L} f(x)\,dx
+=\frac{1}{L}\int _{-L}^{L} \bigg\{
+\frac{a_0}{2}+\sum_{n=1}^\infty \bigg(
+a_n \cos \frac{n\pi x}{L}
++b_n \sin \frac{n\pi x}{L}\bigg)
+\bigg\}\,dx=a_0\]</span> using <span class="math inline">\((i)\)</span> and <span class="math inline">\((ii).\)</span> Thus we have derived an expression for <span class="math inline">\(a_0\)</span> <span class="math display">\[a_0=\frac{1}{L}\int _{-L}^{L} f(x)\,dx.\]</span> Let <span class="math inline">\(m\)</span> be a positive integer and multiply <span class="math inline">\((FS)\)</span> by <span class="math inline">\(\cos\frac{m\pi x}{L}\)</span> and integrate to give <span class="math display">\[\frac{1}{L}\int _{-L}^{L} \cos\frac{m\pi x}{L}f(x)\,dx
+=\frac{1}{L}\int _{-L}^{L} \bigg\{
+\frac{a_0}{2}+\sum_{n=1}^\infty \bigg(
+a_n \cos \frac{n\pi x}{L}
++b_n \sin \frac{n\pi x}{L}\bigg)
+\bigg\}\cos\frac{m\pi x}{L}
+\,dx\]</span> <span class="math display">\[=\sum_{n=1}^\infty a_n\delta_{mn}=a_m,
+\quad\quad\quad \mbox{where we have used the identities\ } (i),(iii),(iv).\]</span> Thus we have derived an expression for <span class="math inline">\(a_n\)</span> <span class="math display">\[a_n=\frac{1}{L}\int _{-L}^{L} \cos\frac{n\pi x}{L}f(x)\,dx.\]</span> Note that if we extend this relation to <span class="math inline">\(n=0\)</span> then it reproduces the correct expression given above for <span class="math inline">\(a_0.\)</span><br />
+Similarly, multiply <span class="math inline">\((FS)\)</span> by <span class="math inline">\(\sin\frac{m\pi x}{L}\)</span> and integrate to give <span class="math display">\[\frac{1}{L}\int _{-L}^{L} \sin\frac{m\pi x}{L}f(x)\,dx
+=\frac{1}{L}\int _{-L}^{L} \bigg\{
+\frac{a_0}{2}+\sum_{n=1}^\infty \bigg(
+a_n \cos \frac{n\pi x}{L}
++b_n \sin \frac{n\pi x}{L}\bigg)
+\bigg\}\sin\frac{m\pi x}{L}
+\,dx\]</span> <span class="math display">\[=\sum_{n=1}^\infty b_n\delta_{mn}=b_m,
+\quad\quad\quad \mbox{where we have used the identities\ } (ii),(iii),(v).\]</span> Thus we have derived an expression for <span class="math inline">\(b_n\)</span> <span class="math display">\[b_n=\frac{1}{L}\int _{-L}^{L} \sin\frac{n\pi x}{L}f(x)\,dx.\]</span></p>
+</section>
+<section id="examples-of-fourier-series" class="level2" data-number="1.2">
+<h2 data-number="9.2"><span class="header-section-number">9.2</span> Examples of Fourier series</h2>
+<p>Eg. The function <span class="math inline">\(f(x)\)</span> has period 2, that is <span class="math inline">\(f(x+2)=f(x),\)</span> and is given by <span class="math inline">\(f(x)=|x|\)</span> for <span class="math inline">\(-1&lt;x&lt;1.\)</span> The graph of this function is shown in Figure <a href="#fig-fouriermodx" data-reference-type="ref" data-reference="fig-fouriermodx">1</a>.</p>
+<div class="center">
+<p><img src="new_fouriermodx.png" id="fig-fouriermodx" style="width:8cm" alt="image" /> <span id="fig-fouriermodx" label="fig-fouriermodx">[fig-fouriermodx]</span></p>
+</div>
+<p>To calculate the Fourier series of this function we apply the earlier formulae with <span class="math inline">\(L=1.\)</span></p>
+<p><span class="math inline">\(a_0=\int_{-1}^1 |x|\,dx=2\int_0^1 x\,dx=\bigg[x^2\bigg]^1_0=1.\)</span></p>
+<p>For <span class="math inline">\(n&gt;0\)</span> <span class="math display">\[a_n=\int_{-1}^1 |x|\cos(n\pi x)\,dx=2\int_0^1 x\cos(n\pi x)\,dx\]</span> <span class="math display">\[=2\bigg\{
+\bigg[\frac{x}{n\pi}\sin(n\pi x)\bigg]_0^1-\int_0^1\frac{1}{n\pi}\sin(n\pi x)\,dx\bigg\}
+=\frac{2}{n^2\pi^2}\bigg[\cos(n\pi x)\bigg]_0^1\]</span> <span class="math display">\[=\frac{2}{n^2\pi^2}(\cos(n\pi)-1)
+=\frac{2}{n^2\pi^2}((-1)^n-1).\]</span> Furthermore, for <span class="math inline">\(n&gt;0\)</span> <span class="math display">\[b_n=\int_{-1}^1 |x|\sin(n\pi x)\,dx=0\]</span> because this is the integral of an odd function over a symmetric interval.<br />
+This demonstrates a general point that if <span class="math inline">\(f(x)\)</span> is an even function on the interval <span class="math inline">\((-L,L)\)</span> then all <span class="math inline">\(b_n=0\)</span> and the Fourier series contains only cosine terms (plus a constant term). This is called a cosine series.<br />
+Putting all this together we have the Fourier (cosine) series <span class="math display">\[f(x)=\frac{1}{2}+\sum_{n=1}^\infty \frac{2}{n^2\pi^2}((-1)^{n}-1)\cos(n\pi x)\]</span> <span class="math display">\[=\frac{1}{2}-\frac{4}{\pi^2}\bigg(
+\cos(\pi x)+\frac{1}{9}\cos(3\pi x)+\frac{1}{25}\cos(5\pi x)
++\cdots
+\bigg)\]</span> Note that in this example <span class="math inline">\(a_{2n}=0\)</span> and <span class="math inline">\(a_{2n-1}=-\frac{4}{\pi^2(2n-1)^2},\)</span> so this Fourier (cosine) series could also be written as <span class="math display">\[f(x)=\frac{1}{2}-\frac{4}{\pi^2}\sum_{n=1}^\infty 
+\frac{\cos((2n-1)\pi x)}{(2n-1)^2}.\]</span> </p>
+<p>To see how the Fourier series approaches the function <span class="math inline">\(f(x)\)</span> define the <span><strong>partial sum</strong></span> <span class="math display">\[S_m(x)=\frac{a_0}{2}+\sum_{n=1}^m \bigg(
+a_n \cos \frac{n\pi x}{L}
++b_n \sin \frac{n\pi x}{L}\bigg).\]</span> In this example, <span class="math inline">\(S_1(x)=\frac{1}{2}-\frac{4}{\pi^2}\cos(\pi x),
+\quad  S_3(x)=\frac{1}{2}-\frac{4}{\pi^2}(\cos(\pi x)+\frac{1}{9}\cos(3\pi x)),\)</span></p>
+<p><span class="math inline">\(S_5(x)=\frac{1}{2}-\frac{4}{\pi^2}(\cos(\pi x)+\frac{1}{9}\cos(3\pi x)+\frac{1}{25}\cos(5\pi x)),\)</span>  etc.<br />
+In Figure <a href="#fig-fouriermodx2" data-reference-type="ref" data-reference="fig-fouriermodx2">4</a> we plot the graph of <span class="math inline">\(f(x)\)</span> together with the partial sums <span class="math inline">\(S_1(x),S_5(x),S_{11}(x).\)</span></p>
+<p>This helps to demonstrate that, in this case, <span class="math inline">\(\lim_{m\rightarrow\infty}S_m(x)=f(x).\)</span><br />
+</p>
+<div class="center">
+<p><img src="new_fouriermodx01.png" title="fig:" id="fig-fouriermodx2" style="width:5cm" alt="The graph of f(x)=|x| for -1&lt;x&lt;1, together with the partial sums S_1(x),S_5(x),S_{11}(x). " /> <img src="new_fouriermodx05.png" title="fig:" id="fig-fouriermodx2" style="width:5cm" alt="The graph of f(x)=|x| for -1&lt;x&lt;1, together with the partial sums S_1(x),S_5(x),S_{11}(x). " /> <img src="new_fouriermodx11.png" title="fig:" id="fig-fouriermodx2" style="width:5cm" alt="The graph of f(x)=|x| for -1&lt;x&lt;1, together with the partial sums S_1(x),S_5(x),S_{11}(x). " /></p>
+</div>
+<p>Eg. The function <span class="math inline">\(f(x)\)</span> has period <span class="math inline">\(2\pi\)</span> and is given by <span class="math inline">\(f(x)=x\)</span> for <span class="math inline">\(-\pi&lt;x&lt;\pi.\)</span></p>
+<p>Calculate the Fourier series of <span class="math inline">\(f(x).\)</span><br />
+The graph of this function is shown in Figure <a href="#fig-fourierx" data-reference-type="ref" data-reference="fig-fourierx">5</a>. Note that the function is not continuous at the points <span class="math inline">\(x=(2p+1)\pi,
+\ \ p\in\mathbb{Z},\)</span> where there are jump discontinuities.</p>
+<div class="center">
+<figure>
+<img src="new_fourierx.png" id="fig-fourierx" style="width:5cm" alt="" /><figcaption>The graph of <span class="math inline">\(f(x)=x\)</span> for <span class="math inline">\(-\pi&lt;x&lt;\pi,\)</span> with period <span class="math inline">\(2\pi.\)</span></figcaption>
+</figure>
+</div>
+<p>We apply the earlier formulae with <span class="math inline">\(L=\pi.\)</span> For <span class="math inline">\(n\ge 0\)</span> <span class="math display">\[a_n=\frac{1}{\pi}\int _{-\pi}^{\pi} x\cos(n x)\,dx=0\]</span> because this is the integral of an odd function over a symmetric interval.<br />
+This demonstrates a general point that if <span class="math inline">\(f(x)\)</span> is an odd function on the interval <span class="math inline">\((-L,L)\)</span> then all <span class="math inline">\(a_n=0\)</span> and the Fourier series contains only sine functions. This is called a sine series.<br />
+For <span class="math inline">\(n&gt;0\)</span> <span class="math display">\[b_n=\frac{1}{\pi}\int _{-\pi}^{\pi} x\sin(n x)\,dx
+=\frac{1}{\pi}\bigg\{\bigg[-\frac{x}{n}\cos(nx)\bigg]^\pi_{-\pi}
++\int _{-\pi}^{\pi}\frac{1}{n}\cos(nx)\,dx
+\bigg\}\]</span> <span class="math display">\[=\frac{1}{\pi}\bigg\{-\frac{2\pi}{n}\cos(n\pi)
++\bigg[\frac{1}{n^2}\sin(nx)\bigg]^\pi_{-\pi}
+\bigg\}
+=-\frac{2}{n}\cos(n\pi)=-\frac{2}{n}(-1)^n=\frac{2}{n}(-1)^{n+1}.\]</span> Putting all this together we have the Fourier (sine) series <span class="math display">\[f(x)=\sum_{n=1}^\infty \frac{2}{n}(-1)^{n+1}\sin(nx)
+=2\bigg(
+\sin x-\frac{1}{2}\sin(2x)+\frac{1}{3}\sin(3x)-\frac{1}{4}\sin(4x)+\cdots
+\bigg)\]</span></p>
+<div class="center">
+<p><img src="new_fourier01.png" title="fig:" id="fig-fourierm" style="width:5cm" alt="The graph of f(x)=x for -\pi&lt;x&lt;\pi, together with the graphs of the partial sums S_1(x),S_6(x),S_{50}(x)." /> <img src="new_fourier06.png" title="fig:" id="fig-fourierm" style="width:5cm" alt="The graph of f(x)=x for -\pi&lt;x&lt;\pi, together with the graphs of the partial sums S_1(x),S_6(x),S_{50}(x)." /> <img src="new_fourier50.png" title="fig:" id="fig-fourierm" style="width:5cm" alt="The graph of f(x)=x for -\pi&lt;x&lt;\pi, together with the graphs of the partial sums S_1(x),S_6(x),S_{50}(x)." /></p>
+</div>
+<p>In Figure <a href="#fig-fourierm" data-reference-type="ref" data-reference="fig-fourierm">8</a> we plot the graph of <span class="math inline">\(f(x)=x\)</span> for <span class="math inline">\(-\pi&lt;x&lt;\pi,\)</span> together with the graphs of the partial sums <span class="math inline">\(S_1(x),S_6(x),S_{50}(x).\)</span></p>
+<p>These graphs demonstrate that as more terms of the Fourier series are included it becomes an increasingly accurate approximation to <span class="math inline">\(f(x)\)</span> inside the interval <span class="math inline">\(x\in(-\pi,\pi).\)</span> However, notice what happens at the points <span class="math inline">\(x=\pm \pi,\)</span> where <span class="math inline">\(f(x)\)</span> is not continuous. At these points the Fourier series converges to 0, which is the midpoint of the jump. Note the oscillations around the point of discontinuity, where the Fourier series under/overshoots. This is called the Gibbs phenomenon and the amount of under/overshoot tends to a constant (in fact about <span class="math inline">\(9\%\)</span>) rather than dying away as more terms are included, but the under/overshoot region becomes more localized. In the limit of an infinite number of terms the undershoot and overshoot occur at exactly the same point and cancel each other out.<br />
+In general, we would like to know what happens to the <span>partial sum</span> <span class="math display">\[S_m(x)=\frac{a_0}{2}+\sum_{n=1}^m \bigg(
+a_n \cos \frac{n\pi x}{L}
++b_n \sin \frac{n\pi x}{L}\bigg)\]</span> for all values of <span class="math inline">\(x\)</span> in the limit as <span class="math inline">\(m\rightarrow\infty,\)</span> and how this is related to <span class="math inline">\(f(x).\)</span> The following theorem provides an answer.<br />
+<span><strong>Dirichlet’s theorem</strong></span></p>
+<p>Let <span class="math inline">\(f(x)\)</span> be a periodic function, with period <span class="math inline">\(2L,\)</span> such that on the interval <span class="math inline">\((-L,L)\)</span> it has a finite number of extreme values, a finite number of jump discontinuities and <span class="math inline">\(|f(x)|\)</span> is integrable on <span class="math inline">\((-L,L).\)</span> Then its Fourier series converges for all values of <span class="math inline">\(x.\)</span> Furthermore, it converges to <span class="math inline">\(f(x)\)</span> at all points where <span class="math inline">\(f(x)\)</span> is continuous and if <span class="math inline">\(x=a\)</span> is a jump discontinuity then it converges to <span class="math inline">\(\frac{1}{2}\lim_{x\rightarrow a^-}f(x)+\frac{1}{2}\lim_{x\rightarrow a^+}f(x).\)</span><br />
+</p>
+</section>
+<section id="parsevals-theorem" class="level2" data-number="1.3">
+<h2 data-number="9.3"><span class="header-section-number">9.3</span> Parseval’s theorem</h2>
+<p>We shall now derive a relation between the average of the square of a function and its Fourier coefficients.<br />
+<span><strong>Parseval’s theorem</strong></span></p>
+<p>If <span class="math inline">\(f(x)\)</span> is a function of period <span class="math inline">\(2L\)</span> with Fourier coefficients <span class="math inline">\(a_n,b_n\)</span> then <span class="math display">\[\frac{1}{2L}\int_{-L}^L(f(x))^2\,dx=\frac{1}{4}a_0^2+
+\frac{1}{2}\sum_{n=1}^\infty (a_n^2+b_n^2).\]</span></p>
+<p>Proof: <span class="math display">\[\frac{1}{L}\int_{-L}^L(f(x))^2\,dx=\]</span> <span class="math display">\[\frac{1}{L}\int_{-L}^L\bigg\{\bigg[
+\frac{a_0}{2}+\sum_{n=1}^\infty \bigg(
+a_n \cos \frac{n\pi x}{L}
++b_n \sin \frac{n\pi x}{L}\bigg)\bigg]
+\bigg[
+\frac{a_0}{2}+\sum_{m=1}^\infty \bigg(
+a_m \cos \frac{m\pi x}{L}
++b_m \sin \frac{m\pi x}{L}\bigg)\bigg]\bigg\}\,dx\]</span> <span class="math display">\[=\frac{a_0^2}{2}+\sum_{n=1}^\infty\sum_{m=1}^\infty(a_na_m\delta_{mn}+b_nb_m\delta_{mn})
+=\frac{a_0^2}{2}+\sum_{n=1}^\infty(a_n^2+b_n^2).\]</span><br />
+<span>Parseval’s theorem</span> is useful in several contexts. One application is in finding the sum of certain infinite series.<br />
+Eg. Calculate <span class="math inline">\(\sum_{n=1}^\infty \frac{1}{n^2}\)</span> by applying Parseval’s theorem to the Fourier series of <span class="math inline">\(f(x)=x\)</span> for <span class="math inline">\(-\pi&lt;x&lt;\pi.\)</span></p>
+<p>From earlier we calculated that the Fourier coefficients are given by <span class="math inline">\(a_n=0\)</span> and <span class="math inline">\(b_n=\frac{2}{n}(-1)^{n+1}.\)</span> Hence by Parseval’s theorem <span class="math display">\[\frac{1}{2\pi}\int_{-\pi}^\pi x^2\,dx
+=\frac{1}{2\pi}\bigg[\frac{x^3}{3}\bigg]^\pi_{-\pi}
+=\frac{\pi^2}{3}
+=\frac{1}{2}\sum_{n=1}^\infty \frac{4}{n^2}.
+\quad\mbox{Thus}\quad
+\sum_{n=1}^\infty \frac{1}{n^2}=\frac{\pi^2}{6}.\]</span></p>
+<p>Certain infinite sums can also be obtained by evaluating a Fourier series at a particular value of <span class="math inline">\(x.\)</span><br />
+Eg. Calculate <span class="math inline">\(\sum_{n=1}^\infty \frac{1}{(2n-1)^2}\)</span> by evaluating the Fourier series of <span class="math inline">\(f(x)=|x|\)</span> for <span class="math inline">\(-1&lt;x&lt;1,\)</span> at the value <span class="math inline">\(x=0.\)</span></p>
+<p>From earlier we calculated the Fourier (cosine) series to be <span class="math display">\[f(x)=\frac{1}{2}-\frac{4}{\pi^2}\sum_{n=1}^\infty 
+\frac{\cos((2n-1)\pi x)}{(2n-1)^2}.\]</span> As <span class="math inline">\(f(x)=|x|\)</span> satisfies the conditions of Dirichlet’s theorem and is continuous at <span class="math inline">\(x=0\)</span> then, by Dirichlet’s theorem, evaluating the Fourier series at <span class="math inline">\(x=0\)</span> gives <span class="math inline">\(f(0)=0.\)</span> Hence <span class="math display">\[0=\frac{1}{2}-\frac{4}{\pi^2}\sum_{n=1}^\infty 
+\frac{1}{(2n-1)^2}.
+\quad\quad\mbox{Thus \ }
+\sum_{n=1}^\infty \frac{1}{(2n-1)^2}=\frac{\pi^2}{8}.\]</span></p>
+</section>
+<section id="half-range-fourier-series" class="level2" data-number="1.4">
+<h2 data-number="9.4"><span class="header-section-number">9.4</span> Half range Fourier series</h2>
+<p>A half range Fourier series is a Fourier series defined on an interval <span class="math inline">\((0,L)\)</span> rather than the interval <span class="math inline">\((-L,L).\)</span><br />
+Given a function <span class="math inline">\(f(x),\)</span> defined on the interval <span class="math inline">\((0,L),\)</span> we obtain its <span><strong>half range sine series</strong></span> by calculating the Fourier sine series of its <span><strong>odd extension</strong></span> <span class="math display">\[f_o(x)=\begin{cases}
+f(x) &amp; \text{if \ } 0&lt;x&lt;L\\ 
+-f(-x) &amp; \text{if \ } -L&lt;x&lt;0\\ 
+\end{cases}\]</span> The Fourier coefficients of <span class="math inline">\(f_o(x)\)</span> are <span class="math inline">\(a_n=0\)</span> and <span class="math display">\[b_n=\frac{1}{L}\int_{-L}^L f_o(x)\sin\frac{n\pi x}{L}\,dx
+=\frac{2}{L}\int_{0}^L f(x)\sin\frac{n\pi x}{L}\,dx.\]</span> This gives the half range sine series for <span class="math inline">\(f(x)\)</span> on <span class="math inline">\((0,L)\)</span> as <span class="math inline">\(f(x)=\sum_{n=1}^\infty b_n \sin \frac{n\pi x}{L}.\)</span><br />
+Given a function <span class="math inline">\(f(x),\)</span> defined on the interval <span class="math inline">\((0,L),\)</span> we obtain its <span><strong>half range cosine series</strong></span> by calculating the Fourier cosine series of its <span><strong>even extension</strong></span> <span class="math display">\[f_e(x)=\begin{cases}
+f(x) &amp; \text{if \ } 0&lt;x&lt;L\\ 
+f(-x) &amp; \text{if \ } -L&lt;x&lt;0\\ 
+\end{cases}\]</span> The Fourier coefficients of <span class="math inline">\(f_e(x)\)</span> are <span class="math inline">\(b_n=0\)</span> and <span class="math display">\[a_n=\frac{1}{L}\int_{-L}^L f_e(x)\cos\frac{n\pi x}{L}\,dx
+=\frac{2}{L}\int_{0}^L f(x)\cos\frac{n\pi x}{L}\,dx.\]</span> This gives the half range cosine series for <span class="math inline">\(f(x)\)</span> on <span class="math inline">\((0,L)\)</span> as <span class="math inline">\(f(x)=\frac{a_0}{2}+\sum_{n=1}^\infty a_n \cos \frac{n\pi x}{L}.\)</span></p>
+<p> </p>
+<p>For a given (physical) problem on an interval <span class="math inline">\((0,L)\)</span> it is usually the boundary conditions that determine whether an odd extension and a half sine Fourier series or an even extension and a half cosine Fourier series is more appropriate.<br />
+</p>
+</section>
+<section id="fourier-series-in-complex-form" class="level2" data-number="1.5">
+<h2 data-number="9.5"><span class="header-section-number">9.5</span> Fourier series in complex form</h2>
+<p>Fourier series take a simpler form if written in terms of complex variables. Starting with the Fourier series <span class="math display">\[f(x)=\frac{a_0}{2}+\sum_{n=1}^\infty \bigg(
+a_n \cos \frac{n\pi x}{L}
++b_n \sin \frac{n\pi x}{L}\bigg)\]</span> we use the relations <span class="math inline">\(\cos \frac{n\pi x}{L}=\frac{1}{2}(e^\frac{in\pi x}{L}+e^{-\frac{in\pi x}{L}})\)</span> and <span class="math inline">\(\sin \frac{n\pi x}{L}=-\frac{i}{2}(e^\frac{in\pi x}{L}-e^{-\frac{in\pi x}{L}})\)</span> to rewrite this as <span class="math display">\[f(x)=\frac{a_0}{2}+\frac{1}{2}\sum_{n=1}^\infty \bigg(
+(a_n-ib_n)e^\frac{in\pi x}{L}+(a_n+ib_n)e^{-\frac{in\pi x}{L}}\bigg)
+=\sum_{n=-\infty}^\infty c_ne^\frac{in\pi x}{L}\]</span> where we have defined <span class="math display">\[c_0=\frac{a_0}{2}=\frac{1}{2L}\int_{-L}^L f(x)\,dx\]</span> for <span class="math inline">\(n&gt;0\)</span> <span class="math display">\[c_n=\frac{1}{2}(a_n-ib_n)=\frac{1}{2L}\int_{-L}^L f(x)
+(\cos \frac{n\pi x}{L}-i\sin \frac{n\pi x}{L})\,dx
+=\frac{1}{2L}\int_{-L}^L f(x)e^{-\frac{in\pi x}{L}}\,dx\]</span> and for <span class="math inline">\(n&lt;0\)</span> <span class="math display">\[c_n=\frac{1}{2}(a_{-n}+ib_{-n})=\frac{1}{2L}\int_{-L}^L f(x)
+(\cos \frac{-n\pi x}{L}+i\sin \frac{-n\pi x}{L})\,dx
+=\frac{1}{2L}\int_{-L}^L f(x)e^{-\frac{in\pi x}{L}}\,dx.\]</span> Note that <span class="math inline">\(c_{-n}=\overline{c_n}.\)</span></p>
+<p>All 3 cases (<span class="math inline">\(n=0,n&gt;0,n&lt;0\)</span>) can be written as a single compact formula <span class="math display">\[c_n=\frac{1}{2L}\int_{-L}^L f(x)e^{-\frac{in\pi x}{L}}\,dx,
+\quad\quad\mbox{with the Fourier series \ }
+f(x)=\sum_{n=-\infty}^\infty c_ne^\frac{in\pi x}{L}\]</span></p>
+<p>Eg. The function <span class="math inline">\(f(x)\)</span> has period <span class="math inline">\(2\pi\)</span> and is given by <span class="math display">\[f(x)=\begin{cases}
+-1 &amp; \mbox{ if }\  -\pi&lt;x&lt;0 \\
+\ \ 1 &amp; \mbox{ if }\ \quad  0\le x&lt;\pi\end{cases}\]</span> Obtain the complex form of the Fourier series for <span class="math inline">\(f(x).\)</span><br />
+<span class="math display">\[c_n=\frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{-inx}\,dx
+=\frac{1}{2\pi}\int_{-\pi}^0 -e^{-inx}\,dx+\frac{1}{2\pi}\int_{0}^\pi e^{-inx}\,dx\]</span> For <span class="math inline">\(n=0\)</span> <span class="math display">\[c_0=-\frac{1}{2\pi}\int_{-\pi}^0 \,dx+\frac{1}{2\pi}\int_{0}^\pi \,dx
+=-\frac{1}{2}+\frac{1}{2}=0\]</span> For <span class="math inline">\(n\ne 0\)</span> <span class="math display">\[c_n=\bigg[\frac{e^{-inx}}{2\pi i n}\bigg]_{-\pi}^0
+-\bigg[\frac{e^{-inx}}{2\pi i n}\bigg]_{0}^\pi
+=\frac{1}{2\pi in}(1-e^{in\pi}-e^{-in\pi}+1)
+=\frac{i}{\pi n}((-1)^n-1)\]</span> Hence <span class="math inline">\(c_{2m}=0\)</span> and <span class="math inline">\(c_{2m+1}=\frac{-2i}{\pi(2m+1)}\)</span> giving the complex form of the Fourier series <span class="math display">\[f(x)=\sum_{m=-\infty}^\infty \frac{-2i}{\pi(2m+1)}e^{i(2m+1)x}\]</span></p>
+<p>This complex form can be converted back to the usual real form as follows.<br />
+Using <span class="math inline">\(f(x)=\overline{f(x)}\)</span> we have that <span class="math display">\[2f(x)=\sum_{m=-\infty}^\infty \frac{-2i}{\pi(2m+1)}e^{i(2m+1)x}
++\sum_{m=-\infty}^\infty \frac{2i}{\pi(2m+1)}e^{-i(2m+1)x}\]</span> hence <span class="math display">\[f(x)=\sum_{m=-\infty}^\infty \frac{-i}{\pi(2m+1)}(e^{i(2m+1)x}-e^{-i(2m+1)x})
+=\sum_{m=-\infty}^\infty \frac{-i}{\pi(2m+1)}2i\sin((2m+1)x)\]</span> <span class="math display">\[=\sum_{m=-\infty}^\infty \frac{2\sin((2m+1)x)}{{\pi(2m+1)}}
+=\sum_{m=0}^\infty \frac{4\sin((2m+1)x)}{{\pi(2m+1)}}\]</span></p>
+</section>
+<section id="summary-fourier-series" class="level2" data-number="1.6">
+<h2 data-number="9.6"><span class="header-section-number">9.6</span> Summary: Fourier Series</h2>
+<p>Fourier series attempt to represent periodic functions as linear combinations of sines and cosines. You should know how to calculate Fourier coefficients so you can construct Fourier series (or Fourier partial sums). You should understand the interpretation of Fourier series as (infinite-dimensional) vectors where the orthogonal basis functions are the sines and cosines, and the components are the Fourier coefficients. Here are some key points:</p>
+<ul>
+<li><p>If <span class="math inline">\(f(x)\)</span> is a function of period <span class="math inline">\(2L\)</span>, its (full-range) <span><em>Fourier series</em></span> is the infinite series <span class="math inline">\(\frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos(n\pi x/L) + b_n \sin(n\pi x/L) \right)\)</span> where the Fourier coefficients are given by <span class="math inline">\(a_n = \frac{1}{L} \int_{-L}^L \cos(n\pi x/L) f(x) dx\)</span> (including <span class="math inline">\(n=0\)</span>) and <span class="math inline">\(b_n = \frac{1}{L} \int_{-L}^L \sin(n\pi x/L) f(x) dx\)</span>. This arises for the vector interpretation with scalar product of <span class="math inline">\(\phi(x)\)</span> and <span class="math inline">\(\psi(x)\)</span> being <span class="math inline">\(\frac{1}{L} \int_{-L}^L \phi \psi dx\)</span>, noting that the sines and cosines are orthonormal using this scalar product.</p></li>
+<li><p>If we include only the first <span class="math inline">\(N\)</span> sines and cosines (i.e. have <span class="math inline">\(\sum_{n=1}^N\)</span> rather than <span class="math inline">\(\sum_{n=1}^{\infty}\)</span>) we have a <span><em>Fourier partial sum</em></span>. The Fourier series is then given by the limit as <span class="math inline">\(N \to \infty\)</span>.</p></li>
+<li><p>An odd function has a <span><em>sine Fourier series</em></span> (all <span class="math inline">\(a_n = 0\)</span>) while an even function has a <span><em>cosine Fourier series</em></span> (all <span class="math inline">\(b_n = 0\)</span>).</p></li>
+<li><p><span><em>Dirichlet’s theorem</em></span> says that if <span class="math inline">\(f(x)\)</span> is a periodic function with a finite number of extreme values and jump discontinuities in each period, and with <span class="math inline">\(|f(x)|\)</span> integrable over a period then the Fourier series converges (to some real number) for all <span class="math inline">\(x\)</span>. It converges to <span class="math inline">\(f(x)\)</span> at all points where <span class="math inline">\(f\)</span> is continuous, and at jump discontinuities it converges to the midpoint of the jump.</p></li>
+<li><p>The <span><em>Gibbs phenomenon</em></span> is the fact that at a jump discontinuity the Fourier series overshoots at the upper end and undershoots at the lower end by approximately <span class="math inline">\(9\%\)</span> of the jump. This is visible in the Fourier partial sums with the peaks becoming both narrower and closer to the location of the jump as <span class="math inline">\(N \to \infty\)</span>, but not reducing in height.</p></li>
+<li><p>Given any function <span class="math inline">\(f(x)\)</span> on <span class="math inline">\((-L, L]\)</span> we can define its <span><em>periodic extension</em></span> to be the function of period <span class="math inline">\(2L\)</span> which equals <span class="math inline">\(f(x)\)</span> on <span class="math inline">\((-L, L]\)</span>. We can also define the <span><em>odd periodic extension</em></span> of <span class="math inline">\(f(x)\)</span> on <span class="math inline">\((0,L)\)</span> to be the periodic extension of <span class="math inline">\(f_o(x) = \left\{ \begin{array}{ll} f(x) &amp; \mathrm{if} x \in (0,L) \\ 0 &amp; \mathrm{if} x \in \{0, L\} \\ -f(-x) &amp; \mathrm{if} x \in (-L,0) \end{array} \right .\)</span>. Similarly the <span><em>even periodic extension</em></span> is the periodic extension of <span class="math inline">\(f_e(x) = \left\{ \begin{array}{ll} f(x) &amp; \mathrm{if} x \in [0,L] \\ f(-x) &amp; \mathrm{if} x \in (-L,0) \end{array} \right .\)</span>. We call the Fourier series for these odd/even periodic extensions <span><em>half-range sine/cosine series</em></span>.</p></li>
+<li><p><span><em>Parseval’s theorem</em></span> says that <span class="math inline">\(\frac{1}{L} \int_{-L}^L (f(x))^2 dx = \frac{1}{2}a_0^2 + \sum_{n=1}^{\infty} (a_n^2 + b_n^2)\)</span>. It is the Fourier series equivalent of the fact that the magnitude squared of a vector is the sum of the squares of its components. Parseval’s theorem can be used to evaluate infinite series if we can realise the series in terms of squares of Fourier coefficients for some function and we can calculate the integral of the function squared.</p></li>
+<li><p>We can also evaluate infinite series if we have a Fourier series which we know converges to a specific value at some point – e.g. at a point where the function is continuous and Dirichlet’s theorem guarantees the Fourier series converges to the value of the function at that point.</p></li>
+<li><p>Using the orthonormal basis functions <span class="math inline">\(e^{i n \pi x/L}\)</span> with scalar product of <span class="math inline">\(\phi\)</span> and <span class="math inline">\(\psi\)</span> defined by <span class="math inline">\(\frac{1}{2L} \int_{-L}^L \overline{\phi} \psi dx\)</span>, we can write the <span><em>Fourier series in complex form</em></span> <span class="math inline">\(\sum_{-\infty}^{\infty} c_n e^{i n \pi x/L}\)</span>. The Fourier coefficients are given by <span class="math inline">\(c_n = \frac{1}{2L} \int_{-L}^L e^{-i n \pi x/L} f(x) dx\)</span>. If <span class="math inline">\(f\)</span> is a real-valued function then <span class="math inline">\(c_{-n} = \overline{c}_n\)</span>. Note that the complex form of the Fourier series is just a different way to express the usual real Fourier series using Euler’s formula <span class="math inline">\(e^{i\theta} = \cos \theta + i \sin \theta\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

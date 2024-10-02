@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Original notes produced by Paul Sutcliffe" />
+  <title>Calculus I Michaelmas Term</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Calculus I<br />
+Michaelmas Term</p></h1>
+<p class="author">Sam Fearn<br />
+Original notes produced by Paul Sutcliffe</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#differentiation"><span class="toc-section-number">3</span> Differentiation</a>
+<ul>
+<li><a href="#derivative-as-a-limit"><span class="toc-section-number">3.1</span> Derivative as a limit</a></li>
+<li><a href="#the-leibniz-and-chain-rules"><span class="toc-section-number">3.2</span> The Leibniz and chain rules</a></li>
+<li><a href="#lhôpitals-rule"><span class="toc-section-number">3.3</span> L’Hôpital’s rule</a></li>
+<li><a href="#boundedness-and-monotonicity"><span class="toc-section-number">3.4</span> Boundedness and monotonicity</a></li>
+<li><a href="#critical-points"><span class="toc-section-number">3.5</span> Critical points</a></li>
+<li><a href="#rolles-theorem"><span class="toc-section-number">3.6</span> Rolle’s theorem</a></li>
+<li><a href="#the-mean-value-theorem"><span class="toc-section-number">3.7</span> The mean value theorem</a></li>
+<li><a href="#the-inverse-function-rule"><span class="toc-section-number">3.8</span> The inverse function rule</a></li>
+<li><a href="#partial-derivatives"><span class="toc-section-number">3.9</span> Partial derivatives</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="differentiation" class="level1" data-number="1">
+<h1 data-number="3"><span class="header-section-number">3</span> Differentiation</h1>
+<section id="derivative-as-a-limit" class="level2" data-number="1.1">
+<h2 data-number="3.1"><span class="header-section-number">3.1</span> Derivative as a limit</h2>
+<p>Geometrically the derivative <span class="math inline">\(f&#39;(a)\)</span> of a function <span class="math inline">\(f(x)\)</span> at <span class="math inline">\(x=a\)</span> is equal to the slope of the tangent to the graph of <span class="math inline">\(f(x)\)</span> at <span class="math inline">\(x=a.\)</span></p>
+<div class="center">
+<figure>
+<img src="new_derivative.png" id="fig-derivative" style="width:8cm" alt="" /><figcaption>The graph of a function <span class="math inline">\(f(x)\)</span>, the tangent at <span class="math inline">\(x=a\)</span> and the secant through the points on the graph at <span class="math inline">\(x=a\)</span> and <span class="math inline">\(x=a+h.\)</span></figcaption>
+</figure>
+</div>
+<p>A secant is a line that intersects a curve at two points (the part of the secant that is between the two intersection points is called a chord).</p>
+<p>Consider a secant that intersects the graph of <span class="math inline">\(f(x)\)</span> at the two <span class="math inline">\((x,y)\)</span> points <span class="math inline">\((a,f(a))\)</span> and <span class="math inline">\((a+h,f(a+h)).\)</span> The slope of this secant is given by the difference quotient <span class="math inline">\((f(a+h)-f(a))/h.\)</span> As the two points approach each other ie. as <span class="math inline">\(|h|\)</span> decreases, the secant approaches the tangent at <span class="math inline">\(x=a.\)</span> The tangent is obtained in the limit as <span class="math inline">\(h\rightarrow 0\)</span> and the derivative at <span class="math inline">\(a\)</span> is the slope of the secant in this limit ie. <span class="math display">\[f&#39;(a)=\lim_{h\rightarrow 0}\frac{f(a+h)-f(a)}{h}\]</span> providing this limit exists.</p>
+<p>If this limit exists then we say that <span><strong><span class="math inline">\(f(x)\)</span> is differentiable at <span class="math inline">\(x=a.\)</span></strong></span></p>
+<p>Eg. Use the limit definition of the derivative to calculate <span class="math inline">\(f&#39;(a)\)</span> for <span class="math inline">\(f(x)=x^2.\)</span> <span class="math display">\[f&#39;(a)=
+\lim_{h\rightarrow 0}
+\frac{f(a+h)-f(a)}{h}
+=\lim_{h\rightarrow 0}
+\frac{(a+h)^2-a^2}{h}
+=\lim_{h\rightarrow 0}\frac{2ah+h^2}{h}
+=\lim_{h\rightarrow 0}(2a+h)=2a.\]</span> This is, of course, the expected result from the knowledge that <span class="math inline">\(f&#39;(x)=2x.\)</span><br />
+Eg. Use the limit definition of the derivative to calculate <span class="math inline">\(f&#39;(\pi)\)</span> for <span class="math inline">\(f(x)=\sin x.\)</span> <span class="math display">\[f&#39;(\pi)=
+\lim_{h\rightarrow 0}
+\frac{f(\pi+h)-f(\pi)}{h}
+=\lim_{h\rightarrow 0}
+\frac{\sin(\pi+h)-\sin\pi}{h}
+=\lim_{h\rightarrow 0}\frac{\sin\pi\cos h+\cos\pi\sin h}{h}\]</span> <span class="math display">\[=\lim_{h\rightarrow 0}\frac{-\sin h}{h}=-1\]</span> where the final equality uses the earlier important trigonometric limit result.</p>
+<p>This is, of course, the expected answer from the knowledge that <span class="math inline">\(f&#39;(x)=\cos x\)</span> giving <span class="math inline">\(f&#39;(\pi)=\cos\pi=-1.\)</span><br />
+If <span class="math inline">\(f&#39;(a)\)</span> exists for all <span class="math inline">\(a\)</span> in <span class="math inline">\(\mbox{Dom}\,f\)</span> we say that <span><strong><span class="math inline">\(f(x)\)</span> is differentiable</strong></span> and then <span class="math inline">\(f&#39;(a)\)</span> defines a function <span class="math inline">\(f&#39;(x)\)</span> called the derivative.<br />
+Eg. Use the limit definition of the derivative to calculate the derivative of the function <span class="math inline">\(f(x)=x\cos x.\)</span> <span class="math display">\[f&#39;(x)
+=\lim_{h\rightarrow 0}
+\frac{f(x+h)-f(x)}{h}
+=\lim_{h\rightarrow 0}\frac{(x+h)\cos(x+h)-x\cos x}{h}\]</span> <span class="math display">\[=\lim_{h\rightarrow 0}\frac{(x+h)(\cos x\cos h-\sin x\sin h)-x\cos x}{h}\]</span> <span class="math display">\[=\lim_{h\rightarrow 0} \bigg(x\cos x\frac{\cos h-1}{h}-x\sin x \frac{\sin h}{h}
++\cos x\cos h-\sin x\sin h\bigg)
+=-x\sin x+\cos x\]</span> where we have used both of the earlier important trigonometric limit results.<br />
+The fact that the derivative is equal to the slope of the tangent of the graph allows us to determine a Cartesian equation for the tangent by calculating the derivative. Explicitly, the tangent line at the point <span class="math inline">\((a,f(a))\)</span> is given by <span class="math inline">\(y=f(a)+f&#39;(a)(x-a).\)</span><br />
+Eg. For the function <span class="math inline">\(f(x)=4x^3-x,\)</span> find a Cartesian equation for the tangent to the graph at the point <span class="math inline">\((1,3).\)</span></p>
+<p><span class="math inline">\(f&#39;(x)=12x^2-1\)</span> so <span class="math inline">\(f&#39;(1)=11.\)</span> The tangent line is given by</p>
+<p><span class="math inline">\(y=f(1)+f&#39;(1)(x-1)=3+11(x-1)=11x-8\)</span><br />
+A necessary condition for a function to be differentiable at a point is that it is continuous at that point, but this is not a sufficient condition.<br />
+Geometrically, there are two ways that a function can fail to be differentiable at a point where it is continuous:<br />
+(i). The tangent line is vertical at that point.<br />
+Eg. The function <span class="math inline">\(f(x)=x^{1/3}\)</span> is continuous in <span class="math inline">\(\mathbb{R}\)</span> but it is not differentiable at <span class="math inline">\(x=0.\)</span> The difference quotient at <span class="math inline">\(x=0\)</span> is <span class="math display">\[\frac{f(0+h)-f(0)}{h}=\frac{h^{1/3}}{h}=\frac{1}{h^{2/3}}\]</span> and no limit exists as <span class="math inline">\(h\rightarrow 0\)</span> because the above grows without bound.<br />
+(ii). There is no tangent line at that point.<br />
+Eg. The function <span class="math inline">\(f(x)=|x|\)</span> is continuous in <span class="math inline">\(\mathbb{R}\)</span> but it is not differentiable at <span class="math inline">\(x=0.\)</span> The difference quotient at <span class="math inline">\(x=0\)</span> is <span class="math display">\[\frac{f(0+h)-f(0)}{h}=\frac{|h|}{h}
+=\begin{cases} 
+-1 &amp; \text{if}\ h&lt;0\\
+1 &amp; \text{if}\ h&gt;0\\
+\end{cases}\]</span> The left and right limits therefore both exist <span class="math display">\[\lim_{h\rightarrow 0^+}\frac{f(0+h)-f(0)}{h}=1\]</span> and <span class="math display">\[\lim_{h\rightarrow 0^-}\frac{f(0+h)-f(0)}{h}=-1\]</span> but these are not equal, so <span class="math display">\[\lim_{h\rightarrow 0}\frac{f(0+h)-f(0)}{h}\]</span> does not exist.</p>
+</section>
+<section id="the-leibniz-and-chain-rules" class="level2" data-number="1.2">
+<h2 data-number="3.2"><span class="header-section-number">3.2</span> The Leibniz and chain rules</h2>
+<p>If <span class="math inline">\(f(x)\)</span> is differentiable then its derivative <span class="math inline">\(f&#39;(x)\)</span> may also be differentiable, in which case we denote its derivative by <span class="math inline">\(f&#39;&#39;(x)\)</span> ie. the <span><strong>second derivative</strong></span> of <span class="math inline">\(f(x).\)</span> Similarly the third derivative is <span class="math inline">\(f&#39;&#39;&#39;(x)\)</span> and in general the <span class="math inline">\(n^{th}\)</span> derivative is <span class="math inline">\(f^{(n)}(x)\)</span> so that <span class="math inline">\(f^{(3)}(x)=f&#39;&#39;&#39;.\)</span> This notation is due to Lagrange (1736-1813), but other notations are also common.<br />
+<span class="math inline">\(f&#39;(x)=\frac{df}{dx}, \ f&#39;&#39;(x)=\frac{d^2 f}{dx^2}, \ f^{(n)}(x)=\frac{d^n f}{dx^n}\)</span> is due to Leibniz (1646-1716).</p>
+<p> </p>
+<p><span class="math inline">\(f&#39;(x)=Df(x), \ f&#39;&#39;(x)=D^2f(x), \ f^{(n)}(x)=D^nf(x)\)</span> is due to Euler (1707-1783).</p>
+<p> </p>
+<p>Finally, if the independent variable represents time, say <span class="math inline">\(f(t),\)</span> then <span class="math inline">\(f&#39;(t)=\dot f\)</span> and <span class="math inline">\(f&#39;&#39;(t)=\ddot f\)</span> is due to Newton (1642-1727). As we have seen, the derivative <span class="math inline">\(\frac{df}{dx}\)</span> is the slope of the tangent to the graph of <span class="math inline">\(f(x).\)</span> This means that the derivative <span class="math inline">\(\frac{df}{dx}\)</span> measures the rate of change of the dependent variable <span class="math inline">\(f\)</span> with respect to changes in the independent variable <span class="math inline">\(x\)</span>. In the case that the independent variable is time <span class="math inline">\(t,\)</span> the derivative measures the rate of change with time, so if the dependent variable, say <span class="math inline">\(X(t)\)</span> represents the position of an object confined to a line then <span class="math inline">\(\dot X\)</span> is the velocity of the object, with <span class="math inline">\(|\dot X|\)</span> the speed, and <span class="math inline">\(\ddot X\)</span> is the acceleration of the object.<br />
+The product rule for differentiation is just the first case of the more general <span><strong>Leibniz rule</strong></span>:</p>
+<p>If <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> are both differentiable <span class="math inline">\(n\)</span> times then so is the product <span class="math inline">\(f(x)g(x)\)</span> with <span class="math display">\[D^n(fg)=\sum_{k=0}^n\binom{n}{k}(D^kf)(D^{n-k}g)\]</span> where <span class="math inline">\(\binom{n}{k}=\frac{n!}{k!(n-k)!}\)</span> is the binomial coefficient familiar from Pascal’s triangle</p>
+<div class="center">
+<figure>
+<img src="new_pas.png" alt="" /><figcaption>The binomial coefficients arranged into Pascal’s triangle.</figcaption>
+</figure>
+</div>
+<p>Eg. Use the Leibniz rule to calculate <span class="math inline">\(D^3(x^2\sin x)\)</span> using</p>
+<p><span class="math inline">\(D^3(fg)=f(D^3g)+3(Df)(D^2g)+3(D^2f)(Dg)+(D^3f)g.\)</span></p>
+<p><span class="math inline">\(f=x^2,\quad Df=2x, \quad D^2f=2, \quad D^3f=0.\)</span></p>
+<p><span class="math inline">\(g=\sin x,\quad Dg=\cos x, \quad D^2g=-\sin x, \quad D^3g=-\cos x.\)</span></p>
+<p><span class="math inline">\(D^3(x^2\sin x)=-x^2\cos x-(3)2x\sin x+(3)2\cos x+0\sin x
+=(6-x^2)\cos x-6x\sin x.\)</span></p>
+<p>To handle the differentiation of composite functions <span class="math inline">\((f\circ g)(x)=f(g(x))\)</span> we turn to the following theorem:<br />
+The <span><strong>chain rule theorem</strong></span> states that if <span class="math inline">\(g(x)\)</span> is differentiable at <span class="math inline">\(x\)</span> and <span class="math inline">\(f(x)\)</span> is differentiable at <span class="math inline">\(g(x)\)</span> then the composition <span class="math inline">\((f\circ g)(x)\)</span> is differentiable at <span class="math inline">\(x\)</span> with <span class="math display">\[(f\circ g)&#39;(x)=f&#39;(g(x))g&#39;(x).\]</span></p>
+<p>Recall that prime denotes differentiation with respect to the argument so in Leibniz notation the above formula may be written more crudely as <span class="math display">\[\frac{d}{dx}f(g(x))=\frac{df}{dg}\ \frac{dg}{dx}\]</span> where we need to be aware that on the right hand side the argument of the first factor is <span class="math inline">\(g(x)\)</span> and the argument of the second factor is <span class="math inline">\(x.\)</span></p>
+<p>This form is useful as a mnemonic (think of ‘cancelling’ the <span class="math inline">\(dg\)</span> factor) but it is no more than this.</p>
+<p><span class="math display">\[\mbox{Eg.}\ \mbox{Calculate} \
+\frac{d}{dx}\bigg(\bigg(x+\frac{1}{x}\bigg)^{-3}\bigg).
+\hskip 9cm\]</span> In terms of the above notation <span class="math inline">\(g(x)=x+\frac{1}{x}\)</span> and <span class="math inline">\(f(x)=x^{-3}\)</span></p>
+<p>giving <span class="math inline">\(g&#39;(x)=1-\frac{1}{x^2}\)</span> and <span class="math inline">\(f&#39;(x)=-3x^{-4}\)</span> thus <span class="math display">\[\frac{d}{dx}\bigg(\bigg(x+\frac{1}{x}\bigg)^{-3}\bigg)
+=f&#39;(g(x))g&#39;(x)=-3\bigg(x+\frac{1}{x}\bigg)^{-4}\bigg(1-\frac{1}{x^2}\bigg).\]</span><br />
+Eg. <span class="math inline">\(\frac{d}{dt}\cos(t^2)=-2t\sin(t^2).\)</span><br />
+</p>
+</section>
+<section id="lhôpitals-rule" class="level2" data-number="1.3">
+<h2 data-number="3.3"><span class="header-section-number">3.3</span> L’Hôpital’s rule</h2>
+<p><span><strong>Only use this method in assignments/exam questions when told to do so *</strong></span><br />
+Recall that if <span class="math inline">\(\lim_{x\rightarrow a} f(x)=L\)</span> and <span class="math inline">\(\lim_{x\rightarrow a} g(x)=M\ne 0\)</span> then <span class="math inline">\(\lim_{x\rightarrow a} {f(x)}/{g(x)}={L}/{M}\)</span>.</p>
+<p>Clearly this result is not applicable to the situation where <span class="math inline">\(L=M=0,\)</span> which is called an <span><strong>indeterminant form</strong></span>. We have already seen how to deal with situations like this directly, but an alternative (and often easier) approach is sometimes available by making use of the following.<br />
+<span><strong>L’Hôpital’s rule</strong></span></p>
+<p>Let <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> be differentiable on <span class="math inline">\(I=(a-h,a)\cup(a,a+h)\)</span> for some <span class="math inline">\(h&gt;0,\)</span> with <span class="math inline">\(\lim_{x\rightarrow a} f(x)=\lim_{x\rightarrow a} g(x)=0.\)</span></p>
+<p>If <span class="math inline">\(\lim_{x\rightarrow a} \frac{f&#39;(x)}{g&#39;(x)}\)</span> exists and <span class="math inline">\(g&#39;(x)\ne 0 \ \forall \
+x\in I\)</span> then <span class="math display">\[\lim_{x\rightarrow a} \frac{f(x)}{g(x)}=
+\lim_{x\rightarrow a} \frac{f&#39;(x)}{g&#39;(x)}.\]</span></p>
+<p>Proof: We shall only consider the proof for the slightly easier situation in which <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> are both differentiable at <span class="math inline">\(x=a\)</span> and <span class="math inline">\(g&#39;(a)\ne 0.\)</span></p>
+<p>In this case <span class="math display">\[\lim_{x\rightarrow a} \frac{f(x)}{g(x)}=
+\lim_{x\rightarrow a} \frac{f(x)-f(a)}{g(x)-g(a)}=
+\lim_{x\rightarrow a} \frac{\frac{f(x)-f(a)}{x-a}}{\frac{g(x)-g(a)}{x-a}}=
+\frac{\lim_{x\rightarrow a} {\frac{f(x)-f(a)}{x-a}}}
+{\lim_{x\rightarrow a}{\frac{g(x)-g(a)}{x-a}}}=\frac{f&#39;(a)}{g&#39;(a)}
+=\lim_{x\rightarrow a}\frac{f&#39;(x)}{g&#39;(x)}.\]</span></p>
+<p>We can apply L’Hôpital’s rule to calculate the two important trigonometric limits from earlier.<br />
+Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow 0}\frac{\sin x}{x}.\)</span></p>
+<p><span class="math inline">\(f(x)=\sin x\)</span> and <span class="math inline">\(g(x)=x\)</span> are both differentiable. Also <span class="math inline">\(\lim_{x\rightarrow 0}{\sin x}=\sin 0=0\)</span> and <span class="math inline">\(\lim_{x\rightarrow 0}{x}=0.\)</span> Furthermore, <span class="math inline">\(f&#39;(x)=\cos x\)</span> and <span class="math inline">\(g&#39;(x)=1\ne 0.\)</span> Thus L’Hôpital’s rule applies to give <span class="math display">\[\lim_{x\rightarrow 0}\frac{\sin x}{x}=
+\lim_{x\rightarrow 0}\frac{\cos x}{1}={\cos 0}=1.\]</span><br />
+Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow 0}\frac{1-\cos x}{x}.\)</span></p>
+<p><span class="math inline">\(f(x)=1-\cos x\)</span> and <span class="math inline">\(g(x)=x\)</span> are both differentiable. Also <span class="math inline">\(\lim_{x\rightarrow 0}(1-\cos x)=1-\cos 0=0\)</span> and <span class="math inline">\(\lim_{x\rightarrow 0}{x}=0.\)</span> Furthermore, <span class="math inline">\(f&#39;(x)=\sin x\)</span> and <span class="math inline">\(g&#39;(x)=1\ne 0.\)</span> Thus by L’Hôpital’s rule <span class="math display">\[\lim_{x\rightarrow 0}\frac{1-\cos x}{x}=
+\lim_{x\rightarrow 0}\frac{\sin x}{1}={\sin 0}=0.\]</span><br />
+If applying L’Hôpital’s rule yields another indeterminant form then L’Hôpital’s rule can be reapplied to this form and so on.<br />
+Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow 0}\frac{2\sin x-\sin(2x)}{x-\sin x}.\)</span></p>
+<p><span class="math display">\[\lim_{x\rightarrow 0}\frac{2\sin x-\sin(2x)}{x-\sin x}
+=\lim_{x\rightarrow 0}\frac{2\cos x-2\cos(2x)}{1-\cos x}
+=\lim_{x\rightarrow 0}\frac{-2\sin x+4\sin(2x)}{\sin x}\]</span> <span class="math display">\[=\lim_{x\rightarrow 0}\frac{-2\cos x+8\cos(2x)}{\cos x}
+=\frac{-2+8}{1}=6.\]</span></p>
+</section>
+<section id="boundedness-and-monotonicity" class="level2" data-number="1.4">
+<h2 data-number="3.4"><span class="header-section-number">3.4</span> Boundedness and monotonicity</h2>
+<p>The following definitions apply to a function <span class="math inline">\(f(x)\)</span> defined in some interval <span class="math inline">\(I.\)</span><br />
+<span><strong>Defn:</strong></span> If <span class="math inline">\(\exists\)</span> a constant <span class="math inline">\(k_1\)</span> s.t. <span class="math inline">\(f(x)\le k_1\)</span>  <span class="math inline">\(\forall\)</span>  <span class="math inline">\(x\)</span> in <span class="math inline">\(I\)</span> we say that <span class="math inline">\(f(x)\)</span> is <span><strong>bounded above in <span class="math inline">\(I\)</span></strong></span> and we call <span class="math inline">\(k_1\)</span> an <span><strong>upper bound</strong></span> of <span class="math inline">\(f(x)\)</span> in <span class="math inline">\(I.\)</span><br />
+Furthermore, if <span class="math inline">\(\exists\)</span> a point <span class="math inline">\(x_1\)</span> in <span class="math inline">\(I\)</span> s.t. <span class="math inline">\(f(x_1)=k_1\)</span> we say that the upper bound <span class="math inline">\(k_1\)</span> is <span><strong>attained</strong></span> and we call <span class="math inline">\(k_1\)</span> the <span><strong>global maximum value</strong></span> of <span class="math inline">\(f(x)\)</span> in <span class="math inline">\(I.\)</span><br />
+Similarly, we have the following:<br />
+<span><strong>Defn:</strong></span> If <span class="math inline">\(\exists\)</span> a constant <span class="math inline">\(k_2\)</span> s.t. <span class="math inline">\(f(x)\ge k_2\)</span>  <span class="math inline">\(\forall\)</span>  <span class="math inline">\(x\)</span> in <span class="math inline">\(I\)</span> we say that <span class="math inline">\(f(x)\)</span> is <span><strong>bounded below in <span class="math inline">\(I\)</span></strong></span> and we call <span class="math inline">\(k_2\)</span> a <span><strong>lower bound</strong></span> of <span class="math inline">\(f(x)\)</span> in <span class="math inline">\(I.\)</span><br />
+Furthermore, if <span class="math inline">\(\exists\)</span> a point <span class="math inline">\(x_2\)</span> in <span class="math inline">\(I\)</span> s.t. <span class="math inline">\(f(x_2)=k_2\)</span> we say that the lower bound <span class="math inline">\(k_2\)</span> is <span><strong>attained</strong></span> and we call <span class="math inline">\(k_2\)</span> the <span><strong>global minimum value</strong></span> of <span class="math inline">\(f(x)\)</span> in <span class="math inline">\(I.\)</span><br />
+<span><strong>Defn:</strong></span> <span class="math inline">\(f(x)\)</span> is <span><strong>bounded in <span class="math inline">\(I\)</span></strong></span> if it is both bounded above and bounded below in <span class="math inline">\(I\)</span> ie. if <span class="math inline">\(\exists\)</span> a constant <span class="math inline">\(k\)</span> s.t. <span class="math inline">\(|f(x)|\le k\)</span>  <span class="math inline">\(\forall\)</span>  <span class="math inline">\(x\)</span> in <span class="math inline">\(I.\)</span><br />
+If no interval <span class="math inline">\(I\)</span> is specified then it is taken to be the domain of the function.</p>
+<p> </p>
+<p>Eg. <span class="math inline">\(\cos x\)</span> is bounded (in <span class="math inline">\(\mathbb{R}\)</span>) because <span class="math inline">\(|\cos x|\le 1\)</span> <span class="math inline">\(\forall
+x\in\mathbb{R}.\)</span> Both these upper and lower bounds are attained as <span class="math inline">\(\cos 0=1\)</span> and <span class="math inline">\(\cos \pi=-1.\)</span> The global maximum value in <span class="math inline">\(\mathbb{R}\)</span> is <span class="math inline">\(1\)</span> and the global minimum value in <span class="math inline">\(\mathbb{R}\)</span> is <span class="math inline">\(-1\)</span>.<br />
+Eg. Consider <span class="math inline">\(f(x)=\frac{\mbox{sgn}(x) }{1+x^2}\)</span> for <span class="math inline">\(-1\le x\le 1.\)</span> Then <span class="math inline">\(f(x)\)</span> is bounded in <span class="math inline">\([-1,1]\)</span> because <span class="math inline">\(|f(x)|\le 1\)</span> for all <span class="math inline">\(x\)</span> in <span class="math inline">\([-1,1]\)</span> but neither of the bounds is attained, so it has no global maximum value and no global minimum value in <span class="math inline">\([-1,1].\)</span><br />
+Eg. On <span class="math inline">\([0,\pi/2)\)</span> the function <span class="math inline">\(\tan x\)</span> is bounded below but not bounded above.<br />
+A condition that guarantees the existence of both a global maximum and minimum value (called <span><strong>extreme values</strong></span>) is provided by the following:<br />
+<span><strong>The extreme value theorem</strong></span> states that if <span class="math inline">\(f\)</span> is a continuous function on a <span><em>closed</em></span> interval <span class="math inline">\([a,b]\)</span> then it is bounded on that interval and has upper and lower bounds that are attained ie. <span class="math inline">\(\exists\)</span> points <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in <span class="math inline">\([a,b]\)</span> such that <span class="math inline">\(f(x_2)\le f(x)\le f(x_1) \ \forall \ x\in[a,b].\)</span><br />
+<span><strong>Defn:</strong></span> <span class="math inline">\(f(x)\)</span> is <span><strong>monotonic increasing</strong></span> in <span class="math inline">\([a,b]\)</span> if <span class="math inline">\(f(x_1)\le f(x_2)\)</span> for all pairs <span class="math inline">\(x_1,x_2\)</span> with <span class="math inline">\(a\le x_1&lt;x_2\le b.\)</span><br />
+<span><strong>Defn:</strong></span> <span class="math inline">\(f(x)\)</span> is <span><strong>strictly monotonic increasing</strong></span> in <span class="math inline">\([a,b]\)</span> if <span class="math inline">\(f(x_1)&lt; f(x_2)\)</span> for all pairs <span class="math inline">\(x_1,x_2\)</span> with <span class="math inline">\(a\le x_1&lt;x_2\le b.\)</span><br />
+Obvious definitions apply with increasing replaced by decreasing.<br />
+Eg. <span class="math inline">\(\mbox{sgn}(x)\)</span> is monotonic increasing in <span class="math inline">\([-1,1]\)</span> but not strictly.<br />
+Eg. <span class="math inline">\(x^2\)</span> is strictly monotonic increasing in <span class="math inline">\([0,b]\)</span> for any <span class="math inline">\(b&gt;0.\)</span><br />
+</p>
+</section>
+<section id="critical-points" class="level2" data-number="1.5">
+<h2 data-number="3.5"><span class="header-section-number">3.5</span> Critical points</h2>
+<p><span><strong>Defn:</strong></span> We say that <span class="math inline">\(f(x)\)</span> has a <span><strong>local maximum</strong></span> at <span class="math inline">\(x=a\)</span> if  <span class="math inline">\(\exists \ h&gt;0\)</span> s.t. <span class="math inline">\(f(a)\ge f(x) \ \ \forall \ x\in(a-h,a+h).\)</span><br />
+Remark: If <span class="math inline">\(f(x)\)</span> has a local maximum at <span class="math inline">\(x=a\)</span> and is differentiable at this point then <span class="math inline">\(f&#39;(a)=0.\)</span><br />
+Proof: As <span class="math inline">\(f(x)\)</span> is differentiable at <span class="math inline">\(a\)</span> then <span class="math display">\[\lim_{x\rightarrow a^-}\frac{f(x)-f(a)}{x-a}
+=\lim_{x\rightarrow a^+}
+\frac{f(x)-f(a)}{x-a}
+=f&#39;(a).\]</span> <span class="math inline">\(f(x)\)</span> has a local maximum at <span class="math inline">\(a\)</span> implies <span class="math display">\[\frac{f(x)-f(a)}{x-a}\ge 0 \quad \mbox{for} \ x\in(a-h,a)\]</span> <span class="math display">\[\mbox{hence \ }
+f&#39;(a)=\lim_{x\rightarrow a^-}\frac{f(x)-f(a)}{x-a}\ge 0.\]</span> Similarly, <span class="math inline">\(f(x)\)</span> has a local maximum at <span class="math inline">\(a\)</span> also implies <span class="math display">\[\frac{f(x)-f(a)}{x-a}\le 0 \quad \mbox{for} \ x\in(a,a+h)\]</span> <span class="math display">\[\mbox{hence \ }
+f&#39;(a)=\lim_{x\rightarrow a^+}\frac{f(x)-f(a)}{x-a}\le 0.\]</span> Putting these two together gives <span class="math inline">\(f&#39;(a)\le 0\le f&#39;(a)\)</span> and thus <span class="math inline">\(f&#39;(a)=0.\)</span><br />
+<span><strong>Defn:</strong></span> We say that <span class="math inline">\(f(x)\)</span> has a <span><strong>local minimum</strong></span> at <span class="math inline">\(x=a\)</span> if  <span class="math inline">\(\exists \ h&gt;0\)</span> s.t. <span class="math inline">\(f(x)\ge f(a) \ \ \forall \ x\in(a-h,a+h).\)</span><br />
+Remark: If <span class="math inline">\(f(x)\)</span> has a local minimum at <span class="math inline">\(x=a\)</span> and is differentiable at this point then <span class="math inline">\(f&#39;(a)=0.\)</span><br />
+<span><strong>Defn:</strong></span> <span class="math inline">\(f(x)\)</span> has a <span><strong>stationary point</strong></span> at <span class="math inline">\(x=a\)</span> if it is differentiable at <span class="math inline">\(x=a\)</span> with <span class="math inline">\(f&#39;(a)=0.\)</span><br />
+<span><strong>Defn:</strong></span> An interior point <span class="math inline">\(x=a\)</span> of the domain of <span class="math inline">\(f(x)\)</span> is called a <span><strong>critical point</strong></span> if either <span class="math inline">\(f&#39;(a)=0\)</span> or <span class="math inline">\(f&#39;(a)\)</span> does not exist.<br />
+Every local maximum and local minimum of a differentiable function is a stationary point but there may be other stationary points too.<br />
+Eg. <span class="math inline">\(f(x)=x^3\)</span> has <span class="math inline">\(f&#39;(0)=0\)</span> so <span class="math inline">\(x=0\)</span> is a stationary point but it is neither a local maximum nor a local minimum because <span class="math inline">\(f(x)&gt;f(0)\)</span> for <span class="math inline">\(x\in(0,h)\)</span> but <span class="math inline">\(f(x)&lt;f(0)\)</span> for <span class="math inline">\(x\in(-h,0).\)</span><br />
+<span><strong>Defn:</strong></span> If <span class="math inline">\(f(x)\)</span> is twice differentiable in an open interval around <span class="math inline">\(x=a\)</span> with <span class="math inline">\(f&#39;&#39;(a)=0\)</span> and if <span class="math inline">\(f&#39;&#39;(x)\)</span> changes sign at <span class="math inline">\(x=a\)</span> then we say that <span class="math inline">\(x=a\)</span> is a <span><strong>point of inflection.</strong></span><br />
+</p>
+<div class="center">
+<figure>
+<img src="new_inflection.png" style="width:5cm" alt="" /><figcaption>The graph of <span class="math inline">\(f(x)=x^3\)</span> indicating the point of inflection at <span class="math inline">\(x=0.\)</span></figcaption>
+</figure>
+</div>
+<p>Eg. <span class="math inline">\(f(x)=x^3\)</span> has <span class="math inline">\(f&#39;&#39;(x)=6x\)</span> so <span class="math inline">\(f&#39;&#39;(0)=0.\)</span> As <span class="math inline">\(f&#39;&#39;(x)&lt;0\)</span> for <span class="math inline">\(x&lt;0\)</span> and <span class="math inline">\(f&#39;&#39;(x)&gt;0\)</span> for <span class="math inline">\(x&gt;0\)</span> then <span class="math inline">\(f&#39;&#39;(x)\)</span> changes sign at <span class="math inline">\(x=0\)</span> so it is a point of inflection.<br />
+<span><strong>The first derivative test</strong></span></p>
+<p>Suppose <span class="math inline">\(f(x)\)</span> is continuous at a critical point <span class="math inline">\(x=a.\)</span><br />
+(i). If <span class="math inline">\(\exists\ h&gt;0\)</span> s.t. <span class="math inline">\(f&#39;(x)&lt;0 \ \forall \ x\in(a-h,a)\)</span> and <span class="math inline">\(f&#39;(x)&gt;0 \ \forall \ x\in(a,a+h)\)</span> then <span class="math inline">\(x=a\)</span> is a local minimum.<br />
+(ii). If <span class="math inline">\(\exists\ h&gt;0\)</span> s.t. <span class="math inline">\(f&#39;(x)&gt;0 \ \forall \ x\in(a-h,a)\)</span> and <span class="math inline">\(f&#39;(x)&lt;0 \ \forall \ x\in(a,a+h)\)</span> then <span class="math inline">\(x=a\)</span> is a local maximum.<br />
+(iii). If <span class="math inline">\(\exists\ h&gt;0\)</span> s.t. <span class="math inline">\(f&#39;(x)\)</span> has a constant sign  <span class="math inline">\(\forall \ x\ne a\)</span> in <span class="math inline">\((a-h,a+h)\)</span> then <span class="math inline">\(x=a\)</span> is a not a local extreme value (minimum/maximum).<br />
+Eg. <span class="math inline">\(f(x)=|x|\)</span> is continuous but <span class="math inline">\(f&#39;(x)\ne 0\)</span> so there are no stationary points. The derivative does not exist at <span class="math inline">\(x=0\)</span> so this is a critical point. <span class="math inline">\(f&#39;(x)&lt;0\)</span> for <span class="math inline">\(x\in (-1,0)\)</span> and <span class="math inline">\(f&#39;(x)&gt;0\)</span> for <span class="math inline">\(x\in (0,1)\)</span> so by the first derivative test <span class="math inline">\(x=0\)</span> is a local minimum. In fact <span class="math inline">\(f(0)=0\)</span> is a global minimum as <span class="math inline">\(|x|\ge 0.\)</span><br />
+Eg. <span class="math inline">\(f(x)=x^4-2x^3\)</span> has <span class="math inline">\(f&#39;(x)=4x^3-6x^2=2x^2(2x-3).\)</span> The only critical points are <span class="math inline">\(x=0,3/2.\)</span> Now <span class="math inline">\(f&#39;(x)&lt;0\)</span> for <span class="math inline">\(x&lt;3/2\)</span> and <span class="math inline">\(f&#39;(x)&gt;0\)</span> for <span class="math inline">\(x&gt;3/2.\)</span> Thus <span class="math inline">\(f&#39;(x)\)</span> has constant sign on both (sufficiently close) sides of <span class="math inline">\(x=0\)</span> so this is not a local extreme value. However, <span class="math inline">\(f&#39;(x)\)</span> changes sign from negative to positive as <span class="math inline">\(x\)</span> passes through <span class="math inline">\(x=3/2\)</span> so this is a local minimum.<br />
+<span><strong>The second derivative test</strong></span></p>
+<p>Suppose <span class="math inline">\(f(x)\)</span> is twice differentiable at <span class="math inline">\(x=a\)</span> with <span class="math inline">\(f&#39;(a)=0.\)</span></p>
+<p>(i).  If <span class="math inline">\(f&#39;&#39;(a)&gt;0\)</span> then <span class="math inline">\(x=a\)</span> is a local minimum.</p>
+<p>(ii). If <span class="math inline">\(f&#39;&#39;(a)&lt;0\)</span> then <span class="math inline">\(x=a\)</span> is a local maximum.<br />
+Note that the theorem doesn’t say anything about the case <span class="math inline">\(f&#39;&#39;(a)=0.\)</span><br />
+Eg. <span class="math inline">\(f(x)=2x^3-9x^2+12x\)</span> has <span class="math inline">\(f&#39;(x)=6x^2-18x+12=6(x^2-3x+2)=6(x-1)(x-2)\)</span> giving stationary points at <span class="math inline">\(x=1\)</span> and <span class="math inline">\(x=2.\)</span> Furthermore, <span class="math inline">\(f&#39;&#39;(x)=6(2x-3)\)</span> giving <span class="math inline">\(f&#39;&#39;(1)=-6&lt;0\)</span> and <span class="math inline">\(f&#39;&#39;(2)=6&gt;0\)</span> so by the second derivative test <span class="math inline">\(x=1\)</span> is a local maximum and <span class="math inline">\(x=2\)</span> is a local minimum.<br />
+Note that the first derivative test is more general than the second derivative test as it does not require the function to be differentiable at the critical point.<br />
+Determining all critical points and asymptotes is the key to sketching the graph of a function. Eg. Sketch the graph of the function <span class="math inline">\(f(x)=\frac{4x-5}{x^2-1}.\)</span></p>
+<div class="center">
+<figure>
+<img src="new_sketch.png" style="width:6cm" alt="" /><figcaption>Graph of <span class="math inline">\(f(x)=\frac{4x-5}{x^2-1}.\)</span></figcaption>
+</figure>
+</div>
+<p><span class="math inline">\(y=0\)</span> is a horizontal asymptote along both the positive and negative <span class="math inline">\(x\)</span>-axis because <span class="math display">\[\lim_{x\rightarrow\pm \infty}
+\frac{4x-5}{x^2-1}=
+\lim_{x\rightarrow\pm \infty}
+\frac{1}{x}\bigg(\frac{4-5/x}{1-\frac{1}{x^2}}\bigg)=
+0\bigg(\frac{4-0}{1-0^2}\bigg)=0\]</span> There are vertical asymptotes at <span class="math inline">\(x=\pm 1.\)</span> Also <span class="math display">\[f&#39;(x)=\frac{4(x^2-1)-2x(4x-5)}{(x^2-1)^2}
+=\frac{-4x^2+10x-4}{(x^2-1)^2}
+=\frac{-(4x-2)(x-2)}{(x^2-1)^2}\]</span> so there are stationary points at <span class="math inline">\(x=\frac{1}{2},2\)</span> with <span class="math inline">\(f(\frac{1}{2})=4\)</span> and <span class="math inline">\(f(2)=1.\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">-1</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="math inline">\(\frac{1}{2}\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(f&#39;\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(-\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(-\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>As <span class="math inline">\(x\)</span> passes through <span class="math inline">\(\frac{1}{2}\)</span> then <span class="math inline">\(f&#39;(x)\)</span> changes sign from negative to positive so this is a local minimum. As <span class="math inline">\(x\)</span> passes through <span class="math inline">\(2\)</span> then <span class="math inline">\(f&#39;(x)\)</span> changes sign from positive to negative so this is a local maximum.</p>
+<p> </p>
+<p>If a function is defined on an interval then extreme values can occur at the endpoints of the interval. Here an <span><strong>endpoint</strong></span> <span class="math inline">\(x=c\)</span> is a point at which the function is defined but where the function is undefined either to the left or right of this point. For example, if the domain of a function is <span class="math inline">\([a,b]\)</span> then <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are both endpoints.<br />
+<span><strong>Defn:</strong></span> If <span class="math inline">\(c\)</span> is an endpoint of <span class="math inline">\(f(x)\)</span> then <span class="math inline">\(f\)</span> has an <span><strong>endpoint maximum</strong></span> at <span class="math inline">\(x=c\)</span> if <span class="math inline">\(f(x)\le f(c)\)</span> for <span class="math inline">\(x\)</span> sufficiently close to <span class="math inline">\(c.\)</span><br />
+The obvious similar definition applies for an <span><strong>endpoint minimum</strong></span>.<br />
+If a function is differentiable sufficiently close to an endpoint then examining the sign of the derivative can determine if there is an endpoint maximum or minimum.<br />
+If <span class="math inline">\(f(x)\)</span> is continuous on an interval <span class="math inline">\([a,b]\)</span> then the global extreme values in this interval are attained at either critical points or endpoints, so we can determine them by examining all the possibilities.<br />
+Eg. Find the global extreme values of <span class="math inline">\(f(x)=1+4x^2-\frac{1}{2}x^4\)</span> for <span class="math inline">\(x\in[-1,3].\)</span></p>
+<div class="center">
+<figure>
+<img src="new_extreme1.png" style="width:4cm" alt="" /><figcaption>Graph of <span class="math inline">\(f(x)=1+4x^2-\frac{1}{2}x^4\)</span></figcaption>
+</figure>
+</div>
+<p><span class="math inline">\(f&#39;(x)=8x-2x^3=2x(4-x^2)\)</span> which is zero at <span class="math inline">\(x=0,2\)</span>; recall we only consider <span class="math inline">\(x\in[-1,3].\)</span></p>
+<p>Critical point:  <span class="math inline">\(f(0)=1\)</span> and <span class="math inline">\(f(2)=9\)</span></p>
+<p>End points:  <span class="math inline">\(f(-1)=\frac{9}{2}\)</span> and <span class="math inline">\(f(3)=-\frac{7}{2}.\)</span></p>
+<p>The smallest of these four values is <span class="math inline">\(-\frac{7}{2},\)</span> which is the global minimum, whereas the largest is <span class="math inline">\(9\)</span> which is the global maximum.<br />
+Eg. Find the global extreme values of <span class="math inline">\(x^2-2|x|+2\)</span> for <span class="math inline">\(x\in[-\frac{1}{2},2].\)</span></p>
+<p>First of all we can write <span class="math display">\[f(x)=\begin{cases}
+x^2+2x+2 &amp; \text{if \ } -\frac{1}{2}\le x&lt;0\\
+x^2-2x+2 &amp; \text{if \ } \ \ \ \ 0 \le x\le 2
+\end{cases}\]</span> <span class="math inline">\(f&#39;(x)=2x+2\)</span> for <span class="math inline">\(x\in[-\frac{1}{2},0)\)</span> so no critical points here.</p>
+<p><span class="math inline">\(f&#39;(x)=2x-2\)</span> for <span class="math inline">\(x\in(0,2]\)</span> so a critical point at <span class="math inline">\(x=1\)</span> with <span class="math inline">\(f(1)=1.\)</span></p>
+<p><span class="math inline">\(\lim_{x\rightarrow 0^+}f&#39;(x)=-2
+\ne 2 =\lim_{x\rightarrow 0^-}f&#39;(x)\)</span> hence <span class="math inline">\(f&#39;(x)\)</span> does not exist at <span class="math inline">\(x=0,\)</span> making this a critical point with <span class="math inline">\(f(0)=2.\)</span></p>
+<p>Endpoints: <span class="math inline">\(f(-\frac{1}{2})=\frac{5}{4}\)</span> and <span class="math inline">\(f(2)=2.\)</span></p>
+<p>Thus the global minimum is 1 and the global maximum is 2.<br />
+</p>
+<div class="center">
+<figure>
+<img src="new_extreme2.png" id="fig-extreme2" style="width:5cm" alt="" /><figcaption>Graph of a piecewise function with two quadratic pieces.</figcaption>
+</figure>
+</div>
+</section>
+<section id="rolles-theorem" class="level2" data-number="1.6">
+<h2 data-number="3.6"><span class="header-section-number">3.6</span> Rolle’s theorem</h2>
+<p><span><strong>Rolle’s theorem</strong></span> states that if <span class="math inline">\(f\)</span> is differentiable on the open interval <span class="math inline">\((a,b)\)</span> and continuous on the closed interval <span class="math inline">\([a,b],\)</span> with <span class="math inline">\(f(a)=f(b),\)</span> then there is at least one <span class="math inline">\(c\in(a,b)\)</span> for which <span class="math inline">\(f&#39;(c)=0.\)</span><br />
+Proof: By the extreme value theorem <span class="math inline">\(\exists\)</span>  <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in <span class="math inline">\([a,b]\)</span> s.t.</p>
+<p><span class="math inline">\(f(x_1)\le f(x)\le f(x_2) \ \forall \ x\in[a,b].\)</span></p>
+<p>If <span class="math inline">\(x_1\in (a,b)\)</span> then <span class="math inline">\(x_1\)</span> is a local minimum and <span class="math inline">\(f&#39;(x_1)=0\)</span> so we are done.</p>
+<p>If <span class="math inline">\(x_2\in (a,b)\)</span> then <span class="math inline">\(x_2\)</span> is a local maximum and <span class="math inline">\(f&#39;(x_2)=0\)</span> so we are done.</p>
+<p>The only case that is left is if both <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are endpoints, <span class="math inline">\(a,b.\)</span> But since <span class="math inline">\(f(a)=f(b)\)</span> then in this case <span class="math inline">\(f(x_1)=f(x_2)=f(a)\)</span> so the above bound becomes <span class="math inline">\(f(a)\le f(x)\le f(a) \ \forall \ x\in[a,b].\)</span> Thus <span class="math inline">\(f(x)=f(a)\)</span> is constant in the interval and <span class="math inline">\(f&#39;(x)=0 \ 
+\forall \ x\in[a,b].\)</span><br />
+</p>
+<div class="center">
+<figure>
+<img src="new_rolles.png" style="width:6cm" alt="" /><figcaption>Illustration of Rolle’s theorem.</figcaption>
+</figure>
+</div>
+<p>An obvious corollary of Rolle’s theorem is that if <span class="math inline">\(f(x)\)</span> is differentiable at every point of an open interval <span class="math inline">\(I\)</span> then each pair of zeros of the function in <span class="math inline">\(I\)</span> is separated by at least one zero of <span class="math inline">\(f&#39;(x).\)</span> This is simply the special case of Rolle’s theorem with <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> taken to be the the zeros of <span class="math inline">\(f(x)\)</span> so that <span class="math inline">\(f(a)=f(b)=0.\)</span><br />
+An application of the above result is to provide a limit on the number of distinct real zeros of a function.<br />
+Eg. Show that <span class="math inline">\(f(x)=\frac{1}{7}x^7-\frac{1}{5}x^6+x^3-3x^2-x\)</span> has no more than 3 distinct real roots.</p>
+<p>Suppose the required result is false and there are (at least) 4 distinct real roots of <span class="math inline">\(f(x).\)</span> Then by Rolle’s theorem there are (at least) 3 distinct real roots of <span class="math inline">\(f&#39;(x).\)</span> Then by applying Rolle’s theorem to <span class="math inline">\(f&#39;(x)\)</span> there are (at least) 2 distinct real roots of <span class="math inline">\(f&#39;&#39;(x).\)</span> However, <span class="math inline">\(f&#39;&#39;(x)=6x^5-6x^4+6x-6=6(x-1)(x^4+1)\)</span> has only one real root (at <span class="math inline">\(x=1\)</span>). This contradiction proves the required result.<br />
+</p>
+</section>
+<section id="the-mean-value-theorem" class="level2" data-number="1.7">
+<h2 data-number="3.7"><span class="header-section-number">3.7</span> The mean value theorem</h2>
+<p><span><strong>The mean value theorem</strong></span> states that if <span class="math inline">\(f\)</span> is differentiable on the open interval <span class="math inline">\((a,b)\)</span> and continuous on the closed interval <span class="math inline">\([a,b],\)</span> then there is at least one <span class="math inline">\(c\in(a,b)\)</span> for which <span class="math display">\[f&#39;(c)=\frac{f(b)-f(a)}{b-a}.\]</span></p>
+<div class="center">
+<figure>
+<img src="new_mvt.png" style="width:4.6cm" alt="" /><figcaption>Illustration of the mean value theorem.</figcaption>
+</figure>
+</div>
+<p> </p>
+<p>Geometrically this theorem states that there is at least one point in the interval at which the tangent to the curve is parallel to the line joining the two points <span class="math inline">\((b,f(b))\)</span> and <span class="math inline">\((a,f(a))\)</span> at the ends of the interval. The geometry makes the result clear but here is the proof.</p>
+<p>Proof: Define the function <span class="math display">\[g(x)=(b-a)(f(x)-f(a))-(x-a)(f(b)-f(a)).\]</span> Then <span class="math inline">\(g(a)=g(b)=0\)</span> and as <span class="math inline">\(g(x)\)</span> satisfies the requirements of Rolle’s theorem then <span class="math inline">\(\exists \ c\in(a,b)\)</span> for which <span class="math inline">\(g&#39;(c)=0.\)</span> As <span class="math inline">\(g&#39;(x)=(b-a)f&#39;(x)-(f(b)-f(a))\)</span> then setting <span class="math inline">\(x=c\)</span> yields the required result <span class="math inline">\(f&#39;(c)=\frac{f(b)-f(a)}{b-a}.\)</span><br />
+Note that Rolle’s theorem is just a special case of the mean value theorem with <span class="math inline">\(f(a)=f(b).\)</span><br />
+The mean value theorem can be used to prove some obvious results relating monotonicity to the sign of the derivative. Here is an example:<br />
+Suppose <span class="math inline">\(f(x)\)</span> is continuous in <span class="math inline">\([a,b]\)</span> and differentiable in <span class="math inline">\((a,b)\)</span> with <span class="math inline">\(f&#39;(x)\ge 0\)</span> throughout this interval. Then <span class="math inline">\(f(x)\)</span> is monotonic increasing in <span class="math inline">\((a,b).\)</span></p>
+<p>Proof: If <span class="math inline">\(a\le x_1&lt;x_2\le b\)</span> then by the mean value theorem <span class="math inline">\(\exists \ 
+c\in(a,b)\)</span> s.t. <span class="math inline">\(f&#39;(c)=\frac{f(x_2)-f(x_1)}{x_2-x_1}.\)</span> However, since <span class="math inline">\(f&#39;(x)\ge 0\)</span> in <span class="math inline">\((a,b)\)</span> then <span class="math inline">\(f&#39;(c)\ge 0\)</span> which imples that <span class="math inline">\(f(x_2)\ge f(x_1)\)</span> ie. <span class="math inline">\(f\)</span> is monotonic increasing.<br />
+Similar obvious results and proofs follow for the cases of monotonic decreasing and strictly monotonic increasing/decreasing.<br />
+</p>
+</section>
+<section id="the-inverse-function-rule" class="level2" data-number="1.8">
+<h2 data-number="3.8"><span class="header-section-number">3.8</span> The inverse function rule</h2>
+<p>The derivative of the inverse of a function can be obtained from the following:<br />
+<span><strong>The inverse function rule</strong></span> states that if <span class="math inline">\(f(x)\)</span> is continuous in <span class="math inline">\([a,b]\)</span> and differentiable in <span class="math inline">\((a,b)\)</span> with <span class="math inline">\(f&#39;(x)&gt;0\)</span> throughout this interval then its inverse function <span class="math inline">\(g(y)\)</span> (recall <span class="math inline">\(g(f(x))=x\)</span>) is differentiable for all <span class="math inline">\(f(a)&lt;y&lt;f(b)\)</span> with <span class="math inline">\(g&#39;(y)=1/f&#39;(g(y)).\)</span><br />
+Note: A similar theorem exists for the case <span class="math inline">\(f&#39;(x)&lt;0.\)</span><br />
+Eg. <span class="math inline">\(f(x)=\sin x\)</span> has <span class="math inline">\(f&#39;(x)=\cos x&gt;0\)</span> for <span class="math inline">\(x\in(-\pi/2,\pi/2).\)</span></p>
+<p>Its inverse function <span class="math inline">\(g(y)=\sin^{-1}y\)</span> is therefore differentiable in <span class="math inline">\((-1,1)\)</span> with <span class="math display">\[g&#39;(y)=\frac{1}{f&#39;(g(y))}=\frac{1}{\cos g(y)}
+=\frac{1}{\sqrt{1-\sin^2g(y)}}\]</span> but <span class="math inline">\(y=f(g(y))=\sin(g(y))\)</span> hence <span class="math inline">\(g&#39;(y)=\frac{1}{\sqrt{1-y^2}}.\)</span> Thus we have shown that <span class="math display">\[\frac{d}{dx}\sin^{-1}x=\frac{1}{\sqrt{1-x^2}}.\]</span></p>
+<p> </p>
+<p>Eg. <span class="math inline">\(f(x)=\tan x\)</span> has <span class="math inline">\(f&#39;(x)=\sec^2x&gt;0\)</span> for <span class="math inline">\(x\in(-\pi/2,\pi/2).\)</span></p>
+<p>With this domain then <span class="math inline">\(\mbox{Ran\,}f=\mathbb{R}\)</span> hence the domain of the inverse function <span class="math inline">\(g(y)=\tan^{-1}(y)\)</span> is <span class="math inline">\(\mathbb{R}.\)</span></p>
+<p>By the inverse function rule <span class="math display">\[g&#39;(y)=\frac{1}{f&#39;(g(y))}=\frac{1}{\sec^2(g(y))}
+=\frac{1}{1+\tan^2(g(y))}=\frac{1}{1+y^2}\]</span> where we have used <span class="math inline">\(y=f(g(y))=\tan(g(y)).\)</span></p>
+<p>Thus we have shown that <span class="math display">\[\frac{d}{dx}\tan^{-1}x=\frac{1}{1+x^2}.\]</span></p>
+</section>
+<section id="partial-derivatives" class="level2" data-number="1.9">
+<h2 data-number="3.9"><span class="header-section-number">3.9</span> Partial derivatives</h2>
+<p>So far we have only considered functions of a single variable eg. <span class="math inline">\(f(x).\)</span> Later we shall study functions of two variables eg. <span class="math inline">\(f(x,y).\)</span> For this situation we shall need the concept of a <span><strong>partial derivative</strong></span>. The partial derivative of <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(x\)</span> is written as <span class="math inline">\(\frac{\partial f}{\partial x}\)</span> and is obtained by differentiating <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(x,\)</span> keeping <span class="math inline">\(y\)</span> fixed ie. <span class="math inline">\(y\)</span> may be treated as a constant in performing the partial differentiation with respect to <span class="math inline">\(x.\)</span> <span class="math display">\[\mbox{Eg.} \quad f(x,y)=x^2y^3-\sin x \cos y\,+y \quad \mbox{has}\quad \frac{\partial f}{\partial x}=2xy^3-\cos x\cos y.\]</span> Similarly, the partial derivative of <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(y\)</span> is written as <span class="math inline">\(\frac{\partial f}{\partial y}\)</span> and is obtained by differentiating <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(y,\)</span> keeping <span class="math inline">\(x\)</span> fixed. <span class="math display">\[\mbox{Eg.} \quad f(x,y)=x^2y^3-\sin x \cos y\,+y \quad \mbox{has}\quad 
+\frac{\partial f}{\partial y}=3x^2y^2+\sin x\sin y\,+1.\]</span> Partial derivatives are defined in terms of the following limits (which we assume exist) <span class="math display">\[\frac{\partial f}{\partial x}(x,y)=\lim_{h\rightarrow 0}\frac{f(x+h,y)-f(x,y)}{h}, \quad
+\frac{\partial f}{\partial y}(x,y)=\lim_{h\rightarrow 0}\frac{f(x,y+h)-f(x,y)}{h}. \quad\]</span> An alternative notation for partial derivatives is to write <span class="math inline">\(f_x\)</span> for <span class="math inline">\(\frac{\partial f}{\partial x}\)</span> etc.<br />
+By applying partial differentiation to these partial derivatives we may obtain the second order partial derivatives <span class="math display">\[\frac{\partial^2 f}{\partial x^2}=\frac{\partial}{\partial x}\bigg(\frac{\partial f}{\partial x}\bigg),\quad
+\frac{\partial^2 f}{\partial y^2}=\frac{\partial}{\partial y}\bigg(\frac{\partial f}{\partial y}\bigg),\quad
+\frac{\partial^2 f}{\partial y\partial x}=\frac{\partial}{\partial y}\bigg(\frac{\partial f}{\partial x}\bigg),\quad
+\frac{\partial^2 f}{\partial x\partial y}=\frac{\partial}{\partial x}\bigg(\frac{\partial f}{\partial y}\bigg).\]</span> For the earlier example <span class="math inline">\(f(x,y)=x^2y^3-\sin x \cos y\,+y\)</span> we obtain <span class="math display">\[\frac{\partial^2 f}{\partial x^2}=2y^3+\sin x\cos y, \quad
+\frac{\partial^2 f}{\partial y^2}=6x^2y+\sin x\cos y, \quad\]</span> <span class="math display">\[\frac{\partial^2 f}{\partial y\partial x}=6xy^2+\cos x\sin y, \quad
+\frac{\partial^2 f}{\partial x\partial y}=6xy^2+\cos x\sin y.\]</span> Note the equality, in this example, of the two mixed partial derivatives <span class="math display">\[\frac{\partial^2 f}{\partial x\partial y}
+=\frac{\partial^2 f}{\partial y\partial x}.\]</span> It can be shown that this result is true in general, if <span class="math inline">\(f\)</span> and all first and second order partial derivatives are continuous.<br />
+An alternative notation for partial derivatives is <span class="math display">\[\frac{\partial^2 f}{\partial x^2}=f_{xx}\]</span> etc</p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>

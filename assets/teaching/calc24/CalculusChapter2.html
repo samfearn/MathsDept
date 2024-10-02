@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sam Fearn Original notes produced by Paul Sutcliffe" />
+  <title>Calculus I Michaelmas Term</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Calculus I<br />
+Michaelmas Term</p></h1>
+<p class="author">Sam Fearn<br />
+Original notes produced by Paul Sutcliffe</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#limits-and-continuity"><span class="toc-section-number">2</span> Limits and continuity</a>
+<ul>
+<li><a href="#definition-of-a-limit-and-continuity"><span class="toc-section-number">2.1</span> Definition of a limit and continuity</a></li>
+<li><a href="#facts-about-limits-and-continuity"><span class="toc-section-number">2.2</span> Facts about limits and continuity</a></li>
+<li><a href="#the-pinching-theorem"><span class="toc-section-number">2.3</span> The pinching theorem</a></li>
+<li><a href="#two-trigonometric-limits"><span class="toc-section-number">2.4</span> Two trigonometric limits</a></li>
+<li><a href="#classification-of-discontinuities"><span class="toc-section-number">2.5</span> Classification of discontinuities</a></li>
+<li><a href="#limits-as-xrightarrow-infty."><span class="toc-section-number">2.6</span> Limits as <span class="math inline">\(x\rightarrow \infty.\)</span></a></li>
+<li><a href="#the-intermediate-value-theorem"><span class="toc-section-number">2.7</span> The intermediate value theorem</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="limits-and-continuity" class="level1" data-number="1">
+<h1 data-number="2"><span class="header-section-number">2</span> Limits and continuity</h1>
+<section id="definition-of-a-limit-and-continuity" class="level2" data-number="1.1">
+<h2 data-number="2.1"><span class="header-section-number">2.1</span> Definition of a limit and continuity</h2>
+<p><span><em>Rough idea #1:</em></span></p>
+<p>A function <span class="math inline">\(f(x)\)</span> has a <span><strong>limit</strong></span> <span class="math inline">\(L\)</span> at <span class="math inline">\(x=a\)</span> if <span class="math inline">\(f(x)\)</span> is close to <span class="math inline">\(L\)</span> whenever <span class="math inline">\(x\)</span> is close to <span class="math inline">\(a.\)</span><br />
+<span><em>Rough idea #2:</em></span> Lets think about the function <span class="math inline">\(f(x)\)</span> near <span class="math inline">\(x=a.\)</span></p>
+<p>If you approximate <span class="math inline">\(f(x)\)</span> by a constant <span class="math inline">\(L\)</span> then you will make an error given by <span class="math inline">\(|f(x)-L|.\)</span> Suppose <span class="math inline">\(\varepsilon&gt;0\)</span> is the <span class="math inline">\(\varepsilon\)</span>rror at which you become unhappy with your approximation, that is, you are happy as long as <span class="math inline">\(|f(x)-L|&lt;\varepsilon.\)</span> The important issue for a limit is whether I can keep you happy simply by making sure that <span class="math inline">\(x\)</span> stays within a <span class="math inline">\(\delta\)</span>istance <span class="math inline">\(\delta&gt;0\)</span> of <span class="math inline">\(a,\)</span> that is by restricting to <span class="math inline">\(0&lt;|x-a|&lt;\delta.\)</span> Note that we dont even care about what happens exactly at <span class="math inline">\(x=a.\)</span> If I can always find a <span class="math inline">\(\delta\)</span>istance <span class="math inline">\(\delta\)</span> that keeps you happy, no matter how small you choose your <span class="math inline">\(\varepsilon\)</span>rror <span class="math inline">\(\varepsilon,\)</span> then we say that <span class="math inline">\(f(x)\)</span> has a <span><strong>limit</strong></span> <span class="math inline">\(L\)</span> as <span class="math inline">\(x\)</span> tends to <span class="math inline">\(a.\)</span><br />
+</p>
+<div class="center">
+<figure>
+<img src="new_limit.png" style="width:5cm" alt="" /><figcaption>The idea of a limit.</figcaption>
+</figure>
+</div>
+<p><span><strong>Defn</strong></span>: <span class="math inline">\(f(x)\)</span> has a <span><strong>limit</strong></span> <span class="math inline">\(L\)</span> as <span class="math inline">\(x\)</span> tends to <span class="math inline">\(a\)</span> if <span class="math display">\[\forall \ \ \varepsilon&gt;0 \ \ \exists \ \ \delta&gt;0 \ \ \mbox{s.t} \ \
+|f(x)-L|&lt;\varepsilon\ \ \mbox{when} \ \ 0&lt;|x-a|&lt;\delta.\]</span> We then write <span class="math display">\[\lim_{x\rightarrow a}f(x)=L \quad \mbox{or equivalently}\quad 
+f(x)\rightarrow L \ \ \mbox{as} \ \ x\rightarrow a.\]</span> If there is no such <span class="math inline">\(L\)</span> then we say that <span><em>no limit exists</em></span>.<br />
+The limit does not require that <span class="math inline">\(f(a)\)</span> is equal to <span class="math inline">\(L\)</span> or even that <span class="math inline">\(f(a)\)</span> exists. This is because of the inequality <span class="math inline">\(0&lt;|x-a|\)</span> in the definition.<br />
+There is a lot more of this <span class="math inline">\(\varepsilon\)</span> and <span class="math inline">\(\delta\)</span> stuff in Analysis I, where proofs concerning limits are considered. In this course we shall be less formal and deal only with methods to calculate limits or see that no limit exists.<br />
+<span><em>Rough idea #3:</em></span></p>
+<p>If <span class="math inline">\(f(a)\)</span> exists then it would seem that this is a good candidate for the limit <span class="math inline">\(L.\)</span> This naive view turns out to be correct only if the graph of <span class="math inline">\(f(x)\)</span> is a single unbroken curve with no holes or jumps, at least in a small region around <span class="math inline">\(x=a.\)</span><br />
+<span><strong>Defn</strong></span>. A function <span class="math inline">\(f(x)\)</span> is <span><strong>continuous at the point <span class="math inline">\(x=a\)</span></strong></span> if the following three properties all hold:<br />
+<span class="math inline">\(\bullet\)</span> <span class="math inline">\(f(a)\)</span> exists.<br />
+<span class="math inline">\(\bullet\)</span> <span class="math inline">\(\lim_{x\rightarrow a}f(x)\)</span> exists.<br />
+<span class="math inline">\(\bullet\)</span> <span class="math inline">\(\lim_{x\rightarrow a}f(x)\)</span> is equal to <span class="math inline">\(f(a)\)</span>.<br />
+<span><strong>Defn</strong></span>. A function <span class="math inline">\(f(x)\)</span> is <span><strong>continuous on a subset</strong></span> <span class="math inline">\(S\)</span> of its domain if it is continuous at every point in <span class="math inline">\(S\)</span>.<br />
+ <span><strong>Defn</strong></span>. A function <span class="math inline">\(f(x)\)</span> is <span><strong>continuous</strong></span> if it is continuous at every point in its domain. </p>
+<p> </p>
+<p>Eg. <span class="math inline">\(f(x)=x^2\)</span> is continuous and <span class="math inline">\(\lim_{x\rightarrow 2}x^2=f(2)=4.\)</span><br />
+Eg. The following function has a discontinuity at <span class="math inline">\(x=0\)</span> <span class="math display">\[f(x)=
+\begin{cases}
+x^2 &amp; \mbox{if\ } -1\le x&lt; 0\\
+1 &amp; \mbox{if\ } x=0\\
+x^2 &amp; \mbox{if\ } 0&lt;x\le 1\\
+\end{cases}\]</span></p>
+<div class="center">
+<figure>
+<img src="new_open1.png" id="fig-open1" style="width:4cm" alt="" /><figcaption>A graph illustrating the use of open and closed circles. The limit exists at <span class="math inline">\(x=0.\)</span></figcaption>
+</figure>
+</div>
+<p>As mentioned earlier, to indicate on a graph exactly which points are included we use a closed circle to denote an included point, so if it is at the end of a curve segment this denotes that this end is a closed interval. We use an open circle to denote an excluded point associated with an open interval. This notation is demonstrated in Figure <a href="#fig-open1" data-reference-type="ref" data-reference="fig-open1">1</a> where the graph of the above function is presented. This function is not continuous at <span class="math inline">\(x=0\)</span> but the limit exists at this point and <span class="math inline">\(\lim_{x\rightarrow 0}f(x)=0\neq 1=f(0).\)</span><br />
+Eg. The following function also has a discontinuity at <span class="math inline">\(x=0\)</span> (see Figure <a href="#fig-open2" data-reference-type="ref" data-reference="fig-open2">2</a> for its graph) <span class="math display">\[f(x)=
+\begin{cases}
+1 &amp; \mbox{if\ } x\le 0\\
+x^2 &amp; \mbox{if\ } x&gt;0\\
+\end{cases}\]</span></p>
+<div class="center">
+<figure>
+<img src="new_open22.png" id="fig-open2" style="width:5cm" alt="" /><figcaption>A graph illustrating the use of open and closed circles. No limit exists at <span class="math inline">\(x=0.\)</span></figcaption>
+</figure>
+</div>
+<p>In this case no limit exists at <span class="math inline">\(x=0.\)</span> This is clear because if we consider <span class="math inline">\(x&lt;0\)</span> then to get arbitrarily close to the function for <span class="math inline">\(x\)</span> arbitrarily close to 0 would require the limit to be 1. However, if we consider <span class="math inline">\(x&gt;0\)</span> then to get arbitrarily close to the function for <span class="math inline">\(x\)</span> arbitrarily close to 0 would require the limit to be 0. These two requirements are incompatible and so no limit exists at <span class="math inline">\(x=0.\)</span><br />
+Eg. For the function <span class="math inline">\(f(x)=\sin(1/x)\)</span> no limit exists at <span class="math inline">\(x=0\)</span> because as <span class="math inline">\(x\)</span> approaches zero this function oscillates between 1 and -1 over smaller and smaller intervals. In particular, in any given interval <span class="math inline">\(0&lt;x&lt;\delta\)</span> it is always possible to find values <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> s.t. <span class="math inline">\(f(x_1)=1\)</span> and <span class="math inline">\(f(x_2)=-1,\)</span> thus <span class="math inline">\(f(x)\)</span> cannot remain close to any given constant <span class="math inline">\(L.\)</span></p>
+<div class="center">
+<figure>
+<img src="new_sin1overx.jpg" id="fig-sin1overx" style="width:7cm" alt="" /><figcaption>A graph of the function <span class="math inline">\(\sin(1/x)\)</span>.</figcaption>
+</figure>
+</div>
+</section>
+<section id="facts-about-limits-and-continuity" class="level2" data-number="1.2">
+<h2 data-number="2.2"><span class="header-section-number">2.2</span> Facts about limits and continuity</h2>
+<p>There are some simple <span><strong>facts about limits</strong></span> that follow from the definition:<br />
+<span class="math inline">\(\bullet\)</span> The limit is unique.<br />
+<span class="math inline">\(\bullet\)</span> If <span class="math inline">\(f(x)=g(x)\)</span> (except possibly at <span class="math inline">\(x=a\)</span>) on some open interval containing <span class="math inline">\(a\)</span> then <span class="math inline">\(\lim_{x\rightarrow a}f(x)=\lim_{x\rightarrow a}g(x).\)</span><br />
+<span class="math inline">\(\bullet\)</span> If <span class="math inline">\(f(x)\ge K\)</span> on either an interval <span class="math inline">\((a,b)\)</span> or an interval <span class="math inline">\((c,a)\)</span></p>
+<p>and if <span class="math inline">\(\lim_{x\rightarrow a}f(x)=L\)</span> then <span class="math inline">\(L\ge K.\)</span></p>
+<p>(A similar result holds by replacing all <span class="math inline">\(\ge\)</span> with <span class="math inline">\(\le\)</span>).<br />
+<span class="math inline">\(\bullet\)</span> If <span class="math inline">\(\lim_{x\rightarrow a}f(x)=L\)</span> and <span class="math inline">\(\lim_{x\rightarrow a}g(x)=M\)</span> then</p>
+<p>(i) <span class="math inline">\(\lim_{x\rightarrow a}(f(x)+g(x))=L+M\)</span></p>
+<p>(ii) <span class="math inline">\(\lim_{x\rightarrow a}(f(x)g(x))=LM\)</span></p>
+<p>(iii) if <span class="math inline">\(M\ne 0\)</span> then <span class="math inline">\(\lim_{x\rightarrow a}(f(x)/g(x))=L/M.\)</span></p>
+<p>Note: In Durham the results (i),(ii),(iii) are sometimes known as the</p>
+<p><span><strong>Calculus Of Limits Theorem (COLT)</strong></span>. However, this seems to be a rather grand name for these results and you will not find this name in any books.<br />
+There are also some simple <span><strong>facts about continuous functions</strong></span> that follow from the definition and the above results:<br />
+<span class="math inline">\(\bullet\)</span> If <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> are continuous functions then so are <span class="math inline">\(f(x)+g(x),\)</span>  <span class="math inline">\(f(x)g(x)\)</span> and <span class="math inline">\(f(x)/g(x).\)</span><br />
+<span class="math inline">\(\bullet\)</span> All polynomial, rational, trigonometric and hyperbolic functions are continuous.<br />
+<span class="math inline">\(\bullet\)</span> If <span class="math inline">\(f(x)\)</span> is continuous then so is <span class="math inline">\(|f(x)|.\)</span><br />
+<span class="math inline">\(\bullet\)</span> If <span class="math inline">\(\lim_{x\to a}g(x)=L\)</span> exists and <span class="math inline">\(f(x)\)</span> is continuous at <span class="math inline">\(x=L\)</span> then <span class="math inline">\(\lim_{x\to a}(f\circ g)(x)=f(L).\)</span><br />
+Eg. All the following functions are continuous:</p>
+<p><span class="math inline">\(2x^3+x+7,\)</span> <span class="math inline">\(3x/(x-1),\)</span> <span class="math inline">\(|(1+x^2)/\sin x|,\)</span> <span class="math inline">\(\tan x.\)</span><br />
+Note: Although <span class="math inline">\(\tan x\)</span> is continuous, it is not continuous on the interval <span class="math inline">\([0,\pi],\)</span> because this interval includes the point <span class="math inline">\(x=\pi/2\)</span> which is not in the domain of <span class="math inline">\(\tan x.\)</span><br />
+Eg. <span class="math inline">\(\lim_{x\rightarrow \pi/2} x^2\sin x=(\pi/2)^2\sin(\pi/2)= \pi^2/4.\)</span><br />
+Eg. <span class="math inline">\(\lim_{x\rightarrow 0} \frac{1}{x}\)</span> does not exist. The value of <span class="math inline">\(f(x)\)</span> can be made greater than any finite constant by taking <span class="math inline">\(x\)</span> sufficiently close to zero, so no limit exists.<br />
+Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow 3} \frac{2x^2-18}{x-3}.\)</span> <span class="math display">\[\frac{2x^2-18}{x-3}=\frac{2(x+3)(x-3)}{x-3}=2(x+3) 
+\ \mbox{if} \ x\ne 3.\]</span> The value of the function at <span class="math inline">\(x=3\)</span> is irrelevant in defining the limit as <span class="math inline">\(x\rightarrow 3\)</span> so <span class="math display">\[\lim_{x\rightarrow 3} \frac{2x^2-18}{x-3}=\lim_{x\rightarrow 3} 2(x+3)=12.\]</span></p>
+<p> </p>
+<p>Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow 25} \frac{\sqrt{x}-5}{x-25}.\)</span> <span class="math display">\[\frac{\sqrt{x}-5}{x-25}
+=\frac{(\sqrt{x}-5)(\sqrt{x}+5)}{(x-25)(\sqrt{x}+5)}
+=\frac{x-25}{(x-25)(\sqrt{x}+5)}
+=\frac{1}{\sqrt{x}+5}
+\ \mbox{if} \ x\ne 25.\]</span> <span class="math display">\[\lim_{x\rightarrow 25} 
+\frac{\sqrt{x}-5}{x-25}
+=\lim_{x\rightarrow 25} \frac{1}{\sqrt{x}+5}=\frac{1}{10}.\]</span><br />
+</p>
+</section>
+<section id="the-pinching-theorem" class="level2" data-number="1.3">
+<h2 data-number="2.3"><span class="header-section-number">2.3</span> The pinching theorem</h2>
+<p><span>The pinching (squeezing) theorem: </span> If <span class="math inline">\(g(x)\le f(x) \le h(x)\)</span> for all <span class="math inline">\(x\ne a\)</span> in some open interval containing <span class="math inline">\(a\)</span> and <span class="math inline">\(\lim_{x\rightarrow a}g(x)=\lim_{x\rightarrow a}h(x)=L\)</span> then <span class="math inline">\(\lim_{x\rightarrow a}f(x)=L.\)</span><br />
+Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow 0} x^2\sin(\frac{1}{x}).\)</span><br />
+As <span class="math inline">\(-1\le \sin(\frac{1}{x})\le 1\)</span> then <span class="math inline">\(-x^2\le x^2\sin(\frac{1}{x}) \le x^2.\)</span> Also <span class="math inline">\(\lim_{x\rightarrow 0} -x^2=0=\lim_{x\rightarrow 0} x^2.\)</span></p>
+<p>Hence by the pinching theorem <span class="math inline">\(\lim_{x\rightarrow 0} x^2\sin(\frac{1}{x})=0.\)</span></p>
+<div class="center">
+<figure>
+<img src="new_pinching.png" style="width:7cm" alt="" /><figcaption>Graphs of <span class="math inline">\(f(x)=x^2\sin(1/x)\)</span> and the bounding functions <span class="math inline">\(g(x)=-x^2\)</span> and <span class="math inline">\(h(x)=x^2.\)</span></figcaption>
+</figure>
+</div>
+</section>
+<section id="two-trigonometric-limits" class="level2" data-number="1.4">
+<h2 data-number="2.4"><span class="header-section-number">2.4</span> Two trigonometric limits</h2>
+<p>Two important trigonometric limits that you may assume to be true and use are: <span class="math display">\[\lim_{x\rightarrow 0}\frac{\sin x}{x}=1 \qquad\mbox{and}\qquad
+\lim_{x\rightarrow 0}\frac{1-\cos x}{x}=0.\]</span> The graphs in Figure <a href="#fig-twolimits" data-reference-type="ref" data-reference="fig-twolimits">4</a> provide some evidence to support these results.</p>
+<div class="center">
+<figure>
+<img src="new_twolimits.png" id="fig-twolimits" style="width:6cm" alt="" /><figcaption>Graphs of <span class="math inline">\(\frac{\sin x}{x}\)</span> and <span class="math inline">\(\frac{1-\cos x}{x}.\)</span></figcaption>
+</figure>
+</div>
+<p>The first of these limits can be proved by applying the pinching theorem but to do this we will need to prove the inequalities <span class="math inline">\(\sin x &lt; x &lt; \tan x\)</span> for <span class="math inline">\(0&lt;x&lt;\pi/2.\)</span></p>
+<div class="center">
+<figure>
+<img src="trig1.png" style="width:5cm" alt="" /><figcaption>Some geometry to prove some inequalities</figcaption>
+</figure>
+</div>
+<p>Consider the geometry illustrated in the above figure, where <span class="math inline">\(0&lt;\theta&lt;\pi/2.\)</span></p>
+<p>Let <span class="math inline">\(T_1\)</span> be the area of the triangle with two black sides and a solid green side.</p>
+<p>Let <span class="math inline">\(S\)</span> be the area of the sector with two black sides and a red arc of the unit circle.</p>
+<p>Let <span class="math inline">\(T_2\)</span> be the area of the triangle with two black sides and a blue side.</p>
+<p>Clearly we have the inequalities <span class="math inline">\(T_1&lt;S&lt;T_2.\)</span></p>
+<p>Now   <span class="math inline">\(T_1=\frac{1}{2}\sin\theta, \qquad S=\pi\frac{\theta}{2\pi}=\frac{1}{2}\theta, \qquad T_2=\frac{1}{2}\tan\theta\)</span>  hence  <span class="math inline">\(\sin \theta &lt; \theta &lt; \tan \theta\)</span>  as required.</p>
+<p>Next consider upper and lower bounding functions for <span class="math inline">\(\frac{x}{\sin x}\)</span> where <span class="math inline">\(x\in(0,\pi/2).\)</span> Using the above inequalities for <span class="math inline">\(x\)</span> we have <span class="math display">\[1=\frac{\sin x}{\sin x}&lt;\frac{x}{\sin x}&lt;\frac{\tan x}{\sin x}=\frac{1}{\cos x}.\]</span> As all the combinations of functions in this inequality produce even functions then the result extends to <span class="math inline">\(x\in(-\pi/2,0)\cup(0,\pi/2).\)</span> The limits of the bounding functions are <span class="math inline">\(\lim_{x\to 0}1=1\)</span> and <span class="math inline">\(\lim_{x\to 0}(1/\cos x)=1\)</span> hence by the pinching theorem <span class="math inline">\(\lim_{x\to 0}(x/\sin x)=1\)</span> and therefore <span class="math inline">\(\lim_{x\to 0}((\sin x)/x)=1.\)</span><br />
+Now that we have proved the first trigonometric limit we can use it to prove the second, <span class="math display">\[\lim_{x\rightarrow 0}\frac{1-\cos x}{x}=
+\lim_{x\rightarrow 0}\frac{(1-\cos x)(1+\cos x)}{x(1+\cos x)}=
+\lim_{x\rightarrow 0}\frac{\sin^2 x}{x(1+\cos x)}=
+\lim_{x\rightarrow 0}\bigg(\frac{\sin x}{x}\bigg)^2\frac{x}{(1+\cos x)}=
+0.\]</span></p>
+<p>Here are some more examples that use the first trigonometric limit.<br />
+Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow 0} \frac{\sin(2x)}{x}.\)</span> <span class="math display">\[\lim_{x\rightarrow 0} \frac{\sin(2x)}{x}
+=\lim_{x\rightarrow 0} \frac{2\sin(2x)}{2x}
+=\lim_{u\rightarrow 0} \frac{2\sin(u)}{u}=2\cdot 1=2.\]</span> The above used the change of variable <span class="math inline">\(u=2x\)</span> and then the first of the two important trigonometric limits given above.<br />
+Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow 0} \frac{\tan x}{x}.\)</span> <span class="math display">\[\lim_{x\rightarrow 0} \frac{\tan x}{x}=
+\lim_{x\rightarrow 0} \frac{\sin x}{x\cos x}=
+\bigg(\lim_{x\rightarrow 0} \frac{\sin x}{x}\bigg)
+\bigg(\lim_{x\rightarrow 0} \frac{1}{\cos x}\bigg)
+=1\cdot 1=1.\]</span></p>
+<p> </p>
+<p>Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow 0} \frac{1-\cos x}{x^2}.\)</span></p>
+<p>For <span class="math inline">\(-\pi&lt;x&lt;\pi\)</span> <span class="math display">\[\frac{1-\cos x}{x^2}= 
+\frac{(1-\cos x)(1+\cos x)}{x^2(1+\cos x)}
+=\bigg(\frac{\sin x}{x}\bigg)^2\frac{1}{1+\cos x}\]</span> Hence by using the first important trigonometric limit we have that <span class="math display">\[\lim_{x\rightarrow 0} \frac{1-\cos x}{x^2}
+=\lim_{x\rightarrow 0}\bigg\{ \bigg(\frac{\sin x}{x}\bigg)^2\frac{1}{1+\cos x}
+\bigg\}
+=(1)^2\cdot\frac{1}{1+1}=\frac{1}{2}.\]</span></p>
+<p> </p>
+</section>
+<section id="classification-of-discontinuities" class="level2" data-number="1.5">
+<h2 data-number="2.5"><span class="header-section-number">2.5</span> Classification of discontinuities</h2>
+<p>If a function <span class="math inline">\(f(x)\)</span> is not continuous at a point <span class="math inline">\(x=a\)</span> then we say it has a discontinuity at <span class="math inline">\(x=a.\)</span> There are different types of discontinuity and these are best classified by considering how the function behaves on each side of the point <span class="math inline">\(x=a.\)</span> This motivates the definition of the following one-sided limits.<br />
+<span><strong>Defn:</strong></span> <span class="math inline">\(f(x)\)</span> has a <span><strong>right-sided limit</strong></span> <span class="math inline">\(L^+=\lim_{x\rightarrow a^+} f(x)\)</span> as <span class="math inline">\(x\)</span> tends to <span class="math inline">\(a\)</span> from above if <span class="math display">\[\forall \ \ \varepsilon&gt;0 \ \ \exists \ \ \delta&gt;0 \ \ \mbox{s.t} \ \
+|f(x)-L^+|&lt;\varepsilon\ \ \mbox{when} \ \ 0&lt;x-a&lt;\delta.\]</span> Note that the difference between this definition and the definition of the limit is the removal of the modulus sign in <span class="math inline">\(|x-a|.\)</span> This means that we only need to worry about points to the right of <span class="math inline">\(a\)</span> when requiring the function to be close to <span class="math inline">\(L^+.\)</span><br />
+Similarly, we have the definition</p>
+<p><span><strong>Defn:</strong></span> <span class="math inline">\(f(x)\)</span> has a <span><strong>left-sided limit</strong></span> <span class="math inline">\(L^-=\lim_{x\rightarrow a^-} f(x)\)</span> as <span class="math inline">\(x\)</span> tends to <span class="math inline">\(a\)</span> from below if <span class="math display">\[\forall \ \ \varepsilon&gt;0 \ \ \exists \ \ \delta&gt;0 \ \ \mbox{s.t} \ \
+|f(x)-L^-|&lt;\varepsilon\ \ \mbox{when} \ \ 0&lt;a-x&lt;\delta.\]</span> Here we only need to worry about points to the left of <span class="math inline">\(a\)</span> when requiring the function to be close to <span class="math inline">\(L^-.\)</span><br />
+It should be obvious that <span class="math inline">\(L=\lim_{x\rightarrow a} f(x)\)</span> exists iff <span class="math inline">\(L^+\)</span> and <span class="math inline">\(L^-\)</span> both exist and are equal. In which case <span class="math inline">\(L=L^+=L^-.\)</span><br />
+There are 3 types of discontinuity:<br />
+(i) <span><strong>Removable discontinuity</strong></span>.</p>
+<p>In this case <span class="math inline">\(L\)</span> exists but <span class="math inline">\(f(a)\ne L.\)</span></p>
+<p>The discontinuity can be removed to make the continuous function <span class="math display">\[g(x)=\begin{cases}
+f(x) &amp; \mbox{if \ } x\ne a \\
+L &amp; \mbox{if \ } x=a.
+\end{cases}\]</span></p>
+<p>Eg. The following function (Figure <a href="#fig-open3" data-reference-type="ref" data-reference="fig-open3">7</a>i) has a removable discontinuity at <span class="math inline">\(x=0,\)</span> <span class="math display">\[f(x)=\begin{cases}
+x^2 &amp; \mbox{if \ } x\ne 0 \\
+1 &amp; \mbox{if \ } x=0.
+\end{cases}\]</span> Removing this discontinuity yields the continuous function <span class="math inline">\(g(x)=x^2.\)</span></p>
+<div class="center">
+<p><img src="new_open3.png" title="fig:" id="fig-open3" style="width:5cm" alt="3 types of discontinuities at x=0: (i) removable; (ii) jump; (iii) infinite. " /> <img src="new_open22.png" title="fig:" id="fig-open3" style="width:5cm" alt="3 types of discontinuities at x=0: (i) removable; (ii) jump; (iii) infinite. " /> <img src="new_infdis.png" title="fig:" id="fig-open3" style="width:5cm" alt="3 types of discontinuities at x=0: (i) removable; (ii) jump; (iii) infinite. " /></p>
+</div>
+<p><br />
+(ii) <span><strong>Jump discontinuity.</strong></span></p>
+<p>In this case both <span class="math inline">\(L^+\)</span> and <span class="math inline">\(L^-\)</span> exist but <span class="math inline">\(L^+\ne L^-.\)</span><br />
+Eg. The following function (Figure <a href="#fig-open3" data-reference-type="ref" data-reference="fig-open3">7</a>ii) has a jump discontinuity at <span class="math inline">\(x=0,\)</span> <span class="math display">\[f(x)=\begin{cases}
+1 &amp; \mbox{if \ } x\le 0 \\
+x^2 &amp; \mbox{if \ } x&gt;0.
+\end{cases}\]</span> In this example <span class="math inline">\(L^+=0\ne 1=L^-.\)</span><br />
+Eg. The signum function <span class="math display">\[\mbox{sgn}(x)=\begin{cases}
+-1 &amp; \text{if $x&lt;0$} \\
+\ 0 &amp; \text{if $x=0$} \\
+\ 1 &amp; \text{if $x&gt;0$} \\
+\end{cases}\]</span> has a jump discontinuity at <span class="math inline">\(x=0.\)</span> In this example <span class="math inline">\(L^+=1\ne -1=L^-.\)</span><br />
+(iii) <span><strong>Infinite discontinuity.</strong></span></p>
+<p>In this case at least one of <span class="math inline">\(L^+\)</span> or <span class="math inline">\(L^-\)</span> does not exist.<br />
+Eg. The function <span class="math inline">\(f(x)=1/x\)</span> (Figure <a href="#fig-open3" data-reference-type="ref" data-reference="fig-open3">7</a>iii) has an infinite discontinuity at <span class="math inline">\(x=0.\)</span> In this example neither <span class="math inline">\(L^+\)</span> nor <span class="math inline">\(L^-\)</span> exist.<br />
+</p>
+</section>
+<section id="limits-as-xrightarrow-infty." class="level2" data-number="1.6">
+<h2 data-number="2.6"><span class="header-section-number">2.6</span> Limits as <span class="math inline">\(x\rightarrow \infty.\)</span></h2>
+<p>So far we have only been concerned with the limit of a function <span class="math inline">\(f(x)\)</span> as <span class="math inline">\(x\)</span> approaches a finite point <span class="math inline">\(a.\)</span> However, it is also possible to define a limit as <span class="math inline">\(x\rightarrow\infty.\)</span><br />
+<span><em>Rough idea #4:</em></span></p>
+<p>A function <span class="math inline">\(f(x)\)</span> has a limit <span class="math inline">\(L\)</span> as <span class="math inline">\(x\rightarrow\infty\)</span> if <span class="math inline">\(f(x)\)</span> can be kept arbitrarily close to <span class="math inline">\(L\)</span> by making <span class="math inline">\(x\)</span> sufficiently large.<br />
+<span><strong>Defn</strong></span>: <span class="math inline">\(f(x)\)</span> has a <span><strong>limit <span class="math inline">\(L\)</span> as <span class="math inline">\(x\)</span> tends to <span class="math inline">\(\infty\)</span></strong></span> if <span class="math display">\[\forall \ \ \varepsilon&gt;0 \ \ \exists \ \ S&gt;0 \ \ \mbox{s.t} \ \
+|f(x)-L|&lt;\varepsilon\ \ \mbox{when} \ \ x&gt;S.\]</span></p>
+<p>We then write <span class="math display">\[\lim_{x\rightarrow \infty}f(x)=L \quad \mbox{or equivalently}\quad 
+f(x)\rightarrow L \ \ \mbox{as} \ \ x\rightarrow \infty.\]</span> If there is no such <span class="math inline">\(L\)</span> then we say that <span><em>no limit exists</em></span>.<br />
+The corresponding definition associated with <span class="math inline">\(\lim_{x\rightarrow -\infty}f(x)=L\)</span> should be obvious</p>
+<p><span><strong>Defn</strong></span>: <span class="math inline">\(f(x)\)</span> has a <span><strong>limit <span class="math inline">\(L\)</span> as <span class="math inline">\(x\)</span> tends to <span class="math inline">\(-\infty\)</span></strong></span> if <span class="math display">\[\forall \ \ \varepsilon&gt;0 \ \ \exists \ \ S&lt;0 \ \ \mbox{s.t} \ \
+|f(x)-L|&lt;\varepsilon\ \ \mbox{when} \ \ x&lt;S.\]</span></p>
+<p>Eg. <span class="math inline">\(\lim_{x\rightarrow \infty}\frac{1}{x}=0.\)</span> This should be clear because <span class="math inline">\(\frac{1}{x}\)</span> can be made as close to zero as required by making <span class="math inline">\(x\)</span> sufficiently large. An easy way to calculate limits as <span class="math inline">\(x\to\infty\)</span> is to first make the substitution <span class="math inline">\(u=1/x\)</span> and then use the fact that if <span class="math inline">\(\lim_{x\rightarrow\infty}f(x)\)</span> exists then <span class="math inline">\(\lim_{x\rightarrow\infty}f(x)=\lim_{u\to 0^+}f(1/u)\)</span>. This has transformed the limit into one that we are already familiar with.</p>
+<p>Eg. <span class="math inline">\(\lim_{x\rightarrow \infty}\frac{1}{x}=
+\lim_{u\rightarrow 0^+} u=0.\)</span><br />
+Eg. Calculate <span class="math inline">\(\lim_{x\rightarrow \infty}\frac{x\cos(1/x)+2}{x}.\)</span> By using the substitution <span class="math inline">\(u=1/x\)</span> we have that <span class="math display">\[\lim_{x\rightarrow \infty}\frac{x\cos(1/x)+2}{x}=
+\lim_{u\rightarrow 0^+} \frac{\frac{1}{u}\cos u+2}{\frac{1}{u}}=
+\lim_{u\rightarrow 0^+} (\cos u+2u)=\cos(0)+0=1.\]</span><br />
+Our earlier discussion of a horizontal asymptote can now be made more precise, in that the graph of a function <span class="math inline">\(f(x)\)</span> will have a horizontal asymptote <span class="math inline">\(y=L\)</span> if <span class="math inline">\(\lim_{x\rightarrow \infty} f(x)=L.\)</span> <span class="math display">\[\mbox{Eg.} \quad \lim_{x\rightarrow \infty}\frac{2x+3}{x+5}=
+\lim_{x\rightarrow \infty}\frac{2+\frac{3}{x}}{1+\frac{5}{x}}=
+\frac{2+0}{1+0}=2.
+\quad
+\mbox{\ \hskip 5cm}\]</span> Here we have used the result that <span class="math inline">\(\lim_{x\rightarrow \infty}\frac{1}{x}=0,\)</span> together with the earlier facts about limits. We see that calculating this limit shows that the graph of this rational function has the horizontal asymptote <span class="math inline">\(y=2,\)</span> reproducing our earlier observations about the horizontal asymptotes of rational functions.</p>
+</section>
+<section id="the-intermediate-value-theorem" class="level2" data-number="1.7">
+<h2 data-number="2.7"><span class="header-section-number">2.7</span> The intermediate value theorem</h2>
+<p><span><strong>The intermediate value theorem</strong></span> states that if <span class="math inline">\(f(x)\)</span> is continuous on <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(u\)</span> is any number between <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span> (ie. either <span class="math inline">\(f(a)&lt;u&lt;f(b)\)</span> or <span class="math inline">\(f(b)&lt;u&lt;f(a)\)</span>) then <span class="math inline">\(\exists\)</span> (at least one) <span class="math inline">\(c\in(a,b)\)</span>  s.t.  <span class="math inline">\(f(c)=u.\)</span></p>
+<div class="center">
+<figure>
+<img src="new_ivt.png" style="width:6cm" alt="" /><figcaption>An illustration of the intermediate value theorem.</figcaption>
+</figure>
+</div>
+<p>Eg. <span class="math inline">\(f(x)=\sin x\)</span> is continuous on <span class="math inline">\([0,\pi/2]\)</span> and <span class="math inline">\(f(0)=0&lt;\frac{1}{2}&lt;1=f(\pi/2)\)</span> so by the intermediate value theorem there is (at least) one point <span class="math inline">\(x\)</span> in <span class="math inline">\((0,\pi/2)\)</span> s.t. <span class="math inline">\(\sin x=\frac{1}{2}.\)</span><br />
+It is important that <span class="math inline">\(f(x)\)</span> is continuous throughout the interval, otherwise the theorem does not apply.<br />
+Eg. <span class="math inline">\(f(x)=\frac{\mbox{sgn}(x) }{1+x^2}\)</span> has <span class="math inline">\(f(-1)=-\frac{1}{2}&lt;\frac{1}{5}&lt;\frac{1}{2}=f(1)\)</span> but there is no <span class="math inline">\(x\)</span> in <span class="math inline">\((-1,1)\)</span>  s.t. <span class="math inline">\(f(x)=\frac{1}{5}.\)</span> The intermediate value theorem does not apply because <span class="math inline">\(f(x)\)</span> is not continuous at <span class="math inline">\(x=0.\)</span> There is a jump discontinuity at <span class="math inline">\(x=0\)</span> with <span class="math inline">\(\lim_{x\rightarrow 0^+}f(x)=1\ne -1
+=\lim_{x\rightarrow 0^-}f(x).\)</span><br />
+An application of the intermediate value theorem is locating the zeros of a function. If the function <span class="math inline">\(f(x)\)</span> is continuous on <span class="math inline">\([a,b]\)</span> and we know that either <span class="math inline">\(f(a)&lt;0&lt;f(b)\)</span> or <span class="math inline">\(f(b)&lt;0&lt;f(a)\)</span> then by the intermediate value theorem the equation <span class="math inline">\(f(x)=0\)</span> has at least one root between <span class="math inline">\(a\)</span> and <span class="math inline">\(b.\)</span><br />
+Eg. The function <span class="math inline">\(f(x)=x^2-2\)</span> is continuous on <span class="math inline">\([1,2]\)</span> with <span class="math inline">\(f(1)=-1&lt;0\)</span> and <span class="math inline">\(f(2)=2&gt;0,\)</span> so there is at least one root of the equation <span class="math inline">\(x^2-2=0\)</span> in <span class="math inline">\((1,2)\)</span> (of course the root is <span class="math inline">\(x=\sqrt{2}=1.4142...\)</span>).<br />
+A repeated iterated application of this approach gives the <span><em>bisection method</em></span>, which can be used to locate the roots of a wide variety of equations to any desired accuracy.<br />
+</p>
+</section>
+</section>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '';
+	var subcounterOffset = '';
+	var problemCounter = '';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 1;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
