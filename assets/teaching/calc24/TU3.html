@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Calculus I, Tutorial Problem Sheet, Week 3</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://samfearn.github.io/latex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script type="text/x-mathjax-config">
+  	MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "ams"} } });
+  	// I need to wait until MathJax has finished before running the numbering script
+  	MathJax.Hub.Register.StartupHook("End",function(){doNumbering()});
+  </script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Calculus I, Tutorial Problem Sheet, Week 3</h1>
+</header>
+<div class="center">
+<p><span><strong>Calculus I, Tutorial Problem Sheet, Week 3</strong></span><br />
+</p>
+</div>
+<p> </p>
+<div class="center">
+
+</div>
+<div class="problem">
+<p>Are the following functions even, odd or neither? Justify your answers.</p>
+<p>(a) <span class="math inline">\(f(x)=(x-1)(x-2)\)</span></p>
+<p>(b) <span class="math inline">\(f(x)=\sum_{k=0}^n x^{2k+1}\)</span></p>
+<p>(c) <span class="math inline">\(f(x)=\frac{x}{(x^2+1)\cos x}\)</span></p>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(f:\mathbb{R}\mapsto \mathbb{R}\)</span> is an even function and <span class="math inline">\(g:\mathbb{R}\mapsto \mathbb{R}\)</span> is an odd function then determine whether the following functions are even, odd or neither? Justify your answers.</p>
+<p>(a) <span class="math inline">\(f_1(x)=\begin{cases}
+f(x) &amp; \text{if \ } x&gt;0\\
+-f(x) &amp; \text{if \ } x&lt;0\\
+\end{cases}\)</span></p>
+<p>(d) <span class="math inline">\(f_2(x)=(g\circ g)(x)\)</span></p>
+</div>
+<div class="problem">
+<p>Which of the following functions are injective? Find the inverses of those which are and specify the domain of the inverse.</p>
+<p>(a) <span class="math inline">\(f(x)=(1-x)^2\)</span> in <span class="math inline">\([1,2]\)</span></p>
+<p>(b) <span class="math inline">\(f(x)=(x-1)/(x+2)\)</span> in <span class="math inline">\(\mathbb{R}\backslash\{-2\}\)</span></p>
+<p>(c) <span class="math inline">\(f(x)=x^2+2x-1\)</span> in <span class="math inline">\([-2,2]\)</span></p>
+</div>
+<p> </p>
+<div class="center">
+
+</div>
+<div class="problem">
+<p>Consider the given graph of the function <span class="math inline">\(f(x).\)</span> Are the following statements true or false?</p>
+<div class="center">
+<figure>
+<img src="limit2.png" style="width:6cm" alt="" /><figcaption><span class="math inline">\(f(x)\)</span> for Q</figcaption>
+</figure>
+</div>
+<p>(a) <span class="math inline">\(\lim_{x\rightarrow 2}f(x)\)</span> does not exist, (b) <span class="math inline">\(\lim_{x\rightarrow 2}f(x)=1,\)</span> (c) <span class="math inline">\(\lim_{x\rightarrow 1}f(x)\)</span> does not exist,</p>
+<p>(d) <span class="math inline">\(\lim_{x\rightarrow a}f(x)\)</span> exists  <span class="math inline">\(\forall \ a\in(-1,1)\)</span> (e) <span class="math inline">\(\lim_{x\rightarrow a}f(x)\)</span> exists  <span class="math inline">\(\forall \ a\in(1,3).\)</span></p>
+</div>
+<div class="problem">
+<p>In each case either evaluate the limit, or state that no limit exists</p>
+<p>(a) <span class="math inline">\(\lim_{x\rightarrow \pi/2}x\sin x,\)</span> (b) <span class="math inline">\(\lim_{x\rightarrow 1}\frac{x^4-1}{x^3-1},\)</span> (c) <span class="math inline">\(\lim_{x\rightarrow \pi}\frac{\cos x}{1-\pi}.\)</span> (d) <span class="math inline">\(\lim_{x\rightarrow 1}\frac{x-1}{\sqrt{x+3}-2},\)</span></p>
+<p>(e) <span class="math inline">\(\lim_{x\to 0}\frac{x^2}{1-\cos 2x}\)</span> (f) <span class="math inline">\(\lim_{x\rightarrow 3}\frac{(x^2+x-12)}{(x-3)^2},\)</span> (g) <span class="math inline">\(\lim_{h\rightarrow 0}\frac{1+1/h}{1+1/h^2}.\)</span></p>
+</div>
+<div class="problem">
+<p>If <span class="math inline">\(f(x)&gt;0 \ \forall \ x\ne a\)</span>  and <span class="math inline">\(\lim_{x\rightarrow a} f(x)=L,\)</span> can we conclude that <span class="math inline">\(L&gt;0?\)</span> Justify your answer.</p>
+</div>
+<div class="problem">
+<p>Does <span class="math inline">\(\lim_{x\rightarrow 0}\frac{\sin(x+|x|)}{x}\)</span> exist?</p>
+<p>If the limit exists then find it.</p>
+</div>
+<div class="problem">
+<p>Calculate the limit as <span class="math inline">\(x\rightarrow \infty\)</span> of the following</p>
+<p>(a) <span class="math inline">\(\frac{6x+7}{1-2x},\)</span> (b) <span class="math inline">\(\frac{x^2}{x^2+\sin^2x}.\)</span></p>
+</div>
+<script>
+function doNumbering() {
+	// The syntax to read the structured data from the yaml is horrible, template literals fix the problem but probably aren't widely supported enough. Escaping line breaks is browser dependant. I don't know if there's a better way?
+	// Note that the data from the yaml file is manipulated into an array, and then parsed back into strings later, but I didn't want to deal with the pandoc templating syntax longer than necessary.
+	var supportedEnvsArrayString = ' .definition;;; .theorem;;; .lemma;;; .example;;; .exampleqed;;; .proposition;;; .remark;;; .corollary;;; .exercise;;; .question';
+	var supportedEnvsArray = supportedEnvsArrayString.split("|||");
+	supportedEnvsArray = supportedEnvsArray.map(inner => inner.split(";;;"));
+	var numberWithin = '1';
+	var counterOffset = '0';
+	var subcounterOffset = '';
+	var problemCounter = '0';
+	const partLabels = 'abcdefghijklmnopqrstuvwxyz'.split('');
+	
+	// counterOffset may be negative, and by default if specified on the command line this gets string concatenated with the default given in the yaml config and this then causes a problem. Can be fixed by removing the default in the config file and converting to an int, but this causes a NaN error if no value is suplied on the command line, so if NaN set to 0.
+	counterOffset = parseInt(counterOffset);
+	if (isNaN(counterOffset)) {
+		counterOffset = 0;
+	}
+	
+	subcounterOffset = parseInt(subcounterOffset);
+	if (isNaN(subcounterOffset)) {
+		subcounterOffset = 0;
+	}
+	
+	problemCounter = parseInt(problemCounter);
+	if (isNaN(problemCounter)) {
+		problemCounter = 0;
+	}
+	
+	function sanitiseSelector(selector) {
+		// tex labels often have colons in which need escaping. There may be other escaping needed here. Unfortunately neither encodeURI nor encodeURIComponent do what I need, so use regex to do the escaping manually.
+		var sanitised = selector.replace(/\:/g,"\\\:");
+		sanitised = sanitised.replace(/(^[\d])/,"\\3$1 ");
+		sanitised = sanitised.replace(/\//g,"\\\/");
+		return sanitised
+	}
+	
+	function labelLinks() {
+		var refs = document.querySelectorAll("a[data-reference-type=ref]")
+		for (ref of refs) {
+			// Escape colons (or other) from the link title.
+			var ref_label = sanitiseSelector(ref.getAttribute("data-reference"));
+			// Hopefully ref is a reference to a div or a section, which should have the associated id. If so, we just need the data-number from the relevant DOM item.
+			var ref_to = document.querySelector("#"+ref_label);
+			if (ref_to !== null) {
+				var ref_number = ref_to.getAttribute("data-number");
+			} else {
+				// If ref is being used for an equation, then we need to try to parse the mathjax divs. This is fragile, but try to find the span which corresponds to the equation number we need.
+				try {
+					var mathjax_ref = "#mjx-eqn-"+ref_label;
+					ref_to = document.querySelector(mathjax_ref);
+					// Since this is a ref, we don't want the parens to be returned, so find the equation number and strip the parens.
+					var ref_number = ref_to.querySelector(".mjx-char").innerHTML.replace(/[()]/g,"");
+					ref.setAttribute("href",mathjax_ref);
+				}
+				// If we can't find a place to link to, just indicate a missing link.
+				catch (err){
+					var ref_number = "???"
+				}
+			}
+			ref.innerHTML = ref_number;
+		};
+	}
+	
+	function numberEnvs() {
+		for (var levelSpec = 0; levelSpec <= numberWithin; levelSpec++) {
+			var reqLevels = document.querySelectorAll(".level"+levelSpec);
+			for (var level of reqLevels) {
+				levelCount = level.getAttribute("data-number");
+				levelCount = String(parseFloat(levelCount)+(counterOffset));
+				levelCount = levelCount+(("."+subcounterOffset).repeat(numberWithin-levelSpec));
+				for (var counter of supportedEnvsArray) {
+					var envCount = 1;
+					var envs = level.querySelectorAll(counter.join(", "));
+					for (var env of envs) {
+						env.setAttribute("data-number",levelCount+"."+envCount);
+						envCount += 1;
+					}
+				}
+			}
+		}
+	}
+	
+	function numberFigs() {
+		// Figures should either be in a figure environment, or a table with image class imageTable thanks to the tableCaps filter.
+		figs = document.querySelectorAll("figure, .imageTable");
+		var fig_no = 1
+		for (var fig of figs) {
+			var cap
+			// For figures, we want to move the id to the figure, and set the data-number on both the figure and the figcaption
+			if (fig.nodeName == "FIGURE") {
+				cap = fig.querySelector("figcaption");
+				var img = fig.querySelector("img, embed")
+				if (img) {
+					var img_id = img.getAttribute("id");
+					fig.setAttribute("id",img_id);
+					img.removeAttribute("id");
+				}
+			// for tables (which must be .imageTable due to the querySelector above), we want to set the data-number on the table and the caption
+			} else if (fig.nodeName == "TABLE") {
+				cap = fig.querySelector("caption");
+			}
+			cap.setAttribute("data-number",fig_no);
+			fig.setAttribute("data-number",fig_no);
+			fig_no += 1;
+		}
+	}
+	
+	function numberGlobals() {
+		// This function numbers any environments that just use a global counter, such as a problem number on a problems sheet, where there are no sections to number with respect to.
+		probsols = document.querySelectorAll(".problem, .solution");
+		var prob_no = problemCounter;
+		var partNo = 0;
+		for (var probsol of probsols) {
+			if (probsol.className == "problem"){
+				prob_no +=1;
+				partNo = 0;
+				probsol.setAttribute("data-number",prob_no);
+			}
+			else {
+				if (probsol.parentNode.nodeName == "LI") {
+					var partLabel = partLabels[partNo];
+					probsol.setAttribute("data-number",prob_no.toString()+partLabel);
+					partNo +=1;
+				}
+				else{
+					probsol.setAttribute("data-number",prob_no);
+				}
+			}
+			
+		}
+		// sols = document.querySelectorAll(".solution");
+// 		var sol_no = problemCounter;
+// 		for (var sol of sols) {
+// 			sol.setAttribute("data-number",sol_no);
+// 			sol_no +=1
+// 		}
+	}
+	
+	// labelLinks() should occur last, so that the data-numbers have been correctly set first.
+	numberEnvs();
+	numberFigs();
+	numberGlobals();
+	labelLinks();
+}
+</script><script>
+	var imageDir = './Images/'
+	imgs = document.querySelectorAll("img");
+	for (var img of imgs) {
+		imgsrc = img.getAttribute("src");
+		img.setAttribute("src",imageDir.concat(imgsrc));
+	}
+</script></body>
+</html>
