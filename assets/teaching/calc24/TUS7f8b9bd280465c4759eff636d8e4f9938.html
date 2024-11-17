@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Calculus I, Chapter 2 Problems</title>
+  <title>Calculus I, Tutorial Problem Sheet, Week 7</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -26,10 +26,10 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Calculus I, Chapter 2 Problems</h1>
+<h1 class="title">Calculus I, Tutorial Problem Sheet, Week 7</h1>
 </header>
 <div class="center">
-<p><span><strong>Calculus I, Chapter 2 Problems</strong></span><br />
+<p><span><strong>Calculus I, Tutorial Problem Sheet, Week 7</strong> </span><br />
 </p>
 </div>
 <p> </p>
@@ -37,96 +37,92 @@
 
 </div>
 <div class="problem">
-<p>Consider the given graph of the function <span class="math inline">\(f(x).\)</span> Are the following statements true or false?</p>
-<div class="center">
-<figure>
-<img src="limit1.png" style="width:7cm" alt="" /><figcaption><span class="math inline">\(f(x)\)</span> for Q</figcaption>
-</figure>
+<p>Let <span class="math inline">\(F(x)=\int_{\pi}^x t\sin t\, dt.\)</span>  Calculate <span class="math inline">\(F(\pi),\ F&#39;(x)\)</span> and <span class="math inline">\(F&#39;(\pi/2).\)</span></p>
 </div>
-<p>(a) <span class="math inline">\(\lim_{x\rightarrow 0}f(x)\)</span> exists, (b) <span class="math inline">\(\lim_{x\rightarrow 0}f(x)=0,\)</span> (c) <span class="math inline">\(\lim_{x\rightarrow 0}f(x)=1\)</span></p>
-<p>(d) <span class="math inline">\(\lim_{x\rightarrow 1}f(x)=1,\)</span> (e) <span class="math inline">\(\lim_{x\rightarrow 1}f(x)=0,\)</span> (f) <span class="math inline">\(\lim_{x\rightarrow a}f(x)\)</span> exists  <span class="math inline">\(\forall \ a\in(-1,1).\)</span></p>
+<div class="solution">
+<p> </p>
+<p><span class="math inline">\(F(\pi)=0, \ F&#39;(x)=x\sin x\)</span> and <span class="math inline">\(F&#39;(\pi/2)=\pi/2.\)</span></p>
 </div>
 <div class="problem">
-<p>Consider the given graph of the function <span class="math inline">\(f(x).\)</span> Are the following statements true or false?</p>
-<div class="center">
-<figure>
-<img src="limit2.png" style="width:6cm" alt="" /><figcaption><span class="math inline">\(f(x)\)</span> for Q</figcaption>
-</figure>
+<p>Let <span class="math display">\[F(x)=-\int_0^{x^2}\frac{2}{3+e^t}\,dt.\]</span> Find all critical points of <span class="math inline">\(F(x)\)</span> and determine whether they are local minima, maxima or points of inflection. Prove that <span class="math inline">\(F(300)&gt;F(310).\)</span></p>
 </div>
-<p>(a) <span class="math inline">\(\lim_{x\rightarrow 2}f(x)\)</span> does not exist, (b) <span class="math inline">\(\lim_{x\rightarrow 2}f(x)=1,\)</span> (c) <span class="math inline">\(\lim_{x\rightarrow 1}f(x)\)</span> does not exist,</p>
-<p>(d) <span class="math inline">\(\lim_{x\rightarrow a}f(x)\)</span> exists  <span class="math inline">\(\forall \ a\in(-1,1)\)</span> (e) <span class="math inline">\(\lim_{x\rightarrow a}f(x)\)</span> exists  <span class="math inline">\(\forall \ a\in(1,3).\)</span></p>
-</div>
-<div class="problem">
-<p>If <span class="math inline">\(f(x)&gt;0 \ \forall \ x\ne a\)</span>  and <span class="math inline">\(\lim_{x\rightarrow a} f(x)=L,\)</span> can we conclude that <span class="math inline">\(L&gt;0?\)</span> Justify your answer.</p>
+<div class="solution">
+<p> </p>
+<p><span class="math inline">\(F&#39;(x)=-4x/(3+e^{x^2})\)</span> hence <span class="math inline">\(F&#39;(x)=0\)</span> iff <span class="math inline">\(x=0.\)</span></p>
+<p>For <span class="math inline">\(x&lt;0,\ F&#39;(x)&gt;0\)</span> whereas for <span class="math inline">\(x&gt;0,\ F&#39;(x)&lt;0,\)</span> hence <span class="math inline">\(x=0\)</span> is a local maximum.</p>
+<p>As <span class="math inline">\(F&#39;(x)&lt;0\)</span> for <span class="math inline">\(x&gt;0\)</span> then <span class="math inline">\(F(x)\)</span> is strictly monotonic decreasing in <span class="math inline">\((0,\infty)\)</span></p>
+<p>hence <span class="math inline">\(F(310)&lt;F(300).\)</span></p>
 </div>
 <div class="problem">
-<p>Justify whether the following statement is true or false.</p>
-<p>If <span class="math inline">\(\lim_{x\rightarrow a}f(x)\)</span> exists then so does <span class="math inline">\(\lim_{x\rightarrow a}\sqrt{f(x)}.\)</span></p>
+<p>Calculate the derivatives of the following functions:</p>
+<p><span class="math display">\[\begin{aligned} (a)\ F(x) &amp;= \int_{x^2}^1 (t-\sin^2t)\, dt, \\
+ (b)\ G(t) &amp;= \int_{t^2}^{t^4} \sqrt{u}\, du. \end{aligned}\]</span></p>
 </div>
-<div class="problem">
-<p>Calculate the following limits</p>
-<p>(a) <span class="math inline">\(\lim_{x\rightarrow 0}(2-x),\)</span> (b) <span class="math inline">\(\lim_{x\rightarrow -1}\frac{3x^2}{2x-1},\)</span> (c) <span class="math inline">\(\lim_{x\rightarrow \pi/2}x\sin x,\)</span> (d) <span class="math inline">\(\lim_{x\rightarrow \pi}\frac{\cos x}{1-\pi}.\)</span></p>
-</div>
-<div class="problem">
-<p>Calculate the following limits</p>
-<p>(a) <span class="math inline">\(\lim_{x\rightarrow 1}\frac{x^4-1}{x^3-1},\)</span> (b) <span class="math inline">\(\lim_{x\rightarrow 2}\frac{x^3-8}{x^4-16},\)</span> (c) <span class="math inline">\(\lim_{x\rightarrow 1}\frac{x-1}{\sqrt{x+3}-2},\)</span> (d) <span class="math inline">\(\lim_{x\rightarrow 4}\frac{4x-x^2}{2-\sqrt{x}}.\)</span></p>
-</div>
-<div class="problem">
-<p>Calculate the limit as <span class="math inline">\(x\rightarrow 0\)</span> of the following</p>
-<p>(a) <span class="math inline">\(\frac{1-\cos x}{x^2},\)</span> (b) <span class="math inline">\(\frac{x^2}{1-\cos 2x},\)</span> (c) <span class="math inline">\(\frac{x^2}{1-\cos 4x}.\)</span></p>
-</div>
-<div class="problem">
-<p>Does <span class="math inline">\(\lim_{x\rightarrow 0}\frac{\sin(x+|x|)}{x}\)</span> exist?</p>
-<p>If the limit exists then find it.</p>
-</div>
-<div class="problem">
-<p>In each case either evaluate the limit or state that no limit exists</p>
-<p>(a) <span class="math inline">\(\lim_{x\rightarrow 3}\frac{x^2+x+12}{x-3},\)</span> (b) <span class="math inline">\(\lim_{x\rightarrow 3}\frac{x^2+x-12}{x-3},\)</span> (c) <span class="math inline">\(\lim_{x\rightarrow 3}\frac{(x^2+x-12)^2}{x-3},\)</span> (d) <span class="math inline">\(\lim_{x\rightarrow 3}\frac{(x^2+x-12)}{(x-3)^2},\)</span></p>
-<p>(e) <span class="math inline">\(\lim_{h\rightarrow 0}\frac{1-1/h^2}{1+1/h^2},\)</span> (f) <span class="math inline">\(\lim_{h\rightarrow 0}\frac{1+1/h}{1+1/h^2}.\)</span></p>
-</div>
-<div class="problem">
-<p>Calculate the limit as <span class="math inline">\(x\rightarrow \infty\)</span> of the following</p>
-<p>(a) <span class="math inline">\(\frac{6x+7}{1-2x},\)</span> (b) <span class="math inline">\(\frac{x^2}{x^2+\sin^2x}.\)</span></p>
-</div>
-<div class="problem">
-<p>Calculate the following limits</p>
-<p>(a) <span class="math inline">\(\lim_{x\rightarrow\infty}\frac{\cos(1/x)}{1+(1/x)},\)</span> (b) <span class="math inline">\(\lim_{x\rightarrow\infty}\bigg(\frac{1}{x}\bigg)^{1/x},\)</span></p>
-<p>(c) <span class="math inline">\(\lim_{x\rightarrow\infty}(3+\frac{2}{x})\cos(1/x),\)</span> (d) <span class="math inline">\(\lim_{x\rightarrow\infty}\{(\frac{3}{x^2}-\cos(1/x))(1+\sin(1/x))\}.\)</span></p>
-</div>
-<div class="problem">
-<p>For each of the following statements, either give a proof that it is true or a counter example to show that it is false:</p>
-<p>(a) If <span class="math inline">\(g(x)&gt;0 \ \forall \ x&gt;0\)</span> and <span class="math inline">\(\lim_{x\rightarrow\infty}(f(x)-g(x))=0\)</span> then <span class="math inline">\(\lim_{x\rightarrow\infty}(f(x)/g(x))=1.\)</span></p>
-<p>(b) If <span class="math inline">\(g(x)&gt;0 \ \forall \ x&gt;0\)</span> and <span class="math inline">\(\lim_{x\rightarrow\infty}(f(x)/g(x))=1\)</span> then <span class="math inline">\(\lim_{x\rightarrow\infty}(f(x)-g(x))=0.\)</span></p>
-</div>
-<div class="problem">
-<p>In each case either evaluate the limit or state that no limit exists</p>
-<p>(a) <span class="math inline">\(\lim_{u\rightarrow -5}\frac{u^2}{5-u},\)</span> (b) <span class="math inline">\(\lim_{y\rightarrow 0}(2y-8)^{1/3},\)</span> (c) <span class="math inline">\(\lim_{x\rightarrow 0}\frac{(x-2)(1-\cos 3x)}{2x},\)</span> (d) <span class="math inline">\(\lim_{t\rightarrow 5}\frac{t-5}{t^2-25},\)</span></p>
-<p>(e) <span class="math inline">\(\lim_{x\rightarrow -2}\frac{x+2}{\sqrt{x^2+5}-3},\)</span> (f) <span class="math inline">\(\lim_{x\rightarrow \infty}\frac{-3x^4+x^2+1}{-5x^4-1},\)</span> (g) <span class="math inline">\(\lim_{t\rightarrow 0}\frac{5t^3+8t^2}{3t^2-16t^4},\)</span> (h) <span class="math inline">\(\lim_{x\rightarrow 3}\frac{\tan(2(x-3))}{x-3},\)</span></p>
-<p>(i) <span class="math inline">\(\lim_{x\rightarrow -3}\frac{x+3}{x^2+4x+3},\)</span> (j) <span class="math inline">\(\lim_{x\rightarrow 2}\frac{\sqrt{x^2+12}-4}{x-2},\)</span> (k) <span class="math inline">\(\lim_{t\rightarrow 1}\frac{t^2+t-2}{t^2-1},\)</span> (l) <span class="math inline">\(\lim_{t\rightarrow -\infty}\frac{t^3+1}{t^2+1}.\)</span></p>
+<div class="solution">
+<p> In each case we use the Fundamental Theorem of Calculus with the chain rule,</p>
+<p>(a) <span class="math inline">\(F&#39;(x) = -\frac{d}{dx}\int_{1}^{x^2} (t-\sin^2t)\, dt =-2x(x^2-\sin^2(x^2)).\)</span></p>
+<p>(b) <span class="math inline">\(G&#39;(t)=t^2(4t^3)-|t|2t=4t^5-2t|t|\)</span>.</p>
 </div>
 <p> </p>
 <div class="center">
 
 </div>
 <div class="problem">
-<p>Sketch the graph of the function <span class="math inline">\(f(x)\)</span> and classify any discontinuities, where <span class="math display">\[f(x)=\begin{cases}
-2x-1 &amp; \text{\ if \ } x&lt;1\\
-0 &amp; \text{\ if \ } x=1\\
-1/x^2 &amp; \text{\ if \ } x&gt;1
-\end{cases}\]</span></p>
+<p>For integer <span class="math inline">\(n\ge 0\)</span> define <span class="math display">\[I_n=\int_0^{\pi/4}\cos^{n+1}x\,dx.\]</span> Find a recurrence relation between <span class="math inline">\(I_n\)</span> and <span class="math inline">\(I_{n-2}\)</span> and hence evaluate <span class="math inline">\(I_2\)</span> and <span class="math inline">\(I_4.\)</span></p>
+</div>
+<div class="solution">
+<p> </p>
+<p>Integration by parts is the clear way to produce a recurrence relation. There is only one obvious way to split the integrand so we have a factor we can integrate and the new integral will only involve trig functions.</p>
+<p><span class="math inline">\(I_n=\int_0^{\pi/4}\cos^{n+1}x\,dx
+=\int_0^{\pi/4}\cos^{n}x\cos x\,dx
+=[\cos^{n}x\sin x]_0^{\pi/4}+\int_0^{\pi/4}n\cos^{n-1}x\sin^2 x\,dx\)</span></p>
+<p><span class="math inline">\(=\frac{1}{\sqrt{2}^{n+1}}+n\int_0^{\pi/4}(\cos^{n-1}x\,(1-\cos^2 x))\,dx
+=\frac{1}{\sqrt{2}^{n+1}}+n(I_{n-2}-I_n)\)</span>hence</p>
+<p><span class="math inline">\(I_n=(\frac{1}{\sqrt{2}^{n+1}}+nI_{n-2})/(n+1).\)</span> From above <span class="math inline">\(I_0=1/\sqrt{2}\)</span> therefore</p>
+<p><span class="math inline">\(I_2=(\frac{1}{\sqrt{2}^{3}}+2I_{0})/3=5/(6\sqrt{2})\)</span> and <span class="math inline">\(I_4=(\frac{1}{\sqrt{2}^{5}}+4I_{2})/5=43/(60\sqrt{2}).\)</span></p>
+</div>
+<p> </p>
+<div class="center">
+
 </div>
 <div class="problem">
-<p>Sketch the graph of the function <span class="math inline">\(f(x)\)</span> and classify any discontinuities, where <span class="math display">\[f(x)=\begin{cases}
-(x-3)/(x^2-9) &amp; \text{\ if \ } x\ne \pm 3\\
-1/6 &amp; \text{\ if \ } x=\pm 3\\
-\end{cases}\]</span></p>
+<p>Calculate <span class="math inline">\(\iint\limits_D x^3y\, dxdy\)</span>, where <span class="math inline">\(D\)</span> is the triangle with vertices <span class="math inline">\((0,0),(1,0),(1,1).\)</span></p>
+</div>
+<div class="solution">
+<p> <span class="math display">\[\iint\limits_D x^3y\, dxdy
+=\int_0^1\bigg(\int_0^x x^3y\,dy\bigg)\,dx
+=\int_0^1\bigg[\frac{x^3y^2}{2}\bigg]_{y=0}^{y=x}\,dx\]</span> <span class="math display">\[=\int_0^1 \frac{x^5}{2}\,dx
+=\bigg[\frac{x^6}{12}\bigg]_0^1=\frac{1}{12}.\]</span></p>
 </div>
 <div class="problem">
-<p>Sketch the graph of the function <span class="math inline">\(f(x)\)</span> and classify any discontinuities, where <span class="math display">\[f(x)=\begin{cases}
--1 &amp; \text{\ if \ } x&lt;-1\\
-x^3 &amp; \text{\ if \ } -1\le x\le 1\\
-1 &amp; \text{\ if \ } x&gt;1 \\
-\end{cases}\]</span></p>
+<p>Calculate <span class="math inline">\(\iint\limits_D \sqrt{xy}\, dxdy\)</span>,</p>
+<p>where <span class="math inline">\(D\)</span> is the finite region between the curves <span class="math inline">\(y=x\)</span> and <span class="math inline">\(y=x^2\)</span>.</p>
+</div>
+<div class="solution">
+<p> <span class="math display">\[\iint\limits_D \sqrt{xy}\, dxdy
+=\int_0^1\bigg(\int_{x^2}^x \sqrt{xy}\,dy\bigg)\,dx
+=\int_0^1\bigg[\frac{2}{3}x^\frac{1}{2} y^\frac{3}{2}\bigg]_{y=x^2}^{y=x}\,dx\]</span> <span class="math display">\[=\frac{2}{3}\int_0^1 (x^2-x^\frac{7}{2})\,dx
+=\frac{2}{3}\bigg[\frac{x^3}{3}-\frac{2}{9}x^\frac{9}{2}\bigg]_0^1=\frac{2}{27}.\]</span></p>
+</div>
+<div class="problem">
+<p>Calculate <span class="math display">\[\int_{0}^{\pi/2}\bigg(\int_{x}^{\pi/2}\frac{\sin y}{y} \,dy\bigg)\,dx.\]</span></p>
+</div>
+<div class="solution">
+<p> </p>
+<p>The given iterated integral can be written as a double integral over the region <span class="math inline">\(D\)</span> between the curves <span class="math inline">\(y=x\)</span> and <span class="math inline">\(y=\pi/2\)</span> for <span class="math inline">\(0\le x\le \pi/2\)</span>, hence <span class="math display">\[\int_{0}^{\pi/2}\bigg(\int_{x}^{\pi/2}\frac{\sin y}{y} \,dy\bigg)\,dx=
+\iint\limits_D \, \frac{\sin y}{y} \, dxdy
+=\int_{0}^{\pi/2}\bigg(\int_{0}^{y}\frac{\sin y}{y}  \,dx\bigg)\,dy\]</span> <span class="math display">\[=\int_{0}^{\pi/2}\bigg[\frac{x\sin y}{y}\bigg]_{x=0}^{x=y}\,dy
+=\int_{0}^{\pi/2}\sin y\,dy
+=\bigg[-\cos y\bigg]_0^{\pi/2}=1.\]</span></p>
+</div>
+<div class="problem">
+<p>Use polar coordinates to calculate <span class="math inline">\(\iint\limits_D e^{-(x^2+y^2)}\, dxdy\)</span>, where <span class="math inline">\(D\)</span> is the unit disc centred at the origin.</p>
+</div>
+<div class="solution">
+<p> <span class="math display">\[\iint\limits_D e^{-(x^2+y^2)})\, dxdy
+=\int_{0}^1\bigg(\int_{0}^{2\pi}e^{-r^2} \,d\theta\bigg)\,rdr
+=2\pi\int_0^1 re^{-r^2}\,dr=-\pi\bigg[e^{-r^2}\bigg]_0^1=
+\pi\bigg(1-\frac{1}{e}\bigg).\]</span></p>
 </div>
 <script>
 function doNumbering() {
